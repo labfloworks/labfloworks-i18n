@@ -1,0 +1,23 @@
+name: Validate i18n JSON files
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate JSON syntax
+        run: |
+          echo "Validating JSON files in locales/..."
+          for file in locales/*.json; do
+            echo "Checking $file..."
+            python3 -m json.tool "$file" > /dev/null
+          done
+          echo "All JSON files are valid!"
