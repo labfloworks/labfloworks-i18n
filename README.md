@@ -12,7 +12,7 @@ We maintain a strict key-value balance across all languages to ensure the user i
 1. **Fork** this repository.
 2. Go to the `locales/` directory.
 3. Duplicate `en.json` (or `es.json`).
-4. Rename the file using the 2-letter ISO code for your language (e.g., `ca.json` for Catalan, `de.json` for German, `fr.json` for French).
+4. Rename the file using the 2-letter ISO code for your language (e.g., `ca.json` for Catalan).
 5. Translate the values on the right. 
 
 > ⚠️ **STRICT REQUIREMENT:**  
