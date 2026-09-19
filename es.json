@@ -1,0 +1,1555 @@
+{
+  "language_name": "Español",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "Archivo",
+      "new": "Nuevo",
+      "open": "Abrir…",
+      "save": "Guardar",
+      "save_as": "Guardar como…",
+      "exit": "Salir"
+    },
+    "edit": "Editar",
+    "view": "Ver",
+    "help": "Ayuda",
+    "language": "Idioma",
+    "info": "Información",
+    "theme": "Tema",
+    "font_size": "Tamaño de fuente",
+    "font_size_custom": "Tamaño personalizado…"
+  },
+  "menu_config": {
+    "title": "Configuración nodo"
+  },
+  "panels": {
+    "analysis": {
+      "title": "Análisis"
+    },
+    "stats": {
+      "title": "Estadísticas",
+      "max": "Máx:",
+      "min": "Mín:",
+      "mean": "Media:",
+      "rms": "RMS:",
+      "mode_3d": "(Proyección 3D)"
+    },
+    "cursors": {
+      "title": "Cursores A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "Cursores no disponibles en modo 3D"
+    },
+    "crosshair": {
+      "cursor": "Cursor",
+      "peak": "Pico",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "Crosshair no disponible en modo 3D"
+    }
+  },
+  "tab": {
+    "plot": "Gráfica",
+    "workspace": "Variables Lienzo",
+    "python_vars": "Variables Python"
+  },
+  "tooldrawer": {
+    "python_console": "Terminal",
+    "monitor_widget": "Monitor de Rendimiento",
+    "spreadsheet_widget": "Hoja de Cálculo",
+    "calc_widget": "Calculadora"
+  },
+  "console": {
+    "help": {
+      "title": "Tutorial Interactivo de la Consola FloWorks",
+      "button": "Ayuda",
+      "html": "<h1>Tutorial Interactivo de la Consola FloWorks</h1><h2>1. Nodos y conexiones</h2><p><code>&gt;&gt;&gt; graph.nodes</code></p><p><code>&gt;&gt;&gt; graph.connections</code></p><p><code>&gt;&gt;&gt; selected_node</code></p><p>Crear nodo:</p><p><code>&gt;&gt;&gt; graph.add_catalog_node('SumNode', 300, 200)</code></p><p>Conectar:</p><p><code>&gt;&gt;&gt; graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>Eliminar:</p><p><code>&gt;&gt;&gt; graph.remove_node(graph.nodes[2])</code></p><p>Puertos:</p><p><code>&gt;&gt;&gt; graph.nodes[1].PORTS</code></p><h2>2. Ejecutar y ver resultados</h2><p>Ejecutar grafo:</p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Ver salida de un nodo:</p><p><code>&gt;&gt;&gt; graph.node_values[graph.nodes[1]]</code></p><p>Esta forma puede fallar con KeyError, puedes usar:</p><p><code>&gt;&gt;&gt; list(graph.node_values.values())[1]</code></p><p>Salida completa:</p><p><code>&gt;&gt;&gt; nodo = graph.nodes[0]</code></p><p><code>&gt;&gt;&gt; nodo.output</code></p><p>Eje Y:</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; y = result[1]</code></p><p><code>&gt;&gt;&gt; y.max()</code></p><p>Asignaciones no imprimen; verificá con <code>x</code>, <code>y.shape</code> o <code>print(x, y)</code></p><h2>3. Gráfica</h2><p>Limpiar:</p><p><code>&gt;&gt;&gt; app.plot_widget.clear_plot()</code></p><p>Señal desde consola:</p><p><code>&gt;&gt;&gt; import numpy as np</code></p><p><code>&gt;&gt;&gt; x = np.linspace(0, 1, 1000)</code></p><p><code>&gt;&gt;&gt; y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>Desde nodo fuente:</p><p><code>&gt;&gt;&gt; x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>Nodo FFT (devuelve dict):</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>&gt;&gt;&gt; result.keys()</code></p><p><code>&gt;&gt;&gt; f, mag = result['magnitude']</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. Modificar la aplicación</h2><p>Actualizar tabla:</p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Añadir nodo:</p><p><code>&gt;&gt;&gt; app.add_node('SignalSourceNode')</code></p><p>Título:</p><p><code>&gt;&gt;&gt; app.setWindowTitle('Mi laboratorio de señales')</code></p><p>Verificar:</p><p><code>&gt;&gt;&gt; app.windowTitle()</code></p><p>Restaurar:</p><p><code>&gt;&gt;&gt; app.update_title()</code></p><h2>5. Atajos</h2><table><tr><th>Tecla/Comando</th><th>Acción</th></tr><tr><td><code>&uarr;</code> / <code>&darr;</code></td><td>Historial</td></tr><tr><td><code>Tab</code></td><td>Autocompletar</td></tr><tr><td><code>Ctrl + L</code></td><td>Limpiar consola</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>Bloques multilínea</td></tr></table><h2>6. Recetas</h2><p>Cambiar parámetro:</p><p><code>&gt;&gt;&gt; selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>&gt;&gt;&gt; getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Fórmula custom:</p><p><code>&gt;&gt;&gt; selected_node.params['mode'] = 'formula'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['expr'] = '2 * sin(2*pi*1000*t)'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>&gt;&gt;&gt; selected_node._generate_signal()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Listar categorías:</p><p><code>&gt;&gt;&gt; from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>&gt;&gt;&gt; NODE_CATEGORIES</code></p><p>Ayuda:</p><p><code>&gt;&gt;&gt; help(graph.connect_nodes)</code></p><h2>7. Solución de problemas</h2><ul><li><strong>Error en rojo</strong>: la consola muestra el problema, la app no se cierra.</li><li><strong>Interfaz congelada</strong>: bucle infinito. Cierra la consola o reinicia.</li><li><strong>No pasa nada</strong>: revisa <code>graph.connections</code> y nodos fuente.</li></ul><p>&copy; 2026 FloWorks — Laboratorio de Señales</p>"
+    }
+  },
+  "vars_table": {
+    "header":{
+      "name": "Nombre",
+      "type": "Tipo",
+      "shape": "Forma",
+      "value": "Valor"
+    },
+    "menu" : {
+      "info": "Variable: {name}"
+    },
+    "dialog": {
+      "title": "Valor completo"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "Fuente:",
+    "font_size_tooltip": "Cambiar tamaño base de fuente",
+    "run_flow_tooltip": "Ejecutar flujo",
+    "add_kinematics": "Nodo Cinemática",
+    "escolar": "Escolar",
+    "add_function_graph_node": "Funciones",
+    "add_rhombus_node": "Compuerta Lógica",
+    "add_graph_exporter": "Exportador de gráfica",
+    "add_note": "Nota",
+    "add_note_tooltip": "Añadir nota adhesiva...",
+    "add_signal_source": "Nuevo Signal Source",
+    "add_spectrogram_viewer": "Visualizador de Espectrograma",
+    "add_correlation": "Correlación",
+    "add_math_expression": "Expresión Matemática",
+    "add_spectrogram": "Espectrograma",
+    "add_resample": "Remuestrear",
+    "add_window": "Ventana",
+    "add_delay": "Retardo",
+    "add_convolution_node": "Convolución",
+    "add_normalize": "Normalizar",
+    "add_filter": "Filtro",
+    "add_fft": "FFT",
+    "source_node": "Generador de señales",
+    "load_signal_tooltip": "Generar señal a gusto del usuario",
+    "history": "Historial",
+    "history_tooltip": "Historial de operaciones",
+    "auto_layout": "Organizar",
+    "auto_layout_tooltip": "Organizar nodos automáticamente (Ctrl+Shift+L)",
+    "sources": "Periféricos",
+    "processing": "Procesamiento",
+    "control": "Control",
+    "add_oscilloscope": "Osciloscopio",
+    "add_generator": "Generador",
+    "add_expression": "Nodo expresión",
+    "add_script": "Script Python",
+    "add_arithmetic": "Operador +−×÷",
+    "add_program": "Programa",
+    "add_split": "Compuerta Lógica)",
+    "add_trigger": "Nodo Disparador", 
+    "sink": "Exportador de Gráficos",
+    "help_wiki": "Documentación / Wiki",
+    "help_wiki_tooltip": "Abrir la wiki del proyecto"
+  },
+  "info": {
+    "information": "Acerca de",
+    "shortcuts": "Atajos",
+    "tutorials": "Tutoriales",
+    "change_theme": "Cambiar tema"
+  },
+  "status": {
+    "default": "FloWorks  |  Scroll: zoom  |  Clic central: paneo  |  Clic derecho sobre nodo: opciones",
+    "no_nodes": "Listo. Selecciona nodos desde la barra de herramientas.",
+    "how_to_connect": "Presiona Ctrl+clic en el puerto de salida de un nodo, luego clic en el puerto de entrada de otro.",
+    "connecting": "Conectando… Clic sobre otro nodo o puerto.",
+    "connection_created": "Conexión creada.",
+    "flow_executed": "Flujo ejecutado correctamente.",
+    "flow_error": "Error durante la ejecución del flujo.",
+    "saved": "Diagrama guardado: {path}",
+    "loaded": "Diagrama cargado: {path}",
+    "new_file": "Nuevo diagrama creado",
+    "example_loaded": "Ejemplo cargado."
+  },
+  "errors": {
+    "save_failed": "Error al guardar: {error}",
+    "load_failed": "Error al cargar: {error}",
+    "load_example_failed": "No se pudo cargar el ejemplo: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "Eliminar Nodo",
+      "connect": "Conectar Nodo",
+      "disconnect": "Desconectar Nodo",
+      "setup": "Configurar",
+      "trigger": "Disparar",
+      "generate": "Generar",
+      "edit_script": "Editar Script",
+      "edit_input": "Editar entrada",
+      "help": "Información"
+    },
+    "graph_union": {
+      "title": "Unión de Gráficas",
+      "tooltip": "Agrupa múltiples señales como series independientes para superposición en gráficas.",
+      "num_inputs_label": "Número de entradas (1-8):",
+      "config_title": "Configurar Unión de Gráficas",
+      "status": {
+        "ready": "Listo"
+      },
+      "ports": {
+        "signal_1": "Señal 1",
+        "signal_2": "Señal 2",
+        "signal_3": "Señal 3",
+        "signal_4": "Señal 4",
+        "signal_5": "Señal 5",
+        "signal_6": "Señal 6",
+        "signal_7": "Señal 7",
+        "signal_8": "Señal 8",
+        "series_out": "Salida"
+      },
+      "menu": {
+        "configure": "Configurar..."
+      },
+      "help_title": "Ayuda - Unión de Gráficas",
+      "help_html": "<h3>🔗 Nodo Unión de Gráficas</h3><p>Recibe múltiples señales y las mantiene como series independientes para su superposición en gráficas sin concatenarlas.</p><p>Haz clic derecho en el nodo para <b>añadir o quitar</b> entradas dinámicamente (máximo 8).</p><p>La salida <code>Series</code> entrega la lista completa de series para su visualización.</p>"
+    },
+    "tabular_inspector": {
+      "title": "Inspector de datos",
+      "window_title": "Inspector de datos tabulares",
+      "no_data": "Sin datos",
+      "copy": "Copiar al portapapeles",
+      "decimals": "Decimales:",
+      "col_names": "Nombres de columna (separados por coma, vacío = auto):",
+      "tooltip": "Inspección de datos del nodo muestra los datos recibidos en su único puerto de entrada como una tabla.",
+      "status": {
+        "no_data": "Sin datos"
+      },
+      "menu": {
+        "view_table": "Ver tabla",
+        "configure": "Configurar…"
+      },
+      "ports": {
+        "data": "Entrada"
+      },
+      "config_title": "Configurar inspector tabular",
+      "help_title": "Ayuda - Inspector tabular",
+      "help_html": "<h3>📊 Inspector tabular</h3><p>Como una hoja de cálculo de Excel, este nodo muestra los datos recibidos en su único puerto de entrada como una tabla.</p><p><b>Reglas de interpretación:</b></p><ul><li><b>Tupla/lista de arrays</b> (ej. (x, y, Fs)) → cada array se convierte en una columna.</li><li><b>Array 2D de numpy</b> → filas × columnas.</li><li><b>Array 1D o lista</b> → columna única.</li><li><b>Escalar</b> → celda única.</li></ul><p>Clic derecho → <b>Ver tabla</b> para abrir el inspector. Usa el panel lateral para ajustar decimales y nombres de columna (separados por comas).</p>"
+    },
+    "equation_solver": {
+      "title": "Solución de ecuaciones",
+      "tooltip":"Solucionador de sistemas lineales de ecuaciones",
+      "type_label": "Tipo de ecuación:",
+      "type_linear_single": "Lineal simple",
+      "type_linear_system": "Sistema lineal 2×2",
+      "eq_format": "Formato: a*x + b = c",
+      "eq1_label": "Ecuación 1 (formato: a*x + b*y = c):",
+      "eq2_label": "Ecuación 2:",
+      "examples": "Ejemplos",
+      "sys_examples": "Ejemplos de sistemas",
+      "menu": {
+        "view_plot": "Ver gráfica de la solución",
+        "configure": "Configurar ecuaciones...",
+        "view_steps": "Ver pasos de solución..."
+      },
+      "ports": {
+        "output": "salida",
+        "steps": "pasos",
+        "solution": "y (m)"
+      },
+      "steps_title": "Pasos de la solución",
+      "no_steps": "No hay pasos de solución disponibles.",
+      "config_title": "Configurar Equation Solver",
+      "help_title": "Ayuda - Equation Solver",
+      "plot_window_title": "Gráfica de la solución",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "Exportar...",
+      "export_title": "Exportar gráfica",
+      "no_data_to_plot": "No hay datos para graficar",
+      "btn_step_by_step": "▶ Paso a paso",
+      "step_anim_title": "Paso a paso",
+      "step_anim_info": "En la versión completa, esto mostraría la construcción gráfica paso a paso.",
+      "error_no_equals": "Falta el signo '=' en la ecuación.",
+      "error_rhs_not_number": "El lado derecho de la ecuación no es un número válido.",
+      "error_invalid_x_coef": "Coeficiente de x no válido: '{coef}'. Revisa la sintaxis.",
+      "error_invalid_y_coef": "Coeficiente de y no válido: '{coef}'. Revisa la sintaxis.",
+      "error_invalid_const": "Término constante no válido: '{term}'. Usa solo números y los signos + o -.",
+      "error_zero_x": "El coeficiente de x es cero. La ecuación no tiene solución única.",
+      "no_plot_data_title": "Sin datos",
+      "no_plot_data_message": "No hay datos de solución para graficar. Configure y resuelva primero.",
+      "preview": "Vista previa:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "Sin solución (o aún no calculado)",
+      "help_html":"<h3>🧮 Nodo de Resolución de Ecuaciones</h3>\n<p>Permite <b>resolver ecuaciones lineales simples o sistemas de ecuaciones 2×2</b>, mostrando el procedimiento paso a paso y la gráfica de intersección.</p>\n\n<h4>⚙️ Uso</h4>\n<ol>\n <li>Haz <b>clic derecho</b> en el nodo → selecciona <i>\"Editar parámetros\"</i>.</li>\n <li>Elige el <code>equation_type</code>: <code>linear_single</code> o <code>linear_system</code>.</li>\n <li>Ingresa las <code>equations</code> como texto (ej. \"2x + 3 = 7\") o lista de textos para sistemas.</li>\n <li>El nodo calculará la solución y generará los pasos algebraicos automáticamente.</li>\n</ol>\n\n<h4>📤 Salida</h4>\n<ul>\n <li><code>solution</code> → valor numérico (ecuación simple) o diccionario con <code>x</code>, <code>y</code> (sistema 2×2).</li>\n <li><code>steps</code> → texto con el desglose algebraico paso a paso.</li>\n</ul>\n\n<h4>⚠️ Notas</h4>\n<ul>\n <li><b>Valor pedagógico:</b> Ofrece retroalimentación instantánea del álgebra y conecta la solución con su representación gráfica (intersección).</li>\n <li>Asegúrate de usar las variables correctas (<code>x</code> para simples, <code>x</code> e <code>y</code> para sistemas).</li>\n <li>Si el sistema es inconsistente o dependiente, se indicará en la salida de <code>steps</code>.</li>\n</ul>\n\n<h4>💡 Ejemplo</h4>\n<p>Configura el nodo como <code>linear_system</code> con <code>[\"y = 2x\", \"y = -x + 3\"]</code>. Conecta <code>steps</code> a un visor de texto y visualiza la intersección en un nodo de gráfica.</p>\n<hr>\n<hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento matemático</b>.</p>\n\n<pre>\nEcuación → Resolución → Visualización\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(Álgebra ↔ Geometría)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nParámetros → Procesamiento (Solver) → Visualización (Plot/Texto)\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nParámetros (Ecuaciones) → EquationSolver → Plot (Intersección) + Text (Pasos)\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conectar rápidamente.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "Cinemática",
+      "tooltip": "Simulador de cinemática: caída libre y movimiento parabólico",
+      "ports": {
+        "x": "x(m) vs t(s)",
+        "y": "y(m) vs t(s)",
+        "vx": "vx(m/s) vs t(s)",
+        "vy": "vy(m/s) vs t(s)",
+        "speed": "rapidez(m/s) vs t(s)",
+        "energy_kinetic": "energía cinética(J) vs t(s)",
+        "energy_potential": "energía potencial(J) vs t(s)",
+        "ground_contact": "contacto suelo vs t(s)"
+      },
+      "status": {
+        "ready": "Listo"
+      },
+      "config_title": "Configurar Cinemática",
+      "menu": {
+        "configure": "Configurar…",
+        "generate": "Generar",
+        "show_output": "Mostrar en plot",
+        "trajectory": "Trayectoria (y vs x)",
+        "y_t": "Posición vertical y(t)",
+        "vy_t": "Velocidad vertical vy(t)",
+        "speed_t": "Rapidez |v|(t)",
+        "display": "Visualización"
+      },
+      "group_ic": "Condiciones Iniciales",
+      "group_env": "Entorno",
+      "group_sim": "Simulación",
+      "group_presets": "Preajustes",
+      "help_title": "Ayuda - Cinemática",
+      "help_html": "<h3>🚀 Laboratorio de Cinemática</h3><p>Simula <b>tiro parabólico</b> y <b>caída libre</b> bajo gravedad constante. No requiere entradas; genera señales desde condiciones iniciales.</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 Salidas principales (tuplas tiempo vs magnitud)</h4><p>Cada puerto entrega una tupla <code>(t, variable)</code> lista para conectar a un plot o a otro nodo. El tiempo ya va incluido como eje X.</p><ul><li><code>x</code> → (t, posición horizontal) [m]</li><li><code>y</code> → (t, posición vertical) [m]</li><li><code>vx</code> → (t, velocidad horizontal) [m/s]</li><li><code>vy</code> → (t, velocidad vertical) [m/s]</li><li><code>speed</code> → (t, rapidez |v|) [m/s]</li></ul><h4>⚡ Salidas opcionales (activar Mostrar energías)</h4><ul><li><code>energy_kinetic</code> → (t, Ec = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, 1.0 si y≤0, 0.0 en el aire)</li></ul><h4>🎨 Canales de visualización internos</h4><p>Cambia qué se muestra en el plot principal desde el menú contextual:</p><ul><li><b>Trayectoria</b> (y vs x) → parábola espacial</li><li><b>y(t)</b>, <b>vy(t)</b>, <b>|v|(t)</b> → evolución temporal</li></ul><h4>💡 Conexiones típicas</h4><ul><li><b>Altura vs tiempo:</b> conecta <code>y</code> a un plot (ya trae t incluido)</li><li><b>Rapidez vs tiempo:</b> conecta <code>speed</code> a un plot</li><li><b>Trayectoria espacial:</b> conecta <code>x</code> → eje X del plot, <code>y</code> → eje Y</li><li><b>Impacto:</b> conecta <code>ground_contact</code> a un nodo lógico o LED</li><li><b>Energía:</b> suma <code>energy_kinetic</code> + <code>energy_potential</code> para ver conservación</li></ul><h4>⚡ Atajos</h4><ul><li><b>Doble clic</b> → esta ayuda</li><li><b>Clic derecho</b> → configurar / generar</li><li><b>Botón GENERAR</b> → simula y abre animación</li></ul><hr><p><b>Estado:</b> -- | <b>Preset:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "Funciones",
+      "tooltip": "Genera y visualiza funciones matemáticas con análisis numérico",
+      "ports": { "signal": "Señal" },
+      "status": { "ready": "Listo" },
+      "menu": { "configure": "Configurar...", "show_table": "Ver Tabla de Valores", "generate": "Generar", "show_limit": "Mostrar límite", "show_derivative": "Mostrar derivada" },
+      "config_title": "Configurar Función",
+      "cfg": { "expr": "Expresión:", "presets": "Preajustes:", "piecewise": "Activar función a trozos", "group_func": "Funciones", "group_dom": "Dominio", "group_viz": "Visualización" },
+      "table_title": "Tabla de Valores"
+    },
+    "signal_source": {
+        "title": "Generador de Señales Avanzado",
+        "tooltip": "Generador de señales avanzado",
+        "load_signal": "Cargar señal desde archivo...",
+        "load_file_title": "Cargar archivo de señal",
+        "ports": {
+            "out": "Salida",
+            "trigger_in": "Trigger In",
+            "trigger_out": "Trigger Out"
+        },
+        "status": {
+            "no_data": "Sin datos"
+        },
+        "configure": "Configurar...",
+        "generate": "Generar señal",
+        "help_title": "Ayuda - Generador de señales avanzado",
+        "help_html": "<h3>🎛️ Nodo Signal Source</h3>\n<p>Genera <b>señales personalizadas</b> usando una amplia variedad de <b>formas de onda predefinidas</b> o una <b>fórmula matemática</b> escrita por el usuario. La salida es siempre una tupla <code>(tiempo, amplitud)</code>, lista para su procesamiento posterior.</p>\n\n<h4>📤 Salida</h4>\n<p><code>out</code> → tupla <code>(t, y)</code>.</p>\n\n<h4>⚙️ Modos de operación</h4>\n<ul>\n    <li><b>Predefinido:</b> elige entre senoidal, cuadrada, rampa, pulso, ruido, DC, triangular, diente de sierra, sinc, gaussiana, exponencial, chirp. Todos los parámetros (frecuencia, amplitud, offset, fase, ciclo de trabajo, simetría, etc.) se ajustan en el diálogo de configuración.</li>\n    <li><b>Fórmula:</b> escribe una <b>expresión matemática libre</b> usando <code>t</code> (tiempo) y variables personalizadas (ej. <code>amp * sin(2*pi*freq*t) + offset</code>). Las variables se definen en una tabla y pueden añadirse, eliminarse o modificarse a voluntad. La evaluación es segura y restringida a operaciones matemáticas.</li>\n</ul>\n\n<h4>🖱️ Interacción</h4>\n<ul>\n    <li><b>Doble clic</b> en el nodo → abre el diálogo de configuración con tres pestañas (Predefinido, Fórmula, Avanzado).</li>\n    <li><b>Un clic</b> en el nodo → grafica la señal actual en el gráfico principal.</li>\n    <li><b>Clic derecho</b> → menú contextual para regenerar, configurar o eliminar el nodo.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDato → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla fundamental</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → FFT → Filtro → Sumador → Gráfica\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para una conexión rápida.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+        "title": "Configuración de Señal",
+        "waveform": "Forma de onda",
+        "frequency": "Frecuencia",
+        "amplitude": "Amplitud",
+        "offset": "Offset",
+        "phase": "Fase",
+        "symmetry": "Simetría",
+        "direction": "Dirección",
+        "up": "Ascendente",
+        "down": "Descendente",
+        "stdev": "Desviación estándar",
+        "mean": "Media",
+        "lobes": "Lóbulos",
+        "sigma": "Sigma",
+        "mu": "Mu",
+        "tau": "Tau",
+        "exp_type": "Tipo",
+        "rise": "Subida",
+        "fall": "Bajada",
+        "f0": "Frecuencia inicial",
+        "f1": "Frecuencia final",
+        "chirp_method": "Método",
+        "linear": "Lineal",
+        "logarithmic": "Logarítmico",
+        "tab_preset": "Predefinido",
+        "tab_formula": "Fórmula",
+        "tab_advanced": "Avanzado",
+        "preview": "Vista previa",
+        "apply": "Aplicar",
+        "duration": "Duración",
+        "sample_rate": "Frecuencia de muestreo",
+        "sampling_note": "0 = automática",
+        "auto_generate": "Auto-generar",
+        "time_label": "Tiempo (s)",
+        "amplitude_label": "Amplitud",
+        "formula_expr": "Fórmula (use 't' como variable de tiempo):",
+        "variables": "Variables:",
+        "var_name": "Nombre",
+        "var_value": "Valor",
+        "add_var": "Añadir variable",
+        "remove_var": "Eliminar seleccionada",
+        "auto": "Auto",
+        "basic_params": "Parámetros Básicos",
+        "carrier_freq": "Frecuencia de la portadora",
+        "mod_freq": "Frecuencia de la moduladora",
+        "mod_depth": "Profundidad de la modulación",
+        "deviation": "Desviación",
+        "heart_rate": "Ritmo cardiaco",
+        "rise_time": "Tiempo de subida",
+        "fall_time": "Tiempo de bajada",
+        "quick_insert": "Funciones rápidas",
+        "advanced": {
+          "modulation": "Modulación",
+          "mod_enable": "Habilitar Modulación",
+          "mod_type": "Tipo de Modulación",
+          "mod_freq": "Frecuencia de Modulación",
+          "mod_depth": "Profundidad de Modulación",
+          "noise_group": "Ruido",
+          "noise_enable": "Añadir ruido",
+          "noise_amp": "Amplitud del ruido",
+          "auto_generate": "Aplicar cambios automáticamente",
+          "auto_generate_tooltip": "Si está activado, cada cambio de parámetro se aplica inmediatamente al nodo. Si está desactivado, presiona OK para aplicar."
+        },
+        "gamma": "Gamma (ancho)",
+        "window_type": "Tipo de ventana",
+        "quadratic": "Cuadrático",
+        "hyperbolic": "Hiperbólico",
+        "hanning": "Hanning",
+        "hamming": "Hamming",
+        "blackman": "Blackman",
+        "bartlett": "Bartlett",
+        "kaiser": "Kaiser",
+        "noise_type": "Tipo de ruido",
+        "gaussian": "Gaussiano",
+        "uniform": "Uniforme",
+        "pink": "Rosa (1/f)",
+        "brown": "Browniano (1/f²)",
+        "blue": "Azul (f)",
+        "impulse": "Impulsos",
+        "pulse_shape": "Forma de pulso",
+        "rect": "Rectangular",
+        "raised_cosine": "Coseno alzado",
+        "polynomial": "Polinomio PRBS",
+        "bit_rate": "Tasa de bits",
+        "symbol_rate": "Tasa de símbolos",
+        "symbol_sequence": "Secuencia de símbolos",
+        "bit_sequence": "Secuencia de bits",
+        "multitone_hint": "Frecuencias (Hz, separadas por coma):",
+        "frequencies": "Frecuencias",
+        "amplitudes": "Amplitudes",
+        "phases": "Fases",
+        "step_time": "Tiempo del escalón",
+        "impulse_time": "Tiempo del impulso",
+        "f_start": "Frecuencia inicial",
+        "f_end": "Frecuencia final",
+        "f2": "Frecuencia 2",
+        "noise_level": "Nivel de ruido",
+        "duty_cycle": "Ciclo de trabajo (%)",
+        "signal_sine": "Seno",
+        "signal_square": "Cuadrada",
+        "signal_ramp": "Rampa",
+        "signal_pulse": "Pulso",
+        "signal_noise": "Ruido",
+        "signal_dc": "DC",
+        "signal_triangle": "Triangular",
+        "signal_sawtooth": "Diente de sierra",
+        "signal_sinc": "Sinc",
+        "signal_gaussian": "Gaussiana",
+        "signal_exponential": "Exponencial",
+        "signal_chirp": "Chirp",
+        "signal_am": "AM",
+        "signal_fm": "FM",
+        "signal_ecg": "ECG",
+        "signal_trapezoidal": "Trapezoidal",
+        "signal_lorentzian": "Lorentziana",
+        "signal_window": "Ventana",
+        "signal_multitone": "Multitono",
+        "signal_ask": "ASK",
+        "signal_fsk": "FSK",
+        "signal_psk": "PSK",
+        "signal_pwm": "PWM",
+        "signal_pam": "PAM",
+        "signal_prbs": "PRBS",
+        "signal_step": "Escalón",
+        "signal_impulse": "Impulso",
+        "signal_sweep_sine": "Sweep Seno",
+        "signal_cardiac": "Cardíaca",
+        "signal_eeg": "EEG",
+        "signal_beat": "Batido"
+    },
+    "input": {
+      "help_html": "<h3>📂 Nodo de Entrada (Carga de datos)</h3>\n<p>Permite <b>cargar datos desde un archivo .npz</b> (formato NumPy) y enviarlos al flujo de trabajo.</p>\n\n<h4>⚙️ Uso</h4>\n<ol>\n    <li>Haz <b>clic derecho</b> en el nodo → selecciona <i>\"Editar entrada\"</i>.</li>\n    <li>Elige un archivo <code>.npz</code> que contenga una clave llamada <code>datay</code>.</li>\n    <li>El array se guarda internamente y se propaga automáticamente por el flujo.</li>\n</ol>\n\n<h4>📤 Salida</h4>\n<p><code>out</code> → el contenido de <code>datay</code> del archivo cargado.</p>\n\n<h4>⚠️ Notas</h4>\n<ul>\n    <li>Solo se aceptan archivos <b>.npz</b> con la clave <code>datay</code>.</li>\n    <li>Si el archivo no es válido, se mostrará un error en la consola.</li>\n    <li>Después de cargar un archivo, el flujo se ejecuta automáticamente.</li>\n</ul>\n\n<h4>💡 Ejemplo</h4>\n<p>Carga un archivo con datos de sensores y luego conéctalo a un nodo \"Filtro\" o \"Visualizador\".</p>\n<hr>\n<hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDato → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → FFT → Filtro → Sumador → Plot\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conectar rápidamente.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "función lambda",
+      "help_html": "<h3>🔧 Nodo Genérico de Procesamiento</h3>\n<p>Aplica una <b>función personalizada</b> a los datos de entrada. Es la base para crear operaciones matemáticas, transformaciones, etc.</p>\n\n<h4>📥 Entrada</h4>\n<p><code>data_in</code> → puede ser un número, una tupla (x, y), o cualquier objeto.</p>\n\n<h4>📤 Salida</h4>\n<p><code>out</code> → el resultado de aplicar la función a la entrada.</p>\n\n<h4>🧠 Comportamiento según el tipo de entrada</h4>\n<ul>\n    <li>Si la entrada es una <b>tupla de dos elementos</b> (x, y), la función recibe la tupla y debe devolver otra tupla o un valor. Ejemplo: <code>lambda xy: (xy[0], xy[1]*2)</code>.</li>\n    <li>Si la entrada es un <b>valor simple</b>, la función recibe ese valor. Ejemplo: <code>lambda x: x**2</code>.</li>\n    <li>Si la entrada es <code>None</code>, la salida también será <code>None</code>.</li>\n</ul>\n\n<h4>⚙️ Personalización</h4>\n<p>La función se asigna al crear el nodo (por ejemplo, en el código). En futuras versiones podrás editarla desde la interfaz.</p>\n\n<h4>💡 Ejemplos</h4>\n<ul>\n    <li><b>Doblar un número:</b> <code>lambda x: x * 2</code></li>\n    <li><b>Sumar componentes de una tupla:</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>Devolver la misma tupla (passthrough):</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>Función aplicada:</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDato → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → FFT → Filtro → Sumador → Plot\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conectar rápidamente.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "Compuerta Lógica",
+      "tooltip": "Operaciones lógicas, comparación y enmascarado de señales (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "Entrada 1",
+        "in2": "Entrada 2",
+        "out": "Salida"
+      },
+      "config_title": "Configurar Compuerta Lógica",
+      "op_label": "Operación:",
+      "thr_label": "Umbral / Nivel:",
+      "inv_label": "Invertir Salida",
+      "help_title": "Ayuda - Compuerta Lógica",
+      "help_html": "<h3>🎛️ Compuerta Lógica / Comparador</h3>\n<p>Evalúa, compara o enmascara dos señales de entrada muestra a muestra para generar disparadores, máscaras lógicas o salidas condicionales.</p>\n\n<h4>📥 Entradas</h4>\n<ul>\n<li><code>in1</code> → Señal principal (operando A).</li>\n<li><code>in2</code> → Señal de referencia, máscara o segundo operando (operando B).</li>\n</ul>\n\n<h4>📤 Salida</h4>\n<ul>\n<li><code>out</code> → Resultado del procesamiento. Las operaciones booleanas devuelven <code>0.0</code> o <code>1.0</code>. Los comparadores/umbrales generan máscaras o señales recortadas.</li>\n</ul>\n\n<h4>📐 Diagrama</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 Modelo mental</h4>\n<p>Este nodo actúa como un <b>motor de decisión por muestreo</b>. Evalúa cada punto independientemente, transformando formas de onda analógicas en señales de control digitales, máscaras de activación o flujos lógicos.</p>\n\n<h4>📐 Representación de datos</h4>\n<pre>\nEntradas:\n(x, y1) y (x, y2) → Arrays 1D (se trunca al menor si difieren)\n\nSalida:\n(x, y_out) → Típicamente binario (0/1) o enmascarado\n</pre>\n\n<h4>🔁 Patrón de uso típico</h4>\n<pre>\n[Generador] → [Compuerta] → [Disparador / Plot]\n\nEjemplo:\nSeno (in1) + Cuadrada (in2) → [AND] → Tren de pulsos sincronizado\nSeñal (in1) → [THRESHOLD] → Máscara 0/1 para detectar picos\nSeñal (in1) + Ref (in2) → [MASK] → Silencia in1 cuando in2 ≤ 0\n</pre>\n\n<h4>⚠️ Errores comunes</h4>\n<ul>\n<li>Esperar que las ops lógicas mantengan amplitud → NO lo hacen (convierten a 0/1). Usa <code>LEVEL</code> o <code>MASK</code>.</li>\n<li>Conectar señales de longitudes muy distintas → Se trunca al mínimo.</li>\n<li>Usar <code>EQ</code> con flotantes → Usa tolerancia implícita del motor o redondea antes.</li>\n</ul>\n<hr><hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDato → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → FFT → Filtro → Sumador → Plot\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → conecta rápidamente.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, configurar).</li>\n<li><b>Arrastrar</b> el nodo → mueve el bloque; conexiones se actualizan.</li>\n</ul>"
+      },
+    "sum": {
+      "title": "Aritmético",
+      "tooltip": "Realiza operaciones aritméticas entre dos señales",
+      "operation": {
+        "sum": "Suma",
+        "sub": "Resta",
+        "mul": "Multiplicación",
+        "div": "División"
+      },
+      "ports": {
+        "out": "Salida",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "*A",
+        "port_b_mul": "*B",
+        "port_a_div": "num",
+        "port_b_div": "den"
+      },
+      "menu": {
+        "operation": "Operación"
+      },
+      "help_title": "Ayuda - Nodo Aritmético",
+      "help_html": "<h3>➕ Nodo Sumador/Operador</h3>\n<p>Realiza operaciones aritméticas entre dos señales (arrays o valores numéricos).</p>\n\n<h4>📥 Entradas</h4>\n<ul>\n    <li><code>port_a</code> (superior): primer operando (A).</li>\n    <li><code>port_b</code> (inferior): segundo operando (B).</li>\n</ul>\n\n<h4>📤 Salida</h4>\n<p><code>out</code> → resultado de la operación (A op B).</p>\n\n<h4>⚙️ Operaciones disponibles (clic derecho → Operación)</h4>\n<ul>\n    <li><b>Suma (+)</b>: A + B</li>\n    <li><b>Resta (−)</b>: A − B</li>\n    <li><b>Multiplicación (×)</b>: A * B</li>\n    <li><b>División (÷)</b>: A / B (protege contra división por cero).</li>\n</ul>\n\n<h4>📐 Diagrama</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 Modelo mental</h4>\n<p>\nEste nodo es un <b>operador vectorial</b>.\nTrabaja elemento a elemento sobre señales.\n</p>\n\n<h4>📐 Representación vectorial</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\nSalida:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 Ejemplo visual</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\nSuma:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 Estrategias de uso</h4>\n<ul>\n<li><b>Normalización:</b> dividir por el máximo</li>\n<li><b>Escalado:</b> multiplicar por constante</li>\n<li><b>Mezcla de señales:</b> suma de ondas</li>\n<li><b>Cancelación:</b> A - B para eliminar ruido</li>\n</ul>\n\n<h4>⚠️ Errores comunes</h4>\n<ul>\n<li>No alinear ejes X → resultados inconsistentes</li>\n<li>División por valores cercanos a 0 → inestabilidad</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDato → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → FFT → Filtro → Sumador → Plot\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conectar rápidamente.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "script": {
+      "title": "Script",
+      "tooltip": "Nodo de script Python",
+      "ports": {
+        "data_in": "Datos entrada",
+        "loop_in": "Bucle entrada",
+        "out": "Salida"
+      },
+      "menu":{
+        "edit":"Editar",
+        "run":"Ejecutar Script"
+      },
+      "status_ready": "Ready",
+      "status_error": "Error",
+      "edit_script": "Editar Script",
+      "tooltip_x": "Array NumPy: eje X (tiempo, frecuencia, etc.)",
+      "tooltip_y": "Array NumPy: valores de la señal actual",
+      "tooltip_param": "Parámetro de iteración (desde TriggerNode) o None",
+      "help_title": "Ayuda - Nodo Script",
+      "help_html": "<h3>📜 Nodo Script Personalizado</h3> <p>Permite escribir código Python para procesar señales de forma arbitraria.</p> <h4>📥 Entradas</h4> <ul> <li><code>data_in</code> → señal principal (x, y) o array simple.</li> <li><code>loop_in</code> → entrada opcional para recibir parámetros desde un nodo <b>TriggerNode</b> (valor <code>param</code>).</li> <li>Puertos dinámicos <code>@input nombre</code> → entradas adicionales definidas en el script.</li> </ul> <h4>📤 Salidas</h4> <ul> <li><code>out</code> → tupla (x_nuevo, y_nuevo) generada por el script (modo batch).</li> <li>Puertos dinámicos <code>@output nombre</code> → salidas adicionales definidas en el script.</li> </ul> <h4>✏️ Edición del script</h4> <p>Haz clic derecho → <b>Editar Script</b> para abrir el editor con resaltado de sintaxis.</p> <p>Incluye autocompletado, plantillas, parámetros configurables (<code>@param</code>) y ejecución externa (Python alternativo).</p> <hr> <h4>🧠 Variables disponibles (modo batch tradicional)</h4> <ul> <li><code>x</code> : array numpy – eje temporal o de frecuencias</li> <li><code>y</code> : array numpy – valores de la señal</li> <li><code>param</code> : float (opcional) – valor proveniente de <code>loop_in</code> (TriggerNode)</li> <li><code>persist</code> : dict – persistente entre ejecuciones del mismo nodo (útil para acumuladores)</li> <li><code>np</code>, <code>scipy</code>, <code>sympy</code> – librerías preimportadas</li> </ul> <h4>🧩 Modelo mental</h4> <p> Este nodo es un <b>bloque de transformación arbitraria</b>. Aquí defines tu propia física, matemática o lógica. </p> <h4>📐 Forma esperada (batch)</h4> <pre> Entrada: x → vector (tiempo/frecuencia) y → vector (valores) Salida: (x_mod, y_mod) </pre> <h4>🧠 Ejemplos más potentes</h4> <h5>1. Ganancia dependiente de frecuencia</h5> <pre> gain = np.exp(-x * 0.01) return (x, y * gain) </pre> <h5>2. Detección de picos</h5> <pre> y_mod = np.where(y > 0.8, y, 0) return (x, y_mod) </pre> <h5>3. Modulación</h5> <pre> carrier = np.sin(2*np.pi*1000*x) return (x, y * carrier) </pre> <h5>4. Uso de param (sweep)</h5> <pre> factor = param if param is not None else 1.0 return (x, y * factor) </pre> <h5>5. Acumulador con persist</h5> <pre> persist[\"contador\"] = persist.get(\"contador\", 0) + 1 return (x, y + persist[\"contador\"] * 0.1) </pre> <hr> <h4>🔁 Estrategia avanzada</h4> <pre> Trigger → Script(param) → Sum → Visualización → Permite barridos automáticos (sweeps) </pre> <h4>⚠️ Errores comunes</h4> <ul> <li>No retornar tupla (x, y) en modo batch.</li> <li>No considerar que <code>param</code> puede ser None.</li> <li>Intentar usar el botón \"Probar\" en scripts streaming o con GPU (usa el flujo real).</li> </ul><hr> <hr> <h3>🧠 Cómo pensar en este sistema</h3> <p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p> <pre> Dato → Transformación → Resultado </pre> <h4>📐 Regla clave</h4> <pre> Todo es: (x, y) </pre> <h4>🔁 Patrón universal</h4> <pre> Entrada → Procesamiento → Visualización </pre> <h4>🧪 Ejemplo completo</h4> <pre> Osciloscopio → FFT → Filtro → Sumador → Plot </pre> <hr> <h4>⚡ Atajos y trucos</h4> <ul> <li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conectar rápidamente.</li> <li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li> <li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li> <li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li> </ul>"    },
+    "trigger": {
+      "title": "Disparador",
+      "tooltip": "Nodo de iteración y acumulación",
+      "ports": {
+        "data_in": "Datos entrada",
+        "trigger_in": "Disparo entrada",
+        "loop_out": "Bucle salida",
+        "out": "Salida"
+      },
+      "state": {
+        "idle": "ESPERANDO",
+        "running": "ITER {iteration}/{total}",
+        "done": "FINALIZADO",
+        "running_count": "CAPTURANDO {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "Configurar..."
+      },
+      "accumulate": {
+        "accumulate": "Modo de Acumulación",
+        "stack": "Apilar (NaN)",
+        "average": "Promedio",
+        "max": "Máximo",
+        "min": "Mínimo",
+        "last": "Última Captura"
+      },
+      "config_title": "Configurar Nodo Disparador",
+      "n_iter": "Iteraciones",
+      "reset": "Reiniciar iteración",
+      "help_title": "Ayuda - Nodo Disparador",
+      "help_html": "<h3>⏺ Nodo Trigger (Captura por Lotes)</h3>\n<p>Permite capturar y acumular señales de forma iterativa, activado por una señal de disparo externa (<code>trigger_in</code>). Es ideal para experimentos repetitivos, promediado de ruido o comparación de trazas.</p>\n\n<h4>📥 Entradas</h4>\n<ul>\n    <li><code>data_in</code> → señal principal (x, y) que se desea capturar.</li>\n    <li><code>trigger_in</code> → señal de disparo. Cada pulso o activación captura una nueva traza en el búfer interno.</li>\n</ul>\n\n<h4>📤 Salidas</h4>\n<ul>\n    <li><code>out</code> → al completar el número programado de iteraciones (<code>n_iter</code>), emite la señal acumulada según el modo elegido.</li>\n</ul>\n\n<h4>⚙️ Configuración</h4>\n<p>Haz clic derecho → <b>Configurar</b> para ajustar:</p>\n<ul>\n    <li><b>Iteraciones (N):</b> número exacto de capturas necesarias para generar la salida.</li>\n    <li><b>Acumulación:</b> modo de combinar las capturas: <i>apilar (stack), promediar, máximo, mínimo o última</i>.</li>\n</ul>\n\n<h4>🧠 Comportamiento</h4>\n<ol>\n    <li>El nodo permanece en <b>IDLE</b> esperando datos en <code>data_in</code> y pulsos en <code>trigger_in</code>.</li>\n    <li>Cada vez que se detecta un trigger válido, guarda la señal actual en su búfer y muestra <code>RUNNING X/N</code>.</li>\n    <li>Al alcanzar exactamente <b>N iteraciones</b>, construye la salida acumulada, la envía por <code>out</code> y reinicia el búfer automáticamente.</li>\n</ol>\n\n<h4>🧩 Modelo mental</h4>\n<p>Este nodo actúa como un <b>grabador de lotes activado por evento</b>. Equivalente a un \"wait-for-trigger → record → repeat until N\" en laboratorio.</p>\n\n<h4>📐 Modo Apilado (Stack)</h4>\n<p>Si eliges <b>stack</b>, las señales se concatenan en un solo arreglo separadas por <code>NaN</code>. Esto permite graficar todas las capturas en una sola traza sin que se conecten entre sí.</p>\n\n<h4>🔁 Ejemplo de flujo</h4>\n<pre>\nGenerador/Osciloscopio → TriggerNode (N=5) → ScriptNode (opcional) → Plot\n\nResultado:\n5 curvas apiladas (stack) o su promedio (average)\n</pre>\n\n<h4>🧠 Casos de uso reales</h4>\n<ul>\n<li>Promediado de señales con ruido</li>\n<li>Captura sincronizada de experimentos repetitivos</li>\n<li>Comparación visual de múltiples adquisiciones</li>\n<li>Preprocesamiento para análisis estadístico por lotes</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n<pre>\nDato → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → TriggerNode → ScriptNode → Plot\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conectar rápidamente.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (configurar, eliminar, conectar/desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "generator": {
+      "title": "Generador",
+      "tooltip": "Nodo generador de señales",
+      "ports": {
+        "signal_out": "Salida señal",
+        "trigger_out": "Disparo salida",
+        "trigger_in": "Disparo entrada",
+        "signal_in": "Entrada señal"
+      },
+      "status": {
+        "default": "FloWorks  |  Scroll: zoom  |  Clic central: paneo  |  Clic derecho sobre nodo: opciones",
+        "sim": "SIM",
+        "busy": "OCUPADO",
+        "ready": "LISTO"
+      },
+      "device_label": "DISPO",
+      "channel_label": "CANAL",
+      "gen_button": "GEN",
+      "setup_button": "CONF",
+      "generate_action": "Generar señal",
+      "help_title": "Ayuda - Nodo Generador",
+      "help_html": "<h3>📡 Nodo Generador de Señales</h3>\n<p>Genera señales analógicas y las envía a un generador de funciones real (SDG) o simula su salida internamente.</p>\n\n<h4>📥 Puertos de entrada</h4>\n<ul>\n    <li><code>trigger_in</code> (izquierda) → recibe una señal para disparar la generación (modo EXT).</li>\n    <li><code>signal_in</code> (izquierda) → recibe una señal externa (t, y) que se enviará al generador como forma de onda arbitraria (modo EXT).</li>\n</ul>\n\n<h4>📤 Puertos de salida</h4>\n<ul>\n    <li><code>signal_out</code> (derecha) → emite la señal generada (t, y) para visualización o procesamiento.</li>\n    <li><code>trigger_out</code> (derecha) → señal de disparo cuando se completa la generación (opcional).</li>\n</ul>\n\n<h4>⚙️ Modos de operación</h4>\n<ul>\n    <li><b>INT</b> (interno): la señal se genera según los parámetros internos del nodo (frecuencia, amplitud, forma de onda, etc.) y se envía al hardware (o simulación).</li>\n    <li><b>EXT</b> (externo): el nodo espera recibir una señal personalizada por <code>signal_in</code>. Al activar <b>GEN</b>, esa señal se sube al generador como forma de onda arbitraria.</li>\n</ul>\n\n<h4>🔧 Configuración</h4>\n<p>Haz clic en el botón <b>SETUP</b> (o clic derecho → \"Abrir controlador\") para ajustar:</p>\n<ul>\n    <li>Forma de onda: senoidal, cuadrada, rampa, pulso, ruido, DC, triangular, diente de sierra, sinc, gaussiana, exponencial, chirp.</li>\n    <li>Frecuencia, amplitud, offset, fase, ciclo de trabajo, etc.</li>\n    <li>Canal de salida (C1 o C2).</li>\n    <li>Dispositivo: \"sdg\" (hardware real) o \"simulation\" (solo simulación interna).</li>\n</ul>\n\n<h4>▶️ Generación</h4>\n<p>Haz clic en el botón <b>GEN</b> (o clic derecho → \"Generar señal\") para iniciar la salida. El nodo enviará la señal al hardware y además emitirá <code>signal_out</code> con los datos generados para el resto del flujo.</p>\n\n<h4>💡 Ejemplo típico</h4>\n<ol>\n    <li>Configura el generador con una senoidal de 1 kHz, 1 Vpp.</li>\n    <li>Conecta <code>signal_out</code> a un nodo osciloscopio o a un visualizador.</li>\n    <li>Presiona <b>GEN</b> → la señal aparece en el canal físico y también en el gráfico.</li>\n</ol>\n\n<h4>⚠️ Notas</h4>\n<ul>\n    <li>En modo EXT, asegúrate de conectar primero <code>signal_in</code> con una señal (t, y) antes de presionar GEN.</li>\n    <li>Si el hardware no está conectado, el nodo usa simulación automáticamente.</li>\n    <li>Las formas de onda arbitrarias se suben con hasta 524288 puntos (dependiendo del modelo).</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDato → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → FFT → Filtro → Sumador → Plot\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conectar rápidamente.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "Osciloscopio",
+      "tooltip": "Nodo de captura de osciloscopio\n Doble clic para información",
+      "ports": {
+        "out_primary": "Salida primaria",
+        "out_secondary": "Salida secundaria",
+        "trigger_out": "Disparo salida"
+      },
+      "status": {
+        "sim": "SIMULACIÓN",
+        "capturing": "CAPTURANDO...",
+        "armed": "ARMADO",
+        "connected": "CONECTADO",
+        "disconnected": "DESCONECTADO"
+      },
+      "device_label": "DISPO",
+      "channel_label": "CANAL",
+      "lcr_label": "LCR",
+      "sim_label": "SIM",
+      "trig_button": "DISPARO",
+      "setup_button": "CONF",
+      "menu": {
+        "show_channel": "Mostrar canal"
+      },
+      "channel": {
+        "primary": "Primario (Z)",
+        "secondary": "Secundario (θ)"
+      },
+      "trigger_action": "Disparar captura",
+      "help_title": "Ayuda - Nodo Osciloscopio",
+      "help_html": "<h3>📊 Nodo Osciloscopio (Adquisición de señales)</h3>\n<p>Captura señales del mundo real mediante hardware (SDS, LCR) o genera datos simulados para pruebas.</p>\n\n<h4>📤 Puertos de salida</h4>\n<ul>\n    <li><code>out_primary</code> → señal principal (voltaje vs tiempo, o impedancia Z para LCR).</li>\n    <li><code>out_secondary</code> → señal secundaria (fase θ para LCR; en SDS no usado).</li>\n    <li><code>trigger_out</code> → emite una señal de disparo al finalizar la captura (útil para sincronizar otros nodos).</li>\n</ul>\n\n<h4>🔘 Controles</h4>\n<ul>\n    <li><b>TRIG</b> → inicia una captura (adquisición de datos).</li>\n    <li><b>SETUP</b> → abre el panel de configuración (parámetros de simulación o controlador del hardware).</li>\n    <li><b>Selector de dispositivo</b> (combo abajo) → elige entre SDS (osciloscopio real), LCR (medidor de impedancia) o simulación.</li>\n</ul>\n\n<h4>⚙️ Modos de operación</h4>\n<ul>\n    <li><b>SDS</b>: conecta con un osciloscopio real (modelo Siglent SDS). Puedes seleccionar el canal (C1..C4) mediante menú contextual → \"Mostrar canal\".</li>\n    <li><b>LCR</b>: conecta con un medidor LCR, proporciona dos salidas: primaria (impedancia Z) y secundaria (ángulo de fase θ).</li>\n    <li><b>Simulation</b>: genera una señal sintética con ruido, configurable desde SETUP (timebase, rango voltaje, nivel trigger, sample rate).</li>\n</ul>\n\n<h4>📈 Visualización</h4>\n<p>El nodo no dibuja la señal internamente, pero puede conectarse a un widget visualizador (como <code>PlotWidget</code>) para mostrar los datos capturados.</p>\n\n<h4>💡 Ejemplo de uso</h4>\n<ol>\n    <li>Selecciona el dispositivo (SDS) y conéctalo físicamente.</li>\n    <li>Haz clic en TRIG para capturar una traza.</li>\n    <li>La señal estará disponible en <code>out_primary</code> para otros nodos.</li>\n    <li>Si usas LCR, ambas salidas (Z y θ) estarán disponibles.</li>\n</ol>\n\n<h4>⚠️ Notas</h4>\n<ul>\n    <li>En modo hardware, asegúrate de que el dispositivo esté conectado y encendido.</li>\n    <li>La captura se realiza en un hilo separado para no bloquear la interfaz.</li>\n    <li>El nodo actúa como fuente de datos (nodo de entrada) para el flujo.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDato → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → FFT → Filtro → Sumador → Plot\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conectar rápidamente.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "spectral": {
+        "title": "Espectral",
+        "tooltip": "Transformadas espectrales: FFT, Hilbert, Welch (PSD) y DCT",
+        "transform_type": "Transformada:",
+        "window_type": "Ventana:",
+        "nfft": "NFFT / Segmento:",
+        "scale": "Escala:",
+        "detrend": "Detrend:",
+        "normalize": "Normalizar (preservar energía)",
+        "config_title": "Configurar Espectral",
+        "menu": {
+            "configure": "Configurar...",
+            "show_output": "Mostrar salida"
+        },
+        "channel": {
+            "magnitude": "Magnitud",
+            "phase": "Fase"
+        },
+        "ports": {
+            "input": "Entrada",
+            "output": "Salida tiempo",
+            "magnitude": "Magnitud",
+            "phase": "Fase"
+        },
+        "status": {
+            "no_data": "Sin datos",
+            "ready": "Listo",
+            "phase": "Fase"
+        },
+        "help_title": "Ayuda - Espectral",
+        "help_html": "<h3>📊 Nodo Espectral (Transformadas Espectrales)</h3>\n<p>Calcula diversas transformadas sobre la señal de entrada: <b>FFT</b>, <b>Hilbert</b>, <b>Welch (PSD)</b> y <b>DCT</b>.</p>\n\n<h4>📥 Entrada</h4>\n<p><code>input</code> → espera una tupla <code>(x, y)</code> o un array 1D.</p>\n\n<h4>📤 Salidas</h4>\n<ul>\n    <li><b>Salida tiempo</b> → señal en dominio temporal (solo activa en Hilbert: parte real de la señal analítica).</li>\n    <li><b>Magnitud</b> → según modo:\n        <ul>\n            <li><b>FFT</b> → espectro de magnitud normalizado <code>(frecuencias, amplitudes)</code>.</li>\n            <li><b>Hilbert</b> → envolvente de la señal <code>(tiempo, envelope)</code>.</li>\n            <li><b>Welch</b> → densidad espectral de potencia <code>(frecuencias, PSD)</code>.</li>\n            <li><b>DCT</b> → coeficientes de coseno discreto <code>(índice, coeficientes)</code>.</li>\n        </ul>\n    </li>\n    <li><b>Fase</b> → ángulos de fase en radianes (FFT) o fase instantánea (Hilbert). <i>No disponible</i> para Welch ni DCT.</li>\n</ul>\n\n<h4>⚙️ Parámetros</h4>\n<ul>\n    <li><b>Transformada</b> — elige entre FFT, Hilbert, Welch o DCT.</li>\n    <li><b>Ventana</b> — función de ventana de <code>scipy.signal.windows</code> (Hann, Hamming, Blackman, etc.).</li>\n    <li><b>NFFT / Segmento</b> — longitud de la FFT o segmento Welch. <code>Auto</code> usa la siguiente potencia de 2.</li>\n    <li><b>Escala</b> — <code>linear</code> o <code>dB</code> (20·log₁₀ para FFT/Hilbert/DCT, 10·log₁₀ para Welch).</li>\n    <li><b>Detrend</b> — remueve media constante o tendencia lineal antes de procesar.</li>\n    <li><b>Normalizar</b> — ajusta la ventana para preservar energía.</li>\n</ul>\n\n<h4>🖱️ Interacción</h4>\n<ul>\n    <li><b>Clic derecho</b> → menú contextual (Configurar, elegir canal de visualización).</li>\n    <li><b>Doble clic</b> → abre esta ventana de ayuda.</li>\n    <li><b>Panel lateral</b> — ajusta parámetros en tiempo real; el gráfico se actualiza automáticamente.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDato → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → Ventana → Espectral (FFT) → Filtro → Gráfica\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan solas.</li>\n</ul>"
+    },
+    "ifft": {
+        "title": "IFFT",
+        "tooltip": "Transformada Inversa de Fourier (reconstrucción temporal)",
+        "fs": "Frecuencia de muestreo (fs):",
+        "nfft": "NFFT:",
+        "real_only": "Salida real únicamente (irfft)",
+        "conjugate_symmetry": "Forzar simetría Hermitiana",
+        "normalize": "Normalizar por N",
+        "config_title": "Configurar IFFT",
+        "menu": {
+            "configure": "Configurar..."
+        },
+        "ports": {
+            "magnitude": "Magnitud",
+            "phase": "Fase",
+            "output": "Salida tiempo"
+        },
+        "status": {
+            "no_data": "Sin datos",
+            "waiting_phase": "Fase=0 (asumida)",
+            "ready": "Listo"
+        },
+        "help_title": "Ayuda - IFFT",
+        "help_html": "<h3>🔁 Nodo IFFT (Transformada Inversa de Fourier)</h3>\n<p>Reconstruye una señal temporal a partir de su espectro de frecuencias.</p>\n\n<h4>📥 Entradas</h4>\n<ul>\n    <li><b>Magnitud</b> → <code>(frecuencias, amplitudes)</code> o array 1D. <b>Obligatoria.</b></li>\n    <li><b>Fase</b> → <code>(frecuencias, ángulos)</code> o array 1D. <b>Opcional.</b> Si no se conecta, se asume fase cero.</li>\n</ul>\n\n<h4>📤 Salida</h4>\n<ul>\n    <li><b>Salida tiempo</b> → <code>(tiempo, señal)</code> reconstruida.</li>\n</ul>\n\n<h4>⚙️ Parámetros</h4>\n<ul>\n    <li><b>fs</b> — frecuencia de muestreo para construir el eje temporal.</li>\n    <li><b>NFFT</b> — tamaño de la IFFT. <code>Auto</code> usa <code>2·(len(mag)-1)</code>.</li>\n    <li><b>Salida real</b> — usa <code>irfft</code> (garantiza salida real) o <code>ifft</code> (compleja).</li>\n    <li><b>Simetría Hermitiana</b> — fuerza <code>Y[-k] = conj(Y[k])</code> antes de invertir (evita artefactos).</li>\n    <li><b>Normalizar</b> — divide por <code>N</code> para preservar amplitud original.</li>\n</ul>\n\n<h4>🖱️ Interacción</h4>\n<ul>\n    <li><b>Clic derecho</b> → Configurar...</li>\n    <li><b>Doble clic</b> → ayuda.</li>\n    <li><b>Panel lateral</b> — ajusta fs y parámetros en tiempo real.</li>\n</ul>"
+    },
+    "thd": {
+      "title": "Analizador THD",
+      "tooltip": "Distorsión Armonica total THD",
+      "ports": {
+        "input": "entrada",
+        "output": "salida"
+      },
+      "dialog": {
+        "title": "Análisis de Distorsión Armónica Total"
+      },
+      "tab": {
+        "summary": "Resumen",
+        "harmonics": "Armónicos",
+        "spectrum": "Espectro"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "Frecuencia fundamental:",
+        "max_harmonics": "Armónicos considerados:",
+        "green_threshold": "Umbral verde (<):",
+        "yellow_threshold": "Umbral amarillo (<):"
+      },
+      "harmonics": {
+        "order": "Orden armónico",
+        "freq": "Frecuencia (Hz)",
+        "amp_rel": "Amplitud relativa (%)"
+      },
+      "help_title": "Ayuda - THD",
+      "help_html": "<h3>Analizador de Distorsión Armónica Total (THD)</h3><p>Calcula el THD y THD+N de la señal de entrada.</p><p>La señal se pasa sin cambios a la salida.</p><p><b>Parámetros:</b></p><ul><li>max_harmonics: número de armónicos considerados</li><li>umbrales verde/amarillo: cambian el color del THD en el nodo</li></ul><p><i>Doble clic para abrir análisis detallado.</i></p>\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conectar rápidamente.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "filter": {
+      "title": "Filtro",
+      "tooltip": "Filtro digital (Butterworth)",
+      "ports": {
+        "input": "Entrada",
+        "output": "Salida"
+      },
+      "status": {
+        "no_data": "Sin datos",
+        "ready": "Listo"
+      },
+      "menu": {
+        "configure": "Configurar...",
+        "show_output": "Mostrar salida"
+      },
+      "config_title": "Configurar Filtro",
+      "filter_type": "Tipo de filtro:",
+      "cutoff": "Frecuencia(s) de corte (Hz):",
+      "cutoff1": "Frecuencia de corte 1 (Hz):",
+      "cutoff2": "Frecuencia de corte 2 (Hz):",
+      "order": "Orden del filtro:",
+      "fs": "Tasa de muestreo (Hz, 0 = automático):",
+      "help_title": "Ayuda - Filtro",
+      "help_html": "<h3>🎛️ Nodo Filtro (Butterworth)</h3>\n<p>Aplica un <b>filtro digital Butterworth</b> a la señal de entrada.</p>\n\n<h4>📥 Entrada</h4>\n<p><code>input</code> → espera una tupla <code>(x, y)</code> o un array 1D.</p>\n\n<h4>📤 Salida</h4>\n<p><code>output</code> → señal filtrada como <code>(x, y_filtrada)</code>.</p>\n\n<h4>⚙️ Parámetros (doble clic para configurar)</h4>\n<ul>\n    <li><b>Tipo de filtro</b> – pasa bajos, pasa altos, pasa banda o rechaza banda.</li>\n    <li><b>Frecuencia(s) de corte</b> – en Hz. Para pasa banda/rechaza banda se requieren dos frecuencias.</li>\n    <li><b>Orden</b> – orden del filtro (1–20). Mayor orden = caída más abrupta.</li>\n    <li><b>Frecuencia de muestreo</b> – si es 0, se infiere automáticamente del eje <i>x</i>.</li>\n</ul>\n\n<h4>🛠️ Funcionamiento</h4>\n<ul>\n    <li>El filtro se diseña con <code>scipy.signal.butter</code>.</li>\n    <li>Se aplica filtrado de fase cero con <code>filtfilt</code> (sin distorsión de fase).</li>\n    <li>Si la entrada es un array 1D, se crea un eje <i>x</i> sintético usando la frecuencia de muestreo.</li>\n</ul>\n\n<h4>🖱️ Interacción</h4>\n<ul>\n    <li><b>Doble clic</b> → abre el diálogo de configuración.</li>\n    <li><b>Clic</b> en el nodo → grafica la señal filtrada.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Cómo pensar en este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDato → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → Filtro → FFT → Gráfica\n</pre>\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan solas.</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "Normalizar",
+      "tooltip": "Normaliza la señal a un rango especificado",
+      "ports": {
+        "input": "Entrada",
+        "output": "Salida"
+      },
+      "menu": {
+        "configure": "Configurar..."
+      },
+      "config_title": "Configurar nodo Normalizar",
+      "param": {
+        "target_min": "Mínimo objetivo:",
+        "target_max": "Máximo objetivo:"
+      },
+      "help_title": "Ayuda - Normalizar",
+      "help_html": "<h3>📏 Nodo Normalizar</h3>\n<p>Normaliza una señal de entrada al rango especificado por <b>Target min</b> y <b>Target max</b>.</p>\n\n<h4>📥 Entrada</h4>\n<p><code>input</code> → espera una tupla <code>(x, y)</code> o un arreglo 1D.</p>\n\n<h4>📤 Salida</h4>\n<ul>\n    <li><b>Señal normalizada</b> → <code>(x_norm, y_norm)</code> – señal escalada al rango objetivo.</li>\n</ul>\n\n<h4>⚙️ Parámetros (doble clic para configurar)</h4>\n<ul>\n    <li><b>Target min</b> – valor mínimo del rango deseado (por defecto 0.0).</li>\n    <li><b>Target max</b> – valor máximo del rango deseado (por defecto 1.0).</li>\n</ul>\n\n<h4>📐 Operación</h4>\n<p>Reescalado lineal:</p>\n<pre>y_norm = target_min + (y - min_original) * (target_max - target_min) / (max_original - min_original)</pre>\n<p>El eje x no se modifica.</p>\n\n<hr>\n<h3>🧠 Cómo pensar este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDatos → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → FFT → Filtro → Sumador → Gráfica\n</pre>\n\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "Convolución",
+      "tooltip": "Filtro FIR mediante convolución",
+      "ports": {
+        "input": "Entrada",
+        "output": "Salida"
+      },
+      "status": {
+        "no_data": "Sin datos"
+      },
+      "menu": {
+        "show_output": "Mostrar salida",
+        "configure": "Configurar..."
+      },
+      "config_title": "Configurar Convolución",
+      "example_kernel": "Kernels de ejemplo:",
+      "kernel": "Coeficientes del kernel (separados por comas):",
+      "mode": "Modo de convolución:",
+      "help_title": "Ayuda - Convolución",
+      "help_html": "<h3>🔀 Nodo de Convolución (Filtro FIR)</h3>\n<p>Aplica una convolución discreta entre la señal de entrada y un kernel definido por el usuario.</p>\n\n<h4>📥 Entrada</h4>\n<p><code>input</code> → espera una tupla <code>(x, y)</code> o un arreglo 1D.</p>\n\n<h4>📤 Salida</h4>\n<ul>\n    <li><b>Señal filtrada</b> → <code>(x_conv, y_conv)</code> – resultado de la convolución.</li>\n</ul>\n\n<h4>⚙️ Parámetros (doble clic para configurar)</h4>\n<ul>\n    <li><b>Coeficientes del kernel</b> – flotantes separados por comas, ej.: <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Modo de convolución</b> – <code>'same'</code> (por defecto), <code>'full'</code> o <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Operación</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>El eje x se ajusta según el modo: para <code>'same'</code> mantiene el x original; para <code>'valid'</code> recorta los extremos; para <code>'full'</code> extiende linealmente.</li>\n</ul>\n\n<hr>\n<h3>🧠 Cómo pensar este sistema</h3>\n\n<p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p>\n\n<pre>\nDatos → Transformación → Resultado\n</pre>\n\n<h4>📐 Regla clave</h4>\n<pre>\nTodo es:\n\n(x, y)\n</pre>\n\n<h4>🔁 Patrón universal</h4>\n<pre>\nEntrada → Procesamiento → Visualización\n</pre>\n\n<h4>🧪 Ejemplo completo</h4>\n<pre>\nOsciloscopio → FFT → Filtro → Sumador → Gráfica\n</pre>\n\n<hr>\n<h4>⚡ Atajos y trucos</h4>\n<ul>\n<li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li>\n<li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li>\n<li><b>Clic derecho</b> → menú contextual (eliminar, conectar, desconectar).</li>\n<li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li>\n</ul>"
+    },
+    "resample": {
+      "title": "Remuestrear",
+      "tooltip": "Cambiar la frecuencia de muestreo de la señal",
+      "ports": {
+        "input": "Entrada",
+        "output": "Salida"
+      },
+      "status": {
+        "no_data": "Sin datos",
+        "ready": "Listo"
+      },
+      "menu": {
+        "configure": "Configurar..."
+      },
+      "config_title": "Configurar Remuestreo",
+      "mode": "Modo:",
+      "factor": "Factor:",
+      "target_fs": "Fs objetivo (Hz):",
+      "help_title": "Ayuda - Remuestrear",
+      "help_html": "<h3>🔄 Nodo Remuestrear</h3><p>Cambia la <b>frecuencia de muestreo</b> de la señal de entrada.</p><h4>📥 Entrada</h4><p><code>input</code> → espera una tupla <code>(x, y)</code> o un array 1D.</p><h4>📤 Salida</h4><p><code>output</code> → señal remuestreada como <code>(x_new, y_new)</code>.</p><h4>⚙️ Parámetros</h4><ul><li><b>Modo</b> – <i>factor</i> (multiplica la frecuencia original) o <i>fixed_fs</i> (frecuencia objetivo en Hz).</li><li><b>Factor</b> – escala (>1 aumenta muestras, <1 reduce).</li><li><b>Fs objetivo</b> – frecuencia deseada en Hz (usado en modo fixed_fs).</li></ul><h4>🛠️ Funcionamiento</h4><p>Usa <code>scipy.signal.resample</code> (método de Fourier).</p><hr><hr><h3>🧠 Cómo pensar en este sistema</h3><p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p><pre>Dato → Transformación → Resultado</pre><h4>📐 Regla clave</h4><pre>Todo es: (x, y)</pre><h4>🔁 Patrón universal</h4><pre>Entrada → Procesamiento → Visualización</pre><hr><h4>⚡ Atajos y trucos</h4><ul><li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li><li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li><li><b>Clic derecho</b> → menú contextual (eliminar, configurar).</li><li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan solas.</li></ul>"
+    },
+    "window": {
+      "title": "Ventana",
+      "tooltip": "Aplicar una función de ventana a la señal",
+      "ports": {
+        "input": "Entrada",
+        "output": "Salida"
+      },
+      "status": {
+        "no_data": "Sin datos",
+        "ready": "Listo"
+      },
+      "menu": {
+        "configure": "Configurar..."
+      },
+      "config_title": "Configurar Ventana",
+      "window_type": "Tipo de ventana:",
+      "normalize": "Normalizar (preservar energía)",
+      "help_title": "Ayuda - Ventana",
+      "help_html": "<h3>🪟 Nodo Ventana</h3><p>Aplica una <b>función de ventana</b> a la señal de entrada para reducir fugas espectrales.</p><h4>📥 Entrada</h4><p><code>input</code> → tupla <code>(x, y)</code> o array 1D.</p><h4>📤 Salida</h4><p><code>output</code> → señal enventanada <code>(x, y * ventana)</code>.</p><h4>⚙️ Parámetros</h4><ul><li><b>Tipo de ventana</b> – Hann, Hamming, Blackman, Bartlett, etc.</li><li><b>Normalizar</b> – si se marca, escala la ventana para preservar la energía total.</li></ul><h4>🛠️ Funcionamiento</h4><p>Usa <code>scipy.signal.windows</code>.</p><hr><hr><h3>🧠 Cómo pensar en este sistema</h3><p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p><pre>Dato → Transformación → Resultado</pre><h4>📐 Regla clave</h4><pre>Todo es: (x, y)</pre><h4>🔁 Patrón universal</h4><pre>Entrada → Procesamiento → Visualización</pre><hr><h4>⚡ Atajos y trucos</h4><ul><li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li><li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li><li><b>Clic derecho</b> → menú contextual (eliminar, configurar).</li><li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan solas.</li></ul>"
+    },
+    "delay": {
+      "title": "Retardo",
+      "tooltip": "Retardar la señal una cantidad especificada",
+      "ports": {
+        "input": "Entrada",
+        "output": "Salida"
+      },
+      "status": {
+        "no_data": "Sin datos",
+        "ready": "Listo"
+      },
+      "menu": {
+        "configure": "Configurar..."
+      },
+      "config_title": "Configurar Retardo",
+      "mode": "Modo de retardo:",
+      "samples": "Muestras:",
+      "seconds": "Segundos:",
+      "padding": "Relleno:",
+      "constant_value": "Valor constante:",
+      "help_title": "Ayuda - Retardo",
+      "help_html": "<h3>⏱️ Nodo Retardo</h3><p>Retarda la señal de entrada una cantidad especificada en <b>muestras</b> o <b>segundos</b>.</p><h4>📥 Entrada</h4><p><code>input</code> → tupla <code>(x, y)</code> o array 1D.</p><h4>📤 Salida</h4><p><code>output</code> → señal retardada <code>(x, y_retardada)</code>.</p><h4>⚙️ Parámetros</h4><ul><li><b>Modo de retardo</b> – <i>samples</i> (número entero de muestras) o <i>seconds</i> (tiempo en segundos, requiere frecuencia de muestreo del eje x).</li><li><b>Relleno</b> – método para llenar el hueco inicial: <i>zero</i> (ceros), <i>reflect</i> (reflejo), o <i>constant</i> (valor definido por el usuario).</li></ul><h4>🛠️ Funcionamiento</h4><p>Desplaza la señal hacia la derecha, insertando relleno al principio.</p><hr><hr><h3>🧠 Cómo pensar en este sistema</h3><p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p><pre>Dato → Transformación → Resultado</pre><h4>📐 Regla clave</h4><pre>Todo es: (x, y)</pre><h4>🔁 Patrón universal</h4><pre>Entrada → Procesamiento → Visualización</pre><hr><h4>⚡ Atajos y trucos</h4><ul><li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li><li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li><li><b>Clic derecho</b> → menú contextual (eliminar, configurar).</li><li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan solas.</li></ul>"
+    },
+    "correlation": {
+      "title": "Correlación",
+      "tooltip": "Correlación cruzada de dos señales",
+      "ports": {
+        "signal1": "Señal 1",
+        "signal2": "Señal 2",
+        "corr": "Correlación"
+      },
+      "status": {
+        "no_data": "Sin datos",
+        "ready": "Listo"
+      },
+      "menu": {
+        "configure": "Configurar..."
+      },
+      "config_title": "Configurar Correlación",
+      "mode": "Modo:",
+      "normalize": "Normalizar",
+      "help_title": "Ayuda - Correlación",
+      "help_html": "<h3>📈 Nodo Correlación</h3><p>Calcula la <b>correlación cruzada</b> entre dos señales de entrada.</p><h4>📥 Entradas</h4><p><code>signal1</code>, <code>signal2</code> → cada una espera una tupla <code>(x, y)</code> o un array 1D.</p><h4>📤 Salida</h4><p><code>corr</code> → secuencia de correlación como <code>(retardos, correlación)</code>.</p><h4>⚙️ Parámetros</h4><ul><li><b>Modo</b> – <i>full</i> (todos los retardos), <i>same</i> (misma longitud que la entrada más larga), <i>valid</i> (sin bordes rellenos con ceros).</li><li><b>Normalizar</b> – si se marca, divide por el producto de las normas de las señales (valores en [-1, 1]).</li></ul><h4>🛠️ Funcionamiento</h4><p>Usa <code>np.correlate</code>.</p><hr><hr><h3>🧠 Cómo pensar en este sistema</h3><p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p><pre>Dato → Transformación → Resultado</pre><h4>📐 Regla clave</h4><pre>Todo es: (x, y)</pre><h4>🔁 Patrón universal</h4><pre>Entrada → Procesamiento → Visualización</pre><hr><h4>⚡ Atajos y trucos</h4><ul><li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li><li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li><li><b>Clic derecho</b> → menú contextual (eliminar, configurar).</li><li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan solas.</li></ul>"
+    },
+    "math_expression": {
+      "title": "Expresión Matemática",
+      "tooltip": "Evalúa una expresión matemática sobre x e y",
+      "ports": {
+        "input": "Entrada",
+        "output": "Salida"
+      },
+      "status": {
+        "no_data": "Sin datos",
+        "ready": "Listo"
+      },
+      "menu": {
+        "configure": "Configurar..."
+      },
+      "config_title": "Configurar Expresión Matemática",
+      "expression": "Expresión (usar x, y, np.*):",
+      "info": "Variables: x (eje temporal), y (valores de la señal).\nFunciones: np.sin, np.cos, np.exp, np.sqrt, etc.",
+      "examples": "Ejemplos...",
+      "help_title": "Ayuda - Expresión Matemática",
+      "help_html": "<h3>🧮 Nodo Expresión Matemática</h3><p>Evalúa una expresión matemática arbitraria sobre las variables <code>x</code> e <code>y</code> de la señal de entrada.</p><h4>📥 Entrada</h4><p><code>input</code> → tupla <code>(x, y)</code> o array 1D.</p><h4>📤 Salida</h4><p><code>output</code> → resultado de la expresión como <code>(x, y_new)</code>.</p><h4>✏️ Sintaxis</h4><ul><li>Usa <code>x</code> (eje temporal) e <code>y</code> (valores de la señal) como variables de tipo array.</li><li>Puedes emplear cualquier función <code>np.*</code> (ej. <code>np.sin(y)</code>, <code>np.exp(-x)</code>).</li><li>Ejemplos: <code>y * 2</code>, <code>np.sin(2*np.pi*x)</code>, <code>np.sqrt(x**2 + y**2)</code>.</li></ul><h4>⚠️ Nota</h4><p>La expresión se evalúa de forma segura usando <code>numexpr</code> (si está disponible) o un <code>eval</code> restringido.</p><hr><hr><h3>🧠 Cómo pensar en este sistema</h3><p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p><pre>Dato → Transformación → Resultado</pre><h4>📐 Regla clave</h4><pre>Todo es: (x, y)</pre><h4>🔁 Patrón universal</h4><pre>Entrada → Procesamiento → Visualización</pre><hr><h4>⚡ Atajos y trucos</h4><ul><li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li><li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li><li><b>Clic derecho</b> → menú contextual (eliminar, configurar).</li><li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan solas.</li></ul>"
+    },
+    "spectrogram": {
+      "title": "Espectrograma",
+      "tooltip": "Calcula el espectrograma STFT",
+      "ports": {
+        "input": "Entrada",
+        "spectrogram": "Espectrograma",
+        "frequencies": "Frecuencias",
+        "times": "Tiempos"
+      },
+      "status": {
+        "no_data": "Sin datos",
+        "ready": "Listo"
+      },
+      "menu": {
+        "configure": "Configurar...",
+        "show_in_plot": "Mostrar en gráfico"
+      },
+      "config_title": "Configurar Espectrograma",
+      "nperseg": "Muestras por segmento:",
+      "noverlap": "Solapamiento:",
+      "window": "Ventana:",
+      "scaling": "Escalado:",
+      "mode": "Modo:",
+      "help_title": "Ayuda - Espectrograma",
+      "help_html": "<h3>🌊 Nodo Espectrograma</h3><p>Calcula el <b>espectrograma (STFT)</b> de la señal de entrada.</p><h4>📥 Entrada</h4><p><code>input</code> → (x, y) o array 1D.</p><h4>📤 Salidas</h4><ul><li><b>Espectrograma</b> → array 2D (frecuencias, tiempos, magnitudes) – <i>no se grafica con clic</i>.</li><li><b>Frecuencias</b> → array 1D de bins de frecuencia (conectable a otros nodos).</li><li><b>Tiempos</b> → array 1D de tiempos de segmento.</li></ul><h4>🖱️ Interacción</h4><p><b>Hacer clic</b> en el nodo <b>no</b> muestra el espectrograma. Conecta <code>frequencies</code> o <code>times</code> a otros nodos de procesamiento, o exporta los datos.</p><hr><hr><h3>🧠 Cómo pensar en este sistema</h3><p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p><pre>Dato → Transformación → Resultado</pre><h4>📐 Regla clave</h4><pre>Todo es: (x, y)</pre><h4>🔁 Patrón universal</h4><pre>Entrada → Procesamiento → Visualización</pre><hr><h4>⚡ Atajos y trucos</h4><ul><li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li><li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li><li><b>Clic derecho</b> → menú contextual (eliminar, configurar).</li><li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan solas.</li></ul>"
+      },
+    "spectrogram_viewer": {
+        "title": "Visualizador de Espectrograma",
+        "tooltip": "Recibe y visualiza datos de espectrograma (frecuencias, tiempos, matriz)",
+        "config_title": "Configurar Visualizador de Espectrograma",
+        "ports": {
+            "frequencies": "Frecuencias",
+            "times": "Tiempos",
+            "spectrogram": "Espectrograma"
+        },
+        "status": {
+            "no_data": "Sin datos"
+        },
+        "menu": {
+            "view_spectrogram": "Ver espectrograma",
+            "configure": "Configurar..."
+        },
+        "window_title": "Visualizador de Espectrograma",
+        "time_axis": "Tiempo (s)",
+        "freq_axis": "Frecuencia (Hz)",
+        "log_scale": "Escala logarítmica",
+        "colormap": "Mapa de colores:",
+        "auto_contrast": "Contraste automático",
+        "contrast_min": "Contraste mínimo:",
+        "contrast_max": "Contraste máximo:",
+        "export": "Exportar...",
+        "export_title": "Exportar espectrograma",
+        "no_data_title": "Sin datos",
+        "no_data_message": "Datos incompletos. Conecte todos los puertos y ejecute el flujo primero.",
+        "help_title": "Ayuda - Visualizador de Espectrograma",
+        "help_html": "<h3>📊 Nodo Visualizador de Espectrograma</h3><p>Recibe las tres salidas de un nodo <b>Espectrograma</b> y las muestra como un mapa de calor 2D.</p><h4>📥 Entradas</h4><ul><li><b>frequencies</b> → vector 1D de frecuencias</li><li><b>times</b> → vector 1D de tiempos</li><li><b>spectrogram</b> → matriz 2D (frecuencias × tiempos) de magnitudes</li></ul><h4>⚙️ Configuración</h4><p>Use el <b>panel lateral</b> para ajustar en tiempo real:</p><ul><li><b>Escala logarítmica</b> — realza detalles de baja amplitud.</li><li><b>Mapa de colores</b> — viridis, inferno, plasma, jet, etc.</li><li><b>Contraste</b> — automático o manual (min / max).</li></ul><h4>🖱️ Interacción</h4><p>Haga <b>clic derecho</b> sobre el nodo y seleccione <b>\"Ver espectrograma\"</b> para abrir una ventana dedicada.</p><p>Dentro del visualizador puede <b>exportar</b> la vista actual como imagen PNG.</p><p><i>Hacer clic en el nodo no muestra nada en el gráfico principal.</i></p><hr><hr><h3>🧠 Cómo pensar en este sistema</h3><p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p><pre>Dato → Transformación → Resultado</pre><h4>📐 Regla clave</h4><pre>Todo es: (x, y)</pre><h4>🔁 Patrón universal</h4><pre>Entrada → Procesamiento → Visualización</pre><hr><h4>⚡ Atajos y trucos</h4><ul><li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para una conexión rápida.</li><li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li><li><b>Clic derecho</b> → menú contextual (ver, configurar, eliminar).</li><li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li></ul>"
+    },
+    "graph_exporter": {
+        "title": "Exportador de Gráficos",
+        "tooltip": "Exporta gráficos con calidad profesional",
+        "ports": {
+            "signal_in": "Entrada de señal",
+            "file_out": "Archivo de salida"
+        },
+        "status": {
+            "ready": "Listo",
+            "exported": "Exportado"
+        },
+        "menu": {
+            "show_graph": "Mostrar gráfico",
+            "configure": "Configurar gráfico",
+            "configure_subplot": "Configurar subplots",
+            "export": "Exportar gráfico",
+            "subplots": "Subplots",
+            "use_subplots": "Usar subplots",
+            "n_subplots": "Número de subplots",
+            "subplot_layout": "Disposición"
+        },
+        "config": {
+            "display_mode": "Modo de visualización",
+            "use_subplots": "Usar subplots (máx. 8)",
+            "n_subplots": "Número de subplots:",
+            "subplot_layout": "Disposición:",
+            "export_format": "Formato de exportación"
+        },
+        "no_data_title": "Sin datos",
+        "no_data_msg": "Conecte una señal de entrada y ejecute el flujo para generar un gráfico.",
+        "export_dialog_title": "Guardar gráfico",
+        "export_error_title": "Error al exportar",
+        "config_title": "Configurar Graph Exporter",
+        "help_title": "Ayuda - Exportador de Gráficos",
+        "help_html": "<h3>📊 Graph Exporter</h3><p>Recibe una señal y la exporta como imagen de alta calidad.</p><h4>📥 Entrada</h4><p><code>signal_in</code> → tupla <code>(x, y)</code> o array 1D.</p><h4>📤 Salida</h4><p><code>file_out</code> → ruta del archivo generado.</p><h4>⚙️ Configuración</h4><p>Doble clic derecho → <b>Configurar gráfico</b> para ajustar estilo, ejes, anotaciones, etc.</p><hr><h4>🖱️ Interacción</h4><ul><li><b>Clic derecho</b> → menú contextual.</li><li><b>Mostrar gráfico</b> → vista previa con los ajustes actuales.</i></p><hr><hr><h3>🧠 Cómo pensar en este sistema</h3><p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p><pre>Dato → Transformación → Resultado</pre><h4>📐 Regla clave</h4><pre>Todo es: (x, y)</pre><h4>🔁 Patrón universal</h4><pre>Entrada → Procesamiento → Visualización</pre><hr><h4>⚡ Atajos y trucos</h4><ul><li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para una conexión rápida.</li><li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li><li><b>Clic derecho</b> → menú contextual (eliminar, configurar).</li><li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan automáticamente.</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "El nodo de entrada no se puede eliminar."
+  },
+  "workspace": {
+    "headers": {
+      "node": "Nodo",
+      "type": "Tipo",
+      "shape": "Forma",
+      "x_range_fs": "X: rango / fs",
+      "dx_t": "dx / T",
+      "y_range": "Y: [min, max]",
+      "preview_y": "Vista Y"
+    }
+  },
+  "plot": {
+    "time_label": "Tiempo (s)",
+    "voltage_label": "Voltaje (V)",
+    "title": "Señal",
+    "scale_label": "Escala:",
+    "scale_linear": "Lineal",
+    "scale_log": "Logarítmica",
+    "markers": "Marcadores",
+    "cursors": "Cursores A/B",
+    "peak": "Pico",
+    "peak_tooltip": "Marcar pico máximo",
+    "reset_zoom": "Reset zoom",
+    "amplitude": "Amplitud",
+    "time": "Tiempo (s)",
+    "frequency": "Frecuencia (Hz)",
+    "view_mode": "Vista",
+    "view_2d": "2D",
+    "view_surface": "Superficie 3D",
+    "view_waterfall": "Waterfall 3D",
+    "view_volume": "Volumen 3D",
+    "view_slice": "Slice 3D",
+    "slice_label": "Slice",
+    "reset_camera": "Reset Cámara",
+    "axis_scale": "Escala",
+    "fps": "FPS",
+    "loop": "Loop",
+    "colormap": "Mapa de Calor"
+  },
+  "shortcuts": {
+    "delete": "Eliminar nodo",
+    "delete_desc": "Elimina los nodos seleccionados y sus conexiones.",
+    "duplicate": "Duplicar nodo",
+    "duplicate_desc": "Duplica los nodos seleccionados con offset de +50px.",
+    "select_all": "Seleccionar todos",
+    "select_all_desc": "Selecciona todos los nodos de la escena.",
+    "cancel": "Cancelar acción",
+    "cancel_desc": "Cancela la conexión en curso o deselecciona todo.",
+    "copy": "Copiar",
+    "copy_desc": "Copia los nodos seleccionados al portapapeles interno.",
+    "cut": "Cortar",
+    "cut_desc": "Corta los nodos seleccionados.",
+    "paste": "Pegar",
+    "paste_desc": "Pega los nodos del portapapeles.",
+    "undo": "Deshacer",
+    "undo_desc": "Deshace la última acción.",
+    "redo": "Rehacer",
+    "redo_desc": "Rehace la acción deshecha.",
+    "run": "Ejecutar flujo",
+    "run_desc": "Ejecuta el flujo completo.",
+    "auto_layout": "Organizar nodos",
+    "auto_layout_desc": "Organiza automáticamente los nodos en columnas.",
+    "center_view": "Centrar vista",
+    "center_view_desc": "Centra la vista en la selección o en toda la escena.",
+    "zoom_reset": "Zoom 100%",
+    "zoom_reset_desc": "Restablece el zoom al 100%.",
+    "zoom_in": "Acercar",
+    "zoom_in_desc": "Acerca la vista.",
+    "zoom_out": "Alejar",
+    "zoom_out_desc": "Aleja la vista.",
+    "toggle_theme": "Alternar tema",
+    "toggle_theme_desc": "Alterna entre tema oscuro, claro y alto contraste.",
+    "toggle_grid": "Alternar cuadrícula",
+    "toggle_grid_desc": "Muestra u oculta la cuadrícula.",
+    "lock_node": "Bloquear nodo",
+    "lock_node_desc": "Bloquea o desbloquea el movimiento del nodo seleccionado.",
+    "help": "Ayuda contextual",
+    "help_desc": "Muestra la descripción del nodo bajo el cursor.",
+    "new_file": "Nuevo",
+    "new_file_desc": "Crear un nuevo diagrama",
+    "open_file": "Abrir",
+    "open_file_desc": "Abrir un archivo de diagrama",
+    "save_file": "Guardar",
+    "save_file_desc": "Guardar el diagrama actual",
+    "save_file_as": "Guardar como…",
+    "save_file_as_desc": "Guardar el diagrama con otro nombre"
+  },
+  "dialogs": {
+    "common": {
+      "close": "Cerrar",
+      "cancel": "Cancelar",
+      "ok": "Aceptar",
+      "emer_wind": "Seleccionar Programa",
+      "operation_history": "Historial de Operaciones",
+      "confirm": "Cambios sin guardar",
+      "overwrite": "Sobrescribir?",
+      "error": "Error"
+    },
+    "font_size": {
+        "title": "Tamaño de fuente",
+        "label": "Tamaño (pt):"
+    },
+    "firewall": {
+        "title": "Conexión bloqueada",
+        "text": "No se pudo conectar al osciloscopio.\nEs posible que el firewall de Windows esté bloqueando la comunicación.",
+        "informative": "Para solucionarlo, permita 'FloWorks.exe' en el firewall de Windows.\n\n¿Desea usar el modo simulación mientras tanto?"
+    },
+    "capture_error": {
+        "title": "Error de captura",
+        "text": "Se produjo un error durante la captura:\n{error}\n\nVerifique que el dispositivo esté encendido y que el firewall permita la conexión."
+    },
+    "script_editor": {
+      "title": "Editor de Script",
+      "header": "Script Python  |  variables: x, y, param (desde TriggerNode), np, scipy, sympy",
+      "test_button": "Probar (sin guardar)",
+      "save_button": "Guardar y cerrar",
+      "tool_tip": "Nodo Script\nDoble clic para información",
+      "templates": "Plantillas:",
+      "save_template": "Guardar plantilla…",
+      "import": "Abrir script…",
+      "export": "Exportar script…",
+      "unsaved_warning": "Hay cambios sin guardar. ¿Quieres cargar la plantilla y perderlos?",
+      "save_template_title": "Guardar como plantilla",
+      "save_template_prompt": "Nombre de la plantilla (sin extensión):",
+      "overwrite_template": "La plantilla ya existe. ¿Sobrescribir?",
+      "import_title": "Abrir script Python",
+      "export_title": "Exportar script Python",
+      "help_tooltip": "Ayuda rápida (F1)",
+      "help_title": "Ayuda rápida",
+      "browse": "Examinar…",
+      "python_path_placeholder": "Dejar vacío para usar el intérprete interno. Ej: python.exe",
+      "quick_help_html": "<h2>Editor de Script Python</h2><p>Este editor permite ejecutar código Python sobre las señales del flujo. El script recibe datos y puede devolver resultados, modificar señales o generar salidas múltiples.</p><h3>Variables disponibles</h3><ul><li><b>x</b> – Array NumPy: eje X (tiempo, frecuencia...).</li><li><b>y</b> – Array NumPy: valores de la señal actual.</li><li><b>param</b> – Índice de iteración (desde TriggerNode) o <code>None</code>.</li><li><b>inputs</b> – Diccionario con todas las entradas (útil con <code>@input</code>).</li><li><b>persist</b> – Diccionario que conserva valores entre ejecuciones.</li></ul><h3>Librerías importadas</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>Directivas especiales</h3><ul><li><code># @param NOMBRE : tipo = valor</code> – Crea un parámetro ajustable desde el panel lateral (sin tocar el código).</li><li><code># @input nombre_puerto</code> – Define un puerto de entrada adicional (lado izquierdo).</li><li><code># @output nombre_puerto</code> – Define un puerto de salida adicional (lado derecho).</li></ul><p>Con <code>@input</code>/<code>@output</code> el script debe trabajar con <code>inputs</code> y devolver un diccionario con las salidas. Ejemplo:</p><pre># @input canal_A<br># @output resultado<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"canal_A\"][1]<br>return {\"out\": (x, y), \"resultado\": (x, y_a)}</pre><h3>Persistencia</h3><p>El diccionario <code>persist</code> mantiene datos entre ejecuciones mientras el programa esté abierto. Ejemplo:</p><pre>persist[\"contador\"] = persist.get(\"contador\", 0) + 1<br>return (x, y + persist[\"contador\"] * 0.1)</pre><h3>Gestión de plantillas</h3><ul><li>Selecciona una plantilla del desplegable para cargar un script predefinido.</li><li><b>Guardar plantilla…</b> – Almacena el script actual como archivo <code>.py</code> en la carpeta de plantillas.</li><li><b>Abrir script…</b> / <b>Exportar script…</b> – Intercambia scripts con archivos externos.</li></ul><h3>Consejos</h3><ul><li>Usa <b>Probar</b> para verificar el script con datos simulados antes de conectar el flujo.</li><li>Los errores se muestran en la consola inferior y se marca la línea del fallo.</li><li>Puedes desactivar temporalmente una directiva comentándola (<code>## @param ...</code>).</li></ul>"
+    },
+    "trigger_config": {
+      "title": "Configurar Nodo Disparador",
+      "group": "Parámetros de iteración",
+      "n_iter": "Iteraciones (N):",
+      "param_start": "Parámetro inicio:",
+      "param_end": "Parámetro fin:",
+      "accumulate": "Acumulación:",
+      "trig_tooltips": "TriggerNode\nDoble clic para información",
+      "info": "El parametro actual estara disponible en\nloop_out como tercer elemento: (x, y, param)",
+      "accumulate_options":{
+        "stack": "Apliar",
+        "average": "Promedio",
+        "max": "Max",
+        "min": "Min"
+      }
+    },
+    "simulation_config": {
+      "title": "Configuración de simulación",
+      "timebase": "Base de tiempo (ms/div)",
+      "voltage_range": "Rango de voltaje (V)",
+      "trigger_level": "Nivel de disparo (V)",
+      "trigger_slope": "Flanco de disparo",
+      "sample_rate": "Frecuencia de muestreo (kHz)"
+    },
+    "file": {
+      "save_as": "Guardar como…",
+      "unsaved_title": "Cambios sin guardar",
+      "unsaved_message": "Hay cambios sin guardar. ¿Desea guardar antes de continuar?"
+    }
+  },
+  "info_dialog": {
+    "title": "Información - FloWorks",
+    "tab_about": "Acerca de",
+    "tab_shortcuts": "Atajos de teclado",
+    "tab_tutorials": "Tutoriales",
+    "close": "Cerrar",
+    "about_title": "FloWorks",
+    "version": "Version 0.4.5",
+    "description": "<p>FloWorks es un entorno visual e interactivo de procesamiento de señales basado en flujo de datos. Permite construir, ejecutar y analizar cadenas de procesamiento conectando nodos que representan operaciones matemáticas, filtros, transformadas, generadores de señal y más. Todo se basa en el intercambio de pares (x, y), donde x es el eje (tiempo o frecuencia) e y la señal.</p><p>Está orientado a estudiantes, investigadores, ingenieros y cualquier persona interesada en el procesamiento de señales que quiera experimentar, aprender o prototipar sistemas sin escribir código desde cero.</p><p><b>Misión:</b> Centralizar el flujo de trabajo experimental en una sola herramienta visual, abierta y accesible, para que cualquier persona —estudiante, investigador o ingeniero— pueda concentrarse en experimentar, no en aprender software.</p><p><b>Visión:</b> Un mundo donde la barrera entre una idea experimental y su ejecución sea solo la curiosidad del experimentador. Floworks aspira a ser la plataforma de referencia para la experimentación con señales, construida por y para la comunidad científica y técnica global, sin muros de licencias ni fragmentación de herramientas.</p><p><b>Principios:</b> Software libre (MIT License) – el conocimiento debe ser libre. Extensibilidad – cualquiera puede crear nuevos nodos con Python. Visualización inmediata – cada paso se puede inspeccionar gráficamente.</p>", 
+    "credits": "<h3>Agradecimientos y Licencias</h3><p>FloWorks utiliza los siguientes proyectos open‑source:</p><ul><li><b>PySide6 / Qt</b> – Interfaz gráfica. Licenciado bajo <b>GNU LGPLv3</b>. © The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – Licencias BSD / PSF.</li><li><b>PyQtGraph, Pillow</b> – Licencia MIT / HPND.</li><li><b>OpenCV</b> – Licencia Apache 2.0.</li><li><b>PyTorch</b> – Licencia BSD (Meta Platforms, Inc.).</li><li><b>Pygments</b> – Licencia BSD.</li></ul><p>Esta aplicación utiliza PySide6 (enlazado dinámicamente) bajo los términos de la <b>GNU LGPLv3</b>.</p><p>Los usuarios tienen derecho a modificar o reemplazar las bibliotecas dinámicas de PySide6.</p><p>Licencia completa disponible en <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a>.</p><p><b>Licencia de FloWorks:</b> MIT License.</p>",
+    "shortcut_header_keys": "Atajo",
+    "shortcut_header_action": "Acción",
+    "shortcut_header_context": "Contexto",
+    "shortcuts_note": "Nota: Los atajos funcionan globalmente, incluso si el foco está en otro widget.",
+    "tutorials_placeholder": "A continuación se muestran algunos ejemplos y tutoriales en orden de aprendizaje:",
+    "tutorial": "Tutorial",
+    "example_fft": "Abrir ejemplo: FFT de señal",
+    "example_filter": "Abrir ejemplo: Filtro pasa-banda de chirp",
+    "example_delay": "Abrir ejemplo: Retardo de señal seno",
+    "example_window": " Abrir ejemplo: Ventana sobre chirp",
+    "example_convolution": "Abrir ejemplo: Convolución de señal cuadrada",
+    "example_conrrelation": "Abrir ejemplo: Correlación entre señal seno y señal cuadrada",
+    "example_math_expression": "Abrir ejemplo: Expresión matemática sobre señal seno",
+    "example_spectrogram": "Abrir ejemplo: Esprectrograma en chirp",
+    "example_compound": "Abrir ejemplo: Arreglo compuesto de diferentes nodos",
+    "example_title": "Ejemplo",
+    "example_message": "El ejemplo '{name}' estará disponible en una versión futura.",
+    "shortcut_header_description": "Descripción",
+    "view_logs": "Ver consola de registros",
+    "log_viewer_title": "Visor de registros (error.log)",
+    "refresh": "Actualizar",
+    "clear": "Limpiar",
+    "no_logs_available": "No se encontraron registros en este momento.",
+    "error_reading_logs": "Error al leer el archivo de registro.",
+    "confirm_clear": "Confirmar limpieza",
+    "confirm_clear_msg": "¿Estás seguro de que deseas vaciar el archivo de registro? Esta acción no se puede deshacer."
+  },
+    "lcr_controller": {
+    "title": "Controlador LCR",
+    "connected": "Conectado",
+    "disconnected": "Desconectado",
+    "measure_var": "Variable a medir:",
+    "freq_sweep": "Barrido de frecuencias",
+    "freq_start": "Inicio (Hz):",
+    "freq_end": "Fin (Hz):",
+    "freq_step": "Paso (Hz):",
+    "level": "Nivel (V):",
+    "speed": "Velocidad:",
+    "average": "Promedio:",
+    "rsou": "RSOU (Ω):",
+    "range": "Rango:",
+    "bias_volt": "DC Bias (V):",
+    "bias_on": "BIAS ON",
+    "bias_off": "BIAS OFF",
+    "apply": "Aplicar configuración",
+    "error_title": "Error",
+    "connection_error": "No se pudo conectar al LCR. Verifique conexión y dirección.",
+    "success_title": "Éxito",
+    "success_message": "Configuración aplicada correctamente.",
+    "apply_error": "No se pudo aplicar la configuración: {error}"
+  },
+    "osc_controller": {
+    "title": "Captura Osciloscopio",
+    "window_title": "Controlador Osciloscopio",
+    "channel": "Seleccionar Canal:",
+    "acq_mode": "Modo de Adquisición:",
+    "mem_size": "Cantidad de Puntos:",
+    "invert_off": "Invertir señal",
+    "invert_on": "Señal invertida",
+    "tdiv": "División Horizontal:",
+    "vdiv": "División Vertical (V):",
+    "hpos": "Posición Horizontal (s):",
+    "offset": "Posición Vertical (V):",
+    "trig_level": "Trigger (V):",
+    "v_range":"Rango voltaje (V):",
+    "sd_trg": "Flanco trigger",
+    "fs": "Frecuencia de muestreo (kHz):"
+  },
+    "gen_controller": {
+    "title": "Controlador Avanzado - Generador de Señales",
+    "apply_current": "Aplicar configuración actual",
+    "channel": "Seleccionar canal:",
+    "waveform_btn": "Generar Forma de Onda",
+    "chirp_btn": "Generar Chirp",
+    "modulation_on": "Encender Modulación",
+    "modulation_off": "Detener Modulación",
+    "sweep_on": "Encender Sweep",
+    "sweep_off": "Detener Sweep",
+    "burst_on": "Encender Burst",
+    "burst_off": "Detener Burst",
+    "ch1_on": "Encender Canal 1",
+    "ch1_off": "Apagar Canal 1",
+    "ch2_on": "Encender Canal 2",
+    "ch2_off": "Apagar Canal 2",
+    "load": "Seleccionar salida:",
+    "polarity": "Polaridad salida:",
+    "modify_output": "Modificar salida",
+    "tab_general": "General",
+    "tab_waveform": "Forma de Onda",
+    "tab_chirp": "Chirp",
+    "tab_modulation": "Modulación",
+    "tab_sweep": "Sweep",
+    "tab_burst": "Burst",
+    "sim_title": "Simulación",
+    "no_hardware": "Sin hardware conectado",
+    "sent_title": "Enviado",
+    "waveform_sent": "Forma de onda enviada",
+    "chirp_sent": "Chirp enviado",
+    "success_title": "Éxito",
+    "output_modified": "Salida {channel}: carga {load}, polaridad {pol}",
+    "signal_type": "Tipo de señal:",
+    "frequency": "Frecuencia (Hz):",
+    "amplitude": "Amplitud (Vpp):",
+    "offset": "Offset (V):",
+    "phase": "Fase (grados):",
+    "duty_cycle": "Duty cycle (%):",
+    "symmetry": "Symmetry (%):",
+    "pulse_width": "Ancho pulso (s):",
+    "rise_edge": "Rise edge (s):",
+    "fall_edge": "Fall edge (s):",
+    "delay_edge": "Delay edge (s):",
+    "stdev": "Desviación estándar (V):",
+    "mean": "Media (V):",
+    "chirp_f0": "Frecuencia inicial (Hz):",
+    "chirp_f1": "Frecuencia final (Hz):",
+    "chirp_fs": "Fs (Sa/s):",
+    "chirp_duration": "Duración (s):",
+    "chirp_amp": "Amplitud (V):",
+    "chirp_offset": "Offset (V):",
+    "chirp_phase": "Fase (°):",
+    "chirp_name": "Nombre de la señal:",
+    "chirp_method": "Método:",
+    "chirp_mode": "Arb Mode:",
+    "mod_type": "Tipo de modulación:",
+    "mod_freq": "Frecuencia de modulación (Hz):",
+    "mod_dev": "Desviación (Hz,°,s):",
+    "mod_hop": "Hop Freq (Hz):",
+    "mod_shape": "Forma de onda:",
+    "mod_depth": "Profundidad (%):",
+    "sweep_time": "Duración (s):",
+    "sweep_stop": "Frecuencia final (Hz):",
+    "sweep_start": "Frecuencia inicial (Hz):",
+    "sweep_trig_src": "Fuente trigger:",
+    "sweep_trig_out": "Salida trigger:",
+    "sweep_mode": "Tipo:",
+    "sweep_dir": "Dirección:",
+    "burst_period": "Periodo (s):",
+    "burst_cycles": "Ciclos:",
+    "burst_phase": "Fase (grados):",
+    "burst_gate": "Objetivo:",
+    "burst_trig_src": "Fuente trigger:",
+    "burst_polarity": "Polaridad:",
+    "waveform_applied": "Forma de onda aplicada",
+    "chirp_applied": "Chirp enviado",
+    "modulation_applied": "Modulación configurada",
+    "sweep_applied": "Sweep configurado",
+    "burst_applied": "Burst configurado"
+  },
+    "simulation_config_dialog": {
+    "title": "Configuración de Simulación - Generador",
+    "waveform": "Forma de onda:",
+    "basic_params": "Parámetros Básicos",
+    "frequency": "Frecuencia (Hz):",
+    "amplitude": "Amplitud (Vpp):",
+    "offset": "Offset (V):",
+    "phase": "Fase (grados):",
+    "duty_cycle": "Ciclo de trabajo (%):",
+    "symmetry": "Simetría (%):",
+    "direction": "Dirección:",
+    "up": "Ascendente",
+    "down": "Descendente",
+    "stdev": "Desviación estándar:",
+    "mean": "Media:",
+    "lobes": "Número de lóbulos:",
+    "sigma": "Sigma:",
+    "mu": "Mu:",
+    "tau": "Tau (s):",
+    "exp_type": "Tipo:",
+    "rise": "Subida",
+    "fall": "Bajada",
+    "f0": "Frecuencia inicial (Hz):",
+    "f1": "Frecuencia final (Hz):",
+    "chirp_method": "Método:",
+    "linear": "Lineal",
+    "logarithmic": "Logarítmico",
+    "preview": "Vista Previa",
+    "apply": "Aplicar",
+    "close": "Cerrar",
+    "time_label": "Tiempo (s)",
+    "amplitude_label": "Amplitud (V)"
+  },
+  "self": {
+    "language_changed": "Idioma cambiado a: {name} ({code})",
+    "default": "FloWorks  |  Girar Scroll: zoom  |  Click botón central: agarrar  |  Doble clic en nodo: información |  Clic derecho en nodo: opciones",
+    "workspace": "Espacio de trabajo",
+    "canvas": "Lienzo",
+    "no_nodes_selected": "Ningún nodo seleccionado",
+    "node_config_placeholder": "Selecciona un nodo en el canvas\npara ver su configuración"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "Laboratorio Virtual de procesamiento de señales visual e interactivo",
+    "build": "Olvídate del código complejo. Arrastra bloques, conéctalos como piezas de un rompecabezas y construye el flujo de trabajo uniendo nodos con líneas que representan un flujo de datos",
+    "keyrule": "Todo es sobre señales, Conecta bloques, no líneas de código",
+    "nodework": "Arquitectura de Nodos:\n[Datos de Entrada] → [Procesamiento interno] → [Datos de Salida]",
+    "execute": "Dale a ejecutar y observa cómo cobran vida tus ideas en gráficas y datos en tiempo real. ¿Quieres ir más lejos? Conecta instrumentos reales del laboratorio o añade tus propias reglas con nodos con scripts Python para procesamiento a medida.",
+    "expand": "Cuenta con la opción de exportar gráficos de alta calidad listos para usar en documentos técnicos. Guarde su trabajo en archivos \".sflow\" y recupérelos exactamente como los dejó.",
+    "actions_title": "¿Qué puedes hacer?",
+    "actions": "* Probar ideas construyendo flujos arrastrando y uniendo nodos.\n* Controlar equipos reales o simular señales.\n* Ver los resultados al instante en gráficas interactivas.",
+    "checkbox": "No mostrar de nuevo",
+    "start": "Empezar"
+  },
+  "scene": {
+    "empty_hint": "Selecciona nodos desde la barra de herramientas",
+    "load_example_hint": "Puedes cargar un ejemplo desde \"Información\" → \"Tutoriales\""
+  },
+  "examples": {
+    "general": {
+      "title": "Ejemplos",
+      "welcome": "¡Bienvenido a FloWorks! \nSigue estos minitutoriales para dominar las operaciones más comunes.",
+      "scroll": "Gira o mantén presionada la rueda del ratón para desplazarte por el lienzo.",
+      "help": "Presiona clic derecho sobre el nodo para configurar sus acciones."
+    },
+    "tutorial": {
+      "message": "Esta es una aplicación de diagrama de flujo de señales visual. ¡Empecemos!",
+      "step1": "Paso 1: Agregar Fuente de Señal",
+      "step2": "Agrega un nodo fuente de señal desde la barra de herramientas (parte superior). \nEl nodo se posicionará donde hayas dado clic en el lienzo por ultima vez. \nHaz clic en un lugar cercano en el lienzo y luego clic en la barra superior sobre:",  
+      "step3": "Paso 2: Conectar Nodos",
+      "step4": "Haz CTRL+clic en un puerto de salida de un nodo (el que está a la izquierda) y solo clic en el puerto de entrada del otro (el que está a la derecha) para crear una conexión.",
+      "step5": "Las conexiones fluyen de izquierda a derecha, transportando datos de señal entre nodos.",
+      "step6": "Paso 3: Ejecutar el Flujo",
+      "step7": "Presiona F5 para ejecutar el flujo de señales y ver los resultados en tiempo real.",
+      "step8": "También puedes hacer clic en nodos individuales para ver sus valores de salida.",
+      "step9": "Paso 4: Ver Resultados",
+      "step10": "Haz clic en cualquier nodo para visualizar la señal en el widget de gráficas.",
+      "step11": "La gráfica se actualiza automáticamente cuando ejecutas el flujo."
+    },
+    "shortcuts": {
+      "title": "Atajos de teclado",
+      "execute": "F5 – Ejecutar flujo",
+      "save": "Ctrl+S – Guardar proyecto (.sflow)",
+      "load": "Ctrl+O – Abrir proyecto",
+      "delete": "Supr / Backspace – Eliminar elementos seleccionados",
+      "copy_paste": "Ctrl+C / Ctrl+V – Copiar y pegar nodos o notas",
+      "undo_redo": "Ctrl+Z / Ctrl+Y – Deshacer / Rehacer",
+      "auto_layout": "Ctrl+Shift+L – Organizar automáticamente el diagrama",
+      "zoom": "Rueda del ratón – Zoom, mantenerlo presionado para arrastrar la vista"
+    },
+    "fft": {
+      "title": "Análisis FFT",
+      "description": "Calcula el espectro de frecuencia de una señal.",
+      "steps": {
+        "step1": "Agrega un nodo Generador y selecciona, por ejemplo, una onda cuadrada de 1 kHz.",
+        "step2": "En el menú 'Procesamiento' de la barra de herramientas, selecciona nodo FFT. Conéctalo a la salida del Generador (CTRL+clic salida → CTRL+clic entrada FFT).",
+        "step3": "Pulsa F5. El nodo FFT transformará la señal al dominio de la frecuencia.",
+        "step4": "Haz clic sobre el nodo FFT para ver el espectro. Aparecerán los picos en múltiplos impares de 1 kHz.",
+        "step5": "(Opcional) Conecta la salida del FFT a un nodo Aritmético (SumNode) para comparar dos espectros; el sistema detecta automáticamente la resolución de frecuencia y te avisa si hay incompatibilidad.",
+        "step6": "presiona clic derecho en el nodo FFT para seleccionar la visualización entre Magnitud y Fase"
+      }
+    },
+    "filter": {
+      "title": "Filtrado de señal",
+      "description": "Aplica un filtro paso bajo, paso alto o paso banda.",
+      "steps":"1. Inserta un Generador con una señal tipo chirp.\n2. Agrega un nodo Filtro desde el menú 'Procesamiento'. Conecta la salida del generador a la entrada del filtro.\n3. Haz clic derecho y elige la opción ´configurar...´ en el nodo Filtro y elige el tipo (paso bajo, paso alto…) y la frecuencia de corte.\n4. Ejecuta (F5) y visualiza tanto la señal original como la filtrada haciendo clic en las conexiones correspondientes.\n5. Si quieres comparar lado a lado, puedes añadir nodos FFT y bifurcar la señal."
+    },
+    "delay": {
+      "title": "Línea de retardo",
+      "description": "Desplaza una señal en el tiempo (útil para correlaciones o efectos).",
+      "steps": "1. Parte de un generador con una señal corta.\n2. Agrega un nodo Retardo desde 'Procesamiento'. Conecta la salida del generador a la entrada del retardo.\n3. En el diálogo de configuración del nodo Retardo, especifica el número de muestras o el tiempo de retardo.\n4. Ejecuta el flujo (F5) y pulsa sobre la salida del nodo Retardo. Verás la misma señal desplazada hacia la derecha.\n5. Para medir el retardo exacto, activa los cursores (panel inferior) y compáralos entre la señal original y la retardada."
+    },
+    "window": {
+      "title": "Enventanado pre-FFT",
+      "description": "Aplica una ventana (Hanning, Hamming, etc.) antes de la FFT para reducir fugas espectrales.",
+      "steps": "1. Monta un flujo básico: Generador → Ventana → FFT.\n2. Haz doble clic en el nodo Ventana y selecciona el tipo (Hanning es un buen inicio).\n3. Conecta la salida de la Ventana a la entrada de la FFT.\n4. Ejecuta (F5). Haz clic sobre la salida de la FFT para comparar el espectro con y sin ventana.\n5. Prueba con una señal senoidal pura de frecuencia no entera; notarás que el pico es más definido con ventana. Cambia el tipo de ventana para ver cómo se reduce el lóbulo lateral."
+    },
+    "convolution": {
+      "title": "Convolución",
+      "description": "Calcula la convolución entre dos señales.",
+      "steps": "1. Añade un Generador (Fuentes → Generador) con la señal que deseas filtrar.\n2. Agrega un nodo Convolución desde el menú 'Procesamiento'.\n3. Conecta la salida del generador a la entrada del nodo Convolución (CTRL+clic en ambos extremos).\n4. Haz doble clic en el nodo Convolución para configurarlo. Introduce los coeficientes del kernel separados por comas (ej.: '0.2,0.2,0.2,0.2,0.2') y elige el modo de convolución ('same', 'full' o 'valid').\n5. Pulsa F5 para ejecutar el flujo. El nodo filtrará la señal mediante convolución discreta.\n6. Haz clic sobre la conexión de salida del nodo Convolución para ver la señal filtrada. Observa el efecto del kernel; puedes cambiar los coeficientes y volver a ejecutar para comparar."
+    },
+    "correlation": {
+      "title": "Correlación cruzada",
+      "description": "Mide la similitud entre dos señales en función del desplazamiento temporal.",
+      "steps": "1. Coloca dos nodos Generador (Fuentes → Generador). Crea, por ejemplo, una señal sinusoidal y señal cuadrada de la misma frecuencia.\n2. Inserta un nodo Correlación desde 'Procesamiento'.\n3. Conecta la salida del primer generador a la entrada 'Señal 1' del nodo Correlación (CTRL+clic en puertos). Luego, conecta el segundo generador a la entrada 'Señal 2'.\n4. Ejecuta el flujo con F5. El nodo producirá una señal de correlación cruzada.\n5. Haz clic en la conexión de salida para observar el pico de correlación. Se verá un máximo en el retardo donde las señales están alineadas.\n6. Activa los cursores (panel inferior) para medir exactamente el desplazamiento temporal."
+    },
+    "math_expression": {
+      "title": "Expresión matemática",
+      "description": "Aplica cualquier función matemática a la señal de entrada (ej. y_new = f(x, y)).",
+      "steps": "1. Añade un Generador (Fuentes → Generador) y elige la forma de onda que quieras transformar.\n2. Agrega un nodo Expresión Matemática desde el menú 'Procesamiento'.\n3. Conecta la salida del generador a la entrada del nodo (CTRL+clic en ambos extremos).\n4. Haz doble clic sobre el nodo Expresión para abrir el editor. Escribe una función que reciba dos arrays (x, y) y devuelva (x, y_new). Por ejemplo: y_new = y**2 + 0.5*np.sin(x).\n5. Pulsa F5 para ejecutar. El nodo aplicará la operación exclusivamente a los valores de 'y' manteniendo el eje 'x' intacto.\n6. Visualiza el resultado pinchando en la conexión de salida. Puedes modificar la expresión y volver a ejecutar para ver cambios instantáneos."
+    },
+    "spectrogram": {
+      "title": "Espectrograma",
+      "description": "Representa la evolución temporal de las frecuencias de una señal.",
+      "steps": "1. Coloca un Generador (Fuentes → Generador) con una señal de frecuencia variable, como un barrido senoidal (chirp).\n2. Desde 'Procesamiento', añade un nodo Espectrograma.\n3. Conecta la salida del generador a la entrada del nodo Espectrograma (CTRL+clic en ambos puertos).\n4. Desde 'Procesamiento', añade un nodo Visualizador de Espectrograma y conecta los puertos correspondientes con nodo Espectrograma.\n5. Ejecuta con F5. El nodo procesará la señal y generará una matriz tiempo-frecuencia.\n6. Haz clic derecho en el Visualizador de Espectrograma para visualizar la imagen espectral. Observa cómo la frecuencia dominante varía con el tiempo.\n7. (Opcional) Agrega un nodo FFT intermedio para comparar la representación estática de frecuencias con la dinámica."
+    }
+  },
+  "prefs": {
+    "title": "Preferencias",
+    "tab_execution": "Ejecución",
+    "tab_gpu": "GPU / Cómputo",
+    "tab_streaming": "Streaming",
+    "tab_ui": "UI / Rendimiento",
+    "tab_advanced": "Avanzado",
+    "max_workers":{
+      "label": "Hilos máximos (preparación Fase 3)",
+      "tooltip": "Controla el paralelismo futuro de ramas independientes."
+    },
+    "timeout_per_node": "Timeout por nodo (s)",
+    "gpu":{
+      "backend": "Backend por defecto",
+      "fallback": "Política de fallback",
+      "threshold": "Umbral de overhead (MB)"
+    },
+    "streaming":{
+      "buffer": "Tamaño de buffer (muestras)",
+      "timeout": "Timeout dispatcher (ms)",
+      "error": "Política de errores en stream"
+    }, 
+    "ui":{
+      "fps": "FPS máximos de actualización",
+      "anim": "Duración animación conectores (s)"
+    },
+    "adv":{
+      "python_path": "Ruta intérprete externo",
+      "log_level": "Nivel de log",
+      "backup": "Backup automático al cargar"
+    },
+    "btn_apply": "Aplicar",
+    "btn_reset": "Reiniciar por defecto",
+    "btn_close": "Cerrar"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "Expresión..."
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "Hist",
+      "label": "{mode}  |  {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Eng",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "C"
+    },
+    "history": {
+      "title": "📜 Historial",
+      "clear": "🗑 Limpiar",
+      "use_last": "↩ Último"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "&Archivo",
+      "edit": "&Editar",
+      "format": "F&ormato",
+      "align": "A&lineacion"
+    },
+    "actions": {
+      "new": "&Nuevo",
+      "open": "&Abrir",
+      "save": "&Guardar",
+      "save_as": "Guardar &como...",
+      "export_csv": "&Exportar CSV...",
+      "exit": "&Salir",
+      "undo": "&Deshacer",
+      "redo": "&Rehacer",
+      "cut": "Cor&tar",
+      "copy": "&Copiar",
+      "paste": "&Pegar",
+      "bold": "&Negrita",
+      "italic": "&Itálica",
+      "align_left": "&Izquierda",
+      "align_center": "&Centro",
+      "align_right": "&Derecha",
+      "bg_color": "Color de &fondo...",
+      "fg_color": "Color de &texto..."
+    },
+    "toolbar": {
+      "title": "Principal",
+      "new": "Nuevo",
+      "open": "Abrir",
+      "save": "Guardar",
+      "cut": "Cortar",
+      "copy": "Copiar",
+      "paste": "Pegar",
+      "bold": "Negrita",
+      "italic": "Itálica",
+      "align_left": "Izq",
+      "align_center": "Cen",
+      "align_right": "Der",
+      "bg_color": "Fondo",
+      "fg_color": "Texto",
+      "undo": "Deshacer",
+      "redo": "Rehacer"
+    }
+  },
+  "system_monitor": {
+    "title": "SYSTEM MONITOR",
+    "subtitle": "Telemetría de recursos en tiempo real",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "NÚCLEOS / NÚCLEOS LÓGICOS",
+      "core_prefix": "C"
+    },
+    "ram": {
+      "title": "Memoria RAM",
+      "tooltip": "Uso de memoria RAM"
+    },
+    "disk": {
+      "title": "Disco ( / )",
+      "tooltip": "Uso de disco en /"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}%  M:{mem}%"
+    },
+    "status": {
+      "updated": "Actualizado"
+    }
+  }
+}

@@ -1,0 +1,1556 @@
+{
+  "language_name": "한국어",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "파일",
+      "new": "새로 만들기",
+      "open": "열기…",
+      "save": "저장",
+      "save_as": "다른 이름으로 저장…",
+      "exit": "종료"
+    },
+    "edit": "편집",
+    "view": "보기",
+    "help": "도움말",
+    "language": "언어",
+    "info": "정보",
+    "theme": "테마",
+    "font_size": "글꼴 크기",
+    "font_size_custom": "사용자 지정 크기…"
+  },
+  "menu_config": {
+    "title": "노드 구성"
+  },
+  "panels": {
+    "analysis": {
+      "title": "분석"
+    },
+    "stats": {
+      "title": "통계",
+      "max": "최대:",
+      "min": "최소:",
+      "mean": "평균:",
+      "rms": "RMS:",
+      "mode_3d": "(3D 투영)"
+    },
+    "cursors": {
+      "title": "커서 A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "3D 모드에서는 커서를 사용할 수 없습니다"
+    },
+    "crosshair": {
+      "cursor": "커서",
+      "peak": "피크",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "3D 모드에서는 십자선을 사용할 수 없습니다"
+    }
+  },
+  "tab": {
+    "plot": "그래프",
+    "workspace": "캔버스 변수",
+    "python_vars": "Python 변수"
+  },
+  "tooldrawer": {
+    "python_console": "터미널",
+    "monitor_widget": "성능 모니터",
+    "spreadsheet_widget": "스프레드시트",
+    "calc_widget": "계산기"
+  },
+  "console": {
+    "help": {
+      "title": "FloWorks 콘솔 대화형 튜토리얼",
+      "button": "도움말",
+      "html": "<h1>FloWorks 콘솔 대화형 튜토리얼</h1><h2>1. 노드와 연결</h2><p><code>&gt;&gt;&gt; graph.nodes</code></p><p><code>&gt;&gt;&gt; graph.connections</code></p><p><code>&gt;&gt;&gt; selected_node</code></p><p>노드 생성:</p><p><code>&gt;&gt;&gt; graph.add_catalog_node('SumNode', 300, 200)</code></p><p>연결:</p><p><code>&gt;&gt;&gt; graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>삭제:</p><p><code>&gt;&gt;&gt; graph.remove_node(graph.nodes[2])</code></p><p>포트:</p><p><code>&gt;&gt;&gt; graph.nodes[1].PORTS</code></p><h2>2. 실행 및 결과 보기</h2><p>그래프 실행:</p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>노드 출력 보기:</p><p><code>&gt;&gt;&gt; graph.node_values[graph.nodes[1]]</code></p><p>이 방법은 KeyError로 실패할 수 있으므로 다음을 사용하세요:</p><p><code>&gt;&gt;&gt; list(graph.node_values.values())[1]</code></p><p>전체 출력:</p><p><code>&gt;&gt;&gt; nodo = graph.nodes[0]</code></p><p><code>&gt;&gt;&gt; nodo.output</code></p><p>Y축:</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; y = result[1]</code></p><p><code>&gt;&gt;&gt; y.max()</code></p><p>할당은 출력되지 않습니다. <code>x</code>, <code>y.shape</code> 또는 <code>print(x, y)</code>로 확인하세요.</p><h2>3. 그래프</h2><p>지우기:</p><p><code>&gt;&gt;&gt; app.plot_widget.clear_plot()</code></p><p>콘솔에서 신호 생성:</p><p><code>&gt;&gt;&gt; import numpy as np</code></p><p><code>&gt;&gt;&gt; x = np.linspace(0, 1, 1000)</code></p><p><code>&gt;&gt;&gt; y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>소스 노드에서:</p><p><code>&gt;&gt;&gt; x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>FFT 노드 (dict 반환):</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>&gt;&gt;&gt; result.keys()</code></p><p><code>&gt;&gt;&gt; f, mag = result['magnitude']</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. 응용 프로그램 수정</h2><p>테이블 업데이트:</p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>노드 추가:</p><p><code>&gt;&gt;&gt; app.add_node('SignalSourceNode')</code></p><p>제목:</p><p><code>&gt;&gt;&gt; app.setWindowTitle('My signal lab')</code></p><p>확인:</p><p><code>&gt;&gt;&gt; app.windowTitle()</code></p><p>복원:</p><p><code>&gt;&gt;&gt; app.update_title()</code></p><h2>5. 단축키</h2><table><tr><th>키/명령</th><th>동작</th></tr><tr><td><code>&uarr;</code> / <code>&darr;</code></td><td>기록</td></tr><tr><td><code>Tab</code></td><td>자동 완성</td></tr><tr><td><code>Ctrl + L</code></td><td>콘솔 지우기</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>여러 줄 블록</td></tr></table><h2>6. 활용 예</h2><p>매개변수 변경:</p><p><code>&gt;&gt;&gt; selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>&gt;&gt;&gt; getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>사용자 지정 수식:</p><p><code>&gt;&gt;&gt; selected_node.params['mode'] = 'formula'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['expr'] = '2 * sin(2*pi*1000*t)'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>&gt;&gt;&gt; selected_node._generate_signal()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>카테고리 나열:</p><p><code>&gt;&gt;&gt; from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>&gt;&gt;&gt; NODE_CATEGORIES</code></p><p>도움말:</p><p><code>&gt;&gt;&gt; help(graph.connect_nodes)</code></p><h2>7. 문제 해결</h2><ul><li><strong>빨간색 오류</strong>: 콘솔에 문제가 표시되며 앱은 종료되지 않습니다.</li><li><strong>인터페이스 멈춤</strong>: 무한 루프입니다. 콘솔을 닫거나 다시 시작하세요.</li><li><strong>아무 일도 일어나지 않음</strong>: <code>graph.connections</code>와 소스 노드를 확인하세요.</li></ul><p>&copy; 2026 FloWorks — Signal Laboratory</p>"
+    }
+  },
+  "vars_table": {
+    "header": {
+      "name": "이름",
+      "type": "유형",
+      "shape": "형상",
+      "value": "값"
+    },
+    "menu": {
+      "info": "변수: {name}"
+    },
+    "dialog": {
+      "title": "전체 값"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "글꼴:",
+    "font_size_tooltip": "기본 글꼴 크기 변경",
+    "run_flow_tooltip": "흐름 실행",
+    "add_kinematics": "운동학 노드",
+    "escolar": "교육용",
+    "add_function_graph_node": "함수",
+    "add_rhombus_node": "논리 게이트",
+    "add_graph_exporter": "그래프 내보내기",
+    "add_note": "메모",
+    "add_note_tooltip": "스티커 메모 추가…",
+    "add_signal_source": "새 신호 소스",
+    "add_spectrogram_viewer": "스펙트로그램 뷰어",
+    "add_correlation": "상관",
+    "add_math_expression": "수학 표현식",
+    "add_spectrogram": "스펙트로그램",
+    "add_resample": "리샘플",
+    "add_window": "윈도우",
+    "add_delay": "지연",
+    "add_convolution_node": "컨볼루션",
+    "add_normalize": "정규화",
+    "add_filter": "필터",
+    "add_fft": "FFT",
+    "source_node": "고급 신호 발생기",
+    "load_signal_tooltip": "사용자가 원하는 대로 신호 생성",
+    "history": "기록",
+    "history_tooltip": "작업 기록",
+    "auto_layout": "자동 배치",
+    "auto_layout_tooltip": "노드 자동 배치 (Ctrl+Shift+L)",
+    "sources": "주변기기",
+    "processing": "처리",
+    "control": "제어",
+    "add_oscilloscope": "오실로스코프",
+    "add_generator": "발생기",
+    "add_expression": "표현식 노드",
+    "add_script": "Python 스크립트",
+    "add_arithmetic": "산술 +−×÷",
+    "add_program": "프로그램",
+    "add_split": "논리 게이트",
+    "add_trigger": "트리거 노드",
+    "sink": "그래프 내보내기",
+    "help_wiki": "문서 / 위키",
+    "help_wiki_tooltip": "프로젝트 위키 열기"
+  },
+  "info": {
+    "information": "정보",
+    "shortcuts": "단축키",
+    "tutorials": "튜토리얼",
+    "change_theme": "테마 변경"
+  },
+  "status": {
+    "default": "FloWorks  |  스크롤: 확대/축소  |  가운데 클릭: 이동  |  노드 우클릭: 옵션",
+    "no_nodes": "준비됨. 도구 모음에서 노드를 선택하세요.",
+    "how_to_connect": "노드의 출력 포트를 Ctrl+클릭한 다음, 다른 노드의 입력 포트를 클릭하세요.",
+    "connecting": "연결 중… 다른 노드나 포트를 클릭하세요.",
+    "connection_created": "연결이 생성되었습니다.",
+    "flow_executed": "흐름이 성공적으로 실행되었습니다.",
+    "flow_error": "흐름 실행 중 오류가 발생했습니다.",
+    "saved": "다이어그램 저장됨: {path}",
+    "loaded": "다이어그램 로드됨: {path}",
+    "new_file": "새 다이어그램이 생성되었습니다",
+    "example_loaded": "예제가 로드되었습니다."
+  },
+  "errors": {
+    "save_failed": "저장 중 오류: {error}",
+    "load_failed": "로드 중 오류: {error}",
+    "load_example_failed": "예제를 로드할 수 없습니다: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "노드 삭제",
+      "connect": "노드 연결",
+      "disconnect": "노드 연결 해제",
+      "setup": "설정",
+      "trigger": "트리거",
+      "generate": "생성",
+      "edit_script": "스크립트 편집",
+      "edit_input": "입력 편집",
+      "help": "정보"
+    },
+    "graph_union": {
+      "title": "그래프 결합",
+      "tooltip": "여러 신호를 독립적인 시리즈로 그룹화하여 중첩 플롯합니다.",
+      "num_inputs_label": "입력 수 (1-8):",
+      "config_title": "그래프 결합 구성",
+      "status": {
+        "ready": "준비됨"
+      },
+      "ports": {
+        "signal_1": "신호 1",
+        "signal_2": "신호 2",
+        "signal_3": "신호 3",
+        "signal_4": "신호 4",
+        "signal_5": "신호 5",
+        "signal_6": "신호 6",
+        "signal_7": "신호 7",
+        "signal_8": "신호 8",
+        "series_out": "출력"
+      },
+      "menu": {
+        "configure": "구성…"
+      },
+      "help_title": "도움말 – 그래프 결합",
+      "help_html": "<h3>🔗 그래프 결합 노드</h3><p>여러 신호를 수신하고 결합하지 않고 독립적인 시리즈로 유지하여 중첩 플롯합니다.</p><p>노드를 우클릭하여 입력을 동적으로 <b>추가하거나 제거</b>할 수 있습니다 (최대 8개).</p><p><code>Series</code> 출력은 시각화를 위한 전체 시리즈 목록을 제공합니다.</p>"
+    },
+    "tabular_inspector": {
+      "title": "표 형식 데이터 검사기",
+      "window_title": "표 형식 검사기",
+      "no_data": "데이터 없음",
+      "copy": "클립보드에 복사",
+      "decimals": "소수 자릿수:",
+      "col_names": "열 이름 (쉼표로 구분, 비어 있으면 자동):",
+      "tooltip": "노드 데이터 검사는 단일 입력 포트에서 수신한 데이터를 표로 표시합니다.",
+      "status": {
+        "no_data": "데이터 없음"
+      },
+      "menu": {
+        "view_table": "표 보기",
+        "configure": "구성…"
+      },
+      "ports": {
+        "data": "입력"
+      },
+      "config_title": "표 형식 검사기 구성",
+      "help_title": "도움말 – 표 형식 검사기",
+      "help_html": "<h3>📊 표 형식 검사기 노드</h3><p><b>Excel 스프레드시트</b>처럼 이 노드는 단일 입력 포트에서 수신한 데이터를 표로 표시합니다.</p><p><b>해석 규칙:</b></p><ul><li><b>튜플/배열 목록</b> (예: (x, y, Fs)) → 각 배열이 하나의 열이 됩니다.</li><li><b>2D NumPy 배열</b> → 행 × 열.</li><li><b>1D 배열 또는 목록</b> → 단일 열.</li><li><b>스칼라</b> → 단일 셀.</li></ul><p>우클릭 → <b>표 보기</b>로 검사기를 엽니다. 측면 패널을 사용하여 소수 자릿수와 사용자 지정 열 이름 (쉼표로 구분)을 설정하세요.</p>"
+    },
+    "equation_solver": {
+      "title": "방정식 풀이기",
+      "tooltip": "선형 방정식 시스템 풀이기",
+      "type_label": "방정식 유형:",
+      "type_linear_single": "선형 단일",
+      "type_linear_system": "선형 시스템 2×2",
+      "eq_format": "형식: a*x + b = c",
+      "eq1_label": "방정식 1 (형식: a*x + b*y = c):",
+      "eq2_label": "방정식 2:",
+      "examples": "예제",
+      "sys_examples": "시스템 예제",
+      "menu": {
+        "view_plot": "해 그래프 보기",
+        "configure": "방정식 구성…",
+        "view_steps": "풀이 단계 보기…"
+      },
+      "ports": {
+        "output": "출력",
+        "steps": "단계",
+        "solution": "y (m)"
+      },
+      "steps_title": "풀이 단계",
+      "no_steps": "사용 가능한 풀이 단계가 없습니다.",
+      "config_title": "방정식 풀이기 구성",
+      "help_title": "도움말 – 방정식 풀이기",
+      "plot_window_title": "해 그래프",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "내보내기…",
+      "export_title": "그래프 내보내기",
+      "no_data_to_plot": "플롯할 데이터가 없습니다",
+      "btn_step_by_step": "▶ 단계별",
+      "step_anim_title": "단계별",
+      "step_anim_info": "전체 버전에서는 그래픽 구성이 단계별로 표시됩니다.",
+      "error_no_equals": "방정식에 '=' 기호가 없습니다.",
+      "error_rhs_not_number": "방정식의 우변에 유효한 숫자가 아닙니다.",
+      "error_invalid_x_coef": "x에 대한 계수가 유효하지 않습니다: '{coef}'. 구문을 확인하세요.",
+      "error_invalid_y_coef": "y에 대한 계수가 유효하지 않습니다: '{coef}'. 구문을 확인하세요.",
+      "error_invalid_const": "상수항이 유효하지 않습니다: '{term}'. 숫자와 + 또는 - 기호만 사용하세요.",
+      "error_zero_x": "x의 계수가 0입니다. 방정식에 고유한 해가 없습니다.",
+      "no_plot_data_title": "데이터 없음",
+      "no_plot_data_message": "플롯할 해 데이터가 없습니다. 먼저 구성하고 풀이하세요.",
+      "preview": "미리보기:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "해 없음 (또는 아직 계산되지 않음)",
+      "help_html": "<h3>🧮 방정식 풀이기 노드</h3>\n<p><b>간단한 선형 방정식 또는 2×2 방정식 시스템</b>을 풀이하고 단계별 절차와 교차 그래프를 보여줍니다.</p>\n\n<h4>⚙️ 사용법</h4>\n<ol>\n <li>노드를 <b>우클릭</b> → <i>\"매개변수 편집\"</i>을 선택합니다.</li>\n <li><code>equation_type</code>을 선택합니다: <code>linear_single</code> 또는 <code>linear_system</code>.</li>\n <li><code>equations</code>를 텍스트로 입력합니다 (예: \"2x + 3 = 7\") 또는 시스템의 경우 텍스트 목록을 입력합니다.</li>\n <li>노드가 해를 계산하고 대수 단계를 자동으로 생성합니다.</li>\n</ol>\n\n<h4>📤 출력</h4>\n<ul>\n <li><code>solution</code> → 숫자 값 (단일 방정식) 또는 <code>x</code>, <code>y</code>가 있는 사전 (2×2 시스템).</li>\n <li><code>steps</code> → 단계별 대수 분석이 포함된 텍스트.</li>\n</ul>\n\n<h4>⚠️ 참고</h4>\n<ul>\n <li><b>교육적 가치:</b> 즉각적인 대수 피드백을 제공하고 해를 그래픽 표현 (교차점)과 연결합니다.</li>\n <li>올바른 변수를 사용하세요 (<code>x</code>는 단일, <code>x</code>와 <code>y</code>는 시스템).</li>\n <li>시스템이 불일치하거나 종속적이면 <code>steps</code> 출력에 표시됩니다.</li>\n</ul>\n\n<h4>💡 예제</h4>\n<p>노드를 <code>linear_system</code>으로 구성하고 <code>[\"y = 2x\", \"y = -x + 3\"]</code>을 입력합니다. <code>steps</code>를 텍스트 뷰어에 연결하고 플롯 노드에서 교차점을 시각화하세요.</p>\n<hr>\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>수학적 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n방정식 → 풀이 → 시각화\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(대수 ↔ 기하)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n매개변수 → 처리 (풀이기) → 시각화 (플롯/텍스트)\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n매개변수 (방정식) → EquationSolver → 플롯 (교차점) + 텍스트 (단계)\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "운동학",
+      "tooltip": "운동학 시뮬레이터: 자유 낙하 및 포물선 운동",
+      "ports": {
+        "x": "x(m) vs t(s)",
+        "y": "y(m) vs t(s)",
+        "vx": "vx(m/s) vs t(s)",
+        "vy": "vy(m/s) vs t(s)",
+        "speed": "속도(m/s) vs t(s)",
+        "energy_kinetic": "운동 에너지(J) vs t(s)",
+        "energy_potential": "위치 에너지(J) vs t(s)",
+        "ground_contact": "지면 접촉 vs t(s)"
+      },
+      "status": {
+        "ready": "준비됨"
+      },
+      "config_title": "운동학 구성",
+      "menu": {
+        "configure": "구성…",
+        "generate": "생성",
+        "show_output": "출력 표시",
+        "trajectory": "궤적 (y vs x)",
+        "y_t": "수직 위치 y(t)",
+        "vy_t": "수직 속도 vy(t)",
+        "speed_t": "속도 |v|(t)",
+        "display": "시각화"
+      },
+      "group_ic": "초기 조건",
+      "group_env": "환경",
+      "group_sim": "시뮬레이션",
+      "group_presets": "프리셋",
+      "help_title": "도움말 – 운동학",
+      "help_html": "<h3>🚀 운동학 실험실</h3><p>일정한 중력 하에서 <b>포물선 운동</b>과 <b>자유 낙하</b>를 시뮬레이션합니다. 입력이 필요하지 않으며 초기 조건에서 신호를 생성합니다.</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 주요 출력 (시간 vs 크기 튜플)</h4><p>각 포트는 <code>(t, 변수)</code> 튜플을 제공하며 플롯이나 다른 노드에 연결할 준비가 되어 있습니다. 시간은 이미 X축으로 포함되어 있습니다.</p><ul><li><code>x</code> → (t, 수평 위치) [m]</li><li><code>y</code> → (t, 수직 위치) [m]</li><li><code>vx</code> → (t, 수평 속도) [m/s]</li><li><code>vy</code> → (t, 수직 속도) [m/s]</li><li><code>speed</code> → (t, 속도 |v|) [m/s]</li></ul><h4>⚡ 선택적 출력 (에너지 표시 활성화)</h4><ul><li><code>energy_kinetic</code> → (t, Ec = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, y≤0이면 1.0, 공중이면 0.0)</li></ul><h4>🎨 내부 표시 채널</h4><p>상황에 맞는 메뉴에서 기본 플롯에 표시되는 내용을 변경하세요:</p><ul><li><b>궤적</b> (y vs x) → 공간 포물선</li><li><b>y(t)</b>, <b>vy(t)</b>, <b>|v|(t)</b> → 시간 변화</li></ul><h4>💡 일반적인 연결</h4><ul><li><b>높이 vs 시간:</b> <code>y</code>를 플롯에 연결 (t가 이미 포함됨)</li><li><b>속도 vs 시간:</b> <code>speed</code>를 플롯에 연결</li><li><b>공간 궤적:</b> <code>x</code> → 플롯 X축, <code>y</code> → 플롯 Y축</li><li><b>충격:</b> <code>ground_contact</code>를 논리 노드 또는 LED에 연결</li><li><b>에너지:</b> <code>energy_kinetic</code> + <code>energy_potential</code>을 합산하여 에너지 보존 확인</li></ul><h4>⚡ 단축키</h4><ul><li><b>더블 클릭</b> → 이 도움말</li><li><b>우클릭</b> → 구성 / 생성</li><li><b>GENERATE 버튼</b> → 시뮬레이션하고 애니메이션을 엽니다</li></ul><hr><p><b>상태:</b> -- | <b>프리셋:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "함수",
+      "tooltip": "수치 해석과 함께 수학 함수를 생성하고 시각화합니다",
+      "ports": { "signal": "신호" },
+      "status": { "ready": "준비됨" },
+      "menu": { "configure": "구성…", "show_table": "값 테이블 보기", "generate": "생성", "show_limit": "극한 표시", "show_derivative": "도함수 표시" },
+      "config_title": "함수 설정",
+      "cfg": { "expr": "표현식:", "presets": "프리셋:", "piecewise": "구간별 함수 활성화", "group_func": "함수 그룹", "group_dom": "정의역 그룹", "group_viz": "시각화 그룹" },
+      "table_title": "값 테이블"
+    },
+    "signal_source": {
+      "title": "고급 신호 소스",
+      "tooltip": "고급 신호 소스",
+      "load_signal": "파일에서 신호 로드…",
+      "load_file_title": "신호 파일 로드",
+      "ports": {
+        "out": "출력",
+        "trigger_in": "트리거 입력",
+        "trigger_out": "트리거 출력"
+      },
+      "status": {
+        "no_data": "데이터 없음"
+      },
+      "configure": "구성…",
+      "generate": "신호 생성",
+      "help_title": "도움말 – 신호 소스",
+      "help_html": "<h3>🎛️ 신호 소스 노드</h3>\n<p>다양한 <b>프리셋 파형</b> 또는 사용자가 작성한 <b>수학 공식</b>을 사용하여 <b>사용자 지정 신호</b>를 생성합니다. 출력은 항상 튜플 <code>(time, amplitude)</code>이며 추가 처리에 사용할 준비가 되어 있습니다.</p>\n\n<h4>📤 출력</h4>\n<p><code>out</code> → 튜플 <code>(t, y)</code>.</p>\n\n<h4>⚙️ 작동 모드</h4>\n<ul>\n    <li><b>프리셋:</b> 사인, 사각, 램프, 펄스, 노이즈, DC, 삼각, 톱니, sinc, 가우시안, 지수, 처프 중에서 선택합니다. 모든 매개변수 (주파수, 진폭, 오프셋, 위상, 듀티 사이클, 대칭 등)는 구성 대화상자에서 조정할 수 있습니다.</li>\n    <li><b>공식:</b> <code>t</code> (시간)와 사용자 지정 변수를 사용하여 <b>자유 수학 표현식</b>을 작성합니다 (예: <code>amp * sin(2*pi*freq*t) + offset</code>). 변수는 테이블에 정의되며 원하는 대로 추가, 제거 또는 수정할 수 있습니다. 평가는 안전하고 수학 연산으로 제한됩니다.</li>\n</ul>\n\n<h4>🖱️ 상호작용</h4>\n<ul>\n    <li>노드를 <b>더블 클릭</b> → 세 개의 탭 (프리셋, 공식, 고급)이 있는 구성 대화상자를 엽니다.</li>\n    <li>노드를 <b>클릭</b> → 기본 그래프에 현재 신호를 플롯합니다.</li>\n    <li><b>우클릭</b> → 다시 생성, 구성 또는 노드 삭제를 위한 상황에 맞는 메뉴.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → FFT → 필터 → 합산기 → 플롯\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+      "title": "신호 구성",
+      "waveform": "파형",
+      "frequency": "주파수",
+      "amplitude": "진폭",
+      "offset": "오프셋",
+      "phase": "위상",
+      "symmetry": "대칭",
+      "direction": "방향",
+      "up": "상승",
+      "down": "하강",
+      "stdev": "표준 편차",
+      "mean": "평균",
+      "lobes": "로브",
+      "sigma": "시그마",
+      "mu": "뮤",
+      "tau": "타우",
+      "exp_type": "유형",
+      "rise": "상승",
+      "fall": "하강",
+      "f0": "시작 주파수",
+      "f1": "종료 주파수",
+      "chirp_method": "방법",
+      "linear": "linear",
+      "logarithmic": "logarithmic",
+      "tab_preset": "프리셋",
+      "tab_formula": "공식",
+      "tab_advanced": "고급",
+      "preview": "미리보기",
+      "apply": "적용",
+      "duration": "지속 시간",
+      "sample_rate": "샘플 레이트",
+      "sampling_note": "0 = 자동",
+      "auto_generate": "자동 생성",
+      "time_label": "시간 (s)",
+      "amplitude_label": "진폭",
+      "formula_expr": "공식 ('t'를 시간 변수로 사용):",
+      "variables": "변수:",
+      "var_name": "이름",
+      "var_value": "값",
+      "add_var": "변수 추가",
+      "remove_var": "선택 항목 제거",
+      "auto": "자동",
+      "basic_params": "기본 매개변수",
+      "carrier_freq": "반송파 주파수",
+      "mod_freq": "변조 주파수",
+      "mod_depth": "변조 깊이",
+      "deviation": "편차",
+      "heart_rate": "심박수",
+      "rise_time": "상승 시간",
+      "fall_time": "하강 시간",
+      "quick_insert": "빠른 함수",
+      "advanced": {
+        "modulation": "변조",
+        "mod_enable": "변조 활성화",
+        "mod_type": "변조 유형",
+        "mod_freq": "변조 주파수",
+        "mod_depth": "변조 깊이",
+        "noise_group": "노이즈",
+        "noise_enable": "노이즈 추가",
+        "noise_amp": "노이즈 진폭",
+        "auto_generate": "변경 사항 자동 적용",
+        "auto_generate_tooltip": "활성화하면 모든 매개변수 변경이 노드에 즉시 적용됩니다. 비활성화하면 OK를 눌러 적용하세요."
+      },
+      "gamma": "감마 (폭)",
+      "window_type": "윈도우 유형",
+      "quadratic": "quadratic",
+      "hyperbolic": "hyperbolic",
+      "hanning": "Hanning",
+      "hamming": "Hamming",
+      "blackman": "Blackman",
+      "bartlett": "Bartlett",
+      "kaiser": "Kaiser",
+      "noise_type": "노이즈 유형",
+      "gaussian": "가우시안",
+      "uniform": "균일",
+      "pink": "핑크 (1/f)",
+      "brown": "브라운 (1/f²)",
+      "blue": "블루 (f)",
+      "impulse": "임펄스",
+      "pulse_shape": "펄스 형태",
+      "rect": "직사각형",
+      "raised_cosine": "상승 코사인",
+      "polynomial": "PRBS 다항식",
+      "bit_rate": "비트 레이트",
+      "symbol_rate": "심볼 레이트",
+      "symbol_sequence": "심볼 시퀀스",
+      "bit_sequence": "비트 시퀀스",
+      "multitone_hint": "주파수 (Hz, 쉼표로 구분):",
+      "frequencies": "주파수",
+      "amplitudes": "진폭",
+      "phases": "위상",
+      "step_time": "스텝 시간",
+      "impulse_time": "임펄스 시간",
+      "f_start": "시작 주파수",
+      "f_end": "종료 주파수",
+      "f2": "주파수 2",
+      "noise_level": "노이즈 레벨",
+      "duty_cycle": "듀티 사이클 (%)",
+      "signal_sine": "사인",
+      "signal_square": "사각",
+      "signal_ramp": "램프",
+      "signal_pulse": "펄스",
+      "signal_noise": "노이즈",
+      "signal_dc": "DC",
+      "signal_triangle": "삼각",
+      "signal_sawtooth": "톱니",
+      "signal_sinc": "Sinc",
+      "signal_gaussian": "가우시안",
+      "signal_exponential": "지수",
+      "signal_chirp": "처프",
+      "signal_am": "AM",
+      "signal_fm": "FM",
+      "signal_ecg": "ECG",
+      "signal_trapezoidal": "사다리꼴",
+      "signal_lorentzian": "로렌츠",
+      "signal_window": "윈도우",
+      "signal_multitone": "다중 톤",
+      "signal_ask": "ASK",
+      "signal_fsk": "FSK",
+      "signal_psk": "PSK",
+      "signal_pwm": "PWM",
+      "signal_pam": "PAM",
+      "signal_prbs": "PRBS",
+      "signal_step": "스텝",
+      "signal_impulse": "임펄스",
+      "signal_sweep_sine": "사인 스윕",
+      "signal_cardiac": "심장",
+      "signal_eeg": "EEG",
+      "signal_beat": "박동"
+    },
+    "input": {
+      "help_html": "<h3>📂 입력 노드 (데이터 로드)</h3>\n<p><b>.npz 파일</b> (NumPy 형식)에서 <b>데이터를 로드</b>하고 워크플로로 전달할 수 있습니다.</p>\n\n<h4>⚙️ 사용법</h4>\n<ol>\n    <li>노드를 <b>우클릭</b> → <i>\"입력 편집\"</i>을 선택합니다.</li>\n    <li><code>datay</code>라는 키를 포함하는 <code>.npz</code> 파일을 선택합니다.</li>\n    <li>배열은 내부에 저장되고 흐름을 통해 자동으로 전파됩니다.</li>\n</ol>\n\n<h4>📤 출력</h4>\n<p><code>out</code> → 로드된 파일에서 <code>datay</code>의 내용.</p>\n\n<h4>⚠️ 참고</h4>\n<ul>\n    <li><code>datay</code> 키가 있는 <b>.npz</b> 파일만 허용됩니다.</li>\n    <li>파일이 유효하지 않으면 콘솔에 오류가 표시됩니다.</li>\n    <li>파일을 로드한 후 흐름이 자동으로 실행됩니다.</li>\n</ul>\n\n<h4>💡 예제</h4>\n<p>센서 데이터가 있는 파일을 로드한 다음 \"필터\" 또는 \"시각화기\" 노드에 연결합니다.</p>\n<hr>\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → FFT → 필터 → 합산기 → 플롯\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "람다 함수",
+      "help_html": "<h3>🔧 일반 처리 노드</h3>\n<p>입력 데이터에 <b>사용자 지정 함수</b>를 적용합니다. 수학 연산, 변환 등을 만드는 기초입니다.</p>\n\n<h4>📥 입력</h4>\n<p><code>data_in</code> → 숫자, 튜플 (x, y) 또는 모든 객체일 수 있습니다.</p>\n\n<h4>📤 출력</h4>\n<p><code>out</code> → 입력에 함수를 적용한 결과입니다.</p>\n\n<h4>🧠 입력 유형에 따른 동작</h4>\n<ul>\n    <li>입력이 <b>두 요소의 튜플</b> (x, y)이면 함수는 튜플을 받아 다른 튜플이나 값을 반환해야 합니다. 예: <code>lambda xy: (xy[0], xy[1]*2)</code>.</li>\n    <li>입력이 <b>단순 값</b>이면 함수는 그 값을 받습니다. 예: <code>lambda x: x**2</code>.</li>\n    <li>입력이 <code>None</code>이면 출력도 <code>None</code>입니다.</li>\n</ul>\n\n<h4>⚙️ 사용자 지정</h4>\n<p>함수는 노드를 만들 때 할당됩니다 (예: 코드에서). 향후 버전에서는 인터페이스에서 편집할 수 있습니다.</p>\n\n<h4>💡 예제</h4>\n<ul>\n    <li><b>숫자 두 배로:</b> <code>lambda x: x * 2</code></li>\n    <li><b>튜플 구성 요소 합:</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>동일한 튜플 반환 (통과):</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>적용된 함수:</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → FFT → 필터 → 합산기 → 플롯\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "논리 게이트",
+      "tooltip": "신호에 대한 논리, 비교 및 마스킹 연산 (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "입력 1",
+        "in2": "입력 2",
+        "out": "출력"
+      },
+      "config_title": "논리 게이트 구성",
+      "op_label": "연산:",
+      "thr_label": "임계값 / 레벨:",
+      "inv_label": "출력 반전",
+      "help_title": "도움말 – 논리 게이트",
+      "help_html": "<h3>🎛️ 논리 게이트 / 비교기</h3>\n<p>두 입력 신호를 샘플별로 평가, 비교 또는 마스킹하여 트리거, 논리 마스크 또는 조건부 출력을 생성합니다.</p>\n\n<h4>📥 입력</h4>\n<ul>\n<li><code>in1</code> → 주 신호 (피연산자 A).</li>\n<li><code>in2</code> → 참조, 마스크 또는 두 번째 피연산자 (피연산자 B).</li>\n</ul>\n\n<h4>📤 출력</h4>\n<ul>\n<li><code>out</code> → 처리 결과. 부울 연산은 <code>0.0</code> 또는 <code>1.0</code>을 반환합니다. 비교기/임계값은 마스크 또는 제한된 신호를 생성합니다.</li>\n</ul>\n\n<h4>📐 다이어그램</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 정신 모델</h4>\n<p>이 노드는 <b>샘플별 의사 결정 엔진</b>으로 작동합니다. 각 점을 독립적으로 평가하여 아날로그 파형을 디지털 제어 신호, 활성화 마스크 또는 논리 스트림으로 변환합니다.</p>\n\n<h4>📐 데이터 표현</h4>\n<pre>\n입력:\n(x, y1) & (x, y2) → 1D 배열 (불일치 시 가장 짧은 쪽으로 잘림)\n\n출력:\n(x, y_out) → 일반적으로 이진 (0/1) 또는 마스킹됨\n</pre>\n\n<h4>🔁 일반적인 사용 패턴</h4>\n<pre>\n[발생기] → [논리 게이트] → [트리거 / 플롯]\n\n예:\n사인 (in1) + 사각 (in2) → [AND] → 동기화된 펄스 열\n신호 (in1) → [THRESHOLD] → 피크 감지를 위한 0/1 마스크\n신호 (in1) + 참조 (in2) → [MASK] → in2 ≤ 0일 때 in1을 음소거\n</pre>\n\n<h4>⚠️ 흔한 오류</h4>\n<ul>\n<li>논리 연산이 진폭을 유지할 것이라는 기대 → 유지하지 않음 (0/1로 변환). 대신 <code>LEVEL</code> 또는 <code>MASK</code>를 사용하세요.</li>\n<li>매우 다른 길이의 신호 연결 → 최소값으로 잘림.</li>\n<li>부동 소수점에 <code>EQ</code> 사용 → 암시적 허용 오차에 의존; 필요한 경우 미리 반올림하세요.</li>\n</ul>\n<hr><hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → FFT → 필터 → 합산기 → 플롯\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 구성).</li>\n<li>노드를 <b>드래그</b> → 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "sum": {
+      "title": "산술",
+      "tooltip": "두 신호 간의 산술 연산을 수행합니다.",
+      "operation": {
+        "sum": "합",
+        "sub": "빼기",
+        "mul": "곱하기",
+        "div": "나누기"
+      },
+      "ports": {
+        "out": "출력",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "*A",
+        "port_b_mul": "*B",
+        "port_a_div": "분자",
+        "port_b_div": "분모"
+      },
+      "menu": {
+        "operation": "연산"
+      },
+      "help_title": "도움말 – 산술 노드",
+      "help_html": "<h3>➕ 합/산술 노드</h3>\n<p>두 신호 (배열 또는 숫자 값) 간의 산술 연산을 수행합니다.</p>\n\n<h4>📥 입력</h4>\n<ul>\n    <li><code>port_a</code> (위): 첫 번째 피연산자 (A).</li>\n    <li><code>port_b</code> (아래): 두 번째 피연산자 (B).</li>\n</ul>\n\n<h4>📤 출력</h4>\n<p><code>out</code> → 연산 결과 (A op B).</p>\n\n<h4>⚙️ 사용 가능한 연산 (우클릭 → 연산)</h4>\n<ul>\n    <li><b>합 (+)</b>: A + B</li>\n    <li><b>빼기 (−)</b>: A − B</li>\n    <li><b>곱하기 (×)</b>: A * B</li>\n    <li><b>나누기 (÷)</b>: A / B (0으로 나누기 방지).</li>\n</ul>\n\n<h4>📐 다이어그램</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 정신 모델</h4>\n<p>이 노드는 <b>벡터 연산자</b>입니다.\n신호에 대해 요소별로 작동합니다.</p>\n\n<h4>📐 벡터 표현</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\n출력:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 시각적 예</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\n합:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 사용 전략</h4>\n<ul>\n<li><b>정규화:</b> 최대값으로 나누기</li>\n<li><b>스케일링:</b> 상수 곱하기</li>\n<li><b>신호 혼합:</b> 파동의 합</li>\n<li><b>상쇄:</b> 노이즈 제거를 위한 A - B</li>\n</ul>\n\n<h4>⚠️ 흔한 실수</h4>\n<ul>\n<li>X축 정렬 안 됨 → 일관성 없는 결과</li>\n<li>0에 가까운 값으로 나누기 → 불안정</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → FFT → 필터 → 합산기 → 플롯\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "script": {
+      "title": "스크립트",
+      "tooltip": "Python 스크립트 노드",
+      "ports": {
+        "data_in": "데이터 입력",
+        "loop_in": "루프 입력",
+        "out": "출력"
+      },
+      "menu": {
+        "edit": "편집",
+        "run": "스크립트 실행"
+      },
+      "status_ready": "준비됨",
+      "status_error": "오류",
+      "edit_script": "스크립트 편집",
+      "tooltip_x": "NumPy 배열: X축 (시간, 주파수 등)",
+      "tooltip_y": "NumPy 배열: 현재 신호 값",
+      "tooltip_param": "반복 매개변수 (TriggerNode에서) 또는 None",
+      "help_title": "도움말 – 스크립트 노드",
+      "help_html": "<h3>📜 사용자 지정 스크립트 노드</h3> <p>신호를 임의로 처리하기 위한 Python 코드를 작성할 수 있습니다.</p> <h4>📥 입력</h4> <ul> <li><code>data_in</code> → 주 신호 (x, y) 또는 단순 배열.</li> <li><code>loop_in</code> → <b>TriggerNode</b>에서 매개변수를 받기 위한 선택적 입력 (값 <code>param</code>).</li> <li>동적 포트 <code>@input name</code> → 스크립트에 정의된 추가 입력.</li> </ul> <h4>📤 출력</h4> <ul> <li><code>out</code> → 스크립트에서 생성된 튜플 (x_new, y_new) (배치 모드).</li> <li>동적 포트 <code>@output name</code> → 스크립트에 정의된 추가 출력.</li> </ul> <h4>✏️ 스크립트 편집</h4> <p>우클릭 → <b>스크립트 편집</b>으로 구문 강조가 있는 편집기를 엽니다.</p> <p>자동 완성, 템플릿, 구성 가능한 매개변수 (<code>@param</code>) 및 외부 실행 (대체 Python)을 포함합니다.</p> <hr> <h4>🧠 사용 가능한 변수 (전통적 배치 모드)</h4> <ul> <li><code>x</code> : numpy array – 시간 또는 주파수 축</li> <li><code>y</code> : numpy array – 신호 값</li> <li><code>param</code> : float (선택적) – <code>loop_in</code>에서 온 값 (TriggerNode)</li> <li><code>persist</code> : dict – 동일 노드의 실행 간에 유지됨 (누산기에 유용)</li> <li><code>np</code>, <code>scipy</code>, <code>sympy</code> – 사전 가져온 라이브러리</li> </ul> <h4>🧩 정신 모델</h4> <p> 이 노드는 <b>임의 변환 블록</b>입니다. 여기에서 자신만의 물리, 수학 또는 논리를 정의합니다. </p> <h4>📐 예상 형상 (배치)</h4> <pre> 입력: x → 벡터 (시간/주파수) y → 벡터 (값) 출력: (x_mod, y_mod) </pre> <h4>🧠 더 강력한 예제</h4> <h5>1. 주파수 종속 이득</h5> <pre> gain = np.exp(-x * 0.01) return (x, y * gain) </pre> <h5>2. 피크 감지</h5> <pre> y_mod = np.where(y > 0.8, y, 0) return (x, y_mod) </pre> <h5>3. 변조</h5> <pre> carrier = np.sin(2*np.pi*1000*x) return (x, y * carrier) </pre> <h5>4. param 사용 (스윕)</h5> <pre> factor = param if param is not None else 1.0 return (x, y * factor) </pre> <h5>5. persist를 사용한 누산기</h5> <pre> persist[\"counter\"] = persist.get(\"counter\", 0) + 1 return (x, y + persist[\"counter\"] * 0.1) </pre> <hr> <h4>🔁 고급 전략</h4> <pre> Trigger → Script(param) → Sum → Visualization → 자동 스윕 허용 </pre> <h4>⚠️ 흔한 오류</h4> <ul> <li>배치 모드에서 튜플 (x, y)을 반환하지 않음.</li> <li><code>param</code>이 None일 수 있다는 점을 고려하지 않음.</li> <li>스트리밍 또는 GPU 스크립트에서 \"Test\" 버튼을 사용하려고 시도 (실제 흐름 사용).</li> </ul><hr> <hr> <h3>🧠 이 시스템에 대해 생각하는 방법</h3> <p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p> <pre> 데이터 → 변환 → 결과 </pre> <h4>📐 핵심 규칙</h4> <pre> 모든 것은: (x, y) </pre> <h4>🔁 보편적 패턴</h4> <pre> 입력 → 처리 → 시각화 </pre> <h4>🧪 완전한 예</h4> <pre> 오실로스코프 → FFT → 필터 → 합산기 → 플롯 </pre> <hr> <h4>⚡ 단축키와 팁</h4> <ul> <li>포트에서 <b>Ctrl + 클릭</b> → 빠르게 연결할 포트를 선택합니다.</li> <li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li> <li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li> <li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li> </ul>"
+    },
+    "trigger": {
+      "title": "트리거",
+      "tooltip": "반복 및 누적 노드",
+      "ports": {
+        "data_in": "데이터 입력",
+        "trigger_in": "트리거 입력",
+        "loop_out": "루프 출력",
+        "out": "출력"
+      },
+      "state": {
+        "idle": "대기",
+        "running": "반복 {iteration}/{total}",
+        "done": "완료됨",
+        "running_count": "실행 중 {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "구성…"
+      },
+      "accumulate": {
+        "accumulate": "누적 모드",
+        "stack": "스택",
+        "average": "평균",
+        "max": "최대",
+        "min": "최소",
+        "last": "마지막 캡처"
+      },
+      "config_title": "트리거 노드 구성",
+      "n_iter": "반복",
+      "reset": "반복 초기화",
+      "help_title": "도움말 – 트리거 노드",
+      "help_html": "<h3>⏺ 트리거 노드 (배치 캡처)</h3>\n<p>외부 트리거 신호 (<code>trigger_in</code>)에 의해 활성화되어 신호를 반복적으로 캡처하고 누적합니다. 반복 실험, 노이즈 평균화 또는 시간에 따른 트레이스 비교에 이상적입니다.</p>\n\n<h4>📥 입력</h4>\n<ul>\n    <li><code>data_in</code> → 캡처할 주 신호 (x, y).</li>\n    <li><code>trigger_in</code> → 트리거 신호. 각 펄스 또는 활성화는 내부 버퍼에 새 트레이스를 캡처합니다.</li>\n</ul>\n\n<h4>📤 출력</h4>\n<ul>\n    <li><code>out</code> → 프로그래밍된 반복 횟수 (<code>n_iter</code>)를 완료하면 선택한 모드에 따라 누적된 신호를 출력합니다.</li>\n</ul>\n\n<h4>⚙️ 구성</h4>\n<p>우클릭 → <b>구성</b>으로 조정:</p>\n<ul>\n    <li><b>반복 (N):</b> 출력을 생성하기 위해 필요한 정확한 캡처 횟수.</li>\n    <li><b>누적:</b> 캡처를 결합하는 모드: <i>스택, 평균, 최대, 최소 또는 마지막</i>.</li>\n</ul>\n\n<h4>🧠 동작</h4>\n<ol>\n    <li>노드는 <b>대기</b> 상태로 유지되며 <code>data_in</code>의 데이터와 <code>trigger_in</code>의 펄스를 기다립니다.</li>\n    <li>유효한 트리거가 감지되면 현재 신호를 내부 버퍼에 저장하고 <code>실행 중 X/N</code>을 표시합니다.</li>\n    <li>정확히 <b>N 반복</b>에 도달하면 누적된 출력을 구성하여 <code>out</code>을 통해 보내고 다음 실험을 위해 버퍼를 자동으로 비웁니다.</li>\n</ol>\n\n<h4>🧩 정신 모델</h4>\n<p>이 노드는 <b>이벤트 기반 배치 레코더</b>로 작동합니다. 실험실의 \"트리거 대기 → 기록 → N까지 반복\" 루틴과 동일합니다.</p>\n\n<h4>📐 스택 모드</h4>\n<p><b>스택</b>을 선택하면 신호가 <code>NaN</code>으로 구분된 단일 배열로 연결됩니다. 이를 통해 연결하지 않고 하나의 트레이스에 모든 캡처를 플롯할 수 있습니다.</p>\n\n<h4>🔁 예제 흐름</h4>\n<pre>\n발생기/오실로스코프 → TriggerNode (N=5) → ScriptNode (선택적) → 플롯\n\n결과:\n5개의 스택된 곡선 (스택) 또는 평균 (평균)\n</pre>\n\n<h4>🧠 실제 사용 사례</h4>\n<ul>\n<li>노이즈가 있는 신호 평균화</li>\n<li>반복 실험의 동기화된 캡처</li>\n<li>여러 획득의 시각적 비교</li>\n<li>통계 분석을 위한 배치 전처리</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → TriggerNode → ScriptNode → 플롯\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 연결할 포트를 빠르게 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (구성, 삭제, 연결/연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "generator": {
+      "title": "발생기",
+      "tooltip": "신호 발생기 노드",
+      "ports": {
+        "signal_out": "신호 출력",
+        "trigger_out": "트리거 출력",
+        "trigger_in": "트리거 입력",
+        "signal_in": "신호 입력"
+      },
+      "status": {
+        "default": "FloWorks  |  스크롤: 확대/축소  |  가운데 클릭: 이동  |  노드 우클릭: 옵션",
+        "sim": "시뮬",
+        "busy": "사용 중",
+        "ready": "준비됨"
+      },
+      "device_label": "장치",
+      "channel_label": "채널",
+      "gen_button": "생성",
+      "setup_button": "설정",
+      "generate_action": "신호 생성",
+      "help_title": "도움말 – 발생기",
+      "help_html": "<h3>📡 신호 발생기 노드</h3>\n<p>아날로그 신호를 생성하고 실제 함수 발생기 (SDG)로 보내거나 내부적으로 출력을 시뮬레이션합니다.</p>\n\n<h4>📥 입력 포트</h4>\n<ul>\n    <li><code>trigger_in</code> (왼쪽) → 생성을 트리거할 신호를 수신합니다 (EXT 모드).</li>\n    <li><code>signal_in</code> (왼쪽) → 임의 파형으로 발생기에 전송될 외부 신호 (t, y)를 수신합니다 (EXT 모드).</li>\n</ul>\n\n<h4>📤 출력 포트</h4>\n<ul>\n    <li><code>signal_out</code> (오른쪽) → 시각화 또는 처리를 위해 생성된 신호 (t, y)를 출력합니다.</li>\n    <li><code>trigger_out</code> (오른쪽) → 생성 완료 시 트리거 신호 (선택적).</li>\n</ul>\n\n<h4>⚙️ 작동 모드</h4>\n<ul>\n    <li><b>INT</b> (내부): 노드의 내부 매개변수 (주파수, 진폭, 파형 등)에 따라 신호가 생성되어 하드웨어 (또는 시뮬레이션)로 전송됩니다.</li>\n    <li><b>EXT</b> (외부): 노드는 <code>signal_in</code>을 통해 사용자 지정 신호를 받을 것으로 예상합니다. <b>GEN</b>을 누르면 해당 신호가 임의 파형으로 발생기에 업로드됩니다.</li>\n</ul>\n\n<h4>🔧 구성</h4>\n<p><b>SETUP</b> 버튼 (또는 우클릭 → \"컨트롤러 열기\")을 클릭하여 조정:</p>\n<ul>\n    <li>파형: 사인, 사각, 램프, 펄스, 노이즈, DC, 삼각, 톱니, sinc, 가우시안, 지수, 처프.</li>\n    <li>주파수, 진폭, 오프셋, 위상, 듀티 사이클 등.</li>\n    <li>출력 채널 (C1 또는 C2).</li>\n    <li>장치: \"sdg\" (실제 하드웨어) 또는 \"simulation\" (내부 시뮬레이션만).</li>\n</ul>\n\n<h4>▶️ 생성</h4>\n<p><b>GEN</b> 버튼 (또는 우클릭 → \"신호 생성\")을 클릭하여 출력을 시작합니다. 노드는 신호를 하드웨어로 보내고 나머지 흐름을 위해 생성된 데이터로 <code>signal_out</code>도 출력합니다.</p>\n\n<h4>💡 일반적인 예</h4>\n<ol>\n    <li>발생기를 1 kHz 사인파, 1 Vpp로 구성합니다.</li>\n    <li><code>signal_out</code>을 오실로스코프 노드 또는 시각화기에 연결합니다.</li>\n    <li><b>GEN</b>을 누릅니다 → 신호가 물리적 채널과 그래프에 모두 나타납니다.</li>\n</ol>\n\n<h4>⚠️ 참고</h4>\n<ul>\n    <li>EXT 모드에서는 GEN을 누르기 전에 먼저 <code>signal_in</code>에 신호 (t, y)를 연결해야 합니다.</li>\n    <li>하드웨어가 연결되어 있지 않으면 노드가 자동으로 시뮬레이션을 사용합니다.</li>\n    <li>임의 파형은 최대 524288 포인트까지 업로드됩니다 (모델에 따라 다름).</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → FFT → 필터 → 합산기 → 플롯\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "오실로스코프",
+      "tooltip": "오실로스코프 캡처 노드\n 정보를 보려면 더블 클릭",
+      "ports": {
+        "out_primary": "기본 출력",
+        "out_secondary": "보조 출력",
+        "trigger_out": "트리거 출력"
+      },
+      "status": {
+        "sim": "시뮬레이션",
+        "capturing": "캡처 중…",
+        "armed": "준비됨",
+        "connected": "연결됨",
+        "disconnected": "연결 해제됨"
+      },
+      "device_label": "장치",
+      "channel_label": "채널",
+      "lcr_label": "LCR",
+      "sim_label": "시뮬",
+      "trig_button": "트리거",
+      "setup_button": "설정",
+      "menu": {
+        "show_channel": "채널 표시"
+      },
+      "channel": {
+        "primary": "기본 (Z)",
+        "secondary": "보조 (θ)"
+      },
+      "trigger_action": "캡처 트리거",
+      "help_title": "도움말 – 오실로스코프",
+      "help_html": "<h3>📊 오실로스코프 노드 (신호 획득)</h3>\n<p>하드웨어 (SDS, LCR)를 사용하여 실제 신호를 캡처하거나 테스트를 위해 시뮬레이션된 데이터를 생성합니다.</p>\n\n<h4>📤 출력 포트</h4>\n<ul>\n    <li><code>out_primary</code> → 주 신호 (전압 vs 시간 또는 LCR의 경우 임피던스 Z).</li>\n    <li><code>out_secondary</code> → 보조 신호 (LCR의 경우 위상 θ; SDS의 경우 사용되지 않음).</li>\n    <li><code>trigger_out</code> → 캡처가 완료되면 트리거 신호를 출력합니다 (다른 노드를 동기화하는 데 유용).</li>\n</ul>\n\n<h4>🔘 컨트롤</h4>\n<ul>\n    <li><b>TRIG</b> → 캡처 (데이터 획득)를 시작합니다.</li>\n    <li><b>SETUP</b> → 구성 패널을 엽니다 (시뮬레이션 매개변수 또는 하드웨어 컨트롤러).</li>\n    <li><b>장치 선택기</b> (하단 콤보) → SDS (실제 오실로스코프), LCR (임피던스 미터) 또는 시뮬레이션 중에서 선택합니다.</li>\n</ul>\n\n<h4>⚙️ 작동 모드</h4>\n<ul>\n    <li><b>SDS</b>: 실제 오실로스코프 (Siglent SDS)에 연결합니다. 상황에 맞는 메뉴 → \"채널 표시\"를 통해 채널 (C1..C4)을 선택할 수 있습니다.</li>\n    <li><b>LCR</b>: LCR 미터에 연결하고 두 개의 출력을 제공합니다: 기본 (임피던스 Z) 및 보조 (위상 각 θ).</li>\n    <li><b>시뮬레이션</b>: 노이즈가 있는 합성 신호를 생성하며 SETUP을 통해 구성 가능합니다 (시간축, 전압 범위, 트리거 레벨, 샘플 레이트).</li>\n</ul>\n\n<h4>📈 시각화</h4>\n<p>노드는 내부적으로 신호를 그리지 않지만 캡처된 데이터를 표시하기 위해 시각화 위젯 (예: <code>PlotWidget</code>)에 연결할 수 있습니다.</p>\n\n<h4>💡 사용 예</h4>\n<ol>\n    <li>장치 (SDS)를 선택하고 물리적으로 연결합니다.</li>\n    <li>TRIG을 클릭하여 트레이스를 캡처합니다.</li>\n    <li>신호는 다른 노드를 위해 <code>out_primary</code>에서 사용할 수 있습니다.</li>\n    <li>LCR을 사용하는 경우 두 출력 (Z 및 θ)을 모두 사용할 수 있습니다.</li>\n</ol>\n\n<h4>⚠️ 참고</h4>\n<ul>\n    <li>하드웨어 모드에서는 장치가 연결되고 전원이 켜져 있는지 확인하세요.</li>\n    <li>캡처는 인터페이스를 차단하지 않도록 별도 스레드에서 실행됩니다.</li>\n    <li>노드는 흐름의 데이터 소스 (입력 노드) 역할을 합니다.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → FFT → 필터 → 합산기 → 플롯\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "spectral": {
+      "title": "스펙트럼",
+      "tooltip": "스펙트럼 변환: FFT, Hilbert, Welch (PSD) 및 DCT",
+      "transform_type": "변환:",
+      "window_type": "윈도우:",
+      "nfft": "NFFT / 세그먼트:",
+      "scale": "스케일:",
+      "detrend": "추세 제거:",
+      "normalize": "정규화 (에너지 보존)",
+      "config_title": "스펙트럼 구성",
+      "menu": {
+        "configure": "구성…",
+        "show_output": "출력 표시"
+      },
+      "channel": {
+        "magnitude": "크기",
+        "phase": "위상"
+      },
+      "ports": {
+        "input": "입력",
+        "output": "시간 출력",
+        "magnitude": "크기",
+        "phase": "위상"
+      },
+      "status": {
+        "no_data": "데이터 없음",
+        "ready": "준비됨",
+        "phase": "위상"
+      },
+      "help_title": "도움말 – 스펙트럼",
+      "help_html": "<h3>📊 스펙트럼 노드 (스펙트럼 변환)</h3>\n<p>입력 신호에 대해 다양한 변환을 계산합니다: <b>FFT</b>, <b>Hilbert</b>, <b>Welch (PSD)</b> 및 <b>DCT</b>.</p>\n\n<h4>📥 입력</h4>\n<p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열을 기대합니다.</p>\n\n<h4>📤 출력</h4>\n<ul>\n    <li><b>시간 출력</b> → 시간 영역 신호 (Hilbert에서만 활성: 해석 신호의 실수부).</li>\n    <li><b>크기</b> → 모드에 따라:\n        <ul>\n            <li><b>FFT</b> → 정규화된 크기 스펙트럼 <code>(주파수, 진폭)</code>.</li>\n            <li><b>Hilbert</b> → 신호 포락선 <code>(시간, 포락선)</code>.</li>\n            <li><b>Welch</b> → 전력 스펙트럼 밀도 <code>(주파수, PSD)</code>.</li>\n            <li><b>DCT</b> → 이산 코사인 변환 계수 <code>(인덱스, 계수)</code>.</li>\n        </ul>\n    </li>\n    <li><b>위상</b> → 라디안 단위의 위상 각 (FFT) 또는 순간 위상 (Hilbert). Welch 또는 DCT에서는 <i>사용할 수 없습니다</i>.</li>\n</ul>\n\n<h4>⚙️ 매개변수</h4>\n<ul>\n    <li><b>변환</b> — FFT, Hilbert, Welch 또는 DCT 중에서 선택합니다.</li>\n    <li><b>윈도우</b> — <code>scipy.signal.windows</code>의 윈도우 함수 (Hann, Hamming, Blackman 등).</li>\n    <li><b>NFFT / 세그먼트</b> — FFT 길이 또는 Welch 세그먼트 길이. <code>자동</code>은 다음 2의 거듭제곱을 사용합니다.</li>\n    <li><b>스케일</b> — <code>linear</code> 또는 <code>dB</code> (FFT/Hilbert/DCT의 경우 20·log₁₀, Welch의 경우 10·log₁₀).</li>\n    <li><b>추세 제거</b> — 처리 전에 상수 평균 또는 선형 추세를 제거합니다.</li>\n    <li><b>정규화</b> — 에너지를 보존하도록 윈도우를 조정합니다.</li>\n</ul>\n\n<h4>🖱️ 상호작용</h4>\n<ul>\n    <li><b>우클릭</b> → 상황에 맞는 메뉴 (구성, 표시 채널 선택).</li>\n    <li><b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n    <li><b>측면 패널</b> — 실시간으로 매개변수를 조정하며 플롯이 자동으로 업데이트됩니다.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → 윈도우 → 스펙트럼 (FFT) → 필터 → 플롯\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "ifft": {
+      "title": "IFFT",
+      "tooltip": "역 푸리에 변환 (시간 재구성)",
+      "fs": "샘플링 주파수 (fs):",
+      "nfft": "NFFT:",
+      "real_only": "실수 출력만 (irfft)",
+      "conjugate_symmetry": "에르미트 대칭 강제",
+      "normalize": "N으로 정규화",
+      "config_title": "IFFT 구성",
+      "menu": {
+        "configure": "구성…"
+      },
+      "ports": {
+        "magnitude": "크기",
+        "phase": "위상",
+        "output": "시간 출력"
+      },
+      "status": {
+        "no_data": "데이터 없음",
+        "waiting_phase": "위상=0 (가정)",
+        "ready": "준비됨"
+      },
+      "help_title": "도움말 – IFFT",
+      "help_html": "<h3>🔁 IFFT 노드 (역 고속 푸리에 변환)</h3>\n<p>주파수 스펙트럼에서 시간 영역 신호를 재구성합니다.</p>\n\n<h4>📥 입력</h4>\n<ul>\n    <li><b>크기</b> → <code>(주파수, 진폭)</code> 또는 1D 배열. <b>필수.</b></li>\n    <li><b>위상</b> → <code>(주파수, 각도)</code> 또는 1D 배열. <b>선택적.</b> 연결되지 않은 경우 위상은 0으로 가정됩니다.</li>\n</ul>\n\n<h4>📤 출력</h4>\n<ul>\n    <li><b>시간 출력</b> → 재구성된 <code>(시간, 신호)</code>.</li>\n</ul>\n\n<h4>⚙️ 매개변수</h4>\n<ul>\n    <li><b>fs</b> — 시간 축을 구성하기 위한 샘플링 주파수.</li>\n    <li><b>NFFT</b> — IFFT 크기. <code>자동</code>은 <code>2·(len(mag)-1)</code>을 사용합니다.</li>\n    <li><b>실수 출력</b> — <code>irfft</code> (실수 출력 보장) 또는 <code>ifft</code> (복소수)를 사용합니다.</li>\n    <li><b>에르미트 대칭</b> — 반전 전에 <code>Y[-k] = conj(Y[k])</code>를 강제합니다 (아티팩트 방지).</li>\n    <li><b>정규화</b> — 원래 진폭을 보존하기 위해 <code>N</code>으로 나눕니다.</li>\n</ul>\n\n<h4>🖱️ 상호작용</h4>\n<ul>\n    <li><b>우클릭</b> → 구성…</li>\n    <li><b>더블 클릭</b> → 도움말.</li>\n    <li><b>측면 패널</b> — 실시간으로 fs와 매개변수를 조정합니다.</li>\n</ul>"
+    },
+    "thd": {
+      "title": "THD 분석기",
+      "tooltip": "총 고조파 왜곡 THD",
+      "ports": {
+        "input": "입력",
+        "output": "출력"
+      },
+      "dialog": {
+        "title": "THD 분석"
+      },
+      "tab": {
+        "summary": "요약",
+        "harmonics": "고조파",
+        "spectrum": "스펙트럼"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "기본 주파수:",
+        "max_harmonics": "고려된 고조파:",
+        "green_threshold": "녹색 임계값 (<):",
+        "yellow_threshold": "노란색 임계값 (<):"
+      },
+      "harmonics": {
+        "order": "고조파 차수",
+        "freq": "주파수 (Hz)",
+        "amp_rel": "상대 진폭 (%)"
+      },
+      "help_title": "도움말 – THD",
+      "help_html": "<h3>총 고조파 왜곡 (THD) 분석기</h3><p>입력 신호의 THD 및 THD+N을 계산합니다.</p><p>신호는 변경 없이 출력으로 전달됩니다.</p><p><b>매개변수:</b></p><ul><li>max_harmonics: 고려되는 고조파 수</li><li>녹색/노란색 임계값: 노드에서 THD의 색상을 변경합니다</li></ul><p><i>자세한 분석을 열려면 더블 클릭하세요.</i></p>"
+    },
+    "filter": {
+      "title": "필터",
+      "tooltip": "디지털 필터 (Butterworth)",
+      "ports": {
+        "input": "입력",
+        "output": "출력"
+      },
+      "status": {
+        "no_data": "데이터 없음",
+        "ready": "준비됨"
+      },
+      "menu": {
+        "configure": "구성…",
+        "show_output": "출력 표시"
+      },
+      "config_title": "필터 구성",
+      "filter_type": "필터 유형:",
+      "cutoff": "차단 주파수 (Hz):",
+      "cutoff1": "차단 주파수 1 (Hz):",
+      "cutoff2": "차단 주파수 2 (Hz):",
+      "order": "필터 차수:",
+      "fs": "샘플 레이트 (Hz, 0 = 자동):",
+      "help_title": "도움말 – 필터",
+      "help_html": "<h3>🎛️ 필터 노드 (Butterworth)</h3>\n<p>입력 신호에 <b>디지털 Butterworth 필터</b>를 적용합니다.</p>\n\n<h4>📥 입력</h4>\n<p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열을 기대합니다.</p>\n\n<h4>📤 출력</h4>\n<p><code>output</code> → 필터링된 신호를 <code>(x, y_filtered)</code>로 반환합니다.</p>\n\n<h4>⚙️ 매개변수 (구성하려면 더블 클릭)</h4>\n<ul>\n    <li><b>필터 유형</b> – 저역 통과, 고역 통과, 대역 통과 또는 대역 저지.</li>\n    <li><b>차단 주파수</b> – Hz 단위. 대역 통과/대역 저지의 경우 두 개의 주파수가 필요합니다.</li>\n    <li><b>차수</b> – 필터 차수 (1–20). 높은 차수 = 더 가파른 롤오프.</li>\n    <li><b>샘플 레이트</b> – 0으로 설정하면 <i>x</i> 축에서 자동으로 유추됩니다.</li>\n</ul>\n\n<h4>🛠️ 작동</h4>\n<ul>\n    <li>필터는 <code>scipy.signal.butter</code>를 사용하여 설계됩니다.</li>\n    <li>제로 위상 필터링은 <code>filtfilt</code>로 적용됩니다 (위상 왜곡 없음).</li>\n    <li>입력이 1D 배열이면 샘플 레이트를 사용하여 합성 <i>x</i> 축이 생성됩니다.</li>\n</ul>\n\n<h4>🖱️ 상호작용</h4>\n<ul>\n    <li><b>더블 클릭</b> → 구성 대화상자를 엽니다.</li>\n    <li>노드를 <b>클릭</b> → 필터링된 신호를 플롯합니다.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → 필터 → FFT → 플롯\n</pre>\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "정규화",
+      "tooltip": "신호를 지정된 범위로 정규화",
+      "ports": {
+        "input": "입력",
+        "output": "출력"
+      },
+      "menu": {
+        "configure": "구성…"
+      },
+      "config_title": "정규화 노드 구성",
+      "param": {
+        "target_min": "대상 최소:",
+        "target_max": "대상 최대:"
+      },
+      "help_title": "도움말 – 정규화",
+      "help_html": "<h3>📏 정규화 노드</h3>\n<p>입력 신호를 <b>대상 최소</b>와 <b>대상 최대</b>로 지정된 범위로 정규화합니다.</p>\n\n<h4>📥 입력</h4>\n<p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열을 기대합니다.</p>\n\n<h4>📤 출력</h4>\n<ul>\n    <li><b>정규화된 신호</b> → <code>(x_norm, y_norm)</code> – 대상 범위로 스케일된 신호.</li>\n</ul>\n\n<h4>⚙️ 매개변수 (구성하려면 더블 클릭)</h4>\n<ul>\n    <li><b>대상 최소</b> – 원하는 범위의 최소값 (기본값 0.0).</li>\n    <li><b>대상 최대</b> – 원하는 범위의 최대값 (기본값 1.0).</li>\n</ul>\n\n<h4>📐 작동</h4>\n<p>선형 재스케일링:</p>\n<pre>y_norm = target_min + (y - original_min) * (target_max - target_min) / (original_max - original_min)</pre>\n<p>x축은 변경되지 않습니다.</p>\n\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → FFT → 필터 → 합산기 → 플롯\n</pre>\n\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "컨볼루션",
+      "tooltip": "컨볼루션을 통한 FIR 필터",
+      "ports": {
+        "input": "입력",
+        "output": "출력"
+      },
+      "status": {
+        "no_data": "데이터 없음"
+      },
+      "menu": {
+        "show_output": "출력 표시",
+        "configure": "구성…"
+      },
+      "config_title": "컨볼루션 구성",
+      "example_kernel": "예제 커널:",
+      "kernel": "커널 계수 (쉼표로 구분):",
+      "mode": "컨볼루션 모드:",
+      "help_title": "도움말 – 컨볼루션",
+      "help_html": "<h3>🔀 컨볼루션 노드 (FIR 필터)</h3>\n<p>입력 신호와 사용자 정의 커널 간의 이산 컨볼루션을 적용합니다.</p>\n\n<h4>📥 입력</h4>\n<p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열을 기대합니다.</p>\n\n<h4>📤 출력</h4>\n<ul>\n    <li><b>필터링된 신호</b> → <code>(x_conv, y_conv)</code> – 컨볼루션 결과.</li>\n</ul>\n\n<h4>⚙️ 매개변수 (구성하려면 더블 클릭)</h4>\n<ul>\n    <li><b>커널 계수</b> – 쉼표로 구분된 부동 소수점, 예: <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>컨볼루션 모드</b> – <code>'same'</code> (기본), <code>'full'</code> 또는 <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 작동</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>x축은 그에 맞게 조정됩니다: <code>'same'</code>의 경우 원래 x를 유지하고, <code>'valid'</code>의 경우 끝을 자르고, <code>'full'</code>의 경우 선형으로 확장합니다.</li>\n</ul>\n\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → FFT → 필터 → 합산기 → 플롯\n</pre>\n\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
+    },
+    "resample": {
+      "title": "리샘플",
+      "tooltip": "신호의 샘플 레이트 변경",
+      "ports": {
+        "input": "입력",
+        "output": "출력"
+      },
+      "status": {
+        "no_data": "데이터 없음",
+        "ready": "준비됨"
+      },
+      "menu": {
+        "configure": "구성…"
+      },
+      "config_title": "리샘플 구성",
+      "mode": "모드:",
+      "factor": "계수:",
+      "target_fs": "대상 fs (Hz):",
+      "help_title": "도움말 – 리샘플",
+      "help_html": "<h3>🔄 리샘플 노드</h3><p>입력 신호의 <b>샘플 레이트</b>를 변경합니다.</p><h4>📥 입력</h4><p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열을 기대합니다.</p><h4>📤 출력</h4><p><code>output</code> → 리샘플된 신호를 <code>(x_new, y_new)</code>로 반환합니다.</p><h4>⚙️ 매개변수</h4><ul><li><b>모드</b> – <i>factor</i> (원래 샘플 레이트 곱하기) 또는 <i>fixed_fs</i> (Hz 단위의 대상 샘플 레이트).</li><li><b>계수</b> – 스케일링 계수 (>1은 샘플 증가, <1은 감소).</li><li><b>대상 fs</b> – Hz 단위의 원하는 샘플 레이트 (모드가 fixed_fs일 때 사용).</li></ul><h4>🛠️ 작동</h4><p>푸리에 방법을 적용하는 <code>scipy.signal.resample</code>을 사용합니다.</p><hr><hr><h3>🧠 이 시스템에 대해 생각하는 방법</h3><p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p><pre>데이터 → 변환 → 결과</pre><h4>📐 핵심 규칙</h4><pre>모든 것은: (x, y)</pre><h4>🔁 보편적 패턴</h4><pre>입력 → 처리 → 시각화</pre><hr><h4>⚡ 단축키와 팁</h4><ul><li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li><li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li><li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 구성).</li><li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li></ul>"
+    },
+    "window": {
+      "title": "윈도우",
+      "tooltip": "신호에 윈도우 함수 적용",
+      "ports": {
+        "input": "입력",
+        "output": "출력"
+      },
+      "status": {
+        "no_data": "데이터 없음",
+        "ready": "준비됨"
+      },
+      "menu": {
+        "configure": "구성…"
+      },
+      "config_title": "윈도우 구성",
+      "window_type": "윈도우 유형:",
+      "normalize": "정규화 (에너지 보존)",
+      "help_title": "도움말 – 윈도우",
+      "help_html": "<h3>🪟 윈도우 노드</h3><p>스펙트럼 누출을 줄이기 위해 입력 신호에 <b>윈도우 함수</b>를 적용합니다.</p><h4>📥 입력</h4><p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열.</p><h4>📤 출력</h4><p><code>output</code> → 윈도우 처리된 신호 <code>(x, y * window)</code>.</p><h4>⚙️ 매개변수</h4><ul><li><b>윈도우 유형</b> – Hann, Hamming, Blackman, Bartlett 등.</li><li><b>정규화</b> – 선택하면 총 에너지를 보존하도록 윈도우를 스케일합니다.</li></ul><h4>🛠️ 작동</h4><p><code>scipy.signal.windows</code>를 사용합니다.</p><hr><hr><h3>🧠 이 시스템에 대해 생각하는 방법</h3><p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p><pre>데이터 → 변환 → 결과</pre><h4>📐 핵심 규칙</h4><pre>모든 것은: (x, y)</pre><h4>🔁 보편적 패턴</h4><pre>입력 → 처리 → 시각화</pre><hr><h4>⚡ 단축키와 팁</h4><ul><li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li><li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li><li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 구성).</li><li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li></ul>"
+    },
+    "delay": {
+      "title": "지연",
+      "tooltip": "지정된 양만큼 신호 지연",
+      "ports": {
+        "input": "입력",
+        "output": "출력"
+      },
+      "status": {
+        "no_data": "데이터 없음",
+        "ready": "준비됨"
+      },
+      "menu": {
+        "configure": "구성…"
+      },
+      "config_title": "지연 구성",
+      "mode": "지연 모드:",
+      "samples": "샘플:",
+      "seconds": "초:",
+      "padding": "패딩:",
+      "constant_value": "상수 값:",
+      "help_title": "도움말 – 지연",
+      "help_html": "<h3>⏱️ 지연 노드</h3><p>입력 신호를 지정된 <b>샘플</b> 또는 <b>초</b>만큼 지연합니다.</p><h4>📥 입력</h4><p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열.</p><h4>📤 출력</h4><p><code>output</code> → 지연된 신호 <code>(x, y_delayed)</code>.</p><h4>⚙️ 매개변수</h4><ul><li><b>지연 모드</b> – <i>samples</i> (정수 샘플 수) 또는 <i>seconds</i> (초 단위 시간, x축에서 샘플 레이트 필요).</li><li><b>패딩</b> – 초기 간극을 채우는 방법: <i>zero</i>, <i>reflect</i> 또는 <i>constant</i> (사용자 정의 값).</li></ul><h4>🛠️ 작동</h4><p>신호를 오른쪽으로 이동하고 시작 부분에 패딩을 삽입합니다.</p><hr><hr><h3>🧠 이 시스템에 대해 생각하는 방법</h3><p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p><pre>데이터 → 변환 → 결과</pre><h4>📐 핵심 규칙</h4><pre>모든 것은: (x, y)</pre><h4>🔁 보편적 패턴</h4><pre>입력 → 처리 → 시각화</pre><hr><h4>⚡ 단축키와 팁</h4><ul><li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li><li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li><li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 구성).</li><li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li></ul>"
+    },
+    "correlation": {
+      "title": "상관",
+      "tooltip": "두 신호의 교차 상관",
+      "ports": {
+        "signal1": "신호 1",
+        "signal2": "신호 2",
+        "corr": "상관"
+      },
+      "status": {
+        "no_data": "데이터 없음",
+        "ready": "준비됨"
+      },
+      "menu": {
+        "configure": "구성…"
+      },
+      "config_title": "상관 구성",
+      "mode": "모드:",
+      "normalize": "정규화",
+      "help_title": "도움말 – 상관",
+      "help_html": "<h3>📈 상관 노드</h3><p>두 입력 신호 간의 <b>교차 상관</b>을 계산합니다.</p><h4>📥 입력</h4><p><code>signal1</code>, <code>signal2</code> → 각각 튜플 <code>(x, y)</code> 또는 1D 배열을 기대합니다.</p><h4>📤 출력</h4><p><code>corr</code> → 상관 시퀀스를 <code>(지연, 상관)</code>으로 반환합니다.</p><h4>⚙️ 매개변수</h4><ul><li><b>모드</b> – <i>full</i> (모든 지연), <i>same</i> (가장 긴 입력과 동일한 길이), <i>valid</i> (제로 패딩된 가장자리 없음).</li><li><b>정규화</b> – 선택하면 신호 노름의 곱으로 나눕니다 ([-1, 1] 범위의 값 제공).</li></ul><h4>🛠️ 작동</h4><p><code>np.correlate</code>를 사용합니다.</p><hr><hr><h3>🧠 이 시스템에 대해 생각하는 방법</h3><p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p><pre>데이터 → 변환 → 결과</pre><h4>📐 핵심 규칙</h4><pre>모든 것은: (x, y)</pre><h4>🔁 보편적 패턴</h4><pre>입력 → 처리 → 시각화</pre><hr><h4>⚡ 단축키와 팁</h4><ul><li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li><li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li><li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 구성).</li><li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li></ul>"
+    },
+    "math_expression": {
+      "title": "수학 표현식",
+      "tooltip": "x와 y에 대한 수학 표현식 평가",
+      "ports": {
+        "input": "입력",
+        "output": "출력"
+      },
+      "status": {
+        "no_data": "데이터 없음",
+        "ready": "준비됨"
+      },
+      "menu": {
+        "configure": "구성…"
+      },
+      "config_title": "수학 표현식 구성",
+      "expression": "표현식 (x, y, np.* 사용):",
+      "info": "변수: x (시간 축), y (신호 값).\n함수: np.sin, np.cos, np.exp, np.sqrt 등.",
+      "examples": "예제…",
+      "help_title": "도움말 – 수학 표현식",
+      "help_html": "<h3>🧮 수학 표현식 노드</h3><p>입력 신호 변수 <code>x</code>와 <code>y</code>에 대해 임의의 수학 표현식을 평가합니다.</p><h4>📥 입력</h4><p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열.</p><h4>📤 출력</h4><p><code>output</code> → 표현식의 결과를 <code>(x, y_new)</code>로 반환합니다.</p><h4>✏️ 표현식 구문</h4><ul><li><code>x</code> (시간 축)와 <code>y</code> (신호 값)를 배열 변수로 사용합니다.</li><li>모든 <code>np.*</code> 함수를 사용할 수도 있습니다 (예: <code>np.sin(y)</code>, <code>np.exp(-x)</code>).</li><li>예: <code>y * 2</code>, <code>np.sin(2*np.pi*x)</code>, <code>np.sqrt(x**2 + y**2)</code>.</li></ul><h4>⚠️ 참고</h4><p>표현식은 <code>numexpr</code> (사용 가능한 경우) 또는 제한된 <code>eval</code>을 사용하여 안전하게 평가됩니다.</p><hr><hr><h3>🧠 이 시스템에 대해 생각하는 방법</h3><p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p><pre>데이터 → 변환 → 결과</pre><h4>📐 핵심 규칙</h4><pre>모든 것은: (x, y)</pre><h4>🔁 보편적 패턴</h4><pre>입력 → 처리 → 시각화</pre><hr><h4>⚡ 단축키와 팁</h4><ul><li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li><li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li><li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 구성).</li><li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li></ul>"
+    },
+    "spectrogram": {
+      "title": "스펙트로그램",
+      "tooltip": "STFT 스펙트로그램 계산",
+      "ports": {
+        "input": "입력",
+        "spectrogram": "스펙트로그램",
+        "frequencies": "주파수",
+        "times": "시간"
+      },
+      "status": {
+        "no_data": "데이터 없음",
+        "ready": "준비됨"
+      },
+      "menu": {
+        "configure": "구성…",
+        "show_in_plot": "플롯에 표시"
+      },
+      "config_title": "스펙트로그램 구성",
+      "nperseg": "세그먼트당 샘플:",
+      "noverlap": "중첩:",
+      "window": "윈도우:",
+      "scaling": "스케일링:",
+      "mode": "모드:",
+      "help_title": "도움말 – 스펙트로그램",
+      "help_html": "<h3>🌊 스펙트로그램 노드</h3><p><b>단시간 푸리에 변환 (STFT)</b> 스펙트로그램을 계산합니다.</p><h4>📥 입력</h4><p><code>input</code> → (x, y) 또는 1D 배열.</p><h4>📤 출력</h4><ul><li><b>스펙트로그램</b> → 2D 배열 (주파수, 시간, 크기) – <i>클릭으로 플롯되지 않음</i>.</li><li><b>주파수</b> → 주파수 빈의 1D 배열 (다른 노드에 연결 가능).</li><li><b>시간</b> → 세그먼트 시간의 1D 배열.</li></ul><h4>🖱️ 상호작용</h4><p>노드를 <b>클릭</b>해도 스펙트로그램이 <b>표시되지 않습니다</b>. <code>frequencies</code> 또는 <code>times</code>를 다른 처리 노드에 연결하거나 데이터를 내보내세요.</p><hr><hr><h3>🧠 이 시스템에 대해 생각하는 방법</h3><p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p><pre>데이터 → 변환 → 결과</pre><h4>📐 핵심 규칙</h4><pre>모든 것은: (x, y)</pre><h4>🔁 보편적 패턴</h4><pre>입력 → 처리 → 시각화</pre><hr><h4>⚡ 단축키와 팁</h4><ul><li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li><li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li><li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 구성).</li><li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li></ul>"
+    },
+    "spectrogram_viewer": {
+      "title": "스펙트로그램 뷰어",
+      "tooltip": "스펙트로그램 데이터 (주파수, 시간, 행렬)를 수신하고 표시합니다",
+      "config_title": "스펙트로그램 뷰어 구성",
+      "ports": {
+        "frequencies": "주파수",
+        "times": "시간",
+        "spectrogram": "스펙트로그램"
+      },
+      "status": {
+        "no_data": "데이터 없음"
+      },
+      "menu": {
+        "view_spectrogram": "스펙트로그램 보기",
+        "configure": "구성…"
+      },
+      "window_title": "스펙트로그램 뷰어",
+      "time_axis": "시간 (s)",
+      "freq_axis": "주파수 (Hz)",
+      "log_scale": "로그 스케일",
+      "colormap": "컬러맵:",
+      "auto_contrast": "자동 대비",
+      "contrast_min": "대비 최소:",
+      "contrast_max": "대비 최대:",
+      "export": "내보내기…",
+      "export_title": "스펙트로그램 내보내기",
+      "no_data_title": "데이터 없음",
+      "no_data_message": "불완전한 데이터입니다. 모든 포트를 연결하고 먼저 흐름을 실행하세요.",
+      "help_title": "도움말 – 스펙트로그램 뷰어",
+      "help_html": "<h3>📊 스펙트로그램 뷰어 노드</h3><p><b>스펙트로그램</b> 노드의 세 출력을 수신하여 2D 히트맵으로 표시합니다.</p><h4>📥 입력</h4><ul><li><b>주파수</b> → 주파수의 1D 벡터</li><li><b>시간</b> → 세그먼트 시간의 1D 벡터</li><li><b>스펙트로그램</b> → 크기의 2D 행렬 (주파수 × 시간)</li></ul><h4>⚙️ 구성</h4><p><b>측면 패널</b>을 사용하여 실시간으로 조정:</p><ul><li><b>로그 스케일</b> — 낮은 진폭 세부 사항을 향상시킵니다.</li><li><b>컬러맵</b> — viridis, inferno, plasma, jet 등.</li><li><b>대비</b> — 자동 또는 수동 (최소 / 최대).</li></ul><h4>🖱️ 상호작용</h4><p>노드를 <b>우클릭</b>하고 <b>\"스펙트로그램 보기\"</b>를 선택하여 전용 창을 엽니다.</p><p>뷰어 내에서 현재 보기를 PNG 이미지로 <b>내보낼</b> 수 있습니다.</p><p><i>노드를 클릭해도 기본 플롯에는 아무것도 표시되지 않습니다.</i></p><hr><hr><h3>🧠 이 시스템에 대해 생각하는 방법</h3><p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p><pre>데이터 → 변환 → 결과</pre><h4>📐 핵심 규칙</h4><pre>모든 것은: (x, y)</pre><h4>🔁 보편적 패턴</h4><pre>입력 → 처리 → 시각화</pre><hr><h4>⚡ 단축키와 팁</h4><ul><li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li><li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li><li><b>우클릭</b> → 상황에 맞는 메뉴 (보기, 구성, 삭제).</li><li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li></ul>"
+    },
+    "graph_exporter": {
+      "title": "그래프 내보내기",
+      "tooltip": "전문가 품질의 그래프를 내보냅니다",
+      "ports": {
+        "signal_in": "신호 입력",
+        "file_out": "출력 파일"
+      },
+      "status": {
+        "ready": "준비됨",
+        "exported": "내보냄"
+      },
+      "menu": {
+        "show_graph": "그래프 표시",
+        "configure": "그래프 구성",
+        "configure_subplot": "서브플롯 구성",
+        "export": "그래프 내보내기",
+        "subplots": "서브플롯",
+        "use_subplots": "서브플롯 사용",
+        "n_subplots": "서브플롯 수",
+        "subplot_layout": "레이아웃"
+      },
+      "config": {
+        "display_mode": "표시 모드",
+        "use_subplots": "서브플롯 사용 (최대 8)",
+        "n_subplots": "서브플롯 수:",
+        "subplot_layout": "레이아웃:",
+        "export_format": "내보내기 형식"
+      },
+      "no_data_title": "데이터 없음",
+      "no_data_msg": "입력 신호를 연결하고 흐름을 실행하여 그래프를 생성하세요.",
+      "export_dialog_title": "그래프 저장",
+      "export_error_title": "내보내기 오류",
+      "config_title": "그래프 내보내기 구성",
+      "help_title": "도움말 – 그래프 내보내기",
+      "help_html": "<h3>📊 그래프 내보내기</h3><p>신호를 수신하고 고품질 이미지로 내보냅니다.</p><h4>📥 입력</h4><p><code>signal_in</code> → 튜플 <code>(x, y)</code> 또는 1D 배열.</p><h4>📤 출력</h4><p><code>file_out</code> → 생성된 파일의 경로.</p><h4>⚙️ 구성</h4><p>오른쪽 더블 클릭 → <b>그래프 구성</b>으로 스타일, 축, 주석 등을 조정합니다.</p><hr><h4>🖱️ 상호작용</h4><ul><li><b>우클릭</b> → 상황에 맞는 메뉴.</li><li><b>그래프 표시</b> → 현재 설정으로 미리보기.</li></ul><hr><hr><h3>🧠 이 시스템에 대해 생각하는 방법</h3><p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p><pre>데이터 → 변환 → 결과</pre><h4>📐 핵심 규칙</h4><pre>모든 것은: (x, y)</pre><h4>🔁 보편적 패턴</h4><pre>입력 → 처리 → 시각화</pre><hr><h4>⚡ 단축키와 팁</h4><ul><li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li><li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li><li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 구성).</li><li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "입력 노드는 삭제할 수 없습니다."
+  },
+  "workspace": {
+    "headers": {
+      "node": "노드",
+      "type": "유형",
+      "shape": "형상",
+      "x_range_fs": "X: 범위 / fs",
+      "dx_t": "dx / T",
+      "y_range": "Y: [최소, 최대]",
+      "preview_y": "Y 미리보기"
+    }
+  },
+  "plot": {
+    "time_label": "시간 (s)",
+    "voltage_label": "전압 (V)",
+    "title": "신호",
+    "scale_label": "스케일:",
+    "scale_linear": "선형",
+    "scale_log": "로그",
+    "markers": "마커",
+    "cursors": "커서 A/B",
+    "peak": "피크",
+    "peak_tooltip": "최대 피크 표시",
+    "reset_zoom": "확대/축소 초기화",
+    "amplitude": "진폭",
+    "time": "시간 (s)",
+    "frequency": "주파수 (Hz)",
+    "view_mode": "보기",
+    "view_2d": "2D",
+    "view_surface": "표면 3D",
+    "view_waterfall": "워터폴 3D",
+    "view_volume": "볼륨 3D",
+    "view_slice": "슬라이스 3D",
+    "slice_label": "슬라이스",
+    "reset_camera": "카메라 초기화",
+    "axis_scale": "스케일",
+    "fps": "FPS",
+    "loop": "반복",
+    "colormap": "컬러맵"
+  },
+  "shortcuts": {
+    "delete": "노드 삭제",
+    "delete_desc": "선택한 노드와 연결을 삭제합니다.",
+    "duplicate": "노드 복제",
+    "duplicate_desc": "선택한 노드를 +50px 오프셋으로 복제합니다.",
+    "select_all": "모두 선택",
+    "select_all_desc": "장면의 모든 노드를 선택합니다.",
+    "cancel": "작업 취소",
+    "cancel_desc": "진행 중인 연결을 취소하거나 모든 선택을 해제합니다.",
+    "copy": "복사",
+    "copy_desc": "선택한 노드를 내부 클립보드에 복사합니다.",
+    "cut": "잘라내기",
+    "cut_desc": "선택한 노드를 잘라냅니다.",
+    "paste": "붙여넣기",
+    "paste_desc": "클립보드에서 노드를 붙여넣습니다.",
+    "undo": "실행 취소",
+    "undo_desc": "마지막 작업을 실행 취소합니다.",
+    "redo": "다시 실행",
+    "redo_desc": "실행 취소한 작업을 다시 실행합니다.",
+    "run": "흐름 실행",
+    "run_desc": "전체 흐름을 실행합니다.",
+    "auto_layout": "자동 배치",
+    "auto_layout_desc": "노드를 열로 자동 정렬합니다.",
+    "center_view": "보기 중앙 정렬",
+    "center_view_desc": "선택 항목 또는 전체 장면에 보기를 중앙 정렬합니다.",
+    "zoom_reset": "확대/축소 100%",
+    "zoom_reset_desc": "확대/축소를 100%로 초기화합니다.",
+    "zoom_in": "확대",
+    "zoom_in_desc": "확대합니다.",
+    "zoom_out": "축소",
+    "zoom_out_desc": "축소합니다.",
+    "toggle_theme": "테마 전환",
+    "toggle_theme_desc": "어두운 테마, 밝은 테마, 고대비 테마 간 전환합니다.",
+    "toggle_grid": "그리드 전환",
+    "toggle_grid_desc": "그리드를 표시하거나 숨깁니다.",
+    "lock_node": "노드 잠금",
+    "lock_node_desc": "선택한 노드의 이동을 잠금/해제합니다.",
+    "help": "상황에 맞는 도움말",
+    "help_desc": "커서 아래 노드의 도구 설명을 표시합니다.",
+    "new_file": "새로 만들기",
+    "new_file_desc": "새 다이어그램 만들기",
+    "open_file": "열기",
+    "open_file_desc": "다이어그램 파일 열기",
+    "save_file": "저장",
+    "save_file_desc": "현재 다이어그램 저장",
+    "save_file_as": "다른 이름으로 저장…",
+    "save_file_as_desc": "새 이름으로 다이어그램 저장"
+  },
+  "dialogs": {
+    "common": {
+      "close": "닫기",
+      "cancel": "취소",
+      "ok": "확인",
+      "emer_wind": "프로그램 선택",
+      "operation_history": "작업",
+      "confirm": "변경 사항이 없습니다.",
+      "overwrite": "덮어쓰시겠습니까?",
+      "error": "오류"
+    },
+    "font_size": {
+      "title": "글꼴 크기",
+      "label": "크기 (pt):"
+    },
+    "firewall": {
+      "title": "연결 차단됨",
+      "text": "오실로스코프에 연결할 수 없습니다.\nWindows 방화벽이 통신을 차단하고 있을 수 있습니다.",
+      "informative": "이를 해결하려면 Windows 방화벽에서 'FloWorks.exe'를 허용하세요.\n\n그동안 시뮬레이션 모드를 사용하시겠습니까?"
+    },
+    "capture_error": {
+      "title": "캡처 오류",
+      "text": "캡처 중 오류가 발생했습니다:\n{error}\n\n장치의 전원이 켜져 있고 방화벽이 연결을 허용하는지 확인하세요."
+    },
+    "script_editor": {
+      "title": "스크립트 편집기",
+      "header": "Python 스크립트  |  변수: x, y, param (TriggerNode에서), np, scipy, sympy",
+      "test_button": "테스트 (저장하지 않음)",
+      "save_button": "저장 및 닫기",
+      "tool_tip": "스크립트 노드\n정보를 보려면 더블 클릭",
+      "templates": "템플릿:",
+      "save_template": "템플릿 저장…",
+      "import": "스크립트 열기…",
+      "export": "스크립트 내보내기…",
+      "unsaved_warning": "변경 사항이 없습니다. 템플릿을 로드하고 변경 사항을 잃으시겠습니까?",
+      "save_template_title": "템플릿으로 저장",
+      "save_template_prompt": "템플릿 이름 (확장자 없이):",
+      "overwrite_template": "템플릿이 이미 존재합니다. 덮어쓰시겠습니까?",
+      "import_title": "Python 스크립트 열기",
+      "export_title": "Python 스크립트 내보내기",
+      "help_tooltip": "빠른 도움말 (F1)",
+      "help_title": "빠른 도움말",
+      "browse": "찾아보기…",
+      "python_path_placeholder": "내부 인터프리터를 사용하려면 비워 두세요. 예: python3",
+      "quick_help_html": "<h2>Python 스크립트 편집기</h2><p>이 편집기는 흐름 신호에 대해 Python 코드를 실행합니다. 스크립트는 데이터를 수신하고 결과를 반환하거나, 신호를 수정하거나, 여러 출력을 생성할 수 있습니다.</p><h3>사용 가능한 변수</h3><ul><li><b>x</b> – NumPy 배열: X축 (시간, 주파수...).</li><li><b>y</b> – NumPy 배열: 현재 신호 값.</li><li><b>param</b> – 반복 인덱스 (TriggerNode에서) 또는 <code>None</code>.</li><li><b>inputs</b> – 모든 입력이 있는 사전 (<code>@input</code>과 함께 유용).</li><li><b>persist</b> – 실행 간에 값을 유지하는 사전.</li></ul><h3>가져온 라이브러리</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>특수 지시문</h3><ul><li><code># @param NAME : type = value</code> – 측면 패널에 조정 가능한 매개변수를 생성합니다 (코드를 건드리지 않음).</li><li><code># @input port_name</code> – 추가 입력 포트를 추가합니다 (왼쪽).</li><li><code># @output port_name</code> – 추가 출력 포트를 추가합니다 (오른쪽).</li></ul><p><code>@input</code>/<code>@output</code>을 사용하면 스크립트는 <code>inputs</code>를 사용하고 출력이 있는 사전을 반환해야 합니다. 예:</p><pre># @input channel_A<br># @output result<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"channel_A\"][1]<br>return {\"out\": (x, y), \"result\": (x, y_a)}</pre><h3>지속성</h3><p><code>persist</code> 사전은 프로그램이 열려 있는 동안 실행 간에 데이터를 유지합니다. 예:</p><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1<br>return (x, y + persist[\"counter\"] * 0.1)</pre><h3>템플릿 관리</h3><ul><li>드롭다운에서 템플릿을 선택하여 미리 정의된 스크립트를 로드합니다.</li><li><b>템플릿 저장…</b> – 현재 스크립트를 템플릿 폴더에 <code>.py</code> 파일로 저장합니다.</li><li><b>스크립트 열기…</b> / <b>스크립트 내보내기…</b> – 외부 파일과 스크립트 교환.</li></ul><h3>팁</h3><ul><li>흐름을 연결하기 전에 시뮬레이션된 데이터로 스크립트를 확인하려면 <b>테스트</b>를 사용하세요.</li><li>오류는 하단 콘솔에 표시되고 결함이 있는 줄이 표시됩니다.</li><li>지시문을 주석 처리하여 일시적으로 비활성화할 수 있습니다 (<code>## @param ...</code>).</li></ul>"
+    },
+    "trigger_config": {
+      "title": "트리거 노드 구성",
+      "group": "반복 매개변수",
+      "n_iter": "반복 (N):",
+      "param_start": "시작 매개변수:",
+      "param_end": "종료 매개변수:",
+      "accumulate": "누적:",
+      "trig_tooltips": "TriggerNode\n정보를 보려면 더블 클릭",
+      "info": "현재 매개변수는\nloop_out에서 세 번째 요소로 사용할 수 있습니다: (x, y, param)",
+      "accumulate_options": {
+        "stack": "스택",
+        "average": "평균",
+        "max": "최대",
+        "min": "최소"
+      }
+    },
+    "simulation_config": {
+      "title": "시뮬레이션 구성",
+      "timebase": "시간축 (ms/div)",
+      "voltage_range": "전압 범위 (V)",
+      "trigger_level": "트리거 레벨 (V)",
+      "trigger_slope": "트리거 기울기",
+      "sample_rate": "샘플 레이트 (kHz)"
+    },
+    "file": {
+      "save_as": "다른 이름으로 저장…",
+      "unsaved_title": "저장되지 않은 변경 사항",
+      "unsaved_message": "저장되지 않은 변경 사항이 있습니다. 계속하기 전에 저장하시겠습니까?"
+    }
+  },
+  "info_dialog": {
+    "title": "정보 – FloWorks",
+    "tab_about": "정보",
+    "tab_shortcuts": "키보드 단축키",
+    "tab_tutorials": "튜토리얼",
+    "close": "닫기",
+    "about_title": "FloWorks",
+    "version": "버전 0.4.5",
+    "description": "<p>FloWorks는 데이터 흐름 기반의 시각적이고 대화형 신호 처리 환경입니다. 수학 연산, 필터, 변환, 신호 발생기 등을 나타내는 노드를 연결하여 처리 체인을 구축, 실행 및 분석할 수 있습니다. 모든 것은 (x, y) 쌍을 기반으로 하며, 여기서 x는 축 (시간 또는 주파수)이고 y는 신호입니다.</p><p>학생, 연구원, 엔지니어 및 처음부터 코드를 작성하지 않고 시스템을 실험, 학습 또는 프로토타이핑하려는 모든 신호 처리에 관심이 있는 사람을 대상으로 합니다.</p><p><b>미션:</b> 실험 워크플로를 하나의 시각적이고 개방적이며 접근 가능한 도구로 중앙 집중화하여 누구나 — 학생, 연구원 또는 엔지니어 — 소프트웨어 학습이 아닌 실험에 집중할 수 있도록 합니다.</p><p><b>비전:</b> 실험적 아이디어와 그 실행 사이의 장벽이 실험자의 호기심만인 세상. FloWorks는 라이선스 장벽이나 도구 단편화 없이 글로벌 과학 및 기술 커뮤니티에 의해 그리고 이를 위해 구축된 신호 실험의 참조 플랫폼이 되고자 합니다.</p><p><b>원칙:</b> 자유 소프트웨어 (MIT 라이선스) – 지식은 자유로워야 합니다. 확장성 – 누구나 Python으로 새 노드를 만들 수 있습니다. 즉각적인 시각화 – 모든 단계를 그래픽으로 검사할 수 있습니다.</p>",
+    "credits": "<h3>감사 및 라이선스</h3><p>FloWorks는 다음 오픈 소스 프로젝트를 사용합니다:</p><ul><li><b>PySide6 / Qt</b> – 그래픽 사용자 인터페이스. <b>GNU LGPLv3</b> 라이선스. © The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – BSD / PSF 라이선스.</li><li><b>PyQtGraph, Pillow</b> – MIT / HPND 라이선스.</li><li><b>OpenCV</b> – Apache 2.0 라이선스.</li><li><b>PyTorch</b> – BSD 라이선스 (Meta Platforms, Inc.).</li><li><b>Pygments</b> – BSD 라이선스.</li></ul><p>본 응용 프로그램은 <b>GNU LGPLv3</b> 조건에 따라 PySide6(동적 링크)를 사용합니다.</p><p>사용자는 PySide6 동적 라이브러리를 수정하거나 교체할 권리가 있습니다.</p><p>전체 라이선스는 <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a>에서 확인할 수 있습니다.</p><p><b>FloWorks 라이선스:</b> MIT 라이선스.</p>",
+    "shortcut_header_keys": "단축키",
+    "shortcut_header_action": "동작",
+    "shortcut_header_context": "컨텍스트",
+    "shortcuts_note": "참고: 단축키는 다른 위젯에 포커스가 있어도 전역적으로 작동합니다.",
+    "tutorials_placeholder": "학습 순서대로 몇 가지 예제와 튜토리얼이 있습니다:",
+    "tutorial": "튜토리얼",
+    "example_fft": "예제 열기: 사인파의 FFT",
+    "example_filter": "예제 열기: 처프의 대역 통과 필터",
+    "example_delay": "예제 열기: 사인파의 지연",
+    "example_window": "예제 열기: 처프의 윈도우",
+    "example_convolution": "예제 열기: 사각파의 컨볼루션",
+    "example_conrrelation": "예제 열기: 사인과 사각파 간의 상관",
+    "example_math_expression": "예제 열기: 사인파에 대한 수학 표현식",
+    "example_spectrogram": "예제 열기: 처프의 스펙트로그램",
+    "example_compound": "예제 열기: 여러 노드의 배열 복합",
+    "example_title": "예제",
+    "example_message": "예제 '{name}'은 향후 버전에서 사용할 수 있습니다.",
+    "shortcut_header_description": "설명",
+    "view_logs": "로그 콘솔 보기",
+    "log_viewer_title": "로그 뷰어 (error.log)",
+    "refresh": "새로 고침",
+    "clear": "지우기",
+    "no_logs_available": "현재 로그가 없습니다.",
+    "error_reading_logs": "로그 파일을 읽는 중 오류가 발생했습니다.",
+    "confirm_clear": "지우기 확인",
+    "confirm_clear_msg": "로그 파일을 비우시겠습니까? 이 작업은 되돌릴 수 없습니다."
+  },
+  "lcr_controller": {
+    "title": "LCR 컨트롤러",
+    "connected": "연결됨",
+    "disconnected": "연결 해제됨",
+    "measure_var": "측정할 변수:",
+    "freq_sweep": "주파수 스윕",
+    "freq_start": "시작 (Hz):",
+    "freq_end": "종료 (Hz):",
+    "freq_step": "단계 (Hz):",
+    "level": "레벨 (V):",
+    "speed": "속도:",
+    "average": "평균:",
+    "rsou": "RSOU (Ω):",
+    "range": "범위:",
+    "bias_volt": "DC 바이어스 (V):",
+    "bias_on": "BIAS 켜기",
+    "bias_off": "BIAS 끄기",
+    "apply": "설정 적용",
+    "error_title": "오류",
+    "connection_error": "LCR에 연결할 수 없습니다. 연결 및 주소를 확인하세요.",
+    "success_title": "성공",
+    "success_message": "설정이 성공적으로 적용되었습니다.",
+    "apply_error": "설정을 적용할 수 없습니다: {error}"
+  },
+  "osc_controller": {
+    "title": "오실로스코프 캡처",
+    "window_title": "오실로스코프 컨트롤러",
+    "channel": "채널 선택:",
+    "acq_mode": "획득 모드:",
+    "mem_size": "메모리 크기:",
+    "invert_off": "신호 반전",
+    "invert_on": "신호 반전됨",
+    "tdiv": "수평 분할:",
+    "vdiv": "수직 분할 (V):",
+    "hpos": "수평 위치 (s):",
+    "offset": "수직 위치 (V):",
+    "trig_level": "트리거 레벨 (V):",
+    "v_range": "전압 범위 (V):",
+    "sd_trg": "사이드 트리거",
+    "fs": "샘플 레이트 (kHz):"
+  },
+  "gen_controller": {
+    "title": "고급 컨트롤러 – 신호 발생기",
+    "apply_current": "현재 구성 적용",
+    "channel": "채널 선택:",
+    "waveform_btn": "파형 생성",
+    "chirp_btn": "처프 생성",
+    "modulation_on": "변조 켜기",
+    "modulation_off": "변조 중지",
+    "sweep_on": "스윕 켜기",
+    "sweep_off": "스윕 중지",
+    "burst_on": "버스트 켜기",
+    "burst_off": "버스트 중지",
+    "ch1_on": "채널 1 켜기",
+    "ch1_off": "채널 1 끄기",
+    "ch2_on": "채널 2 켜기",
+    "ch2_off": "채널 2 끄기",
+    "load": "출력 선택:",
+    "polarity": "출력 극성:",
+    "modify_output": "출력 수정",
+    "tab_general": "일반",
+    "tab_waveform": "파형",
+    "tab_chirp": "처프",
+    "tab_modulation": "변조",
+    "tab_sweep": "스윕",
+    "tab_burst": "버스트",
+    "sim_title": "시뮬레이션",
+    "no_hardware": "하드웨어가 연결되지 않음",
+    "sent_title": "전송됨",
+    "waveform_sent": "파형 전송됨",
+    "chirp_sent": "처프 전송됨",
+    "success_title": "성공",
+    "output_modified": "출력 {channel}: 부하 {load}, 극성 {pol}",
+    "signal_type": "신호 유형:",
+    "frequency": "주파수 (Hz):",
+    "amplitude": "진폭 (Vpp):",
+    "offset": "오프셋 (V):",
+    "phase": "위상 (도):",
+    "duty_cycle": "듀티 사이클 (%):",
+    "symmetry": "대칭 (%):",
+    "pulse_width": "펄스 폭 (s):",
+    "rise_edge": "상승 에지 (s):",
+    "fall_edge": "하강 에지 (s):",
+    "delay_edge": "지연 에지 (s):",
+    "stdev": "표준 편차 (V):",
+    "mean": "평균 (V):",
+    "chirp_f0": "초기 주파수 (Hz):",
+    "chirp_f1": "최종 주파수 (Hz):",
+    "chirp_fs": "Fs (Sa/s):",
+    "chirp_duration": "지속 시간 (s):",
+    "chirp_amp": "진폭 (V):",
+    "chirp_offset": "오프셋 (V):",
+    "chirp_phase": "위상 (°):",
+    "chirp_name": "신호 이름:",
+    "chirp_method": "방법:",
+    "chirp_mode": "Arb 모드:",
+    "mod_type": "변조 유형:",
+    "mod_freq": "변조 주파수 (Hz):",
+    "mod_dev": "편차 (Hz,°,s):",
+    "mod_hop": "홉 주파수 (Hz):",
+    "mod_shape": "파형:",
+    "mod_depth": "깊이 (%):",
+    "sweep_time": "지속 시간 (s):",
+    "sweep_stop": "최종 주파수 (Hz):",
+    "sweep_start": "초기 주파수 (Hz):",
+    "sweep_trig_src": "트리거 소스:",
+    "sweep_trig_out": "트리거 출력:",
+    "sweep_mode": "유형:",
+    "sweep_dir": "방향:",
+    "burst_period": "주기 (s):",
+    "burst_cycles": "사이클:",
+    "burst_phase": "위상 (도):",
+    "burst_gate": "대상:",
+    "burst_trig_src": "트리거 소스:",
+    "burst_polarity": "극성:",
+    "waveform_applied": "파형 적용됨",
+    "chirp_applied": "처프 전송됨",
+    "modulation_applied": "변조 구성됨",
+    "sweep_applied": "스윕 구성됨",
+    "burst_applied": "버스트 구성됨"
+  },
+  "simulation_config_dialog": {
+    "title": "시뮬레이션 구성 – 발생기",
+    "waveform": "파형:",
+    "basic_params": "기본 매개변수",
+    "frequency": "주파수 (Hz):",
+    "amplitude": "진폭 (Vpp):",
+    "offset": "오프셋 (V):",
+    "phase": "위상 (도):",
+    "duty_cycle": "듀티 사이클 (%):",
+    "symmetry": "대칭 (%):",
+    "direction": "방향:",
+    "up": "상승",
+    "down": "하강",
+    "stdev": "표준 편차:",
+    "mean": "평균:",
+    "lobes": "로브 수:",
+    "sigma": "시그마:",
+    "mu": "뮤:",
+    "tau": "타우 (s):",
+    "exp_type": "유형:",
+    "rise": "상승",
+    "fall": "하강",
+    "f0": "초기 주파수 (Hz):",
+    "f1": "최종 주파수 (Hz):",
+    "chirp_method": "방법:",
+    "linear": "선형",
+    "logarithmic": "로그",
+    "preview": "미리보기",
+    "apply": "적용",
+    "close": "닫기",
+    "time_label": "시간 (s)",
+    "amplitude_label": "진폭 (V)"
+  },
+  "self": {
+    "language_changed": "언어가 변경되었습니다: {name} ({code})",
+    "default": "FloWorks  |  스크롤: 확대/축소  |  가운데 클릭: 이동  |  노드 더블 클릭: 정보 |  노드 우클릭: 옵션",
+    "workspace": "작업 공간",
+    "canvas": "캔버스",
+    "no_nodes_selected": "노드가 선택되지 않음",
+    "node_config_placeholder": "캔버스에서 노드를 선택하세요\n 구성을 보려면"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "시각적이고 대화형 가상 신호 처리 실험실",
+    "build": "복잡한 코드는 잊으세요. 블록을 드래그하고 퍼즐 조각처럼 연결하고 데이터 흐름을 나타내는 선으로 노드를 연결하여 워크플로를 구축하세요.",
+    "keyrule": "모든 것은 신호에 관한 것입니다: 코드 줄이 아닌 블록을 연결하세요.",
+    "nodework": "노드 아키텍처:\n[입력 데이터] → [내부 처리] → [출력 데이터]",
+    "execute": "실행을 클릭하고 아이디어가 실시간 그래프와 데이터로 살아나는 것을 지켜보세요. 더 나아가고 싶으신가요? 실제 실험실 장비를 연결하거나 Python 스크립트 노드를 사용하여 사용자 지정 처리에 대한 규칙을 추가하세요.",
+    "expand": "기술 문서에 사용할 준비가 된 고품질 그래프를 내보내세요. 작업을 \".sflow\" 파일로 저장하고 떠날 때와 정확히 동일하게 검색하세요.",
+    "actions_title": "무엇을 할 수 있나요?",
+    "actions": "* 워크플로를 구축하고 노드를 드래그하고 연결하여 아이디어를 테스트합니다.\n* 실제 장비를 제어하거나 신호를 시뮬레이션합니다.\n* 대화형 그래프에서 즉시 결과를 봅니다.",
+    "checkbox": "다시 표시하지 않음",
+    "start": "시작"
+  },
+  "scene": {
+    "empty_hint": "도구 모음에서 노드를 선택하세요",
+    "load_example_hint": "\"정보\" → \"튜토리얼\"에서 예제를 로드할 수 있습니다"
+  },
+  "examples": {
+    "general": {
+      "title": "예제",
+      "welcome": "FloWorks에 오신 것을 환영합니다! \n가장 일반적인 작업을 마스터하려면 다음 미니 튜토리얼을 따르세요.",
+      "scroll": "캔버스를 이동하려면 스크롤하거나 마우스 휠을 누르고 있으세요.",
+      "help": "노드의 작업을 구성하려면 노드를 우클릭하세요."
+    },
+    "tutorial": {
+      "message": "이것은 시각적 신호 흐름 다이어그램 응용 프로그램입니다. 시작하겠습니다!",
+      "step1": "1단계: 신호 소스 추가",
+      "step2": "도구 모음 (상단)에서 신호 소스 노드를 추가합니다. \n노드는 캔버스에서 마지막으로 클릭한 위치에 배치됩니다. \n캔버스 근처 아무 곳이나 클릭한 다음 상단 표시줄에서 클릭하세요:",
+      "step3": "2단계: 노드 연결",
+      "step4": "노드의 출력 포트 (왼쪽)에서 CTRL+클릭을 누르고 다른 노드의 입력 포트 (오른쪽)를 클릭하여 연결을 만듭니다.",
+      "step5": "연결은 왼쪽에서 오른쪽으로 흐르며 노드 간에 신호 데이터를 전달합니다.",
+      "step6": "3단계: 흐름 실행",
+      "step7": "F5를 눌러 신호 흐름을 실행하고 실시간으로 결과를 확인하세요.",
+      "step8": "개별 노드를 클릭하여 출력 값을 볼 수도 있습니다.",
+      "step9": "4단계: 결과 보기",
+      "step10": "아무 노드나 클릭하여 그래프 위젯에서 신호를 시각화하세요.",
+      "step11": "흐름을 실행하면 그래프가 자동으로 업데이트됩니다."
+    },
+    "shortcuts": {
+      "title": "키보드 단축키",
+      "execute": "F5 – 흐름 실행",
+      "save": "Ctrl+S – 프로젝트 저장 (.sflow)",
+      "load": "Ctrl+O – 프로젝트 열기",
+      "delete": "Delete / Backspace – 선택한 요소 삭제",
+      "copy_paste": "Ctrl+C / Ctrl+V – 노드 또는 메모 복사 및 붙여넣기",
+      "undo_redo": "Ctrl+Z / Ctrl+Y – 실행 취소 / 다시 실행",
+      "auto_layout": "Ctrl+Shift+L – 다이어그램 자동 배치",
+      "zoom": "마우스 휠 – 확대/축소, 보기를 드래그하려면 누르고 있으세요"
+    },
+    "fft": {
+      "title": "FFT 분석",
+      "description": "신호의 주파수 스펙트럼을 계산합니다.",
+      "steps": {
+        "step1": "발생기 노드를 추가하고 예를 들어 1 kHz 사각파를 선택합니다.",
+        "step2": "도구 모음의 '처리' 메뉴에서 FFT 노드를 선택합니다. 발생기의 출력에 연결합니다 (CTRL+클릭 출력 → CTRL+클릭 FFT 입력).",
+        "step3": "F5를 누릅니다. FFT 노드가 신호를 주파수 영역으로 변환합니다.",
+        "step4": "FFT 노드를 클릭하여 스펙트럼을 봅니다. 1 kHz의 홀수 배수에서 피크가 나타납니다.",
+        "step5": "(선택적) FFT 출력을 산술 노드 (SumNode)에 연결하여 두 스펙트럼을 비교합니다. 시스템이 자동으로 주파수 분해능을 감지하고 비호환성을 경고합니다.",
+        "step6": "FFT 노드를 우클릭하여 크기와 위상 사이에서 표시를 선택합니다."
+      }
+    },
+    "filter": {
+      "title": "신호 필터링",
+      "description": "저역 통과, 고역 통과 또는 대역 통과 필터를 적용합니다.",
+      "steps": "1. 처프 신호가 있는 발생기를 삽입합니다.\n2. '처리' 메뉴에서 필터 노드를 추가합니다. 발생기 출력을 필터 입력에 연결합니다.\n3. 필터 노드에서 우클릭하고 '구성…'을 선택한 다음 유형 (저역 통과, 고역 통과 등)과 차단 주파수를 선택합니다.\n4. 실행 (F5)하고 해당 연결을 클릭하여 원본 및 필터링된 신호를 모두 시각화합니다.\n5. 나란히 비교하려면 FFT 노드를 추가하고 신호를 분할할 수 있습니다."
+    },
+    "delay": {
+      "title": "지연 라인",
+      "description": "신호를 시간적으로 이동합니다 (상관 또는 효과에 유용).",
+      "steps": "1. 짧은 신호를 사용하는 발생기로 시작합니다.\n2. '처리'에서 지연 노드를 추가합니다. 발생기 출력을 지연 입력에 연결합니다.\n3. 지연 노드 구성 대화상자에서 샘플 수 또는 지연 시간을 지정합니다.\n4. 흐름을 실행 (F5)하고 지연 노드 출력을 클릭합니다. 동일한 신호가 오른쪽으로 이동된 것을 볼 수 있습니다.\n5. 정확한 지연을 측정하려면 커서 (하단 패널)를 활성화하고 원본 신호와 지연된 신호 사이에서 비교합니다."
+    },
+    "window": {
+      "title": "FFT 전 윈도우",
+      "description": "스펙트럼 누출을 줄이기 위해 FFT 전에 윈도우 (Hanning, Hamming 등)를 적용합니다.",
+      "steps": "1. 기본 흐름 설정: 발생기 → 윈도우 → FFT.\n2. 윈도우 노드를 더블 클릭하고 유형을 선택합니다 (Hanning이 좋은 시작입니다).\n3. 윈도우 출력을 FFT 입력에 연결합니다.\n4. 실행 (F5). FFT 출력을 클릭하여 윈도우가 있거나 없는 스펙트럼을 비교합니다.\n5. 비정수 주파수의 순수 사인파 신호를 시도하세요. 윈도우를 사용하면 피크가 더 명확하게 나타납니다. 윈도우 유형을 변경하여 부엽이 어떻게 감소하는지 확인하세요."
+    },
+    "convolution": {
+      "title": "컨볼루션",
+      "description": "두 신호 간의 컨볼루션을 계산합니다.",
+      "steps": "1. 필터링하려는 신호로 발생기 (소스 → 발생기)를 추가합니다.\n2. '처리' 메뉴에서 컨볼루션 노드를 추가합니다.\n3. 발생기 출력을 컨볼루션 노드 입력에 연결합니다 (양쪽 끝을 CTRL+클릭).\n4. 컨볼루션 노드를 더블 클릭하여 구성합니다. 커널 계수를 쉼표로 구분하여 입력하고 (예: '0.2,0.2,0.2,0.2,0.2') 컨볼루션 모드 ('same', 'full' 또는 'valid')를 선택합니다.\n5. F5를 눌러 흐름을 실행합니다. 노드가 이산 컨볼루션을 사용하여 신호를 필터링합니다.\n6. 컨볼루션 노드 출력 연결을 클릭하여 필터링된 신호를 봅니다. 커널의 효과를 관찰합니다. 계수를 변경하고 다시 실행하여 비교할 수 있습니다."
+    },
+    "correlation": {
+      "title": "교차 상관",
+      "description": "시간 이동의 함수로 두 신호 간의 유사성을 측정합니다.",
+      "steps": "1. 두 개의 발생기 노드 (소스 → 발생기)를 배치합니다. 예를 들어 동일한 주파수의 사인파와 사각파를 만듭니다.\n2. '처리'에서 상관 노드를 삽입합니다.\n3. 첫 번째 발생기 출력을 상관 노드의 'Signal 1' 입력에 연결합니다 (포트를 CTRL+클릭). 그런 다음 두 번째 발생기를 'Signal 2' 입력에 연결합니다.\n4. F5로 흐름을 실행합니다. 노드가 교차 상관 신호를 생성합니다.\n5. 출력 연결을 클릭하여 상관 피크를 봅니다. 신호가 정렬되는 지연에서 최대값을 볼 수 있습니다.\n6. 커서 (하단 패널)를 활성화하여 시간 이동을 정확하게 측정합니다."
+    },
+    "math_expression": {
+      "title": "수학 표현식",
+      "description": "입력 신호에 모든 수학 함수를 적용합니다 (예: y_new = f(x, y)).",
+      "steps": "1. 발생기 (소스 → 발생기)를 추가하고 변환하려는 파형을 선택합니다.\n2. '처리' 메뉴에서 수학 표현식 노드를 추가합니다.\n3. 발생기 출력을 노드 입력에 연결합니다 (양쪽 끝을 CTRL+클릭).\n4. 표현식 노드를 더블 클릭하여 편집기를 엽니다. 두 개의 배열 (x, y)을 받아 (x, y_new)를 반환하는 함수를 작성합니다. 예: y_new = y**2 + 0.5*np.sin(x).\n5. F5를 눌러 실행합니다. 노드는 'x' 축은 그대로 유지하면서 'y' 값에만 작업을 적용합니다.\n6. 출력 연결을 클릭하여 결과를 시각화합니다. 표현식을 수정하고 다시 실행하여 즉각적인 변경 사항을 볼 수 있습니다."
+    },
+    "spectrogram": {
+      "title": "스펙트로그램",
+      "description": "신호에서 주파수의 시간 변화를 나타냅니다.",
+      "steps": "1. 가변 주파수 신호, 예를 들어 사인 스윕 (처프)이 있는 발생기 (소스 → 발생기)를 배치합니다.\n2. '처리'에서 스펙트로그램 노드를 추가합니다.\n3. 발생기 출력을 스펙트로그램 노드 입력에 연결합니다 (두 포트를 CTRL+클릭).\n4. '처리'에서 스펙트로그램 뷰어 노드를 추가하고 해당 포트를 스펙트로그램 노드에 연결합니다.\n5. F5로 실행합니다. 노드가 신호를 처리하고 시간-주파수 행렬을 생성합니다.\n6. 스펙트로그램 뷰어를 우클릭하여 스펙트럼 이미지를 시각화합니다. 지배적인 주파수가 시간에 따라 어떻게 변하는지 관찰합니다.\n7. (선택적) 중간 FFT 노드를 추가하여 정적 주파수 표현과 동적 표현을 비교합니다."
+    }
+  },
+  "prefs": {
+    "title": "환경설정",
+    "tab_execution": "실행",
+    "tab_gpu": "GPU / 컴퓨팅",
+    "tab_streaming": "스트리밍",
+    "tab_ui": "UI / 성능",
+    "tab_advanced": "고급",
+    "max_workers": {
+      "label": "최대 스레드 (3단계 준비)",
+      "tooltip": "독립 분기의 향후 병렬 처리를 제어합니다."
+    },
+    "timeout_per_node": "노드당 시간 초과 (s)",
+    "gpu": {
+      "backend": "기본 백엔드",
+      "fallback": "대체 정책",
+      "threshold": "오버헤드 임계값 (MB)"
+    },
+    "streaming": {
+      "buffer": "버퍼 크기 (샘플)",
+      "timeout": "디스패처 시간 초과 (ms)",
+      "error": "스트림 오류 정책"
+    },
+    "ui": {
+      "fps": "최대 새로 고침 FPS",
+      "anim": "커넥터 애니메이션 지속 시간 (s)"
+    },
+    "adv": {
+      "python_path": "외부 인터프리터 경로",
+      "log_level": "로그 레벨",
+      "backup": "로드 시 자동 백업"
+    },
+    "btn_apply": "적용",
+    "btn_reset": "기본값으로 초기화",
+    "btn_close": "닫기"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "표현식…"
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "기록",
+      "label": "{mode}  |  {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Eng",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "지우기"
+    },
+    "history": {
+      "title": "📜 기록",
+      "clear": "🗑 지우기",
+      "use_last": "↩ 마지막"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "&파일",
+      "edit": "&편집",
+      "format": "&서식",
+      "align": "&정렬"
+    },
+    "actions": {
+      "new": "&새로 만들기",
+      "open": "&열기",
+      "save": "&저장",
+      "save_as": "다른 이름으로 &저장…",
+      "export_csv": "&CSV 내보내기…",
+      "exit": "&종료",
+      "undo": "&실행 취소",
+      "redo": "&다시 실행",
+      "cut": "&잘라내기",
+      "copy": "&복사",
+      "paste": "&붙여넣기",
+      "bold": "&굵게",
+      "italic": "&기울임꼴",
+      "align_left": "&왼쪽",
+      "align_center": "&가운데",
+      "align_right": "&오른쪽",
+      "bg_color": "&배경색…",
+      "fg_color": "&텍스트 색…"
+    },
+    "toolbar": {
+      "title": "기본",
+      "new": "새로 만들기",
+      "open": "열기",
+      "save": "저장",
+      "cut": "잘라내기",
+      "copy": "복사",
+      "paste": "붙여넣기",
+      "bold": "굵게",
+      "italic": "기울임꼴",
+      "align_left": "왼쪽",
+      "align_center": "가운데",
+      "align_right": "오른쪽",
+      "bg_color": "배경",
+      "fg_color": "텍스트",
+      "undo": "실행 취소",
+      "redo": "다시 실행"
+    }
+  },
+  "system_monitor": {
+    "title": "시스템 모니터",
+    "subtitle": "실시간 리소스 원격 측정",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "코어 / 논리 코어",
+      "core_prefix": "C"
+    },
+    "ram": {
+      "title": "RAM 메모리",
+      "tooltip": "RAM 사용량"
+    },
+    "disk": {
+      "title": "디스크 ( / )",
+      "tooltip": "/의 디스크 사용량"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}%  M:{mem}%"
+    },
+    "status": {
+      "updated": "업데이트됨"
+    }
+  }
+}

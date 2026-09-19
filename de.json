@@ -1,0 +1,1556 @@
+{
+  "language_name": "Deutsch",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "Datei",
+      "new": "Neu",
+      "open": "Öffnen…",
+      "save": "Speichern",
+      "save_as": "Speichern unter…",
+      "exit": "Beenden"
+    },
+    "edit": "Bearbeiten",
+    "view": "Ansicht",
+    "help": "Hilfe",
+    "language": "Sprache",
+    "info": "Info",
+    "theme": "Design",
+    "font_size": "Schriftgröße",
+    "font_size_custom": "Benutzerdefinierte Größe…"
+  },
+  "menu_config": {
+    "title": "Knotenkonfiguration"
+  },
+  "panels": {
+    "analysis": {
+      "title": "Analyse"
+    },
+    "stats": {
+      "title": "Statistik",
+      "max": "Max:",
+      "min": "Min:",
+      "mean": "Mittelwert:",
+      "rms": "RMS:",
+      "mode_3d": "(3D-Projektion)"
+    },
+    "cursors": {
+      "title": "Cursor A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "Cursor im 3D-Modus nicht verfügbar"
+    },
+    "crosshair": {
+      "cursor": "Cursor",
+      "peak": "Spitze",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "Fadenkreuz im 3D-Modus nicht verfügbar"
+    }
+  },
+  "tab": {
+    "plot": "Diagramm",
+    "workspace": "Canvas-Variablen",
+    "python_vars": "Python-Variablen"
+  },
+  "tooldrawer": {
+    "python_console": "Terminal",
+    "monitor_widget": "Leistungsmonitor",
+    "spreadsheet_widget": "Tabellenkalkulation",
+    "calc_widget": "Taschenrechner"
+  },
+  "console": {
+    "help": {
+      "title": "Interaktives FloWorks-Konsolen-Tutorial",
+      "button": "Hilfe",
+      "html": "<h1>Interaktives FloWorks-Konsolen-Tutorial</h1><h2>1. Knoten und Verbindungen</h2><p><code>&gt;&gt;&gt; graph.nodes</code></p><p><code>&gt;&gt;&gt; graph.connections</code></p><p><code>&gt;&gt;&gt; selected_node</code></p><p>Knoten erstellen:</p><p><code>&gt;&gt;&gt; graph.add_catalog_node('SumNode', 300, 200)</code></p><p>Verbinden:</p><p><code>&gt;&gt;&gt; graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>Löschen:</p><p><code>&gt;&gt;&gt; graph.remove_node(graph.nodes[2])</code></p><p>Anschlüsse:</p><p><code>&gt;&gt;&gt; graph.nodes[1].PORTS</code></p><h2>2. Ausführen und Ergebnisse anzeigen</h2><p>Graph ausführen:</p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Ausgabe eines Knotens anzeigen:</p><p><code>&gt;&gt;&gt; graph.node_values[graph.nodes[1]]</code></p><p>Dies kann mit einem KeyError fehlschlagen, verwenden Sie:</p><p><code>&gt;&gt;&gt; list(graph.node_values.values())[1]</code></p><p>Vollständige Ausgabe:</p><p><code>&gt;&gt;&gt; nodo = graph.nodes[0]</code></p><p><code>&gt;&gt;&gt; nodo.output</code></p><p>Y-Achse:</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; y = result[1]</code></p><p><code>&gt;&gt;&gt; y.max()</code></p><p>Zuweisungen werden nicht ausgegeben; prüfen Sie mit <code>x</code>, <code>y.shape</code> oder <code>print(x, y)</code></p><h2>3. Diagramm</h2><p>Löschen:</p><p><code>&gt;&gt;&gt; app.plot_widget.clear_plot()</code></p><p>Signal aus der Konsole:</p><p><code>&gt;&gt;&gt; import numpy as np</code></p><p><code>&gt;&gt;&gt; x = np.linspace(0, 1, 1000)</code></p><p><code>&gt;&gt;&gt; y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>Vom Quellknoten:</p><p><code>&gt;&gt;&gt; x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>FFT-Knoten (gibt dict zurück):</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>&gt;&gt;&gt; result.keys()</code></p><p><code>&gt;&gt;&gt; f, mag = result['magnitude']</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. Anwendung ändern</h2><p>Tabelle aktualisieren:</p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Knoten hinzufügen:</p><p><code>&gt;&gt;&gt; app.add_node('SignalSourceNode')</code></p><p>Titel:</p><p><code>&gt;&gt;&gt; app.setWindowTitle('My signal lab')</code></p><p>Überprüfen:</p><p><code>&gt;&gt;&gt; app.windowTitle()</code></p><p>Wiederherstellen:</p><p><code>&gt;&gt;&gt; app.update_title()</code></p><h2>5. Tastenkürzel</h2><table><tr><th>Taste/Befehl</th><th>Aktion</th></tr><tr><td><code>&uarr;</code> / <code>&darr;</code></td><td>Verlauf</td></tr><tr><td><code>Tab</code></td><td>Autovervollständigung</td></tr><tr><td><code>Ctrl + L</code></td><td>Konsole leeren</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>Mehrzeilige Blöcke</td></tr></table><h2>6. Rezepte</h2><p>Parameter ändern:</p><p><code>&gt;&gt;&gt; selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>&gt;&gt;&gt; getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Benutzerdefinierte Formel:</p><p><code>&gt;&gt;&gt; selected_node.params['mode'] = 'formula'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['expr'] = '2 * sin(2*pi*1000*t)'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>&gt;&gt;&gt; selected_node._generate_signal()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Kategorien auflisten:</p><p><code>&gt;&gt;&gt; from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>&gt;&gt;&gt; NODE_CATEGORIES</code></p><p>Hilfe:</p><p><code>&gt;&gt;&gt; help(graph.connect_nodes)</code></p><h2>7. Fehlerbehebung</h2><ul><li><strong>Fehler in Rot</strong>: Die Konsole zeigt das Problem an, die Anwendung wird nicht geschlossen.</li><li><strong>Eingefrorene Oberfläche</strong>: Endlosschleife. Konsole schließen oder neu starten.</li><li><strong>Nichts passiert</strong>: Prüfen Sie <code>graph.connections</code> und Quellknoten.</li></ul><p>&copy; 2026 FloWorks — Signal Laboratory</p>"
+    }
+  },
+  "vars_table": {
+    "header": {
+      "name": "Name",
+      "type": "Typ",
+      "shape": "Form",
+      "value": "Wert"
+    },
+    "menu": {
+      "info": "Variable: {name}"
+    },
+    "dialog": {
+      "title": "Vollständiger Wert"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "Schrift:",
+    "font_size_tooltip": "Basisschriftgröße ändern",
+    "run_flow_tooltip": "Ablauf ausführen",
+    "add_kinematics": "Kinematik-Knoten",
+    "escolar": "Schulmodus",
+    "add_function_graph_node": "Funktionen",
+    "add_rhombus_node": "Logikgatter",
+    "add_graph_exporter": "Diagramm-Export",
+    "add_note": "Notizen",
+    "add_note_tooltip": "Haftnotiz hinzufügen…",
+    "add_signal_source": "Neue Signalquelle",
+    "add_spectrogram_viewer": "Spektrogramm-Viewer",
+    "add_correlation": "Korrelation",
+    "add_math_expression": "Mathematischer Ausdruck",
+    "add_spectrogram": "Spektrogramm",
+    "add_resample": "Neuabtastung",
+    "add_window": "Fenster",
+    "add_delay": "Verzögerung",
+    "add_convolution_node": "Faltung",
+    "add_normalize": "Normalisieren",
+    "add_filter": "Filter",
+    "add_fft": "FFT",
+    "source_node": "Erweiterter Signalgenerator",
+    "load_signal_tooltip": "Signal nach Wunsch des Benutzers erzeugen",
+    "history": "Verlauf",
+    "history_tooltip": "Operationsverlauf",
+    "auto_layout": "Automatisches Layout",
+    "auto_layout_tooltip": "Knoten automatisch anordnen (Strg+Umschalt+L)",
+    "sources": "Peripheriegeräte",
+    "processing": "Verarbeitung",
+    "control": "Steuerung",
+    "add_oscilloscope": "Oszilloskop",
+    "add_generator": "Generator",
+    "add_expression": "Ausdrucksknoten",
+    "add_script": "Python-Skript",
+    "add_arithmetic": "Arithmetik +−×÷",
+    "add_program": "Programm",
+    "add_split": "Logikgatter",
+    "add_trigger": "Trigger-Knoten",
+    "sink": "Diagramm-Export",
+    "help_wiki": "Dokumentation / Wiki",
+    "help_wiki_tooltip": "Projekt-Wiki öffnen"
+  },
+  "info": {
+    "information": "Über",
+    "shortcuts": "Tastenkürzel",
+    "tutorials": "Tutorials",
+    "change_theme": "Design ändern"
+  },
+  "status": {
+    "default": "FloWorks  |  Scrollen: Zoom  |  Mittlere Maustaste: Verschieben  |  Rechtsklick auf Knoten: Optionen",
+    "no_nodes": "Bereit. Wählen Sie Knoten aus der Symbolleiste.",
+    "how_to_connect": "Strg+Klick auf den Ausgangsanschluss eines Knotens, dann auf den Eingangsanschluss eines anderen Knotens klicken.",
+    "connecting": "Verbinden… Klicken Sie auf einen anderen Knoten oder Anschluss.",
+    "connection_created": "Verbindung hergestellt.",
+    "flow_executed": "Ablauf erfolgreich ausgeführt.",
+    "flow_error": "Fehler bei der Ausführung des Ablaufs.",
+    "saved": "Diagramm gespeichert: {path}",
+    "loaded": "Diagramm geladen: {path}",
+    "new_file": "Neues Diagramm erstellt",
+    "example_loaded": "Beispiel geladen."
+  },
+  "errors": {
+    "save_failed": "Fehler beim Speichern: {error}",
+    "load_failed": "Fehler beim Laden: {error}",
+    "load_example_failed": "Beispiel konnte nicht geladen werden: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "Knoten löschen",
+      "connect": "Knoten verbinden",
+      "disconnect": "Knoten trennen",
+      "setup": "Einrichten",
+      "trigger": "Trigger",
+      "generate": "Erzeugen",
+      "edit_script": "Skript bearbeiten",
+      "edit_input": "Eingabe bearbeiten",
+      "help": "Information"
+    },
+    "graph_union": {
+      "title": "Diagramm-Vereinigung",
+      "tooltip": "Gruppiert mehrere Signale als unabhängige Reihen für überlagerte Darstellung.",
+      "num_inputs_label": "Anzahl der Eingänge (1-8):",
+      "config_title": "Diagramm-Vereinigung konfigurieren",
+      "status": {
+        "ready": "Bereit"
+      },
+      "ports": {
+        "signal_1": "Signal 1",
+        "signal_2": "Signal 2",
+        "signal_3": "Signal 3",
+        "signal_4": "Signal 4",
+        "signal_5": "Signal 5",
+        "signal_6": "Signal 6",
+        "signal_7": "Signal 7",
+        "signal_8": "Signal 8",
+        "series_out": "Ausgang"
+      },
+      "menu": {
+        "configure": "Konfigurieren…"
+      },
+      "help_title": "Hilfe – Diagramm-Vereinigung",
+      "help_html": "<h3>🔗 Diagramm-Vereinigungsknoten</h3><p>Empfängt mehrere Signale und behält sie als unabhängige Reihen für die überlagerte Darstellung, ohne sie zu verketten.</p><p>Rechtsklick auf den Knoten, um Eingänge dynamisch <b>hinzuzufügen oder zu entfernen</b> (bis zu 8).</p><p>Der Ausgang <code>Series</code> liefert die vollständige Reihenliste für die Visualisierung.</p>"
+    },
+    "tabular_inspector": {
+      "title": "Tabellarischer Dateninspektor",
+      "window_title": "Tabellarischer Inspektor",
+      "no_data": "Keine Daten",
+      "copy": "In die Zwischenablage kopieren",
+      "decimals": "Dezimalstellen:",
+      "col_names": "Spaltennamen (kommagetrennt, leer = automatisch):",
+      "tooltip": "Die Knotendateninspektion zeigt die an ihrem einzigen Eingangsanschluss empfangenen Daten als Tabelle an.",
+      "status": {
+        "no_data": "Keine Daten"
+      },
+      "menu": {
+        "view_table": "Tabelle anzeigen",
+        "configure": "Konfigurieren…"
+      },
+      "ports": {
+        "data": "Eingang"
+      },
+      "config_title": "Tabellarischen Inspektor konfigurieren",
+      "help_title": "Hilfe – Tabellarischer Inspektor",
+      "help_html": "<h3>📊 Tabellarischer Inspektorknoten</h3><p>Wie eine <b>Excel-Tabelle</b> zeigt dieser Knoten die an seinem einzigen Eingangsanschluss empfangenen Daten als Tabelle an.</p><p><b>Interpretationsregeln:</b></p><ul><li><b>Tupel/Liste von Arrays</b> (z. B. (x, y, Fs)) → jedes Array wird zu einer Spalte.</li><li><b>2D-NumPy-Array</b> → Zeilen × Spalten.</li><li><b>1D-Array oder Liste</b> → eine einzelne Spalte.</li><li><b>Skalar</b> → eine einzelne Zelle.</li></ul><p>Rechtsklick → <b>Tabelle anzeigen</b>, um den Inspektor zu öffnen. Verwenden Sie das Seitenpanel, um Dezimalstellen und benutzerdefinierte Spaltennamen (kommagetrennt) festzulegen.</p>"
+    },
+    "equation_solver": {
+      "title": "Gleichungslöser",
+      "tooltip": "Löser für lineare Gleichungssysteme",
+      "type_label": "Gleichungstyp:",
+      "type_linear_single": "Lineare Einzelgleichung",
+      "type_linear_system": "Lineares System 2×2",
+      "eq_format": "Format: a*x + b = c",
+      "eq1_label": "Gleichung 1 (Format: a*x + b*y = c):",
+      "eq2_label": "Gleichung 2:",
+      "examples": "Beispiele",
+      "sys_examples": "Systembeispiele",
+      "menu": {
+        "view_plot": "Lösungsdiagramm anzeigen",
+        "configure": "Gleichungen konfigurieren…",
+        "view_steps": "Lösungsschritte anzeigen…"
+      },
+      "ports": {
+        "output": "salida",
+        "steps": "pasos",
+        "solution": "y (m)"
+      },
+      "steps_title": "Lösungsschritte",
+      "no_steps": "Keine Lösungsschritte verfügbar.",
+      "config_title": "Gleichungslöser konfigurieren",
+      "help_title": "Hilfe – Gleichungslöser",
+      "plot_window_title": "Lösungsdiagramm",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "Exportieren…",
+      "export_title": "Diagramm exportieren",
+      "no_data_to_plot": "Keine Daten zum Darstellen",
+      "btn_step_by_step": "▶ Schritt für Schritt",
+      "step_anim_title": "Schritt für Schritt",
+      "step_anim_info": "In der Vollversion würde dies die grafische Konstruktion Schritt für Schritt zeigen.",
+      "error_no_equals": "Fehlendes '='-Zeichen in der Gleichung.",
+      "error_rhs_not_number": "Die rechte Seite der Gleichung ist keine gültige Zahl.",
+      "error_invalid_x_coef": "Ungültiger Koeffizient für x: '{coef}'. Überprüfen Sie die Syntax.",
+      "error_invalid_y_coef": "Ungültiger Koeffizient für y: '{coef}'. Überprüfen Sie die Syntax.",
+      "error_invalid_const": "Ungültiger konstanter Term: '{term}'. Verwenden Sie nur Zahlen und + oder - Zeichen.",
+      "error_zero_x": "Der Koeffizient von x ist null. Die Gleichung hat keine eindeutige Lösung.",
+      "no_plot_data_title": "Keine Daten",
+      "no_plot_data_message": "Es sind keine Lösungsdaten zum Darstellen vorhanden. Konfigurieren und lösen Sie zuerst.",
+      "preview": "Vorschau:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "Keine Lösung (oder noch nicht berechnet)",
+      "help_html": "<h3>🧮 Gleichungslöser-Knoten</h3>\n<p>Ermöglicht das <b>Lösen einfacher linearer Gleichungen oder 2×2-Gleichungssysteme</b> mit schrittweiser Darstellung des Verfahrens und dem Schnittpunktdiagramm.</p>\n\n<h4>⚙️ Verwendung</h4>\n<ol>\n <li><b>Rechtsklick</b> auf den Knoten → wählen Sie <i>\"Parameter bearbeiten\"</i>.</li>\n <li>Wählen Sie den <code>equation_type</code>: <code>linear_single</code> oder <code>linear_system</code>.</li>\n <li>Geben Sie die <code>equations</code> als Text ein (z. B. \"2x + 3 = 7\") oder eine Liste von Texten für Systeme.</li>\n <li>Der Knoten berechnet die Lösung und erzeugt automatisch die algebraischen Schritte.</li>\n</ol>\n\n<h4>📤 Ausgang</h4>\n<ul>\n <li><code>solution</code> → numerischer Wert (einfache Gleichung) oder Wörterbuch mit <code>x</code>, <code>y</code> (2×2-System).</li>\n <li><code>steps</code> → Text mit der schrittweisen algebraischen Aufschlüsselung.</li>\n</ul>\n\n<h4>⚠️ Hinweise</h4>\n<ul>\n <li><b>Pädagogischer Wert:</b> Bietet sofortiges algebraisches Feedback und verbindet die Lösung mit ihrer grafischen Darstellung (Schnittpunkt).</li>\n <li>Stellen Sie sicher, dass Sie die richtigen Variablen verwenden (<code>x</code> für einfache, <code>x</code> und <code>y</code> für Systeme).</li>\n <li>Wenn das System inkonsistent oder abhängig ist, wird dies in der Ausgabe <code>steps</code> angegeben.</li>\n</ul>\n\n<h4>💡 Beispiel</h4>\n<p>Konfigurieren Sie den Knoten als <code>linear_system</code> mit <code>[\"y = 2x\", \"y = -x + 3\"]</code>. Verbinden Sie <code>steps</code> mit einem Textviewer und visualisieren Sie den Schnittpunkt in einem Diagrammknoten.</p>\n<hr>\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>mathematischer Verarbeitungsfluss</b>.</p>\n\n<pre>\nGleichung → Lösung → Visualisierung\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(Algebra ↔ Geometrie)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nParameter → Verarbeitung (Löser) → Visualisierung (Diagramm/Text)\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nParameter (Gleichungen) → EquationSolver → Diagramm (Schnittpunkt) + Text (Schritte)\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "Kinematik",
+      "tooltip": "Kinematik-Simulator: freier Fall und Wurfbewegung",
+      "ports": {
+        "x": "x(m) vs. t(s)",
+        "y": "y(m) vs. t(s)",
+        "vx": "vx(m/s) vs. t(s)",
+        "vy": "vy(m/s) vs. t(s)",
+        "speed": "Geschwindigkeit(m/s) vs. t(s)",
+        "energy_kinetic": "kinetische Energie(J) vs. t(s)",
+        "energy_potential": "potenzielle Energie(J) vs. t(s)",
+        "ground_contact": "Bodenkontakt vs. t(s)"
+      },
+      "status": {
+        "ready": "Bereit"
+      },
+      "config_title": "Kinematik konfigurieren",
+      "menu": {
+        "configure": "Konfigurieren…",
+        "generate": "Erzeugen",
+        "show_output": "Ausgang anzeigen",
+        "trajectory": "Trajektorie (y vs. x)",
+        "y_t": "Vertikale Position y(t)",
+        "vy_t": "Vertikale Geschwindigkeit vy(t)",
+        "speed_t": "Geschwindigkeit |v|(t)",
+        "display": "Visualisierung"
+      },
+      "group_ic": "Anfangsbedingungen",
+      "group_env": "Umgebung",
+      "group_sim": "Simulation",
+      "group_presets": "Voreinstellungen",
+      "help_title": "Hilfe – Kinematik",
+      "help_html": "<h3>🚀 Kinematik-Labor</h3><p>Simuliert <b>Wurfbewegung</b> und <b>freien Fall</b> unter konstanter Schwerkraft. Keine Eingänge erforderlich; erzeugt Signale aus Anfangsbedingungen.</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 Hauptausgänge (Tupel Zeit vs. Größe)</h4><p>Jeder Anschluss liefert ein Tupel <code>(t, Variable)</code>, bereit zum Anschluss an ein Diagramm oder einen anderen Knoten. Die Zeit ist bereits als X-Achse enthalten.</p><ul><li><code>x</code> → (t, horizontale Position) [m]</li><li><code>y</code> → (t, vertikale Position) [m]</li><li><code>vx</code> → (t, horizontale Geschwindigkeit) [m/s]</li><li><code>vy</code> → (t, vertikale Geschwindigkeit) [m/s]</li><li><code>speed</code> → (t, Geschwindigkeit |v|) [m/s]</li></ul><h4>⚡ Optionale Ausgänge (Energien anzeigen aktivieren)</h4><ul><li><code>energy_kinetic</code> → (t, Ec = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, 1.0 wenn y≤0, 0.0 in der Luft)</li></ul><h4>🎨 Interne Anzeigekanäle</h4><p>Ändern Sie im Kontextmenü, was im Hauptdiagramm angezeigt wird:</p><ul><li><b>Trajektorie</b> (y vs. x) → räumliche Parabel</li><li><b>y(t)</b>, <b>vy(t)</b>, <b>|v|(t)</b> → zeitliche Entwicklung</li></ul><h4>💡 Typische Verbindungen</h4><ul><li><b>Höhe vs. Zeit:</b> Verbinden Sie <code>y</code> mit einem Diagramm (t ist bereits enthalten)</li><li><b>Geschwindigkeit vs. Zeit:</b> Verbinden Sie <code>speed</code> mit einem Diagramm</li><li><b>Räumliche Trajektorie:</b> Verbinden Sie <code>x</code> → Diagramm-X-Achse, <code>y</code> → Diagramm-Y-Achse</li><li><b>Aufprall:</b> Verbinden Sie <code>ground_contact</code> mit einem Logikknoten oder einer LED</li><li><b>Energie:</b> Addieren Sie <code>energy_kinetic</code> + <code>energy_potential</code>, um die Erhaltung zu sehen</li></ul><h4>⚡ Tastenkürzel</h4><ul><li><b>Doppelklick</b> → diese Hilfe</li><li><b>Rechtsklick</b> → konfigurieren / erzeugen</li><li><b>GENERATE-Schaltfläche</b> → simuliert und öffnet die Animation</li></ul><hr><p><b>Status:</b> -- | <b>Voreinstellung:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "Funktionen",
+      "tooltip": "Mathematische Funktionen mit numerischer Analyse erzeugen und visualisieren",
+      "ports": { "signal": "Signal" },
+      "status": { "ready": "Bereit" },
+      "menu": { "configure": "Konfigurieren…", "show_table": "Wertetabelle anzeigen", "generate": "Erzeugen", "show_limit": "Grenzwert anzeigen", "show_derivative": "Ableitung anzeigen" },
+      "config_title": "Funktion festlegen",
+      "cfg": { "expr": "Ausdruck:", "presets": "Voreinstellungen:", "piecewise": "Stückweise Funktion aktivieren", "group_func": "Funktionsgruppe", "group_dom": "Definitionsbereich", "group_viz": "Visualisierungsgruppe" },
+      "table_title": "Wertetabelle"
+    },
+    "signal_source": {
+      "title": "Erweiterte Signalquelle",
+      "tooltip": "Erweiterte Signalquelle",
+      "load_signal": "Signal aus Datei laden…",
+      "load_file_title": "Signalsdatei laden",
+      "ports": {
+        "out": "Ausgang",
+        "trigger_in": "Trigger-Eingang",
+        "trigger_out": "Trigger-Ausgang"
+      },
+      "status": {
+        "no_data": "Keine Daten"
+      },
+      "configure": "Konfigurieren…",
+      "generate": "Signal erzeugen",
+      "help_title": "Hilfe – Signalquelle",
+      "help_html": "<h3>🎛️ Signalquellen-Knoten</h3>\n<p>Erzeugt <b>benutzerdefinierte Signale</b> aus einer Vielzahl von <b>voreingestellten Wellenformen</b> oder einer vom Benutzer geschriebenen <b>mathematischen Formel</b>. Die Ausgabe ist immer ein Tupel <code>(time, amplitude)</code>, bereit für die Weiterverarbeitung.</p>\n\n<h4>📤 Ausgang</h4>\n<p><code>out</code> → Tupel <code>(t, y)</code>.</p>\n\n<h4>⚙️ Betriebsarten</h4>\n<ul>\n    <li><b>Voreinstellung:</b> Wählen Sie aus Sinus, Rechteck, Rampe, Impuls, Rauschen, DC, Dreieck, Sägezahn, sinc, Gauß, Exponential, Chirp. Alle Parameter (Frequenz, Amplitude, Offset, Phase, Tastverhältnis, Symmetrie usw.) sind im Konfigurationsdialog einstellbar.</li>\n    <li><b>Formel:</b> Schreiben Sie einen <b>freien mathematischen Ausdruck</b> mit <code>t</code> (Zeit) und benutzerdefinierten Variablen (z. B. <code>amp * sin(2*pi*freq*t) + offset</code>). Die Variablen werden in einer Tabelle definiert und können beliebig hinzugefügt, entfernt oder geändert werden. Die Auswertung ist sicher und auf mathematische Operationen beschränkt.</li>\n</ul>\n\n<h4>🖱️ Interaktion</h4>\n<ul>\n    <li><b>Doppelklick</b> auf den Knoten → öffnet den Konfigurationsdialog mit drei Registerkarten (Voreinstellung, Formel, Erweitert).</li>\n    <li><b>Klick</b> auf den Knoten → zeichnet das aktuelle Signal im Hauptdiagramm.</li>\n    <li><b>Rechtsklick</b> → Kontextmenü zum erneuten Erzeugen, Konfigurieren oder Löschen des Knotens.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → FFT → Filter → Summierer → Diagramm\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+      "title": "Signalkonfiguration",
+      "waveform": "Wellenform",
+      "frequency": "Frequenz",
+      "amplitude": "Amplitude",
+      "offset": "Offset",
+      "phase": "Phase",
+      "symmetry": "Symmetrie",
+      "direction": "Richtung",
+      "up": "Aufwärts",
+      "down": "Abwärts",
+      "stdev": "Standardabweichung",
+      "mean": "Mittelwert",
+      "lobes": "Keulen",
+      "sigma": "Sigma",
+      "mu": "My",
+      "tau": "Tau",
+      "exp_type": "Typ",
+      "rise": "Anstieg",
+      "fall": "Abfall",
+      "f0": "Startfrequenz",
+      "f1": "Endfrequenz",
+      "chirp_method": "Methode",
+      "linear": "linear",
+      "logarithmic": "logarithmic",
+      "tab_preset": "Voreinstellung",
+      "tab_formula": "Formel",
+      "tab_advanced": "Erweitert",
+      "preview": "Vorschau",
+      "apply": "Anwenden",
+      "duration": "Dauer",
+      "sample_rate": "Abtastrate",
+      "sampling_note": "0 = automatisch",
+      "auto_generate": "Automatisch erzeugen",
+      "time_label": "Zeit (s)",
+      "amplitude_label": "Amplitude",
+      "formula_expr": "Formel ('t' als Zeitvariable verwenden):",
+      "variables": "Variablen:",
+      "var_name": "Name",
+      "var_value": "Wert",
+      "add_var": "Variable hinzufügen",
+      "remove_var": "Ausgewählte entfernen",
+      "auto": "Auto",
+      "basic_params": "Basiseinstellungen",
+      "carrier_freq": "Trägerfrequenz",
+      "mod_freq": "Modulationsfrequenz",
+      "mod_depth": "Modulationstiefe",
+      "deviation": "Abweichung",
+      "heart_rate": "Herzfrequenz",
+      "rise_time": "Anstiegszeit",
+      "fall_time": "Abfallzeit",
+      "quick_insert": "Schnellfunktionen",
+      "advanced": {
+        "modulation": "Modulation",
+        "mod_enable": "Modulation aktivieren",
+        "mod_type": "Modulationstyp",
+        "mod_freq": "Modulationsfrequenz",
+        "mod_depth": "Modulationstiefe",
+        "noise_group": "Rauschen",
+        "noise_enable": "Rauschen hinzufügen",
+        "noise_amp": "Rauschamplitude",
+        "auto_generate": "Änderungen automatisch anwenden",
+        "auto_generate_tooltip": "Wenn aktiviert, wird jede Parameteränderung sofort auf den Knoten angewendet. Wenn deaktiviert, drücken Sie OK zum Anwenden."
+      },
+      "gamma": "Gamma (Breite)",
+      "window_type": "Fenstertyp",
+      "quadratic": "quadratic",
+      "hyperbolic": "hyperbolic",
+      "hanning": "Hanning",
+      "hamming": "Hamming",
+      "blackman": "Blackman",
+      "bartlett": "Bartlett",
+      "kaiser": "Kaiser",
+      "noise_type": "Rauschtyp",
+      "gaussian": "Gaußsch",
+      "uniform": "Gleichverteilt",
+      "pink": "Rosa (1/f)",
+      "brown": "Braunsch (1/f²)",
+      "blue": "Blau (f)",
+      "impulse": "Impuls",
+      "pulse_shape": "Impulsform",
+      "rect": "Rechteckig",
+      "raised_cosine": "Raised Cosine",
+      "polynomial": "PRBS-Polynom",
+      "bit_rate": "Bitrate",
+      "symbol_rate": "Symbolrate",
+      "symbol_sequence": "Symbolfolge",
+      "bit_sequence": "Bitfolge",
+      "multitone_hint": "Frequenzen (Hz, kommagetrennt):",
+      "frequencies": "Frequenzen",
+      "amplitudes": "Amplituden",
+      "phases": "Phasen",
+      "step_time": "Sprungzeit",
+      "impulse_time": "Impulszeit",
+      "f_start": "Startfrequenz",
+      "f_end": "Endfrequenz",
+      "f2": "Frequenz 2",
+      "noise_level": "Rauschpegel",
+      "duty_cycle": "Tastverhältnis (%)",
+      "signal_sine": "Sinus",
+      "signal_square": "Rechteck",
+      "signal_ramp": "Rampe",
+      "signal_pulse": "Impuls",
+      "signal_noise": "Rauschen",
+      "signal_dc": "DC",
+      "signal_triangle": "Dreieck",
+      "signal_sawtooth": "Sägezahn",
+      "signal_sinc": "Sinc",
+      "signal_gaussian": "Gauß",
+      "signal_exponential": "Exponential",
+      "signal_chirp": "Chirp",
+      "signal_am": "AM",
+      "signal_fm": "FM",
+      "signal_ecg": "EKG",
+      "signal_trapezoidal": "Trapezförmig",
+      "signal_lorentzian": "Lorentz",
+      "signal_window": "Fenster",
+      "signal_multitone": "Mehrton",
+      "signal_ask": "ASK",
+      "signal_fsk": "FSK",
+      "signal_psk": "PSK",
+      "signal_pwm": "PWM",
+      "signal_pam": "PAM",
+      "signal_prbs": "PRBS",
+      "signal_step": "Sprung",
+      "signal_impulse": "Impuls",
+      "signal_sweep_sine": "Sinus-Sweep",
+      "signal_cardiac": "Kardial",
+      "signal_eeg": "EEG",
+      "signal_beat": "Schlag"
+    },
+    "input": {
+      "help_html": "<h3>📂 Eingabeknoten (Datenladen)</h3>\n<p>Ermöglicht das <b>Laden von Daten aus einer .npz-Datei</b> (NumPy-Format) und deren Weiterleitung in den Workflow.</p>\n\n<h4>⚙️ Verwendung</h4>\n<ol>\n    <li><b>Rechtsklick</b> auf den Knoten → wählen Sie <i>\"Eingabe bearbeiten\"</i>.</li>\n    <li>Wählen Sie eine <code>.npz</code>-Datei, die einen Schlüssel namens <code>datay</code> enthält.</li>\n    <li>Das Array wird intern gespeichert und automatisch durch den Ablauf weitergegeben.</li>\n</ol>\n\n<h4>📤 Ausgang</h4>\n<p><code>out</code> → der Inhalt von <code>datay</code> aus der geladenen Datei.</p>\n\n<h4>⚠️ Hinweise</h4>\n<ul>\n    <li>Nur <b>.npz</b>-Dateien mit dem Schlüssel <code>datay</code> werden akzeptiert.</li>\n    <li>Wenn die Datei ungültig ist, wird ein Fehler in der Konsole angezeigt.</li>\n    <li>Nach dem Laden einer Datei läuft der Ablauf automatisch.</li>\n</ul>\n\n<h4>💡 Beispiel</h4>\n<p>Laden Sie eine Datei mit Sensordaten und verbinden Sie sie dann mit einem \"Filter\"- oder \"Visualisierer\"-Knoten.</p>\n<hr>\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → FFT → Filter → Summierer → Diagramm\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "Lambda-Funktion",
+      "help_html": "<h3>🔧 Allgemeiner Verarbeitungsknoten</h3>\n<p>Wendet eine <b>benutzerdefinierte Funktion</b> auf die Eingabedaten an. Dies ist die Grundlage für die Erstellung mathematischer Operationen, Transformationen usw.</p>\n\n<h4>📥 Eingang</h4>\n<p><code>data_in</code> → kann eine Zahl, ein Tupel (x, y) oder ein beliebiges Objekt sein.</p>\n\n<h4>📤 Ausgang</h4>\n<p><code>out</code> → das Ergebnis der Anwendung der Funktion auf die Eingabe.</p>\n\n<h4>🧠 Verhalten nach Eingabetyp</h4>\n<ul>\n    <li>Wenn die Eingabe ein <b>Tupel aus zwei Elementen</b> (x, y) ist, erhält die Funktion das Tupel und muss ein anderes Tupel oder einen Wert zurückgeben. Beispiel: <code>lambda xy: (xy[0], xy[1]*2)</code>.</li>\n    <li>Wenn die Eingabe ein <b>einfacher Wert</b> ist, erhält die Funktion diesen Wert. Beispiel: <code>lambda x: x**2</code>.</li>\n    <li>Wenn die Eingabe <code>None</code> ist, ist die Ausgabe ebenfalls <code>None</code>.</li>\n</ul>\n\n<h4>⚙️ Anpassung</h4>\n<p>Die Funktion wird beim Erstellen des Knotens zugewiesen (z. B. im Code). In zukünftigen Versionen können Sie sie möglicherweise über die Oberfläche bearbeiten.</p>\n\n<h4>💡 Beispiele</h4>\n<ul>\n    <li><b>Eine Zahl verdoppeln:</b> <code>lambda x: x * 2</code></li>\n    <li><b>Komponenten eines Tupels summieren:</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>Dasselbe Tupel zurückgeben (Passthrough):</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>Angewendete Funktion:</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → FFT → Filter → Summierer → Diagramm\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "Logikgatter",
+      "tooltip": "Logische, Vergleichs- und Maskierungsoperationen auf Signalen (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "Eingang 1",
+        "in2": "Eingang 2",
+        "out": "Ausgang"
+      },
+      "config_title": "Logikgatter konfigurieren",
+      "op_label": "Operation:",
+      "thr_label": "Schwelle / Pegel:",
+      "inv_label": "Ausgang invertieren",
+      "help_title": "Hilfe – Logikgatter",
+      "help_html": "<h3>🎛️ Logikgatter / Komparator</h3>\n<p>Bewertet, vergleicht oder maskiert zwei Eingangssignale Sample für Sample, um Trigger, logische Masken oder bedingte Ausgaben zu erzeugen.</p>\n\n<h4>📥 Eingänge</h4>\n<ul>\n<li><code>in1</code> → Hauptsignal (Operand A).</li>\n<li><code>in2</code> → Referenz, Maske oder zweiter Operand (Operand B).</li>\n</ul>\n\n<h4>📤 Ausgang</h4>\n<ul>\n<li><code>out</code> → Verarbeitungsergebnis. Boolesche Operationen geben <code>0.0</code> oder <code>1.0</code> zurück. Komparatoren/Schwellen erzeugen Masken oder begrenzte Signale.</li>\n</ul>\n\n<h4>📐 Diagramm</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 Mentales Modell</h4>\n<p>Dieser Knoten fungiert als <b>sampleweiser Entscheidungsmotor</b>. Er bewertet jeden Punkt unabhängig und wandelt analoge Wellenformen in digitale Steuersignale, Aktivierungsmasken oder logische Ströme um.</p>\n\n<h4>📐 Datenrepräsentation</h4>\n<pre>\nEingänge:\n(x, y1) & (x, y2) → 1D-Arrays (auf das kürzeste gekürzt bei Abweichung)\n\nAusgang:\n(x, y_out) → typischerweise binär (0/1) oder maskiert\n</pre>\n\n<h4>🔁 Typisches Anwendungsmuster</h4>\n<pre>\n[Generator] → [Logikgatter] → [Trigger / Diagramm]\n\nBeispiel:\nSinus (in1) + Rechteck (in2) → [AND] → synchronisierter Impulszug\nSignal (in1) → [THRESHOLD] → 0/1-Maske zur Spitzenerkennung\nSignal (in1) + Referenz (in2) → [MASK] → dämpft in1, wenn in2 ≤ 0\n</pre>\n\n<h4>⚠️ Häufige Fehler</h4>\n<ul>\n<li>Erwartung, dass logische Operationen die Amplitude erhalten → tun sie nicht (Umwandlung in 0/1). Verwenden Sie stattdessen <code>LEVEL</code> oder <code>MASK</code>.</li>\n<li>Verbindung von Signalen sehr unterschiedlicher Länge → Kürzung auf das Minimum.</li>\n<li>Verwendung von <code>EQ</code> bei Fließkommazahlen → Verlässt sich auf implizite Toleranz; runden Sie vorher, falls erforderlich.</li>\n</ul>\n<hr><hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → FFT → Filter → Summierer → Diagramm\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → schnelle Verbindung.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet diese Hilfe.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, konfigurieren).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "sum": {
+      "title": "Arithmetik",
+      "tooltip": "Führt arithmetische Operationen zwischen zwei Signalen aus.",
+      "operation": {
+        "sum": "Summe",
+        "sub": "Subtraktion",
+        "mul": "Multiplikation",
+        "div": "Division"
+      },
+      "ports": {
+        "out": "Ausgang",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "*A",
+        "port_b_mul": "*B",
+        "port_a_div": "Zähler",
+        "port_b_div": "Nenner"
+      },
+      "menu": {
+        "operation": "Operation"
+      },
+      "help_title": "Hilfe – Arithmetik-Knoten",
+      "help_html": "<h3>➕ Summen-/Arithmetikknoten</h3>\n<p>Führt arithmetische Operationen zwischen zwei Signalen (Arrays oder numerische Werte) aus.</p>\n\n<h4>📥 Eingänge</h4>\n<ul>\n    <li><code>port_a</code> (oben): erster Operand (A).</li>\n    <li><code>port_b</code> (unten): zweiter Operand (B).</li>\n</ul>\n\n<h4>📤 Ausgang</h4>\n<p><code>out</code> → Ergebnis der Operation (A op B).</p>\n\n<h4>⚙️ Verfügbare Operationen (Rechtsklick → Operation)</h4>\n<ul>\n    <li><b>Summe (+)</b>: A + B</li>\n    <li><b>Subtraktion (−)</b>: A − B</li>\n    <li><b>Multiplikation (×)</b>: A * B</li>\n    <li><b>Division (÷)</b>: A / B (schützt vor Division durch Null).</li>\n</ul>\n\n<h4>📐 Diagramm</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 Mentales Modell</h4>\n<p>Dieser Knoten ist ein <b>Vektoroperator</b>.\nEr arbeitet elementweise auf Signalen.</p>\n\n<h4>📐 Vektordarstellung</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\nAusgang:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 Visuelles Beispiel</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\nSumme:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 Anwendungsstrategien</h4>\n<ul>\n<li><b>Normalisierung:</b> Division durch das Maximum</li>\n<li><b>Skalierung:</b> Multiplikation mit einer Konstante</li>\n<li><b>Signalmischung:</b> Summe von Wellen</li>\n<li><b>Kompensation:</b> A - B zum Entfernen von Rauschen</li>\n</ul>\n\n<h4>⚠️ Häufige Fehler</h4>\n<ul>\n<li>X-Achsen nicht ausgerichtet → inkonsistente Ergebnisse</li>\n<li>Division durch Werte nahe null → Instabilität</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → FFT → Filter → Summierer → Diagramm\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "script": {
+      "title": "Skript",
+      "tooltip": "Python-Skriptknoten",
+      "ports": {
+        "data_in": "Dateneingang",
+        "loop_in": "Schleifeneingang",
+        "out": "Ausgang"
+      },
+      "menu": {
+        "edit": "Bearbeiten",
+        "run": "Skript ausführen"
+      },
+      "status_ready": "Bereit",
+      "status_error": "Fehler",
+      "edit_script": "Skript bearbeiten",
+      "tooltip_x": "NumPy-Array: X-Achse (Zeit, Frequenz usw.)",
+      "tooltip_y": "NumPy-Array: aktuelle Signalwerte",
+      "tooltip_param": "Iterationsparameter (vom TriggerNode) oder None",
+      "help_title": "Hilfe – Skriptknoten",
+      "help_html": "<h3>📜 Benutzerdefinierter Skriptknoten</h3> <p>Ermöglicht das Schreiben von Python-Code zur beliebigen Signalverarbeitung.</p> <h4>📥 Eingänge</h4> <ul> <li><code>data_in</code> → Hauptsignal (x, y) oder einfaches Array.</li> <li><code>loop_in</code> → optionaler Eingang zum Empfang von Parametern von einem <b>TriggerNode</b> (Wert <code>param</code>).</li> <li>Dynamische Anschlüsse <code>@input name</code> → zusätzliche im Skript definierte Eingänge.</li> </ul> <h4>📤 Ausgänge</h4> <ul> <li><code>out</code> → vom Skript erzeugtes Tupel (x_new, y_new) (Batch-Modus).</li> <li>Dynamische Anschlüsse <code>@output name</code> → zusätzliche im Skript definierte Ausgänge.</li> </ul> <h4>✏️ Skriptbearbeitung</h4> <p>Rechtsklick → <b>Skript bearbeiten</b>, um den Editor mit Syntaxhervorhebung zu öffnen.</p> <p>Enthält Autovervollständigung, Vorlagen, konfigurierbare Parameter (<code>@param</code>) und externe Ausführung (alternatives Python).</p> <hr> <h4>🧠 Verfügbare Variablen (traditioneller Batch-Modus)</h4> <ul> <li><code>x</code> : NumPy-Array – Zeit- oder Frequenzachse</li> <li><code>y</code> : NumPy-Array – Signalwerte</li> <li><code>param</code> : float (optional) – Wert von <code>loop_in</code> (TriggerNode)</li> <li><code>persist</code> : dict – zwischen Ausführungen desselben Knotens persistent (nützlich für Akkumulatoren)</li> <li><code>np</code>, <code>scipy</code>, <code>sympy</code> – vorab importierte Bibliotheken</li> </ul> <h4>🧩 Mentales Modell</h4> <p> Dieser Knoten ist ein <b>Block für beliebige Transformationen</b>. Hier definieren Sie Ihre eigene Physik, Mathematik oder Logik. </p> <h4>📐 Erwartete Form (Batch)</h4> <pre> Eingang: x → Vektor (Zeit/Frequenz) y → Vektor (Werte) Ausgang: (x_mod, y_mod) </pre> <h4>🧠 Leistungsfähigere Beispiele</h4> <h5>1. Frequenzabhängige Verstärkung</h5> <pre> gain = np.exp(-x * 0.01) return (x, y * gain) </pre> <h5>2. Spitzenerkennung</h5> <pre> y_mod = np.where(y > 0.8, y, 0) return (x, y_mod) </pre> <h5>3. Modulation</h5> <pre> carrier = np.sin(2*np.pi*1000*x) return (x, y * carrier) </pre> <h5>4. param verwenden (Sweep)</h5> <pre> factor = param if param is not None else 1.0 return (x, y * factor) </pre> <h5>5. Akkumulator mit persist</h5> <pre> persist[\"counter\"] = persist.get(\"counter\", 0) + 1 return (x, y + persist[\"counter\"] * 0.1) </pre> <hr> <h4>🔁 Fortgeschrittene Strategie</h4> <pre> Trigger → Script(param) → Sum → Visualization → Ermöglicht automatische Sweeps </pre> <h4>⚠️ Häufige Fehler</h4> <ul> <li>Kein Tupel (x, y) im Batch-Modus zurückgeben.</li> <li>Nicht berücksichtigen, dass <code>param</code> None sein kann.</li> <li>Versuch, die Schaltfläche \"Test\" bei Streaming- oder GPU-Skripten zu verwenden (verwenden Sie den echten Ablauf).</li> </ul><hr> <hr> <h3>🧠 Wie man über dieses System nachdenkt</h3> <p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p> <pre> Daten → Transformation → Ergebnis </pre> <h4>📐 Grundregel</h4> <pre> Alles ist: (x, y) </pre> <h4>🔁 Universelles Muster</h4> <pre> Eingang → Verarbeitung → Visualisierung </pre> <h4>🧪 Vollständiges Beispiel</h4> <pre> Oszilloskop → FFT → Filter → Summierer → Diagramm </pre> <hr> <h4>⚡ Tastenkürzel und Tricks</h4> <ul> <li><b>Strg + Klick</b> auf einen Anschluss → Anschluss zum schnellen Verbinden auswählen.</li> <li><b>Doppelklick</b> auf den Knoten → dieses Hilfefenster öffnen.</li> <li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li> <li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li> </ul>"
+    },
+    "trigger": {
+      "title": "Trigger",
+      "tooltip": "Iterations- und Akkumulationsknoten",
+      "ports": {
+        "data_in": "Dateneingang",
+        "trigger_in": "Trigger-Eingang",
+        "loop_out": "Schleifenausgang",
+        "out": "Ausgang"
+      },
+      "state": {
+        "idle": "WARTEN",
+        "running": "ITERATION {iteration}/{total}",
+        "done": "ABGESCHLOSSEN",
+        "running_count": "LÄUFT {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "Konfigurieren…"
+      },
+      "accumulate": {
+        "accumulate": "Akkumulationsmodus",
+        "stack": "Stapel",
+        "average": "Mittelwert",
+        "max": "Max",
+        "min": "Min",
+        "last": "Letzte Aufnahme"
+      },
+      "config_title": "Trigger-Knoten konfigurieren",
+      "n_iter": "Iterationen",
+      "reset": "Iteration zurücksetzen",
+      "help_title": "Hilfe – Trigger-Knoten",
+      "help_html": "<h3>⏺ Trigger-Knoten (Batch-Aufnahme)</h3>\n<p>Erfasst und akkumuliert Signale iterativ, aktiviert durch ein externes Triggersignal (<code>trigger_in</code>). Ideal für wiederholte Experimente, Rauschmittelung oder den Vergleich von Spuren über die Zeit.</p>\n\n<h4>📥 Eingänge</h4>\n<ul>\n    <li><code>data_in</code> → Hauptsignal (x, y), das erfasst werden soll.</li>\n    <li><code>trigger_in</code> → Triggersignal. Jeder Impuls oder jede Aktivierung erfasst eine neue Spur in den internen Puffer.</li>\n</ul>\n\n<h4>📤 Ausgänge</h4>\n<ul>\n    <li><code>out</code> → nach Abschluss der programmierten Anzahl von Iterationen (<code>n_iter</code>) wird das akkumulierte Signal gemäß dem ausgewählten Modus ausgegeben.</li>\n</ul>\n\n<h4>⚙️ Konfiguration</h4>\n<p>Rechtsklick → <b>Konfigurieren</b>, um anzupassen:</p>\n<ul>\n    <li><b>Iterationen (N):</b> genaue Anzahl der Aufnahmen, die zur Erzeugung der Ausgabe erforderlich sind.</li>\n    <li><b>Akkumulation:</b> Modus zum Kombinieren der Aufnahmen: <i>Stapel, Mittelwert, Max, Min oder Letzte</i>.</li>\n</ul>\n\n<h4>🧠 Verhalten</h4>\n<ol>\n    <li>Der Knoten bleibt im Zustand <b>WARTEN</b> und wartet auf Daten an <code>data_in</code> und Impulse an <code>trigger_in</code>.</li>\n    <li>Wenn ein gültiger Trigger erkannt wird, speichert er das aktuelle Signal in seinen internen Puffer und zeigt <code>LÄUFT X/N</code> an.</li>\n    <li>Bei Erreichen von genau <b>N Iterationen</b> wird die akkumulierte Ausgabe erstellt, über <code>out</code> gesendet und der Puffer für das nächste Experiment automatisch geleert.</li>\n</ol>\n\n<h4>🧩 Mentales Modell</h4>\n<p>Dieser Knoten fungiert als <b>ereignisgesteuerter Batch-Recorder</b>. Entspricht einer Routine \"auf Trigger warten → aufzeichnen → bis N wiederholen\" im Labor.</p>\n\n<h4>📐 Stapelmodus</h4>\n<p>Wenn Sie <b>Stapel</b> wählen, werden Signale zu einem einzigen, durch <code>NaN</code> getrennten Array verkettet. Dies ermöglicht das Zeichnen aller Aufnahmen in einer Spur, ohne sie zu verbinden.</p>\n\n<h4>🔁 Beispielablauf</h4>\n<pre>\nGenerator/Oszilloskop → TriggerNode (N=5) → ScriptNode (optional) → Diagramm\n\nErgebnis:\n5 gestapelte Kurven (Stapel) oder deren Mittelwert (Mittelwert)\n</pre>\n\n<h4>🧠 Anwendungsfälle aus der Praxis</h4>\n<ul>\n<li>Mittelung verrauschter Signale</li>\n<li>Synchronisierte Aufnahme wiederholter Experimente</li>\n<li>Visueller Vergleich mehrerer Messungen</li>\n<li>Batch-Vorverarbeitung für statistische Analysen</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → TriggerNode → ScriptNode → Diagramm\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tipps</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt ihn schnell zum Verbinden aus.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (konfigurieren, löschen, verbinden/trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "generator": {
+      "title": "Generator",
+      "tooltip": "Signalgeneratorknoten",
+      "ports": {
+        "signal_out": "Signalausgang",
+        "trigger_out": "Trigger-Ausgang",
+        "trigger_in": "Trigger-Eingang",
+        "signal_in": "Signaleingang"
+      },
+      "status": {
+        "default": "FloWorks  |  Scrollen: Zoom  |  Mittlere Maustaste: Verschieben  |  Rechtsklick auf Knoten: Optionen",
+        "sim": "SIM",
+        "busy": "BESCHÄFTIGT",
+        "ready": "BEREIT"
+      },
+      "device_label": "GERÄT",
+      "channel_label": "KAN",
+      "gen_button": "GEN",
+      "setup_button": "SETUP",
+      "generate_action": "Signal erzeugen",
+      "help_title": "Hilfe – Generator",
+      "help_html": "<h3>📡 Signalgeneratorknoten</h3>\n<p>Erzeugt analoge Signale und sendet sie an einen echten Funktionsgenerator (SDG) oder simuliert dessen Ausgabe intern.</p>\n\n<h4>📥 Eingangsanschlüsse</h4>\n<ul>\n    <li><code>trigger_in</code> (links) → empfängt ein Signal zum Auslösen der Erzeugung (EXT-Modus).</li>\n    <li><code>signal_in</code> (links) → empfängt ein externes Signal (t, y), das als beliebige Wellenform an den Generator gesendet wird (EXT-Modus).</li>\n</ul>\n\n<h4>📤 Ausgangsanschlüsse</h4>\n<ul>\n    <li><code>signal_out</code> (rechts) → gibt das erzeugte Signal (t, y) zur Visualisierung oder Weiterverarbeitung aus.</li>\n    <li><code>trigger_out</code> (rechts) → Triggersignal bei Abschluss der Erzeugung (optional).</li>\n</ul>\n\n<h4>⚙️ Betriebsarten</h4>\n<ul>\n    <li><b>INT</b> (intern): Das Signal wird gemäß den internen Parametern des Knotens (Frequenz, Amplitude, Wellenform usw.) erzeugt und an die Hardware (oder Simulation) gesendet.</li>\n    <li><b>EXT</b> (extern): Der Knoten erwartet ein benutzerdefiniertes Signal über <code>signal_in</code>. Wenn Sie <b>GEN</b> drücken, wird dieses Signal als beliebige Wellenform in den Generator hochgeladen.</li>\n</ul>\n\n<h4>🔧 Konfiguration</h4>\n<p>Klicken Sie auf die Schaltfläche <b>SETUP</b> (oder Rechtsklick → \"Controller öffnen\"), um anzupassen:</p>\n<ul>\n    <li>Wellenform: Sinus, Rechteck, Rampe, Impuls, Rauschen, DC, Dreieck, Sägezahn, sinc, Gauß, Exponential, Chirp.</li>\n    <li>Frequenz, Amplitude, Offset, Phase, Tastverhältnis usw.</li>\n    <li>Ausgangskanal (C1 oder C2).</li>\n    <li>Gerät: \"sdg\" (echte Hardware) oder \"simulation\" (nur interne Simulation).</li>\n</ul>\n\n<h4>▶️ Erzeugung</h4>\n<p>Klicken Sie auf die Schaltfläche <b>GEN</b> (oder Rechtsklick → \"Signal erzeugen\"), um die Ausgabe zu starten. Der Knoten sendet das Signal an die Hardware und gibt auch <code>signal_out</code> mit den erzeugten Daten für den restlichen Ablauf aus.</p>\n\n<h4>💡 Typisches Beispiel</h4>\n<ol>\n    <li>Konfigurieren Sie den Generator mit einer 1-kHz-Sinuswelle, 1 Vpp.</li>\n    <li>Verbinden Sie <code>signal_out</code> mit einem Oszilloskopknoten oder einem Visualisierer.</li>\n    <li>Drücken Sie <b>GEN</b> → das Signal erscheint auf dem physischen Kanal und auch im Diagramm.</li>\n</ol>\n\n<h4>⚠️ Hinweise</h4>\n<ul>\n    <li>Stellen Sie im EXT-Modus sicher, dass Sie zuerst <code>signal_in</code> mit einem Signal (t, y) verbinden, bevor Sie GEN drücken.</li>\n    <li>Wenn die Hardware nicht angeschlossen ist, verwendet der Knoten automatisch die Simulation.</li>\n    <li>Beliebige Wellenformen werden mit bis zu 524288 Punkten hochgeladen (je nach Modell).</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → FFT → Filter → Summierer → Diagramm\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "Oszilloskop",
+      "tooltip": "Oszilloskop-Aufnahmeknoten\n Doppelklick für Info",
+      "ports": {
+        "out_primary": "Primärausgang",
+        "out_secondary": "Sekundärausgang",
+        "trigger_out": "Trigger-Ausgang"
+      },
+      "status": {
+        "sim": "SIMULATION",
+        "capturing": "ERFASSE…",
+        "armed": "BEREIT",
+        "connected": "VERBUNDEN",
+        "disconnected": "GETRENNT"
+      },
+      "device_label": "GERÄT",
+      "channel_label": "KAN",
+      "lcr_label": "LCR",
+      "sim_label": "SIM",
+      "trig_button": "TRIG",
+      "setup_button": "SETUP",
+      "menu": {
+        "show_channel": "Kanal anzeigen"
+      },
+      "channel": {
+        "primary": "Primär (Z)",
+        "secondary": "Sekundär (θ)"
+      },
+      "trigger_action": "Aufnahme auslösen",
+      "help_title": "Hilfe – Oszilloskop",
+      "help_html": "<h3>📊 Oszilloskop-Knoten (Signalerfassung)</h3>\n<p>Erfasst reale Signale mit Hardware (SDS, LCR) oder erzeugt simulierte Daten zum Testen.</p>\n\n<h4>📤 Ausgangsanschlüsse</h4>\n<ul>\n    <li><code>out_primary</code> → Hauptsignal (Spannung vs. Zeit oder Impedanz Z für LCR).</li>\n    <li><code>out_secondary</code> → Sekundärsignal (Phase θ für LCR; für SDS nicht verwendet).</li>\n    <li><code>trigger_out</code> → gibt ein Triggersignal aus, wenn die Aufnahme abgeschlossen ist (nützlich zur Synchronisierung anderer Knoten).</li>\n</ul>\n\n<h4>🔘 Bedienelemente</h4>\n<ul>\n    <li><b>TRIG</b> → startet eine Aufnahme (Datenerfassung).</li>\n    <li><b>SETUP</b> → öffnet das Konfigurationspanel (Simulationsparameter oder Hardware-Controller).</li>\n    <li><b>Geräteauswahl</b> (unteres Kombinationsfeld) → wählen Sie zwischen SDS (echtes Oszilloskop), LCR (Impedanzmessgerät) oder Simulation.</li>\n</ul>\n\n<h4>⚙️ Betriebsarten</h4>\n<ul>\n    <li><b>SDS</b>: verbindet sich mit einem echten Oszilloskop (Siglent SDS). Der Kanal (C1..C4) kann über das Kontextmenü → \"Kanal anzeigen\" ausgewählt werden.</li>\n    <li><b>LCR</b>: verbindet sich mit einem LCR-Messgerät und liefert zwei Ausgänge: primär (Impedanz Z) und sekundär (Phasenwinkel θ).</li>\n    <li><b>Simulation</b>: erzeugt ein synthetisches Signal mit Rauschen, konfigurierbar über SETUP (Zeitbasis, Spannungsbereich, Triggerpegel, Abtastrate).</li>\n</ul>\n\n<h4>📈 Visualisierung</h4>\n<p>Der Knoten zeichnet das Signal nicht intern, kann aber mit einem Visualisierungs-Widget (wie <code>PlotWidget</code>) verbunden werden, um die erfassten Daten anzuzeigen.</p>\n\n<h4>💡 Anwendungsbeispiel</h4>\n<ol>\n    <li>Wählen Sie das Gerät (SDS) und verbinden Sie es physisch.</li>\n    <li>Klicken Sie auf TRIG, um eine Spur zu erfassen.</li>\n    <li>Das Signal ist an <code>out_primary</code> für andere Knoten verfügbar.</li>\n    <li>Bei Verwendung von LCR sind beide Ausgänge (Z und θ) verfügbar.</li>\n</ol>\n\n<h4>⚠️ Hinweise</h4>\n<ul>\n    <li>Im Hardware-Modus stellen Sie sicher, dass das Gerät angeschlossen und eingeschaltet ist.</li>\n    <li>Die Aufnahme läuft in einem separaten Thread, um die Oberfläche nicht zu blockieren.</li>\n    <li>Der Knoten fungiert als Datenquelle (Eingabeknoten) für den Ablauf.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → FFT → Filter → Summierer → Diagramm\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "spectral": {
+      "title": "Spektral",
+      "tooltip": "Spektrale Transformationen: FFT, Hilbert, Welch (PSD) und DCT",
+      "transform_type": "Transformation:",
+      "window_type": "Fenster:",
+      "nfft": "NFFT / Segment:",
+      "scale": "Skala:",
+      "detrend": "Trend entfernen:",
+      "normalize": "Normalisieren (Energie erhalten)",
+      "config_title": "Spektral konfigurieren",
+      "menu": {
+        "configure": "Konfigurieren…",
+        "show_output": "Ausgang anzeigen"
+      },
+      "channel": {
+        "magnitude": "Betrag",
+        "phase": "Phase"
+      },
+      "ports": {
+        "input": "Eingang",
+        "output": "Zeitausgang",
+        "magnitude": "Betrag",
+        "phase": "Phase"
+      },
+      "status": {
+        "no_data": "Keine Daten",
+        "ready": "Bereit",
+        "phase": "Phase"
+      },
+      "help_title": "Hilfe – Spektral",
+      "help_html": "<h3>📊 Spektralknoten (spektrale Transformationen)</h3>\n<p>Berechnet verschiedene Transformationen des Eingangssignals: <b>FFT</b>, <b>Hilbert</b>, <b>Welch (PSD)</b> und <b>DCT</b>.</p>\n\n<h4>📥 Eingang</h4>\n<p><code>input</code> → erwartet ein Tupel <code>(x, y)</code> oder ein 1D-Array.</p>\n\n<h4>📤 Ausgänge</h4>\n<ul>\n    <li><b>Zeitausgang</b> → Signal im Zeitbereich (nur bei Hilbert aktiv: Realteil des analytischen Signals).</li>\n    <li><b>Betrag</b> → je nach Modus:\n        <ul>\n            <li><b>FFT</b> → normalisiertes Betragsspektrum <code>(Frequenzen, Amplituden)</code>.</li>\n            <li><b>Hilbert</b> → Signaleinhüllende <code>(Zeit, Einhüllende)</code>.</li>\n            <li><b>Welch</b> → spektrale Leistungsdichte <code>(Frequenzen, PSD)</code>.</li>\n            <li><b>DCT</b> → Koeffizienten der diskreten Kosinustransformation <code>(Index, Koeffizienten)</code>.</li>\n        </ul>\n    </li>\n    <li><b>Phase</b> → Phasenwinkel in Radiant (FFT) oder Momentanphase (Hilbert). <i>Nicht verfügbar</i> für Welch oder DCT.</li>\n</ul>\n\n<h4>⚙️ Parameter</h4>\n<ul>\n    <li><b>Transformation</b> — wählen Sie zwischen FFT, Hilbert, Welch oder DCT.</li>\n    <li><b>Fenster</b> — Fensterfunktion aus <code>scipy.signal.windows</code> (Hann, Hamming, Blackman usw.).</li>\n    <li><b>NFFT / Segment</b> — FFT-Länge oder Welch-Segmentlänge. <code>Auto</code> verwendet die nächste Zweierpotenz.</li>\n    <li><b>Skala</b> — <code>linear</code> oder <code>dB</code> (20·log₁₀ für FFT/Hilbert/DCT, 10·log₁₀ für Welch).</li>\n    <li><b>Trend entfernen</b> — entfernt den konstanten Mittelwert oder linearen Trend vor der Verarbeitung.</li>\n    <li><b>Normalisieren</b> — passt das Fenster an, um die Energie zu erhalten.</li>\n</ul>\n\n<h4>🖱️ Interaktion</h4>\n<ul>\n    <li><b>Rechtsklick</b> → Kontextmenü (Konfigurieren, Anzeigekanal wählen).</li>\n    <li><b>Doppelklick</b> → öffnet dieses Hilfefenster.</li>\n    <li><b>Seitenpanel</b> — passen Sie Parameter in Echtzeit an; das Diagramm wird automatisch aktualisiert.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → Fenster → Spektral (FFT) → Filter → Diagramm\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tipps</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "ifft": {
+      "title": "IFFT",
+      "tooltip": "Inverse Fourier-Transformation (Zeitrekonstruktion)",
+      "fs": "Abtastfrequenz (fs):",
+      "nfft": "NFFT:",
+      "real_only": "Nur reale Ausgabe (irfft)",
+      "conjugate_symmetry": "Hermitesche Symmetrie erzwingen",
+      "normalize": "Durch N normalisieren",
+      "config_title": "IFFT konfigurieren",
+      "menu": {
+        "configure": "Konfigurieren…"
+      },
+      "ports": {
+        "magnitude": "Betrag",
+        "phase": "Phase",
+        "output": "Zeitausgang"
+      },
+      "status": {
+        "no_data": "Keine Daten",
+        "waiting_phase": "Phase=0 (angenommen)",
+        "ready": "Bereit"
+      },
+      "help_title": "Hilfe – IFFT",
+      "help_html": "<h3>🔁 IFFT-Knoten (inverse schnelle Fourier-Transformation)</h3>\n<p>Rekonstruiert ein Signal im Zeitbereich aus seinem Frequenzspektrum.</p>\n\n<h4>📥 Eingänge</h4>\n<ul>\n    <li><b>Betrag</b> → <code>(Frequenzen, Amplituden)</code> oder 1D-Array. <b>Erforderlich.</b></li>\n    <li><b>Phase</b> → <code>(Frequenzen, Winkel)</code> oder 1D-Array. <b>Optional.</b> Wenn nicht verbunden, wird die Phase als null angenommen.</li>\n</ul>\n\n<h4>📤 Ausgang</h4>\n<ul>\n    <li><b>Zeitausgang</b> → rekonstruiertes <code>(Zeit, Signal)</code>.</li>\n</ul>\n\n<h4>⚙️ Parameter</h4>\n<ul>\n    <li><b>fs</b> — Abtastfrequenz zum Aufbau der Zeitachse.</li>\n    <li><b>NFFT</b> — IFFT-Größe. <code>Auto</code> verwendet <code>2·(len(mag)-1)</code>.</li>\n    <li><b>Reale Ausgabe</b> — verwendet <code>irfft</code> (garantiert reale Ausgabe) oder <code>ifft</code> (komplex).</li>\n    <li><b>Hermitesche Symmetrie</b> — erzwingt <code>Y[-k] = conj(Y[k])</code> vor der Invertierung (verhindert Artefakte).</li>\n    <li><b>Normalisieren</b> — Division durch <code>N</code> zur Erhaltung der ursprünglichen Amplitude.</li>\n</ul>\n\n<h4>🖱️ Interaktion</h4>\n<ul>\n    <li><b>Rechtsklick</b> → Konfigurieren…</li>\n    <li><b>Doppelklick</b> → Hilfe.</li>\n    <li><b>Seitenpanel</b> — fs und Parameter in Echtzeit anpassen.</li>\n</ul>"
+    },
+    "thd": {
+      "title": "THD-Analysator",
+      "tooltip": "Gesamte harmonische Verzerrung THD",
+      "ports": {
+        "input": "Eingang",
+        "output": "Ausgang"
+      },
+      "dialog": {
+        "title": "THD analysieren"
+      },
+      "tab": {
+        "summary": "Zusammenfassung",
+        "harmonics": "Harmonische",
+        "spectrum": "Spektrum"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "Grundfrequenz:",
+        "max_harmonics": "Berücksichtigte Harmonische:",
+        "green_threshold": "Grüne Schwelle (<):",
+        "yellow_threshold": "Gelbe Schwelle (<):"
+      },
+      "harmonics": {
+        "order": "Harmonische Ordnung",
+        "freq": "Frequenz (Hz)",
+        "amp_rel": "Relative Amplitude (%)"
+      },
+      "help_title": "Hilfe – THD",
+      "help_html": "<h3>Analysator für gesamte harmonische Verzerrung (THD)</h3><p>Berechnet den THD und THD+N des Eingangssignals.</p><p>Das Signal wird unverändert an den Ausgang weitergegeben.</p><p><b>Parameter:</b></p><ul><li>max_harmonics: Anzahl der berücksichtigten Harmonischen</li><li>grüne/gelbe Schwellen: ändern die Farbe des THD im Knoten</li></ul><p><i>Doppelklick zum Öffnen der detaillierten Analyse.</i></p>"
+    },
+    "filter": {
+      "title": "Filter",
+      "tooltip": "Digitaler Filter (Butterworth)",
+      "ports": {
+        "input": "Eingang",
+        "output": "Ausgang"
+      },
+      "status": {
+        "no_data": "Keine Daten",
+        "ready": "Bereit"
+      },
+      "menu": {
+        "configure": "Konfigurieren…",
+        "show_output": "Ausgang anzeigen"
+      },
+      "config_title": "Filter konfigurieren",
+      "filter_type": "Filtertyp:",
+      "cutoff": "Grenzfrequenz(en) (Hz):",
+      "cutoff1": "Grenzfrequenz 1 (Hz):",
+      "cutoff2": "Grenzfrequenz 2 (Hz):",
+      "order": "Filterordnung:",
+      "fs": "Abtastrate (Hz, 0 = automatisch):",
+      "help_title": "Hilfe – Filter",
+      "help_html": "<h3>🎛️ Filterknoten (Butterworth)</h3>\n<p>Wendet einen <b>digitalen Butterworth-Filter</b> auf das Eingangssignal an.</p>\n\n<h4>📥 Eingang</h4>\n<p><code>input</code> → erwartet ein Tupel <code>(x, y)</code> oder ein 1D-Array.</p>\n\n<h4>📤 Ausgang</h4>\n<p><code>output</code> → gefiltertes Signal als <code>(x, y_filtered)</code>.</p>\n\n<h4>⚙️ Parameter (Doppelklick zum Konfigurieren)</h4>\n<ul>\n    <li><b>Filtertyp</b> – Tiefpass, Hochpass, Bandpass oder Bandsperre.</li>\n    <li><b>Grenzfrequenz(en)</b> – in Hz. Für Bandpass/Bandsperre sind zwei Frequenzen erforderlich.</li>\n    <li><b>Ordnung</b> – Filterordnung (1–20). Höhere Ordnung = steilerer Abfall.</li>\n    <li><b>Abtastrate</b> – wenn auf 0 gesetzt, wird sie automatisch aus der <i>x</i>-Achse abgeleitet.</li>\n</ul>\n\n<h4>🛠️ Funktionsweise</h4>\n<ul>\n    <li>Der Filter wird mit <code>scipy.signal.butter</code> entworfen.</li>\n    <li>Die Filterung erfolgt phasenneutral mit <code>filtfilt</code> (keine Phasenverzerrung).</li>\n    <li>Wenn die Eingabe ein 1D-Array ist, wird eine synthetische <i>x</i>-Achse mit der Abtastrate erstellt.</li>\n</ul>\n\n<h4>🖱️ Interaktion</h4>\n<ul>\n    <li><b>Doppelklick</b> → öffnet den Konfigurationsdialog.</li>\n    <li><b>Klick</b> auf den Knoten → zeichnet das gefilterte Signal.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → Filter → FFT → Diagramm\n</pre>\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "Normalisieren",
+      "tooltip": "Signal auf einen bestimmten Bereich normalisieren",
+      "ports": {
+        "input": "Eingang",
+        "output": "Ausgang"
+      },
+      "menu": {
+        "configure": "Konfigurieren…"
+      },
+      "config_title": "Normalisierungsknoten konfigurieren",
+      "param": {
+        "target_min": "Ziel-Minimum:",
+        "target_max": "Ziel-Maximum:"
+      },
+      "help_title": "Hilfe – Normalisieren",
+      "help_html": "<h3>📏 Normalisierungsknoten</h3>\n<p>Normalisiert ein Eingangssignal auf den durch <b>Ziel-Minimum</b> und <b>Ziel-Maximum</b> angegebenen Bereich.</p>\n\n<h4>📥 Eingang</h4>\n<p><code>input</code> → erwartet ein Tupel <code>(x, y)</code> oder ein 1D-Array.</p>\n\n<h4>📤 Ausgang</h4>\n<ul>\n    <li><b>Normalisiertes Signal</b> → <code>(x_norm, y_norm)</code> – Signal, skaliert auf den Zielbereich.</li>\n</ul>\n\n<h4>⚙️ Parameter (Doppelklick zum Konfigurieren)</h4>\n<ul>\n    <li><b>Ziel-Minimum</b> – Minimalwert des gewünschten Bereichs (Standard 0.0).</li>\n    <li><b>Ziel-Maximum</b> – Maximalwert des gewünschten Bereichs (Standard 1.0).</li>\n</ul>\n\n<h4>📐 Funktionsweise</h4>\n<p>Lineare Neuskalierung:</p>\n<pre>y_norm = target_min + (y - original_min) * (target_max - target_min) / (original_max - original_min)</pre>\n<p>Die x-Achse bleibt unverändert.</p>\n\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → FFT → Filter → Summierer → Diagramm\n</pre>\n\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "Faltung",
+      "tooltip": "FIR-Filter durch Faltung",
+      "ports": {
+        "input": "Eingang",
+        "output": "Ausgang"
+      },
+      "status": {
+        "no_data": "Keine Daten"
+      },
+      "menu": {
+        "show_output": "Ausgang anzeigen",
+        "configure": "Konfigurieren…"
+      },
+      "config_title": "Faltung konfigurieren",
+      "example_kernel": "Beispiel-Kernel:",
+      "kernel": "Kernel-Koeffizienten (kommagetrennt):",
+      "mode": "Faltungsmodus:",
+      "help_title": "Hilfe – Faltung",
+      "help_html": "<h3>🔀 Faltungsknoten (FIR-Filter)</h3>\n<p>Wendet eine diskrete Faltung zwischen dem Eingangssignal und einem benutzerdefinierten Kernel an.</p>\n\n<h4>📥 Eingang</h4>\n<p><code>input</code> → erwartet ein Tupel <code>(x, y)</code> oder ein 1D-Array.</p>\n\n<h4>📤 Ausgang</h4>\n<ul>\n    <li><b>Gefiltertes Signal</b> → <code>(x_conv, y_conv)</code> – Ergebnis der Faltung.</li>\n</ul>\n\n<h4>⚙️ Parameter (Doppelklick zum Konfigurieren)</h4>\n<ul>\n    <li><b>Kernel-Koeffizienten</b> – kommagetrennte Fließkommazahlen, z. B. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Faltungsmodus</b> – <code>'same'</code> (Standard), <code>'full'</code> oder <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Funktionsweise</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>Die x-Achse wird entsprechend angepasst: bei <code>'same'</code> bleibt das ursprüngliche x erhalten; bei <code>'valid'</code> werden die Enden abgeschnitten; bei <code>'full'</code> wird linear erweitert.</li>\n</ul>\n\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → FFT → Filter → Summierer → Diagramm\n</pre>\n\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
+    },
+    "resample": {
+      "title": "Neuabtastung",
+      "tooltip": "Abtastrate des Signals ändern",
+      "ports": {
+        "input": "Eingang",
+        "output": "Ausgang"
+      },
+      "status": {
+        "no_data": "Keine Daten",
+        "ready": "Bereit"
+      },
+      "menu": {
+        "configure": "Konfigurieren…"
+      },
+      "config_title": "Neuabtastung konfigurieren",
+      "mode": "Modus:",
+      "factor": "Faktor:",
+      "target_fs": "Ziel-fs (Hz):",
+      "help_title": "Hilfe – Neuabtastung",
+      "help_html": "<h3>🔄 Neuabtastungsknoten</h3><p>Ändert die <b>Abtastrate</b> des Eingangssignals.</p><h4>📥 Eingang</h4><p><code>input</code> → erwartet ein Tupel <code>(x, y)</code> oder ein 1D-Array.</p><h4>📤 Ausgang</h4><p><code>output</code> → neu abgetastetes Signal als <code>(x_new, y_new)</code>.</p><h4>⚙️ Parameter</h4><ul><li><b>Modus</b> – <i>factor</i> (ursprüngliche Abtastrate multiplizieren) oder <i>fixed_fs</i> (Ziel-Abtastrate in Hz).</li><li><b>Faktor</b> – Skalierungsfaktor (>1 erhöht die Anzahl der Samples, <1 verringert sie).</li><li><b>Ziel-fs</b> – gewünschte Abtastrate in Hz (wird verwendet, wenn der Modus fixed_fs ist).</li></ul><h4>🛠️ Funktionsweise</h4><p>Verwendet <code>scipy.signal.resample</code>, das eine Fourier-Methode anwendet.</p><hr><hr><h3>🧠 Wie man über dieses System nachdenkt</h3><p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p><pre>Daten → Transformation → Ergebnis</pre><h4>📐 Grundregel</h4><pre>Alles ist: (x, y)</pre><h4>🔁 Universelles Muster</h4><pre>Eingang → Verarbeitung → Visualisierung</pre><hr><h4>⚡ Tastenkürzel und Tricks</h4><ul><li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li><li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li><li><b>Rechtsklick</b> → Kontextmenü (löschen, konfigurieren).</li><li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li></ul>"
+    },
+    "window": {
+      "title": "Fenster",
+      "tooltip": "Fensterfunktion auf das Signal anwenden",
+      "ports": {
+        "input": "Eingang",
+        "output": "Ausgang"
+      },
+      "status": {
+        "no_data": "Keine Daten",
+        "ready": "Bereit"
+      },
+      "menu": {
+        "configure": "Konfigurieren…"
+      },
+      "config_title": "Fenster konfigurieren",
+      "window_type": "Fenstertyp:",
+      "normalize": "Normalisieren (Energie erhalten)",
+      "help_title": "Hilfe – Fenster",
+      "help_html": "<h3>🪟 Fensterknoten</h3><p>Wendet eine <b>Fensterfunktion</b> auf das Eingangssignal an, um Spektralleckagen zu reduzieren.</p><h4>📥 Eingang</h4><p><code>input</code> → Tupel <code>(x, y)</code> oder 1D-Array.</p><h4>📤 Ausgang</h4><p><code>output</code> → gefenstertes Signal <code>(x, y * window)</code>.</p><h4>⚙️ Parameter</h4><ul><li><b>Fenstertyp</b> – Hann, Hamming, Blackman, Bartlett usw.</li><li><b>Normalisieren</b> – wenn aktiviert, wird das Fenster skaliert, um die Gesamtenergie zu erhalten.</li></ul><h4>🛠️ Funktionsweise</h4><p>Verwendet <code>scipy.signal.windows</code>.</p><hr><hr><h3>🧠 Wie man über dieses System nachdenkt</h3><p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p><pre>Daten → Transformation → Ergebnis</pre><h4>📐 Grundregel</h4><pre>Alles ist: (x, y)</pre><h4>🔁 Universelles Muster</h4><pre>Eingang → Verarbeitung → Visualisierung</pre><hr><h4>⚡ Tastenkürzel und Tricks</h4><ul><li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li><li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li><li><b>Rechtsklick</b> → Kontextmenü (löschen, konfigurieren).</li><li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li></ul>"
+    },
+    "delay": {
+      "title": "Verzögerung",
+      "tooltip": "Signal um einen bestimmten Betrag verzögern",
+      "ports": {
+        "input": "Eingang",
+        "output": "Ausgang"
+      },
+      "status": {
+        "no_data": "Keine Daten",
+        "ready": "Bereit"
+      },
+      "menu": {
+        "configure": "Konfigurieren…"
+      },
+      "config_title": "Verzögerung konfigurieren",
+      "mode": "Verzögerungsmodus:",
+      "samples": "Samples:",
+      "seconds": "Sekunden:",
+      "padding": "Auffüllung:",
+      "constant_value": "Konstanter Wert:",
+      "help_title": "Hilfe – Verzögerung",
+      "help_html": "<h3>⏱️ Verzögerungsknoten</h3><p>Verzögert das Eingangssignal um eine bestimmte Anzahl von <b>Samples</b> oder <b>Sekunden</b>.</p><h4>📥 Eingang</h4><p><code>input</code> → Tupel <code>(x, y)</code> oder 1D-Array.</p><h4>📤 Ausgang</h4><p><code>output</code> → verzögertes Signal <code>(x, y_delayed)</code>.</p><h4>⚙️ Parameter</h4><ul><li><b>Verzögerungsmodus</b> – <i>samples</i> (ganzzahlige Anzahl von Samples) oder <i>seconds</i> (Zeit in Sekunden, erfordert Abtastrate aus der x-Achse).</li><li><b>Auffüllung</b> – Methode zum Füllen der anfänglichen Lücke: <i>zero</i>, <i>reflect</i> oder <i>constant</i> (benutzerdefinierter Wert).</li></ul><h4>🛠️ Funktionsweise</h4><p>Verschiebt das Signal nach rechts und fügt am Anfang eine Auffüllung ein.</p><hr><hr><h3>🧠 Wie man über dieses System nachdenkt</h3><p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p><pre>Daten → Transformation → Ergebnis</pre><h4>📐 Grundregel</h4><pre>Alles ist: (x, y)</pre><h4>🔁 Universelles Muster</h4><pre>Eingang → Verarbeitung → Visualisierung</pre><hr><h4>⚡ Tastenkürzel und Tricks</h4><ul><li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li><li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li><li><b>Rechtsklick</b> → Kontextmenü (löschen, konfigurieren).</li><li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li></ul>"
+    },
+    "correlation": {
+      "title": "Korrelation",
+      "tooltip": "Kreuzkorrelation zweier Signale",
+      "ports": {
+        "signal1": "Signal 1",
+        "signal2": "Signal 2",
+        "corr": "Korrelation"
+      },
+      "status": {
+        "no_data": "Keine Daten",
+        "ready": "Bereit"
+      },
+      "menu": {
+        "configure": "Konfigurieren…"
+      },
+      "config_title": "Korrelation konfigurieren",
+      "mode": "Modus:",
+      "normalize": "Normalisieren",
+      "help_title": "Hilfe – Korrelation",
+      "help_html": "<h3>📈 Korrelationsknoten</h3><p>Berechnet die <b>Kreuzkorrelation</b> zwischen zwei Eingangssignalen.</p><h4>📥 Eingänge</h4><p><code>signal1</code>, <code>signal2</code> → jedes erwartet ein Tupel <code>(x, y)</code> oder ein 1D-Array.</p><h4>📤 Ausgang</h4><p><code>corr</code> → Korrelationsfolge als <code>(Verzögerungen, Korrelation)</code>.</p><h4>⚙️ Parameter</h4><ul><li><b>Modus</b> – <i>full</i> (alle Verzögerungen), <i>same</i> (gleiche Länge wie die längste Eingabe), <i>valid</i> (keine nullaufgefüllten Ränder).</li><li><b>Normalisieren</b> – wenn aktiviert, wird durch das Produkt der Signalnormen geteilt (ergibt Werte in [-1, 1]).</li></ul><h4>🛠️ Funktionsweise</h4><p>Verwendet <code>np.correlate</code>.</p><hr><hr><h3>🧠 Wie man über dieses System nachdenkt</h3><p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p><pre>Daten → Transformation → Ergebnis</pre><h4>📐 Grundregel</h4><pre>Alles ist: (x, y)</pre><h4>🔁 Universelles Muster</h4><pre>Eingang → Verarbeitung → Visualisierung</pre><hr><h4>⚡ Tastenkürzel und Tricks</h4><ul><li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li><li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li><li><b>Rechtsklick</b> → Kontextmenü (löschen, konfigurieren).</li><li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li></ul>"
+    },
+    "math_expression": {
+      "title": "Mathematischer Ausdruck",
+      "tooltip": "Mathematischen Ausdruck auf x und y auswerten",
+      "ports": {
+        "input": "Eingang",
+        "output": "Ausgang"
+      },
+      "status": {
+        "no_data": "Keine Daten",
+        "ready": "Bereit"
+      },
+      "menu": {
+        "configure": "Konfigurieren…"
+      },
+      "config_title": "Mathematischen Ausdruck konfigurieren",
+      "expression": "Ausdruck (verwenden Sie x, y, np.*):",
+      "info": "Variablen: x (Zeitachse), y (Signalwerte).\nFunktionen: np.sin, np.cos, np.exp, np.sqrt usw.",
+      "examples": "Beispiele…",
+      "help_title": "Hilfe – Mathematischer Ausdruck",
+      "help_html": "<h3>🧮 Mathematischer Ausdrucksknoten</h3><p>Wertet einen beliebigen mathematischen Ausdruck mit den Eingangssignalvariablen <code>x</code> und <code>y</code> aus.</p><h4>📥 Eingang</h4><p><code>input</code> → Tupel <code>(x, y)</code> oder 1D-Array.</p><h4>📤 Ausgang</h4><p><code>output</code> → Ergebnis des Ausdrucks als <code>(x, y_new)</code>.</p><h4>✏️ Ausdruckssyntax</h4><ul><li>Verwenden Sie <code>x</code> (Zeitachse) und <code>y</code> (Signalwerte) als Array-Variablen.</li><li>Sie können auch jede <code>np.*</code>-Funktion verwenden (z. B. <code>np.sin(y)</code>, <code>np.exp(-x)</code>).</li><li>Beispiele: <code>y * 2</code>, <code>np.sin(2*np.pi*x)</code>, <code>np.sqrt(x**2 + y**2)</code>.</li></ul><h4>⚠️ Hinweis</h4><p>Der Ausdruck wird sicher mit <code>numexpr</code> (falls verfügbar) oder einem eingeschränkten <code>eval</code> ausgewertet.</p><hr><hr><h3>🧠 Wie man über dieses System nachdenkt</h3><p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p><pre>Daten → Transformation → Ergebnis</pre><h4>📐 Grundregel</h4><pre>Alles ist: (x, y)</pre><h4>🔁 Universelles Muster</h4><pre>Eingang → Verarbeitung → Visualisierung</pre><hr><h4>⚡ Tastenkürzel und Tricks</h4><ul><li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li><li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li><li><b>Rechtsklick</b> → Kontextmenü (löschen, konfigurieren).</li><li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li></ul>"
+    },
+    "spectrogram": {
+      "title": "Spektrogramm",
+      "tooltip": "STFT-Spektrogramm berechnen",
+      "ports": {
+        "input": "Eingang",
+        "spectrogram": "Spektrogramm",
+        "frequencies": "Frequenzen",
+        "times": "Zeiten"
+      },
+      "status": {
+        "no_data": "Keine Daten",
+        "ready": "Bereit"
+      },
+      "menu": {
+        "configure": "Konfigurieren…",
+        "show_in_plot": "Im Diagramm anzeigen"
+      },
+      "config_title": "Spektrogramm konfigurieren",
+      "nperseg": "Samples pro Segment:",
+      "noverlap": "Überlappung:",
+      "window": "Fenster:",
+      "scaling": "Skalierung:",
+      "mode": "Modus:",
+      "help_title": "Hilfe – Spektrogramm",
+      "help_html": "<h3>🌊 Spektrogrammknoten</h3><p>Berechnet das <b>Spektrogramm der Kurzzeit-Fourier-Transformation (STFT)</b>.</p><h4>📥 Eingang</h4><p><code>input</code> → (x, y) oder 1D-Array.</p><h4>📤 Ausgänge</h4><ul><li><b>Spektrogramm</b> → 2D-Array (Frequenzen, Zeiten, Beträge) – <i>nicht per Klick darstellbar</i>.</li><li><b>Frequenzen</b> → 1D-Array von Frequenzbins (kann mit anderen Knoten verbunden werden).</li><li><b>Zeiten</b> → 1D-Array der Segmentzeiten.</li></ul><h4>🖱️ Interaktion</h4><p>Ein <b>Klick</b> auf den Knoten zeigt das Spektrogramm <b>nicht</b> an. Verbinden Sie <code>frequencies</code> oder <code>times</code> mit anderen Verarbeitungsknoten oder exportieren Sie die Daten.</p><hr><hr><h3>🧠 Wie man über dieses System nachdenkt</h3><p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p><pre>Daten → Transformation → Ergebnis</pre><h4>📐 Grundregel</h4><pre>Alles ist: (x, y)</pre><h4>🔁 Universelles Muster</h4><pre>Eingang → Verarbeitung → Visualisierung</pre><hr><h4>⚡ Tastenkürzel und Tricks</h4><ul><li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li><li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li><li><b>Rechtsklick</b> → Kontextmenü (löschen, konfigurieren).</li><li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li></ul>"
+    },
+    "spectrogram_viewer": {
+      "title": "Spektrogramm-Viewer",
+      "tooltip": "Empfängt und zeigt Spektrogrammdaten an (Frequenzen, Zeiten, Matrix)",
+      "config_title": "Spektrogramm-Viewer konfigurieren",
+      "ports": {
+        "frequencies": "Frequenzen",
+        "times": "Zeiten",
+        "spectrogram": "Spektrogramm"
+      },
+      "status": {
+        "no_data": "Keine Daten"
+      },
+      "menu": {
+        "view_spectrogram": "Spektrogramm anzeigen",
+        "configure": "Konfigurieren…"
+      },
+      "window_title": "Spektrogramm-Viewer",
+      "time_axis": "Zeit (s)",
+      "freq_axis": "Frequenz (Hz)",
+      "log_scale": "Logarithmische Skala",
+      "colormap": "Farbkarte:",
+      "auto_contrast": "Automatischer Kontrast",
+      "contrast_min": "Kontrast-Minimum:",
+      "contrast_max": "Kontrast-Maximum:",
+      "export": "Exportieren…",
+      "export_title": "Spektrogramm exportieren",
+      "no_data_title": "Keine Daten",
+      "no_data_message": "Unvollständige Daten. Verbinden Sie alle Anschlüsse und führen Sie zuerst den Ablauf aus.",
+      "help_title": "Hilfe – Spektrogramm-Viewer",
+      "help_html": "<h3>📊 Spektrogramm-Viewer-Knoten</h3><p>Empfängt die drei Ausgänge eines <b>Spektrogramm</b>-Knotens und zeigt sie als 2D-Heatmap an.</p><h4>📥 Eingänge</h4><ul><li><b>Frequenzen</b> → 1D-Vektor der Frequenzen</li><li><b>Zeiten</b> → 1D-Vektor der Segmentzeiten</li><li><b>Spektrogramm</b> → 2D-Matrix (Frequenzen × Zeiten) der Beträge</li></ul><h4>⚙️ Konfiguration</h4><p>Verwenden Sie das <b>Seitenpanel</b>, um in Echtzeit anzupassen:</p><ul><li><b>Logarithmische Skala</b> — hebt Details mit niedriger Amplitude hervor.</li><li><b>Farbkarte</b> — viridis, inferno, plasma, jet usw.</li><li><b>Kontrast</b> — automatisch oder manuell (Min / Max).</li></ul><h4>🖱️ Interaktion</h4><p><b>Rechtsklick</b> auf den Knoten und <b>\"Spektrogramm anzeigen\"</b> auswählen, um ein eigenes Fenster zu öffnen.</p><p>Im Viewer können Sie die aktuelle Ansicht als PNG-Bild <b>exportieren</b>.</p><p><i>Ein Klick auf den Knoten zeigt nichts im Hauptdiagramm an.</i></p><hr><hr><h3>🧠 Wie man über dieses System nachdenkt</h3><p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p><pre>Daten → Transformation → Ergebnis</pre><h4>📐 Grundregel</h4><pre>Alles ist: (x, y)</pre><h4>🔁 Universelles Muster</h4><pre>Eingang → Verarbeitung → Visualisierung</pre><hr><h4>⚡ Tastenkürzel und Tricks</h4><ul><li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss für eine schnelle Verbindung.</li><li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li><li><b>Rechtsklick</b> → Kontextmenü (anzeigen, konfigurieren, löschen).</li><li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li></ul>"
+    },
+    "graph_exporter": {
+      "title": "Diagramm-Export",
+      "tooltip": "Exportiert Diagramme in professioneller Qualität",
+      "ports": {
+        "signal_in": "Signaleingang",
+        "file_out": "Ausgabedatei"
+      },
+      "status": {
+        "ready": "Bereit",
+        "exported": "Exportiert"
+      },
+      "menu": {
+        "show_graph": "Diagramm anzeigen",
+        "configure": "Diagramm konfigurieren",
+        "configure_subplot": "Subplots konfigurieren",
+        "export": "Diagramm exportieren",
+        "subplots": "Subplots",
+        "use_subplots": "Subplots verwenden",
+        "n_subplots": "Anzahl der Subplots",
+        "subplot_layout": "Layout"
+      },
+      "config": {
+        "display_mode": "Anzeigemodus",
+        "use_subplots": "Subplots verwenden (max. 8)",
+        "n_subplots": "Anzahl der Subplots:",
+        "subplot_layout": "Layout:",
+        "export_format": "Exportformat"
+      },
+      "no_data_title": "Keine Daten",
+      "no_data_msg": "Verbinden Sie ein Eingangssignal und führen Sie den Ablauf aus, um ein Diagramm zu erzeugen.",
+      "export_dialog_title": "Diagramm speichern",
+      "export_error_title": "Exportfehler",
+      "config_title": "Diagramm-Export konfigurieren",
+      "help_title": "Hilfe – Diagramm-Export",
+      "help_html": "<h3>📊 Diagramm-Export</h3><p>Empfängt ein Signal und exportiert es als hochwertiges Bild.</p><h4>📥 Eingang</h4><p><code>signal_in</code> → Tupel <code>(x, y)</code> oder 1D-Array.</p><h4>📤 Ausgang</h4><p><code>file_out</code> → Pfad der erzeugten Datei.</p><h4>⚙️ Konfiguration</h4><p>Rechts-Doppelklick → <b>Diagramm konfigurieren</b>, um Stil, Achsen, Anmerkungen usw. anzupassen.</p><hr><h4>🖱️ Interaktion</h4><ul><li><b>Rechtsklick</b> → Kontextmenü.</li><li><b>Diagramm anzeigen</b> → Vorschau mit aktuellen Einstellungen.</li></ul><hr><hr><h3>🧠 Wie man über dieses System nachdenkt</h3><p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p><pre>Daten → Transformation → Ergebnis</pre><h4>📐 Grundregel</h4><pre>Alles ist: (x, y)</pre><h4>🔁 Universelles Muster</h4><pre>Eingang → Verarbeitung → Visualisierung</pre><hr><h4>⚡ Tastenkürzel und Tricks</h4><ul><li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li><li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li><li><b>Rechtsklick</b> → Kontextmenü (löschen, konfigurieren).</li><li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "Eingabeknoten kann nicht gelöscht werden."
+  },
+  "workspace": {
+    "headers": {
+      "node": "Knoten",
+      "type": "Typ",
+      "shape": "Form",
+      "x_range_fs": "X: Bereich / fs",
+      "dx_t": "dx / T",
+      "y_range": "Y: [Min, Max]",
+      "preview_y": "Y-Vorschau"
+    }
+  },
+  "plot": {
+    "time_label": "Zeit (s)",
+    "voltage_label": "Spannung (V)",
+    "title": "Signal",
+    "scale_label": "Skala:",
+    "scale_linear": "Linear",
+    "scale_log": "Logarithmisch",
+    "markers": "Markierungen",
+    "cursors": "Cursor A/B",
+    "peak": "Spitze",
+    "peak_tooltip": "Maximale Spitze markieren",
+    "reset_zoom": "Zoom zurücksetzen",
+    "amplitude": "Amplitude",
+    "time": "Zeit (s)",
+    "frequency": "Frequenz (Hz)",
+    "view_mode": "Ansicht",
+    "view_2d": "2D",
+    "view_surface": "Oberfläche 3D",
+    "view_waterfall": "Wasserfall 3D",
+    "view_volume": "Volumen 3D",
+    "view_slice": "Schnitt 3D",
+    "slice_label": "Schnitt",
+    "reset_camera": "Kamera zurücksetzen",
+    "axis_scale": "Skala",
+    "fps": "FPS",
+    "loop": "Schleife",
+    "colormap": "Farbkarte"
+  },
+  "shortcuts": {
+    "delete": "Knoten löschen",
+    "delete_desc": "Ausgewählte Knoten und ihre Verbindungen löschen.",
+    "duplicate": "Knoten duplizieren",
+    "duplicate_desc": "Ausgewählte Knoten mit +50px Versatz duplizieren.",
+    "select_all": "Alle auswählen",
+    "select_all_desc": "Alle Knoten in der Szene auswählen.",
+    "cancel": "Aktion abbrechen",
+    "cancel_desc": "Laufende Verbindung abbrechen oder alles abwählen.",
+    "copy": "Kopieren",
+    "copy_desc": "Ausgewählte Knoten in die interne Zwischenablage kopieren.",
+    "cut": "Ausschneiden",
+    "cut_desc": "Ausgewählte Knoten ausschneiden.",
+    "paste": "Einfügen",
+    "paste_desc": "Knoten aus der Zwischenablage einfügen.",
+    "undo": "Rückgängig",
+    "undo_desc": "Letzte Aktion rückgängig machen.",
+    "redo": "Wiederholen",
+    "redo_desc": "Rückgängig gemachte Aktion wiederholen.",
+    "run": "Ablauf ausführen",
+    "run_desc": "Den vollständigen Ablauf ausführen.",
+    "auto_layout": "Automatisches Layout",
+    "auto_layout_desc": "Knoten automatisch in Spalten anordnen.",
+    "center_view": "Ansicht zentrieren",
+    "center_view_desc": "Ansicht auf Auswahl oder gesamte Szene zentrieren.",
+    "zoom_reset": "Zoom 100%",
+    "zoom_reset_desc": "Zoom auf 100% zurücksetzen.",
+    "zoom_in": "Vergrößern",
+    "zoom_in_desc": "Vergrößern.",
+    "zoom_out": "Verkleinern",
+    "zoom_out_desc": "Verkleinern.",
+    "toggle_theme": "Design umschalten",
+    "toggle_theme_desc": "Zwischen dunklem, hellem und kontrastreichem Design wechseln.",
+    "toggle_grid": "Raster umschalten",
+    "toggle_grid_desc": "Raster anzeigen oder ausblenden.",
+    "lock_node": "Knoten sperren",
+    "lock_node_desc": "Bewegung des ausgewählten Knotens sperren/entsperren.",
+    "help": "Kontextabhängige Hilfe",
+    "help_desc": "Tooltip des Knotens unter dem Cursor anzeigen.",
+    "new_file": "Neu",
+    "new_file_desc": "Neues Diagramm erstellen",
+    "open_file": "Öffnen",
+    "open_file_desc": "Eine Diagrammdatei öffnen",
+    "save_file": "Speichern",
+    "save_file_desc": "Aktuelles Diagramm speichern",
+    "save_file_as": "Speichern unter…",
+    "save_file_as_desc": "Diagramm unter neuem Namen speichern"
+  },
+  "dialogs": {
+    "common": {
+      "close": "Schließen",
+      "cancel": "Abbrechen",
+      "ok": "OK",
+      "emer_wind": "Programm auswählen",
+      "operation_history": "Operationen",
+      "confirm": "Es wurden keine Änderungen vorgenommen.",
+      "overwrite": "Überschreiben?",
+      "error": "Fehler"
+    },
+    "font_size": {
+      "title": "Schriftgröße",
+      "label": "Größe (pt):"
+    },
+    "firewall": {
+      "title": "Verbindung blockiert",
+      "text": "Verbindung zum Oszilloskop konnte nicht hergestellt werden.\nMöglicherweise blockiert die Windows-Firewall die Kommunikation.",
+      "informative": "Um dies zu beheben, erlauben Sie 'FloWorks.exe' in der Windows-Firewall.\n\nMöchten Sie in der Zwischenzeit den Simulationsmodus verwenden?"
+    },
+    "capture_error": {
+      "title": "Aufnahmefehler",
+      "text": "Bei der Aufnahme ist ein Fehler aufgetreten:\n{error}\n\nBitte überprüfen Sie, ob das Gerät eingeschaltet ist und die Firewall die Verbindung zulässt."
+    },
+    "script_editor": {
+      "title": "Skript-Editor",
+      "header": "Python-Skript  |  Variablen: x, y, param (vom TriggerNode), np, scipy, sympy",
+      "test_button": "Test (ohne Speichern)",
+      "save_button": "Speichern und schließen",
+      "tool_tip": "Skriptknoten\nDoppelklick für Info",
+      "templates": "Vorlagen:",
+      "save_template": "Vorlage speichern…",
+      "import": "Skript öffnen…",
+      "export": "Skript exportieren…",
+      "unsaved_warning": "Es wurden keine Änderungen vorgenommen. Möchten Sie die Vorlage laden und sie verlieren?",
+      "save_template_title": "Als Vorlage speichern",
+      "save_template_prompt": "Name der Vorlage (ohne Erweiterung):",
+      "overwrite_template": "Die Vorlage existiert bereits. Möchten Sie sie überschreiben?",
+      "import_title": "Python-Skript öffnen",
+      "export_title": "Python-Skript exportieren",
+      "help_tooltip": "Schnellhilfe (F1)",
+      "help_title": "Schnellhilfe",
+      "browse": "Durchsuchen…",
+      "python_path_placeholder": "Leer lassen, um den internen Interpreter zu verwenden. Z. B.: python3",
+      "quick_help_html": "<h2>Python-Skript-Editor</h2><p>Dieser Editor führt Python-Code auf Flowsignalen aus. Das Skript empfängt Daten und kann Ergebnisse zurückgeben, Signale ändern oder mehrere Ausgaben erzeugen.</p><h3>Verfügbare Variablen</h3><ul><li><b>x</b> – NumPy-Array: X-Achse (Zeit, Frequenz...).</li><li><b>y</b> – NumPy-Array: aktuelle Signalwerte.</li><li><b>param</b> – Iterationsindex (vom TriggerNode) oder <code>None</code>.</li><li><b>inputs</b> – Wörterbuch mit allen Eingaben (nützlich mit <code>@input</code>).</li><li><b>persist</b> – Wörterbuch, das Werte zwischen Ausführungen beibehält.</li></ul><h3>Importierte Bibliotheken</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>Spezielle Direktiven</h3><ul><li><code># @param NAME : type = value</code> – Erstellt einen anpassbaren Parameter im Seitenpanel (ohne den Code zu berühren).</li><li><code># @input port_name</code> – Fügt einen zusätzlichen Eingangsanschluss hinzu (links).</li><li><code># @output port_name</code> – Fügt einen zusätzlichen Ausgangsanschluss hinzu (rechts).</li></ul><p>Mit <code>@input</code>/<code>@output</code> muss das Skript <code>inputs</code> verwenden und ein Wörterbuch mit den Ausgaben zurückgeben. Beispiel:</p><pre># @input channel_A<br># @output result<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"channel_A\"][1]<br>return {\"out\": (x, y), \"result\": (x, y_a)}</pre><h3>Persistenz</h3><p>Das Wörterbuch <code>persist</code> behält Daten zwischen Ausführungen, solange das Programm geöffnet ist. Beispiel:</p><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1<br>return (x, y + persist[\"counter\"] * 0.1)</pre><h3>Vorlagenverwaltung</h3><ul><li>Wählen Sie eine Vorlage aus dem Dropdown-Menü, um ein vordefiniertes Skript zu laden.</li><li><b>Vorlage speichern…</b> – Speichert das aktuelle Skript als <code>.py</code>-Datei im Vorlagenordner.</li><li><b>Skript öffnen…</b> / <b>Skript exportieren…</b> – Skripte mit externen Dateien austauschen.</li></ul><h3>Tipps</h3><ul><li>Verwenden Sie <b>Test</b>, um das Skript mit simulierten Daten zu prüfen, bevor Sie den Ablauf verbinden.</li><li>Fehler werden in der unteren Konsole angezeigt und die fehlerhafte Zeile wird markiert.</li><li>Sie können eine Direktive vorübergehend deaktivieren, indem Sie sie auskommentieren (<code>## @param ...</code>).</li></ul>"
+    },
+    "trigger_config": {
+      "title": "Trigger-Knoten konfigurieren",
+      "group": "Iterationsparameter",
+      "n_iter": "Iterationen (N):",
+      "param_start": "Startparameter:",
+      "param_end": "Endparameter:",
+      "accumulate": "Akkumulation:",
+      "trig_tooltips": "TriggerNode\nDoppelklick für Info",
+      "info": "Der aktuelle Parameter wird in\nloop_out als drittes Element verfügbar sein: (x, y, param)",
+      "accumulate_options": {
+        "stack": "Stapel",
+        "average": "Mittelwert",
+        "max": "Max",
+        "min": "Min"
+      }
+    },
+    "simulation_config": {
+      "title": "Simulationskonfiguration",
+      "timebase": "Zeitbasis (ms/div)",
+      "voltage_range": "Spannungsbereich (V)",
+      "trigger_level": "Triggerpegel (V)",
+      "trigger_slope": "Triggerflanke",
+      "sample_rate": "Abtastrate (kHz)"
+    },
+    "file": {
+      "save_as": "Speichern unter…",
+      "unsaved_title": "Ungespeicherte Änderungen",
+      "unsaved_message": "Es gibt ungespeicherte Änderungen. Möchten Sie vor dem Fortfahren speichern?"
+    }
+  },
+  "info_dialog": {
+    "title": "Information – FloWorks",
+    "tab_about": "Über",
+    "tab_shortcuts": "Tastenkürzel",
+    "tab_tutorials": "Tutorials",
+    "close": "Schließen",
+    "about_title": "FloWorks",
+    "version": "Version 0.4.5",
+    "description": "<p>FloWorks ist eine visuelle und interaktive Signalverarbeitungsumgebung auf Basis von Datenflüssen. Sie ermöglicht das Erstellen, Ausführen und Analysieren von Verarbeitungsketten durch Verbinden von Knoten, die mathematische Operationen, Filter, Transformationen, Signalgeneratoren und vieles mehr repräsentieren. Alles basiert auf (x, y)-Paaren, wobei x die Achse (Zeit oder Frequenz) und y das Signal ist.</p><p>Es richtet sich an Studierende, Forschende, Ingenieure und alle, die sich für Signalverarbeitung interessieren und Systeme ohne Programmierung von Grund auf experimentieren, lernen oder prototypisieren möchten.</p><p><b>Mission:</b> Den experimentellen Workflow in einem einzigen visuellen, offenen und zugänglichen Werkzeug zu zentralisieren, damit sich jeder – Student, Forscher oder Ingenieur – auf das Experimentieren konzentrieren kann, nicht auf das Erlernen von Software.</p><p><b>Vision:</b> Eine Welt, in der die Barriere zwischen einer experimentellen Idee und ihrer Ausführung nur die Neugier des Experimentators ist. FloWorks möchte die Referenzplattform für Signalexperimente sein, gebaut von und für die globale wissenschaftliche und technische Gemeinschaft, ohne Lizenzmauern oder Werkzeugfragmentierung.</p><p><b>Prinzipien:</b> Freie Software (MIT-Lizenz) – Wissen muss frei sein. Erweiterbarkeit – jeder kann neue Knoten mit Python erstellen. Sofortige Visualisierung – jeder Schritt kann grafisch inspiziert werden.</p>",
+    "credits": "<h3>Danksagungen und Lizenzen</h3><p>FloWorks nutzt die folgenden Open-Source-Projekte:</p><ul><li><b>PySide6 / Qt</b> – Grafische Benutzeroberfläche. Lizenziert unter <b>GNU LGPLv3</b>. © The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – BSD / PSF-Lizenzen.</li><li><b>PyQtGraph, Pillow</b> – MIT / HPND-Lizenz.</li><li><b>OpenCV</b> – Apache 2.0-Lizenz.</li><li><b>PyTorch</b> – BSD-Lizenz (Meta Platforms, Inc.).</li><li><b>Pygments</b> – BSD-Lizenz.</li></ul><p>Diese Anwendung nutzt PySide6 (dynamisch gebunden) gemäß den Bedingungen der <b>GNU LGPLv3</b>.</p><p>Benutzer haben das Recht, die dynamischen Bibliotheken von PySide6 zu ändern oder zu ersetzen.</p><p>Vollständige Lizenz verfügbar unter <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a>.</p><p><b>FloWorks-Lizenz:</b> MIT-Lizenz.</p>",
+    "shortcut_header_keys": "Tastenkürzel",
+    "shortcut_header_action": "Aktion",
+    "shortcut_header_context": "Kontext",
+    "shortcuts_note": "Hinweis: Tastenkürzel funktionieren global, auch wenn der Fokus auf einem anderen Widget liegt.",
+    "tutorials_placeholder": "Hier sind einige Beispiele und Tutorials in Lernreihenfolge:",
+    "tutorial": "Tutorial",
+    "example_fft": "Beispiel öffnen: FFT einer Sinuswelle",
+    "example_filter": "Beispiel öffnen: Bandpassfilter eines Chirps",
+    "example_delay": "Beispiel öffnen: Verzögerung einer Sinuswelle",
+    "example_window": "Beispiel öffnen: Fensterung eines Chirps",
+    "example_convolution": "Beispiel öffnen: Faltung einer Rechteckwelle",
+    "example_conrrelation": "Beispiel öffnen: Korrelation zwischen Sinus- und Rechteckwelle",
+    "example_math_expression": "Beispiel öffnen: Mathematischer Ausdruck auf Sinuswelle",
+    "example_spectrogram": "Beispiel öffnen: Spektrogramm eines Chirps",
+    "example_compound": "Beispiel öffnen: Array-Verbund verschiedener Knoten",
+    "example_title": "Beispiel",
+    "example_message": "Das Beispiel '{name}' wird in einer zukünftigen Version verfügbar sein.",
+    "shortcut_header_description": "Beschreibung",
+    "view_logs": "Protokollkonsole anzeigen",
+    "log_viewer_title": "Protokoll-Viewer (error.log)",
+    "refresh": "Aktualisieren",
+    "clear": "Leeren",
+    "no_logs_available": "Derzeit keine Protokolle gefunden.",
+    "error_reading_logs": "Fehler beim Lesen der Protokolldatei.",
+    "confirm_clear": "Leeren bestätigen",
+    "confirm_clear_msg": "Sind Sie sicher, dass Sie die Protokolldatei leeren möchten? Diese Aktion kann nicht rückgängig gemacht werden."
+  },
+  "lcr_controller": {
+    "title": "LCR-Controller",
+    "connected": "Verbunden",
+    "disconnected": "Getrennt",
+    "measure_var": "Zu messende Größe:",
+    "freq_sweep": "Frequenzdurchlauf",
+    "freq_start": "Start (Hz):",
+    "freq_end": "Ende (Hz):",
+    "freq_step": "Schritt (Hz):",
+    "level": "Pegel (V):",
+    "speed": "Geschwindigkeit:",
+    "average": "Mittelung:",
+    "rsou": "RSOU (Ω):",
+    "range": "Bereich:",
+    "bias_volt": "DC-Vorspannung (V):",
+    "bias_on": "BIAS EIN",
+    "bias_off": "BIAS AUS",
+    "apply": "Einstellungen anwenden",
+    "error_title": "Fehler",
+    "connection_error": "Verbindung zum LCR konnte nicht hergestellt werden. Überprüfen Sie Verbindung und Adresse.",
+    "success_title": "Erfolg",
+    "success_message": "Einstellungen erfolgreich angewendet.",
+    "apply_error": "Einstellungen konnten nicht angewendet werden: {error}"
+  },
+  "osc_controller": {
+    "title": "Oszilloskop-Aufnahme",
+    "window_title": "Oszilloskop-Controller",
+    "channel": "Kanal auswählen:",
+    "acq_mode": "Erfassungsmodus:",
+    "mem_size": "Speichergröße:",
+    "invert_off": "Signal invertieren",
+    "invert_on": "Signal invertiert",
+    "tdiv": "Horizontale Teilung:",
+    "vdiv": "Vertikale Teilung (V):",
+    "hpos": "Horizontale Position (s):",
+    "offset": "Vertikale Position (V):",
+    "trig_level": "Triggerpegel (V):",
+    "v_range": "Spannungsbereich (V):",
+    "sd_trg": "Seitentrigger",
+    "fs": "Abtastrate (kHz):"
+  },
+  "gen_controller": {
+    "title": "Erweiterter Controller – Signalgenerator",
+    "apply_current": "Aktuelle Konfiguration anwenden",
+    "channel": "Kanal auswählen:",
+    "waveform_btn": "Wellenform erzeugen",
+    "chirp_btn": "Chirp erzeugen",
+    "modulation_on": "Modulation einschalten",
+    "modulation_off": "Modulation stoppen",
+    "sweep_on": "Sweep einschalten",
+    "sweep_off": "Sweep stoppen",
+    "burst_on": "Burst einschalten",
+    "burst_off": "Burst stoppen",
+    "ch1_on": "Kanal 1 einschalten",
+    "ch1_off": "Kanal 1 ausschalten",
+    "ch2_on": "Kanal 2 einschalten",
+    "ch2_off": "Kanal 2 ausschalten",
+    "load": "Ausgang auswählen:",
+    "polarity": "Ausgangspolarität:",
+    "modify_output": "Ausgang ändern",
+    "tab_general": "Allgemein",
+    "tab_waveform": "Wellenform",
+    "tab_chirp": "Chirp",
+    "tab_modulation": "Modulation",
+    "tab_sweep": "Sweep",
+    "tab_burst": "Burst",
+    "sim_title": "Simulation",
+    "no_hardware": "Keine Hardware angeschlossen",
+    "sent_title": "Gesendet",
+    "waveform_sent": "Wellenform gesendet",
+    "chirp_sent": "Chirp gesendet",
+    "success_title": "Erfolg",
+    "output_modified": "Ausgang {channel}: Last {load}, Polarität {pol}",
+    "signal_type": "Signaltyp:",
+    "frequency": "Frequenz (Hz):",
+    "amplitude": "Amplitude (Vpp):",
+    "offset": "Offset (V):",
+    "phase": "Phase (Grad):",
+    "duty_cycle": "Tastverhältnis (%):",
+    "symmetry": "Symmetrie (%):",
+    "pulse_width": "Impulsbreite (s):",
+    "rise_edge": "Anstiegsflanke (s):",
+    "fall_edge": "Abfallflanke (s):",
+    "delay_edge": "Verzögerungsflanke (s):",
+    "stdev": "Standardabweichung (V):",
+    "mean": "Mittelwert (V):",
+    "chirp_f0": "Startfrequenz (Hz):",
+    "chirp_f1": "Endfrequenz (Hz):",
+    "chirp_fs": "Fs (Sa/s):",
+    "chirp_duration": "Dauer (s):",
+    "chirp_amp": "Amplitude (V):",
+    "chirp_offset": "Offset (V):",
+    "chirp_phase": "Phase (°):",
+    "chirp_name": "Signalname:",
+    "chirp_method": "Methode:",
+    "chirp_mode": "Arb-Modus:",
+    "mod_type": "Modulationstyp:",
+    "mod_freq": "Modulationsfrequenz (Hz):",
+    "mod_dev": "Abweichung (Hz,°,s):",
+    "mod_hop": "Sprungfrequenz (Hz):",
+    "mod_shape": "Wellenform:",
+    "mod_depth": "Tiefe (%):",
+    "sweep_time": "Dauer (s):",
+    "sweep_stop": "Endfrequenz (Hz):",
+    "sweep_start": "Startfrequenz (Hz):",
+    "sweep_trig_src": "Triggerquelle:",
+    "sweep_trig_out": "Triggerausgang:",
+    "sweep_mode": "Typ:",
+    "sweep_dir": "Richtung:",
+    "burst_period": "Periode (s):",
+    "burst_cycles": "Zyklen:",
+    "burst_phase": "Phase (Grad):",
+    "burst_gate": "Ziel:",
+    "burst_trig_src": "Triggerquelle:",
+    "burst_polarity": "Polarität:",
+    "waveform_applied": "Wellenform angewendet",
+    "chirp_applied": "Chirp gesendet",
+    "modulation_applied": "Modulation konfiguriert",
+    "sweep_applied": "Sweep konfiguriert",
+    "burst_applied": "Burst konfiguriert"
+  },
+  "simulation_config_dialog": {
+    "title": "Simulationskonfiguration – Generator",
+    "waveform": "Wellenform:",
+    "basic_params": "Basiseinstellungen",
+    "frequency": "Frequenz (Hz):",
+    "amplitude": "Amplitude (Vpp):",
+    "offset": "Offset (V):",
+    "phase": "Phase (Grad):",
+    "duty_cycle": "Tastverhältnis (%):",
+    "symmetry": "Symmetrie (%):",
+    "direction": "Richtung:",
+    "up": "Aufwärts",
+    "down": "Abwärts",
+    "stdev": "Standardabweichung:",
+    "mean": "Mittelwert:",
+    "lobes": "Anzahl der Keulen:",
+    "sigma": "Sigma:",
+    "mu": "My:",
+    "tau": "Tau (s):",
+    "exp_type": "Typ:",
+    "rise": "Anstieg",
+    "fall": "Abfall",
+    "f0": "Startfrequenz (Hz):",
+    "f1": "Endfrequenz (Hz):",
+    "chirp_method": "Methode:",
+    "linear": "Linear",
+    "logarithmic": "Logarithmisch",
+    "preview": "Vorschau",
+    "apply": "Anwenden",
+    "close": "Schließen",
+    "time_label": "Zeit (s)",
+    "amplitude_label": "Amplitude (V)"
+  },
+  "self": {
+    "language_changed": "Sprache geändert zu: {name} ({code})",
+    "default": "FloWorks  |  Scrollen: Zoom  |  Mittlere Maustaste: Verschieben  |  Doppelklick auf Knoten: Info |  Rechtsklick auf Knoten: Optionen",
+    "workspace": "Arbeitsbereich",
+    "canvas": "Canvas",
+    "no_nodes_selected": "Keine Knoten ausgewählt",
+    "node_config_placeholder": "Wählen Sie einen Knoten auf dem Canvas\n um seine Konfiguration anzuzeigen"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "Visuelles und interaktives virtuelles Signalverarbeitungslabor",
+    "build": "Vergessen Sie komplexen Code. Ziehen Sie Blöcke, verbinden Sie sie wie Puzzleteile und bauen Sie Ihren Workflow, indem Sie Knoten mit Linien verbinden, die den Datenfluss darstellen.",
+    "keyrule": "Es dreht sich alles um Signale: Verbinden Sie Blöcke, nicht Codezeilen.",
+    "nodework": "Knotenarchitektur:\n[Eingangsdaten] → [Interne Verarbeitung] → [Ausgangsdaten]",
+    "execute": "Klicken Sie auf Ausführen und sehen Sie, wie Ihre Ideen in Echtzeit-Diagrammen und -Daten lebendig werden. Möchten Sie weiter gehen? Verbinden Sie echte Laborgeräte oder fügen Sie eigene Regeln mit Python-Skriptknoten für benutzerdefinierte Verarbeitung hinzu.",
+    "expand": "Exportieren Sie hochwertige Diagramme, die für technische Dokumente bereit sind. Speichern Sie Ihre Arbeit in \".sflow\"-Dateien und rufen Sie sie genau so ab, wie Sie sie verlassen haben.",
+    "actions_title": "Was können Sie tun?",
+    "actions": "* Ideen testen, indem Sie Workflows bauen, Knoten ziehen und verbinden.\n* Echte Geräte steuern oder Signale simulieren.\n* Ergebnisse sofort in interaktiven Diagrammen anzeigen.",
+    "checkbox": "Nicht mehr anzeigen",
+    "start": "Starten"
+  },
+  "scene": {
+    "empty_hint": "Wählen Sie Knoten aus der Symbolleiste",
+    "load_example_hint": "Sie können ein Beispiel über \"Info\" → \"Tutorials\" laden"
+  },
+  "examples": {
+    "general": {
+      "title": "Beispiele",
+      "welcome": "Willkommen bei FloWorks! \nFolgen Sie diesen Mini-Tutorials, um die häufigsten Operationen zu beherrschen.",
+      "scroll": "Scrollen oder halten Sie das Mausrad gedrückt, um das Canvas zu verschieben.",
+      "help": "Rechtsklick auf einen Knoten, um seine Aktionen zu konfigurieren."
+    },
+    "tutorial": {
+      "message": "Dies ist eine Anwendung für visuelle Signalflussdiagramme. Fangen wir an!",
+      "step1": "Schritt 1: Signalquelle hinzufügen",
+      "step2": "Fügen Sie einen Signalquellenknoten aus der Symbolleiste (oben) hinzu. \nDer Knoten wird dort positioniert, wo Sie zuletzt auf das Canvas geklickt haben. \nKlicken Sie irgendwo in der Nähe auf das Canvas und dann auf die obere Leiste:",
+      "step3": "Schritt 2: Knoten verbinden",
+      "step4": "Drücken Sie STRG+Klick auf einen Ausgangsanschluss eines Knotens (der linke) und klicken Sie einfach auf den Eingangsanschluss des anderen Knotens (der rechte), um eine Verbindung herzustellen.",
+      "step5": "Verbindungen fließen von links nach rechts und transportieren Signaldaten zwischen den Knoten.",
+      "step6": "Schritt 3: Ablauf ausführen",
+      "step7": "Drücken Sie F5, um den Signalfluss auszuführen und die Ergebnisse in Echtzeit zu sehen.",
+      "step8": "Sie können auch auf einzelne Knoten klicken, um ihre Ausgabewerte zu sehen.",
+      "step9": "Schritt 4: Ergebnisse anzeigen",
+      "step10": "Klicken Sie auf einen beliebigen Knoten, um das Signal im Diagramm-Widget zu visualisieren.",
+      "step11": "Das Diagramm wird automatisch aktualisiert, wenn Sie den Ablauf ausführen."
+    },
+    "shortcuts": {
+      "title": "Tastenkürzel",
+      "execute": "F5 – Ablauf ausführen",
+      "save": "Strg+S – Projekt speichern (.sflow)",
+      "load": "Strg+O – Projekt öffnen",
+      "delete": "Entf / Rücktaste – Ausgewählte Elemente löschen",
+      "copy_paste": "Strg+C / Strg+V – Knoten oder Notizen kopieren und einfügen",
+      "undo_redo": "Strg+Z / Strg+Y – Rückgängig / Wiederholen",
+      "auto_layout": "Strg+Umschalt+L – Automatisches Layout des Diagramms",
+      "zoom": "Mausrad – Zoom, gedrückt halten zum Verschieben der Ansicht"
+    },
+    "fft": {
+      "title": "FFT-Analyse",
+      "description": "Berechnet das Frequenzspektrum eines Signals.",
+      "steps": {
+        "step1": "Fügen Sie einen Generator-Knoten hinzu und wählen Sie z. B. eine 1-kHz-Rechteckwelle.",
+        "step2": "Wählen Sie im Menü 'Verarbeitung' der Symbolleiste den FFT-Knoten. Verbinden Sie ihn mit dem Ausgang des Generators (STRG+Klick Ausgang → STRG+Klick FFT-Eingang).",
+        "step3": "Drücken Sie F5. Der FFT-Knoten wandelt das Signal in den Frequenzbereich um.",
+        "step4": "Klicken Sie auf den FFT-Knoten, um das Spektrum zu sehen. Spitzen erscheinen bei ungeraden Vielfachen von 1 kHz.",
+        "step5": "(Optional) Verbinden Sie den FFT-Ausgang mit einem Arithmetik-Knoten (SumNode), um zwei Spektren zu vergleichen; das System erkennt automatisch die Frequenzauflösung und warnt vor Inkompatibilität.",
+        "step6": "Rechtsklick auf den FFT-Knoten, um die Anzeige zwischen Betrag und Phase zu wählen."
+      }
+    },
+    "filter": {
+      "title": "Signalfilterung",
+      "description": "Wendet einen Tiefpass-, Hochpass- oder Bandpassfilter an.",
+      "steps": "1. Fügen Sie einen Generator mit einem Chirp-Signal ein.\n2. Fügen Sie einen Filter-Knoten aus dem Menü 'Verarbeitung' hinzu. Verbinden Sie den Generatorausgang mit dem Filtereingang.\n3. Rechtsklick und 'Konfigurieren…' auf dem Filter-Knoten wählen, dann Typ (Tiefpass, Hochpass usw.) und Grenzfrequenz auswählen.\n4. Ausführen (F5) und sowohl das Original- als auch das gefilterte Signal visualisieren, indem Sie auf die entsprechenden Verbindungen klicken.\n5. Wenn Sie Seite an Seite vergleichen möchten, können Sie FFT-Knoten hinzufügen und das Signal aufteilen."
+    },
+    "delay": {
+      "title": "Verzögerungsleitung",
+      "description": "Verschiebt ein Signal in der Zeit (nützlich für Korrelationen oder Effekte).",
+      "steps": "1. Beginnen Sie mit einem Generator, der ein kurzes Signal verwendet.\n2. Fügen Sie einen Verzögerungsknoten aus 'Verarbeitung' hinzu. Verbinden Sie den Generatorausgang mit dem Verzögerungseingang.\n3. Geben Sie im Konfigurationsdialog des Verzögerungsknotens die Anzahl der Samples oder die Verzögerungszeit an.\n4. Führen Sie den Ablauf aus (F5) und klicken Sie auf den Ausgang des Verzögerungsknotens. Sie sehen dasselbe Signal nach rechts verschoben.\n5. Um die genaue Verzögerung zu messen, aktivieren Sie die Cursor (unteres Panel) und vergleichen Sie sie zwischen dem Original- und dem verzögerten Signal."
+    },
+    "window": {
+      "title": "Fensterung vor FFT",
+      "description": "Wendet ein Fenster (Hanning, Hamming usw.) vor der FFT an, um Spektralleckagen zu reduzieren.",
+      "steps": "1. Richten Sie einen grundlegenden Ablauf ein: Generator → Fenster → FFT.\n2. Doppelklicken Sie auf den Fenster-Knoten und wählen Sie den Typ (Hanning ist ein guter Anfang).\n3. Verbinden Sie den Fensterausgang mit dem FFT-Eingang.\n4. Ausführen (F5). Klicken Sie auf den FFT-Ausgang, um das Spektrum mit und ohne Fensterung zu vergleichen.\n5. Versuchen Sie ein reines Sinussignal mit einer nicht ganzzahligen Frequenz; Sie werden feststellen, dass die Spitze mit Fensterung besser definiert ist. Ändern Sie den Fenstertyp, um zu sehen, wie die Nebenkeule reduziert wird."
+    },
+    "convolution": {
+      "title": "Faltung",
+      "description": "Berechnet die Faltung zwischen zwei Signalen.",
+      "steps": "1. Fügen Sie einen Generator (Quellen → Generator) mit dem Signal hinzu, das Sie filtern möchten.\n2. Fügen Sie einen Faltungs-Knoten aus dem Menü 'Verarbeitung' hinzu.\n3. Verbinden Sie den Generatorausgang mit dem Eingang des Faltungs-Knotens (STRG+Klick auf beide Enden).\n4. Doppelklicken Sie auf den Faltungs-Knoten, um ihn zu konfigurieren. Geben Sie die Kernel-Koeffizienten kommagetrennt ein (z. B. '0.2,0.2,0.2,0.2,0.2') und wählen Sie den Faltungsmodus ('same', 'full' oder 'valid').\n5. Drücken Sie F5, um den Ablauf auszuführen. Der Knoten filtert das Signal mit diskreter Faltung.\n6. Klicken Sie auf die Ausgangsverbindung des Faltungs-Knotens, um das gefilterte Signal zu sehen. Beobachten Sie die Wirkung des Kernels; Sie können die Koeffizienten ändern und erneut ausführen, um zu vergleichen."
+    },
+    "correlation": {
+      "title": "Kreuzkorrelation",
+      "description": "Misst die Ähnlichkeit zwischen zwei Signalen als Funktion der Zeitverschiebung.",
+      "steps": "1. Platzieren Sie zwei Generator-Knoten (Quellen → Generator). Erstellen Sie z. B. eine Sinuswelle und eine Rechteckwelle derselben Frequenz.\n2. Fügen Sie einen Korrelations-Knoten aus 'Verarbeitung' ein.\n3. Verbinden Sie den Ausgang des ersten Generators mit dem Eingang 'Signal 1' des Korrelations-Knotens (STRG+Klick auf die Anschlüsse). Verbinden Sie dann den zweiten Generator mit dem Eingang 'Signal 2'.\n4. Führen Sie den Ablauf mit F5 aus. Der Knoten erzeugt ein Kreuzkorrelationssignal.\n5. Klicken Sie auf die Ausgangsverbindung, um die Korrelationsspitze zu sehen. Sie werden ein Maximum bei der Verzögerung sehen, bei der die Signale ausgerichtet sind.\n6. Aktivieren Sie die Cursor (unteres Panel), um die Zeitverschiebung präzise zu messen."
+    },
+    "math_expression": {
+      "title": "Mathematischer Ausdruck",
+      "description": "Wendet eine beliebige mathematische Funktion auf das Eingangssignal an (z. B. y_new = f(x, y)).",
+      "steps": "1. Fügen Sie einen Generator (Quellen → Generator) hinzu und wählen Sie die Wellenform, die Sie transformieren möchten.\n2. Fügen Sie einen Knoten für mathematische Ausdrücke aus dem Menü 'Verarbeitung' hinzu.\n3. Verbinden Sie den Generatorausgang mit dem Knoteneingang (STRG+Klick auf beide Enden).\n4. Doppelklicken Sie auf den Ausdrucksknoten, um den Editor zu öffnen. Schreiben Sie eine Funktion, die zwei Arrays (x, y) empfängt und (x, y_new) zurückgibt. Zum Beispiel: y_new = y**2 + 0.5*np.sin(x).\n5. Drücken Sie F5, um auszuführen. Der Knoten wendet die Operation ausschließlich auf die 'y'-Werte an, während die 'x'-Achse intakt bleibt.\n6. Visualisieren Sie das Ergebnis, indem Sie auf die Ausgangsverbindung klicken. Sie können den Ausdruck ändern und erneut ausführen, um sofortige Änderungen zu sehen."
+    },
+    "spectrogram": {
+      "title": "Spektrogramm",
+      "description": "Stellt die zeitliche Entwicklung der Frequenzen in einem Signal dar.",
+      "steps": "1. Platzieren Sie einen Generator (Quellen → Generator) mit einem Signal variabler Frequenz, z. B. einem Sinus-Sweep (Chirp).\n2. Fügen Sie aus 'Verarbeitung' einen Spektrogramm-Knoten hinzu.\n3. Verbinden Sie den Generatorausgang mit dem Eingang des Spektrogramm-Knotens (STRG+Klick auf beide Anschlüsse).\n4. Fügen Sie aus 'Verarbeitung' einen Spektrogramm-Viewer-Knoten hinzu und verbinden Sie die entsprechenden Anschlüsse mit dem Spektrogramm-Knoten.\n5. Führen Sie mit F5 aus. Der Knoten verarbeitet das Signal und erzeugt eine Zeit-Frequenz-Matrix.\n6. Rechtsklick auf den Spektrogramm-Viewer, um das Spektralbild zu visualisieren. Beobachten Sie, wie sich die dominante Frequenz im Laufe der Zeit ändert.\n7. (Optional) Fügen Sie einen Zwischen-FFT-Knoten hinzu, um die statische Frequenzdarstellung mit der dynamischen zu vergleichen."
+    }
+  },
+  "prefs": {
+    "title": "Einstellungen",
+    "tab_execution": "Ausführung",
+    "tab_gpu": "GPU / Berechnung",
+    "tab_streaming": "Streaming",
+    "tab_ui": "UI / Leistung",
+    "tab_advanced": "Erweitert",
+    "max_workers": {
+      "label": "Max. Threads (Vorbereitung Phase 3)",
+      "tooltip": "Steuert die zukünftige Parallelität unabhängiger Zweige."
+    },
+    "timeout_per_node": "Zeitüberschreitung pro Knoten (s)",
+    "gpu": {
+      "backend": "Standard-Backend",
+      "fallback": "Fallback-Richtlinie",
+      "threshold": "Overhead-Schwelle (MB)"
+    },
+    "streaming": {
+      "buffer": "Puffergröße (Samples)",
+      "timeout": "Dispatcher-Zeitüberschreitung (ms)",
+      "error": "Stream-Fehlerrichtlinie"
+    },
+    "ui": {
+      "fps": "Max. Aktualisierungs-FPS",
+      "anim": "Animationsdauer des Verbinders (s)"
+    },
+    "adv": {
+      "python_path": "Pfad zum externen Interpreter",
+      "log_level": "Protokollierungsstufe",
+      "backup": "Automatisches Backup beim Laden"
+    },
+    "btn_apply": "Anwenden",
+    "btn_reset": "Auf Standard zurücksetzen",
+    "btn_close": "Schließen"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "Ausdruck…"
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "Verlauf",
+      "label": "{mode}  |  {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Eng",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "Leeren"
+    },
+    "history": {
+      "title": "📜 Verlauf",
+      "clear": "🗑 Leeren",
+      "use_last": "↩ Letzte"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "&Datei",
+      "edit": "&Bearbeiten",
+      "format": "F&ormat",
+      "align": "A&usrichtung"
+    },
+    "actions": {
+      "new": "&Neu",
+      "open": "&Öffnen",
+      "save": "&Speichern",
+      "save_as": "Speichern &unter…",
+      "export_csv": "&CSV exportieren…",
+      "exit": "&Beenden",
+      "undo": "&Rückgängig",
+      "redo": "&Wiederholen",
+      "cut": "Ausschneiden",
+      "copy": "&Kopieren",
+      "paste": "&Einfügen",
+      "bold": "&Fett",
+      "italic": "&Kursiv",
+      "align_left": "&Links",
+      "align_center": "&Zentriert",
+      "align_right": "&Rechts",
+      "bg_color": "&Hintergrundfarbe…",
+      "fg_color": "&Textfarbe…"
+    },
+    "toolbar": {
+      "title": "Haupt",
+      "new": "Neu",
+      "open": "Öffnen",
+      "save": "Speichern",
+      "cut": "Ausschneiden",
+      "copy": "Kopieren",
+      "paste": "Einfügen",
+      "bold": "Fett",
+      "italic": "Kursiv",
+      "align_left": "Links",
+      "align_center": "Zentriert",
+      "align_right": "Rechts",
+      "bg_color": "Hintergrund",
+      "fg_color": "Text",
+      "undo": "Rückgängig",
+      "redo": "Wiederholen"
+    }
+  },
+  "system_monitor": {
+    "title": "SYSTEMMONITOR",
+    "subtitle": "Ressourcen-Telemetrie in Echtzeit",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "KERNE / LOGISCHE KERNE",
+      "core_prefix": "K"
+    },
+    "ram": {
+      "title": "RAM-Speicher",
+      "tooltip": "RAM-Auslastung"
+    },
+    "disk": {
+      "title": "Festplatte ( / )",
+      "tooltip": "Festplattenauslastung auf /"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}%  S:{mem}%"
+    },
+    "status": {
+      "updated": "Aktualisiert"
+    }
+  }
+}

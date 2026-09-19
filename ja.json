@@ -1,0 +1,1573 @@
+{
+  "language_name": "日本語",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "ファイル",
+      "new": "新規",
+      "open": "開く…",
+      "save": "保存",
+      "save_as": "名前を付けて保存…",
+      "exit": "終了"
+    },
+    "edit": "編集",
+    "view": "表示",
+    "help": "ヘルプ",
+    "language": "言語",
+    "info": "情報",
+    "theme": "テーマ",
+    "font_size": "フォントサイズ",
+    "font_size_custom": "カスタムサイズ…"
+  },
+  "menu_config": {
+    "title": "ノード設定"
+  },
+  "panels": {
+    "analysis": {
+      "title": "解析"
+    },
+    "stats": {
+      "title": "統計",
+      "max": "最大値:",
+      "min": "最小値:",
+      "mean": "平均値:",
+      "rms": "実効値:",
+      "mode_3d": "(3D投影)"
+    },
+    "cursors": {
+      "title": "カーソル A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "3Dモードではカーソルを使用できません"
+    },
+    "crosshair": {
+      "cursor": "カーソル",
+      "peak": "ピーク",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "3Dモードでは十字線を使用できません"
+    }
+  },
+  "tab": {
+    "plot": "プロット",
+    "workspace": "キャンバス変数",
+    "python_vars": "Python変数"
+  },
+  "tooldrawer": {
+    "python_console": "ターミナル",
+    "monitor_widget": "パフォーマンスモニター",
+    "spreadsheet_widget": "スプレッドシート",
+    "calc_widget": "電卓"
+  },
+  "console": {
+    "help": {
+      "title": "FloWorksコンソールインタラクティブュートリアル",
+      "button": "ヘルプ",
+      "html": "<h1>FloWorksコンソールインタラクティブチュートリアル</h1><h2>1. ノードと接続</h2><p><code>&gt;&gt;&gt; graph.nodes</code></p><p><code>&gt;&gt;&gt; graph.connections</code></p><p><code>&gt;&gt;&gt; selected_node</code></p><p>ノードの作成:</p><p><code>&gt;&gt;&gt; graph.add_catalog_node('SumNode', 300, 200)</code></p><p>接続:</p><p><code>&gt;&gt;&gt; graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>削除:</p><p><code>&gt;&gt;&gt; graph.remove_node(graph.nodes[2])</code></p><p>ポート:</p><p><code>&gt;&gt;&gt; graph.nodes[1].PORTS</code></p><h2>2. 実行と結果の表示</h2><p>グラフの実行:</p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>ノードの出力を表示:</p><p><code>&gt;&gt;&gt; graph.node_values[graph.nodes[1]]</code></p><p>この方法ではKeyErrorが発生する場合があります。その場合は以下を使用してください:</p><p><code>&gt;&gt;&gt; list(graph.node_values.values())[1]</code></p><p>完全な出力:</p><p><code>&gt;&gt;&gt; nodo = graph.nodes[0]</code></p><p><code>&gt;&gt;&gt; nodo.output</code></p><p>Y軸:</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; y = result[1]</code></p><p><code>&gt;&gt;&gt; y.max()</code></p><p>代入は表示されません。<code>x</code>、<code>y.shape</code>、または <code>print(x, y)</code> で確認してください</p><h2>3. プロット</h2><p>クリア:</p><p><code>&gt;&gt;&gt; app.plot_widget.clear_plot()</code></p><p>コンソールからの信号:</p><p><code>&gt;&gt;&gt; import numpy as np</code></p><p><code>&gt;&gt;&gt; x = np.linspace(0, 1, 1000)</code></p><p><code>&gt;&gt;&gt; y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>ソースノードから:</p><p><code>&gt;&gt;&gt; x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>FFTノード (辞書を返します):</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>&gt;&gt;&gt; result.keys()</code></p><p><code>&gt;&gt;&gt; f, mag = result['magnitude']</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. アプリケーションの変更</h2><p>テーブルの更新:</p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>ノードの追加:</p><p><code>&gt;&gt;&gt; app.add_node('SignalSourceNode')</code></p><p>タイトル:</p><p><code>&gt;&gt;&gt; app.setWindowTitle('マイシグナルラボ')</code></p><p>確認:</p><p><code>&gt;&gt;&gt; app.windowTitle()</code></p><p>復元:</p><p><code>&gt;&gt;&gt; app.update_title()</code></p><h2>5. ショートカット</h2><table><tr><th>キー/コマンド</th><th>アクション</th></tr><tr><td><code>&uarr;</code> / <code>&darr;</code></td><td>履歴</td></tr><tr><td><code>Tab</code></td><td>自動補完</td></tr><tr><td><code>Ctrl + L</code></td><td>コンソールをクリア</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>複数行ブロック</td></tr></table><h2>6. レシピ</h2><p>パラメータの変更:</p><p><code>&gt;&gt;&gt; selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>&gt;&gt;&gt; getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>カスタム式:</p><p><code>&gt;&gt;&gt; selected_node.params['mode'] = 'formula'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['expr'] = '2 * sin(2*pi*1000*t)'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>&gt;&gt;&gt; selected_node._generate_signal()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>カテゴリの一覧:</p><p><code>&gt;&gt;&gt; from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>&gt;&gt;&gt; NODE_CATEGORIES</code></p><p>ヘルプ:</p><p><code>&gt;&gt;&gt; help(graph.connect_nodes)</code></p><h2>7. トラブルシューティング</h2><ul><li><strong>赤色のエラー</strong>: コンソールに問題が表示されますが、アプリは終了しません。</li><li><strong>インターフェースのフリーズ</strong>: 無限ループです。コンソールを閉じるか再起動してください。</li><li><strong>何も起こらない</strong>: <code>graph.connections</code> とソースノードを確認してください。</li></ul><p>&copy; 2026 FloWorks -- 信号ラボラトリー</p>"
+    }
+  },
+  "vars_table": {
+    "header": {
+      "name": "名前",
+      "type": "型",
+      "shape": "形状",
+      "value": "値"
+    },
+    "menu": {
+      "info": "変数: {name}"
+    },
+    "dialog": {
+      "title": "完全な値"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "フォント:",
+    "font_size_tooltip": "基本フォントサイズを変更",
+    "run_flow_tooltip": "フローを実行",
+    "add_kinematics": "運動学ノード",
+    "escolar": "Escolar",
+    "add_function_graph_node": "関数",
+    "add_rhombus_node": "論理ゲート",
+    "add_graph_exporter": "グラフエクスポーター",
+    "add_note": "メモ",
+    "add_note_tooltip": "付箋を追加…",
+    "add_signal_source": "新規信号源",
+    "add_spectrogram_viewer": "スペクトログラムビューア",
+    "add_correlation": "相関",
+    "add_math_expression": "数式",
+    "add_spectrogram": "スペクトログラム",
+    "add_resample": "リサンプリング",
+    "add_window": "窓関数",
+    "add_delay": "遅延",
+    "add_convolution_node": "畳み込み",
+    "add_normalize": "正規化",
+    "add_filter": "フィルタ",
+    "add_fft": "FFT",
+    "source_node": "高度信号発生器",
+    "load_signal_tooltip": "ユーザーの好みに応じて信号を生成",
+    "history": "履歴",
+    "history_tooltip": "操作履歴",
+    "auto_layout": "自動レイアウト",
+    "auto_layout_tooltip": "ノードの自動配置 (Ctrl+Shift+L)",
+    "sources": "周辺機器",
+    "processing": "処理",
+    "control": "制御",
+    "add_oscilloscope": "オシロスコープ",
+    "add_generator": "ジェネレータ",
+    "add_expression": "式ノード",
+    "add_script": "Pythonスクリプト",
+    "add_arithmetic": "算術 +−×÷",
+    "add_program": "プログラム",
+    "add_split": "論理ゲート",
+    "add_trigger": "トリガノード",
+    "sink": "グラフエクスポーター",
+    "help_wiki": "ドキュメント / Wiki",
+    "help_wiki_tooltip": "プロジェクトWikiを開く"
+  },
+  "info": {
+    "information": "について",
+    "shortcuts": "ショートカット",
+    "tutorials": "チュートリアル",
+    "change_theme": "テーマを変更"
+  },
+  "status": {
+    "default": "FloWorks  |  スクロール: ズーム  |  中央クリッ: パン  |  ノードを右クリック: オプション",
+    "no_nodes": "準備完了。ツールバーからノードを選択してください。",
+    "how_to_connect": "ノードの出力ポートをCtrl+クリックし、別のノードの入力ポートをクリックします。",
+    "connecting": "接続中… 別のノードまたはポートをクリックしてください。",
+    "connection_created": "接続が作成されました。",
+    "flow_executed": "フローが正常に実行されました。",
+    "flow_error": "フロー実行中にエラーが発生しました。",
+    "saved": "図を保存しました: {path}",
+    "loaded": "図を読み込みました: {path}",
+    "new_file": "新規図を作成しました",
+    "example_loaded": "サンプルを読み込みました。"
+  },
+  "errors": {
+    "save_failed": "保存エラー: {error}",
+    "load_failed": "読み込みエラー: {error}",
+    "load_example_failed": "サンプルの読みみに失敗しました: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "ノードを削除",
+      "connect": "ノードを接続",
+      "disconnect": "ノードを切断",
+      "setup": "設定",
+      "trigger": "トリガ",
+      "generate": "生成",
+      "edit_script": "スクリプトを編集",
+      "edit_input": "入力を編集",
+      "help": "情報"
+    },
+    "graph_union": {
+      "title": "グラフ統合",
+      "tooltip": "複数の信号を独立した系列としてグループ化し、オーバーレイプロットを行います。",
+      "num_inputs_label": "入力数 (1-8):",
+      "config_title": "グラフ統合を設定",
+      "status": {
+        "ready": "準備完了"
+      },
+      "ports": {
+        "signal_1": "信号 1",
+        "signal_2": "信号 2",
+        "signal_3": "信号 3",
+        "signal_4": "信号 4",
+        "signal_5": "信号 5",
+        "signal_6": "信号 6",
+        "signal_7": "信号 7",
+        "signal_8": "信号 8",
+        "series_out": "出力"
+      },
+      "menu": {
+        "configure": "設定…"
+      },
+      "help_title": "ヘルプ - グラフ統合",
+      "help_html": "<h3>🔗 グラフ統合ノード</h3><p>複数の信号を受け取り、それらを連結せずに独立した系列として保持し、オーバーレイプロットを行います。</p><p>ノードを右クリックして、入力を動的に<b>追加または削除</b>します（最大8個）。</p><p><code>Series</code>出力は、可視化のための完全な系列リストを提供します。</p>"
+    },
+    "tabular_inspector": {
+      "title": "表形式データインスペクタ",
+      "window_title": "表形式インスペクタ",
+      "no_data": "データなし",
+      "copy": "クリップボードにコピー",
+      "decimals": "小数桁数:",
+      "col_names": "列名（カンマ区切り、空白=自動）:",
+      "tooltip": "ノードデータの検査は、単一の入力ポートで受信したデータを表形式で表示します。",
+      "status": {
+        "no_data": "データなし"
+      },
+      "menu": {
+        "view_table": "表を表示",
+        "configure": "設定…"
+      },
+      "ports": {
+        "data": "入力"
+      },
+      "config_title": "表形式インスペクタを設定",
+      "help_title": "ヘルプ - 表形式インスペクタ",
+      "help_html": "<h3>📊 表形式インスペクタノード</h3><p><b>Excelスプレッドシート</b>のように、このノードは単一の入力ポートで受信したデータを表形式で表示します。</p><p><b>解釈ルール:</b></p><ul><li><b>タプル/配列リスト</b>（例: (x, y, Fs)）→ 各配列が列になります。</li><li><b>2次元numpy配列</b> → 行 × 列。</li><li><b>1次元配列またはリスト</b> → 単一列。</li><li><b>スカラー</b> → 単一セル。</li></ul><p>右クリック → <b>表を表示</b>でインスペクタを開きます。サイドパネルで小数点以下の桁数とカスタム列名（カンマ区切り）を設定します。</p>"
+    },
+    "equation_solver": {
+      "title": "方程式ソルバー",
+      "tooltip": "線形方程式系ソルバー",
+      "type_label": "方程式タイプ:",
+      "type_linear_single": "単一線形",
+      "type_linear_system": "2×2線形系",
+      "eq_format": "形式: a*x + b = c",
+      "eq1_label": "方程式 1 (形式: a*x + b*y = c):",
+      "eq2_label": "方程式 2:",
+      "examples": "例",
+      "sys_examples": "系の例",
+      "menu": {
+        "view_plot": "解プロットを表示",
+        "configure": "方程式を設定…",
+        "view_steps": "解法ステップを表示…"
+      },
+      "ports": {
+        "output": "出力",
+        "steps": "ステップ",
+        "solution": "y (m)"
+      },
+      "steps_title": "解法ステップ",
+      "no_steps": "利用可能な解法ステップはありません。",
+      "config_title": "方程式ソルバーを設定",
+      "help_title": "ヘルプ - 方程式ソルバー",
+      "plot_window_title": "解プロット",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "エクスポート…",
+      "export_title": "プロットをエクスポート",
+      "no_data_to_plot": "プロットするデータがありません",
+      "btn_step_by_step": "▶ ステップバイステップ",
+      "step_anim_title": "ステップバイステップ",
+      "step_anim_info": "完全版では、ここにグラフィカルな構成がステップごとに表示されます。",
+      "error_no_equals": "方程式に '=' 記号がありません。",
+      "error_rhs_not_number": "方程式の右辺が有効な数値ではありません。",
+      "error_invalid_x_coef": "xの係数が無効です: '{coef}'。構文を確認してください。",
+      "error_invalid_y_coef": "yの係数が無効です: '{coef}'。構文を確認してください。",
+      "error_invalid_const": "定数項が無効です: '{term}'。数値と + または - 記号のみを使用してください。",
+      "error_zero_x": "xの係数がゼロです。方程式に一意の解はありません。",
+      "no_plot_data_title": "データなし",
+      "no_plot_data_message": "プロットする解データがありません。先に設定と求解を行ってください。",
+      "preview": "プレビュー:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "解なし（または未計算）",
+      "help_html": "<h3>🧮 方程式ソルバーノード</h3>\n<p><b>単純な線形方程式または2×2方程式系</b>を解き、ステップバイステップの手順と交点グラフを表示します。</p>\n\n<h4>⚙️ 使用方法</h4>\n<ol>\n <li><b>右クリック</b>ノード → <i>「パラメータを編集」</i>を選択。</li>\n <li><code>equation_type</code>を選択: <code>linear_single</code> または <code>linear_system</code>。</li>\n <li><code>equations</code>をテキスト形式で入力（例: \"2x + 3 = 7\"）または系の場合はテキストリストで入力。</li>\n <li>ノードが解を計算し、代数ステップを自動生成します。</li>\n</ol>\n\n<h4>📤 出力</h4>\n<ul>\n <li><code>solution</code> → 数値（単一方程式）または <code>x</code>、<code>y</code> を含む辞書（2×2系）。</li>\n <li><code>steps</code> → ステップバイステップの代数分解テキスト。</li>\n</ul>\n\n<h4>⚠️ 注記</h4>\n<ul>\n <li><b>教育的価値:</b> 即時の代数フィードバックを提供し、解をグラフィカル表現（交点）と関連付けます。</li>\n <li>正しい変数を使用してください（単一の場合は <code>x</code>、系の場合は <code>x</code> と <code>y</code>）。</li>\n <li>系が矛盾しているか従属の場合、<code>steps</code>出力に示されます。</li>\n</ul>\n\n<h4>💡 例</h4>\n<p>ノードを <code>linear_system</code> に設定し、<code>[\"y = 2x\", \"y = -x + 3\"]</code> とします。<code>steps</code> をテキストビューアに接続し、プロットノードで交点を可視化します。</p>\n<hr>\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>数学処理フロー</b>として機能します。</p>\n\n<pre>\n方程式 → 求解 → 可視化\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(代数 ↔ 幾何)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\nパラメータ → 処理（ソルバー） → 可視化（プロット/テキスト）\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nパラメータ（方程式） → EquationSolver → プロット（交点） + テキスト（ステップ）\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "運動学",
+      "tooltip": "運動学シミュレータ: 自由落下と投射運動",
+      "ports": {
+        "x": "x(m) vs t(s)",
+        "y": "y(m) vs t(s)",
+        "vx": "vx(m/s) vs t(s)",
+        "vy": "vy(m/s) vs t(s)",
+        "speed": "速度(m/s) vs t(s)",
+        "energy_kinetic": "運動エネルギー(J) vs t(s)",
+        "energy_potential": "位置エネルギー(J) vs t(s)",
+        "ground_contact": "地面接触 vs t(s)"
+      },
+      "status": {
+        "ready": "準備完了"
+      },
+      "config_title": "運動学を設",
+      "menu": {
+        "configure": "設定…",
+        "generate": "生成",
+        "show_output": "出力を表示",
+        "trajectory": "軌道 (y vs x)",
+        "y_t": "垂直位置 y(t)",
+        "vy_t": "垂直速度 vy(t)",
+        "speed_t": "速度 |v|(t)",
+        "display": "可視化"
+      },
+      "group_ic": "初期条件",
+      "group_env": "環境",
+      "group_sim": "シミュレーション",
+      "group_presets": "プリセット",
+      "help_title": "ヘルプ - 運動学",
+      "help_html": "<h3>🚀 運動学ラボ</h3><p>一定重力下での<b>投射運動</b>と<b>自由落下</b>をシミュレートします。入力は不要です。初期条件から信号を生成します。</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 メイン出力（時間 vs 大きさのタプル）</h4><p>各ポートは <code>(t, variable)</code> タプルを提供し、プロットまたは別のノードに接続する準備ができています。時間はすでにX軸として含まれています。</p><ul><li><code>x</code> → (t, 水平位置) [m]</li><li><code>y</code> → (t, 垂直位置) [m]</li><li><code>vx</code> → (t, 水平速度) [m/s]</li><li><code>vy</code> → (t, 垂直速度) [m/s]</li><li><code>speed</code> → (t, 速度 |v|) [m/s]</li></ul><h4>⚡ オプション出力（エネルギー表示を有効化）</h4><ul><li><code>energy_kinetic</code> → (t, Ec = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, y≤0 で 1.0、空中で 0.0)</li></ul><h4>🎨 内部表示チャンネル</h4><p>コンテキストメニューからメインプロットに表示する内容を変更します:</p><ul><li><b>軌道</b> (y vs x) → 空間放物線</li><li><b>y(t)</b>、<b>vy(t)</b>、<b>|v|(t)</b> → 時間発展</li></ul><h4>💡 典型的な接続</h4><ul><li><b>高度 vs 時間:</b> <code>y</code> をプロットに接続（tはすでに含まれています）</li><li><b>速度 vs 時間:</b> <code>speed</code> をプロットに接続</li><li><b>空間軌道:</b> <code>x</code> → プロットX軸、<code>y</code> → プロットY軸</li><li><b>衝突:</b> <code>ground_contact</code> を論理ノードまたはLEDに接続</li><li><b>エネルギー:</b> <code>energy_kinetic</code> + <code>energy_potential</code> を加算して保存を確認</li></ul><h4>⚡ ショートカット</h4><ul><li><b>ダブルクリック</b> → このヘルプ</li><li><b>右クリック</b> → 設定 / 生成</li><li><b>GENERATEボタン</b> → シミュートしてアニメーションを開く</li></ul><hr><p><b>状態:</b> -- | <b>プリセット:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "関数",
+      "tooltip": "数値解析を用いて数学関数を生成・可視化",
+      "ports": {
+        "signal": "信号"
+      },
+      "status": {
+        "ready": "準備完了"
+      },
+      "menu": {
+        "configure": "設定…",
+        "show_table": "数値表を表示",
+        "generate": "生成",
+        "show_limit": "極限を表示",
+        "show_derivative": "導関数を表示"
+      },
+      "config_title": "関数を設定",
+      "cfg": {
+        "expr": "式:",
+        "presets": "プリセット:",
+        "piecewise": "区間関数を有効化",
+        "group_func": "関数グループ",
+        "group_dom": "定義域グループ",
+        "group_viz": "可視化グループ"
+      },
+      "table_title": "数値表"
+    },
+    "signal_source": {
+      "title": "高度信号源",
+      "tooltip": "高度信号源",
+      "load_signal": "ファイルから信号を読み込む…",
+      "load_file_title": "信号ファイルを読み込む",
+      "ports": {
+        "out": "出力",
+        "trigger_in": "トリガ入力",
+        "trigger_out": "トリガ出力"
+      },
+      "status": {
+        "no_data": "データなし"
+      },
+      "configure": "設定…",
+      "generate": "信号を生成",
+      "help_title": "ヘルプ - 信号源",
+      "help_html": "<h3>🎛️ 信号源ノード</h3>\n<p>さまざまな<b>プリセット波形</b>またはユーザーが記述した<b>数式</b>を使用して<b>カスタム信号</b>を生成します。出力は常に <code>(時間, 振幅)</code> タプルで、さらなる処理の準備ができています。</p>\n\n<h4>📤 出力</h4>\n<p><code>out</code> → <code>(t, y)</code> タプル。</p>\n\n<h4>⚙️ 動作モード</h4>\n<ul>\n    <li><b>プリセット:</b> 正弦波、方形波、ランプ、パルス、ノイズ、DC、三角波、ノコギリ波、sinc、ガウス、指数、チャープから選択。すべてのパラメータ（周波数、振幅、オフセット、位相、デューティ比、対称性など）は設定ダイアログで調整可能です。</li>\n    <li><b>式:</b> <code>t</code>（時間）とカスタム変数を使用して<b>自由な数式</b>を記述します（例: <code>amp * sin(2*pi*freq*t) + offset</code>）。変数はテーブルで定義され、自由に追加・削除・変更できます。評価は安全で、数学演算に制限されています。</li>\n</ul>\n\n<h4>🖱️ インタラクション</h4>\n<ul>\n    <li><b>ダブルクリック</b>ノード → 3つのタブ（プリセット、式、高度）を持つ設定ダイアログを開きます。</li>\n    <li><b>クリック</b>ノード → メイングラフに現在の信号をプロットします。</li>\n    <li><b>右クリック</b> → 再生成、設定、またはノード削除のコンテキストメニュー。</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパター</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → FFT → フィルタ → 加算器 → プロット\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+      "title": "信号設定",
+      "waveform": "波形",
+      "frequency": "周波数",
+      "amplitude": "振幅",
+      "offset": "オフセット",
+      "phase": "位相",
+      "symmetry": "対称性",
+      "direction": "方向",
+      "up": "上昇",
+      "down": "下降",
+      "stdev": "標準偏差",
+      "mean": "平均値",
+      "lobes": "ローブ",
+      "sigma": "シグマ",
+      "mu": "ミュー",
+      "tau": "タウ",
+      "exp_type": "タイプ",
+      "rise": "立ち上がり",
+      "fall": "立ち下がり",
+      "f0": "開始周波数",
+      "f1": "終了周波数",
+      "chirp_method": "方式",
+      "linear": "Linear",
+      "logarithmic": "Logarithmic",
+      "tab_preset": "プリセット",
+      "tab_formula": "式",
+      "tab_advanced": "高度",
+      "preview": "プレビュー",
+      "apply": "適用",
+      "duration": "期間",
+      "sample_rate": "サンプリングレート",
+      "sampling_note": "0 = 自動",
+      "auto_generate": "自動生成",
+      "time_label": "時間 (s)",
+      "amplitude_label": "振幅",
+      "formula_expr": "式 ('t' を時間変数として使用):",
+      "variables": "変数:",
+      "var_name": "名前",
+      "var_value": "値",
+      "add_var": "変数を追加",
+      "remove_var": "選択項目を削除",
+      "auto": "自動",
+      "basic_params": "基本パラメータ",
+      "carrier_freq": "キャリア周波数",
+      "mod_freq": "変調周波数",
+      "mod_depth": "変調深さ",
+      "deviation": "偏差",
+      "heart_rate": "心拍数",
+      "rise_time": "立ち上がり時間",
+      "fall_time": "立ち下がり時間",
+      "quick_insert": "クイック関数",
+      "advanced": {
+        "modulation": "変調",
+        "mod_enable": "変調を有効化",
+        "mod_type": "変調タイプ",
+        "mod_freq": "変調周波数",
+        "mod_depth": "変調深さ",
+        "noise_group": "ノイズ",
+        "noise_enable": "ノイズを追加",
+        "noise_amp": "ノイズ振幅",
+        "auto_generate": "変更を自動適用",
+        "auto_generate_tooltip": "有効にすると、パラメータの変更が即座にノードに適用されます。無効の場合はOKを押して適用します。"
+      },
+      "gamma": "ガンマ (幅)",
+      "window_type": "窓関数タイプ",
+      "quadratic": "二次",
+      "hyperbolic": "双曲線",
+      "hanning": "ハニング",
+      "hamming": "ハミング",
+      "blackman": "ブラックマン",
+      "bartlett": "バートレット",
+      "kaiser": "カイザー",
+      "noise_type": "ノイズタイプ",
+      "gaussian": "ガウス",
+      "uniform": "一様",
+      "pink": "ピンク (1/f)",
+      "brown": "ブラウン (1/f²)",
+      "blue": "ブルー (f)",
+      "impulse": "インパルス",
+      "pulse_shape": "パルス形状",
+      "rect": "矩形",
+      "raised_cosine": "レイズドコサイン",
+      "polynomial": "PRBS多項式",
+      "bit_rate": "ビットレート",
+      "symbol_rate": "シンボルレート",
+      "symbol_sequence": "シンボル列",
+      "bit_sequence": "ビット列",
+      "multitone_hint": "周波数 (Hz, カンマ区切り):",
+      "frequencies": "周波数",
+      "amplitudes": "振幅",
+      "phases": "位相",
+      "step_time": "ステップ時間",
+      "impulse_time": "インパルス時間",
+      "f_start": "開始周波数",
+      "f_end": "終了周波数",
+      "f2": "周波数 2",
+      "noise_level": "ノイズレベル",
+      "duty_cycle": "デューティ比 (%)",
+      "signal_sine": "正弦波",
+      "signal_square": "方形波",
+      "signal_ramp": "ランプ",
+      "signal_pulse": "パルス",
+      "signal_noise": "ノイズ",
+      "signal_dc": "DC",
+      "signal_triangle": "三角波",
+      "signal_sawtooth": "ノコギリ波",
+      "signal_sinc": "Sinc",
+      "signal_gaussian": "ガウス",
+      "signal_exponential": "指数",
+      "signal_chirp": "チャープ",
+      "signal_am": "AM",
+      "signal_fm": "FM",
+      "signal_ecg": "心電図",
+      "signal_trapezoidal": "台形",
+      "signal_lorentzian": "ローレンツ",
+      "signal_window": "窓関数",
+      "signal_multitone": "マルチトーン",
+      "signal_ask": "ASK",
+      "signal_fsk": "FSK",
+      "signal_psk": "PSK",
+      "signal_pwm": "PWM",
+      "signal_pam": "PAM",
+      "signal_prbs": "PRBS",
+      "signal_step": "ステップ",
+      "signal_impulse": "インパルス",
+      "signal_sweep_sine": "正弦スイープ",
+      "signal_cardiac": "心臓",
+      "signal_eeg": "脳波",
+      "signal_beat": "ビート"
+    },
+    "input": {
+      "help_html": "<h3>📂 入力ノード（データ読み込み）</h3>\n<p><b>.npz ファイルからデータを読み込み</b>（NumPy形式）、ワークフローに送信できます。</p>\n\n<h4>⚙️ 使用方法</h4>\n<ol>\n    <li><b>右クリック</b>ノード → <i>「入力を編集」</i>を選択。</li>\n    <li><code>datay</code> というキーを含む <code>.npz</code> ファイルを選択します。</li>\n    <li>配列は内部に保存され、フローを通じて自動的に伝播します。</li>\n</ol>\n\n<h4>📤 出力</h4>\n<p><code>out</code> → 読み込んだファイルの <code>datay</code> の内容。</p>\n\n<h4>⚠️ 注記</h4>\n<ul>\n    <li><code>datay</code> キーを含む <b>.npz</b> ファイルのみ受け付けます。</li>\n    <li>ファイルが無効な場合、エラーがコンソールに表示されます。</li>\n    <li>ファイル読み込み後、フローは自動的に実行されます。</li>\n</ul>\n\n<h4>💡 例</h4>\n<p>センサーデータを含むファイルを読み込み、「フィタ」または「ビジュアライザ」ノードに接続します。</p>\n<hr>\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → FFT → フィルタ → 加算器 → プロット\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "lambda関数",
+      "help_html": "<h3>🔧 汎用処理ノード</h3>\n<p>入力データに<b>カスタム関数</b>を適用します。数学演算、変換などを作成するための基礎となります。</p>\n\n<h4>📥 入力</h4>\n<p><code>data_in</code> → 数値、タプル (x, y)、または任意のオブジェクト。</p>\n\n<h4>📤 出力</h4>\n<p><code>out</code> → 入力に関数を適用した結果。</p>\n\n<h4>🧠 入力タイプ別の動作</h4>\n<ul>\n    <li>入力が<b>2要素のタプル</b> (x, y) の場合、関数はタプルを受け取り、別のタプルまたは値を返す必要があります。例: <code>lambda xy: (xy[0], xy[1]*2)</code>。</li>\n    <li>入力が<b>単純な値</b>の場合、関数はその値を受け取ります。例: <code>lambda x: x**2</code>。</li>\n    <li>入力が <code>None</code> の場合、出力も <code>None</code> になります。</li>\n</ul>\n\n<h4>⚙️ カスタマイズ</h4>\n<p>関数はノード作成時に割り当てられます（コード内で）。将来のバージョンではインターフェースから編集できるようになります。</p>\n\n<h4>💡 例</h4>\n<ul>\n    <li><b>数値を2倍にする:</b> <code>lambda x: x * 2</code></li>\n    <li><b>タプル要素の和:</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>同じタプルを返す（スルー）:</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>適用された関数:</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → FFT → フィルタ → 加算器 → プロット\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "論理ゲート",
+      "tooltip": "信号に対する論理、比較、マスキング演算 (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "入力 1",
+        "in2": "入力 2",
+        "out": "出力"
+      },
+      "config_title": "論理ゲートを設定",
+      "op_label": "演算:",
+      "thr_label": "閾値 / レル:",
+      "inv_label": "出力を反転",
+      "help_title": "ヘルプ - 論理ゲート",
+      "help_html": "<h3>🎛️ 論理ゲート / コンパレータ</h3>\n<p>2つの入力信号をサンプルごとに評価、比較、またはマスクして、トリガ、論理マスク、または条件付き出力を生成します。</p>\n\n<h4>📥 入力</h4>\n<ul>\n<li><code>in1</code> → メイン信号（オペランド A）。</li>\n<li><code>in2</code> → 参照、マスク、または第2オペランド（オペランド B）。</li>\n</ul>\n\n<h4>📤 出力</h4>\n<ul>\n<li><code>out</code> → 処理結果。論理演算は <code>0.0</code> または <code>1.0</code> を返します。コンパレータ/閾値はマスクまはクランプ信号を生成します。</li>\n</ul>\n\n<h4>📐 ダイアグラム</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 メンタルモデル</h4>\n<p>このノードは<b>サンプルごとの判定エンジン</b>として機能します。各点を独立に評価し、アナログ波形をデジタル制御信号、アクティベーションマスク、または論理ストリームに変換します。</p>\n\n<h4>📐 データ表現</h4>\n<pre>\n入力:\n(x, y1) & (x, y2) → 1次元配列（不一致時は最短に切り詰め）\n\n出力:\n(x, y_out) → 通常はバイナリ (0/1) またはマスク\n</pre>\n\n<h4>🔁 典型的な使用パターン</h4>\n<pre>\n[ジェネレータ] → [論理ゲート] → [トリガ / プロット]\n\n例:\n正弦波 (in1) + 方形波 (in2) → [AND] → 同パルス列\n信号 (in1) → [THRESHOLD] → ピーク検出用 0/1 マスク\n信号 (in1) + 参照 (in2) → [MASK] → in2 ≤ 0 のとき in1 をミュート\n</pre>\n\n<h4>⚠️ よくあるエラー</h4>\n<ul>\n<li>論理演算が振幅を保持することを期待する → 保持しません（0/1に変換）。代わりに <code>LEVEL</code> または <code>MASK</code> を使用してください。</li>\n<li>長さが大きく異なる信号を接続する → 最小値に切り詰められます。</li>\n<li>浮動小数点数に <code>EQ</code> を使用する → 暗黙の許容誤差に依存します。必要に応じて事前に丸めてください。</li>\n</ul>\n<hr><hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → FFT → フィルタ → 加算器 → プロット\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → クイック接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、設定）。</li>\n<li><b>ドラッグ</b>ノード → ブロックを移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "sum": {
+      "title": "算術",
+      "tooltip": "2つの信号間で算術演算を実行します。",
+      "operation": {
+        "sum": "加算",
+        "sub": "減算",
+        "mul": "乗算",
+        "div": "除算"
+      },
+      "ports": {
+        "out": "出力",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "*A",
+        "port_b_mul": "*B",
+        "port_a_div": "num",
+        "port_b_div": "den"
+      },
+      "menu": {
+        "operation": "演算"
+      },
+      "help_title": "ヘルプ - 算術ノード",
+      "help_html": "<h3>➕ 加算/算術ノード</h3>\n<p>2つの信号（配列または数値）間で算術演算を実行します。</p>\n\n<h4>📥 入力</h4>\n<ul>\n    <li><code>port_a</code>（上）: 第1オペランド (A)。</li>\n    <li><code>port_b</code>（下）: 第2オペランド (B)。</li>\n</ul>\n\n<h4>📤 出力</h4>\n<p><code>out</code> → 演算結果 (A op B)。</p>\n\n<h4>⚙️ 使用可能な演算（右クリック → 演算）</h4>\n<ul>\n    <li><b>加算 (+)</b>: A + B</li>\n    <li><b>減算 (−)</b>: A − B</li>\n    <li><b>乗算 (×)</b>: A * B</li>\n    <li><b>除算 (÷)</b>: A / B（ゼロ除算を防止）。</li>\n</ul>\n\n<h4>📐 ダイアグラム</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 メンタルモデル</h4>\n<p>このノードは<b>ベクトル演算子</b>です。\n信号に対して要素ごとの演算を行います。</p>\n\n<h4>📐 ベクトル表現</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\n出力:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 視覚的な例</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\n加算:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 使用戦略</h4>\n<ul>\n<li><b>正規化:</b> 最大値で除算</li>\n<li><b>スケーリング:</b> 定数を乗算</li>\n<li><b>信号混合:</b> 波形の加算</li>\n<li><b>キャンセル:</b> A - B でノイズ除去</li>\n</ul>\n\n<h4>⚠️ よくある間違い</h4>\n<ul>\n<li>X軸を揃えない → 不整合な結果</li>\n<li>ゼロに近い値で除算 → 不安定性</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → FFT → フィルタ → 加算器 → プロット\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "script": {
+      "title": "スクリプト",
+      "tooltip": "Pythonスクリプトノード",
+      "ports": {
+        "data_in": "データ入力",
+        "loop_in": "ループ入力",
+        "out": "出力"
+      },
+      "menu": {
+        "edit": "編集",
+        "run": "スクリプトを実行"
+      },
+      "status_ready": "準備完了",
+      "status_error": "エラー",
+      "edit_script": "スクリプトを編集",
+      "tooltip_x": "NumPy配列: X軸 (時間, 周波数など)",
+      "tooltip_y": "NumPy配列: 現在の信号値",
+      "tooltip_param": "反復パラメータ（TriggerNodeから）または None",
+      "help_title": "ヘルプ - スクリプトノード",
+      "help_html": "<h3>📜 カスタムスクリプトノード</h3> <p>Pythonコードを記述して信号を任意に処理できます。</p> <h4>📥 入力</h4> <ul> <li><code>data_in</code> → メイン信号 (x, y) または単純な配列。</li> <li><code>loop_in</code> → <b>TriggerNode</b> からパラメータを受け取るためのオプション入力（値 <code>param</code>）。</li> <li>動的ポート <code>@input name</code> → スクリプトで定義された追加入力。</li> </ul> <h4>📤 出力</h4> <ul> <li><code>out</code> → スクリプトが生成したタプル (x_new, y_new)（バッチモード）。</li> <li>動的ポート <code>@output name</code> → スクリプトで定義された追加出力。</li> </ul> <h4>✏️ スクリプト編集</h4> <p>右クリック → <b>スクリプトを編集</b> でシンタックスハイライト付きエディタを開きます。</p> <p>自動補完、テンプレート、設定可能なパラメータ (<code>@param</code>)、外部実行（代替Python）を含みます。</p> <hr> <h4>🧠 利用可能な変数（従来のバッチモード）</h4> <ul> <li><code>x</code> : numpy配列 – 時間または周波数軸</li> <li><code>y</code> : numpy配列 – 信号値</li> <li><code>param</code> : float（オプション）– <code>loop_in</code> からの値（TriggerNode）</li> <li><code>persist</code> : dict – 同じノードの実行間で保持（アキュムレータに有用）</li> <li><code>np</code>, <code>scipy</code>, <code>sympy</code> – 事前インポートされたライブラリ</li> </ul> <h4>🧩 メンタルモデル</h4> <p> このノードは<b>任意変換ブロック</b>です。ここで独自の物理、数学、または論理を定義します。 </p> <h4>📐 待される形状（バッチ）</h4> <pre> 入力: x → ベクトル (時間/周波数) y → ベクトル (値) 出力: (x_mod, y_mod) </pre> <h4>🧠 より強力な例</h4> <h5>1. 周波数依存ゲイン</h5> <pre> gain = np.exp(-x * 0.01) return (x, y * gain) </pre> <h5>2. ピーク検出</h5> <pre> y_mod = np.where(y > 0.8, y, 0) return (x, y_mod) </pre> <h5>3. 変調</h5> <pre> carrier = np.sin(2*np.pi*1000*x) return (x, y * carrier) </pre> <h5>4. param の使用（スイープ）</h5> <pre> factor = param if param is not None else 1.0 return (x, y * factor) </pre> <h5>5. persist を使用したアキュムレータ</h5> <pre> persist[\"counter\"] = persist.get(\"counter\", 0) + 1 return (x, y + persist[\"counter\"] * 0.1) </pre> <hr> <h4>🔁 高度な戦略</h4> <pre> Trigger → Script(param) → Sum → Visualization  自動スイープを可能にする </pre> <h4>⚠️ よくあるエラー</h4> <ul> <li>バッチモードでタプル (x, y) を返さない。</li> <li><code>param</code> が None の可能性を考慮しない。</li> <li>ストリーミングまたはGPUスクリプトで「テスト」ボタンを使用しようとする（実際のフローを使用してください）。</li> </ul><hr> <hr> <h3>🧠 このシステムの考え方</h3> <p>この環境は<b>信号処理フロー</b>として機能します。</p> <pre> データ → 変換 → 結果 </pre> <h4>📐 重要なルール</h4> <pre> すべては: (x, y) </pre> <h4>🔁 ユニバーサルパターン</h4> <pre> 入力 → 処理 → 可視化 </pre> <h4>🧪 完全な例</h4> <pre> オシロスコープ → FFT → フィルタ → 加算器 → プロット </pre> <hr> <h4>⚡ ショートカットとヒント</h4> <ul> <li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li> <li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li> <li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li> <li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li> </ul>"
+    },
+    "trigger": {
+      "title": "トリガ",
+      "tooltip": "反復・アキュムレーションノード",
+      "ports": {
+        "data_in": "データ入力",
+        "trigger_in": "トリガ入力",
+        "loop_out": "ループ出力",
+        "out": "出力"
+      },
+      "state": {
+        "idle": "待機中",
+        "running": "反復 {iteration}/{total}",
+        "done": "完了",
+        "running_count": "実行中 {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "設定…"
+      },
+      "accumulate": {
+        "accumulate": "アキュムレーションモード",
+        "stack": "スタック",
+        "average": "平均",
+        "max": "最大",
+        "min": "最小",
+        "last": "最終キャプチャ"
+      },
+      "config_title": "トリガノードを設定",
+      "n_iter": "反復回数",
+      "reset": "反復をリセット",
+      "help_title": "ヘルプ - トリガノード",
+      "help_html": "<h3>⏺ トリガノード（バッチキャプチャ）</h3>\n<p>外部トリガ信号 (<code>trigger_in</code>) によって活性化され、反復的に信号をキャプチャ・アキュムレートします。反復実験、ノイズ平均化、または時間経過によるトレース比較に最適です。</p>\n\n<h4>📥 入力</h4>\n<ul>\n    <li><code>data_in</code> → キャプチャするメイン信号 (x, y)。</li>\n    <li><code>trigger_in</code> → トリガ信号。各パルスまたは活性化で、新しいトレースが内部バッファにキャプチャされます。</li>\n</ul>\n\n<h4>📤 出力</h4>\n<ul>\n    <li><code>out</code> → プログラムされた反復回数 (<code>n_iter</code>) を完了すると、選択したモードに従ってアキュムレートされた信号を出力します。</li>\n</ul>\n\n<h4>⚙️ 設定</h4>\n<p>右クリック → <b>設定</b> で調整します:</p>\n<ul>\n    <li><b>反復回数 (N):</b> 出力を生成するために必要な正確なキャプチャ回数。</li>\n    <li><b>アキュムレーション:</b> キャプチャを組み合わせるモード: <i>スタック、平均、最大、最小、または最終</i>。</li>\n</ul>\n\n<h4>🧠 動作</h4>\n<ol>\n    <li>ノードは <b>待機中</b> のまま、<code>data_in</code> のデータと <code>trigger_in</code> のパルスを待ちます。</li>\n    <li>有効なトリガが検出されると、現在の信号を内部バッファに保存し、<code>実行中 X/N</code> を表示します。</li>\n    <li>正確に <b>N 反復</b>に達すると、アキュムレートされた出力を構築し、<code>out</code> を介して送信し、次の実験のためにバッファを自動的にクリアします。</li>\n</ol>\n\n<h4>🧩 メンタルモデル</h4>\n<p>このノードは<b>イベント駆動型バッチレコーダー</b>として機能します。ラボでの「トリガ待ち → 記録 → N回繰り返し」ルーチンと同等です。</p>\n\n<h4>📐 スタックモード</h4>\n<p><b>スタック</b>を選択すると、信号は <code>NaN</code> で区切られて単一配列に連結されます。これにより、すべてのキャプチャを1つトレースにプロットでき、それらが接続されることはありません。</p>\n\n<h4>🔁 フロー例</h4>\n<pre>\nジェネレータ/オシロスコープ → TriggerNode (N=5) → ScriptNode（オプション） → プロット\n\n結果:\n5本のスタック曲線（スタック）またはその平均（平均）\n</pre>\n\n<h4>🧠 実際の使用例</h4>\n<ul>\n<li>ノイズ信号の平均化</li>\n<li>反復実験の同期キャプチャ</li>\n<li>複数取得の視覚的比較</li>\n<li>統計解析のバッチ前処理</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → TriggerNode → ScriptNode → プロット\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（設定、削除、接続/切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "generator": {
+      "title": "ジェネレータ",
+      "tooltip": "信号ジェネレータノード",
+      "ports": {
+        "signal_out": "信号出力",
+        "trigger_out": "トリガ出力",
+        "trigger_in": "トリガ入力",
+        "signal_in": "信号入力"
+      },
+      "status": {
+        "default": "FloWorks  |  スクロール: ズーム  |  中央クリック: パン  |  ノードを右クリック: オプション",
+        "sim": "シミュレーション",
+        "busy": "ビジー",
+        "ready": "準備完了"
+      },
+      "device_label": "機器",
+      "channel_label": "CH",
+      "gen_button": "GEN",
+      "setup_button": "設定",
+      "generate_action": "信号を生成",
+      "help_title": "ヘルプ - ジェネレータノード",
+      "help_html": "<h3>📡 信号ジェネレータノード</h3>\n<p>アナログ信号を生成し、実際のファンクションジェネレータ (SDG) に送信するか、内部で出力をシミュレートします。</p>\n\n<h4>📥 入力ポート</h4>\n<ul>\n    <li><code>trigger_in</code>（左）→ 生成をトリガする信号を受信（EXTモード）。</li>\n    <li><code>signal_in</code>（左）→ 外部信号 (t, y) を受信し、ジェネレータに任意波形として送信（EXTモード）。</li>\n</ul>\n\n<h4>📤 出力ポート</h4>\n<ul>\n    <li><code>signal_out</code>（右）→ 生成された信号 (t, y) を可視化または処理のために出力。</li>\n    <li><code>trigger_out</code>（右）→ 生成完了時のトリガ信号（オプション）。</li>\n</ul>\n\n<h4>⚙️ 動作モード</h4>\n<ul>\n    <li><b>INT</b>（内部）: ノードの内部パメータ（周波数、振幅、波形など）に従って信号を生成し、ハードウェア（またはシミュレーション）に送信します。</li>\n    <li><b>EXT</b>（外部）: ノードは <code>signal_in</code> 経由でカスタム信号を受信することを期待します。<b>GEN</b> を押すと、その信号がジェネレータに任意波形としてアップロードされます。</li>\n</ul>\n\n<h4>🔧 設定</h4>\n<p><b>設定</b>ボタンをクリック（または右クリック → 「コントローラを開く」）して調整します:</p>\n<ul>\n    <li>波形: 正弦波、方形波、ランプ、パルス、ノイズ、DC、三角波、ノコギリ波、sinc、ガウス、指数、チャープ。</li>\n    <li>周波数、振幅、オフセット、位相、デューティ比など。</li>\n    <li>出力チャンネル（C1 または C2）。</li>\n    <li>デバイス: 「sdg」（実ハードウェア）または 「simulation」（内部シミュレーションのみ）。</li>\n</ul>\n\n<h4>▶️ 生成</h4>\n<p><b>GEN</b> ボタンをクリック（または右クリック → 「信号を生成」）して出力を開始します。ノードは信号をハードウェアに送信し、<code>signal_out</code> を介して生成されたデータもフローの残りに出力します。</p>\n\n<h4>💡 典型的な例</h4>\n<ol>\n    <li>ジェネレータを 1 kHz 正弦波、1 Vpp に設定します。</li>\n    <li><code>signal_out</code> をオシロスコープノードまたはビジュアライザに接続します。</li>\n    <li><b>GEN</b> を押す → 信号が物理チャンネルとグラフに表示されます。</li>\n</ol>\n\n<h4>⚠️ 注記</h4>\n<ul>\n    <li>EXTモードでは、GENを押す前に <code>signal_in</code> に信号 (t, y) を接続してください。</li>\n    <li>ハードウェアが接続されていない場合、ノードは自動的にシミュレーションを使用します。</li>\n    <li>任意波形は最大 524288 ポイントまでアップロードされます（機種により異なります）。</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → FFT → フィルタ → 加算器 → プロット\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンキストメュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "オシロスコープ",
+      "tooltip": "オシロスコープキャプチャノード\n ダブルクリックで情報",
+      "ports": {
+        "out_primary": "プライマリ出力",
+        "out_secondary": "セカンダリ出力",
+        "trigger_out": "トリガ出力"
+      },
+      "status": {
+        "sim": "シミュレーション",
+        "capturing": "キャプチャ中…",
+        "armed": "準備完了",
+        "connected": "接続済み",
+        "disconnected": "切断済み"
+      },
+      "device_label": "機器",
+      "channel_label": "CH",
+      "lcr_label": "LCR",
+      "sim_label": "シミュ",
+      "trig_button": "トリガ",
+      "setup_button": "設定",
+      "menu": {
+        "show_channel": "チャンネルを表示"
+      },
+      "channel": {
+        "primary": "プライマリ (Z)",
+        "secondary": "セカンダリ (θ)"
+      },
+      "trigger_action": "キャプチャをトリガ",
+      "help_title": "ヘルプ - オシロスコープノード",
+      "help_html": "<h3>📊 オシロスコープノード（信号取得）</h3>\n<p>ハードウェア (SDS, LCR) を使用して実際の信号を取得するか、テスト用のシミュレートされたデータを生成します。</p>\n\n<h4>📤 出力ポート</h4>\n<ul>\n    <li><code>out_primary</code> → メイン信号（電圧 vs 時間、またはLCRの場合はインピーダンス Z）。</li>\n    <li><code>out_secondary</code> → セカンダリ信号（LCRの場合は位相 θ。SDSでは未使用）。</li>\n    <li><code>trigger_out</code> → キャプチャ完了時にトリガ信号を出力（他のノードとの同期に有用）。</li>\n</ul>\n\n<h4>🔘 コントロール</h4>\n<ul>\n    <li><b>トリガ</b> → キャプチャを開始（データ取得）。</li>\n    <li><b>設定</b> → 設定パネルを開く（シミュレーションパラメータまたはハードウェアコントローラ）。</li>\n    <li><b>デバイスセレクタ</b>（下部コンボボックス）→ SDS（実オシロスコープ）、LCR（インピーダンス計）、またはシミュレーションを選択。</li>\n</ul>\n\n<h4>⚙️ 動作モード</h4>\n<ul>\n    <li><b>SDS</b>: 実オシロスコープ（Siglent SDS）に接続。コンテキストメニュー → 「チャンネルを表示」でチャンネル (C1..C4) を選択できます。</li>\n    <li><b>LCR</b>: LCRメータに接続。2つの出力を提供: プライマリ（インピーダンス Z）とセカンダリ（位相角 θ）。</li>\n    <li><b>シミュレーション</b>: ノイズを含む合成信号を生成。設定で構成可能（タイムベース、電圧範囲、トリガレベル、サンプリングレート）。</li>\n</ul>\n\n<h4>📈 可視化</h4>\n<p>ノードは内部的に信号を描画しませんが、<code>PlotWidget</code> などのビジュアライザウィジェットに接続して取得データを表示できます。</p>\n\n<h4>💡 使用例</h4>\n<ol>\n    <li>デバイス (SDS) を選択し、物理的に接続します。</li>\n    <li>トリガをクリックしてトレースをキャプチャします。</li>\n    <li>信号は <code>out_primary</code> で他のノードに利用可能になります。</li>\n    <li>LCRを使用する場合、両出力（Z と θ）が利用可能になります。</li>\n</ol>\n\n<h4>⚠️ 注記</h4>\n<ul>\n    <li>ハードウェアモードでは、デバイスが接続され電源が入っていることを確認してください。</li>\n    <li>キャプチャはインターフェースをブロックしないよう別スレッドで実行されます。</li>\n    <li>このードはフローのデータソース（入力ノード）として機能します。</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → FFT → フィルタ → 加算器 → プロット\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "spectral": {
+      "title": "スペクトル",
+      "tooltip": "スペクトル変換: FFT、ヒルベルト、ウェルチ (PSD)、DCT",
+      "transform_type": "変換:",
+      "window_type": "窓関数:",
+      "nfft": "NFFT / セグメント:",
+      "scale": "スケール:",
+      "detrend": "トレンド除去:",
+      "normalize": "正規化（エネルギー保持）",
+      "config_title": "スペクトルを設定",
+      "menu": {
+        "configure": "設定…",
+        "show_output": "出力を表示"
+      },
+      "channel": {
+        "magnitude": "振幅",
+        "phase": "位相"
+      },
+      "ports": {
+        "input": "入力",
+        "output": "時間出力",
+        "magnitude": "振幅",
+        "phase": "位相"
+      },
+      "status": {
+        "no_data": "データなし",
+        "ready": "準備完了",
+        "phase": "位相"
+      },
+      "help_title": "ヘルプ - スペクトル",
+      "help_html": "<h3>📊 スペクトルノード（スペクトル変換）</h3>\n<p>入力信号に対してさまざまな変換を計算します: <b>FFT</b>、<b>ヒルベルト</b>、<b>ウェルチ (PSD)</b>、<b>DCT</b>。</p>\n\n<h4>📥 入力</h4>\n<p><code>input</code> → <code>(x, y)</code> タプルまたは1次元配列を期待します。</p>\n\n<h4>📤 出力</h4>\n<ul>\n    <li><b>時間出力</b> → 時間領域信号（ヒルベルトのみ有効: 解析信号の実部）。</li>\n    <li><b>振幅</b> → モードにより異なる:\n        <ul>\n            <li><b>FFT</b> → 正規化振幅スペクトル <code>(周波数, 振幅)</code>。</li>\n            <li><b>ヒルベルト</b> → 信号エンベロープ <code>(時間, エンベロープ)</code>。</li>\n            <li><b>ウェルチ</b> → パワースペクトル密度 <code>(周波数, PSD)</code>。</li>\n            <li><b>DCT</b> → 離散余弦変換係数 <code>(インデックス, 係数)</code>。</li>\n        </ul>\n    </li>\n    <li><b>位相</b> → ラジアン位相角（FFT）または瞬時位相（ヒルベルト）。<i>ウェルチまたはDCTでは利用不可</i>。</li>\n</ul>\n\n<h4>⚙️ パラメータ</h4>\n<ul>\n    <li><b>変換</b> — FFT、ヒルベルト、ウェルチ、DCTから選択。</li>\n    <li><b>窓関数</b> — <code>scipy.signal.windows</code> の窓関数（ハン、ハミング、ブラクマンなど）。</li>\n    <li><b>NFFT / セグメント</b> — FFT長またはウェルチセグメント長。<code>自動</code> は次の2のべき乗を使用。</li>\n    <li><b>スケール</b> — <code>線形</code> または <code>dB</code>（FFT/ヒルベルト/DCT は 20·log₁₀、ウェルチ は 10·log₁₀）。</li>\n    <li><b>トレンド除去</b> — 処理前に定常平均または線形トレンドを除去。</li>\n    <li><b>正規化</b> — エネルギーを保持するように窓を調整。</li>\n</ul>\n\n<h4>🖱️ インタラクション</h4>\n<ul>\n    <li><b>右クリック</b> → コンテキストメニュー（設定、表示チャンネルの選択）。</li>\n    <li><b>ダブルクリック</b> → このヘルプウィンドウを開く。</li>\n    <li><b>サイドパネル</b> — リアルタイムでパラメータを調整。プロットは自動更新されます。</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → 窓関数 → スペクトル (FFT) → フィルタ → プロット\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "ifft": {
+      "title": "逆FFT",
+      "tooltip": "逆フーリエ変換（時間再構成）",
+      "fs": "サンプリング周波数 (fs):",
+      "nfft": "NFFT:",
+      "real_only": "実数出力のみ (irfft)",
+      "conjugate_symmetry": "エルミート対称を強制",
+      "normalize": "Nで正規化",
+      "config_title": "逆FFTを設定",
+      "menu": {
+        "configure": "設定…"
+      },
+      "ports": {
+        "magnitude": "振幅",
+        "phase": "位相",
+        "output": "時間出力"
+      },
+      "status": {
+        "no_data": "データなし",
+        "waiting_phase": "位相=0（仮定）",
+        "ready": "準備完了"
+      },
+      "help_title": "ヘルプ - 逆FFT",
+      "help_html": "<h3>🔁 逆FFTノード（逆高速フーリエ変換）</h3>\n<p>周波数スペクトルから時間領域信号を再構成します。</p>\n\n<h4>📥 入力</h4>\n<ul>\n    <li><b>振幅</b> → <code>(周波数, 振幅)</code> または1次元配列。<b>必須。</b></li>\n    <li><b>位相</b> → <code>(周波数, 角度)</code> または1次元配列。<b>オプション。</b> 未接続の場合、位相はゼロと仮定されます。</li>\n</ul>\n\n<h4>📤 出力</h4>\n<ul>\n    <li><b>時間出力</b> → 再構成された <code>(時間, 信号)</code>。</li>\n</ul>\n\n<h4>⚙️ パラメータ</h4>\n<ul>\n    <li><b>fs</b> — 時間軸を構築するサンプリング周波数。</li>\n    <li><b>NFFT</b> — IFFTサイズ。<code>自動</code> は <code>2·(len(mag)-1)</code> を使用。</li>\n    <li><b>実数出力</b> — <code>irfft</code>（実数出力を保証）または <code>ifft</code>（複素数）を使用。</li>\n    <li><b>エルミート対称</b> — 逆変換前に <code>Y[-k] = conj(Y[k])</code> を強制（アーティファクト防止）。</li>\n    <li><b>正規</b> — 元の振幅を保持するために <code>N</code> で除算。</li>\n</ul>\n\n<h4>🖱️ インタラクション</h4>\n<ul>\n    <li><b>右クリック</b> → 設定…</li>\n    <li><b>ダブルクリック</b> → ヘルプ。</li>\n    <li><b>サイドパネル</b> — fs とパラメータをリアルタイムで調整。</li>\n</ul>"
+    },
+    "thd": {
+      "title": "THDアナライザ",
+      "tooltip": "全高調波歪み THD",
+      "ports": {
+        "input": "入力",
+        "output": "出力"
+      },
+      "dialog": {
+        "title": "THDを解析"
+      },
+      "tab": {
+        "summary": "概要",
+        "harmonics": "高調波",
+        "spectrum": "スペクトル"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "基本周波数:",
+        "max_harmonics": "考慮する高調波数:",
+        "green_threshold": "緑の閾値 (<):",
+        "yellow_threshold": "黄の閾値 (<):"
+      },
+      "harmonics": {
+        "order": "高調波次数",
+        "freq": "周波数 (Hz)",
+        "amp_rel": "相対振幅 (%)"
+      },
+      "help_title": "ヘルプ - THD",
+      "help_html": "<h3>全高調波歪み (THD) アナライザ</h3><p>入力信号のTHDおよびTHD+Nを計算します。</p><p>信号は変更されずに出力に渡されます。</p><p><b>パラメータ:</b></p><ul><li>max_harmonics: 考慮する高調波数</li><li>緑/黄の閾値: ノード内のTHDの色を変更</li></ul><p><i>ダブルクリックで詳細解析を開きます。</i></p>"
+    },
+    "filter": {
+      "title": "フィルタ",
+      "tooltip": "デジタルフィルタ (バターワース)",
+      "ports": {
+        "input": "入力",
+        "output": "出力"
+      },
+      "status": {
+        "no_data": "データなし",
+        "ready": "準備完了"
+      },
+      "menu": {
+        "configure": "設定…",
+        "show_output": "出力を表示"
+      },
+      "config_title": "フィルタを設定",
+      "filter_type": "フィルタタイプ:",
+      "cutoff": "カットオフ周波数 (Hz):",
+      "cutoff1": "カットオフ周波数 1 (Hz):",
+      "cutoff2": "カットオフ周波数 2 (Hz):",
+      "order": "フィルタ次数:",
+      "fs": "サンプリングレート (Hz, 0 = 自動):",
+      "help_title": "ヘルプ - フィルタ",
+      "help_html": "<h3>🎛️ フィルタノード (バターワース)</h3>\n<p>入力信号に<b>デジタルバターワースフィルタ</b>を適用します。</p>\n\n<h4>📥 入力</h4>\n<p><code>input</code> → <code>(x, y)</code> タプルまたは1次元配列を期待します。</p>\n\n<h4>📤 出力</h4>\n<p><code>output</code> → フィルタ後の信号 <code>(x, y_filtered)</code>。</p>\n\n<h4>⚙️ パラメータ（ダブルクリックで設定）</h4>\n<ul>\n    <li><b>フィルタタイプ</b> – ローパス、ハイパス、バンドパス、またはバンドストップ。</li>\n    <li><b>カットオフ周波数</b> – Hz単位。バンドパス/バンドストップでは2つの周波数が必要。</li>\n    <li><b>次数</b> – フィルタ次数 (1–20)。高いほどロールオフが急になります。</li>\n    <li><b>サンプリングレート</b> – 0に設定すると、<i>x</i> 軸から自動推定されます。</li>\n</ul>\n\n<h4>🛠️ 動作</h4>\n<ul>\n    <li>フィルタは <code>scipy.signal.butter</code> を使用して設計されます。</li>\n    <li><code>filtfilt</code> を使用してゼロ位相フィルタリングを適用（位相歪みなし）。</li>\n    <li>入力が1次元配列の場合、サンプリングレートから合成 <i>x</i> 軸が作成されます。</li>\n</ul>\n\n<h4>🖱️ インタラクション</h4>\n<ul>\n    <li><b>ダブルクリック</b> → 設定ダイアログを開く。</li>\n    <li><b>クリック</b>ノード → フィルタ後の信号をプロット。</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → フィルタ → FFT → プロット\n</pre>\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "正規化",
+      "tooltip": "信号を指定範囲に正規化",
+      "ports": {
+        "input": "入力",
+        "output": "出力"
+      },
+      "menu": {
+        "configure": "設定…"
+      },
+      "config_title": "正規化ノードを設定",
+      "param": {
+        "target_min": "目標最小値:",
+        "target_max": "目標最大値:"
+      },
+      "help_title": "ヘルプ - 正規化",
+      "help_html": "<h3>📏 正規化ノード</h3>\n<p>入力信号を <b>目標最小値</b> と <b>目標最大値</b> で指定された範囲に正規化します。</p>\n\n<h4>📥 入力</h4>\n<p><code>input</code> → <code>(x, y)</code> タプルまたは1次元配列を期待します。</p>\n\n<h4>📤 出力</h4>\n<ul>\n    <li><b>正規化信号</b> → <code>(x_norm, y_norm)</code> – 目標範囲にスケーリングされた信号。</li>\n</ul>\n\n<h4>⚙️ パラメータ（ダブルクリックで設定）</h4>\n<ul>\n    <li><b>目標最小値</b> – 希望範囲の最小値（デフォルト 0.0）。</li>\n    <li><b>目標最大値</b> – 希望範囲の最大値（デフォルト 1.0）。</li>\n</ul>\n\n<h4>📐 動作</h4>\n<p>線形スケーリング:</p>\n<pre>y_norm = target_min + (y - original_min) * (target_max - target_min) / (original_max - original_min)</pre>\n<p>xは変更されません。</p>\n\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → FFT → フィルタ → 加算器 → プロット\n</pre>\n\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "畳み込み",
+      "tooltip": "畳み込みによるFIRフィルタ",
+      "ports": {
+        "input": "入力",
+        "output": "出力"
+      },
+      "status": {
+        "no_data": "データなし"
+      },
+      "menu": {
+        "show_output": "出力を表示",
+        "configure": "設定…"
+      },
+      "config_title": "畳み込みを設定",
+      "example_kernel": "カーネル例:",
+      "kernel": "カーネル係数（カンマ区切り）:",
+      "mode": "畳み込みモード:",
+      "help_title": "ヘルプ - 畳み込み",
+      "help_html": "<h3>🔀 畳み込みノード (FIRフィルタ)</h3>\n<p>入力信号とユーザー定義カーネルの間で離散畳み込みを実行します。</p>\n\n<h4>📥 入力</h4>\n<p><code>input</code> → <code>(x, y)</code> タプルまたは1次元配列を期待します。</p>\n\n<h4>📤 出力</h4>\n<ul>\n    <li><b>フィルタ後信号</b> → <code>(x_conv, y_conv)</code> – 畳み込みの結果。</li>\n</ul>\n\n<h4>⚙️ パラメータ（ダブルクリックで設定）</h4>\n<ul>\n    <li><b>カーネル係数</b> – カンマ区切りの浮動小数点数、例: <code>'0.2,0.2,0.2,0.2,0.2'</code>。</li>\n    <li><b>畳み込みモード</b> – <code>'same'</code>（デフォルト）、<code>'full'</code>、または <code>'valid'</code>。</li>\n</ul>\n\n<h4>📐 動作</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>x軸は適切に調整されます: <code>'same'</code> は元のxを保持。 <code>'valid'</code> は端を切り詰め。 <code>'full'</code> は線形に拡張。</li>\n</ul>\n\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → FFT → フィルタ → 加算器 → プロット\n</pre>\n\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
+    },
+    "resample": {
+      "title": "リサンプリング",
+      "tooltip": "信号のサンプリングレートを変更",
+      "ports": {
+        "input": "入力",
+        "output": "出力"
+      },
+      "status": {
+        "no_data": "データなし",
+        "ready": "準備完了"
+      },
+      "menu": {
+        "configure": "設定…"
+      },
+      "config_title": "リサンプリングを設定",
+      "mode": "モード:",
+      "factor": "係数:",
+      "target_fs": "目標fs (Hz):",
+      "help_title": "ヘルプ - リサンプリング",
+      "help_html": "<h3>🔄 リサンプリングノード</h3><p>入力信号の<b>サンプリングレート</b>を変更します。</p><h4>📥 入力</h4><p><code>input</code> → <code>(x, y)</code> タプルまたは1次元配列を期待します。</p><h4>📤 出力</h4><p><code>output</code> → リサンプリングされた信号 <code>(x_new, y_new)</code>。</p><h4>⚙️ パラメータ</h4><ul><li><b>モード</b> – <i>factor</i>（元のサンプリングレートを乗算）または <i>fixed_fs</i>（目標サンプリングレートをHzで指定）。</li><li><b>係数</b> – スケーリング係数（>1でサンプル増加、<1で減少）。</li><li><b>目標fs</b> – 希望のサンプリングレート（Hz）（fixed_fsモード時に使用）。</li></ul><h4>🛠️ 動作</h4><p><code>scipy.signal.resample</code> を使用し、フーリエ法を適用します。</p><hr><hr><h3>🧠 このシステムの考え方</h3><p>この環境は<b>信号処理フロー</b>として機能します。</p><pre>データ → 変換 → 結果</pre><h4>📐 重要なルール</h4><pre>すべては: (x, y)</pre><h4>🔁 ユニバーサルパターン</h4><pre>入力 → 処理 → 可視化</pre><hr><h4>⚡ ショートカットとヒント</h4><ul><li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li><li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li><li><b>右クリック</b> → コンテキストメニュー（削除、設定）。</li><li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li></ul>"
+    },
+    "window": {
+      "title": "窓関数",
+      "tooltip": "信号に窓関数を適用",
+      "ports": {
+        "input": "入力",
+        "output": "出力"
+      },
+      "status": {
+        "no_data": "データなし",
+        "ready": "準備完了"
+      },
+      "menu": {
+        "configure": "設定"
+      },
+      "config_title": "窓関数を設定",
+      "window_type": "窓関数タイプ:",
+      "normalize": "正規化（エネルギー保持）",
+      "help_title": "ヘルプ - 窓関数",
+      "help_html": "<h3>🪟 窓関数ノード</h3><p>入力信号に<b>窓関数</b>を適用してスペクトルリークを低減します。</p><h4>📥 入力</h4><p><code>input</code> → <code>(x, y)</code> タプルまたは1次元配列。</p><h4>📤 出力</h4><p><code>output</code> → 窓関数適用後の信号 <code>(x, y * window)</code>。</p><h4>⚙️ パラメータ</h4><ul><li><b>窓関数タイプ</b> – ハン、ハミング、ブラックマン、バートレットなど。</li><li><b>正規化</b> – チェックすると、総エネルギーを保持するように窓をスケーリング。</li></ul><h4>🛠️ 動作</h4><p><code>scipy.signal.windows</code> を使用します。</p><hr><hr><h3>🧠 このシステムの考え方</h3><p>この環境は<b>信号処理フロー</b>として機能します。</p><pre>データ → 変換 → 結果</pre><h4>📐 重要なルール</h4><pre>すべは: (x, y)</pre><h4>🔁 ユニバーサルパターン</h4><pre>入力 → 処理 → 可視化</pre><hr><h4>⚡ ショートカットとヒント</h4><ul><li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li><li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li><li><b>右クリック</b> → コンテキストメニュー（削除、設定）。</li><li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li></ul>"
+    },
+    "delay": {
+      "title": "遅延",
+      "tooltip": "信号を指定量だけ遅延",
+      "ports": {
+        "input": "入力",
+        "output": "出力"
+      },
+      "status": {
+        "no_data": "データなし",
+        "ready": "準備完了"
+      },
+      "menu": {
+        "configure": "設定…"
+      },
+      "config_title": "遅延を設定",
+      "mode": "遅延モード:",
+      "samples": "サンプル数:",
+      "seconds": "秒数:",
+      "padding": "パディング:",
+      "constant_value": "定数值:",
+      "help_title": "ヘルプ - 遅延",
+      "help_html": "<h3>⏱️ 遅延ノード</h3><p>入力信号を指定された<b>サンプル数</b>または<b>秒数</b>だけ遅延させます。</p><h4>📥 入力</h4><p><code>input</code> → <code>(x, y)</code> タプルまたは1次元配列。</p><h4>📤 出力</h4><p><code>output</code> → 遅延信号 <code>(x, y_delayed)</code>。</p><h4>⚙️ パラメータ</h4><ul><li><b>遅延モード</b> – <i>samples</i>（整数サンプル数）または <i>seconds</i>（秒単位の時間、x軸からサンプリングレートが必要）。</li><li><b>パディング</b> – 先頭の隙間を埋める方法: <i>zero</i>、<i>reflect</i>、または <i>constant</i>（ユーザー定義値）。</li></ul><h4>🛠️ 動作</h4><p>信号を右にシフトし、先頭にパディングを挿入します。</p><hr><hr><h3>🧠 このシステムの考え方</h3><p>この環境は<b>信号処理フロー</b>として機能します。</p><pre>データ → 変換 → 結果</pre><h4>📐 重要なルール</h4><pre>すべては: (x, y)</pre><h4>🔁 ユニバーサルパターン</h4><pre>入力 → 処理 → 可視化</pre><hr><h4>⚡ ショートカットとヒント</h4><ul><li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li><li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li><li><b>右クリック</b> → コンテキストメニュー（削除、設定）。</li><li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されす。</li></ul>"
+    },
+    "correlation": {
+      "title": "相関",
+      "tooltip": "2つの信号の相互相関",
+      "ports": {
+        "signal1": "信号 1",
+        "signal2": "信号 2",
+        "corr": "相関"
+      },
+      "status": {
+        "no_data": "データなし",
+        "ready": "準備完了"
+      },
+      "menu": {
+        "configure": "設定…"
+      },
+      "config_title": "相関を設定",
+      "mode": "モード:",
+      "normalize": "正規化",
+      "help_title": "ヘルプ - 相関",
+      "help_html": "<h3>📈 相関ノード</h3><p>2つの入力信号間の<b>相互相関</b>を計算します。</p><h4>📥 入力</h4><p><code>signal1</code>、<code>signal2</code> → それぞれ <code>(x, y)</code> タプルまたは1次元配を期待します。</p><h4>📤 出力</h4><p><code>corr</code> → 相関系列 <code>(lags, correlation)</code>。</p><h4>⚙️ パラメータ</h4><ul><li><b>モード</b> – <i>full</i>（すべてのラグ）、<i>same</i>（最長入力と同じ長さ）、<i>valid</i>（ゼロパディング端なし）。</li><li><b>正規化</b> – チェックすると、信号ノルムの積で除算（[-1, 1] の値を生成）。</li></ul><h4>🛠️ 動作</h4><p><code>np.correlate</code> を使用します。</p><hr><hr><h3>🧠 このシステムの考え方</h3><p>この環境は<b>信号処理フロー</b>として機能します。</p><pre>データ → 変換 → 結果</pre><h4>📐 重要なルール</h4><pre>すべては: (x, y)</pre><h4>🔁 ユニバーサルパターン</h4><pre>入力 → 処理 → 可視化</pre><hr><h4>⚡ ショートカットとヒント</h4><ul><li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li><li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li><li><b>右クリック</b> → コンテキストメニュー（削除、設定）。</li><li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li></ul>"
+    },
+    "math_expression": {
+      "title": "数式",
+      "tooltip": "x と y で数式を評価",
+      "ports": {
+        "input": "入力",
+        "output": "出力"
+      },
+      "status": {
+        "no_data": "データなし",
+        "ready": "準備完了"
+      },
+      "menu": {
+        "configure": "設定…"
+      },
+      "config_title": "数式を設定",
+      "expression": "式 (x, y, np.* を使用):",
+      "info": "変数: x (時間軸), y (信号値)。\n関数: np.sin, np.cos, np.exp, np.sqrt など。",
+      "examples": "例…",
+      "help_title": "ヘルプ - 数式",
+      "help_html": "<h3>🧮 数式ノード</h3><p>入力信号変数 <code>x</code> と <code>y</code> で任意の数式を評価します。</p><h4>📥 入力</h4><p><code>input</code> → <code>(x, y)</code> タプルまたは1次元配列。</p><h4>📤 出力</h4><p><code>output</code> → 式の結果 <code>(x, y_new)</code>。</p><h4>✏️ 式の構文</h4><ul><li><code>x</code>（時間軸）と <code>y</code>（信号値）を配列変数として使用。</li><li>任意の <code>np.*</code> 関数も使用可能（例: <code>np.sin(y)</code>、<code>np.exp(-x)</code>）。</li><li>例: <code>y * 2</code>、<code>np.sin(2*np.pi*x)</code>、<code>np.sqrt(x**2 + y**2)</code>。</li></ul><h4>⚠️ 注記</h4><p>式は <code>numexpr</code>（利用可能な場合）または制限付き <code>eval</code> を使用して安全に評価されます。</p><hr><hr><h3>🧠 このシステムの考え方</h3><p>この環境は<b>信号処理フロー</b>として機能します。</p><pre>データ → 変換 → 結果</pre><h4>📐 重要なルール</h4><pre>すべては: (x, y)</pre><h4>🔁 ユニバーサルパターン</h4><pre>入力 → 処理 → 可視化</pre><hr><h4>⚡ ショートカットとヒント</h4><ul><li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li><li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li><li><b>右クリック</b> → コンテキストメニュー（削除、設定）。</li><li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li></ul>"
+    },
+    "spectrogram": {
+      "title": "スペクトログラム",
+      "tooltip": "STFTスペクトログラムを計算",
+      "ports": {
+        "input": "入力",
+        "spectrogram": "スペクトログラム",
+        "frequencies": "周波数",
+        "times": "時間"
+      },
+      "status": {
+        "no_data": "データなし",
+        "ready": "準備完了"
+      },
+      "menu": {
+        "configure": "設定…",
+        "show_in_plot": "プロットに表示"
+      },
+      "config_title": "スペクトログラムを設定",
+      "nperseg": "セグメントあたりのサンプル数:",
+      "noverlap": "オーバーラップ:",
+      "window": "窓関数:",
+      "scaling": "スケーリング:",
+      "mode": "モード:",
+      "help_title": "ヘルプ - スペクトログラム",
+      "help_html": "<h3>🌊 スペクトログラムノード</h3><p><b>短時間フーリエ変換 (STFT)</b> スペクトログラムを計算します。</p><h4>📥 入力</h4><p><code>input</code> → (x, y) または1次元配列。</p><h4>📤 出力</h4><ul><li><b>スクトログラム</b> → 2次元配列（周波数、時間、振幅）– <i>クリックではプロット不可</i>。</li><li><b>周波数</b> → 周波数ビンの1次元配列（他のノードに接続可能）。</li><li><b>時間</b> → セグメント時間の1次元配列。</li></ul><h4>🖱️ インタラクション</h4><p><b>クリック</b>してもスペクトログラムは<b>表示されません</b>。<code>frequencies</code> または <code>times</code> を他の処理ノードに接続するか、データをエクスポートしてください。</p><hr><hr><h3>🧠 このシステムの考え方</h3><p>この環境は<b>信号処理フロー</b>として機能します。</p><pre>データ → 変換 → 結果</pre><h4>📐 重要なルール</h4><pre>すべては: (x, y)</pre><h4>🔁 ユニバーサルパターン</h4><pre>入力 → 処理 → 可視化</pre><hr><h4>⚡ ショートカットとヒント</h4><ul><li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li><li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li><li><b>右クリック</b> → コンテキストメニュー（削除、設定）。</li><li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li></ul>"
+    },
+    "spectrogram_viewer": {
+      "title": "スペクトログラムビューア",
+      "tooltip": "スペクトログラムデータを受信・表示（周波数、時間、マトリックス）",
+      "config_title": "スペクトログラムビューアを設定",
+      "ports": {
+        "frequencies": "周波数",
+        "times": "時間",
+        "spectrogram": "スペクトログラム"
+      },
+      "status": {
+        "no_data": "データなし"
+      },
+      "menu": {
+        "view_spectrogram": "スペクトログラムを表示",
+        "configure": "設定…"
+      },
+      "window_title": "スペクトログラムビューア",
+      "time_axis": "時間 (s)",
+      "freq_axis": "周波数 (Hz)",
+      "log_scale": "対数スケール",
+      "colormap": "カラーマップ:",
+      "auto_contrast": "自動コントラスト",
+      "contrast_min": "コントラスト最小値:",
+      "contrast_max": "コントラスト最大値:",
+      "export": "エクスポート…",
+      "export_title": "スペクトログラムをエクスポート",
+      "no_data_title": "データなし",
+      "no_data_message": "データが不完全です。すべてのポートを接続し、先にフローを実行してください。",
+      "help_title": "ヘルプ - スペクトログラムビューア",
+      "help_html": "<h3>📊 スペクトログラムビューアノード</h3><p><b>スペクトログラム</b>ノードの3つの出力を受信し、2次元ヒートマップとして表示します。</p><h4>📥 入力</h4><ul><li><b>周波数</b> → 周波数の1次元ベクトル</li><li><b>時間</b> → セグメント時間の1次元ベクトル</li><li><b>スペクトログラム</b> → 振幅の2次元マトリックス（周波数 × 時間）</li></ul><h4>⚙️ 設定</h4><p><b>サイドパネル</b>を使用してリアルタイムで調整:</p><ul><li><b>対数スケール</b> — 低振幅の詳細を強調。</li><li><b>カラーマップ</b> — viridis、inferno、plasma、jet など。</li><li><b>コントラスト</b> — 自動または手動（最小 / 最大）。</li></ul><h4>🖱️ インタラクション</h4><p><b>右クリック</b>ノードして<b>「スペクトログラムを表示」</b>を選択すると、専用ウィンドウが開きます。</p><p>ビューア内で現在のビューをPNG画像として<b>エクスポート</b>できます。</p><p><i>ノードをクリックしてもメインプロットには何も表示されません。</i></p><hr><hr><h3>🧠 このシステムの考え方</h3><p>この環境は<b>信号処理フロー</b>として機能します。</p><pre>データ → 変換 → 結果</pre><h4>📐 重要なルール</h4><pre>すべては: (x, y)</pre><h4>🔁 ユニバーサルパターン</h4><pre>入力 → 処理 → 可視化</pre><hr><h4>⚡ ショートカットとヒント</h4><ul><li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li><li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li><li><b>右クリック</b> → コンテキストメニュー（表示、設定、削除）。</li><li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li></ul>"
+    },
+    "graph_exporter": {
+      "title": "グラフエクスポーター",
+      "tooltip": "プロ品質でグラフをエクスポート",
+      "ports": {
+        "signal_in": "信号入力",
+        "file_out": "出力ファイル"
+      },
+      "status": {
+        "ready": "準備完了",
+        "exported": "エクスポート済み"
+      },
+      "menu": {
+        "show_graph": "グラフを表示",
+        "configure": "グラフを設定",
+        "configure_subplot": "サブプロットを設定",
+        "export": "グラフをエクスポート",
+        "subplots": "サブプロット",
+        "use_subplots": "サブプロットを使用",
+        "n_subplots": "サブプロット数",
+        "subplot_layout": "レイアウト"
+      },
+      "config": {
+        "display_mode": "表示モード",
+        "use_subplots": "サブプロットを使用（最大8）",
+        "n_subplots": "サブプロット数:",
+        "subplot_layout": "レイアウト:",
+        "export_format": "エクスポート形式"
+      },
+      "no_data_title": "データなし",
+      "no_data_msg": "入力信号を接続し、フローを実行してグラフを生成してください。",
+      "export_dialog_title": "グラフを保存",
+      "export_error_title": "エクスポートエラー",
+      "config_title": "グラフエクスポーターを設定",
+      "help_title": "ヘルプ - グラフエクスポーター",
+      "help_html": "<h3>📊 グラフエクスポーター</h3><p>信号を受信し、高品質画像としてエクスポートします。</p><h4>📥 入力</h4><p><code>signal_in</code> → <code>(x, y)</code> タプルまたは1次元配列。</p><h4>📤 出力</h4><p><code>file_out</code> → 生成されたファイルのパス。</p><h4>⚙️ 設定</h4><p>右ダブルクリック → <b>グラフを設定</b> でスタイル、軸、注釈どを調整します。</p><hr><h4>🖱️ インタラクション</h4><ul><li><b>右クリック</b> → コンテキストメニュー。</li><li><b>グラフを表示</b> → 現在の設定でプレビュー。</i></p><hr><hr><h3>🧠 このシステムの考え方</h3><p>この環境は<b>信号処理フロー</b>として機能します。</p><pre>データ → 変換 → 結果</pre><h4>📐 重要なルール</h4><pre>すべては: (x, y)</pre><h4>🔁 ユニバーサルパターン</h4><pre>入力 → 処理 → 可視化</pre><hr><h4>⚡ ショートカットとヒント</h4><ul><li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li><li><b>ダブルクリック</b>ノード → このヘルプウンドウを開く。</li><li><b>右クリック</b> → コンテキストメニュー（削除、設定）。</li><li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "入力ノードは削除できません。"
+  },
+  "workspace": {
+    "headers": {
+      "node": "ノード",
+      "type": "タイプ",
+      "shape": "形状",
+      "x_range_fs": "X: 範囲 / fs",
+      "dx_t": "dx / T",
+      "y_range": "Y: [最小, 最大]",
+      "preview_y": "Yプレビュー"
+    }
+  },
+  "plot": {
+    "time_label": "時間 (s)",
+    "voltage_label": "電圧 (V)",
+    "title": "信号",
+    "scale_label": "スケール:",
+    "scale_linear": "線形",
+    "scale_log": "対数",
+    "markers": "マーカー",
+    "cursors": "カーソル A/B",
+    "peak": "ピーク",
+    "peak_tooltip": "最大ピークをマーク",
+    "reset_zoom": "ズームをリセット",
+    "amplitude": "振幅",
+    "time": "時間 (s)",
+    "frequency": "周波数 (Hz)",
+    "view_mode": "表示モード",
+    "view_2d": "2D",
+    "view_surface": "3Dサーフェス",
+    "view_waterfall": "3Dウォーターフォー",
+    "view_volume": "3Dボリューム",
+    "view_slice": "3Dスライス",
+    "slice_label": "スライス",
+    "reset_camera": "カメラをリセット",
+    "axis_scale": "スケール",
+    "fps": "FPS",
+    "loop": "ループ",
+    "colormap": "カラーマップ"
+  },
+  "shortcuts": {
+    "delete": "ノードを削除",
+    "delete_desc": "選択したノードとその接続を削除します。",
+    "duplicate": "ノードを複製",
+    "duplicate_desc": "選択したノードを +50px オフセットで複製します。",
+    "select_all": "すべて選択",
+    "select_all_desc": "シーン内のすべてのノードを選択します。",
+    "cancel": "アクションをキャンセル",
+    "cancel_desc": "進行中の接続をキャンセルするか、すべての選択を解除します。",
+    "copy": "コピー",
+    "copy_desc": "選択したノードを内部クリップボードにコピーします。",
+    "cut": "カット",
+    "cut_desc": "選択したノードをカットします。",
+    "paste": "ペースト",
+    "paste_desc": "クリップボードからノードをペーストします。",
+    "undo": "元に戻す",
+    "undo_desc": "最後のアクションを元に戻します。",
+    "redo": "やり直し",
+    "redo_desc": "元に戻したアクションをやり直します。",
+    "run": "フローを実行",
+    "run_desc": "完全なフーを実行します。",
+    "auto_layout": "自動レイアウト",
+    "auto_layout_desc": "ノードを列に自動配置します。",
+    "center_view": "ビューを中央揃え",
+    "center_view_desc": "選択またはシーン全体を中央に配置します。",
+    "zoom_reset": "ズーム 100%",
+    "zoom_reset_desc": "ズームを100%にリセットします。",
+    "zoom_in": "ズームイン",
+    "zoom_in_desc": "ズームインします。",
+    "zoom_out": "ズームアウト",
+    "zoom_out_desc": "ズームアウトします。",
+    "toggle_theme": "テーマを切り替え",
+    "toggle_theme_desc": "ダーク、ライト、ハイコントラストテーマを切り替えます。",
+    "toggle_grid": "グリッドを切り替え",
+    "toggle_grid_desc": "グリッドを表示または非表示にします。",
+    "lock_node": "ノードをロック",
+    "lock_node_desc": "選択したノードの移動をロック/アンロックします。",
+    "help": "コンテキストヘルプ",
+    "help_desc": "カーソル下のノードのツールチップを表示します。",
+    "new_file": "新規",
+    "new_file_desc": "新規図を作成",
+    "open_file": "開く",
+    "open_file_desc": "図ファイルを開く",
+    "save_file": "保存",
+    "save_file_desc": "現在の図を保存",
+    "save_file_as": "名前を付けて保存…",
+    "save_file_as_desc": "新しい名前で図を保存"
+  },
+  "dialogs": {
+    "common": {
+      "close": "閉じる",
+      "cancel": "キャンセル",
+      "ok": "OK",
+      "emer_wind": "プログラムを選択",
+      "operation_history": "操作",
+      "confirm": "変更は行われませんでした。",
+      "overwrite": "上書きしますか？",
+      "error": "エラ"
+    },
+    "font_size": {
+      "title": "フォントサイズ",
+      "label": "サイズ (pt):"
+    },
+    "firewall": {
+      "title": "接続がブロックされました",
+      "text": "オシロスコープに接続できませんでした。\nWindowsファイアウォールが通信をブロックしている可能性があります。",
+      "informative": "この問題を解決するには、Windowsファイアウォールで 'FloWorks.exe' を許可してください。\n\nそれまでシミュレーションモードを使用しますか？"
+    },
+    "capture_error": {
+      "title": "キャプチャエラー",
+      "text": "キャプチャ中にエラーが発生しました:\n{error}\n\nデバイスが電源オンであり、ファイアウォールが接続を許可していることを確認してください。"
+    },
+    "script_editor": {
+      "title": "スクリプトエディタ",
+      "header": "Pythonスクリプト  |  変数: x, y, param (TriggerNodeから), np, scipy, sympy",
+      "test_button": "テスト（保存しない）",
+      "save_button": "保存して閉じる",
+      "tool_tip": "スクリプトノード\nダブルクリックで情報",
+      "templates": "テンプレート:",
+      "save_template": "テンプレートを保存…",
+      "import": "スクリプトを開く…",
+      "export": "スクリプトをエクスポート…",
+      "unsaved_warning": "変更は行われませんでした。テンプレートを読み込んで変更を失いますか？",
+      "save_template_title": "テンプレートとして保存",
+      "save_template_prompt": "テンプレート名（拡張子なし）:",
+      "overwrite_template": "テンプレートはすでに存在します。上書きしますか？",
+      "import_title": "Pythonスクリプトを開く",
+      "export_title": "Pythonスクリプトをエクスポート",
+      "help_tooltip": "クイックルプ (F1)",
+      "help_title": "クイックヘルプ",
+      "browse": "参照…",
+      "python_path_placeholder": "内部インタプリタを使用する場合は空白のままにします。例: python3",
+      "quick_help_html": "<h2>Pythonスクリプトエディタ</h2><p>このエディタはフロー信号上でPythonコードを実行します。スクリプトはデータを受信し、結果を返したり、信号を変更したり、複数の出力を生成したりできます。</p><h3>利用可能な変数</h3><ul><li><b>x</b> – NumPy配列: X軸 (時間, 周波数...)。</li><li><b>y</b> – NumPy配列: 現在の信号値。</li><li><b>param</b> – 反復インデックス（TriggerNodeから）または <code>None</code>。</li><li><b>inputs</b> – すべての入力を含む辞書（<code>@input</code> に有用）。</li><li><b>persist</b> – 実行間で値を保持する辞書。</li></ul><h3>インポートされたライブラリ</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>特殊ディレクティブ</h3><ul><li><code># @param NAME : type = value</code> – サイドパネルに調整可能なパラメータを作成（コードに触れずに）。</li><li><code># @input port_name</code> – 追加の入力ポートを追加（左側）。</li><li><code># @output port_name</code> – 追加の出力ポートを追加（右側）。</li></ul><p><code>@input</code>/<code>@output</code> を使用する場合、スクリプトは <code>inputs</code> を使用し、出力を含む辞書を返す必要があります。例:</p><pre># @input channel_A<br># @output result<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"channel_A\"][1]<br>return {\"out\": (x, y), \"result\": (x, y_a)}</pre><h3>永続化</h3><p><code>persist</code> 辞書は、プログラムが開いている間、実行間でデータを保持します。:</p><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1<br>return (x, y + persist[\"counter\"] * 0.1)</pre><h3>テンプレート管理</h3><ul><li>ドロップダウンからテンプレートを選択して、定義済みスクリプトを読み込みます。</li><li><b>テンプレートを保存…</b> – 現在のスクリプトをテンプレートフォルダの <code>.py</code> ファイルとして保存します。</li><li><b>スクリプトを開く…</b> / <b>スクリプトをエクスポート…</b> – 外部ファイルとスクリプトを交換します。</li></ul><h3>ヒント</h3><ul><li>フローに接続する前に <b>テスト</b> を使用して、シミュレートされたデータでスクリプトを確認します。</li><li>エラーは下部コンソールに表示され、問題のある行マークされます。</li><li>ディレクティブをコメントアウトすることで一時的に無効にできます（<code>## @param ...</code>）。</li></ul>"
+    },
+    "trigger_config": {
+      "title": "トリガノードを設定",
+      "group": "反復パラメータ",
+      "n_iter": "反復回数 (N):",
+      "param_start": "開始パラメータ:",
+      "param_end": "終了パラメータ:",
+      "accumulate": "アキュムレーション:",
+      "trig_tooltips": "TriggerNode\nダブルクリックで情報",
+      "info": "現在のパラメータは\nloop_out の第3要素として利用可能: (x, y, param)",
+      "accumulate_options": {
+        "stack": "スタック",
+        "average": "平均",
+        "max": "最大",
+        "min": "最小"
+      }
+    },
+    "simulation_config": {
+      "title": "シミュレーション設定",
+      "timebase": "タイムベース (ms/div)",
+      "voltage_range": "電圧範囲 (V)",
+      "trigger_level": "トリガレベル (V)",
+      "trigger_slope": "トリガスロープ",
+      "sample_rate": "サンプリングレート (kHz)"
+    },
+    "file": {
+      "save_as": "名前を付けて保存…",
+      "unsaved_title": "未保存の変更",
+      "unsaved_message": "未保存の変更があります。続行する前に保存しすか？"
+    }
+  },
+  "info_dialog": {
+    "title": "情報 - FloWorks",
+    "tab_about": "について",
+    "tab_shortcuts": "キーボードショートカット",
+    "tab_tutorials": "チュートリアル",
+    "close": "閉じる",
+    "about_title": "FloWorks",
+    "version": "バージョン 0.4.5",
+    "description": "<p>FloWorksは、データフローに基づく視覚的かつインタラクティブな信号処理環境です。数学演算、フィルタ、変換、信号ジェネレータなどを表すノードを接続して、処理チェーンを構築、実行、解析できます。すべては (x, y) ペアに基づいており、x は軸（時間または周波数）、y は信号です。</p><p>学生、研究者、エンジニア、および信号処理に興味を持つすべての人を対象としており、ゼロからコードを書くことなく、実験、学習、またはシステムのプロトタイピングができます。</p><p><b>ミション:</b> 実験ワークフローを単一の視覚的でオープンかつアクセス可能なツールに集中させ、誰もが（学生、研究者、エンジニア）ソフトウェアの学習ではなく実験に集中できるようにすること。</p><p><b>ビジョン:</b> 実験的アイデアとその実行の間の障壁が、実験者の好奇心だけである世界。FloWorksは、ライセンスの壁やツールの断片化なく、グローバルな科学および技術コミュニティによって、そしてそのために構築される信号実験の参照プラットフォームになることを目指しています。</p><p><b>原則:</b> フリーソフトウェア（MITライセンス）– 知識は自由であるべきです。拡張性 – 誰でもPythonで新しいノードを作成できます。即時可視化 – 各ステップをグラフィカルに検査できます。</p>",
+    "credits": "<h3>謝辞およびライセンス</h3><p>FloWorksは以下のオープンソースプロジェクトを使用しています：</p><ul><li><b>PySide6 / Qt</b> – グラフィカルユーザーインターフェース。<b>GNU LGPLv3</b>ライセンス。© The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – BSD / PSFライセンス。</li><li><b>PyQtGraph, Pillow</b> – MIT / HPNDライセンス。</li><li><b>OpenCV</b> – Apache 2.0ライセンス。</li><li><b>PyTorch</b> – BSDライセンス (Meta Platforms, Inc.)。</li><li><b>Pygments</b> – BSDライセンス。</li></ul><p>本アプリケーションは<b>GNU LGPLv3</b>の条件に基づきPySide6（動的リンク）を使用しています。</p><p>ユーザーにはPySide6の動的ライブラリを変更または交換する権利があります。</p><p>完全なライセンスは <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a> で確認できます。</p><p><b>FloWorksのライセンス：</b> MITライセンス。</p>",
+    "shortcut_header_keys": "ショートカット",
+    "shortcut_header_action": "アクション",
+    "shortcut_header_context": "コンテキスト",
+    "shortcuts_note": "注: ショートカットはグローバルに機能し、別のウィジェットにフォーカスがあっても動作します。",
+    "tutorials_placeholder": "以下は学習順に並べた例とチュートリアルです:",
+    "tutorial": "チュートリアル",
+    "example_fft": "例を開く: 正弦波のFFT",
+    "example_filter": "例を開く: チャープ波のバンドパスフィルタ",
+    "example_delay": "例を開く: 正弦波の遅延",
+    "example_window": "例を開く: チャープ波の窓関数",
+    "example_convolution": "例を開く: 方形波の畳み込み",
+    "example_conrrelation": "例を開く: 正弦波と方形波の相関",
+    "example_math_expression": "例を開く: 正弦波の数式",
+    "example_spectrogram": "例を開く: チャープ波のスペクトログラム",
+    "example_compound": "例を開く: 異なるノードの複合",
+    "example_title": "例",
+    "example_message": "例 '{name}' は将来のバージョンで利用可能になります。",
+    "shortcut_header_description": "説明",
+    "view_logs": "ログコンソールを表示",
+    "log_viewer_title": "ログビューア (error.log)",
+    "refresh": "更新",
+    "clear": "クリア",
+    "no_logs_available": "現時点ではログが見つかりません。",
+    "error_reading_logs": "ログファイルの読み込み中にエラーが発生しました。",
+    "confirm_clear": "クリアを確認",
+    "confirm_clear_msg": "ログファイルを空にしてもよろしいですか？この操作は元に戻せません。"
+  },
+  "lcr_controller": {
+    "title": "LCRコントローラ",
+    "connected": "接続済み",
+    "disconnected": "切断済み",
+    "measure_var": "測定変数:",
+    "freq_sweep": "周波数スイープ",
+    "freq_start": "開始 (Hz):",
+    "freq_end": "終了 (Hz):",
+    "freq_step": "ステップ (Hz):",
+    "level": "レベル (V):",
+    "speed": "速度:",
+    "average": "平均:",
+    "rsou": "RSOU (Ω):",
+    "range": "レンジ:",
+    "bias_volt": "DCバイアス (V):",
+    "bias_on": "バイアス ON",
+    "bias_off": "バイアス OFF",
+    "apply": "設定を適用",
+    "error_title": "エラー",
+    "connection_error": "LCRに接続できませんでした。接続とアドレスを確認してください。",
+    "success_title": "成功",
+    "success_message": "設定が正常に適用されました。",
+    "apply_error": "設定を適用できませんでした: {error}"
+  },
+  "osc_controller": {
+    "title": "オシロスコープキャプチャ",
+    "window_title": "オシロスコープコントローラ",
+    "channel": "チャンネルを選択:",
+    "acq_mode": "取得モード:",
+    "mem_size": "メモリサイズ:",
+    "invert_off": "信号を反転",
+    "invert_on": "信号が反転されました",
+    "tdiv": "水平分割:",
+    "vdiv": "垂直分割 (V):",
+    "hpos": "水平位置 (s):",
+    "offset": "垂直位置 (V):",
+    "trig_level": "トリガレベル (V):",
+    "v_range": "電圧範囲 (V):",
+    "sd_trg": "サイドトリガ",
+    "fs": "サンプリングレート (kHz):"
+  },
+  "gen_controller": {
+    "title": "高度コントローラ - 信号ジェネレータ",
+    "apply_current": "現在の設定を適用",
+    "channel": "チャンネルを選択:",
+    "waveform_btn": "波形を生成",
+    "chirp_btn": "チャープを生成",
+    "modulation_on": "変調をオン",
+    "modulation_off": "変調を停止",
+    "sweep_on": "スイープをオン",
+    "sweep_off": "スイープを停止",
+    "burst_on": "バーストをオン",
+    "burst_off": "バーストを停止",
+    "ch1_on": "チャンネル 1 をオン",
+    "ch1_off": "チャンネル 1 をオフ",
+    "ch2_on": "チャンネル 2 をオン",
+    "ch2_off": "チャンネル 2 をオフ",
+    "load": "出力を選択:",
+    "polarity": "出力極性:",
+    "modify_output": "出力を変更",
+    "tab_general": "一般",
+    "tab_waveform": "波形",
+    "tab_chirp": "チャープ",
+    "tab_modulation": "変調",
+    "tab_sweep": "スイープ",
+    "tab_burst": "バースト",
+    "sim_title": "シミュレーション",
+    "no_hardware": "ハードウェアが接続されていません",
+    "sent_title": "送信済み",
+    "waveform_sent": "波形が送信されました",
+    "chirp_sent": "チャープが送信されました",
+    "success_title": "成功",
+    "output_modified": "出力 {channel}: 負荷 {load}, 極性 {pol}",
+    "signal_type": "信号タイプ:",
+    "frequency": "周波数 (Hz):",
+    "amplitude": "振幅 (Vpp):",
+    "offset": "オフセット (V):",
+    "phase": "位相 (度):",
+    "duty_cycle": "デューティ比 (%):",
+    "symmetry": "対称性 (%):",
+    "pulse_width": "パルス幅 (s):",
+    "rise_edge": "立ち上がりエッジ (s):",
+    "fall_edge": "立ち下がりエッジ (s):",
+    "delay_edge": "遅延エッジ (s):",
+    "stdev": "標準偏差 (V):",
+    "mean": "平均値 (V):",
+    "chirp_f0": "開始周波数 (Hz):",
+    "chirp_f1": "終了周波数 (Hz):",
+    "chirp_fs": "Fs (Sa/s):",
+    "chirp_duration": "期間 (s):",
+    "chirp_amp": "振幅 (V):",
+    "chirp_offset": "オフセット (V):",
+    "chirp_phase": "位相 (°):",
+    "chirp_name": "信号名:",
+    "chirp_method": "方式:",
+    "chirp_mode": "Arbモード:",
+    "mod_type": "変調タイプ:",
+    "mod_freq": "変調周波数 (Hz):",
+    "mod_dev": "偏差 (Hz,°,s):",
+    "mod_hop": "ホップ周波数 (Hz):",
+    "mod_shape": "波形:",
+    "mod_depth": "深さ (%):",
+    "sweep_time": "期間 (s):",
+    "sweep_stop": "終了周波数 (Hz):",
+    "sweep_start": "開始周波数 (Hz):",
+    "sweep_trig_src": "トリガソース:",
+    "sweep_trig_out": "トリガ出力:",
+    "sweep_mode": "タイプ:",
+    "sweep_dir": "方向:",
+    "burst_period": "周期 (s):",
+    "burst_cycles": "サイクル数:",
+    "burst_phase": "位相 (度):",
+    "burst_gate": "ターゲット:",
+    "burst_trig_src": "トリガソース:",
+    "burst_polarity": "極性:",
+    "waveform_applied": "波形が適用されました",
+    "chirp_applied": "チャープが送信されました",
+    "modulation_applied": "変調が設定されました",
+    "sweep_applied": "スイープが設定されました",
+    "burst_applied": "バーストが設定されました"
+  },
+  "simulation_config_dialog": {
+    "title": "シミュレーション設定 - ジェネレータ",
+    "waveform": "波形:",
+    "basic_params": "基本パラメータ",
+    "frequency": "周波数 (Hz):",
+    "amplitude": "振幅 (Vpp):",
+    "offset": "オフセット (V):",
+    "phase": "位相 (度):",
+    "duty_cycle": "デューティ比 (%):",
+    "symmetry": "対称性 (%):",
+    "direction": "方向:",
+    "up": "上昇",
+    "down": "下降",
+    "stdev": "標準偏差:",
+    "mean": "平均値:",
+    "lobes": "ローブ数:",
+    "sigma": "シグマ:",
+    "mu": "ミュー:",
+    "tau": "タウ (s):",
+    "exp_type": "タイプ:",
+    "rise": "立ち上がり",
+    "fall": "立ち下がり",
+    "f0": "開始周波数 (Hz):",
+    "f1": "終了周波数 (Hz):",
+    "chirp_method": "方式:",
+    "linear": "線形",
+    "logarithmic": "対数",
+    "preview": "プレビュー",
+    "apply": "適用",
+    "close": "閉じる",
+    "time_label": "時間 (s)",
+    "amplitude_label": "振幅 (V)"
+  },
+  "self": {
+    "language_changed": "言語が変更されました: {name} ({code})",
+    "default": "FloWorks  |  スクロール: ズーム  |  中クリック: パン  |  ノードをダブルクリック: 情報 |  ノードを右クリック: オプション",
+    "workspace": "ワークスペース",
+    "canvas": "キャンバス",
+    "no_nodes_selected": "ノードが選択されていません",
+    "node_config_placeholder": "キャンバス上でノードを選択して\n 設定を表示"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "視覚的・インタラクティブな仮想信号処理ラボ",
+    "build": "複雑なコードを忘れてください。ブロックをドラッグし、パズルのピースのように接続し、データフローを表す線でノードを結ぶことでワークフローを構築します。",
+    "keyrule": "すべては信号に関するものです。コード行ではなくブロックを接続します。",
+    "nodework": "ノードアーキテクチャ:\n[入力デー] → [内部処理] → [出力データ]",
+    "execute": "実行をクリックして、アイデアがリアルタイムのグラフとデータで生き生きとするのを見てください。さらに進みたいですか？実際のラボ機器を接続するか、カスタム処理のためにPythonスクリプトノードを使用して独自のルールを追加してください。",
+    "expand": "技術文書で使用できる高品質なグラフをエクスポートします。作業を «.sflow» ファイルに保存し、元の状態で取り出します。",
+    "actions_title": "何ができますか？",
+    "actions": "* ワークフローを構築し、ノードをドラッグ＆接続してアイデアをテストします。\n* 実際の機器を制御するか、信号をシミュレートします。\n* インタラクティブなグラフで結果を即座に確認します。",
+    "checkbox": "再度表示しない",
+    "start": "開始"
+  },
+  "scene": {
+    "empty_hint": "ツールバーからノードを選択",
+    "load_example_hint": "「情報」→「チュートリアル」から例を読み込むことができます"
+  },
+  "examples": {
+    "general": {
+      "title": "例",
+      "welcome": "FloWorksへようこそ！ \nこれらのミニチュートリアルに従って、最も一般的な操作をマスターしてください。",
+      "scroll": "スクロールするか、マウスホイールを押しながらキャンバスをパンします。",
+      "help": "ノードを右クリックしてアクションを設定します。"
+    },
+    "tutorial": {
+      "message": "これは視覚的な信号フローダイアグラムアプリケーションです。始めましょう！",
+      "step1": "ステップ 1: 信号源を追加",
+      "step2": "ツールバー（上部）から信号源ノードを追加します。 \nノードは、キャンバスで最後にクリックした位置に配置されます。 \nキャンバスの近くをクリックし、上部バーをクリックします:",
+      "step3": "ステップ 2: ノードを接続",
+      "step4": "ノードの出力ポート（左側）でCTRL+クリックし、もう一方のノードの入力ポート（右側）をクリックするだけで接続を作成します。",
+      "step5": "接続は左から右へ流れ、ノード間で信号データを運びます。",
+      "step6": "ステップ 3: フローを実行",
+      "step7": "F5を押して信号フローを実行し、リアルタイムで結果を確認します。",
+      "step8": "個別のノードをクリックして、その出力値を確認することもできます。",
+      "step9": "ステップ 4: 結果を表示",
+      "step10": "任意のノードをクリックして、グラフウィジェットで信号を可視化します。",
+      "step11": "フローを実行すると、グラフは自動的に更新されます。"
+    },
+    "shortcuts": {
+      "title": "キーボードショートカット",
+      "execute": "F5 – フローを実行",
+      "save": "Ctrl+S – プロジェクトを保存 (.sflow)",
+      "load": "Ctrl+O – プロジェクトを開く",
+      "delete": "Delete / Backspace – 選択した要素を削除",
+      "copy_paste": "Ctrl+C / Ctrl+V – ノードまたはメモをコピー＆ペースト",
+      "undo_redo": "Ctrl+Z / Ctrl+Y – 元に戻す / やり直し",
+      "auto_layout": "Ctrl+Shift+L – ダイアグラムを自動レイアウト",
+      "zoom": "マウスホイール – ズーム、押しながらビューをン"
+    },
+    "fft": {
+      "title": "FFT解析",
+      "description": "信号の周波数スペクトルを計算します。",
+      "steps": {
+        "step1": "ジェネレータノードを追加し、例えば 1 kHz の方形波を選択します。",
+        "step2": "ツールバーの「処理」メニューでFFTノードを選択します。ジェネレータの出力に接続します（CTRL+クリック出力 → CTRL+クリックFFT入力）。",
+        "step3": "F5を押します。FFTノードは信号を周波数領域に変換します。",
+        "step4": "FFTノードをクリックしてスペクトルを確認します。ピークは 1 kHz の奇数倍に現れます。",
+        "step5": "（オプション）FFT出力を算術ノード（SumNode）に接続して2つのスペクトルを比較します。システムは自動的に周波数分解能を検出し、非互換性を警告します。",
+        "step6": "FFTノードを右クリックして、振幅と位相の表示を切り替えます。"
+      }
+    },
+    "filter": {
+      "title": "信号フィルタリング",
+      "description": "ローパス、ハイパス、またはバンドパスフィルタを適用します。",
+      "steps": "1. チャープ信号を持つジェネレータを挿入します。\n2. 「処理」メニューからフィルタノードを追加します。ジェネレータの出力をフィルタ入力に接続します。\n3. フィルタノードを右クリックして「設定…」を選択し、タイプ（ローパスハイパスなど）とカットオフ周波数を選択します。\n4. 実行 (F5) し、対応する接続をクリックして元の信号とフィルタ後の信号を可視化します。\n5. 並べて比較したい場合は、FFTノードを追加して信号を分割できます。"
+    },
+    "delay": {
+      "title": "遅延線",
+      "description": "時間軸に沿って信号をシフトします（相関または効果に有用）。",
+      "steps": "1. 短い信号を持つジェネレータから開始します。\n2. 「処理」から遅延ノードを加します。ジェネレータの出力を遅延入力に接続します。\n3. 遅延ノードの設定ダイアログで、サンプル数または遅延時間を指定します。\n4. フローを実行 (F5) し、遅延ノードの出力をクリックします。同じ信号が右にシフトされているのが確認できます。\n5. 正確な遅延を測定するには、カーソル（下部パネル）を有効化し、元の信号と遅延信号を比較します。"
+    },
+    "window": {
+      "title": "FFT前の窓関数",
+      "description": "FFT前に窓関数（ハニング、ハミングなど）を適用してスペクトルリークを低減します。",
+      "steps": "1. 基本フローを設定します: ジェネレータ → 窓関数 → FFT。\n2. 窓関数ノードをダブルクリックしてタイプを選択します（ハニングは良い出発点です）。\n3. 窓関数の出力をFFT入力に接続します。\n4. 実行 (F5)。FFT出力をクリックして、窓関数の有無によるスペクトルを比較します。\n5. 非整数周波数の純粋な正波信号を試してください。窓関数を適用するとピークがより明確になります。窓関数タイプを変更して、サイドローブがどのように低減されるか確認します。"
+    },
+    "convolution": {
+      "title": "畳み込み",
+      "description": "2つの信号間の畳み込みを計算します。",
+      "steps": "1. ジェネレータ（ソース → ジェネレータ）を追加し、フィルタリングしたい信号を選択します。\n2. 「処理」メニューから畳み込みノードを追加します。\n3. ジェネレータの出力を畳み込みノードの入力に接続します（両端でCTRL+クリック）。\n4. 畳み込みノードをダブルクリックして設定します。カーネル係数をカンマ区切りで入力します（例: '0.2,0.2,0.2,0.2,0.2'）し、畳み込みモード（'same'、'full'、または 'valid'）を選択します。\n5. F5を押してフローを実行します。ノードは離散畳み込みによって信号をフィルタリングします。\n6. 畳み込みノードの出力接続をクックして、フィルタ後の信号を確認します。カーネルの効果を観察します。係数を変更して再実行し、比較します。"
+    },
+    "correlation": {
+      "title": "相互相関",
+      "description": "時間シフトの関数として2つの信号の類似性を測定します。",
+      "steps": "1. 2つのジェネレータノード（ソース → ジェネレータ）を配置します。例えば、同じ周波数の正弦波と方形波を作成します。\n2. 「処理」から相関ノードを挿入します。\n3. 最初のジェネレータの出力を相関ノードの「信号 1」入力に接続します（ポートでCTRL+クリック）。次に、2番目のジェネレータを「信号 2」入力に接続します。\n4. F5でフローを実行します。ノードは相互相関信号を生成します。\n5. 出力接続をクリックして相関ピークを確認します。信号が整列しているシフトで最大値が見えます。\n6. カーソル下部パネル）を有効化して、時間シフトを正確に測定します。"
+    },
+    "math_expression": {
+      "title": "数式",
+      "description": "入力信号に任意の数学関数を適用します（例: y_new = f(x, y)）。",
+      "steps": "1. ジェネレータ（ソース → ジェネレータ）を追加し、変換したい波形を選択します。\n2. 「処理」メニューから数式ノードを追加します。\n3. ジェネレータの出力をノード入力に接続します（両端でCTRL+クリック）。\n4. 式ノードをダブルクリックしてエディタを開きます。2つの配列 (x, y) を受け取り、(x, y_new) を返す関数を記述します。例: y_new = y**2 + 0.5*np.sin(x)。\n5. F5を押して実行します。ノードは「y」値にのみ操作を適用し、「x」軸はそのまま保持します。\n6. 出力接続をクリックして結果を可視化します。式を変更して再実行し、即座の変更を確認できます。"
+    },
+    "spectrogram": {
+      "title": "スペクトログラム",
+      "description": "信号の周波数の時間変化を表します。",
+      "steps": "1. ジェネレータ（ソース → ジェネレータ）を配置し、周波数変動信号（例: 正弦スイープ（チャープ））を選択します。\n2. 「処理」からスペクトログラムノードを追加します。\n3. ジェネレータの出力をスペクトログラムノードの入力に接続します（両ポートでCTRL+クリック）。\n4. 「処理」からスペクトログラムビューアノードを追加し、対応するポートをスペクトログラムノードに接続します。\n5. F5で実行します。ノードは信号を処理し、時間-周波数マトリックスを生成します。\n6. スペクトログラムビューアを右クリックしてスペクトル画像を可視化します。支配的な周波数が時間とともにどう変化するか観察します。\n7. （オプション）中間FFTノードを追加して、静的な周波数表現と動的な表現を比較します。"
+    }
+  },
+  "prefs": {
+    "title": "設定",
+    "tab_execution": "実行",
+    "tab_gpu": "GPU / 計算",
+    "tab_streaming": "ストリーミング",
+    "tab_ui": "UI / パフォーマンス",
+    "tab_advanced": "高度",
+    "max_workers": {
+      "label": "最大ワーカー数（フェーズ3準備）",
+      "tooltip": "将来の独立ブランチの並列性を制御します。"
+    },
+    "timeout_per_node": "ノードあたりのタイムアウト (s)",
+    "gpu": {
+      "backend": "デフォルトバックエンド",
+      "fallback": "フォールバックポリシー",
+      "threshold": "オーバーヘッド閾値 (MB)"
+    },
+    "streaming": {
+      "buffer": "バッファサイズ (サンプル)",
+      "timeout": "ディスパッチャタイムアウト (ms)",
+      "error": "ストリームエラーポリシー"
+    },
+    "ui": {
+      "fps": "最大更新FPS",
+      "anim": "コネクタアニメーション時間 (s)"
+    },
+    "adv": {
+      "python_path": "外部インタプリタパス",
+      "log_level": "ログレベル",
+      "backup": "読み込み時に自動バックアップ"
+    },
+    "btn_apply": "適用",
+    "btn_reset": "デフォルトにリセット",
+    "btn_close": "閉じる"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "式..."
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "履歴",
+      "label": "{mode}  |  {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Eng",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "クリア"
+    },
+    "history": {
+      "title": "📜 履歴",
+      "clear": "🗑 クリア",
+      "use_last": "↩ 最後"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "ファイル",
+      "edit": "編集",
+      "format": "書式",
+      "align": "配置"
+    },
+    "actions": {
+      "new": "新規作成",
+      "open": "開く",
+      "save": "保存",
+      "save_as": "名前を付けて保存...",
+      "export_csv": "CSV エクスポート...",
+      "exit": "終了",
+      "undo": "元に戻す",
+      "redo": "やり直し",
+      "cut": "切り取り",
+      "copy": "コピー",
+      "paste": "貼り付け",
+      "bold": "太字",
+      "italic": "斜体",
+      "align_left": "左揃え",
+      "align_center": "中央揃え",
+      "align_right": "右揃え",
+      "bg_color": "背景色...",
+      "fg_color": "文字色..."
+    },
+    "toolbar": {
+      "title": "メイン",
+      "new": "新規",
+      "open": "開く",
+      "save": "保存",
+      "cut": "切取",
+      "copy": "コピー",
+      "paste": "貼付",
+      "bold": "太字",
+      "italic": "斜体",
+      "align_left": "左",
+      "align_center": "中央",
+      "align_right": "右",
+      "bg_color": "背景",
+      "fg_color": "文字",
+      "undo": "戻す",
+      "redo": "進む"
+    }
+  },
+  "system_monitor": {
+    "title": "SYSTEM MONITOR",
+    "subtitle": "リアルタイムのリソーステレメトリ",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "コア / 論理コア",
+      "core_prefix": "C"
+    },
+    "ram": {
+      "title": "メモリ (RAM)",
+      "tooltip": "RAM の使用状況"
+    },
+    "disk": {
+      "title": "ディスク ( / )",
+      "tooltip": "/ のディスク使用状況"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}%  M:{mem}%"
+    },
+    "status": {
+      "updated": "更新済み"
+    }
+  }
+}

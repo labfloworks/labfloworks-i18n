@@ -1,0 +1,1573 @@
+{
+  "language_name": "中文",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "文件",
+      "new": "新建",
+      "open": "打开…",
+      "save": "保存",
+      "save_as": "另存为…",
+      "exit": "退出"
+    },
+    "edit": "编辑",
+    "view": "视图",
+    "help": "帮助",
+    "language": "语言",
+    "info": "信息",
+    "theme": "主题",
+    "font_size": "字体大小",
+    "font_size_custom": "自定义大小…"
+  },
+  "menu_config": {
+    "title": "节点配置"
+  },
+  "panels": {
+    "analysis": {
+      "title": "分析"
+    },
+    "stats": {
+      "title": "统计",
+      "max": "最大值:",
+      "min": "最小值:",
+      "mean": "平均值:",
+      "rms": "均方根:",
+      "mode_3d": "(3D 投影)"
+    },
+    "cursors": {
+      "title": "光标 A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "3D 模式下光标不可用"
+    },
+    "crosshair": {
+      "cursor": "光标",
+      "peak": "峰值",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "3D 模式下十字准线不可用"
+    }
+  },
+  "tab": {
+    "plot": "绘图",
+    "workspace": "画布变量",
+    "python_vars": "Python 变量"
+  },
+  "tooldrawer": {
+    "python_console": "终端",
+    "monitor_widget": "性能监视器",
+    "spreadsheet_widget": "电子表格",
+    "calc_widget": "计算器"
+  },
+  "console": {
+    "help": {
+      "title": "FloWorks 控制台交互教程",
+      "button": "帮助",
+      "html": "<h1>FloWorks 控制台交互教程</h1><h2>1. 节点与连接</h2><p><code>&gt;&gt;&gt; graph.nodes</code></p><p><code>&gt;&gt;&gt; graph.connections</code></p><p><code>&gt;&gt;&gt; selected_node</code></p><p>创建节点:</p><p><code>&gt;&gt;&gt; graph.add_catalog_node('SumNode', 300, 200)</code></p><p>连接:</p><p><code>&gt;&gt;&gt; graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>删除:</p><p><code>&gt;&gt;&gt; graph.remove_node(graph.nodes[2])</code></p><p>端口:</p><p><code>&gt;&gt;&gt; graph.nodes[1].PORTS</code></p><h2>2. 执行并查看结果</h2><p>执行图:</p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>查看节点输出:</p><p><code>&gt;&gt;&gt; graph.node_values[graph.nodes[1]]</code></p><p>此方法可能会因 KeyError 失败，您可以使用:</p><p><code>&gt;&gt;&gt; list(graph.node_values.values())[1]</code></p><p>完整输出:</p><p><code>&gt;&gt;&gt; nodo = graph.nodes[0]</code></p><p><code>&gt;&gt;&gt; nodo.output</code></p><p>Y 轴:</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; y = result[1]</code></p><p><code>&gt;&gt;&gt; y.max()</code></p><p>赋值语句不打印结果；请使用 <code>x</code>、<code>y.shape</code> 或 <code>print(x, y)</code> 查看</p><h2>3. 绘图</h2><p>清除:</p><p><code>&gt;&gt;&gt; app.plot_widget.clear_plot()</code></p><p>从控制台绘制信号:</p><p><code>&gt;&gt;&gt; import numpy as np</code></p><p><code>&gt;&gt;&gt; x = np.linspace(0, 1, 1000)</code></p><p><code>&gt;&gt;&gt; y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>从源节点:</p><p><code>&gt;&gt;&gt; x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>FFT 节点 (返回字典):</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>&gt;&gt;&gt; result.keys()</code></p><p><code>&gt;&gt;&gt; f, mag = result['magnitude']</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. 修改应用程序</h2><p>更新表格:</p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>添加节点:</p><p><code>&gt;&gt;&gt; app.add_node('SignalSourceNode')</code></p><p>标题:</p><p><code>&gt;&gt;&gt; app.setWindowTitle('我的信号实验室')</code></p><p>验证:</p><p><code>&gt;&gt;&gt; app.windowTitle()</code></p><p>恢复:</p><p><code>&gt;&gt;&gt; app.update_title()</code></p><h2>5. 快捷键</h2><table><tr><th>按键/命令</th><th>操作</th></tr><tr><td><code>&uarr;</code> / <code>&darr;</code></td><td>历史记录</td></tr><tr><td><code>Tab</code></td><td>自动补全</td></tr><tr><td><code>Ctrl + L</code></td><td>清空控制台</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>多行块</td></tr></table><h2>6. 示例</h2><p>更改参数:</p><p><code>&gt;&gt;&gt; selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>&gt;&gt;&gt; getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>自定义公式:</p><p><code>&gt;&gt;&gt; selected_node.params['mode'] = 'formula'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['expr'] = '2 * sin(2*pi*1000*t)'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>&gt;&gt;&gt; selected_node._generate_signal()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>列出类别:</p><p><code>&gt;&gt;&gt; from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>&gt;&gt;&gt; NODE_CATEGORIES</code></p><p>帮助:</p><p><code>&gt;&gt;&gt; help(graph.connect_nodes)</code></p><h2>7. 故障排除</h2><ul><li><strong>红色错误</strong>: 控制台会显示问题，应用不会关闭。</li><li><strong>界面冻结</strong>: 无限循环。请关闭控制台或重新启动。</li><li><strong>无任何反应</strong>: 请检查 <code>graph.connections</code> 和源节点。</li></ul><p>&copy; 2026 FloWorks -- 信号实验室</p>"
+    }
+  },
+  "vars_table": {
+    "header": {
+      "name": "名称",
+      "type": "类型",
+      "shape": "形状",
+      "value": "值"
+    },
+    "menu": {
+      "info": "变量: {name}"
+    },
+    "dialog": {
+      "title": "完整数值"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "字体:",
+    "font_size_tooltip": "更改基础字体大小",
+    "run_flow_tooltip": "执行流",
+    "add_kinematics": "运动学节点",
+    "escolar": "Escolar",
+    "add_function_graph_node": "函数",
+    "add_rhombus_node": "逻辑门",
+    "add_graph_exporter": "图形导出器",
+    "add_note": "备注",
+    "add_note_tooltip": "添加便利贴…",
+    "add_signal_source": "新建信号源",
+    "add_spectrogram_viewer": "频谱图查看器",
+    "add_correlation": "相关",
+    "add_math_expression": "数学表达式",
+    "add_spectrogram": "频谱图",
+    "add_resample": "重采样",
+    "add_window": "窗函数",
+    "add_delay": "延迟",
+    "add_convolution_node": "卷积",
+    "add_normalize": "归一化",
+    "add_filter": "滤波器",
+    "add_fft": "FFT",
+    "source_node": "高级信号发生器",
+    "load_signal_tooltip": "按用户偏好生成信号",
+    "history": "历史",
+    "history_tooltip": "操作历史",
+    "auto_layout": "自动布局",
+    "auto_layout_tooltip": "自动排列节点 (Ctrl+Shift+L)",
+    "sources": "外设",
+    "processing": "处理",
+    "control": "控制",
+    "add_oscilloscope": "示波器",
+    "add_generator": "发生器",
+    "add_expression": "表达式节点",
+    "add_script": "Python 脚本",
+    "add_arithmetic": "算术 +−×÷",
+    "add_program": "程序",
+    "add_split": "逻辑门",
+    "add_trigger": "触发节点",
+    "sink": "图形导出器",
+    "help_wiki": "文档 / Wiki",
+    "help_wiki_tooltip": "打开项目 wiki"
+  },
+  "info": {
+    "information": "关于",
+    "shortcuts": "快捷键",
+    "tutorials": "教程",
+    "change_theme": "更改主题"
+  },
+  "status": {
+    "default": "FloWorks  |  滚动: 缩放  |  中键点击: 平移  |  右键点击节点: 选项",
+    "no_nodes": "就绪。请从工具栏选择节点。",
+    "how_to_connect": "Ctrl+点击节点的输出端口，然后点击另一个节点的输入端口。",
+    "connecting": "连接中… 点击另一个节点或端口。",
+    "connection_created": "连接已创建",
+    "flow_executed": "流执行成功。",
+    "flow_error": "流执行期间出错。",
+    "saved": "图表已保存: {path}",
+    "loaded": "图表已加载: {path}",
+    "new_file": "新图表已创建",
+    "example_loaded": "示例已加载。"
+  },
+  "errors": {
+    "save_failed": "保存错误: {error}",
+    "load_failed": "加载错误: {error}",
+    "load_example_failed": "无法加载示例: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "删除节点",
+      "connect": "连接节点",
+      "disconnect": "断开节点",
+      "setup": "设置",
+      "trigger": "触发",
+      "generate": "生成",
+      "edit_script": "编辑脚本",
+      "edit_input": "编辑输入",
+      "help": "信息"
+    },
+    "graph_union": {
+      "title": "图形合并",
+      "tooltip": "将多个信号分组为独立序列以进行叠加绘图。",
+      "num_inputs_label": "输入数量 (1-8):",
+      "config_title": "配置图形合并",
+      "status": {
+        "ready": "就绪"
+      },
+      "ports": {
+        "signal_1": "信号 1",
+        "signal_2": "信号 2",
+        "signal_3": "信号 3",
+        "signal_4": "信号 4",
+        "signal_5": "信号 5",
+        "signal_6": "信号 6",
+        "signal_7": "信号 7",
+        "signal_8": "信号 8",
+        "series_out": "输出"
+      },
+      "menu": {
+        "configure": "配置…"
+      },
+      "help_title": "帮助 - 图形合并",
+      "help_html": "<h3>🔗 图形合并节点</h3><p>接收多个信号并将它们保留为独立序列以进行叠加绘图，而不进行拼接。</p><p>右键点击节点可动态<b>添加或删除</b>输入（最多 8 个）。</p><p><code>Series</code> 输出提完整的序列列表以供可视化。</p>"
+    },
+    "tabular_inspector": {
+      "title": "表格数据检查器",
+      "window_title": "表格检查器",
+      "no_data": "无数据",
+      "copy": "复制到剪贴板",
+      "decimals": "小数位数:",
+      "col_names": "列名（逗号分隔，留空=自动）:",
+      "tooltip": "节点数据检查将其单个输入端口接收到的数据以表格形式显示。",
+      "status": {
+        "no_data": "无数据"
+      },
+      "menu": {
+        "view_table": "查看表格",
+        "configure": "配置…"
+      },
+      "ports": {
+        "data": "输入"
+      },
+      "config_title": "配置表格检查器",
+      "help_title": "帮助 - 表格检查器",
+      "help_html": "<h3>📊 表格检查器节点</h3><p>类似于 <b>Excel 电子表格</b>，此节点将其单个输入端口接收到的数据以表格形式显示。</p><p><b>解释规则:</b></p><ul><li><b>元组/数组列表</b>（例如 (x, y, Fs)）→ 每个数组成为一列。</li><li><b>二维 numpy 数组</b> → 行 × 列。</li><li><b>一维数组或列表</b> → 单列。</li><li><b>标量</b> → 单个单元格。</li></ul><p>右键点击 → <b>查看表格</b> 打开检查器。使用侧面板设置小数位数和自定义列名（逗号分隔）。</p>"
+    },
+    "equation_solver": {
+      "title": "方程求解器",
+      "tooltip": "线性方程组求解器",
+      "type_label": "方程类型:",
+      "type_linear_single": "简单线性",
+      "type_linear_system": "2×2 线性方程组",
+      "eq_format": "格式: a*x + b = c",
+      "eq1_label": "方程 1 (格式: a*x + b*y = c):",
+      "eq2_label": "方程 2:",
+      "examples": "示例",
+      "sys_examples": "方程组示例",
+      "menu": {
+        "view_plot": "查看解的图像",
+        "configure": "配置方程…",
+        "view_steps": "查看求解步骤…"
+      },
+      "ports": {
+        "output": "输出",
+        "steps": "步骤",
+        "solution": "y (m)"
+      },
+      "steps_title": "求解步骤",
+      "no_steps": "暂无可用的求解步骤。",
+      "config_title": "配置方程求解器",
+      "help_title": "帮助 - 方程求解器",
+      "plot_window_title": "解的图像",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "导出…",
+      "export_title": "导出图像",
+      "no_data_to_plot": "无数据可绘制",
+      "btn_step_by_step": "▶ 逐步",
+      "step_anim_title": "逐步",
+      "step_anim_info": "在完整版本中，此处将显示图形逐步构建过程。",
+      "error_no_equals": "方程中缺少 '=' 号。",
+      "error_rhs_not_number": "方程右侧不是有效数字。",
+      "error_invalid_x_coef": "x 的系数无效: '{coef}'。请检查语法。",
+      "error_invalid_y_coef": "y 的系数无效: '{coef}'。请检查语法。",
+      "error_invalid_const": "常数项无效: '{term}'。只能使用数字和 + 或 - 号。",
+      "error_zero_x": "x 的系数为零。方程无唯一解。",
+      "no_plot_data_title": "无数据",
+      "no_plot_data_message": "没有可绘制的解数据。请先配置并求解。",
+      "preview": "预览:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "无解（或尚未计算）",
+      "help_html": "<h3>🧮 方程求解器节点</h3>\n<p>许<b>求解简单线性方程或 2×2 方程组</b>，显示逐步过程和交点图像。</p>\n\n<h4>⚙️ 用法</h4>\n<ol>\n <li><b>右键点击</b>节点 → 选择<i>\"编辑参\"</i>。</li>\n <li>选择 <code>equation_type</code>：<code>linear_single</code> 或 <code>linear_system</code>。</li>\n <li>以文本形式输入 <code>equations</code>（例如 \"2x + 3 = 7\"）或对于方程组输入文本列表。</li>\n <li>节点将自动计算解并生成代数步骤。</li>\n</ol>\n\n<h4>📤 输出</h4>\n<ul>\n <li><code>solution</code> → 数值（简单方程）或包含 <code>x</code>、<code>y</code> 的字典（2×2 方程组）。</li>\n <li><code>steps</code> → 逐步代数分解的文本。</li>\n</ul>\n\n<h4>⚠️ 注意</h4>\n<ul>\n <li><b>教学价值：</b>提供即时代数反馈，并将解与其图形表示（交点）联系起来。</li>\n <li>确保用正确的变量（简单方程用 <code>x</code>，方程组用 <code>x</code> 和 <code>y</code>）。</li>\n <li>如果方程组不一致或相关，将在 <code>steps</code> 输出中指出。</li>\n</ul>\n\n<h4>💡 示例</h4>\n<p>将节点配置为 <code>linear_system</code>，方程为 <code>[\"y = 2x\", \"y = -x + 3\"]</code>。将 <code>steps</code> 连接到文本查看器，并在绘图节点中可视化交点。</p>\n<hr>\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>数学处理流</b>运行。</p>\n\n<pre>\n方程 → 求解 → 可视化\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(代数 ↔ 几何)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n参数 → 处理（求解器） → 可视化（绘图/文本）\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n参数（方程） → EquationSolver → 绘图（交点 + 文本（步骤）\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "运动学",
+      "tooltip": "运动学模拟器：自由落体与抛体运动",
+      "ports": {
+        "x": "x(m) 对 t(s)",
+        "y": "y(m) 对 t(s)",
+        "vx": "vx(m/s) 对 t(s)",
+        "vy": "vy(m/s) 对 t(s)",
+        "speed": "速率(m/s) 对 t(s)",
+        "energy_kinetic": "动能(J) 对 t(s)",
+        "energy_potential": "势能(J) 对 t(s)",
+        "ground_contact": "地面接触 对 t(s)"
+      },
+      "status": {
+        "ready": "就绪"
+      },
+      "config_title": "配置运动学",
+      "menu": {
+        "configure": "配置…",
+        "generate": "生成",
+        "show_output": "显示输出",
+        "trajectory": "轨迹 (y 对 x)",
+        "y_t": "垂直位置 y(t)",
+        "vy_t": "垂直速度 vy(t)",
+        "speed_t": "速率 |v|(t)",
+        "display": "可视化"
+      },
+      "group_ic": "初始条件",
+      "group_env": "环境",
+      "group_sim": "模拟",
+      "group_presets": "预设",
+      "help_title": "帮助 - 运动学",
+      "help_html": "<h3>🚀 运动学实验室</h3><p>在恒定重力下模拟<b>抛体运动</b>和<b>自由落体</b>。无需输入；根据初始条件生成信号。</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 主要输出（时间 vs 量值元组）</h4><p>每个端口输出一个元组 <code>(t, variable)</code>，可直接连接到绘图或其他节点。时间已作为 X 轴包含在内。</p><ul><li><code>x</code> → (t, 水平位置) [m]</li><li><code>y</code> → (t, 垂直位置) [m]</li><li><code>vx</code> → (t, 水平速度) [m/s]</li><li><code>vy</code> → (t, 垂直速度) [m/s]</li><li><code>speed</code> → (t, 速率 |v|) [m/s]</li></ul><h4>⚡ 可选输出（启显示能量）</h4><ul><li><code>energy_kinetic</code> → (t, Ec = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, y≤0 时为 1.0，空中为 0.0)</li></ul><h4>🎨 内部显示通道</h4><p>从上下文菜单更改主图中显示的内容：</p><ul><li><b>轨迹</b> (y 对 x) → 空间抛物线</li><li><b>y(t)</b>、<b>vy(t)</b>、<b>|v|(t)</b> → 时间演化</li></ul><h4>💡 典型连接</h4><ul><li><b>高度 vs 时间：</b>将 <code>y</code> 连接到绘图（已包含 t）</li><li><b>速率 vs 时间：</b>将 <code>speed</code> 连接到绘图</li><li><b>空间轨迹：</b>将 <code>x</code> → 绘图 X 轴，<code>y</code> → 绘图 Y 轴</li><li><b>撞击：</b>将 <code>ground_contact</code> 连接到逻辑节点或 LED</li><li><b>能量：</b>将 <code>energy_kinetic</code> + <code>energy_potential</code> 相加以观察守恒</li></ul><h4>⚡ 快捷键</h4><ul><li><b>双击</b> → 此帮助</li><li><b>右键点击</b> → 配置 / 生成</li><li><b>GENERATE 按钮</b> → 模拟并打开动画</li></ul><hr><p><b>状态:</b> -- | <b>预设:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "函数",
+      "tooltip": "生成并可视化数学函数，支持数值分析",
+      "ports": {
+        "signal": "信号"
+      },
+      "status": {
+        "ready": "就绪"
+      },
+      "menu": {
+        "configure": "配置…",
+        "show_table": "查看数值表",
+        "generate": "生成",
+        "show_limit": "显示极限",
+        "show_derivative": "显示导数"
+      },
+      "config_title": "设置函数",
+      "cfg": {
+        "expr": "表达式:",
+        "presets": "预设:",
+        "piecewise": "启用分段函数",
+        "group_func": "函数组",
+        "group_dom": "定义域组",
+        "group_viz": "可视化组"
+      },
+      "table_title": "数值表"
+    },
+    "signal_source": {
+      "title": "高级信号源",
+      "tooltip": "高级信号源",
+      "load_signal": "从文件加载信号…",
+      "load_file_title": "加载信号文件",
+      "ports": {
+        "out": "输出",
+        "trigger_in": "触发输入",
+        "trigger_out": "触发输出"
+      },
+      "status": {
+        "no_data": "无数据"
+      },
+      "configure": "配置…",
+      "generate": "生成信号",
+      "help_title": "帮助 - 信号源",
+      "help_html": "<h3>🎛️ 信号源节点</h3>\n<p>使多种<b>预设波形</b>或用户编写的<b>数学公式</b>生成<b>自定义信号</b>。输出始终是一个元组 <code>(时间, 幅度)</code>，可供进一步处理。</p>\n\n<h4>📤 输出</h4>\n<p><code>out</code> → 元组 <code>(t, y)</code>。</p>\n\n<h4>⚙️ 工作模式</h4>\n<ul>\n    <li><b>预设：</b>从正弦、方波、斜坡、脉冲、噪声、直流、三角波、锯齿波、sinc、高斯、指数、啁啾中选择。所有参数（频率、幅度、偏置、相位、占空比、对称性等）均可在配置对话框中调整。</li>\n    <li><b>公式：</b>使用 <code>t</code>（时间）和自定义变量编写<b>自由数学表达式</b>（例如 <code>amp * sin(2*pi*freq*t) + offset</code>）。变量在表格中定义，可以随意添加、删除或修改。计算是安全的，限于数学运算。</li>\n</ul>\n\n<h4>🖱️ 交互</h4>\n<ul>\n    <li><b>双击</b>节点 → 打开配置对话框，包含三个选项卡（预设、公式、高级）。</li>\n    <li><b>点击</b>节点 → 在主图中绘制当前信号。</li>\n    <li><b>右键点击</b> → 上下文菜单以重新生成、配置或删除节点。</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → FFT → 滤波器 → 加法器 → 绘图\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+      "title": "信号配置",
+      "waveform": "波形",
+      "frequency": "频率",
+      "amplitude": "幅度",
+      "offset": "偏置",
+      "phase": "相位",
+      "symmetry": "对称性",
+      "direction": "方向",
+      "up": "上升",
+      "down": "下降",
+      "stdev": "标准差",
+      "mean": "平均值",
+      "lobes": "瓣数",
+      "sigma": "Sigma",
+      "mu": "Mu",
+      "tau": "Tau",
+      "exp_type": "类型",
+      "rise": "上升",
+      "fall": "下降",
+      "f0": "起始频率",
+      "f1": "终止频率",
+      "chirp_method": "方法",
+      "linear": "Linear",
+      "logarithmic": "Logarithmic",
+      "tab_preset": "预设",
+      "tab_formula": "公式",
+      "tab_advanced": "高级",
+      "preview": "预览",
+      "apply": "应用",
+      "duration": "时长",
+      "sample_rate": "采样率",
+      "sampling_note": "0 = 自动",
+      "auto_generate": "自动生成",
+      "time_label": "时间 (s)",
+      "amplitude_label": "幅度",
+      "formula_expr": "公式（使用 't' 作为时间变量）:",
+      "variables": "变量:",
+      "var_name": "名称",
+      "var_value": "值",
+      "add_var": "添加变量",
+      "remove_var": "删除选中项",
+      "auto": "自动",
+      "basic_params": "基本参数",
+      "carrier_freq": "载波频率",
+      "mod_freq": "调制频率",
+      "mod_depth": "调制深度",
+      "deviation": "频偏",
+      "heart_rate": "心率",
+      "rise_time": "上升时间",
+      "fall_time": "下降时间",
+      "quick_insert": "快速函数",
+      "advanced": {
+        "modulation": "调制",
+        "mod_enable": "启用调制",
+        "mod_type": "调制类型",
+        "mod_freq": "调制频率",
+        "mod_depth": "调制深度",
+        "noise_group": "噪声",
+        "noise_enable": "添加噪声",
+        "noise_amp": "噪声幅度",
+        "auto_generate": "自动应用更改",
+        "auto_generate_tooltip": "启用时，每次参数更改都会立即应用到节点。禁用时，请按 OK 应用。"
+      },
+      "gamma": "Gamma (宽度)",
+      "window_type": "窗函数类型",
+      "quadratic": "二次",
+      "hyperbolic": "双曲",
+      "hanning": "汉宁",
+      "hamming": "汉明",
+      "blackman": "布莱克曼",
+      "bartlett": "巴特利特",
+      "kaiser": "凯泽",
+      "noise_type": "噪声类型",
+      "gaussian": "高斯",
+      "uniform": "均匀",
+      "pink": "粉红 (1/f)",
+      "brown": "布朗 (1/f²)",
+      "blue": "蓝噪声 (f)",
+      "impulse": "冲激",
+      "pulse_shape": "脉冲形状",
+      "rect": "矩形",
+      "raised_cosine": "升余弦",
+      "polynomial": "PRBS 多项式",
+      "bit_rate": "比特率",
+      "symbol_rate": "符号率",
+      "symbol_sequence": "符号序列",
+      "bit_sequence": "比特序列",
+      "multitone_hint": "频率 (Hz，逗号分隔):",
+      "frequencies": "频率",
+      "amplitudes": "幅度",
+      "phases": "相位",
+      "step_time": "阶跃时间",
+      "impulse_time": "冲激时间",
+      "f_start": "起始频率",
+      "f_end": "终止频率",
+      "f2": "频率 2",
+      "noise_level": "噪声电平",
+      "duty_cycle": "占空比 (%)",
+      "signal_sine": "正弦",
+      "signal_square": "方波",
+      "signal_ramp": "斜坡",
+      "signal_pulse": "脉冲",
+      "signal_noise": "噪声",
+      "signal_dc": "直流",
+      "signal_triangle": "三角波",
+      "signal_sawtooth": "锯齿波",
+      "signal_sinc": "Sinc",
+      "signal_gaussian": "高斯",
+      "signal_exponential": "指数",
+      "signal_chirp": "啁啾",
+      "signal_am": "调幅",
+      "signal_fm": "调频",
+      "signal_ecg": "心电图",
+      "signal_trapezoidal": "梯形",
+      "signal_lorentzian": "洛伦兹",
+      "signal_window": "窗函数",
+      "signal_multitone": "多音",
+      "signal_ask": "幅移键控",
+      "signal_fsk": "频移键控",
+      "signal_psk": "相移键控",
+      "signal_pwm": "脉宽调制",
+      "signal_pam": "脉幅调制",
+      "signal_prbs": "随机序列",
+      "signal_step": "阶跃",
+      "signal_impulse": "冲激",
+      "signal_sweep_sine": "正弦扫频",
+      "signal_cardiac": "心电",
+      "signal_eeg": "脑电",
+      "signal_beat": "拍频"
+    },
+    "input": {
+      "help_html": "<h3>📂 输入节点（数据加载）</h3>\n<p>允许您<b>从 .npz 文件加载数据</b>（NumPy 格式）并将其发送到工作流。</p>\n\n<h4>⚙️ 用法</h4>\n<ol>\n    <li><b>右键点击</b>节点 → 选择<i>\"编辑输入\"</i>。</li>\n    <li>选择包含名为 <code>datay</code> 的键的 <code>.npz</code> 文件。</li>\n    <li>数组在内部存储并自动传播到整个流。</li>\n</ol>\n\n<h4>📤 输出</h4>\n<p><code>out</code> → 加载文件中 <code>datay</code> 的内容。</p>\n\n<h4>⚠️ 注意</h4>\n<ul>\n    <li>仅接受包含 <code>datay</code> 键的 <b>.npz</b> 文件。</li>\n    <li>如果文件无效，控制台将显示错误。</li>\n    <li>加载文件后，流将自动运行。</li>\n</ul>\n\n<h4>💡 示例</h4>\n<p>加载包含传感器数据的文件，然后将其连接到\"滤波器\"或\"可视化器\"节点。</p>\n<hr>\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → FFT → 滤波器 → 加法器 → 绘图\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "lambda 函数",
+      "help_html": "<h3>🔧 通用处理节点</h3>\n<p>对输入数据应用<b>自定义函数</b>。它是创建数学运算、变换等的基础。</p>\n\n<h4> 输入</h4>\n<p><code>data_in</code> → 可以是数字、元组 (x, y) 或任何对象。</p>\n\n<h4>📤 输出</h4>\n<p><code>out</code> → 对输入应用函数后的结果。</p>\n\n<h4>🧠 按输入类型的行为</h4>\n<ul>\n    <li>如果输入是<b>两个元素的元组</b> (x, y)，函数接收该元组并必须返回另一个元组或值。示例：<code>lambda xy: (xy[0], xy[1]*2)</code>。</li>\n    <li>如果输入是<b>简单值</b>，函数接收该值。示例：<code>lambda x: x**2</code>。</li>\n    <li>如果输入为 <code>None</code>，输出也将为 <code>None</code></li>\n</ul>\n\n<h4>⚙️ 自定义</h4>\n<p>函数在创建节点时分配（例如在代码中）。在未来的版本中，您可以从界面编辑它。</p>\n\n<h4>💡 示例</h4>\n<ul>\n    <li><b>数字翻倍：</b> <code>lambda x: x * 2</code></li>\n    <li><b>元组分量求和：</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>返回相同元组（直通）：</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>应用的函数：</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → FFT → 滤波器 → 加法器 → 绘图\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "逻辑门",
+      "tooltip": "对信号进行逻辑、比较和掩码操作 (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "输入 1",
+        "in2": "输入 2",
+        "out": "输出"
+      },
+      "config_title": "配置逻辑门",
+      "op_label": "操作:",
+      "thr_label": "阈值 / 电平:",
+      "inv_label": "反转输出",
+      "help_title": "帮助 - 逻辑门",
+      "help_html": "<h3>🎛️ 逻辑门 / 比较器</h3>\n<p>逐样本评估、比较或掩码两个输入信号，以生成触发器、逻辑掩码或条件输出。</p>\n\n<h4>📥 输入</h4>\n<ul>\n<li><code>in1</code> → 主信号（操作数 A）。</li>\n<li><code>in2</code> → 参考、掩码或第二操作数（操作数 B）。</li>\n</ul>\n\n<h4>📤 输出</h4>\n<ul>\n<li><code>out</code> → 处理结果。布尔运算返回 <code>0.0</code> 或 <code>1.0</code>。比较器/阈值生成掩码或限幅信号。</li>\n</ul>\n\n<h4>📐 示意图</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 思维模型</h4>\n<p>此节点充当<b>逐样本决策引擎</b>。它独立评估每个点，将模拟波形转换为数字控制信号、激活掩码或逻辑流。</p>\n\n<h4>📐 数据表示</h4>\n<pre>\n输入:\n(x, y1) & (x, y2) → 一维数组（长度不匹配时截短到最短）\n\n输出:\n(x, y_out) → 通常为二进制 (0/1) 或掩码\n</pre>\n\n<h4>🔁 典型使用模式</h4>\n<pre>\n[发生器] → [逻辑门] → [触发器 / 绘图]\n\n示例:\n正弦 (in1) + 方波 (in2) → [AND] → 同步脉冲序列\n信号 (in1) → [THRESHOLD] → 峰值检测的 0/1 掩码\n信号 (in1) + 参考 (in2) → [MASK] → 当 in2 ≤ 0 时静音 in1\n</pre>\n\n<h4>⚠️ 常见错误</h4>\n<ul>\n<li>期望逻辑运算保持幅度 → 不会（转换为 0/1）。请改用 <code>LEVEL</code> 或 <code>MASK</code>。</li>\n<li>连接长度差很大的信号 → 截短到最小值。</li>\n<li>对浮点数使用 <code>EQ</code> → 依赖隐式容差；如需请先四舍五入。</li>\n</ul>\n<hr><hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → FFT → 滤波器 → 加法器 → 绘图\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速连接。</li>\n<li><b>双击</b>节点 → 打开此帮。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、配置）。</li>\n<li><b>拖动</b>节点 → 移动块；连接自动更新。</li>\n</ul>"
+    },
+    "sum": {
+      "title": "算术",
+      "tooltip": "对两个信号执行算术运算。",
+      "operation": {
+        "sum": "加法",
+        "sub": "减法",
+        "mul": "乘法",
+        "div": "除法"
+      },
+      "ports": {
+        "out": "输出",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "*A",
+        "port_b_mul": "*B",
+        "port_a_div": "num",
+        "port_b_div": "den"
+      },
+      "menu": {
+        "operation": "作"
+      },
+      "help_title": "帮助 - 算术节点",
+      "help_html": "<h3>➕ 求和/算术节点</h3>\n<p>对两个信号（数组或数值）执行算术运算。</p>\n\n<h4>📥 输入</h4>\n<ul>\n    <li><code>port_a</code>（上）: 第一操作数 (A)。</li>\n    <li><code>port_b</code>（下）: 第二操作数 (B)。</li>\n</ul>\n\n<h4>📤 输出</h4>\n<p><code>out</code> → 运算结果 (A op B)。</p>\n\n<h4>⚙️ 可用操作（右键点击 → 操作）</h4>\n<ul>\n    <li><b>加法 (+)</b>: A + B</li>\n    <li><b>减法 (−)</b>: A − B</li>\n    <li><b>乘法 (×)</b>: A * B</li>\n    <li><b>除法 (÷)</b>: A / B（防止除以零）。</li>\n</ul>\n\n<h4>📐 示意图</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 思维模型</h4>\n<p>此节点是一个<b>向量运算符</b>。\n它对信号进行逐元素运算。</p>\n\n<h4>📐 向量表示</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\n输出:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 可视化示例</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\n加法:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 使用策略</h4>\n<ul>\n<li><b>归一化：</b>以最大值</li>\n<li><b>缩放：</b>乘以常数</li>\n<li><b>信号混合：</b>波形相加</li>\n<li><b>抵消：</b>A - B 以消除噪声</li>\n</ul>\n\n<h4>⚠️ 常见错误</h4>\n<ul>\n<li>未对齐 X 轴 → 结果不一致</li>\n<li>除以接近零的值 → 不稳定</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → FFT → 滤波器 → 加法器 → 绘图\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "script": {
+      "title": "脚本",
+      "tooltip": "Python 脚本节点",
+      "ports": {
+        "data_in": "数据输入",
+        "loop_in": "循环输入",
+        "out": "输出"
+      },
+      "menu": {
+        "edit": "编辑",
+        "run": "运行脚本"
+      },
+      "status_ready": "就绪",
+      "status_error": "错误",
+      "edit_script": "编辑脚本",
+      "tooltip_x": "NumPy 数组: X 轴 (时间, 频率等)",
+      "tooltip_y": "NumPy 数组: 当前信号值",
+      "tooltip_param": "迭代参数（自 TriggerNode）或 None",
+      "help_title": "帮助 - 脚本节点",
+      "help_html": "<h3>📜 自定义脚本节点</h3> <p>允许编写 Python 代码以任意处理信号。</p> <h4>📥 输入</h4> <ul> <li><code>data_in</code> → 主信号 (x, y) 或简单数组。</li> <li><code>loop_in</code> → 可选输入，用于接收来自 <b>TriggerNode</b> 的参数（值 <code>param</code>）。</li> <li>动态端口 <code>@input name</code> → 脚本中定义的附加输入。</li> </ul> <h4>📤 输出</h4> <ul> <li><code>out</code> → 脚本生成的元组 (x_new, y_new)（批处理模式）。</li> <li>动态端口 <code>@output name</code> → 脚本中定义的附加输出。</li> </ul> <h4>✏️ 脚本编辑</h4> <p>右键点击 → <b>编辑脚本</b> 打开带语法高亮的编辑器。</p> <p>包括自动补全、模板、可配置参数 (<code>@param</code>) 和外部执行（备用 Python）。</p> <hr> <h4>🧠 可用变量（传统批处理模式）</h4> <ul> <li><code>x</code> : numpy 数组 – 时间或频率轴</li> <li><code>y</code> : numpy 数组 – 信号值</li> <li><code>param</code> : float（可选）– 来自 <code>loop_in</code> 的值（TriggerNode）</li> <li><code>persist</code> : dict – 在同一节点的多次执行之间保持（对累加器有用）</li> <li><code>np</code>, <code>scipy</code>, <code>sympy</code> – 预导入的库</li> </ul> <h4>🧩 思维模型</h4> <p> 此节点是一个<b>任意变换块</b>。在这里您定义自己物理、数学或逻辑。 </p> <h4>📐 期望形状（批处理）</h4> <pre> 输入: x → 向量 (时间/频率) y → 向量 (值) 输出: (x_mod, y_mod) </pre> <h4>🧠 更强大的示例</h4> <h5>1. 频率相关增益</h5> <pre> gain = np.exp(-x * 0.01) return (x, y * gain) </pre> <h5>2. 峰值检测</h5> <pre> y_mod = np.where(y > 0.8, y, 0) return (x, y_mod) </pre> <h5>3. 调制</h5> <pre> carrier = np.sin(2*np.pi*1000*x) return (x, y * carrier) </pre> <h5>4. 使用 param（扫描）</h5> <pre> factor = param if param is not None else 1.0 return (x, y * factor) </pre> <h5>5. 使用 persist 的累加器</h5> <pre> persist[\"counter\"] = persist.get(\"counter\", 0) + 1 return (x, y + persist[\"counter\"] * 0.1) </pre> <hr> <h4>🔁 高级策略</h4> <pre> Trigger → Script(param) → Sum → Visualization → 允自动扫描 </pre> <h4>⚠️ 常见错误</h4> <ul> <li>在批处理模式下未返回元组 (x, y)。</li> <li>未考虑 <code>param</code> 可能为 None。</li> <li>尝试在流式或 GPU 脚本上使用\"测试\"按钮（请使用实际流）。</li> </ul><hr> <hr> <h3>🧠 如何理解此系统</h3> <p>此环境作为<b>信号处流</b>运行。</p> <pre> 数据 → 变换 → 结果 </pre> <h4>📐 关键规则</h4> <pre> 一切都是: (x, y) </pre> <h4>🔁 通用模式</h4> <pre> 输入 → 处理 → 可视化 </pre> <h4>🧪 完示例</h4> <pre> 示波器 → FFT → 滤波器 → 加法器 → 绘图 </pre> <hr> <h4>⚡ 快捷键与技巧</h4> <ul> <li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li> <li><b>双击</b>节点 → 打开此帮助窗口。</li> <li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li> <li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li> </ul>"
+    },
+    "trigger": {
+      "title": "触发",
+      "tooltip": "迭代与累加节点",
+      "ports": {
+        "data_in": "数据输入",
+        "trigger_in": "触发输入",
+        "loop_out": "循环输出",
+        "out": "输出"
+      },
+      "state": {
+        "idle": "等待中",
+        "running": "迭代 {iteration}/{total}",
+        "done": "已完成",
+        "running_count": "运行中 {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "配置…"
+      },
+      "accumulate": {
+        "accumulate": "累加模式",
+        "stack": "堆叠",
+        "average": "平均",
+        "max": "最大",
+        "min": "最小",
+        "last": "最后捕获"
+      },
+      "config_title": "配置触发节点",
+      "n_iter": "迭代次数",
+      "reset": "重置迭代",
+      "help_title": "帮助 - 触发节点",
+      "help_html": "<h3>⏺ 触发节点（批量捕获）</h3>\n<p>通过外部触发信号 (<code>trigger_in</code>) 激活，迭代捕获并累加信号。非常适合重复实验、噪声平均或比较随时间变化的轨迹。</p>\n\n<h4>📥 输入</h4>\n<ul>\n    <li><code>data_in</code> → 要捕获的主信号 (x, y)。</li>\n    <li><code>trigger_in</code> → 触发信号。每次脉冲或激活都会将新轨迹捕获到内部缓冲区。</li>\n</ul>\n\n<h4>📤 输出</h4>\n<ul>\n    <li><code>out</code> → 完成编程的迭代次数 (<code>n_iter</code>) 后，根据所选模式发出累加信号。</li>\n</ul>\n\n<h4>⚙️ 配置</h4>\n<p>右键点击 → <b>配置</b> 以调整：</p>\n<ul>\n    <li><b>迭代次数 (N)：</b>生成输出所需的精确捕获次数。</li>\n    <li><b>累加：</b>组合捕获的模式：<i>堆叠、平均、最大、最小或最后</i>。</li>\n</ul>\n\n<h4>🧠 行为</h4>\n<ol>\n    <li>节点保持<b>等待中</b>状态，等待 <code>data_in</code> 上的数据和 <code>trigger_in</code> 上的脉冲。</li>\n    <li>检测到效触发时，将当前信号保存到其内部缓冲区并显示 <code>运行中 X/N</code>。</li>\n    <li>达到精确的<b>N 次迭代</b>后，构建累加输出，通过 <code>out</code> 发送，并自动清除缓冲区以进行下一次实验。</li>\n</ol>\n\n<h4>🧩 思维模型</h4>\n<p>此节点充当<b>事件驱动的批量记录器</b>。相当于实验室中的\"等待触发 → 记录 → 重复直到 N\"例程。</p>\n\n<h4>📐 堆叠模式</h4>\n<p>如果选择<b>堆叠</b>，信号将用 <code>NaN</code> 分隔连接成单个数组。这允许在一个轨迹中绘制所有捕获而不连接它们。</p>\n\n<h4>🔁 示例流</h4>\n<pre>\n发生器/示波器 → TriggerNode (N=5) → ScriptNode（可选） → 绘图\n\n结果:\n5 条堆叠曲线（堆叠）或其平均值（平均）\n</pre>\n\n<h4>🧠 实际用例</h4>\n<ul>\n<li>噪声信号平均</li>\n<li>重复实验的同步捕获</li>\n<li>多次采集的可视化比较</li>\n<li>统计分析的批量预处理</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 如何理解此系统</h3>\n<p>此环境作为<b>信号处理流</b>运行。</p>\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → TriggerNode → ScriptNode → 绘图\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（配置、删除、连接/断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "generator": {
+      "title": "发生器",
+      "tooltip": "信号发生器节点",
+      "ports": {
+        "signal_out": "信号输出",
+        "trigger_out": "触发输出",
+        "trigger_in": "触发输入",
+        "signal_in": "信号输入"
+      },
+      "status": {
+        "default": "FloWorks  |  滚动: 缩放  |  中键点击: 平移  |  右键点击节点: 选项",
+        "sim": "模拟",
+        "busy": "忙碌",
+        "ready": "就绪"
+      },
+      "device_label": "设备",
+      "channel_label": "通道",
+      "gen_button": "生成",
+      "setup_button": "设置",
+      "generate_action": "生成信号",
+      "help_title": "帮助 - 发生器节点",
+      "help_html": "<h3>📡 信号发生器节点</h3>\n<p>生成模拟信号并将其发送到真实函数发生器 (SDG) 或在内部模拟其输出。</p>\n\n<h4>📥 输入端口</h4>\n<ul>\n    <li><code>trigger_in</code>（左）→ 接收信号以触发生成（EXT 模式）。</li>\n    <li><code>signal_in</code>（左）→ 接收外部信号 (t, y)，该信号将作为任意波形发送到发生器（EXT 模式）。</li>\n</ul>\n\n<h4>📤 输出端口</h4>\n<ul>\n    <li><code>signal_out</code>（右）→ 发出生成的信号 (t, y) 以供可视化或处理。</li>\n    <li><code>trigger_out</code>（右）→ 生成完成时的触发信号（可选）。</li>\n</ul>\n\n<h4>⚙️ 工作模式</h4>\n<ul>\n    <li><b>INT</b>（内部）：根据节点的内部参数（频率、幅度、波形等）生成信号并发送到硬件（或模拟）。</li>\n    <li><b>EXT</b>（外部）：节点期望通过 <code>signal_in</code> 接收自定义信号。当您按下 <b>GEN</b> 时，该信号将作为任意波形上传到发生器。</li>\n</ul>\n\n<h4>🔧 配置</h4>\n<p>点击 <b>设置</b> 按钮（或右键点击 → \"打开控制器\"）以调整：</p>\n<ul>\n    <li>波形：正弦、方波、斜坡、脉冲、噪声、直流、三角波、锯齿波、sinc、高、指数、啁啾。</li>\n    <li>频率、幅度、偏置、相位、占空比等。</li>\n    <li>输出通道（C1 或 C2）。</li>\n    <li>设备：\"sdg\"（真实硬件）或 \"simulation\"（仅内部模拟）。</li>\n</ul>\n\n<h4>▶️ 生成</h4>\n<p>点击 <b>生成</b> 按钮（或右键点击 → \"生成信号\"）开始输出。节点将发送信号到硬件，同时通过 <code>signal_out</code> 发出生成的数据到流的其余部分。</p>\n\n<h4>💡 典型示例</h4>\n<ol>\n    <li>将发生器配置为 1 kHz 正弦波，1 Vpp。</li>\n    <li>将 <code>signal_out</code> 连接到示波器节点或可视化器。</li>\n    <li>按下 <b>生成</b> → 信号出现在物理通道和图中。</li>\n</ol>\n\n<h4>⚠️ 注意</h4>\n<ul>\n    <li>在 EXT 模式下，确保在按生成之前先将带有信号 (t, y) 的 <code>signal_in</code> 连接好。</li>\n    <li>如果硬件未连接，节点将自动使用模拟。</li>\n    <li>任意波形最多可上传 524288 个点（取决于型号）。</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → FFT → 滤波器 → 加法器 → 绘图\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "示波器",
+      "tooltip": "示波器捕获节点\n 双击查看信息",
+      "ports": {
+        "out_primary": "主输出",
+        "out_secondary": "次输出",
+        "trigger_out": "触发输出"
+      },
+      "status": {
+        "sim": "模拟",
+        "capturing": "捕获中…",
+        "armed": "已就绪",
+        "connected": "已连接",
+        "disconnected": "已断开"
+      },
+      "device_label": "设备",
+      "channel_label": "通道",
+      "lcr_label": "LCR",
+      "sim_label": "模拟",
+      "trig_button": "触发",
+      "setup_button": "设置",
+      "menu": {
+        "show_channel": "显示通道"
+      },
+      "channel": {
+        "primary": "主 (Z)",
+        "secondary": "次 (θ)"
+      },
+      "trigger_action": "触发捕获",
+      "help_title": "帮助 - 示波器节点",
+      "help_html": "<h3>📊 示波器节点（信号采集）</h3>\n<p>使用硬件 (SDS, LCR) 捕获真实信号，或生成模拟数据以进行测试。</p>\n\n<h4>📤 输出端口</h4>\n<ul>\n    <li><code>out_primary</code> → 主信号（电压 vs 时间，或 LCR 的阻抗 Z）。</li>\n    <li><code>out_secondary</code> → 次信号（LCR 的相位 θ；SDS 不使用）。</li>\n    <li><code>trigger_out</code> → 捕获完成时发出触发信号（用于同步其他节点）。</li>\n</ul>\n\n<h4>🔘 控件</h4>\n<ul>\n    <li><b>触发</b> → 开始捕获（数据采集）。</li>\n    <li><b>设置</b> → 打开配置面板（模拟参数或硬件控制器）。</li>\n    <li><b>设备选择器</b>（底部组合框）→ 在 SDS（真实示波器）、LCR（阻抗分析仪）或模拟之间选择。</li>\n</ul>\n\n<h4>⚙️ 工作模式</h4>\n<ul>\n    <li><b>SDS</b>：连接到真实示波器（Siglent SDS）。可通过上下文菜单 → \"显示通道\" 选择通道 (C1..C4)。</li>\n    <li><b>LCR</b>：连接到 LCR 表，提供两个输出：主输出（阻抗 Z）和次输出（相位角 θ）。</li>\n    <li><b>模拟</b>：生成带噪声的合成信号，可通过设置进行配置（时基、电压范围、触发电平、采样率）。</li>\n</ul>\n\n<h4>📈 可视化</h4>\n<p>节点内部不绘制号，但可以连接到可视化小部件（如 <code>PlotWidget</code>）以显示捕获的数据。</p>\n\n<h4>💡 使用示例</h4>\n<ol>\n    <li>选择设备 (SDS) 并进行物理连接。</li>\n    <li>点击触发以捕获轨迹。</li>\n    <li>信号将在 <code>out_primary</code> 上可供其他节点使用。</li>\n    <li>如果使用 LCR，两个输出（Z 和 θ）都可用。</li>\n</ol>\n\n<h4>⚠️ 注意</h4>\n<ul>\n    <li>在硬件模式下，确保设备已连接并通电。</li>\n    <li>捕获在单独线程中运行以避免阻塞界面。</li>\n    <li>该节点充当流的数据源（输入节点）。</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → FFT → 滤波器 → 加法器 → 绘图\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "spectral": {
+      "title": "频谱",
+      "tooltip": "频谱变：FFT、Hilbert、Welch (PSD) 和 DCT",
+      "transform_type": "变换:",
+      "window_type": "窗函数:",
+      "nfft": "NFFT / 分段:",
+      "scale": "刻度:",
+      "detrend": "去趋势:",
+      "normalize": "归一化（保持能量）",
+      "config_title": "配置频谱",
+      "menu": {
+        "configure": "配置…",
+        "show_output": "显示输出"
+      },
+      "channel": {
+        "magnitude": "幅度",
+        "phase": "相位"
+      },
+      "ports": {
+        "input": "输入",
+        "output": "时域输出",
+        "magnitude": "幅度",
+        "phase": "相位"
+      },
+      "status": {
+        "no_data": "无数据",
+        "ready": "就绪",
+        "phase": "相位"
+      },
+      "help_title": "帮助 - 频谱",
+      "help_html": "<h3>📊 频谱节点（频谱变换）</h3>\n<p>对输入信号计算各种变换：<b>FFT</b>、<b>Hilbert</b>、<b>Welch (PSD)</b> 和 <b>DCT</b>。</p>\n\n<h4>📥 输入</h4>\n<p><code>input</code> → 期望 <code>(x, y)</code> 元组或一维数组。</p>\n\n<h4>📤 输出</h4>\n<ul>\n    <li><b>时域输出</b> → 时域信号（仅在 Hilbert 模式下有效：解析信号的实部）。</li>\n    <li><b>幅度</b> → 根据模式不同：\n        <ul>\n            <li><b>FFT</b> → 归一化幅度谱 <code>(频率, 幅度)</code>。</li>\n            <li><b>Hilbert</b> → 信号包络 <code>(时间, 包络)</code>。</li>\n            <li><b>Welch</b> → 功率谱密度 <code>(频率, PSD)</code>。</li>\n            <li><b>DCT</b> → 离散余弦变换系数 <code>(索引, 系数)</code>。</li>\n        </ul>\n    </li>\n    <li><b>相位</b> → 弧度相位角（FFT）或瞬时相位（Hilbert）。<i>不适用于</i> Welch 或 DCT。</li>\n</ul>\n\n<h4>⚙️ 参数</h4>\n<ul>\n    <li><b>变换</b> — 在 FFT、Hilbert、Welch 或 DCT 之间选择。</li>\n    <li><b>窗函数</b> — 来自 <code>scipy.signal.windows</code> 的窗函数（Hann、Hamming、Blackman 等）。</li>\n    <li><b>NFFT / 分段</b> — FFT 长度或 Welch 分段长度。<code>自动</code> 使用下一个 2 的幂。</li>\n    <li><b>刻度</b> — <code>线性</code> 或 <code>dB</code>（FFT/Hilbert/DCT 使用 20·log₁₀，Welch 使用 10·log₁₀）。</li>\n    <li><b>去趋势</b> — 在处理前移除恒定均值或线性趋势。</li>\n    <li><b>归一化</b> — 调整窗函数以保持能量。</li>\n</ul>\n\n<h4>🖱️ 交互</h4>\n<ul>\n    <li><b>右键点击</b> → 上下文菜单（配置、选择显示通道）。</li>\n    <li><b>双击</b> → 打开此帮助窗口。</li>\n    <li><b>侧面板</b> — 实时调整参数；绘图自动更新。</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → 窗函数 → 频谱 (FFT) → 滤波器 → 绘图\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "ifft": {
+      "title": "逆 FFT",
+      "tooltip": "逆傅里叶变换（时域重建）",
+      "fs": "采样频率 (fs):",
+      "nfft": "NFFT:",
+      "real_only": "仅实数输出 (irfft)",
+      "conjugate_symmetry": "强制厄米对称",
+      "normalize": "按 N 归一化",
+      "config_title": "配置逆 FFT",
+      "menu": {
+        "configure": "配置…"
+      },
+      "ports": {
+        "magnitude": "幅度",
+        "phase": "相位",
+        "output": "时域输出"
+      },
+      "status": {
+        "no_data": "无数据",
+        "waiting_phase": "相位=0（假设）",
+        "ready": "就绪"
+      },
+      "help_title": "帮助 - 逆 FFT",
+      "help_html": "<h3>🔁 逆 FFT 节点（逆快速傅里叶变换）</h3>\n<p>从其频谱重建时域信号。</p>\n\n<h4>📥 输入</h4>\n<ul>\n    <li><b>幅度</b> → <code>(频率, 幅度)</code> 或一维数组。<b>必需。</b></li>\n    <li><b>相位</b> → <code>(频率, 角度)</code> 或一维数组。<b>可选。</b> 如果未连接，假设相位为零。</li>\n</ul>\n\n<h4>📤 输出</h4>\n<ul>\n    <li><b>时域输出</b> → 重建的 <code>(时间, 信号)</code>。</li>\n</ul>\n\n<h4>⚙️ 参数</h4>\n<ul>\n    <li><b>fs</b> — 构建时间轴的采样频率。</li>\n    <li><b>NFFT</b> — IFFT 大小。<code>自动</code> 使用 <code>2·(len(mag)-1)</code>。</li>\n    <li><b>实输出</b> — 使用 <code>irfft</code>（保证实数输出）或 <code>ifft</code>（复数）。</li>\n    <li><b>厄米称</b> — 在逆变换前强制 <code>Y[-k] = conj(Y[k])</code>（防止伪影）。</li>\n    <li><b>归一化</b> — 除以 <code>N</code> 以保持原始幅度。</li>\n</ul>\n\n<h4>🖱️ 交</h4>\n<ul>\n    <li><b>右键点击</b> → 配置…</li>\n    <li><b>双击</b> → 帮助。</li>\n    <li><b>侧面板</b> — 实时调整 fs 和参数。</li>\n</ul>"
+    },
+    "thd": {
+      "title": "THD 分析仪",
+      "tooltip": "总谐波失真 THD",
+      "ports": {
+        "input": "输入",
+        "output": "输出"
+      },
+      "dialog": {
+        "title": "分析 THD"
+      },
+      "tab": {
+        "summary": "摘要",
+        "harmonics": "谐波",
+        "spectrum": "频谱"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "基频:",
+        "max_harmonics": "考虑的谐波数:",
+        "green_threshold": "绿色阈值 (<):",
+        "yellow_threshold": "黄色阈值 (<):"
+      },
+      "harmonics": {
+        "order": "谐波阶次",
+        "freq": "频率 (Hz)",
+        "amp_rel": "相对幅度 (%)"
+      },
+      "help_title": "帮助 - THD",
+      "help_html": "<h3>总谐波失真 (THD) 分析仪</h3><p>计算输入信号的 THD 和 THD+N。</p><p>信号原样传递到输出。</p><p><b>参数:</b></p><ul><li>max_harmonics: 考虑的谐波数量</li><li>绿色/黄色阈值: 更改节点中 THD 的颜色</li></ul><p><i>双击打开详细分。</i></p>"
+    },
+    "filter": {
+      "title": "滤波器",
+      "tooltip": "数字滤波器 (Butterworth)",
+      "ports": {
+        "input": "输入",
+        "output": "输出"
+      },
+      "status": {
+        "no_data": "无数据",
+        "ready": "就绪"
+      },
+      "menu": {
+        "configure": "配置…",
+        "show_output": "显示输出"
+      },
+      "config_title": "配置滤波器",
+      "filter_type": "滤波器类型:",
+      "cutoff": "截止频率 (Hz):",
+      "cutoff1": "截止频率 1 (Hz):",
+      "cutoff2": "截止频率 2 (Hz):",
+      "order": "滤波器阶数:",
+      "fs": "采样率 (Hz, 0 = 自动):",
+      "help_title": "帮助 - 滤波器",
+      "help_html": "<h3>🎛️ 滤波器节点 (Butterworth)</h3>\n<p>对输入信号应用<b>数字 Butterworth 滤波器</b></p>\n\n<h4>📥 输入</h4>\n<p><code>input</code> → 期望 <code>(x, y)</code> 元组或一维数组。</p>\n\n<h4>📤 输出</h4>\n<p><code>output</code> → 滤波后的信号 <code>(x, y_filtered)</code>。</p>\n\n<h4>⚙️ 参（双击配置）</h4>\n<ul>\n    <li><b>滤波器类型</b> – 低通、高通、带通或带阻。</li>\n    <li><b>截止频率</b> – 以 Hz 为单位。带通/带阻需要两个频率。</li>\n    <li><b>阶数</b> – 滤波器阶数 (1–20)。阶数越高 = 滚降越陡。</li>\n    <li><b>采样率</b> – 如果设为 0，则从 <i>x</i> 轴自动推断。</li>\n</ul>\n\n<h4>🛠️ 操作</h4>\n<ul>\n    <li>滤波器使用 <code>scipy.signal.butter</code> 设计。</li>\n    <li>使用 <code>filtfilt</code> 应用零相位滤波（无相位失真）。</li>\n    <li>如果输入是一维数组，则使用采样率创建合成 <i>x</i> 轴。</li>\n</ul>\n\n<h4>🖱️ 交互</h4>\n<ul>\n    <li><b>双击</b> → 打开配置对话框。</li>\n    <li><b>点击</b>节点 → 绘制滤波后的信号。</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → 滤波器 → FFT → 绘图\n</pre>\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "归一化",
+      "tooltip": "将信号归一化到指定范围",
+      "ports": {
+        "input": "输入",
+        "output": "输"
+      },
+      "menu": {
+        "configure": "配置…"
+      },
+      "config_title": "配置归一化节点",
+      "param": {
+        "target_min": "目标最小值:",
+        "target_max": "目标最大值:"
+      },
+      "help_title": "帮助 - 归一化",
+      "help_html": "<h3>📏 归一化节点</h3>\n<p>将输入信号归一化到 <b>目标最小值</b> 和 <b>目标最大值</b> 指定的范围。</p>\n\n<h4>📥 输入</h4>\n<p><code>input</code> → 期望 <code>(x, y)</code> 元组或一维数组。</p>\n\n<h4>📤 输出</h4>\n<ul>\n    <li><b>归一化信号</b> → <code>(x_norm, y_norm)</code> – 缩放到目标范围的信号。</li>\n</ul>\n\n<h4>⚙️ 参数（双击配置）</h4>\n<ul>\n    <li><b>目标最小值</b> – 所需范围的最小值（默认 0.0）。</li>\n    <li><b>目标最大值</b> – 所需范围的最大值（默认 1.0）。</li>\n</ul>\n\n<h4>📐 操作</h4>\n<p>线性缩放：</p>\n<pre>y_norm = target_min + (y - original_min) * (target_max - target_min) / (original_max - original_min)</pre>\n<p>x 轴保持不变。</p>\n\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → FFT → 滤波器 → 加法器 → 绘图\n</pre>\n\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "卷积",
+      "tooltip": "通过卷积实现 FIR 滤波",
+      "ports": {
+        "input": "输入",
+        "output": "输出"
+      },
+      "status": {
+        "no_data": "无数据"
+      },
+      "menu": {
+        "show_output": "显示输出",
+        "configure": "配置…"
+      },
+      "config_title": "配置卷积",
+      "example_kernel": "核示例:",
+      "kernel": "核系数（逗号分隔）:",
+      "mode": "卷积模式:",
+      "help_title": "帮助 - 卷积",
+      "help_html": "<h3>🔀 卷积节点 (FIR 滤波器)</h3>\n<p>对输入信号和用户定义的核进行离散卷积。</p>\n\n<h4>📥 输入</h4>\n<p><code>input</code> → 期望 <code>(x, y)</code> 元组或一维数组。</p>\n\n<h4>📤 输出</h4>\n<ul>\n    <li><b>滤波后的信号</b> → <code>(x_conv, y_conv)</code> – 卷积结果。</li>\n</ul>\n\n<h4>⚙️ 参数（双击配置）</h4>\n<ul>\n    <li><b>核系数</b> – 逗号分隔的浮点数，例如 <code>'0.2,0.2,0.2,0.2,0.2'</code>。</li>\n    <li><b>卷积模式</b> – <code>'same'</code>（默认）、<code>'full'</code> 或 <code>'valid'</code>。</li>\n</ul>\n\n<h4>📐 操作</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>x 轴相应调整：对于 <code>'same'</code> 保持原始 x；对于 <code>'valid'</code> 裁剪两端；对于 <code>'full'</code> 线性扩展。</li>\n</ul>\n\n<hr>\n<h3>🧠 如何理解此系统</h3>\n\n<p>此环境作为<b>信号处理流</b>运行。</p>\n\n<pre>\n数据 → 变换 → 结果\n</pre>\n\n<h4>📐 关键规则</h4>\n<pre>\n一切都是:\n\n(x, y)\n</pre>\n\n<h4>🔁 通用模式</h4>\n<pre>\n输入 → 处理 → 可视化\n</pre>\n\n<h4>🧪 完整示例</h4>\n<pre>\n示波器 → FFT → 滤波器 → 加法器 → 绘图\n</pre>\n\n<hr>\n<h4>⚡ 快捷键与技巧</h4>\n<ul>\n<li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li>\n<li><b>双击</b>节点 → 打开此帮助窗口。</li>\n<li><b>右键点击</b> → 上下文菜单（删除、连接、断开）。</li>\n<li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li>\n</ul>"
+    },
+    "resample": {
+      "title": "重采样",
+      "tooltip": "更改信号的采样率",
+      "ports": {
+        "input": "输入",
+        "output": "输出"
+      },
+      "status": {
+        "no_data": "无数据",
+        "ready": "就绪"
+      },
+      "menu": {
+        "configure": "配置…"
+      },
+      "config_title": "配置重采样",
+      "mode": "模式:",
+      "factor": "因子:",
+      "target_fs": "目标采样率 (Hz):",
+      "help_title": "帮助 - 重采样",
+      "help_html": "<h3>🔄 重采样节点</h3><p>更改输入信号的<b>采样率</b>。</p><h4>📥 输入</h4><p><code>input</code> → 期望 <code>(x, y)</code> 元组或一维数组。</p><h4>📤 输出</h4><p><code>output</code> → 重采样信号 <code>(x_new, y_new)</code>。</p><h4>⚙️ 参数</h4><ul><li><b>模式</b> – <i>factor</i>（乘以原始采样率）或 <i>fixed_fs</i>（目标采样率，单位为 Hz）。</li><li><b>因子</b> – 缩放因子（>1 增加样本，<1 减少样本）。</li><li><b>目标采样率</b> – 所需采样率，单位为 Hz（当模式为 fixed_fs 时使用）。</li></ul><h4>️ 操作</h4><p>使用 <code>scipy.signal.resample</code>，采用傅里叶方法。</p><hr><hr><h3>🧠 如何理解此系统</h3><p>此环境作为<b>信号处理流</b>运行。</p><pre>数据 → 变换 → 结果</pre><h4>📐 关键规则</h4><pre>一切都是: (x, y)</pre><h4>🔁 通用模式</h4><pre>输入 → 处理 → 可视化</pre><hr><h4>⚡ 快捷键与技巧</h4><ul><li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li><li><b>双击</b>节点 → 打开此帮助窗口。</li><li><b>右键点击</b> → 上下文菜单（删除、配置）。</li><li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li></ul>"
+    },
+    "window": {
+      "title": "窗函数",
+      "tooltip": "对信号应用窗函数",
+      "ports": {
+        "input": "输入",
+        "output": "输出"
+      },
+      "status": {
+        "no_data": "无数据",
+        "ready": "就绪"
+      },
+      "menu": {
+        "configure": "配置…"
+      },
+      "config_title": "配置窗函数",
+      "window_type": "窗函数类型:",
+      "normalize": "归一化（保持能量）",
+      "help_title": "帮助 - 窗函数",
+      "help_html": "<h3>🪟 窗函数节点</h3><p>对输入信号应用<b>窗函数</b>以减少频谱泄漏。</p><h4>📥 输入</h4><p><code>input</code> → <code>(x, y)</code> 元组或一维数组。</p><h4>📤 输出</h4><p><code>output</code> → 加窗信号 <code>(x, y * window)</code>。</p><h4>⚙️ 参数</h4><ul><li><b>窗函数类型</b> – Hann、Hamming、Blackman、Bartlett 等。</li><li><b>归一化</b> – 如果选中，缩放窗函数以保持总能量。</li></ul><h4>🛠️ 操作</h4><p>使用 <code>scipy.signal.windows</code>。</p><hr><hr><h3>🧠 如何理解此系统</h3><p>此环境作为<b>信号处理流</b>运行。</p><pre>数据 → 变换 → 结果</pre><h4>📐 关键规则</h4><pre>一切都是: (x, y)</pre><h4>🔁 通用模式</h4><pre>输入 → 处理 → 可视化</pre><hr><h4>⚡ 快捷键与技巧</h4><ul><li><b>Ctrl + 点击</b>端口 → 快速选择端口进连接。</li><li><b>双击</b>节点 → 打开此帮助窗口。</li><li><b>右键点击</b> → 上下文菜单（删除、配置）。</li><li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li></ul>"
+    },
+    "delay": {
+      "title": "延迟",
+      "tooltip": "将信号延迟指定量",
+      "ports": {
+        "input": "输入",
+        "output": "输出"
+      },
+      "status": {
+        "no_data": "无数据",
+        "ready": "就绪"
+      },
+      "menu": {
+        "configure": "配置…"
+      },
+      "config_title": "配置延迟",
+      "mode": "延迟模式:",
+      "samples": "样本数:",
+      "seconds": "秒数:",
+      "padding": "填充:",
+      "constant_value": "常数值:",
+      "help_title": "帮助 - 延迟",
+      "help_html": "<h3>⏱️ 延迟节点</h3><p>将输入信号延迟指定的<b>样本数</b>或<b>秒数</b>。</p><h4>📥 输入</h4><p><code>input</code> → <code>(x, y)</code> 元组或一维数组。</p><h4>📤 输出</h4><p><code>output</code> → 延迟信号 <code>(x, y_delayed)</code>。</p><h4>⚙️ 参数</h4><ul><li><b>延迟模式</b> – <i>samples</i>（整数样本数）或 <i>seconds</i>（以秒为单位的时间，需要从 x 轴获取采样率）。</li><li><b>填充</b> – 填充开头间隙的方法：<i>zero</i>、<i>reflect</i> 或 <i>constant</i>（用户定义值）。</li></ul><h4>🛠️ 操作</h4><p>将信号向右移动，在开头插入填充。</p><hr><hr><h3>🧠 如何理解此系</h3><p>此环境作为<b>信号处理流</b>运行。</p><pre>数据 → 变换 → 结果</pre><h4>📐 关键规则</h4><pre>一切都是: (x, y)</pre><h4>🔁 通用模式</h4><pre>输入 → 处理 → 可视化</pre><hr><h4>⚡ 快捷键与技巧</h4><ul><li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li><li><b>双击</b>节点 → 打开此帮助窗口。</li><li><b>右键点击</b> → 上下文菜单（删除、配置）。</li><li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li></ul>"
+    },
+    "correlation": {
+      "title": "相关",
+      "tooltip": "两个信号的互相关",
+      "ports": {
+        "signal1": "信号 1",
+        "signal2": "信号 2",
+        "corr": "相关"
+      },
+      "status": {
+        "no_data": "无数据",
+        "ready": "就绪"
+      },
+      "menu": {
+        "configure": "配置…"
+      },
+      "config_title": "配置相关",
+      "mode": "模式:",
+      "normalize": "归一化",
+      "help_title": "帮助 - 相关",
+      "help_html": "<h3>📈 相关节点</h3><p>计算两个输入信号之间的<b>互相关</b>。</p><h4>📥 输入</h4><p><code>signal1</code>、<code>signal2</code> → 每个期望 <code>(x, y)</code> 元组或一维数组。</p><h4>📤 输出</h4><p><code>corr</code> → 相关序列 <code>(lags, correlation)</code>。</p><h4>⚙️ 参数</h4><ul><li><b>模式</b> – <i>full</i>（所有延迟）、<i>same</i>（与最长输入等长）、<i>valid</i>（无零填充边缘）。</li><li><b>归一化</b> – 如果选中，除以信号范数的乘积（产生 [-1, 1] 范围内的值）。</li></ul><h4>🛠️ 操作</h4><p>使用 <code>np.correlate</code>。</p><hr><hr><h3>🧠 如何理解此系统</h3><p>此环境作为<b>信号处理流</b>运行。</p><pre>数据 → 变换 → 结果</pre><h4>📐 关键规则</h4><pre>一切都是: (x, y)</pre><h4>🔁 通用模式</h4><pre>输入 → 处理 → 可视化</pre><hr><h4>⚡ 快捷键与技巧</h4><ul><li><b>Ctrl + 点击</b>端口 → 快速选择口进行连接。</li><li><b>双击</b>节点 → 打开此帮助窗口。</li><li><b>右键点击</b> → 上下文菜单（删除、配置）。</li><li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li></ul>"
+    },
+    "math_expression": {
+      "title": "数学表达式",
+      "tooltip": "对 x 和 y 求值数学表达式",
+      "ports": {
+        "input": "输入",
+        "output": "输出"
+      },
+      "status": {
+        "no_data": "无数据",
+        "ready": "就绪"
+      },
+      "menu": {
+        "configure": "配置…"
+      },
+      "config_title": "配置数学表达式",
+      "expression": "表达式（使用 x, y, np.*）:",
+      "info": "变量: x (时间轴), y (信号值)。\n函数: np.sin, np.cos, np.exp, np.sqrt 等。",
+      "examples": "示例…",
+      "help_title": "帮助 - 数学表达式",
+      "help_html": "<h3>🧮 数学表达式节点</h3><p>对输入信号变量 <code>x</code> 和 <code>y</code> 求值任意数学表达式。</p><h4>📥 输入</h4><p><code>input</code> → <code>(x, y)</code> 元组或一维数组。</p><h4>📤 输出</h4><p><code>output</code>  表达式结果 <code>(x, y_new)</code>。</p><h4>✏️ 表达式语法</h4><ul><li>使用 <code>x</code>（时间轴）和 <code>y</code>（信号值）作为数组变量。</li><li>您也可以使用任何 <code>np.*</code> 函数（例如 <code>np.sin(y)</code>、<code>np.exp(-x)</code>）。</li><li>示例：<code>y * 2</code>、<code>np.sin(2*np.pi*x)</code>、<code>np.sqrt(x**2 + y**2)</code>。</li></ul><h4>⚠️ 注意</h4><p>表达式使用 <code>numexpr</code>（如果可）或受限的 <code>eval</code> 安全求值。</p><hr><hr><h3>🧠 如何理解此系统</h3><p>此环境作为<b>信号处理流</b>运行。</p><pre>数据 → 变换 → 结果</pre><h4>📐 关键规则</h4><pre>一切都是: (x, y)</pre><h4>🔁 通用模式</h4><pre>输入 → 处理 → 可视化</pre><hr><h4>⚡ 快捷键与技巧</h4><ul><li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li><li><b>双击</b>节点 → 打开此帮助窗口。</li><li><b>右键点击</b> → 上下文菜单（删除、配置）。</li><li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li></ul>"
+    },
+    "spectrogram": {
+      "title": "频谱图",
+      "tooltip": "计算 STFT 频谱图",
+      "ports": {
+        "input": "输入",
+        "spectrogram": "频谱图",
+        "frequencies": "频率",
+        "times": "时间"
+      },
+      "status": {
+        "no_data": "无数据",
+        "ready": "就绪"
+      },
+      "menu": {
+        "configure": "配置…",
+        "show_in_plot": "在绘图中显示"
+      },
+      "config_title": "配置频谱图",
+      "nperseg": "每段样本数:",
+      "noverlap": "重叠:",
+      "window": "窗函数:",
+      "scaling": "缩放:",
+      "mode": "模式:",
+      "help_title": "帮助 - 频谱图",
+      "help_html": "<h3>🌊 频谱图节点</h3><p>计算<b>短时傅里叶变换 (STFT)</b> 频谱图。</p><h4>📥 输入</h4><p><code>input</code> → (x, y) 或一维数组。</p><h4>📤 输出</h4><ul><li><b>频谱图</b> → 二维数组（频率、时间、幅度）– <i>不能通过点击直接绘制</i>。</li><li><b>频率</b> → 频率分箱的一维数组（可连接到其他节点）。</li><li><b>时间</b> → 段时间的一维数组。</li></ul><h4>🖱️ 交互</h4><p><b>点击</b>节点<b>不会</b>显示频谱图。将 <code>frequencies</code> 或 <code>times</code> 连接到其他处理节点，或导出数据。</p><hr><hr><h3>🧠 如何理解此系统</h3><p>此环境作为<b>信号处理流</b>运行。</p><pre>数据 → 变换 → 结果</pre><h4>📐 关键规则</h4><pre>一切都是: (x, y)</pre><h4>🔁 通模式</h4><pre>输入 → 处理 → 可视化</pre><hr><h4>⚡ 快捷键与技巧</h4><ul><li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li><li><b>双击</b>节点 → 打开此帮助窗口。</li><li><b>右键点击</b> → 上下文菜单（删除、配置）。</li><li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li></ul>"
+    },
+    "spectrogram_viewer": {
+      "title": "频谱图查看器",
+      "tooltip": "接收并显示频谱图数据（频率、时间、矩阵）",
+      "config_title": "配置频谱图查看器",
+      "ports": {
+        "frequencies": "频率",
+        "times": "时间",
+        "spectrogram": "频谱图"
+      },
+      "status": {
+        "no_data": "无数据"
+      },
+      "menu": {
+        "view_spectrogram": "查看频谱图",
+        "configure": "配置…"
+      },
+      "window_title": "频谱图查看器",
+      "time_axis": "时间 (s)",
+      "freq_axis": "频率 (Hz)",
+      "log_scale": "对数刻度",
+      "colormap": "颜色映射:",
+      "auto_contrast": "自动对比度",
+      "contrast_min": "对比度最小值:",
+      "contrast_max": "对比度最大值:",
+      "export": "导出…",
+      "export_title": "导出频谱图",
+      "no_data_title": "无数据",
+      "no_data_message": "数据不完整。请先连接所有端口并运行流。",
+      "help_title": "帮助 - 频谱图查看器",
+      "help_html": "<h3>📊 频谱图查看器节点</h3><p>接收<b>频谱图</b>节点的三个输出，并将其显示为二维热图。</p><h4>📥 输入</h4><ul><li><b>频率</b> → 频率的一维向量</li><li><b>时间</b> → 段时间的一维向量</li><li><b>频谱图</b> → 幅度的二维矩阵（频率 × 时间）</li></ul><h4>⚙️ 配置</h4><p>使用<b>侧面板</b>实时调整：</p><ul><li><b>对数刻度</b> — 增强低幅度细节。</li><li><b>颜色映射</b> — viridis、inferno、plasma、jet 等。</li><li><b>对比度</b> — 自动或手动（最小 / 最大）。</li></ul><h4>🖱️ 交互</h4><p><b>右键点击</b>节点并选择<b>\"查看频谱图\"</b>以打开专用窗口。</p><p>在查看器中您可以<b>导出</b>当前视图为 PNG 图像。</p><p><i>点击节点不会在主图中显示任何内容。</i></p><hr><hr><h3>🧠 如何理解此系统</h3><p>此环境作为<b>信号处理流</b>运行。</p><pre>数据 → 变换 → 结果</pre><h4>📐 关键规则</h4><pre>一切都是: (x, y)</pre><h4>🔁 通用模式</h4><pre>输入 → 处理 → 可视化</pre><hr><h4>⚡ 快捷键与技巧</h4><ul><li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li><li><b>双击</b>节点 → 打开此帮助窗口。</li><li><b>右键点击</b> → 上下文菜单（查看、配置、删除）。</li><li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li></ul>"
+    },
+    "graph_exporter": {
+      "title": "图形导出器",
+      "tooltip": "以专业质量导出图形",
+      "ports": {
+        "signal_in": "信号输入",
+        "file_out": "输出文件"
+      },
+      "status": {
+        "ready": "就绪",
+        "exported": "已导出"
+      },
+      "menu": {
+        "show_graph": "显示图形",
+        "configure": "配置图形",
+        "configure_subplot": "配置子图",
+        "export": "导出图形",
+        "subplots": "子图",
+        "use_subplots": "使用子图",
+        "n_subplots": "子图数量",
+        "subplot_layout": "布局"
+      },
+      "config": {
+        "display_mode": "显示模式",
+        "use_subplots": "使用子图（最多 8 个）",
+        "n_subplots": "子图数量:",
+        "subplot_layout": "布局:",
+        "export_format": "导出格式"
+      },
+      "no_data_title": "无数据",
+      "no_data_msg": "连接输入信号并运行流以生成图形。",
+      "export_dialog_title": "保存图形",
+      "export_error_title": "导出错误",
+      "config_title": "配置图形导出器",
+      "help_title": "帮助 - 图形导出器",
+      "help_html": "<h3>📊 图形导出器</h3><p>接收信号并将其导出为高质量图像。</p><h4>📥 输入</h4><p><code>signal_in</code> → <code>(x, y)</code> 元组或一维数组。</p><h4>📤 输出</h4><p><code>file_out</code> → 生成文件的路径。</p><h4>⚙️ 配置</h4><p>右双击 → <b>配置图形</b> 以调整样式、轴、注释等。</p><hr><h4>🖱️ 交互</h4><ul><li><b>右键点击</b> → 上下文菜单。</li><li><b>显示图形</b> → 使用当前设置预览。</i></p><hr><hr><h3>🧠 如何理解此系统</h3><p>此环境作为<b>信号处理流</b>运行。</p><pre>数据 → 变换 → 结果</pre><h4>📐 关键规则</h4><pre>一切都是: (x, y)</pre><h4>🔁 通用模式</h4><pre>输入 → 处理 → 可视化</pre><hr><h4>⚡ 快捷键与技巧</h4><ul><li><b>Ctrl + 点击</b>端口 → 快速选择端口进行连接。</li><li><b>双击</b>节点 → 打开此帮助窗口。</li><li><b>右键点击</b> → 上下文菜单（删除、配置）。</li><li><b>拖动</b>节点 → 移动整个块；连接自动更新。</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "无法删除输入节点。"
+  },
+  "workspace": {
+    "headers": {
+      "node": "节点",
+      "type": "类型",
+      "shape": "形状",
+      "x_range_fs": "X: 范围 / 采样率",
+      "dx_t": "dx / 周期",
+      "y_range": "Y: [最小, 最大]",
+      "preview_y": "Y 预览"
+    }
+  },
+  "plot": {
+    "time_label": "时间 (s)",
+    "voltage_label": "电压 (V)",
+    "title": "信号",
+    "scale_label": "刻度:",
+    "scale_linear": "线性",
+    "scale_log": "对数",
+    "markers": "标记",
+    "cursors": "光标 A/B",
+    "peak": "峰值",
+    "peak_tooltip": "标记最大峰值",
+    "reset_zoom": "重置缩放",
+    "amplitude": "幅度",
+    "time": "时间 (s)",
+    "frequency": "频率 (Hz)",
+    "view_mode": "视图",
+    "view_2d": "2D",
+    "view_surface": "3D 表面",
+    "view_waterfall": "3D 瀑布",
+    "view_volume": "3D 体积",
+    "view_slice": "3D 切片",
+    "slice_label": "切片",
+    "reset_camera": "重置相机",
+    "axis_scale": "刻度",
+    "fps": "帧率",
+    "loop": "循环",
+    "colormap": "颜色映射"
+  },
+  "shortcuts": {
+    "delete": "删除节点",
+    "delete_desc": "删除选定节点及其连接。",
+    "duplicate": "复制节点",
+    "duplicate_desc": "以 +50px 偏移复制选定节点。",
+    "select_all": "全选",
+    "select_all_desc": "选择场景中的所有节点。",
+    "cancel": "取消操作",
+    "cancel_desc": "取消正在进行的连接或取消全选。",
+    "copy": "复制",
+    "copy_desc": "将选定节点复制到内部剪贴板。",
+    "cut": "剪切",
+    "cut_desc": "剪切选定节点。",
+    "paste": "粘贴",
+    "paste_desc": "从剪贴板粘贴节点。",
+    "undo": "撤销",
+    "undo_desc": "撤销上一个操作。",
+    "redo": "重做",
+    "redo_desc": "重做已撤销的操作。",
+    "run": "运行流",
+    "run_desc": "执行完整流。",
+    "auto_layout": "自动布局",
+    "auto_layout_desc": "自动将节点排列为列。",
+    "center_view": "居中视图",
+    "center_view_desc": "将视图居中于选择或整个场景。",
+    "zoom_reset": "缩放 100%",
+    "zoom_reset_desc": "将缩放重置为 100%。",
+    "zoom_in": "放大",
+    "zoom_in_desc": "放大。",
+    "zoom_out": "缩小",
+    "zoom_out_desc": "缩小。",
+    "toggle_theme": "切换主题",
+    "toggle_theme_desc": "在深色、浅色和高对比度主题之间切换。",
+    "toggle_grid": "切换网格",
+    "toggle_grid_desc": "显示或隐藏网格。",
+    "lock_node": "锁定节点",
+    "lock_node_desc": "锁定/解锁选定节点的移动。",
+    "help": "上下文帮助",
+    "help_desc": "显示光标下节点的工具提示。",
+    "new_file": "新建",
+    "new_file_desc": "创建新图表",
+    "open_file": "打开",
+    "open_file_desc": "打开图表文件",
+    "save_file": "保存",
+    "save_file_desc": "保存当前图表",
+    "save_file_as": "另存为…",
+    "save_file_as_desc": "以新名称保存图表"
+  },
+  "dialogs": {
+    "common": {
+      "close": "关闭",
+      "cancel": "取消",
+      "ok": "确定",
+      "emer_wind": "选择程序",
+      "operation_history": "操作",
+      "confirm": "未做任何更改。",
+      "overwrite": "是否覆盖？",
+      "error": "错误"
+    },
+    "font_size": {
+      "title": "字体大小",
+      "label": "大小 (pt):"
+    },
+    "firewall": {
+      "title": "连接被阻止",
+      "text": "无法连接到示波。\nWindows 防火墙可能正在阻止通信。",
+      "informative": "要解决此问题，请在 Windows 防火墙中允许 'FloWorks.exe'。\n\n是否暂时使用模拟模式？"
+    },
+    "capture_error": {
+      "title": "捕获错误",
+      "text": "捕获期间发生错误：\n{error}\n\n请验证设备是否已通电且防火墙允许连接。"
+    },
+    "script_editor": {
+      "title": "脚本编辑器",
+      "header": "Python 脚本  |  变量: x, y, param (来自 TriggerNode), np, scipy, sympy",
+      "test_button": "测试（不保存）",
+      "save_button": "保存并关闭",
+      "tool_tip": "脚本节点\n双击查看信息",
+      "templates": "模板:",
+      "save_template": "保存模板…",
+      "import": "打开脚本…",
+      "export": "导出脚本…",
+      "unsaved_warning": "未做任何更改。是否要加载模板并丢失它们？",
+      "save_template_title": "保存为模板",
+      "save_template_prompt": "模板名称（不含扩展名）:",
+      "overwrite_template": "模板已存在。是否覆盖？",
+      "import_title": "打开 Python 脚本",
+      "export_title": "导出 Python 脚本",
+      "help_tooltip": "快速帮助 (F1)",
+      "help_title": "快速帮助",
+      "browse": "浏览…",
+      "python_path_placeholder": "留空以使用内部解释器。例如: python3",
+      "quick_help_html": "<h2>Python 脚本编辑器</h2><p>此编辑器在流信号上运行 Python 代码。脚本接收数据并可以返回结果、修改信号或生成多个输出。</p><h3>可用变量</h3><ul><li><b>x</b> – NumPy 数组: X 轴 (时间, 率...)。</li><li><b>y</b> – NumPy 数组: 当前信号值。</li><li><b>param</b> – 迭代索引（来自 TriggerNode）或 <code>None</code>。</li><li><b>inputs</b> – 包含所有输入的字典（对 <code>@input</code> 有用）。</li><li><b>persist</b> – 在运行之间保持值的字典。</li></ul><h3>导入的库</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>特殊指令</h3><ul><li><code># @param NAME : type = value</code> – 在侧面板中创建可调参数（无需触碰代码）。</li><li><code># @input port_name</code> – 添加额外的输入端口（左侧）。</li><li><code># @output port_name</code> – 添加额外的输出端口（右侧）。</li></ul><p>使用 <code>@input</code>/<code>@output</code> 时，脚本必须使用 <code>inputs</code> 并返回包含输出的字典。示例:</p><pre># @input channel_A<br># @output result<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"channel_A\"][1]<br>return {\"out\": (x, y), \"result\": (x, y_a)}</pre><h3>持久化</h3><p><code>persist</code> 字典在程序打开期间在运行之间保持数据。示例:</p><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1<br>return (x, y + persist[\"counter\"] * 0.1)</pre><h3>模板管理</h3><ul><li>从下拉列表中选择模板以加载预定义脚本。</li><li><b>保存模板…</b> – 将当前脚本存储为模板文件夹中的 <code>.py</code> 文件。</li><li><b>打开脚本…</b> / <b>导出脚本…</b> – 与外部文件交换脚本。</li></ul><h3>提示</h3><ul><li>在连接流之前使用 <b>测试</b> 通过模拟数据检查脚本。</li><li>错误显示在底部控制台中，并标记故障行。</li><li>您可以通过注释掉指令来临时禁用它 (<code>## @param ...</code>)。</li></ul>"
+    },
+    "trigger_config": {
+      "title": "配置触发节点",
+      "group": "迭代参数",
+      "n_iter": "迭代次数 (N):",
+      "param_start": "起始参数:",
+      "param_end": "结束参数:",
+      "accumulate": "累加:",
+      "trig_tooltips": "TriggerNode\n双击查看信息",
+      "info": "当前参数将在\nloop_out 中作为第三个元素可用: (x, y, param)",
+      "accumulate_options": {
+        "stack": "堆叠",
+        "average": "平均",
+        "max": "最大",
+        "min": "最小"
+      }
+    },
+    "simulation_config": {
+      "title": "模拟配置",
+      "timebase": "时基 (ms/div)",
+      "voltage_range": "电压范围 (V)",
+      "trigger_level": "触发电平 (V)",
+      "trigger_slope": "触发斜率",
+      "sample_rate": "采样率 (kHz)"
+    },
+    "file": {
+      "save_as": "另存为…",
+      "unsaved_title": "未保存的更改",
+      "unsaved_message": "有未保存的更改。是否要在继续之前保存？"
+    }
+  },
+  "info_dialog": {
+    "title": "信息 - FloWorks",
+    "tab_about": "关于",
+    "tab_shortcuts": "键盘快捷键",
+    "tab_tutorials": "教程",
+    "close": "关闭",
+    "about_title": "FloWorks",
+    "version": "版本 0.4.5",
+    "description": "<p>FloWorks 是一个基于数据流的视觉交互式信号处理环境。它允许您过连接代表数学运算、滤波器、变换、信号发生器等节点的节点来构建、执行和分析处理链。一切都基于 (x, y) 对，其中 x 是轴（时间或频率），y 是信号。</p><p>它面向希望实验、学习或原型化系统而无需从零开始编写代码的学生、研究人员、工程师和任何对信号处理感兴趣的人。</p><p><b>使命：</b>将实验工作流程集中在一个单一的视觉、开放和可访问的工具中，以便任何人——学生、研究人员或工程师——都可以专注于实验，而不是学习软件。</p><p><b>愿景：</b>一个实验想法与其执行之间的障碍仅仅是实验者好奇心的世界。FloWorks 渴望成为信号实验的参考平台，由全球科学和技术社区构建并为社区服务，没有许可证壁垒或工具碎片化。</p><p><b>原则：</b>自由软件（MIT 许可证）——知识必须自由。可展性——任何人都可以用 Python 创建新节点。即时可视化——每一步都可以图形化检查。</p>",
+    "credits": "<h3>致谢与许可证</h3><p>FloWorks 使用了以下开源项目：</p><ul><li><b>PySide6 / Qt</b> – 图形用户界面。基于 <b>GNU LGPLv3</b> 许可证。© The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – BSD / PSF 许可证。</li><li><b>PyQtGraph, Pillow</b> – MIT / HPND 许可证。</li><li><b>OpenCV</b> – Apache 2.0 许可证。</li><li><b>PyTorch</b> – BSD 许可证 (Meta Platforms, Inc.)。</li><li><b>Pygments</b> – BSD 许可证。</li></ul><p>本程序根据 <b>GNU LGPLv3</b> 条款使用 PySide6（动态链接）。</p><p>用户有权修改或替换 PySide6 动态链接库。</p><p>完整许可证请参阅 <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a>。</p><p><b>FloWorks 许可证：</b> MIT 许可证。</p>",
+    "shortcut_header_keys": "快捷键",
+    "shortcut_header_action": "操作",
+    "shortcut_header_context": "上下文",
+    "shortcuts_note": "注意：快捷键全局工作，即使焦点在另一个小部件上。",
+    "tutorials_placeholder": "以下是按学习顺序排列的一些示例和教程：",
+    "tutorial": "教程",
+    "example_fft": "打开示例：正弦波的 FFT",
+    "example_filter": "打开示例：啁啾波的带通滤波",
+    "example_delay": "打开示例：正弦波的延迟",
+    "example_window": "打开示例：啁啾波的加窗",
+    "example_convolution": "打开示例：方波的卷积",
+    "example_conrrelation": "打开示例：正弦波与方波的相关",
+    "example_math_expression": "打开示例：正弦波的数学表达式",
+    "example_spectrogram": "打开示例：啁啾波的频谱图",
+    "example_compound": "打开示例：不同节点的组合",
+    "example_title": "示例",
+    "example_message": "示例 '{name}' 将在未来版本中提供。",
+    "shortcut_header_description": "描述",
+    "view_logs": "查看日志控制台",
+    "log_viewer_title": "日志查看器 (error.log)",
+    "refresh": "刷新",
+    "clear": "清除",
+    "no_logs_available": "当前未找到日志。",
+    "error_reading_logs": "读取日志文件时出错。",
+    "confirm_clear": "确认清除",
+    "confirm_clear_msg": "您确定要清空日志文件吗？此操作无法撤销。"
+  },
+  "lcr_controller": {
+    "title": "LCR 控制器",
+    "connected": "已连接",
+    "disconnected": "已断开",
+    "measure_var": "要测量的变量:",
+    "freq_sweep": "频率扫描",
+    "freq_start": "起始 (Hz):",
+    "freq_end": "结束 (Hz):",
+    "freq_step": "步长 (Hz):",
+    "level": "电平 (V):",
+    "speed": "速度:",
+    "average": "平均:",
+    "rsou": "RSOU (Ω):",
+    "range": "范围:",
+    "bias_volt": "直流偏置 (V):",
+    "bias_on": "偏置开",
+    "bias_off": "偏置关",
+    "apply": "应用设置",
+    "error_title": "错误",
+    "connection_error": "无法连接到 LCR。请检查连接和地址。",
+    "success_title": "成功",
+    "success_message": "设置已成功应用。",
+    "apply_error": "无法应用设置: {error}"
+  },
+  "osc_controller": {
+    "title": "示波器采集",
+    "window_title": "示波器控制器",
+    "channel": "选择通道:",
+    "acq_mode": "采集模式:",
+    "mem_size": "存储深度:",
+    "invert_off": "反转信号",
+    "invert_on": "信号已反转",
+    "tdiv": "水平档位:",
+    "vdiv": "垂直档位 (V):",
+    "hpos": "水平位置 (s):",
+    "offset": "垂直位置 (V):",
+    "trig_level": "触发电平 (V):",
+    "v_range": "电压范围 (V):",
+    "sd_trg": "边沿触发",
+    "fs": "采样率 (kHz):"
+  },
+  "gen_controller": {
+    "title": "高级控制器 - 信号发生器",
+    "apply_current": "应用当前配置",
+    "channel": "选择通道:",
+    "waveform_btn": "生成波形",
+    "chirp_btn": "生成啁啾",
+    "modulation_on": "开启调制",
+    "modulation_off": "停止调制",
+    "sweep_on": "开启扫描",
+    "sweep_off": "停止扫描",
+    "burst_on": "开突发",
+    "burst_off": "停止突发",
+    "ch1_on": "开启通道 1",
+    "ch1_off": "关闭通道 1",
+    "ch2_on": "开启通道 2",
+    "ch2_off": "关闭通道 2",
+    "load": "选择输出:",
+    "polarity": "输出极性:",
+    "modify_output": "修改输出",
+    "tab_general": "常规",
+    "tab_waveform": "波形",
+    "tab_chirp": "啁啾",
+    "tab_modulation": "调制",
+    "tab_sweep": "扫描",
+    "tab_burst": "突发",
+    "sim_title": "模拟",
+    "no_hardware": "未连接硬件",
+    "sent_title": "已发送",
+    "waveform_sent": "波形已发送",
+    "chirp_sent": "啁啾已发送",
+    "success_title": "成功",
+    "output_modified": "输出 {channel}: 负载 {load}, 极性 {pol}",
+    "signal_type": "信号类型:",
+    "frequency": "频率 (Hz):",
+    "amplitude": "幅度 (Vpp):",
+    "offset": "偏置 (V):",
+    "phase": "相位 (度):",
+    "duty_cycle": "占空比 (%):",
+    "symmetry": "对称性 (%):",
+    "pulse_width": "脉冲宽度 (s):",
+    "rise_edge": "上升沿 (s):",
+    "fall_edge": "下降沿 (s):",
+    "delay_edge": "延迟沿 (s):",
+    "stdev": "标准差 (V):",
+    "mean": "平均值 (V):",
+    "chirp_f0": "起始频率 (Hz):",
+    "chirp_f1": "终止频率 (Hz):",
+    "chirp_fs": "采样率 (Sa/s):",
+    "chirp_duration": "时长 (s):",
+    "chirp_amp": "幅度 (V):",
+    "chirp_offset": "偏置 (V):",
+    "chirp_phase": "相位 (°):",
+    "chirp_name": "信号名称:",
+    "chirp_method": "方法:",
+    "chirp_mode": "Arb 模式:",
+    "mod_type": "调制类型:",
+    "mod_freq": "调制频率 (Hz):",
+    "mod_dev": "频 (Hz,°,s):",
+    "mod_hop": "跳频 (Hz):",
+    "mod_shape": "波形:",
+    "mod_depth": "深度 (%):",
+    "sweep_time": "时长 (s):",
+    "sweep_stop": "终止频率 (Hz):",
+    "sweep_start": "起始频率 (Hz):",
+    "sweep_trig_src": "触发源:",
+    "sweep_trig_out": "触发输出:",
+    "sweep_mode": "类型:",
+    "sweep_dir": "方向:",
+    "burst_period": "周期 (s):",
+    "burst_cycles": "周期数:",
+    "burst_phase": "相位 (度):",
+    "burst_gate": "目标:",
+    "burst_trig_src": "触发源:",
+    "burst_polarity": "极性:",
+    "waveform_applied": "波形已应",
+    "chirp_applied": "啁啾已发送",
+    "modulation_applied": "调制已配置",
+    "sweep_applied": "扫描已配置",
+    "burst_applied": "突发已配置"
+  },
+  "simulation_config_dialog": {
+    "title": "模拟配置 - 发生器",
+    "waveform": "波形:",
+    "basic_params": "基本参数",
+    "frequency": "频率 (Hz):",
+    "amplitude": "幅度 (Vpp):",
+    "offset": "偏置 (V):",
+    "phase": "相位 (度):",
+    "duty_cycle": "占空比 (%):",
+    "symmetry": "对称性 (%):",
+    "direction": "方向:",
+    "up": "上升",
+    "down": "下降",
+    "stdev": "标准差:",
+    "mean": "平均值:",
+    "lobes": "瓣数:",
+    "sigma": "Sigma:",
+    "mu": "Mu:",
+    "tau": "Tau (s):",
+    "exp_type": "类型:",
+    "rise": "上升",
+    "fall": "下降",
+    "f0": "起始频率 (Hz):",
+    "f1": "终止频率 (Hz):",
+    "chirp_method": "方法:",
+    "linear": "线性",
+    "logarithmic": "对数",
+    "preview": "预览",
+    "apply": "应用",
+    "close": "关闭",
+    "time_label": "时间 (s)",
+    "amplitude_label": "幅度 (V)"
+  },
+  "self": {
+    "language_changed": "语言已更改为: {name} ({code})",
+    "default": "FloWorks  |  滚动: 缩放  |  中键点击: 平移  |  双击节点: 信息 |  右键点击节点: 选项",
+    "workspace": "工作区",
+    "canvas": "画布",
+    "no_nodes_selected": "未选择节点",
+    "node_config_placeholder": "在画布上选择一个节点\n 以查看其配置"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "视觉交互式虚拟信号处理实验室",
+    "build": "忘掉复杂的代码。拖动块，像拼图一样连接它们，并通过用代表数据流的线连接节点来构建您的工作流。",
+    "keyrule": "一切都是关于信号的：连接块，而不是代码行。",
+    "nodework": "节点架构:\n[输入数据] → [内部处理] → [输出数据]",
+    "execute": "点击运行并实时观看您的想法在图表和数据中栩栩如生。想更进一步？连接真实实验室仪器或使用 Python 脚本节点添加自己的规则进行自定义处理。",
+    "expand": "导出可在技术文档中使用的高质量图形。将您的工作保存在 «.sflow» 文件中，并按原样检索它们。",
+    "actions_title": "您能做什么？",
+    "actions": "* 通过构建工作流、拖动和连接节点来测试想法。\n* 控制真实设备或模拟信号。\n* 在交互式图表中即时查看结果。",
+    "checkbox": "不再显示",
+    "start": "开始"
+  },
+  "scene": {
+    "empty_hint": "从工具栏选择节点",
+    "load_example_hint": "您可以从 «信息» → «教程» 加载示例"
+  },
+  "examples": {
+    "general": {
+      "title": "示例",
+      "welcome": "欢迎使用 FloWorks！ \n按照这些迷你教程掌握最常见的操作。",
+      "scroll": "滚动或按住鼠标中键平移画布。",
+      "help": "右键点击节点以配置其操作。"
+    },
+    "tutorial": {
+      "message": "这是一个视觉信号流图应用程序。让我们开始吧！",
+      "step1": "步骤 1：添加信号源",
+      "step2": "从工具栏（顶部）添加信号源节点。 \n节点放置在您上次点击画布的位置。 \n在画布上某处点击，然后点击顶部栏上的：",
+      "step3": "步骤 2：连接节点",
+      "step4": "按 CTRL+点击节点的输出端口（左侧），然后只需点击另一个节点的输入端口（右侧）即可创建连接。",
+      "step5": "连接从左到右流动，在节点之间传输信号数据。",
+      "step6": "步骤 3执行流",
+      "step7": "按 F5 执行信号流并实时查看结果。",
+      "step8": "您还可以点击单个节点以查看其输出值。",
+      "step9": "步骤 4：查看结果",
+      "step10": "点击任意节点以在图形小部件中可视化信号。",
+      "step11": "执行流时图形会自动更新。"
+    },
+    "shortcuts": {
+      "title": "键盘快捷键",
+      "execute": "F5 – 执行流",
+      "save": "Ctrl+S – 保存项目 (.sflow)",
+      "load": "Ctrl+O – 打开项目",
+      "delete": "Delete / Backspace – 删除选定元素",
+      "copy_paste": "Ctrl+C / Ctrl+V – 复制和粘贴节点或备注",
+      "undo_redo": "Ctrl+Z / Ctrl+Y – 撤销 / 重做",
+      "auto_layout": "Ctrl+Shift+L – 自动布局图表",
+      "zoom": "鼠标滚轮 – 缩放，按住拖动视图"
+    },
+    "fft": {
+      "title": "FFT 分析",
+      "description": "计算信号的频谱。",
+      "steps": {
+        "step1": "加一个发生器节点，例如选择 1 kHz 方波。",
+        "step2": "在工具栏的 «处理» 菜单中，选择 FFT 节点。将其连接到发生器的输出（CTRL+点击输出 → CTRL+点击 FFT 输入）。",
+        "step3": "按 F5。FFT 节点将把信号变换到频域。",
+        "step4": "点击 FFT 节点查看频谱。峰值将出现在 1 kHz 的奇数倍处。",
+        "step5": "（可选）将 FFT 输出连接到算术节点（SumNode）以比较两个频谱；系统会自动检测频率分辨率并警告不兼容性。",
+        "step6": "右键点击 FFT 节点以在幅度和相位之间选择显示。"
+      }
+    },
+    "filter": {
+      "title": "信号滤波",
+      "description": "应用低通、高通或带通滤波器。",
+      "steps": "1. 插入一个带有啁啾信号的发生器。\n2. 从 «处理» 菜单中添加一个滤波器节点。将发生器输出连接到滤波器输入。\n3. 右键点击并选择滤波器节点上的 «配置…»，然后选择类型（低通、高通等）和截止频率。\n4. 执行 (F5) 并通过点击相应连接来可视化原始信号和滤波后信号。\n5. 如果要并排比较，可以添加 FFT 节点并分割信号。"
+    },
+    "delay": {
+      "title": "延迟线",
+      "description": "在时间上移动信号（对相关或效果有用）。",
+      "steps": "1. 从使用短信号的发生器开始。\n2. 从 «处理» 中添加一个延迟节。将发生器输出连接到延迟输入。\n3. 在延迟节点配置对话框中，指定样本数或延迟时间。\n4. 执行流 (F5) 并点击延迟节点输出。您将看到相同的信号向右移动。\n5. 要测量精确延迟，请激活光标（下面板）并在原始信号和延迟信号之间进行比较。"
+    },
+    "window": {
+      "title": "FFT 前加窗",
+      "description": "在 FFT 之前应用窗函数（Hanning、Hamming 等）以减少频谱泄漏。",
+      "steps": "1. 设置基本流：发生器 → 窗函数 → FFT。\n2. 双击窗函数节点并选类型（Hanning 是一个好的开始）。\n3. 将窗函数输出连接到 FFT 输入。\n4. 执行 (F5)。点击 FFT 输出以比较有无加窗的频谱。\n5. 尝试具有非数频率的纯正弦信号；您会注意到加窗后峰值更清晰。更改窗函数类型以查看旁瓣如何减小。"
+    },
+    "convolution": {
+      "title": "卷积",
+      "description": "计算两个信号之间的卷积。",
+      "steps": "1. 添加一个发生器（源 → 发生器）和想要滤波的信号。\n2. 从 «处理» 菜单中添加一个卷积节点。\n3. 将发生器输出连接到卷积节点输入（两端 CTRL+点击）。\n4. 双击卷积节点进行配置。输入逗号分隔的核系数（例如 '0.2,0.2,0.2,0.2,0.2'）并选择卷积模式（'same'、'full' 或 'valid'）。\n5. 按 F5 执行流。节点将使用离散卷积滤波信号。\n6. 点击卷积节点输出连接以查看滤波后的信号。观察核的效果；您可以更改系数并重新执行以进行比较。"
+    },
+    "correlation": {
+      "title": "互相关",
+      "description": "测量两个信号随时间偏移的相似性。",
+      "steps": "1. 放置两个发生器节点（源 → 发生器）。例如，创建相同频率的正弦波和方波。\n2. 从 «处理» 中插入一个相关节点。\n3. 将第一个发生器输出连接到相关节点的 «信号 1» 输入（端口上 CTRL+点击）。然后将第二个发生器连接到 «信号 2» 输入。\n4. 使用 F5 执行流。节点将产生互相关信号。\n5. 点击输出连接以查看相关峰值。您将在信号齐的偏移处看到最大值。\n6. 激活光标（下面板）以精确测量时间偏移。"
+    },
+    "math_expression": {
+      "title": "数学表达式",
+      "description": "对输入信号应用任何数学函数（例如 y_new = f(x, y)）。",
+      "steps": "1. 添加一个发生器（源 → 发生器）并选择您想要变换的波形。\n2. 从 «处理» 菜单中添加一个数学表达式节点。\n3. 将发生器输出连接到节点输入（两端 CTRL+点击）\n4. 双击表达式节点以打开编辑器。编写一个接收两个数组 (x, y) 并返回 (x, y_new) 的函数。例如：y_new = y**2 + 0.5*np.sin(x)。\n5. 按 F5 执行。节点将专门对 'y' 值应用操作，同时保持 'x' 轴不变。\n6. 点击输出连接以可视化结果。您可以修改表达式并重新执行以查看即时更改。"
+    },
+    "spectrogram": {
+      "title": "频谱图",
+      "description": "表示信号频率随时间的演变。",
+      "steps": "1. 放置一个发生器（源 → 发生器）和变频信号，例如正弦扫描（啁啾）。\n2. 从 «处理» 中添加一个频谱图节点。\n3. 将发生器输出连接到频谱图节点输入（两个端口上 CTRL+点击）。\n4. 从 «处理» 中添加一个频谱图查看器节点，并将相应端口连接到频谱图节点。\n5. 使用 F5 执行。节点将处理信号并生成时频矩阵。\n6. 右键点击频谱图查看器以可视化频谱图像。观察主导频率如何随时间变化。\n7. （可选）添加中间 FFT 节点以比较静态频率表示和动态表示。"
+    }
+  },
+  "prefs": {
+    "title": "首选项",
+    "tab_execution": "执行",
+    "tab_gpu": "GPU / 计算",
+    "tab_streaming": "流式传输",
+    "tab_ui": "UI / 性能",
+    "tab_advanced": "高级",
+    "max_workers": {
+      "label": "最大线程数（阶段 3 准备）",
+      "tooltip": "控制未来独立分支的并行性。"
+    },
+    "timeout_per_node": "每节点超时 (s)",
+    "gpu": {
+      "backend": "默认后端",
+      "fallback": "回退策略",
+      "threshold": "开销阈值 (MB)"
+    },
+    "streaming": {
+      "buffer": "缓冲区大小 (样本)",
+      "timeout": "调度器超时 (ms)",
+      "error": "流错误策略"
+    },
+    "ui": {
+      "fps": "最大刷新帧率",
+      "anim": "连接器动画时长 (s)"
+    },
+    "adv": {
+      "python_path": "外部解释器路径",
+      "log_level": "日志级别",
+      "backup": "加载时自动备份"
+    },
+    "btn_apply": "应用",
+    "btn_reset": "重置为默认值",
+    "btn_close": "关闭"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "表达式..."
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "历史",
+      "label": "{mode}  |  {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Eng",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "清除"
+    },
+    "history": {
+      "title": "📜 历史",
+      "clear": "🗑 清除",
+      "use_last": "↩ 上一次"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "文件",
+      "edit": "编辑",
+      "format": "格式",
+      "align": "对齐"
+    },
+    "actions": {
+      "new": "新建",
+      "open": "打开",
+      "save": "保存",
+      "save_as": "另存为...",
+      "export_csv": "导出 CSV...",
+      "exit": "退出",
+      "undo": "撤销",
+      "redo": "重做",
+      "cut": "剪切",
+      "copy": "复制",
+      "paste": "粘贴",
+      "bold": "加粗",
+      "italic": "斜体",
+      "align_left": "左对齐",
+      "align_center": "居中",
+      "align_right": "右对齐",
+      "bg_color": "背景颜色...",
+      "fg_color": "文字颜色..."
+    },
+    "toolbar": {
+      "title": "主工具栏",
+      "new": "新建",
+      "open": "打开",
+      "save": "保存",
+      "cut": "剪切",
+      "copy": "复制",
+      "paste": "粘贴",
+      "bold": "加粗",
+      "italic": "斜体",
+      "align_left": "左",
+      "align_center": "中",
+      "align_right": "右",
+      "bg_color": "背景",
+      "fg_color": "文字",
+      "undo": "撤销",
+      "redo": "重做"
+    }
+  },
+  "system_monitor": {
+    "title": "SYSTEM MONITOR",
+    "subtitle": "实时资源遥测",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "核心 / 逻辑核心",
+      "core_prefix": "C"
+    },
+    "ram": {
+      "title": "内存 (RAM)",
+      "tooltip": "内存使用率"
+    },
+    "disk": {
+      "title": "磁盘 ( / )",
+      "tooltip": "/ 磁盘使用率"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}%  M:{mem}%"
+    },
+    "status": {
+      "updated": "已更新"
+    }
+  }
+}
