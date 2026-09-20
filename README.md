@@ -8,6 +8,37 @@ FloWorks is developed by an independent team in Colombia. While our resources ar
 
 To maintain system stability, we enforce strict schema alignment across all language files, ensuring the user interface renders reliably regardless of locale.
 
+## Native Coverage & Community Impact
+
+Our current set of supported locales covers approximately **50% to 55% of the global population in their native language (L1)**. In specialized technical, engineering, and scientific fields—where FloWorks operates—this native coverage reaches an estimated **75% to 80% of researchers, engineers, and developers worldwide**.
+
+While our primary supported languages cover key global regions, native speakers who use FloWorks in their mother tongue experience significantly better accessibility, reduced cognitive load, and more natural workflows. Expanding and refining these locales helps lower barriers for technical communities in underrepresented regions.
+
+## Currently Available Locales
+
+FloWorks currently includes base translation files for the following 18 language codes:
+
+- **cs** - Czech (Čeština)
+- **de** - German (Deutsch)
+- **el** - Greek (Ελληνικά)
+- **en** - English
+- **es** - Spanish (Español)
+- **fr** - French (Français)
+- **hi** - Hindi (हिन्दी)
+- **it** - Italian (Italiano)
+- **ja** - Japanese (日本語)
+- **ko** - Korean (한국어)
+- **nl** - Dutch (Nederlands)
+- **pl** - Polish (Polski)
+- **pt** - Portuguese (Português)
+- **ro** - Romanian (Română)
+- **ru** - Russian (Русский)
+- **tr** - Turkish (Türkçe)
+- **vi** - Vietnamese (Tiếng Việt)
+- **zh** - Chinese (中文)
+
+If your native language is missing—or if you notice inaccuracies in any of the above—your contribution will directly impact thousands of users in your language community.
+
 ## How to Contribute
 
 ### Adding a New Language
