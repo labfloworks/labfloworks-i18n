@@ -1,0 +1,1556 @@
+{
+  "language_name": "Türkçe",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "Dosya",
+      "new": "Yeni",
+      "open": "Aç…",
+      "save": "Kaydet",
+      "save_as": "Farklı kaydet…",
+      "exit": "Çıkış"
+    },
+    "edit": "Düzenle",
+    "view": "Görünüm",
+    "help": "Yardım",
+    "language": "Dil",
+    "info": "Bilgi",
+    "theme": "Tema",
+    "font_size": "Yazı Tipi Boyutu",
+    "font_size_custom": "Özel boyut…"
+  },
+  "menu_config": {
+    "title": "Düğüm Yapılandırması"
+  },
+  "panels": {
+    "analysis": {
+      "title": "Analiz"
+    },
+    "stats": {
+      "title": "İstatistikler",
+      "max": "Maks:",
+      "min": "Min:",
+      "mean": "Ort:",
+      "rms": "RMS:",
+      "mode_3d": "(3B projeksiyon)"
+    },
+    "cursors": {
+      "title": "İmleçler A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "İmleçler 3B modunda kullanılamaz"
+    },
+    "crosshair": {
+      "cursor": "İmleç",
+      "peak": "Tepe",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "Artı işareti 3B modunda kullanılamaz"
+    }
+  },
+  "tab": {
+    "plot": "Grafik",
+    "workspace": "Tuval Değişkenleri",
+    "python_vars": "Python Değişkenleri"
+  },
+  "tooldrawer": {
+    "python_console": "Terminal",
+    "monitor_widget": "Performans İzleyici",
+    "spreadsheet_widget": "Hesap Tablosu",
+    "calc_widget": "Hesap Makinesi"
+  },
+  "console": {
+    "help": {
+      "title": "FloWorks Konsol Etkileşimli Eğitimi",
+      "button": "Yardım",
+      "html": "<h1>FloWorks Konsol Etkileşimli Eğitimi</h1><h2>1. Düğümler ve bağlantılar</h2><p><code>&gt;&gt;&gt; graph.nodes</code></p><p><code>&gt;&gt;&gt; graph.connections</code></p><p><code>&gt;&gt;&gt; selected_node</code></p><p>Düğüm oluştur:</p><p><code>&gt;&gt;&gt; graph.add_catalog_node('SumNode', 300, 200)</code></p><p>Bağla:</p><p><code>&gt;&gt;&gt; graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>Sil:</p><p><code>&gt;&gt;&gt; graph.remove_node(graph.nodes[2])</code></p><p>Portlar:</p><p><code>&gt;&gt;&gt; graph.nodes[1].PORTS</code></p><h2>2. Çalıştır ve sonuçları görüntüle</h2><p>Grafiği çalıştır:</p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Bir düğümün çıkışını görüntüle:</p><p><code>&gt;&gt;&gt; graph.node_values[graph.nodes[1]]</code></p><p>Bu yaklaşım KeyError ile başarısız olabilir, şunu kullanabilirsiniz:</p><p><code>&gt;&gt;&gt; list(graph.node_values.values())[1]</code></p><p>Tam çıkış:</p><p><code>&gt;&gt;&gt; nodo = graph.nodes[0]</code></p><p><code>&gt;&gt;&gt; nodo.output</code></p><p>Y ekseni:</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; y = result[1]</code></p><p><code>&gt;&gt;&gt; y.max()</code></p><p>Atamalar yazdırılmaz; <code>x</code>, <code>y.shape</code> veya <code>print(x, y)</code> ile kontrol edin</p><h2>3. Grafik</h2><p>Temizle:</p><p><code>&gt;&gt;&gt; app.plot_widget.clear_plot()</code></p><p>Konsoldan sinyal:</p><p><code>&gt;&gt;&gt; import numpy as np</code></p><p><code>&gt;&gt;&gt; x = np.linspace(0, 1, 1000)</code></p><p><code>&gt;&gt;&gt; y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>Kaynak düğümden:</p><p><code>&gt;&gt;&gt; x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>FFT düğümü (dict döndürür):</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>&gt;&gt;&gt; result.keys()</code></p><p><code>&gt;&gt;&gt; f, mag = result['magnitude']</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. Uygulamayı değiştir</h2><p>Tabloyu güncelle:</p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Düğüm ekle:</p><p><code>&gt;&gt;&gt; app.add_node('SignalSourceNode')</code></p><p>Başlık:</p><p><code>&gt;&gt;&gt; app.setWindowTitle('My signal lab')</code></p><p>Doğrula:</p><p><code>&gt;&gt;&gt; app.windowTitle()</code></p><p>Geri yükle:</p><p><code>&gt;&gt;&gt; app.update_title()</code></p><h2>5. Kısayollar</h2><table><tr><th>Tuş/Komut</th><th>Eylem</th></tr><tr><td><code>&uarr;</code> / <code>&darr;</code></td><td>Geçmiş</td></tr><tr><td><code>Tab</code></td><td>Otomatik tamamlama</td></tr><tr><td><code>Ctrl + L</code></td><td>Konsolu temizle</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>Çok satırlı bloklar</td></tr></table><h2>6. Tarifler</h2><p>Parametreyi değiştir:</p><p><code>&gt;&gt;&gt; selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>&gt;&gt;&gt; getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Özel formül:</p><p><code>&gt;&gt;&gt; selected_node.params['mode'] = 'formula'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['expr'] = '2 * sin(2*pi*1000*t)'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>&gt;&gt;&gt; selected_node._generate_signal()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Kategorileri listele:</p><p><code>&gt;&gt;&gt; from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>&gt;&gt;&gt; NODE_CATEGORIES</code></p><p>Yardım:</p><p><code>&gt;&gt;&gt; help(graph.connect_nodes)</code></p><h2>7. Sorun Giderme</h2><ul><li><strong>Kırmızı hata</strong>: konsol sorunu gösterir, uygulama kapanmaz.</li><li><strong>Donmuş arayüz</strong>: sonsuz döngü. Konsolu kapatın veya yeniden başlatın.</li><li><strong>Hiçbir şey olmuyor</strong>: <code>graph.connections</code> ve kaynak düğümleri kontrol edin.</li></ul><p>&copy; 2026 FloWorks — Sinyal Laboratuvarı</p>"
+    }
+  },
+  "vars_table": {
+    "header":{
+      "name": "Ad",
+      "type": "Tür",
+      "shape": "Boyut",
+      "value": "Değer"
+    },
+    "menu" : {
+      "info": "Değişken: {name}"
+    },
+    "dialog": {
+      "title": "Tam Değer"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "Yazı:",
+    "font_size_tooltip": "Temel yazı tipi boyutunu değiştir",
+    "run_flow_tooltip": "Akışı çalıştır",
+    "add_kinematics": "Kinematik Düğümü",
+    "escolar": "Okul",
+    "add_function_graph_node": "Fonksiyonlar",
+    "add_rhombus_node": "Mantık Kapısı",
+    "add_graph_exporter": "Grafik Dışa Aktarıcı",
+    "add_note": "Notlar",
+    "add_note_tooltip": "Yapışkan not ekle...",
+    "add_signal_source": "Yeni Sinyal Kaynağı",
+    "add_spectrogram_viewer": "Spektrogram Görüntüleyici",
+    "add_correlation": "Korelasyon",
+    "add_math_expression": "Matematiksel İfade",
+    "add_spectrogram": "Spektrogram",
+    "add_resample": "Yeniden Örnekle",
+    "add_window": "Pencere",
+    "add_delay": "Gecikme",
+    "add_convolution_node": "Konvolüsyon",
+    "add_normalize": "Normalleştir",
+    "add_filter": "Filtre",
+    "add_fft": "FFT",
+    "source_node": "Gelişmiş sinyal üreteci",
+    "load_signal_tooltip": "Kullanıcının isteğine göre sinyal üret",
+    "history": "Geçmiş",
+    "history_tooltip": "İşlem geçmişi",
+    "auto_layout": "Otomatik Yerleşim",
+    "auto_layout_tooltip": "Düğümleri otomatik yerleştir (Ctrl+Shift+L)",
+    "sources": "Çevre Birimleri",
+    "processing": "İşleme",
+    "control": "Kontrol",
+    "add_oscilloscope": "Osiloskop",
+    "add_generator": "Üreteç",
+    "add_expression": "İfade düğümü",
+    "add_script": "Python Betiği",
+    "add_arithmetic": "Aritmetik +−×÷",
+    "add_program": "Program",
+    "add_split": "Mantık Kapısı",
+    "add_trigger": "Tetikleme Düğümü",
+    "sink": "Grafik Dışa Aktarıcı",
+    "help_wiki": "Belgeler / Wiki",
+    "help_wiki_tooltip": "Proje wiki'sini aç"
+  },
+  "info": {
+    "information": "Hakkında",
+    "shortcuts": "Kısayollar",
+    "tutorials": "Eğitimler",
+    "change_theme": "Temayı değiştir"
+  },
+  "status": {
+    "default": "FloWorks  |  Kaydırma: yakınlaştır  |  Orta tıklama: kaydır  |  Düğüme sağ tıklama: seçenekler",
+    "no_nodes": "Hazır. Araç çubuğundan düğüm seçin.",
+    "how_to_connect": "Bir düğümün çıkış portuna Ctrl+tıkla, ardından başka bir düğümün giriş portuna tıkla.",
+    "connecting": "Bağlanıyor… Başka bir düğüme veya porta tıklayın.",
+    "connection_created": "Bağlantı oluşturuldu.",
+    "flow_executed": "Akış başarıyla yürütüldü.",
+    "flow_error": "Akış yürütülürken hata oluştu.",
+    "saved": "Diyagram kaydedildi: {path}",
+    "loaded": "Diyagram yüklendi: {path}",
+    "new_file": "Yeni diyagram oluşturuldu",
+    "example_loaded": "Örnek yüklendi."
+  },
+  "errors": {
+    "save_failed": "Kaydetme hatası: {error}",
+    "load_failed": "Yükleme hatası: {error}",
+    "load_example_failed": "Örnek yüklenemedi: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "Düğümü Sil",
+      "connect": "Düğümü Bağla",
+      "disconnect": "Düğümün Bağlantısını Kes",
+      "setup": "Ayar",
+      "trigger": "Tetikle",
+      "generate": "Üret",
+      "edit_script": "Betiği Düzenle",
+      "edit_input": "Girişi düzenle",
+      "help": "Bilgi"
+    },
+    "graph_union": {
+      "title": "Grafik Birleşimi",
+      "tooltip": "Birden fazla sinyali üst üste çizim için bağımsız seriler olarak gruplar.",
+      "num_inputs_label": "Giriş sayısı (1-8):",
+      "config_title": "Grafik Birleşimini Yapılandır",
+      "status": {
+        "ready": "Hazır"
+      },
+      "ports": {
+        "signal_1": "Sinyal 1",
+        "signal_2": "Sinyal 2",
+        "signal_3": "Sinyal 3",
+        "signal_4": "Sinyal 4",
+        "signal_5": "Sinyal 5",
+        "signal_6": "Sinyal 6",
+        "signal_7": "Sinyal 7",
+        "signal_8": "Sinyal 8",
+        "series_out": "Çıkış"
+      },
+      "menu": {
+        "configure": "Yapılandır..."
+      },
+      "help_title": "Yardım - Grafik Birleşimi",
+      "help_html": "<h3>🔗 Grafik Birleşim Düğümü</h3><p>Birden fazla sinyal alır ve bunları birleştirmeden üst üste çizim için bağımsız seriler olarak saklar.</p><p>Girişleri dinamik olarak <b>eklemek veya çıkarmak</b> için düğüme sağ tıklayın (8'e kadar).</p><p><code>Series</code> çıkışı, görselleştirme için serilerin tam listesini verir.</p>"
+    },
+    "tabular_inspector": {
+      "title": "Tablo Veri Denetçisi",
+      "window_title": "Tablo Denetçisi",
+      "no_data": "Veri yok",
+      "copy": "Panoya Kopyala",
+      "decimals": "Ondalık basamak:",
+      "col_names": "Sütun adları (virgülle ayrılmış, boş = otomatik):",
+      "tooltip": "Düğüm verisi denetimi, tek giriş portunda alınan verileri tablo olarak gösterir.",
+      "status": {
+        "no_data": "Veri yok"
+      },
+      "menu": {
+        "view_table": "Tabloyu Görüntüle",
+        "configure": "Yapılandır…"
+      },
+      "ports": {
+        "data": "Giriş"
+      },
+      "config_title": "Tablo Denetçisini Yapılandır",
+      "help_title": "Yardım - Tablo Denetçisi",
+      "help_html": "<h3>📊 Tablo Denetçisi Düğümü</h3><p>Bir <b>Excel elektronik tablosu</b> gibi, bu düğüm tek giriş portunda alınan verileri tablo olarak görüntüler.</p><p><b>Yorumlama kuralları:</b></p><ul><li><b>Dizi/liste demeti</b> (örn. (x, y, Fs)) → her dizi bir sütun olur.</li><li><b>2B numpy dizisi</b> → satırlar × sütunlar.</li><li><b>1B dizi veya liste</b> → tek sütun.</li><li><b>Skaler</b> → tek hücre.</li></ul><p>Sağ tıkla → <b>Tabloyu Görüntüle</b> ile denetçiyi açın. Ondalık basamakları ve özel sütun adlarını (virgülle ayrılmış) ayarlamak için yan paneli kullanın.</p>"
+    },
+    "equation_solver": {
+      "title": "Denklem Çözücü",
+      "tooltip":"Doğrusal denklem sistemi çözücüsü",
+      "type_label": "Denklem türü:",
+      "type_linear_single": "Tek doğrusal",
+      "type_linear_system": "2×2 doğrusal sistem",
+      "eq_format": "Biçim: a*x + b = c",
+      "eq1_label": "Denklem 1 (biçim: a*x + b*y = c):",
+      "eq2_label": "Denklem 2:",
+      "examples": "Örnekler",
+      "sys_examples": "Sistem örnekleri",
+      "menu": {
+        "view_plot": "Çözüm Grafiğini Görüntüle",
+        "configure": "Denklemleri yapılandır...",
+        "view_steps": "Çözüm adımlarını görüntüle..."
+      },
+      "ports": {
+        "output": "çıkış",
+        "steps": "adımlar",
+        "solution": "y (m)"
+      },
+      "steps_title": "Çözüm Adımları",
+      "no_steps": "Çözüm adımı yok.",
+      "config_title": "Denklem Çözücüyü Yapılandır",
+      "help_title": "Yardım - Denklem Çözücü",
+      "plot_window_title": "Çözüm Grafiği",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "Dışa Aktar...",
+      "export_title": "Grafiği dışa aktar",
+      "no_data_to_plot": "Çizilecek veri yok",
+      "btn_step_by_step": "▶ Adım adım",
+      "step_anim_title": "Adım adım",
+      "step_anim_info": "Tam sürümde bu, grafiksel yapıyı adım adım gösterirdi.",
+      "error_no_equals": "Denklemde '=' işareti eksik.",
+      "error_rhs_not_number": "Denklemin sağ tarafı geçerli bir sayı değil.",
+      "error_invalid_x_coef": "x için geçersiz katsayı: '{coef}'. Sözdizimini kontrol edin.",
+      "error_invalid_y_coef": "y için geçersiz katsayı: '{coef}'. Sözdizimini kontrol edin.",
+      "error_invalid_const": "Geçersiz sabit terim: '{term}'. Yalnızca sayılar ve + veya - işaretleri kullanın.",
+      "error_zero_x": "x'in katsayısı sıfır. Denklemin tek çözümü yok.",
+      "no_plot_data_title": "Veri Yok",
+      "no_plot_data_message": "Çizilecek çözüm verisi yok. Önce yapılandırın ve çözün.",
+      "preview": "Önizleme:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "Çözüm yok (veya henüz hesaplanmadı)",
+      "help_html":"<h3>🧮 Denklem Çözücü Düğümü</h3>\n<p><b>Basit doğrusal denklemleri veya 2×2 denklem sistemlerini çözmeye</b> olanak tanır; adım adım prosedürü ve kesişim grafiğini gösterir.</p>\n\n<h4>⚙️ Kullanım</h4>\n<ol>\n <li>Düğüme <b>sağ tıklayın</b> → <i>\"Parametreleri düzenle\"</i> seçin.</li>\n <li><code>equation_type</code> seçin: <code>linear_single</code> veya <code>linear_system</code>.</li>\n <li><code>equations</code> değerini metin olarak girin (örn. \"2x + 3 = 7\") veya sistemler için metin listesi girin.</li>\n <li>Düğüm çözümü hesaplayacak ve cebirsel adımları otomatik olarak üretecektir.</li>\n</ol>\n\n<h4>📤 Çıkış</h4>\n<ul>\n <li><code>solution</code> → sayısal değer (basit denklem) veya <code>x</code>, <code>y</code> içeren sözlük (2×2 sistem).</li>\n <li><code>steps</code> → adım adım cebirsel çözümleme metni.</li>\n</ul>\n\n<h4>⚠️ Notlar</h4>\n<ul>\n <li><b>Pedagojik değer:</b> Anında cebir geri bildirimi sunar ve çözümü grafiksel gösterimiyle (kesişim) ilişkilendirir.</li>\n <li>Doğru değişkenleri kullandığınızdan emin olun (basitler için <code>x</code>, sistemler için <code>x</code> ve <code>y</code>).</li>\n <li>Sistem tutarsız veya bağımlıysa, <code>steps</code> çıkışında belirtilecektir.</li>\n</ul>\n\n<h4>💡 Örnek</h4>\n<p>Düğümü <code>linear_system</code> olarak <code>[\"y = 2x\", \"y = -x + 3\"]</code> ile yapılandırın. <code>steps</code>'i bir metin görüntüleyiciye bağlayın ve bir grafik düğümünde kesişimi görselleştirin.</p>\n<hr>\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>matematiksel işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nDenklem → Çözüm → Görselleştirme\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(Cebir ↔ Geometri)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nParametreler → İşleme (Çözücü) → Görselleştirme (Grafik/Metin)\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nParametreler (Denklemler) → EquationSolver → Grafik (Kesişim) + Metin (Adımlar)\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "Kinematik",
+      "tooltip": "Kinematik simülatörü: serbest düşme ve mermi hareketi",
+      "ports": {
+        "x": "x(m) - t(s)",
+        "y": "y(m) - t(s)",
+        "vx": "vx(m/s) - t(s)",
+        "vy": "vy(m/s) - t(s)",
+        "speed": "hız(m/s) - t(s)",
+        "energy_kinetic": "kinetik enerji(J) - t(s)",
+        "energy_potential": "potansiyel enerji(J) - t(s)",
+        "ground_contact": "zemin teması - t(s)"
+      },
+      "status": {
+        "ready": "Hazır"
+      },
+      "config_title": "Kinematiği Yapılandır",
+      "menu": {
+        "configure": "Yapılandır…",
+        "generate": "Üret",
+        "show_output": "Çıkışı göster",
+        "trajectory": "Yörünge (y - x)",
+        "y_t": "Dikey konum y(t)",
+        "vy_t": "Dikey hız vy(t)",
+        "speed_t": "Hız |v|(t)",
+        "display": "Görselleştirme"
+      },
+      "group_ic": "Başlangıç Koşulları",
+      "group_env": "Ortam",
+      "group_sim": "Simülasyon",
+      "group_presets": "Ön Ayarlar",
+      "help_title": "Yardım - Kinematik",
+      "help_html": "<h3>🚀 Kinematik Laboratuvarı</h3><p>Sabit yerçekimi altında <b>mermi hareketini</b> ve <b>serbest düşmeyi</b> simüle eder. Giriş gerekmez; başlangıç koşullarından sinyal üretir.</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 Ana çıkışlar (zaman - büyüklük demetleri)</h4><p>Her port, bir grafiğe veya başka bir düğüme bağlanmaya hazır bir <code>(t, değişken)</code> demeti verir. Zaman zaten X ekseni olarak dahildir.</p><ul><li><code>x</code> → (t, yatay konum) [m]</li><li><code>y</code> → (t, dikey konum) [m]</li><li><code>vx</code> → (t, yatay hız) [m/s]</li><li><code>vy</code> → (t, dikey hız) [m/s]</li><li><code>speed</code> → (t, hız |v|) [m/s]</li></ul><h4>⚡ İsteğe bağlı çıkışlar (Enerjileri göster seçeneğini etkinleştirin)</h4><ul><li><code>energy_kinetic</code> → (t, Ec = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, y≤0 ise 1.0, havada 0.0)</li></ul><h4>🎨 Dahili görüntüleme kanalları</h4><p>Ana grafikte neyin gösterileceğini bağlam menüsünden değiştirin:</p><ul><li><b>Yörünge</b> (y - x) → uzaysal parabol</li><li><b>y(t)</b>, <b>vy(t)</b>, <b>|v|(t)</b> → zamanla değişim</li></ul><h4>💡 Tipik bağlantılar</h4><ul><li><b>Yükseklik - zaman:</b> <code>y</code>'yi bir grafiğe bağlayın (t zaten dahil)</li><li><b>Hız - zaman:</b> <code>speed</code>'i bir grafiğe bağlayın</li><li><b>Uzaysal yörünge:</b> <code>x</code> → grafiğin X ekseni, <code>y</code> → grafiğin Y ekseni</li><li><b>Çarpma:</b> <code>ground_contact</code>'ı bir mantık düğümüne veya LED'e bağlayın</li><li><b>Enerji:</b> Korunumu görmek için <code>energy_kinetic</code> + <code>energy_potential</code> toplayın</li></ul><h4>⚡ Kısayollar</h4><ul><li><b>Çift tık</b> → bu yardım</li><li><b>Sağ tık</b> → yapılandır / üret</li><li><b>ÜRET düğmesi</b> → simüle eder ve animasyonu açar</li></ul><hr><p><b>Durum:</b> -- | <b>Ön ayar:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "Fonksiyonlar",
+      "tooltip": "Sayısal analizle matematiksel fonksiyonları üret ve görselleştir",
+      "ports": { "signal": "Sinyal" },
+      "status": { "ready": "Hazır" },
+      "menu": { "configure": "Yapılandır...", "show_table": "Değer Tablosunu Gör", "generate": "Üret", "show_limit": "Limiti Göster", "show_derivative": "Türevi Göster" },
+      "config_title": "Fonksiyonu Ayarla",
+      "cfg": { "expr": "İfade:", "presets": "Ön ayarlar:", "piecewise": "Fonksiyonu parçalı olarak etkinleştir", "group_func": "Fonksiyonları Grupla", "group_dom": "Tanım Kümesini Grupla", "group_viz": "Görselleştirmeyi Grupla" },
+      "table_title": "Değer Tablosu"
+    },
+    "signal_source": {
+        "title": "Gelişmiş Sinyal Kaynağı",
+        "tooltip": "Gelişmiş sinyal kaynağı",
+        "load_signal": "Dosyadan sinyal yükle...",
+        "load_file_title": "Sinyal dosyası yükle",
+        "ports": {
+            "out": "Çıkış",
+            "trigger_in": "Tetik Girişi",
+            "trigger_out": "Tetik Çıkışı"
+        },
+        "status": {
+            "no_data": "Veri yok"
+        },
+        "configure": "Yapılandır...",
+        "generate": "Sinyal üret",
+        "help_title": "Yardım - Sinyal Kaynağı",
+        "help_html": "<h3>🎛️ Sinyal Kaynağı Düğümü</h3>\n<p>Çok çeşitli <b>ön ayarlı dalga biçimleri</b> veya kullanıcı tarafından yazılmış <b>matematiksel formül</b> kullanarak <b>özel sinyaller</b> üretir. Çıkış her zaman daha ileri işleme hazır bir <code>(zaman, genlik)</code> demetidir.</p>\n\n<h4>📤 Çıkış</h4>\n<p><code>out</code> → <code>(t, y)</code> demeti.</p>\n\n<h4>⚙️ Çalışma modları</h4>\n<ul>\n    <li><b>Ön ayar:</b> sinüs, kare, rampa, darbe, gürültü, DC, üçgen, testere dişi, sinc, Gauss, üstel, chirp arasından seçim yapın. Tüm parametreler (frekans, genlik, ofset, faz, görev döngüsü, simetri vb.) yapılandırma iletişim kutusunda ayarlanabilir.</li>\n    <li><b>Formül:</b> <code>t</code> (zaman) ve özel değişkenler kullanarak <b>serbest bir matematiksel ifade</b> yazın (örn. <code>amp * sin(2*pi*freq*t) + offset</code>). Değişkenler bir tabloda tanımlanır ve istenildiği gibi eklenebilir, çıkarılabilir veya değiştirilebilir. Değerlendirme güvenlidir ve matematiksel işlemlerle sınırlıdır.</li>\n</ul>\n\n<h4>🖱️ Etkileşim</h4>\n<ul>\n    <li>Düğüme <b>çift tık</b> → üç sekmenin (Ön Ayar, Formül, Gelişmiş) bulunduğu yapılandırma iletişim kutusunu açar.</li>\n    <li>Düğüme <b>tık</b> → mevcut sinyali ana grafikte çizer.</li>\n    <li><b>Sağ tık</b> → düğümü yeniden üretmek, yapılandırmak veya silmek için bağlam menüsü.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → FFT → Filtre → Toplayıcı → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+        "title": "Sinyal Yapılandırması",
+        "waveform": "Dalga Biçimi",
+        "frequency": "Frekans",
+        "amplitude": "Genlik",
+        "offset": "Ofset",
+        "phase": "Faz",
+        "symmetry": "Simetri",
+        "direction": "Yön",
+        "up": "Yukarı",
+        "down": "Aşağı",
+        "stdev": "Standart Sapma",
+        "mean": "Ortalama",
+        "lobes": "Loblar",
+        "sigma": "Sigma",
+        "mu": "Mu",
+        "tau": "Tau",
+        "exp_type": "Tür",
+        "rise": "Yükseliş",
+        "fall": "Düşüş",
+        "f0": "Başlangıç Frekansı",
+        "f1": "Bitiş Frekansı",
+        "chirp_method": "Yöntem",
+        "linear": "Linear",
+        "logarithmic": "Logarithmic",
+        "tab_preset": "Ön Ayar",
+        "tab_formula": "Formül",
+        "tab_advanced": "Gelişmiş",
+        "preview": "Önizleme",
+        "apply": "Uygula",
+        "duration": "Süre",
+        "sample_rate": "Örnekleme Hızı",
+        "sampling_note": "0 = otomatik",
+        "auto_generate": "Otomatik üret",
+        "time_label": "Zaman (s)",
+        "amplitude_label": "Genlik",
+        "formula_expr": "Formül (zaman değişkeni olarak 't' kullanın):",
+        "variables": "Değişkenler:",
+        "var_name": "Ad",
+        "var_value": "Değer",
+        "add_var": "Değişken ekle",
+        "remove_var": "Seçileni kaldır",
+        "auto": "Otomatik",
+        "basic_params": "Temel Parametreler",
+        "carrier_freq": "Taşıyıcı Frekansı",
+        "mod_freq": "Modülasyon Frekansı",
+        "mod_depth": "Modülasyon Derinliği",
+        "deviation": "Sapma",
+        "heart_rate": "Kalp Atış Hızı",
+        "rise_time": "Yükselme Süresi",
+        "fall_time": "Düşme Süresi",
+        "quick_insert": "Hızlı Fonksiyonlar",
+        "advanced": {
+          "modulation": "Modülasyon",
+          "mod_enable": "Modülasyonu etkinleştir",
+          "mod_type": "Modülasyon Türü",
+          "mod_freq": "Modülasyon Frekansı",
+          "mod_depth": "Modülasyon Derinliği",
+          "noise_group": "Gürültü",
+          "noise_enable": "Gürültü ekle",
+          "noise_amp": "Gürültü genliği",
+          "auto_generate": "Değişiklikleri otomatik uygula",
+          "auto_generate_tooltip": "Etkinleştirildiğinde, her parametre değişikliği düğüme anında uygulanır. Devre dışı bırakıldığında, uygulamak için Tamam'a basın."
+        },
+        "gamma": "Gamma (genişlik)",
+        "window_type": "Pencere türü",
+        "quadratic": "Quadratic",
+        "hyperbolic": "Hyperbolic",
+        "hanning": "Hanning",
+        "hamming": "Hamming",
+        "blackman": "Blackman",
+        "bartlett": "Bartlett",
+        "kaiser": "Kaiser",
+        "noise_type": "Gürültü Türü",
+        "gaussian": "Gauss",
+        "uniform": "Tekdüze",
+        "pink": "Pembe (1/f)",
+        "brown": "Kahverengi (1/f²)",
+        "blue": "Mavi (f)",
+        "impulse": "Darbe",
+        "pulse_shape": "Darbe Şekli",
+        "rect": "Dikdörtgen",
+        "raised_cosine": "Yükseltilmiş Kosinüs",
+        "polynomial": "PRBS Polinomu",
+        "bit_rate": "Bit Hızı",
+        "symbol_rate": "Sembol Hızı",
+        "symbol_sequence": "Sembol Dizisi",
+        "bit_sequence": "Bit Dizisi",
+        "multitone_hint": "Frekanslar (Hz, virgülle ayrılmış):",
+        "frequencies": "Frekanslar",
+        "amplitudes": "Genlikler",
+        "phases": "Fazlar",
+        "step_time": "Adım Zamanı",
+        "impulse_time": "Darbe Zamanı",
+        "f_start": "Başlangıç Frekansı",
+        "f_end": "Bitiş Frekansı",
+        "f2": "Frekans 2",
+        "noise_level": "Gürültü Seviyesi",
+        "duty_cycle": "Görev Döngüsü (%)",
+        "signal_sine": "Sinüs",
+        "signal_square": "Kare",
+        "signal_ramp": "Rampa",
+        "signal_pulse": "Darbe",
+        "signal_noise": "Gürültü",
+        "signal_dc": "DC",
+        "signal_triangle": "Üçgen",
+        "signal_sawtooth": "Testere Dişi",
+        "signal_sinc": "Sinc",
+        "signal_gaussian": "Gauss",
+        "signal_exponential": "Üstel",
+        "signal_chirp": "Chirp",
+        "signal_am": "AM",
+        "signal_fm": "FM",
+        "signal_ecg": "EKG",
+        "signal_trapezoidal": "Yamuk",
+        "signal_lorentzian": "Lorentz",
+        "signal_window": "Pencere",
+        "signal_multitone": "Çok Tonlu",
+        "signal_ask": "ASK",
+        "signal_fsk": "FSK",
+        "signal_psk": "PSK",
+        "signal_pwm": "PWM",
+        "signal_pam": "PAM",
+        "signal_prbs": "PRBS",
+        "signal_step": "Adım",
+        "signal_impulse": "Darbe",
+        "signal_sweep_sine": "Sinüs Süpürme",
+        "signal_cardiac": "Kardiyak",
+        "signal_eeg": "EEG",
+        "signal_beat": "Vuruş"
+    },
+    "input": {
+      "help_html": "<h3>📂 Giriş Düğümü (Veri yükleme)</h3>\n<p>Bir <b>.npz dosyasından (NumPy biçimi) veri yüklemenize</b> ve bunu iş akışına göndermenize olanak tanır.</p>\n\n<h4>⚙️ Kullanım</h4>\n<ol>\n    <li>Düğüme <b>sağ tıklayın</b> → <i>\"Girişi düzenle\"</i> seçin.</li>\n    <li><code>datay</code> adlı anahtar içeren bir <code>.npz</code> dosyası seçin.</li>\n    <li>Dizi dahili olarak saklanır ve akış boyunca otomatik olarak yayılır.</li>\n</ol>\n\n<h4>📤 Çıkış</h4>\n<p><code>out</code> → yüklenen dosyadaki <code>datay</code> içeriği.</p>\n\n<h4>⚠️ Notlar</h4>\n<ul>\n    <li>Yalnızca <code>datay</code> anahtarına sahip <b>.npz</b> dosyaları kabul edilir.</li>\n    <li>Dosya geçersizse konsolda bir hata gösterilir.</li>\n    <li>Bir dosya yüklendikten sonra akış otomatik olarak çalışır.</li>\n</ul>\n\n<h4>💡 Örnek</h4>\n<p>Sensör verileri içeren bir dosya yükleyin ve ardından bunu bir \"Filtre\" veya \"Görselleştirici\" düğümüne bağlayın.</p>\n<hr>\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → FFT → Filtre → Toplayıcı → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "lambda fonksiyonu",
+      "help_html": "<h3>🔧 Genel İşleme Düğümü</h3>\n<p>Giriş verilerine <b>özel bir fonksiyon</b> uygular. Matematiksel işlemler, dönüşümler vb. oluşturmanın temelidir.</p>\n\n<h4>📥 Giriş</h4>\n<p><code>data_in</code> → bir sayı, bir demet (x, y) veya herhangi bir nesne olabilir.</p>\n\n<h4>📤 Çıkış</h4>\n<p><code>out</code> → fonksiyonun girişe uygulanmasının sonucu.</p>\n\n<h4>🧠 Giriş türüne göre davranış</h4>\n<ul>\n    <li>Giriş <b>iki elemanlı bir demet</b> (x, y) ise, fonksiyon demeti alır ve başka bir demet veya değer döndürmelidir. Örnek: <code>lambda xy: (xy[0], xy[1]*2)</code>.</li>\n    <li>Giriş <b>basit bir değer</b> ise, fonksiyon bu değeri alır. Örnek: <code>lambda x: x**2</code>.</li>\n    <li>Giriş <code>None</code> ise, çıkış da <code>None</code> olur.</li>\n</ul>\n\n<h4>⚙️ Özelleştirme</h4>\n<p>Fonksiyon düğüm oluşturulurken atanır (örn. kod içinde). Gelecek sürümlerde arayüzden düzenleyebilirsiniz.</p>\n\n<h4>💡 Örnekler</h4>\n<ul>\n    <li><b>Bir sayıyı ikiye katla:</b> <code>lambda x: x * 2</code></li>\n    <li><b>Bir demetin bileşenlerini topla:</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>Aynı demeti döndür (geçiş):</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>Uygulanan fonksiyon:</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → FFT → Filtre → Toplayıcı → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "Mantık Kapısı",
+      "tooltip": "Sinyaller üzerinde mantık, karşılaştırma ve maskeleme işlemleri (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "Giriş 1",
+        "in2": "Giriş 2",
+        "out": "Çıkış"
+      },
+      "config_title": "Mantık Kapısını Yapılandır",
+      "op_label": "İşlem:",
+      "thr_label": "Eşik / Seviye:",
+      "inv_label": "Çıkışı Ters Çevir",
+      "help_title": "Yardım - Mantık Kapısı",
+      "help_html": "<h3>🎛️ Mantık Kapısı / Karşılaştırıcı</h3>\n<p>Tetikleyiciler, mantık maskeleri veya koşullu çıkışlar üretmek için iki giriş sinyalini örnek bazında değerlendirir, karşılaştırır veya maskeler.</p>\n\n<h4>📥 Girişler</h4>\n<ul>\n<li><code>in1</code> → Ana sinyal (operand A).</li>\n<li><code>in2</code> → Referans, maske veya ikinci operand (operand B).</li>\n</ul>\n\n<h4>📤 Çıkış</h4>\n<ul>\n<li><code>out</code> → İşleme sonucu. Boole işlemleri <code>0.0</code> veya <code>1.0</code> döndürür. Karşılaştırıcılar/eşikler maskeler veya sınırlandırılmış sinyaller üretir.</li>\n</ul>\n\n<h4>📐 Diyagram</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 Zihinsel Model</h4>\n<p>Bu düğüm <b>örnek bazlı karar motoru</b> olarak işlev görür. Her noktayı bağımsız olarak değerlendirir; analog dalga biçimlerini dijital kontrol sinyallerine, aktivasyon maskelerine veya mantıksal akışlara dönüştürür.</p>\n\n<h4>📐 Veri Temsili</h4>\n<pre>\nGirişler:\n(x, y1) & (x, y2) → 1B Diziler (eşleşmezse en kısaya kırpar)\n\nÇıkış:\n(x, y_out) → Genellikle ikili (0/1) veya maskelenmiş\n</pre>\n\n<h4>🔁 Tipik Kullanım Modeli</h4>\n<pre>\n[Üreteç] → [Mantık Kapısı] → [Tetik / Grafik]\n\nÖrnek:\nSinüs (in1) + Kare (in2) → [AND] → Senkronize darbe treni\nSinyal (in1) → [THRESHOLD] → tepe algılama için 0/1 maskesi\nSinyal (in1) + Ref (in2) → [MASK] → in2 ≤ 0 iken in1'i susturur\n</pre>\n\n<h4>⚠️ Yaygın Hatalar</h4>\n<ul>\n<li>Mantık işlemlerinin genliği koruyacağını beklemek → Korumaz (0/1'e dönüştürür). Bunun yerine <code>LEVEL</code> veya <code>MASK</code> kullanın.</li>\n<li>Çok farklı uzunlukta sinyalleri bağlamak → Minimuma kırpar.</li>\n<li>Ondalıklı sayılarda <code>EQ</code> kullanmak → Örtük toleransa dayanır; gerekirse önceden yuvarlayın.</li>\n</ul>\n<hr><hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → FFT → Filtre → Toplayıcı → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı.</li>\n<li>Düğüme <b>çift tık</b> → bu yardımı açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li>\n<li>Düğümü <b>sürükle</b> → bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+     },
+    "sum": {
+      "title": "Aritmetik",
+      "tooltip": "İki sinyal arasında aritmetik işlemler gerçekleştirir.",
+      "operation": {
+        "sum": "Toplama",
+        "sub": "Çıkarma",
+        "mul": "Çarpma",
+        "div": "Bölme"
+      },
+      "ports": {
+        "out": "Çıkış",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "*A",
+        "port_b_mul": "*B",
+        "port_a_div": "pay",
+        "port_b_div": "payda"
+      },
+      "menu": {
+        "operation": "İşlem"
+      },
+      "help_title": "Yardım - Aritmetik Düğümü",
+      "help_html": "<h3>➕ Toplama/Aritmetik Düğümü</h3>\n<p>İki sinyal (dizi veya sayısal değer) arasında aritmetik işlemler gerçekleştirir.</p>\n\n<h4>📥 Girişler</h4>\n<ul>\n    <li><code>port_a</code> (üst): birinci operand (A).</li>\n    <li><code>port_b</code> (alt): ikinci operand (B).</li>\n</ul>\n\n<h4>📤 Çıkış</h4>\n<p><code>out</code> → işlemin sonucu (A op B).</p>\n\n<h4>⚙️ Kullanılabilir işlemler (sağ tık → İşlem)</h4>\n<ul>\n    <li><b>Toplama (+)</b>: A + B</li>\n    <li><b>Çıkarma (−)</b>: A − B</li>\n    <li><b>Çarpma (×)</b>: A * B</li>\n    <li><b>Bölme (÷)</b>: A / B (sıfıra bölmeye karşı korur).</li>\n</ul>\n\n<h4>📐 Diyagram</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 Zihinsel model</h4>\n<p>Bu düğüm bir <b>vektör operatörüdür</b>.\nSinyaller üzerinde eleman bazında çalışır.</p>\n\n<h4>📐 Vektör temsili</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\nÇıkış:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 Görsel örnek</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\nToplam:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 Kullanım stratejileri</h4>\n<ul>\n<li><b>Normalleştirme:</b> maksimuma böl</li>\n<li><b>Ölçekleme:</b> bir sabitle çarp</li>\n<li><b>Sinyal karıştırma:</b> dalgaların toplamı</li>\n<li><b>İptal:</b> gürültüyü kaldırmak için A - B</li>\n</ul>\n\n<h4>⚠️ Yaygın hatalar</h4>\n<ul>\n<li>X eksenlerini hizalamamak → tutarsız sonuçlar</li>\n<li>Sıfıra yakın değerlere bölme → kararsızlık</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → FFT → Filtre → Toplayıcı → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "script": {
+      "title": "Betik",
+      "tooltip": "Python betik düğümü",
+      "ports": {
+        "data_in": "Veri Girişi",
+        "loop_in": "Döngü Girişi",
+        "out": "Çıkış"
+      },
+      "menu":{
+        "edit":"Düzenle",
+        "run":"Betiği Çalıştır"
+      },
+      "status_ready": "Hazır",
+      "status_error": "Hata",
+      "edit_script": "Betiği Düzenle",
+      "tooltip_x": "NumPy dizisi: X ekseni (zaman, frekans vb.)",
+      "tooltip_y": "NumPy dizisi: mevcut sinyal değerleri",
+      "tooltip_param": "Yineleme parametresi (TriggerNode'dan) veya None",
+      "help_title": "Yardım - Betik Düğümü",
+      "help_html": "<h3>📜 Özel Betik Düğümü</h3> <p>Sinyalleri isteğe göre işlemek için Python kodu yazmanıza olanak tanır.</p> <h4>📥 Girişler</h4> <ul> <li><code>data_in</code> → ana sinyal (x, y) veya basit dizi.</li> <li><code>loop_in</code> → bir <b>TriggerNode</b>'dan parametre almak için isteğe bağlı giriş (<code>param</code> değeri).</li> <li>Dinamik portlar <code>@input name</code> → betikte tanımlanan ek girişler.</li> </ul> <h4>📤 Çıkışlar</h4> <ul> <li><code>out</code> → betik tarafından üretilen demet (x_new, y_new) (toplu mod).</li> <li>Dinamik portlar <code>@output name</code> → betikte tanımlanan ek çıkışlar.</li> </ul> <h4>✏️ Betik Düzenleme</h4> <p>Sözdizimi vurgulamalı düzenleyiciyi açmak için sağ tık → <b>Betiği Düzenle</b>.</p> <p>Otomatik tamamlama, şablonlar, yapılandırılabilir parametreler (<code>@param</code>) ve harici yürütme (alternatif Python) içerir.</p> <hr> <h4>🧠 Kullanılabilir Değişkenler (geleneksel toplu mod)</h4> <ul> <li><code>x</code> : numpy dizisi – zaman veya frekans ekseni</li> <li><code>y</code> : numpy dizisi – sinyal değerleri</li> <li><code>param</code> : float (isteğe bağlı) – <code>loop_in</code>'den değer (TriggerNode)</li> <li><code>persist</code> : dict – aynı düğümün çalıştırmaları arasında kalıcı (toplayıcılar için kullanışlı)</li> <li><code>np</code>, <code>scipy</code>, <code>sympy</code> – önceden içe aktarılmış kütüphaneler</li> </ul> <h4>🧩 Zihinsel Model</h4> <p> Bu düğüm bir <b>isteğe bağlı dönüşüm bloğudur</b>. Burada kendi fiziğinizi, matematiğinizi veya mantığınızı tanımlarsınız. </p> <h4>📐 Beklenen Şekil (toplu)</h4> <pre> Giriş: x → vektör (zaman/frekans) y → vektör (değerler) Çıkış: (x_mod, y_mod) </pre> <h4>🧠 Daha Güçlü Örnekler</h4> <h5>1. Frekansa bağlı kazanç</h5> <pre> gain = np.exp(-x * 0.01) return (x, y * gain) </pre> <h5>2. Tepe algılama</h5> <pre> y_mod = np.where(y > 0.8, y, 0) return (x, y_mod) </pre> <h5>3. Modülasyon</h5> <pre> carrier = np.sin(2*np.pi*1000*x) return (x, y * carrier) </pre> <h5>4. param kullanımı (süpürme)</h5> <pre> factor = param if param is not None else 1.0 return (x, y * factor) </pre> <h5>5. persist ile toplayıcı</h5> <pre> persist[\"counter\"] = persist.get(\"counter\", 0) + 1 return (x, y + persist[\"counter\"] * 0.1) </pre> <hr> <h4>🔁 Gelişmiş Strateji</h4> <pre> Trigger → Script(param) → Toplama → Görselleştirme → Otomatik süpürmelere olanak tanır </pre> <h4>⚠️ Yaygın Hatalar</h4> <ul> <li>Toplu modda (x, y) demetini döndürmemek.</li> <li><code>param</code>'ın None olabileceğini hesaba katmamak.</li> <li>Akış veya GPU betiklerinde \"Test\" düğmesini kullanmaya çalışmak (gerçek akışı kullanın).</li> </ul><hr> <hr> <h3>🧠 Bu Sistemi Nasıl Düşünmeli</h3> <p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p> <pre> Veri → Dönüşüm → Sonuç </pre> <h4>📐 Ana Kural</h4> <pre> Her şey: (x, y) </pre> <h4>🔁 Evrensel Model</h4> <pre> Giriş → İşleme → Görselleştirme </pre> <h4>🧪 Tam Örnek</h4> <pre> Osiloskop → FFT → Filtre → Toplayıcı → Grafik </pre> <hr> <h4>⚡ Kısayollar ve İpuçları</h4> <ul> <li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li> <li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li> <li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li> <li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li> </ul>"
+    },
+    "trigger": {
+      "title": "Tetikleyici",
+      "tooltip": "Yineleme ve biriktirme düğümü",
+      "ports": {
+        "data_in": "Veri Girişi",
+        "trigger_in": "Tetik Girişi",
+        "loop_out": "Döngü Çıkışı",
+        "out": "Çıkış"
+      },
+      "state": {
+        "idle": "BEKLİYOR",
+        "running": "YİNELEME {iteration}/{total}",
+        "done": "TAMAMLANDI",
+        "running_count": "ÇALIŞIYOR {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "Yapılandır..."
+      },
+      "accumulate": {
+        "accumulate": "Biriktirme Modu",
+        "stack": "yığın",
+        "average": "ort",
+        "max": "maks",
+        "min": "min",
+        "last": "Son yakalama"
+      },
+      "config_title": "Tetikleyici Düğümünü Yapılandır",
+      "n_iter": "Yinelemeler",
+      "reset": "Yinelemeyi sıfırla",
+      "help_title": "Yardım - Tetikleyici Düğümü",
+      "help_html": "<h3>⏺ Tetikleyici Düğümü (Toplu Yakalama)</h3>\n<p>Sinyalleri harici bir tetikleme sinyaliyle (<code>trigger_in</code>) iteratif olarak yakalar ve biriktirir. Tekrarlayan deneyler, gürültü ortalaması alma veya izleri zaman içinde karşılaştırma için idealdir.</p>\n\n<h4>📥 Girişler</h4>\n<ul>\n    <li><code>data_in</code> → yakalanacak ana sinyal (x, y).</li>\n    <li><code>trigger_in</code> → tetikleme sinyali. Her darbe veya aktivasyon dahili tampona yeni bir iz kaydeder.</li>\n</ul>\n\n<h4>📤 Çıkışlar</h4>\n<ul>\n    <li><code>out</code> → programlanan yineleme sayısı (<code>n_iter</code>) tamamlandığında, seçilen moda göre biriktirilen sinyali yayar.</li>\n</ul>\n\n<h4>⚙️ Yapılandırma</h4>\n<p>Şunları ayarlamak için sağ tık → <b>Yapılandır</b>:</p>\n<ul>\n    <li><b>Yinelemeler (N):</b> çıkış üretmek için gereken tam yakalama sayısı.</li>\n    <li><b>Biriktirme:</b> yakalamaları birleştirme modu: <i>yığın, ortalama, maks, min veya son</i>.</li>\n</ul>\n\n<h4>🧠 Davranış</h4>\n<ol>\n    <li>Düğüm, <code>data_in</code> üzerinde veri ve <code>trigger_in</code> üzerinde darbe bekleyerek <b>IDLE</b> durumunda kalır.</li>\n    <li>Geçerli bir tetikleyici algılandığında, mevcut sinyali dahili tamponuna kaydeder ve <code>RUNNING X/N</code> gösterir.</li>\n    <li>Tam olarak <b>N yineleme</b> sayısına ulaşıldığında, biriktirilen çıkışı oluşturur, <code>out</code> üzerinden gönderir ve sonraki deney için tamponu otomatik olarak temizler.</li>\n</ol>\n\n<h4>🧩 Zihinsel Model</h4>\n<p>Bu düğüm <b>olay güdümlü toplu kaydedici</b> olarak işlev görür. Laboratuvardaki \"tetikleyiciyi bekle → kaydet → N'e kadar tekrarla\" rutininin eşdeğeridir.</p>\n\n<h4>📐 Yığın Modu</h4>\n<p><b>yığın</b> seçerseniz, sinyaller <code>NaN</code> ile ayrılmış tek bir dizide birleştirilir. Bu, tüm yakalamaları bağlamadan tek bir izde çizmenize olanak tanır.</p>\n\n<h4>🔁 Örnek Akış</h4>\n<pre>\nÜreteç/Osiloskop → TriggerNode (N=5) → ScriptNode (isteğe bağlı) → Grafik\n\nSonuç:\n5 üst üste eğri (yığın) veya ortalaması (ortalama)\n</pre>\n\n<h4>🧠 Gerçek Dünya Kullanım Durumları</h4>\n<ul>\n<li>Gürültülü sinyal ortalaması</li>\n<li>Tekrarlayan deneylerin senkronize yakalanması</li>\n<li>Birden fazla alımın görsel karşılaştırması</li>\n<li>İstatistiksel analiz için toplu ön işleme</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Bu Sistemi Nasıl Düşünmeli</h3>\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana Kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel Model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam Örnek</h4>\n<pre>\nOsiloskop → TriggerNode → ScriptNode → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve İpuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + Tık</b> → bağlantı için hızlı seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (yapılandır, sil, bağla/bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "generator": {
+      "title": "Üreteç",
+      "tooltip": "Sinyal üreteci düğümü",
+      "ports": {
+        "signal_out": "Sinyal Çıkışı",
+        "trigger_out": "Tetik Çıkışı",
+        "trigger_in": "Tetik Girişi",
+        "signal_in": "Sinyal Girişi"
+      },
+      "status": {
+        "default": "FloWorks  |  Kaydırma: yakınlaştır  |  Orta tıklama: kaydır  |  Düğüme sağ tıklama: seçenekler",
+        "sim": "SİM",
+        "busy": "MEŞGUL",
+        "ready": "HAZIR"
+      },
+      "device_label": "CİHAZ",
+      "channel_label": "KANAL",
+      "gen_button": "ÜRT",
+      "setup_button": "AYAR",
+      "generate_action": "Sinyal üret",
+      "help_title": "Yardım - Üreteç Düğümü",
+      "help_html": "<h3>📡 Sinyal Üreteci Düğümü</h3>\n<p>Analog sinyaller üretir ve bunları gerçek bir fonksiyon üretecine (SDG) gönderir veya çıkışını dahili olarak simüle eder.</p>\n\n<h4>📥 Giriş portları</h4>\n<ul>\n    <li><code>trigger_in</code> (sol) → üretimi tetiklemek için bir sinyal alır (EXT modu).</li>\n    <li><code>signal_in</code> (sol) → üretece isteğe bağlı dalga biçimi olarak gönderilecek harici bir sinyal (t, y) alır (EXT modu).</li>\n</ul>\n\n<h4>📤 Çıkış portları</h4>\n<ul>\n    <li><code>signal_out</code> (sağ) → görselleştirme veya işleme için üretilen sinyali (t, y) yayar.</li>\n    <li><code>trigger_out</code> (sağ) → üretim tamamlandığında tetikleme sinyali (isteğe bağlı).</li>\n</ul>\n\n<h4>⚙️ Çalışma modları</h4>\n<ul>\n    <li><b>INT</b> (dahili): sinyal, düğümün dahili parametrelerine göre (frekans, genlik, dalga biçimi vb.) üretilir ve donanıma (veya simülasyona) gönderilir.</li>\n    <li><b>EXT</b> (harici): düğüm <code>signal_in</code> üzerinden özel bir sinyal almayı bekler. <b>ÜRT</b>'ye bastığınızda, o sinyal üretece isteğe bağlı dalga biçimi olarak yüklenir.</li>\n</ul>\n\n<h4>🔧 Yapılandırma</h4>\n<p>Ayarlamak için <b>AYAR</b> düğmesine (veya sağ tık → \"Denetleyiciyi aç\") tıklayın:</p>\n<ul>\n    <li>Dalga biçimi: sinüs, kare, rampa, darbe, gürültü, DC, üçgen, testere dişi, sinc, Gauss, üstel, chirp.</li>\n    <li>Frekans, genlik, ofset, faz, görev döngüsü vb.</li>\n    <li>Çıkış kanalı (C1 veya C2).</li>\n    <li>Cihaz: \"sdg\" (gerçek donanım) veya \"simülasyon\" (yalnızca dahili simülasyon).</li>\n</ul>\n\n<h4>▶️ Üretim</h4>\n<p>Çıkışı başlatmak için <b>ÜRT</b> düğmesine (veya sağ tık → \"Sinyal üret\") tıklayın. Düğüm sinyali donanıma gönderecek ve ayrıca akışın geri kalanı için üretilen verilerle <code>signal_out</code> yayacaktır.</p>\n\n<h4>💡 Tipik örnek</h4>\n<ol>\n    <li>Üreteci 1 kHz sinüs dalgası, 1 Vpp ile yapılandırın.</li>\n    <li><code>signal_out</code>'u bir osiloskop düğümüne veya görselleştiriciye bağlayın.</li>\n    <li><b>ÜRT</b>'ye basın → sinyal fiziksel kanalda ve grafikte görünür.</li>\n</ol>\n\n<h4>⚠️ Notlar</h4>\n<ul>\n    <li>EXT modunda, ÜRT'ye basmadan önce <code>signal_in</code>'i bir sinyalle (t, y) bağladığınızdan emin olun.</li>\n    <li>Donanım bağlı değilse, düğüm otomatik olarak simülasyonu kullanır.</li>\n    <li>İsteğe bağlı dalga biçimleri modele bağlı olarak 524288 noktaya kadar yüklenir.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → FFT → Filtre → Toplayıcı → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "Osiloskop",
+      "tooltip": "Osiloskop yakalama düğümü\n Bilgi için çift tıkla",
+      "ports": {
+        "out_primary": "Birincil Çıkış",
+        "out_secondary": "İkincil Çıkış",
+        "trigger_out": "Tetik Çıkışı"
+      },
+      "status": {
+        "sim": "SİMÜLASYON",
+        "capturing": "YAKALANIYOR...",
+        "armed": "HAZIR",
+        "connected": "BAĞLI",
+        "disconnected": "BAĞLANTI KESİLDİ"
+      },
+      "device_label": "CİHAZ",
+      "channel_label": "KANAL",
+      "lcr_label": "LCR",
+      "sim_label": "SİM",
+      "trig_button": "TETİK",
+      "setup_button": "AYAR",
+      "menu": {
+        "show_channel": "Kanalı göster"
+      },
+      "channel": {
+        "primary": "Birincil (Z)",
+        "secondary": "İkincil (θ)"
+      },
+      "trigger_action": "Yakalamayı tetikle",
+      "help_title": "Yardım - Osiloskop Düğümü",
+      "help_html": "<h3>📊 Osiloskop Düğümü (Sinyal alma)</h3>\n<p>Donanım (SDS, LCR) kullanarak gerçek dünya sinyallerini yakalar veya test için simüle edilmiş veri üretir.</p>\n\n<h4>📤 Çıkış portları</h4>\n<ul>\n    <li><code>out_primary</code> → ana sinyal (gerilim - zaman veya LCR için empedans Z).</li>\n    <li><code>out_secondary</code> → ikincil sinyal (LCR için faz açısı θ; SDS için kullanılmaz).</li>\n    <li><code>trigger_out</code> → yakalama tamamlandığında tetikleme sinyali yayar (diğer düğümleri senkronize etmek için kullanışlıdır).</li>\n</ul>\n\n<h4>🔘 Kontroller</h4>\n<ul>\n    <li><b>TETİK</b> → bir yakalama başlatır (veri toplama).</li>\n    <li><b>AYAR</b> → yapılandırma panelini açar (simülasyon parametreleri veya donanım denetleyicisi).</li>\n    <li><b>Cihaz seçici</b> (alt açılır liste) → SDS (gerçek osiloskop), LCR (empedans ölçer) veya simülasyon arasından seçim yapın.</li>\n</ul>\n\n<h4>⚙️ Çalışma modları</h4>\n<ul>\n    <li><b>SDS</b>: gerçek bir osiloskopa (Siglent SDS) bağlanır. Kanalı (C1..C4) bağlam menüsünden → \"Kanalı göster\" ile seçebilirsiniz.</li>\n    <li><b>LCR</b>: bir LCR ölçere bağlanır, iki çıkış sağlar: birincil (empedans Z) ve ikincil (faz açısı θ).</li>\n    <li><b>Simülasyon</b>: gürültülü sentetik bir sinyal üretir, AYAR ile yapılandırılabilir (zaman tabanı, gerilim aralığı, tetikleme seviyesi, örnekleme hızı).</li>\n</ul>\n\n<h4>📈 Görselleştirme</h4>\n<p>Düğüm sinyali dahili olarak çizmez, ancak yakalanan verileri göstermek için bir görselleştirme widget'ına (ör. <code>PlotWidget</code>) bağlanabilir.</p>\n\n<h4>💡 Kullanım örneği</h4>\n<ol>\n    <li>Cihazı (SDS) seçin ve fiziksel olarak bağlayın.</li>\n    <li>Bir iz yakalamak için TETİK'e tıklayın.</li>\n    <li>Sinyal diğer düğümler için <code>out_primary</code> üzerinde kullanılabilir olacaktır.</li>\n    <li>LCR kullanılıyorsa, her iki çıkış (Z ve θ) kullanılabilir olacaktır.</li>\n</ol>\n\n<h4>⚠️ Notlar</h4>\n<ul>\n    <li>Donanım modunda, cihazın bağlı ve açık olduğundan emin olun.</li>\n    <li>Yakalama, arayüzü bloke etmemek için ayrı bir iş parçacığında çalışır.</li>\n    <li>Düğüm, akış için bir veri kaynağı (giriş düğümü) olarak işlev görür.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → FFT → Filtre → Toplayıcı → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "spectral": {
+        "title": "Spektral",
+        "tooltip": "Spektral dönüşümler: FFT, Hilbert, Welch (PSD) ve DCT",
+        "transform_type": "Dönüşüm:",
+        "window_type": "Pencere:",
+        "nfft": "NFFT / Segment:",
+        "scale": "Ölçek:",
+        "detrend": "Trend giderme:",
+        "normalize": "Normalleştir (enerjiyi koru)",
+        "config_title": "Spektralı Yapılandır",
+        "menu": {
+            "configure": "Yapılandır...",
+            "show_output": "Çıkışı göster"
+        },
+        "channel": {
+            "magnitude": "Büyüklük",
+            "phase": "Faz"
+        },
+        "ports": {
+            "input": "Giriş",
+            "output": "Zaman çıkışı",
+            "magnitude": "Büyüklük",
+            "phase": "Faz"
+        },
+        "status": {
+            "no_data": "Veri yok",
+            "ready": "Hazır",
+            "phase": "Faz"
+        },
+        "help_title": "Yardım - Spektral",
+        "help_html": "<h3>📊 Spektral Düğüm (Spektral Dönüşümler)</h3>\n<p>Giriş sinyali üzerinde çeşitli dönüşümler hesaplar: <b>FFT</b>, <b>Hilbert</b>, <b>Welch (PSD)</b> ve <b>DCT</b>.</p>\n\n<h4>📥 Giriş</h4>\n<p><code>input</code> → bir <code>(x, y)</code> demeti veya 1B dizi bekler.</p>\n\n<h4>📤 Çıkışlar</h4>\n<ul>\n    <li><b>Zaman çıkışı</b> → zaman alanı sinyali (yalnızca Hilbert'te aktiftir: analitik sinyalin gerçek kısmı).</li>\n    <li><b>Büyüklük</b> → moda bağlı olarak:\n        <ul>\n            <li><b>FFT</b> → normalleştirilmiş büyüklük spektrumu <code>(frekanslar, genlikler)</code>.</li>\n            <li><b>Hilbert</b> → sinyal zarfı <code>(zaman, zarf)</code>.</li>\n            <li><b>Welch</b> → güç spektral yoğunluğu <code>(frekanslar, PSD)</code>.</li>\n            <li><b>DCT</b> → ayrık kosinüs dönüşümü katsayıları <code>(indeks, katsayılar)</code>.</li>\n        </ul>\n    </li>\n    <li><b>Faz</b> → radyan cinsinden faz açıları (FFT) veya anlık faz (Hilbert). Welch veya DCT için <i>kullanılamaz</i>.</li>\n</ul>\n\n<h4>⚙️ Parametreler</h4>\n<ul>\n    <li><b>Dönüşüm</b> — FFT, Hilbert, Welch veya DCT arasından seçim yapın.</li>\n    <li><b>Pencere</b> — <code>scipy.signal.windows</code> içinden pencere fonksiyonu (Hann, Hamming, Blackman vb.).</li>\n    <li><b>NFFT / Segment</b> — FFT uzunluğu veya Welch segment uzunluğu. <code>Auto</code> 2'nin bir sonraki kuvvetini kullanır.</li>\n    <li><b>Ölçek</b> — <code>linear</code> veya <code>dB</code> (FFT/Hilbert/DCT için 20·log₁₀, Welch için 10·log₁₀).</li>\n    <li><b>Trend giderme</b> — işleme öncesinde sabit ortalamayı veya doğrusal eğilimi kaldırır.</li>\n    <li><b>Normalleştir</b> — enerjiyi korumak için pencereyi ayarlar.</li>\n</ul>\n\n<h4>🖱️ Etkileşim</h4>\n<ul>\n    <li><b>Sağ tık</b> → bağlam menüsü (Yapılandır, görüntüleme kanalını seç).</li>\n    <li><b>Çift tık</b> → bu yardım penceresini açar.</li>\n    <li><b>Yan panel</b> — parametreleri gerçek zamanlı olarak ayarlayın; grafik otomatik güncellenir.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → Pencere → Spektral (FFT) → Filtre → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "ifft": {
+        "title": "IFFT",
+        "tooltip": "Ters Fourier Dönüşümü (zaman yeniden yapılandırma)",
+        "fs": "Örnekleme frekansı (fs):",
+        "nfft": "NFFT:",
+        "real_only": "Yalnızca gerçek çıkış (irfft)",
+        "conjugate_symmetry": "Hermitian simetriyi zorla",
+        "normalize": "N ile normalleştir",
+        "config_title": "IFFT'yi Yapılandır",
+        "menu": {
+            "configure": "Yapılandır..."
+        },
+        "ports": {
+            "magnitude": "Büyüklük",
+            "phase": "Faz",
+            "output": "Zaman çıkışı"
+        },
+        "status": {
+            "no_data": "Veri yok",
+            "waiting_phase": "Faz=0 (varsayıldı)",
+            "ready": "Hazır"
+        },
+        "help_title": "Yardım - IFFT",
+        "help_html": "<h3>🔁 IFFT Düğümü (Ters Hızlı Fourier Dönüşümü)</h3>\n<p>Frekans spektrumundan bir zaman alanı sinyalini yeniden yapılandırır.</p>\n\n<h4>📥 Girişler</h4>\n<ul>\n    <li><b>Büyüklük</b> → <code>(frekanslar, genlikler)</code> veya 1B dizi. <b>Gerekli.</b></li>\n    <li><b>Faz</b> → <code>(frekanslar, açılar)</code> veya 1B dizi. <b>İsteğe bağlı.</b> Bağlı değilse, faz sıfır kabul edilir.</li>\n</ul>\n\n<h4>📤 Çıkış</h4>\n<ul>\n    <li><b>Zaman çıkışı</b> → yeniden yapılandırılmış <code>(zaman, sinyal)</code>.</li>\n</ul>\n\n<h4>⚙️ Parametreler</h4>\n<ul>\n    <li><b>fs</b> — zaman eksenini oluşturmak için örnekleme frekansı.</li>\n    <li><b>NFFT</b> — IFFT boyutu. <code>Auto</code> <code>2·(len(mag)-1)</code> kullanır.</li>\n    <li><b>Gerçek çıkış</b> — <code>irfft</code> (gerçek çıkışı garanti eder) veya <code>ifft</code> (karmaşık) kullanır.</li>\n    <li><b>Hermitian simetri</b> — tersine çevirmeden önce <code>Y[-k] = conj(Y[k])</code> zorlar (artefaktları önler).</li>\n    <li><b>Normalleştir</b> — orijinal genliği korumak için <code>N</code>'e böler.</li>\n</ul>\n\n<h4>🖱️ Etkileşim</h4>\n<ul>\n    <li><b>Sağ tık</b> → Yapılandır...</li>\n    <li><b>Çift tık</b> → yardım.</li>\n    <li><b>Yan panel</b> — fs ve parametreleri gerçek zamanlı olarak ayarlayın.</li>\n</ul>"
+    },
+    "thd": {
+      "title": "THD Analizörü",
+      "tooltip": "Toplam Harmonik Bozulma THD",
+      "ports": {
+        "input": "Giriş",
+        "output": "Çıkış"
+      },
+      "dialog": {
+        "title": "THD'yi Analiz Et"
+      },
+      "tab": {
+        "summary": "Özet",
+        "harmonics": "Harmonikler",
+        "spectrum": "Spektrum"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "Temel frekans:",
+        "max_harmonics": "Dikkate alınan harmonikler:",
+        "green_threshold": "Yeşil eşik (<):",
+        "yellow_threshold": "Sarı eşik (<):"
+      },
+      "harmonics": {
+        "order": "Harmonik derecesi",
+        "freq": "Frekans (Hz)",
+        "amp_rel": "Bağıl genlik (%)"
+      },
+      "help_title": "Yardım - THD",
+      "help_html": "<h3>Toplam Harmonik Bozulma (THD) Analizörü</h3><p>Giriş sinyalinin THD ve THD+N değerlerini hesaplar.</p><p>Sinyal değişmeden çıkışa geçirilir.</p><p><b>Parametreler:</b></p><ul><li>max_harmonics: dikkate alınan harmonik sayısı</li><li>yeşil/sarı eşikler: düğümdeki THD'nin rengini değiştirir</li></ul><p><i>Ayrıntılı analizi açmak için çift tıklayın.</i></p>"
+    },
+    "filter": {
+      "title": "Filtre",
+      "tooltip": "Dijital filtre (Butterworth)",
+      "ports": {
+        "input": "Giriş",
+        "output": "Çıkış"
+      },
+      "status": {
+        "no_data": "Veri yok",
+        "ready": "Hazır"
+      },
+      "menu": {
+        "configure": "Yapılandır...",
+        "show_output":"Çıkışı göster"
+      },
+      "config_title": "Filtreyi Yapılandır",
+      "filter_type": "Filtre türü:",
+      "cutoff": "Kesim frekans(lar)ı (Hz):",
+      "cutoff1": "Kesim frekansı 1 (Hz):",
+      "cutoff2": "Kesim frekansı 2 (Hz):",
+      "order": "Filtre derecesi:",
+      "fs": "Örnekleme hızı (Hz, 0 = otomatik):",
+      "help_title": "Yardım - Filtre",
+      "help_html": "<h3>🎛️ Filtre Düğümü (Butterworth)</h3>\n<p>Giriş sinyaline <b>dijital Butterworth filtresi</b> uygular.</p>\n\n<h4>📥 Giriş</h4>\n<p><code>input</code> → bir <code>(x, y)</code> demeti veya 1B dizi bekler.</p>\n\n<h4>📤 Çıkış</h4>\n<p><code>output</code> → filtrelenmiş sinyal <code>(x, y_filtered)</code> olarak.</p>\n\n<h4>⚙️ Parametreler (yapılandırmak için çift tıkla)</h4>\n<ul>\n    <li><b>Filtre türü</b> – alçak geçiren, yüksek geçiren, bant geçiren veya bant durduran.</li>\n    <li><b>Kesim frekans(lar)ı</b> – Hz cinsinden. Bant geçiren/durduran için iki frekans gereklidir.</li>\n    <li><b>Derece</b> – filtre derecesi (1–20). Daha yüksek derece = daha dik geçiş.</li>\n    <li><b>Örnekleme hızı</b> – 0 olarak ayarlanırsa, <i>x</i> ekseninden otomatik olarak çıkarılır.</li>\n</ul>\n\n<h4>🛠️ Çalışma</h4>\n<ul>\n    <li>Filtre <code>scipy.signal.butter</code> kullanılarak tasarlanır.</li>\n    <li><code>filtfilt</code> ile sıfır fazlı filtreleme uygulanır (faz bozulması yok).</li>\n    <li>Giriş 1B dizi ise, örnekleme hızı kullanılarak sentetik bir <i>x</i> ekseni oluşturulur.</li>\n</ul>\n\n<h4>🖱️ Etkileşim</h4>\n<ul>\n    <li><b>Çift tık</b> → yapılandırma iletişim kutusunu açar.</li>\n    <li>Düğüme <b>tık</b> → filtrelenmiş sinyali çizer.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → Filtre → FFT → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "Normalleştir",
+      "tooltip": "Sinyali belirtilen aralığa normalleştir",
+      "ports": {
+        "input": "Giriş",
+        "output": "Çıkış"
+      },
+      "menu": {
+        "configure": "Yapılandır..."
+      },
+      "config_title": "Normalleştirme Düğümünü Yapılandır",
+      "param": {
+        "target_min": "Hedef min:",
+        "target_max": "Hedef maks:"
+      },
+      "help_title": "Yardım - Normalleştir",
+      "help_html": "<h3>📏 Normalleştirme Düğümü</h3>\n<p>Bir giriş sinyalini <b>Hedef min</b> ve <b>Hedef maks</b> ile belirtilen aralığa normalleştirir.</p>\n\n<h4>📥 Giriş</h4>\n<p><code>input</code> → bir <code>(x, y)</code> demeti veya 1B dizi bekler.</p>\n\n<h4>📤 Çıkış</h4>\n<ul>\n    <li><b>Normalleştirilmiş sinyal</b> → <code>(x_norm, y_norm)</code> – sinyal hedef aralığa ölçeklenir.</li>\n</ul>\n\n<h4>⚙️ Parametreler (yapılandırmak için çift tıkla)</h4>\n<ul>\n    <li><b>Hedef min</b> – istenen aralığın minimum değeri (varsayılan 0.0).</li>\n    <li><b>Hedef maks</b> – istenen aralığın maksimum değeri (varsayılan 1.0).</li>\n</ul>\n\n<h4>📐 Çalışma</h4>\n<p>Doğrusal yeniden ölçekleme:</p>\n<pre>y_norm = target_min + (y - original_min) * (target_max - target_min) / (original_max - original_min)</pre>\n<p>x ekseni değişmeden kalır.</p>\n\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → FFT → Filtre → Toplayıcı → Grafik\n</pre>\n\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "Konvolüsyon",
+      "tooltip": "Konvolüsyon yoluyla FIR filtresi",
+      "ports": {
+        "input": "Giriş",
+        "output": "Çıkış"
+      },
+      "status": {
+        "no_data": "Veri yok"
+      },
+      "menu": {
+        "show_output": "Çıkışı göster",
+        "configure": "Yapılandır..."
+      },
+      "config_title": "Konvolüsyonu Yapılandır",
+      "example_kernel": "Örnek çekirdekler:",
+      "kernel": "Çekirdek katsayıları (virgülle ayrılmış):",
+      "mode": "Konvolüsyon modu:",
+      "help_title": "Yardım - Konvolüsyon",
+    "help_html": "<h3>🔀 Konvolüsyon Düğümü (FIR Filtresi)</h3>\n<p>Giriş sinyali ile kullanıcı tanımlı bir çekirdek arasında ayrık konvolüsyon uygular.</p>\n\n<h4>📥 Giriş</h4>\n<p><code>input</code> → bir <code>(x, y)</code> demeti veya 1B dizi bekler.</p>\n\n<h4>📤 Çıkış</h4>\n<ul>\n    <li><b>Filtrelenmiş sinyal</b> → <code>(x_conv, y_conv)</code> – konvolüsyon sonucu.</li>\n</ul>\n\n<h4>⚙️ Parametreler (yapılandırmak için çift tıkla)</h4>\n<ul>\n    <li><b>Çekirdek katsayıları</b> – virgülle ayrılmış ondalık sayılar, örn. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Konvolüsyon modu</b> – <code>'same'</code> (varsayılan), <code>'full'</code> veya <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Çalışma</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>x ekseni buna göre ayarlanır: <code>'same'</code> için orijinal x korunur; <code>'valid'</code> için uçlar kırpılır; <code>'full'</code> için doğrusal olarak genişletilir.</li>\n</ul>\n\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → FFT → Filtre → Toplayıcı → Grafik\n</pre>\n\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+    },
+    "resample": {
+      "title": "Yeniden Örnekle",
+      "tooltip": "Sinyalin örnekleme hızını değiştir",
+      "ports": {
+        "input": "Giriş",
+        "output": "Çıkış"
+      },
+      "status": {
+        "no_data": "Veri yok",
+        "ready": "Hazır"
+      },
+      "menu": {
+        "configure": "Yapılandır..."
+      },
+      "config_title": "Yeniden Örneklemeyi Yapılandır",
+      "mode": "Mod:",
+      "factor": "Faktör:",
+      "target_fs": "Hedef fs (Hz):",
+      "help_title": "Yardım - Yeniden Örnekle",
+      "help_html": "<h3>🔄 Yeniden Örnekleme Düğümü</h3><p>Giriş sinyalinin <b>örnekleme hızını</b> değiştirir.</p><h4>📥 Giriş</h4><p><code>input</code> → bir <code>(x, y)</code> demeti veya 1B dizi bekler.</p><h4>📤 Çıkış</h4><p><code>output</code> → yeniden örneklenmiş sinyal <code>(x_new, y_new)</code> olarak.</p><h4>⚙️ Parametreler</h4><ul><li><b>Mod</b> – <i>faktör</i> (orijinal örnekleme hızını çarpar) veya <i>fixed_fs</i> (Hz cinsinden hedef örnekleme hızı).</li><li><b>Faktör</b> – ölçekleme faktörü (>1 örnekleri artırır, <1 azaltır).</li><li><b>Hedef fs</b> – Hz cinsinden istenen örnekleme hızı (mod fixed_fs olduğunda kullanılır).</li></ul><h4>🛠️ Çalışma</h4><p>Fourier yöntemi uygulayan <code>scipy.signal.resample</code> kullanır.</p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+    },
+    "window": {
+      "title": "Pencere",
+      "tooltip": "Sinyale pencere fonksiyonu uygula",
+      "ports": {
+        "input": "Giriş",
+        "output": "Çıkış"
+      },
+      "status": {
+        "no_data": "Veri yok",
+        "ready": "Hazır"
+      },
+      "menu": {
+        "configure": "Yapılandır..."
+      },
+      "config_title": "Pencereyi Yapılandır",
+      "window_type": "Pencere türü:",
+      "normalize": "Normalleştir (enerjiyi koru)",
+      "help_title": "Yardım - Pencere",
+      "help_html": "<h3>🪟 Pencere Düğümü</h3><p>Spektral sızıntıyı azaltmak için giriş sinyaline bir <b>pencere fonksiyonu</b> uygular.</p><h4>📥 Giriş</h4><p><code>input</code> → <code>(x, y)</code> demeti veya 1B dizi.</p><h4>📤 Çıkış</h4><p><code>output</code> → pencerelenmiş sinyal <code>(x, y * window)</code>.</p><h4>⚙️ Parametreler</h4><ul><li><b>Pencere türü</b> – Hann, Hamming, Blackman, Bartlett vb.</li><li><b>Normalleştir</b> – işaretlenirse, toplam enerjiyi korumak için pencereyi ölçekler.</li></ul><h4>🛠️ Çalışma</h4><p><code>scipy.signal.windows</code> kullanır.</p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+    },
+    "delay": {
+      "title": "Gecikme",
+      "tooltip": "Sinyali belirtilen miktarda geciktir",
+      "ports": {
+        "input": "Giriş",
+        "output": "Çıkış"
+      },
+      "status": {
+        "no_data": "Veri yok",
+        "ready": "Hazır"
+      },
+      "menu": {
+        "configure": "Yapılandır..."
+      },
+      "config_title": "Gecikmeyi Yapılandır",
+      "mode": "Gecikme modu:",
+      "samples": "Örnekler:",
+      "seconds": "Saniyeler:",
+      "padding": "Doldurma:",
+      "constant_value": "Sabit değer:",
+      "help_title": "Yardım - Gecikme",
+      "help_html": "<h3>⏱️ Gecikme Düğümü</h3><p>Giriş sinyalini belirtilen miktarda <b>örnek</b> veya <b>saniye</b> geciktirir.</p><h4>📥 Giriş</h4><p><code>input</code> → <code>(x, y)</code> demeti veya 1B dizi.</p><h4>📤 Çıkış</h4><p><code>output</code> → geciktirilmiş sinyal <code>(x, y_delayed)</code>.</p><h4>⚙️ Parametreler</h4><ul><li><b>Gecikme modu</b> – <i>örnekler</i> (tam sayı örnek sayısı) veya <i>saniyeler</i> (saniye cinsinden süre, x ekseninden örnekleme hızı gerektirir).</li><li><b>Doldurma</b> – başlangıç boşluğunu doldurma yöntemi: <i>sıfır</i>, <i>yansıt</i> veya <i>sabit</i> (kullanıcı tanımlı değer).</li></ul><h4>🛠️ Çalışma</h4><p>Sinyali sağa kaydırır, başlangıca doldurma ekler.</p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+    },
+    "correlation": {
+      "title": "Korelasyon",
+      "tooltip": "İki sinyalin çapraz korelasyonu",
+      "ports": {
+        "signal1": "Sinyal 1",
+        "signal2": "Sinyal 2",
+        "corr": "Korelasyon"
+      },
+      "status": {
+        "no_data": "Veri yok",
+        "ready": "Hazır"
+      },
+      "menu": {
+        "configure": "Yapılandır..."
+      },
+      "config_title": "Korelasyonu Yapılandır",
+      "mode": "Mod:",
+      "normalize": "Normalleştir",
+      "help_title": "Yardım - Korelasyon",
+      "help_html": "<h3>📈 Korelasyon Düğümü</h3><p>İki giriş sinyali arasındaki <b>çapraz korelasyonu</b> hesaplar.</p><h4>📥 Girişler</h4><p><code>signal1</code>, <code>signal2</code> → her biri bir <code>(x, y)</code> demeti veya 1B dizi bekler.</p><h4>📤 Çıkış</h4><p><code>corr</code> → korelasyon dizisi <code>(gecikmeler, korelasyon)</code> olarak.</p><h4>⚙️ Parametreler</h4><ul><li><b>Mod</b> – <i>full</i> (tüm gecikmeler), <i>same</i> (en uzun girişle aynı uzunluk), <i>valid</i> (sıfır doldurulmuş kenarlar yok).</li><li><b>Normalleştir</b> – işaretlenirse, sinyallerin normlarının çarpımına böler ([-1, 1] aralığında değerler verir).</li></ul><h4>🛠️ Çalışma</h4><p><code>np.correlate</code> kullanır.</p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+    },
+    "math_expression": {
+      "title": "Matematiksel İfade",
+      "tooltip": "x ve y üzerinde matematiksel bir ifade değerlendir",
+      "ports": {
+        "input": "Giriş",
+        "output": "Çıkış"
+      },
+      "status": {
+        "no_data": "Veri yok",
+        "ready": "Hazır"
+      },
+      "menu": {
+        "configure": "Yapılandır..."
+      },
+      "config_title": "Matematiksel İfadeyi Yapılandır",
+      "expression": "İfade (x, y, np.* kullanın):",
+      "info": "Değişkenler: x (zaman ekseni), y (sinyal değerleri).\nFonksiyonlar: np.sin, np.cos, np.exp, np.sqrt vb.",
+      "examples": "Örnekler...",
+      "help_title": "Yardım - Matematiksel İfade",
+      "help_html": "<h3>🧮 Matematiksel İfade Düğümü</h3><p>Giriş değişkenleri <code>x</code> ve <code>y</code> üzerinde isteğe bağlı bir matematiksel ifadeyi değerlendirir.</p><h4>📥 Giriş</h4><p><code>input</code> → <code>(x, y)</code> demeti veya 1B dizi.</p><h4>📤 Çıkış</h4><p><code>output</code> → ifadenin sonucu <code>(x, y_new)</code> olarak.</p><h4>✏️ İfade sözdizimi</h4><ul><li><code>x</code> (zaman ekseni) ve <code>y</code> (sinyal değerleri) değişkenlerini dizi olarak kullanın.</li><li>Herhangi bir <code>np.*</code> fonksiyonunu da kullanabilirsiniz (örn. <code>np.sin(y)</code>, <code>np.exp(-x)</code>).</li><li>Örnekler: <code>y * 2</code>, <code>np.sin(2*np.pi*x)</code>, <code>np.sqrt(x**2 + y**2)</code>.</li></ul><h4>⚠️ Not</h4><p>İfade, <code>numexpr</code> (mevcutsa) veya kısıtlı <code>eval</code> kullanılarak güvenli bir şekilde değerlendirilir.</p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+    },
+    "spectrogram": {
+      "title": "Spektrogram",
+      "tooltip": "STFT spektrogramını hesapla",
+      "ports": {
+        "input": "Giriş",
+        "spectrogram": "Spektrogram",
+        "frequencies": "Frekanslar",
+        "times": "Zamanlar"
+      },
+      "status": {
+        "no_data": "Veri yok",
+        "ready": "Hazır"
+      },
+      "menu": {
+        "configure": "Yapılandır...",
+        "show_in_plot": "Grafikte göster"
+      },
+      "config_title": "Spektrogramı Yapılandır",
+      "nperseg": "Segment başına örnek:",
+      "noverlap": "Örtüşme:",
+      "window": "Pencere:",
+      "scaling": "Ölçekleme:",
+      "mode": "Mod:",
+      "help_title": "Yardım - Spektrogram",
+      "help_html": "<h3>🌊 Spektrogram Düğümü</h3><p><b>Kısa Zamanlı Fourier Dönüşümü (STFT)</b> spektrogramını hesaplar.</p><h4>📥 Giriş</h4><p><code>input</code> → (x, y) veya 1B dizi.</p><h4>📤 Çıkışlar</h4><ul><li><b>Spektrogram</b> → 2B dizi (frekanslar, zamanlar, büyüklükler) – <i>tıklayarak çizilemez</i>.</li><li><b>Frekanslar</b> → frekans kutularının 1B dizisi (diğer düğümlere bağlanabilir).</li><li><b>Zamanlar</b> → segment zamanlarının 1B dizisi.</li></ul><h4>🖱️ Etkileşim</h4><p>Düğüme <b>tıklamak</b> spektrogramı <b>göstermez</b>. <code>frequencies</code> veya <code>times</code>'ı diğer işleme düğümlerine bağlayın veya verileri dışa aktarın.</p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+    },
+    "spectrogram_viewer": {
+        "title": "Spektrogram Görüntüleyici",
+        "tooltip": "Spektrogram verilerini alır ve görüntüler (frekanslar, zamanlar, matris)",
+        "config_title": "Spektrogram Görüntüleyiciyi Yapılandır",
+        "ports": {
+            "frequencies": "Frekanslar",
+            "times": "Zamanlar",
+            "spectrogram": "Spektrogram"
+        },
+        "status": {
+            "no_data": "Veri yok"
+        },
+        "menu": {
+            "view_spectrogram": "Spektrogramı görüntüle",
+            "configure": "Yapılandır..."
+        },
+        "window_title": "Spektrogram Görüntüleyici",
+        "time_axis": "Zaman (s)",
+        "freq_axis": "Frekans (Hz)",
+        "log_scale": "Log ölçek",
+        "colormap": "Renk haritası:",
+        "auto_contrast": "Otomatik kontrast",
+        "contrast_min": "Kontrast min:",
+        "contrast_max": "Kontrast maks:",
+        "export": "Dışa Aktar...",
+        "export_title": "Spektrogramı dışa aktar",
+        "no_data_title": "Veri yok",
+        "no_data_message": "Eksik veri. Önce tüm portları bağlayın ve akışı çalıştırın.",
+        "help_title": "Yardım - Spektrogram Görüntüleyici",
+        "help_html": "<h3>📊 Spektrogram Görüntüleyici Düğümü</h3><p>Bir <b>Spektrogram</b> düğümünün üç çıkışını alır ve bunları 2B ısı haritası olarak görüntüler.</p><h4>📥 Girişler</h4><ul><li><b>frequencies</b> → 1B frekans vektörü</li><li><b>times</b> → segment zamanlarının 1B vektörü</li><li><b>spectrogram</b> → büyüklüklerin 2B matrisi (frekanslar × zamanlar)</li></ul><h4>⚙️ Yapılandırma</h4><p>Gerçek zamanlı olarak ayarlamak için <b>yan paneli</b> kullanın:</p><ul><li><b>Log ölçek</b> — düşük genlikli ayrıntıları geliştirir.</li><li><b>Renk haritası</b> — viridis, inferno, plasma, jet vb.</li><li><b>Kontrast</b> — otomatik veya manuel (min / maks).</li></ul><h4>🖱️ Etkileşim</h4><p>Düğüme <b>sağ tıklayın</b> ve özel bir pencere açmak için <b>\"Spektrogramı görüntüle\"</b> seçin.</p><p>Görüntüleyici içinde geçerli görünümü PNG resmi olarak <b>dışa aktarabilirsiniz</b>.</p><p><i>Düğüme tıklamak ana grafikte hiçbir şey göstermez.</i></p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (görüntüle, yapılandır, sil).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+    },
+    "graph_exporter": {
+        "title": "Grafik Dışa Aktarıcı",
+        "tooltip": "Profesyonel kalitede grafikleri dışa aktarır",
+        "ports": {
+            "signal_in": "Sinyal girişi",
+            "file_out": "Çıkış dosyası"
+        },
+        "status": {
+            "ready": "Hazır",
+            "exported": "Dışa aktarıldı"
+        },
+        "menu": {
+            "show_graph": "Grafiği göster",
+            "configure": "Grafiği yapılandır",
+            "configure_subplot": "Alt grafikleri yapılandır",
+            "export": "Grafiği dışa aktar",
+            "subplots": "Alt grafikler",
+            "use_subplots": "Alt grafikleri kullan",
+            "n_subplots": "Alt grafik sayısı",
+            "subplot_layout": "Yerleşim"
+        },
+        "config": {
+            "display_mode": "Görüntüleme modu",
+            "use_subplots": "Alt grafikleri kullan (maks. 8)",
+            "n_subplots": "Alt grafik sayısı:",
+            "subplot_layout": "Yerleşim:",
+            "export_format": "Dışa aktarma biçimi"
+        },
+        "no_data_title": "Veri yok",
+        "no_data_msg": "Bir giriş sinyali bağlayın ve grafik oluşturmak için akışı çalıştırın.",
+        "export_dialog_title": "Grafiği kaydet",
+        "export_error_title": "Dışa aktarma hatası",
+        "config_title": "Grafik Dışa Aktarıcıyı Yapılandır",
+        "help_title": "Yardım - Grafik Dışa Aktarıcı",
+        "help_html": "<h3>📊 Grafik Dışa Aktarıcı</h3><p>Bir sinyal alır ve yüksek kaliteli bir görüntü olarak dışa aktarır.</p><h4>📥 Giriş</h4><p><code>signal_in</code> → <code>(x, y)</code> demeti veya 1B dizi.</p><h4>📤 Çıkış</h4><p><code>file_out</code> → oluşturulan dosyanın yolu.</p><h4>⚙️ Yapılandırma</h4><p>Stil, eksenler, ek açıklamalar vb. ayarlamak için sağ çift tıkla → <b>Grafiği yapılandır</b>.</p><hr><h4>🖱️ Etkileşim</h4><ul><li><b>Sağ tık</b> → bağlam menüsü.</li><li><b>Grafiği göster</b> → geçerli ayarlarla önizleme.</i></p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "Giriş düğümü silinemez."
+  },
+  "workspace": {
+    "headers": {
+      "node": "Düğüm",
+      "type": "Tür",
+      "shape": "Boyut",
+      "x_range_fs": "X: aralık / fs",
+      "dx_t": "dx / T",
+      "y_range": "Y: [min, maks]",
+      "preview_y": "Y Önizleme"
+    }
+  },
+  "plot": {
+    "time_label": "Zaman (s)",
+    "voltage_label": "Gerilim (V)",
+    "title": "Sinyal",
+    "scale_label": "Ölçek:",
+    "scale_linear": "Doğrusal",
+    "scale_log": "Logaritmik",
+    "markers": "İşaretleyiciler",
+    "cursors": "İmleçler A/B",
+    "peak": "Tepe",
+    "peak_tooltip": "Maksimum tepeyi işaretle",
+    "reset_zoom": "Yakınlaştırmayı sıfırla",
+    "amplitude": "Genlik",
+    "time": "Zaman (s)",
+    "frequency": "Frekans (Hz)",
+    "view_mode": "Görünüm",
+    "view_2d": "2B",
+    "view_surface": "3B Yüzey",
+    "view_waterfall": "3B Şelale",
+    "view_volume": "3B Hacim",
+    "view_slice": "3B Dilim",
+    "slice_label": "Dilim",
+    "reset_camera": "Kamerayı Sıfırla",
+    "axis_scale": "Ölçek",
+    "fps": "FPS",
+    "loop": "Döngü",
+    "colormap": "Renk Haritası"
+  },
+  "shortcuts": {
+    "delete": "Düğümü sil",
+    "delete_desc": "Seçili düğümleri ve bağlantılarını sil.",
+    "duplicate": "Düğümü çoğalt",
+    "duplicate_desc": "Seçili düğümleri +50px kaydırmayla çoğalt.",
+    "select_all": "Tümünü seç",
+    "select_all_desc": "Sahnedeki tüm düğümleri seç.",
+    "cancel": "Eylemi iptal et",
+    "cancel_desc": "Devam eden bağlantıyı iptal et veya tümünün seçimini kaldır.",
+    "copy": "Kopyala",
+    "copy_desc": "Seçili düğümleri dahili panoya kopyala.",
+    "cut": "Kes",
+    "cut_desc": "Seçili düğümleri kes.",
+    "paste": "Yapıştır",
+    "paste_desc": "Panodaki düğümleri yapıştır.",
+    "undo": "Geri al",
+    "undo_desc": "Son eylemi geri al.",
+    "redo": "Yinele",
+    "redo_desc": "Geri alınan eylemi yinele.",
+    "run": "Akışı çalıştır",
+    "run_desc": "Tam akışı yürüt.",
+    "auto_layout": "Otomatik yerleşim",
+    "auto_layout_desc": "Düğümleri otomatik olarak sütunlara yerleştir.",
+    "center_view": "Görünümü ortala",
+    "center_view_desc": "Görünümü seçime veya tüm sahneye ortala.",
+    "zoom_reset": "Yakınlaştırma %100",
+    "zoom_reset_desc": "Yakınlaştırmayı %100'e sıfırla.",
+    "zoom_in": "Yakınlaştır",
+    "zoom_in_desc": "Yakınlaştır.",
+    "zoom_out": "Uzaklaştır",
+    "zoom_out_desc": "Uzaklaştır.",
+    "toggle_theme": "Temayı değiştir",
+    "toggle_theme_desc": "Koyu, açık ve yüksek kontrast temalar arasında geçiş yap.",
+    "toggle_grid": "Izgarayı değiştir",
+    "toggle_grid_desc": "Izgarayı göster veya gizle.",
+    "lock_node": "Düğümü kilitle",
+    "lock_node_desc": "Seçili düğümün hareketini kilitle/aç.",
+    "help": "Bağlamsal yardım",
+    "help_desc": "İmlecin altındaki düğümün ipucunu göster.",
+    "new_file": "Yeni",
+    "new_file_desc": "Yeni bir diyagram oluştur",
+    "open_file": "Aç",
+    "open_file_desc": "Bir diyagram dosyası aç",
+    "save_file": "Kaydet",
+    "save_file_desc": "Geçerli diyagramı kaydet",
+    "save_file_as": "Farklı kaydet…",
+    "save_file_as_desc": "Diyagramı yeni bir adla kaydet"
+  },
+  "dialogs": {
+    "common": {
+      "close": "Kapat",
+      "cancel": "İptal",
+      "ok": "Tamam",
+      "emer_wind": "Program Seç",
+      "operation_history": "İşlemler",
+      "confirm": "Hiçbir değişiklik yapılmadı.",
+      "overwrite": "Üzerine yaz?",
+      "error": "Hata"
+    },
+    "font_size": {
+        "title": "Yazı Tipi Boyutu",
+        "label": "Boyut (pt):"
+    },
+    "firewall": {
+        "title": "Bağlantı Engellendi",
+        "text": "Osiloskopa bağlanılamadı.\nWindows güvenlik duvarı iletişimi engelliyor olabilir.",
+        "informative": "Bunu çözmek için 'FloWorks.exe'ye Windows güvenlik duvarı üzerinden izin verin.\n\nBu arada simülasyon modunu kullanmak ister misiniz?"
+    },
+    "capture_error": {
+        "title": "Yakalama Hatası",
+        "text": "Yakalama sırasında bir hata oluştu:\n{error}\n\nLütfen cihazın açık olduğunu ve güvenlik duvarının bağlantıya izin verdiğini doğrulayın."
+    },
+    "script_editor": {
+      "title": "Betik Düzenleyici",
+      "header": "Python Betiği  |  değişkenler: x, y, param (TriggerNode'dan), np, scipy, sympy",
+      "test_button": "Test et (kaydetmeden)",
+      "save_button": "Kaydet ve kapat",
+      "tool_tip": "Betik Düğümü\nBilgi için çift tıkla",
+      "templates": "Şablonlar:",
+      "save_template": "Şablon kaydet…",
+      "import": "Betik aç…",
+      "export": "Betiği dışa aktar…",
+      "unsaved_warning": "Hiçbir değişiklik yapılmadı. Şablonu yükleyip kaybetmek istiyor musunuz?",
+      "save_template_title": "Şablon olarak kaydet",
+      "save_template_prompt": "Şablonun adı (uzantı olmadan):",
+      "overwrite_template": "Şablon zaten var. Üzerine yazmak istiyor musunuz?",
+      "import_title": "Python betiği aç",
+      "export_title": "Python betiğini dışa aktar",
+      "help_tooltip": "Hızlı yardım (F1)",
+      "help_title": "Hızlı yardım",
+      "browse": "Gözat…",
+      "python_path_placeholder": "Dahili yorumlayıcıyı kullanmak için boş bırakın. Örn.: python3",
+      "quick_help_html": "<h2>Python Betik Düzenleyici</h2><p>Bu düzenleyici, akış sinyalleri üzerinde Python kodu çalıştırır. Betik veri alır ve sonuçları döndürebilir, sinyalleri değiştirebilir veya birden fazla çıkış üretebilir.</p><h3>Kullanılabilir değişkenler</h3><ul><li><b>x</b> – NumPy dizisi: X ekseni (zaman, frekans...).</li><li><b>y</b> – NumPy dizisi: mevcut sinyal değerleri.</li><li><b>param</b> – yineleme indeksi (TriggerNode'dan) veya <code>None</code>.</li><li><b>inputs</b> – tüm girişleri içeren sözlük (<code>@input</code> ile kullanışlı).</li><li><b>persist</b> – çalıştırmalar arasında değerleri saklayan sözlük.</li></ul><h3>İçe aktarılan kütüphaneler</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>Özel direktifler</h3><ul><li><code># @param NAME : type = value</code> – yan panelde ayarlanabilir bir parametre oluşturur (koda dokunmadan).</li><li><code># @input port_name</code> – ek bir giriş portu ekler (sol taraf).</li><li><code># @output port_name</code> – ek bir çıkış portu ekler (sağ taraf).</li></ul><p><code>@input</code>/<code>@output</code> ile betik <code>inputs</code> kullanmalı ve çıkışları içeren bir sözlük döndürmelidir. Örnek:</p><pre># @input channel_A<br># @output result<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"channel_A\"][1]<br>return {\"out\": (x, y), \"result\": (x, y_a)}</pre><h3>Kalıcılık</h3><p><code>persist</code> sözlüğü, program açık olduğu sürece çalıştırmalar arasında verileri saklar. Örnek:</p><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1<br>return (x, y + persist[\"counter\"] * 0.1)</pre><h3>Şablon yönetimi</h3><ul><li>Önceden tanımlanmış bir betiği yüklemek için açılır listeden bir şablon seçin.</li><li><b>Şablon kaydet…</b> – Geçerli betiği şablonlar klasöründe bir <code>.py</code> dosyası olarak saklar.</li><li><b>Betik aç…</b> / <b>Betiği dışa aktar…</b> – Betikleri harici dosyalarla değiştirin.</li></ul><h3>İpuçları</h3><ul><li>Akışı bağlamadan önce betiği simüle edilmiş verilerle kontrol etmek için <b>Test</b> kullanın.</li><li>Hatalar alt konsolda gösterilir ve hatalı satır işaretlenir.</li><li>Bir direktifi yorum olarak (<code>## @param ...</code>) geçici olarak devre dışı bırakabilirsiniz.</li></ul>"
+    },
+    "trigger_config": {
+      "title": "Tetikleyici Düğümünü Yapılandır",
+      "group": "Yineleme parametreleri",
+      "n_iter": "Yinelemeler (N):",
+      "param_start": "Başlangıç parametresi:",
+      "param_end": "Bitiş parametresi:",
+      "accumulate": "Biriktirme:",
+      "trig_tooltips": "TriggerNode\nBilgi için çift tıkla",
+      "info": "Geçerli parametre\nloop_out'ta üçüncü öğe olarak kullanılabilir olacak: (x, y, param)",
+      "accumulate_options":{
+        "stack": "Yığın",
+        "average": "Ortalama",
+        "max": "Maks",
+        "min": "Min"
+      }
+    },
+    "simulation_config": {
+      "title": "Simülasyon Yapılandırması",
+      "timebase": "Zaman tabanı (ms/böl)",
+      "voltage_range": "Gerilim Aralığı (V)",
+      "trigger_level": "Tetikleme Seviyesi (V)",
+      "trigger_slope": "Tetikleme Eğimi",
+      "sample_rate": "Örnekleme Hızı (kHz)"
+    },
+    "file": {
+      "save_as": "Farklı kaydet…",
+      "unsaved_title": "Kaydedilmemiş değişiklikler",
+      "unsaved_message": "Kaydedilmemiş değişiklikler var. Devam etmeden önce kaydetmek istiyor musunuz?"
+    }
+  },
+  "info_dialog": {
+    "title": "Bilgi - FloWorks",
+    "tab_about": "Hakkında",
+    "tab_shortcuts": "Klavye Kısayolları",
+    "tab_tutorials": "Eğitimler",
+    "close": "Kapat",
+    "about_title": "FloWorks",
+    "version": "Sürüm 0.4.5",
+    "description": "<p>FloWorks, veri akışına dayalı görsel ve etkileşimli bir sinyal işleme ortamıdır. Matematiksel işlemleri, filtreleri, dönüşümleri, sinyal üreteçlerini ve daha fazlasını temsil eden düğümleri birbirine bağlayarak işleme zincirleri oluşturmanıza, çalıştırmanıza ve analiz etmenize olanak tanır. Her şey (x, y) çiftlerine dayanır; burada x eksendir (zaman veya frekans) ve y sinyaldir.</p><p>Öğrencilere, araştırmacılara, mühendislere ve sıfırdan kod yazmadan sistemleri denemek, öğrenmek veya prototip oluşturmak isteyen sinyal işleme ile ilgilenen herkese yöneliktir.</p><p><b>Misyon:</b> Deneysel iş akışını tek bir görsel, açık ve erişilebilir araçta merkezileştirmek; böylece herkes — öğrenci, araştırmacı veya mühendis — yazılım öğrenmeye değil, deney yapmaya odaklanabilir.</p><p><b>Vizyon:</b> Deneysel bir fikir ile uygulanması arasındaki bariyerin yalnızca deneycinin merakı olduğu bir dünya. Floworks, lisans duvarları veya araç parçalanması olmadan, küresel bilimsel ve teknik topluluk tarafından ve onun için oluşturulmuş, sinyal deneyleri için referans platform olmayı hedefliyor.</p><p><b>İlkeler:</b> Özgür yazılım (MIT Lisansı) – bilgi özgür olmalıdır. Genişletilebilirlik – herkes Python ile yeni düğümler oluşturabilir. Anında görselleştirme – her adım grafiksel olarak incelenebilir.</p>",
+    "credits": "<h3>Teşekkürler ve Lisanslar</h3><p>FloWorks aşağıdaki açık kaynak projeleri kullanır:</p><ul><li><b>PySide6 / Qt</b> – Grafik kullanıcı arayüzü. <b>GNU LGPLv3</b> altında lisanslanmıştır. © The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – BSD / PSF Lisansları.</li><li><b>PyQtGraph, Pillow</b> – MIT / HPND Lisansı.</li><li><b>OpenCV</b> – Apache 2.0 Lisansı.</li><li><b>PyTorch</b> – BSD Lisansı (Meta Platforms, Inc.).</li><li><b>Pygments</b> – BSD Lisansı.</li></ul><p>Bu uygulama, PySide6'yı (dinamik olarak bağlanmış) <b>GNU LGPLv3</b> koşulları altında kullanır.</p><p>Kullanıcılar PySide6 dinamik kütüphanelerini değiştirme veya değiştirme hakkına sahiptir.</p><p>Tam lisans <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a> adresinde mevcuttur.</p><p><b>FloWorks Lisansı:</b> MIT Lisansı.</p>",
+    "shortcut_header_keys": "Kısayol",
+    "shortcut_header_action": "Eylem",
+    "shortcut_header_context": "Bağlam",
+    "shortcuts_note": "Not: Kısayollar, odak başka bir widget'ta olsa bile global olarak çalışır.",
+    "tutorials_placeholder": "İşte öğrenme sırasına göre bazı örnekler ve eğitimler:",
+    "tutorial": "Eğitim",
+    "example_fft": "Örneği aç: Sinüs dalgasının FFT'si",
+    "example_filter": "Örneği aç: Chirp dalgasının bant geçiren filtresi",
+    "example_delay": "Örneği aç: Sinüs dalgasının gecikmesi",
+    "example_window": "Örneği aç: Chirp dalgasının penceresi",
+    "example_convolution": "Örneği aç: Kare dalganın konvolüsyonu",
+    "example_conrrelation": "Örneği aç: Sinüs ve kare dalga arasındaki korelasyon",
+    "example_math_expression": "Örneği aç: Sinüs dalgası üzerinde matematiksel ifade",
+    "example_spectrogram": "Örneği aç: Chirp dalgasının spektrogramı",
+    "example_compound": "Örneği aç: Farklı düğümlerin dizi bileşimi",
+    "example_title": "Örnek",
+    "example_message": "'{name}' örneği gelecek bir sürümde kullanılabilecektir.",
+    "shortcut_header_description": "Açıklama",
+    "view_logs": "Günlük konsolunu görüntüle",
+    "log_viewer_title": "Günlük Görüntüleyici (error.log)",
+    "refresh": "Yenile",
+    "clear": "Temizle",
+    "no_logs_available": "Şu anda günlük bulunamadı.",
+    "error_reading_logs": "Günlük dosyası okunurken hata oluştu.",
+    "confirm_clear": "Temizlemeyi onayla",
+    "confirm_clear_msg": "Günlük dosyasını boşaltmak istediğinizden emin misiniz? Bu işlem geri alınamaz."
+  },
+    "lcr_controller": {
+    "title": "LCR Denetleyici",
+    "connected": "Bağlı",
+    "disconnected": "Bağlantı kesildi",
+    "measure_var": "Ölçülecek değişken:",
+    "freq_sweep": "Frekans süpürmesi",
+    "freq_start": "Başlangıç (Hz):",
+    "freq_end": "Bitiş (Hz):",
+    "freq_step": "Adım (Hz):",
+    "level": "Seviye (V):",
+    "speed": "Hız:",
+    "average": "Ortalama:",
+    "rsou": "RSOU (Ω):",
+    "range": "Aralık:",
+    "bias_volt": "DC Ön Gerilim (V):",
+    "bias_on": "BIAS ON",
+    "bias_off": "BIAS OFF",
+    "apply": "Ayarları uygula",
+    "error_title": "Hata",
+    "connection_error": "LCR'ye bağlanılamadı. Bağlantıyı ve adresi kontrol edin.",
+    "success_title": "Başarılı",
+    "success_message": "Ayarlar başarıyla uygulandı.",
+    "apply_error": "Ayarlar uygulanamadı: {error}"
+  },
+    "osc_controller": {
+    "title": "Osiloskop Yakalama",
+    "window_title": "Osiloskop Denetleyici",
+    "channel": "Kanal Seçin:",
+    "acq_mode": "Alım Modu:",
+    "mem_size": "Bellek Boyutu:",
+    "invert_off": "Sinyali Ters Çevir",
+    "invert_on": "Sinyal Ters Çevrildi",
+    "tdiv": "Yatay Bölme:",
+    "vdiv": "Dikey Bölme (V):",
+    "hpos": "Yatay Konum (s):",
+    "offset": "Dikey Konum (V):",
+    "trig_level": "Tetikleme Seviyesi (V):",
+    "v_range":"Gerilim Aralığı (V):",
+    "sd_trg": "Yan tetikleme",
+    "fs": "Örnekleme Hızı (kHz):"
+  },
+    "gen_controller": {
+    "title": "Gelişmiş Denetleyici - Sinyal Üreteci",
+    "apply_current": "Geçerli yapılandırmayı uygula",
+    "channel": "Kanal seçin:",
+    "waveform_btn": "Dalga Biçimi Üret",
+    "chirp_btn": "Chirp Üret",
+    "modulation_on": "Modülasyonu Aç",
+    "modulation_off": "Modülasyonu Durdur",
+    "sweep_on": "Süpürmeyi Aç",
+    "sweep_off": "Süpürmeyi Durdur",
+    "burst_on": "Burst Aç",
+    "burst_off": "Burst Durdur",
+    "ch1_on": "Kanal 1'i Aç",
+    "ch1_off": "Kanal 1'i Kapat",
+    "ch2_on": "Kanal 2'yi Aç",
+    "ch2_off": "Kanal 2'yi Kapat",
+    "load": "Çıkış seçin:",
+    "polarity": "Çıkış polaritesi:",
+    "modify_output": "Çıkışı değiştir",
+    "tab_general": "Genel",
+    "tab_waveform": "Dalga Biçimi",
+    "tab_chirp": "Chirp",
+    "tab_modulation": "Modülasyon",
+    "tab_sweep": "Süpürme",
+    "tab_burst": "Burst",
+    "sim_title": "Simülasyon",
+    "no_hardware": "Donanım bağlı değil",
+    "sent_title": "Gönderildi",
+    "waveform_sent": "Dalga biçimi gönderildi",
+    "chirp_sent": "Chirp gönderildi",
+    "success_title": "Başarılı",
+    "output_modified": "Çıkış {channel}: yük {load}, polarite {pol}",
+    "signal_type": "Sinyal türü:",
+    "frequency": "Frekans (Hz):",
+    "amplitude": "Genlik (Vpp):",
+    "offset": "Ofset (V):",
+    "phase": "Faz (derece):",
+    "duty_cycle": "Görev döngüsü (%):",
+    "symmetry": "Simetri (%):",
+    "pulse_width": "Darbe genişliği (s):",
+    "rise_edge": "Yükselen kenar (s):",
+    "fall_edge": "Düşen kenar (s):",
+    "delay_edge": "Gecikme kenarı (s):",
+    "stdev": "Standart sapma (V):",
+    "mean": "Ortalama (V):",
+    "chirp_f0": "Başlangıç frekansı (Hz):",
+    "chirp_f1": "Bitiş frekansı (Hz):",
+    "chirp_fs": "Fs (Sa/s):",
+    "chirp_duration": "Süre (s):",
+    "chirp_amp": "Genlik (V):",
+    "chirp_offset": "Ofset (V):",
+    "chirp_phase": "Faz (°):",
+    "chirp_name": "Sinyal adı:",
+    "chirp_method": "Yöntem:",
+    "chirp_mode": "Arb Modu:",
+    "mod_type": "Modülasyon türü:",
+    "mod_freq": "Modülasyon frekansı (Hz):",
+    "mod_dev": "Sapma (Hz,°,s):",
+    "mod_hop": "Atlama Frekansı (Hz):",
+    "mod_shape": "Dalga biçimi:",
+    "mod_depth": "Derinlik (%):",
+    "sweep_time": "Süre (s):",
+    "sweep_stop": "Bitiş frekansı (Hz):",
+    "sweep_start": "Başlangıç frekansı (Hz):",
+    "sweep_trig_src": "Tetik kaynağı:",
+    "sweep_trig_out": "Tetik çıkışı:",
+    "sweep_mode": "Tür:",
+    "sweep_dir": "Yön:",
+    "burst_period": "Periyot (s):",
+    "burst_cycles": "Döngüler:",
+    "burst_phase": "Faz (derece):",
+    "burst_gate": "Hedef:",
+    "burst_trig_src": "Tetik kaynağı:",
+    "burst_polarity": "Polarite:",
+    "waveform_applied": "Dalga biçimi uygulandı",
+    "chirp_applied": "Chirp gönderildi",
+    "modulation_applied": "Modülasyon yapılandırıldı",
+    "sweep_applied": "Süpürme yapılandırıldı",
+    "burst_applied": "Burst yapılandırıldı"
+  },
+    "simulation_config_dialog": {
+    "title": "Simülasyon Yapılandırması - Üreteç",
+    "waveform": "Dalga biçimi:",
+    "basic_params": "Temel Parametreler",
+    "frequency": "Frekans (Hz):",
+    "amplitude": "Genlik (Vpp):",
+    "offset": "Ofset (V):",
+    "phase": "Faz (derece):",
+    "duty_cycle": "Görev döngüsü (%):",
+    "symmetry": "Simetri (%):",
+    "direction": "Yön:",
+    "up": "Yukarı",
+    "down": "Aşağı",
+    "stdev": "Standart sapma:",
+    "mean": "Ortalama:",
+    "lobes": "Lob sayısı:",
+    "sigma": "Sigma:",
+    "mu": "Mu:",
+    "tau": "Tau (s):",
+    "exp_type": "Tür:",
+    "rise": "Yükseliş",
+    "fall": "Düşüş",
+    "f0": "Başlangıç frekansı (Hz):",
+    "f1": "Bitiş frekansı (Hz):",
+    "chirp_method": "Yöntem:",
+    "linear": "Doğrusal",
+    "logarithmic": "Logaritmik",
+    "preview": "Önizleme",
+    "apply": "Uygula",
+    "close": "Kapat",
+    "time_label": "Zaman (s)",
+    "amplitude_label": "Genlik (V)"
+  },
+  "self": {
+    "language_changed": "Dil şu şekilde değiştirildi: {name} ({code})",
+    "default": "FloWorks  |  Kaydırma: yakınlaştır  |  Orta tıklama: kaydır  |  Düğüme çift tıklama: bilgi |  Düğüme sağ tıklama: seçenekler",
+    "workspace": "Çalışma Alanı",
+    "canvas": "Tuval",
+    "no_nodes_selected": "Düğüm seçilmedi",
+    "node_config_placeholder": "Yapılandırmasını görüntülemek için\n tuval üzerinde bir düğüm seçin"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "Görsel ve etkileşimli sanal sinyal işleme laboratuvarı",
+    "build": "Karmaşık kodu unutun. Blokları sürükleyin, yapboz parçaları gibi bağlayın ve veri akışını temsil eden çizgilerle düğümleri birleştirerek iş akışınızı oluşturun.",
+    "keyrule": "Her şey sinyallerle ilgilidir: kod satırlarını değil, blokları bağlayın.",
+    "nodework": "Düğüm Mimarisi:\n[Giriş Verisi] → [Dahili İşleme] → [Çıkış Verisi]",
+    "execute": "Çalıştır'a tıklayın ve fikirlerinizin gerçek zamanlı grafikler ve verilerle canlandığını izleyin. Daha ileri gitmek ister misiniz? Gerçek laboratuvar cihazlarını bağlayın veya özel işleme için Python betik düğümlerini kullanarak kendi kurallarınızı ekleyin.",
+    "expand": "Teknik belgelerde kullanıma hazır yüksek kaliteli grafikleri dışa aktarın. Çalışmanızı \".sflow\" dosyalarına kaydedin ve tam bıraktığınız gibi geri alın.",
+    "actions_title": "Neler yapabilirsiniz?",
+    "actions": "* İş akışları oluşturarak, düğümleri sürükleyip bağlayarak fikirleri test edin.\n* Gerçek ekipmanı kontrol edin veya sinyalleri simüle edin.\n* Sonuçları etkileşimli grafiklerde anında görüntüleyin.",
+    "checkbox": "Bir daha gösterme",
+    "start": "Başla"
+  },
+  "scene": {
+    "empty_hint": "Araç çubuğundan düğüm seçin",
+    "load_example_hint": "\"Bilgi\" → \"Eğitimler\" menüsünden bir örnek yükleyebilirsiniz"
+  },
+  "examples": {
+  "general": {
+    "title": "Örnekler",
+    "welcome": "FloWorks'e hoş geldiniz! \nEn yaygın işlemlerde ustalaşmak için bu mini eğitimleri izleyin.",
+    "scroll": "Tuvali kaydırmak için kaydırın veya fare tekerleğini basılı tutun.",
+    "help": "Eylemlerini yapılandırmak için bir düğüme sağ tıklayın."
+  },
+  "tutorial": {
+    "message": "Bu, görsel bir sinyal akış diyagramı uygulamasıdır. Başlayalım!",
+    "step1": "Adım 1: Sinyal Kaynağı Ekle",
+    "step2": "Araç çubuğundan (üst) bir sinyal kaynağı düğümü ekleyin. \nDüğüm, tuvalde en son tıkladığınız yere yerleştirilecektir. \nTuvalde yakın bir yere tıklayın, ardından üst çubukta şuna tıklayın:",
+    "step3": "Adım 2: Düğümleri Bağla",
+    "step4": "Bir düğümün çıkış portuna (soldaki) CTRL+tıklayın ve bir bağlantı oluşturmak için diğer düğümün giriş portuna (sağdaki) tıklayın.",
+    "step5": "Bağlantılar soldan sağa doğru akar ve düğümler arasında sinyal verisi taşır.",
+    "step6": "Adım 3: Akışı Yürüt",
+    "step7": "Sinyal akışını yürütmek ve sonuçları gerçek zamanlı görmek için F5'e basın.",
+    "step8": "Çıkış değerlerini görmek için tek tek düğümlere de tıklayabilirsiniz.",
+    "step9": "Adım 4: Sonuçları Görüntüle",
+    "step10": "Sinyali grafik widget'ında görselleştirmek için herhangi bir düğüme tıklayın.",
+    "step11": "Akışı yürüttüğünüzde grafik otomatik olarak güncellenir."
+  },
+  "shortcuts": {
+    "title": "Klavye kısayolları",
+    "execute": "F5 – Akışı yürüt",
+    "save": "Ctrl+S – Projeyi kaydet (.sflow)",
+    "load": "Ctrl+O – Projeyi aç",
+    "delete": "Delete / Backspace – Seçili öğeleri sil",
+    "copy_paste": "Ctrl+C / Ctrl+V – Düğümleri veya notları kopyala ve yapıştır",
+    "undo_redo": "Ctrl+Z / Ctrl+Y – Geri al / Yinele",
+    "auto_layout": "Ctrl+Shift+L – Diyagramı otomatik yerleştir",
+    "zoom": "Fare tekerleği – Yakınlaştır, görünümü sürüklemek için basılı tutun"
+  },
+  "fft": {
+    "title": "FFT Analizi",
+    "description": "Bir sinyalin frekans spektrumunu hesaplar.",
+    "steps": {
+      "step1": "Bir Üreteç düğümü ekleyin ve örneğin 1 kHz kare dalga seçin.",
+      "step2": "Araç çubuğunun 'İşleme' menüsünde FFT düğümünü seçin. Üretecin çıkışına bağlayın (CTRL+tık çıkış → CTRL+tık FFT girişi).",
+      "step3": "F5'e basın. FFT düğümü sinyali frekans alanına dönüştürecektir.",
+      "step4": "Spektrumu görmek için FFT düğümüne tıklayın. 1 kHz'in tek katlarında tepeler görünecektir.",
+      "step5": "(İsteğe bağlı) İki spektrumu karşılaştırmak için FFT çıkışını bir Aritmetik düğüme (SumNode) bağlayın; sistem otomatik olarak frekans çözünürlüğünü algılar ve uyumsuzluk konusunda sizi uyarır.",
+      "step6": "Büyüklük ve Faz arasında görüntülemeyi seçmek için FFT düğümüne sağ tıklayın."
+    }
+  },
+  "filter": {
+    "title": "Sinyal Filtreleme",
+    "description": "Alçak geçiren, yüksek geçiren veya bant geçiren filtre uygular.",
+    "steps": "1. Bir chirp sinyali ile Üreteç ekleyin.\n2. 'İşleme' menüsünden bir Filtre düğümü ekleyin. Üreteç çıkışını filtre girişine bağlayın.\n3. Filtre düğümüne sağ tıklayın ve 'Yapılandır…' seçin, ardından türü (alçak geçiren, yüksek geçiren vb.) ve kesim frekansını seçin.\n4. Yürütün (F5) ve ilgili bağlantılara tıklayarak hem orijinal hem de filtrelenmiş sinyali görselleştirin.\n5. Yan yana karşılaştırmak isterseniz, FFT düğümleri ekleyip sinyali bölebilirsiniz."
+  },
+  "delay": {
+    "title": "Gecikme Hattı",
+    "description": "Bir sinyali zaman içinde kaydırır (korelasyonlar veya efektler için kullanışlıdır).",
+    "steps": "1. Kısa bir sinyal kullanan bir üreteçle başlayın.\n2. 'İşleme'den bir Gecikme düğümü ekleyin. Üreteç çıkışını gecikme girişine bağlayın.\n3. Gecikme düğümü yapılandırma iletişim kutusunda örnek sayısını veya gecikme süresini belirtin.\n4. Akışı yürütün (F5) ve Gecikme düğümü çıkışına tıklayın. Aynı sinyalin sağa kaydırıldığını göreceksiniz.\n5. Tam gecikmeyi ölçmek için imleçleri (alt panel) etkinleştirin ve orijinal ile geciktirilmiş sinyal arasında karşılaştırın."
+  },
+  "window": {
+    "title": "FFT Öncesi Pencereleme",
+    "description": "Spektral sızıntıyı azaltmak için FFT öncesi bir pencere (Hanning, Hamming vb.) uygular.",
+    "steps": "1. Temel bir akış kurun: Üreteç → Pencere → FFT.\n2. Pencere düğümüne çift tıklayın ve türü seçin (Hanning iyi bir başlangıçtır).\n3. Pencere çıkışını FFT girişine bağlayın.\n4. Yürütün (F5). Spektrumu pencereleme ile ve pencerelemesiz karşılaştırmak için FFT çıkışına tıklayın.\n5. Tam sayı olmayan frekansa sahip saf bir sinüzoidal sinyal deneyin; tepenin pencereleme ile daha belirgin olduğunu fark edeceksiniz. Yan lobun nasıl azaldığını görmek için pencere türünü değiştirin."
+  },
+  "convolution": {
+    "title": "Konvolüsyon",
+    "description": "İki sinyal arasındaki konvolüsyonu hesaplar.",
+    "steps": "1. Filtrelemek istediğiniz sinyalle bir Üreteç (Kaynaklar → Üreteç) ekleyin.\n2. 'İşleme' menüsünden bir Konvolüsyon düğümü ekleyin.\n3. Üreteç çıkışını Konvolüsyon düğümü girişine bağlayın (her iki uçta CTRL+tıkla).\n4. Yapılandırmak için Konvolüsyon düğümüne çift tıklayın. Çekirdek katsayılarını virgülle ayrılmış olarak girin (örn. '0.2,0.2,0.2,0.2,0.2') ve konvolüsyon modunu seçin ('same', 'full' veya 'valid').\n5. Akışı yürütmek için F5'e basın. Düğüm sinyali ayrık konvolüsyon kullanarak filtreleyecektir.\n6. Filtrelenmiş sinyali görmek için Konvolüsyon düğümü çıkış bağlantısına tıklayın. Çekirdeğin etkisini gözlemleyin; katsayıları değiştirip karşılaştırmak için yeniden yürütebilirsiniz."
+  },
+  "correlation": {
+    "title": "Çapraz Korelasyon",
+    "description": "İki sinyal arasındaki benzerliği zaman kaymasının bir fonksiyonu olarak ölçer.",
+    "steps": "1. İki Üreteç düğümü yerleştirin (Kaynaklar → Üreteç). Örneğin, aynı frekansta bir sinüs dalgası ve bir kare dalga oluşturun.\n2. 'İşleme'den bir Korelasyon düğümü ekleyin.\n3. İlk üreteç çıkışını Korelasyon düğümünün 'Sinyal 1' girişine bağlayın (portlarda CTRL+tıkla). Ardından ikinci üreteci 'Sinyal 2' girişine bağlayın.\n4. Akışı F5 ile yürütün. Düğüm bir çapraz korelasyon sinyali üretecektir.\n5. Korelasyon tepesini görmek için çıkış bağlantısına tıklayın. Sinyallerin hizalandığı gecikmede bir maksimum göreceksiniz.\n6. Zaman kaymasını tam olarak ölçmek için imleçleri (alt panel) etkinleştirin."
+  },
+  "math_expression": {
+    "title": "Matematiksel İfade",
+    "description": "Giriş sinyaline herhangi bir matematiksel fonksiyon uygular (örn. y_new = f(x, y)).",
+    "steps": "1. Bir Üreteç (Kaynaklar → Üreteç) ekleyin ve dönüştürmek istediğiniz dalga biçimini seçin.\n2. 'İşleme' menüsünden bir Matematiksel İfade düğümü ekleyin.\n3. Üreteç çıkışını düğüm girişine bağlayın (her iki uçta CTRL+tıkla).\n4. Düzenleyiciyi açmak için İfade düğümüne çift tıklayın. İki dizi (x, y) alan ve (x, y_new) döndüren bir fonksiyon yazın. Örneğin: y_new = y**2 + 0.5*np.sin(x).\n5. Yürütmek için F5'e basın. Düğüm işlemi yalnızca 'y' değerlerine uygulayacak ve 'x' eksenini bozulmadan tutacaktır.\n6. Çıkış bağlantısına tıklayarak sonucu görselleştirin. İfadeyi değiştirip yeniden yürüterek anlık değişiklikleri görebilirsiniz."
+  },
+  "spectrogram": {
+    "title": "Spektrogram",
+    "description": "Bir sinyaldeki frekansların zaman içindeki gelişimini temsil eder.",
+    "steps": "1. Değişken frekanslı bir sinyalle, örneğin sinüs süpürmesi (chirp) ile bir Üreteç (Kaynaklar → Üreteç) yerleştirin.\n2. 'İşleme'den bir Spektrogram düğümü ekleyin.\n3. Üreteç çıkışını Spektrogram düğümü girişine bağlayın (her iki portta CTRL+tıkla).\n4. 'İşleme'den bir Spektrogram Görüntüleyici düğümü ekleyin ve ilgili portları Spektrogram düğümüne bağlayın.\n5. F5 ile yürütün. Düğüm sinyali işleyecek ve bir zaman-frekans matrisi üretecektir.\n6. Spektral görüntüyü görselleştirmek için Spektrogram Görüntüleyiciye sağ tıklayın. Baskın frekansın zaman içinde nasıl değiştiğini gözlemleyin.\n7. (İsteğe bağlı) Statik frekans gösterimini dinamik olanla karşılaştırmak için bir ara FFT düğümü ekleyin."
+  }
+  },
+  "prefs": {
+    "title": "Tercihler",
+    "tab_execution": "Yürütme",
+    "tab_gpu": "GPU / Hesaplama",
+    "tab_streaming": "Akış",
+    "tab_ui": "Arayüz / Performans",
+    "tab_advanced": "Gelişmiş",
+    "max_workers":{
+      "label": "Maks iş parçacığı (Faz 3 hazırlığı)",
+      "tooltip": "Bağımsız dalların gelecekteki paralelliğini kontrol eder."
+    },
+    "timeout_per_node": "Düğüm başına zaman aşımı (s)",
+    "gpu":{
+      "backend": "Varsayılan arka uç",
+      "fallback": "Yedek politika",
+      "threshold": "Ek yük eşiği (MB)"
+    },
+    "streaming":{
+      "buffer": "Tampon boyutu (örnekler)",
+      "timeout": "Gönderici zaman aşımı (ms)",
+      "error": "Akış hatası politikası"
+    }, 
+    "ui":{
+      "fps": "Maks yenileme FPS",
+      "anim": "Bağlayıcı animasyon süresi (s)"
+    },
+    "adv":{
+      "python_path": "Harici yorumlayıcı yolu",
+      "log_level": "Günlük seviyesi",
+      "backup": "Yüklemede otomatik yedekleme"
+    },
+    "btn_apply": "Uygula",
+    "btn_reset": "Varsayılana sıfırla",
+    "btn_close": "Kapat"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "İfade..."
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "Geç",
+      "label": "{mode}  |  {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Müh",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "Temizle"
+    },
+    "history": {
+      "title": "📜 Geçmiş",
+      "clear": "🗑 Temizle",
+      "use_last": "↩ Son"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "&Dosya",
+      "edit": "&Düzenle",
+      "format": "B&içim",
+      "align": "H&izalama"
+    },
+    "actions": {
+      "new": "&Yeni",
+      "open": "&Aç",
+      "save": "&Kaydet",
+      "save_as": "Farklı &Kaydet...",
+      "export_csv": "&CSV Dışa Aktar...",
+      "exit": "&Çıkış",
+      "undo": "&Geri al",
+      "redo": "&Yinele",
+      "cut": "&Kes",
+      "copy": "&Kopyala",
+      "paste": "&Yapıştır",
+      "bold": "&Kalın",
+      "italic": "&İtalik",
+      "align_left": "&Sol",
+      "align_center": "&Orta",
+      "align_right": "&Sağ",
+      "bg_color": "&Arka Plan Rengi...",
+      "fg_color": "&Metin Rengi..."
+    },
+    "toolbar": {
+      "title": "Ana",
+      "new": "Yeni",
+      "open": "Aç",
+      "save": "Kaydet",
+      "cut": "Kes",
+      "copy": "Kopyala",
+      "paste": "Yapıştır",
+      "bold": "Kalın",
+      "italic": "İtalik",
+      "align_left": "Sol",
+      "align_center": "Orta",
+      "align_right": "Sağ",
+      "bg_color": "Arka plan",
+      "fg_color": "Metin",
+      "undo": "Geri al",
+      "redo": "Yinele"
+    }
+  },
+  "system_monitor": {
+    "title": "SİSTEM İZLEYİCİ",
+    "subtitle": "Gerçek zamanlı kaynak telemetrisi",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "ÇEKİRDEKLER / MANTIKSAL ÇEKİRDEKLER",
+      "core_prefix": "Ç"
+    },
+    "ram": {
+      "title": "RAM Bellek",
+      "tooltip": "RAM kullanımı"
+    },
+    "disk": {
+      "title": "Disk ( / )",
+      "tooltip": "/ üzerinde disk kullanımı"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}%  M:{mem}%"
+    },
+    "status": {
+      "updated": "Güncellendi"
+    }
+  }
+}

@@ -1,0 +1,1556 @@
+{
+  "language_name": "Română",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "Fișier",
+      "new": "Nou",
+      "open": "Deschide…",
+      "save": "Salvează",
+      "save_as": "Salvează ca…",
+      "exit": "Ieșire"
+    },
+    "edit": "Editare",
+    "view": "Vizualizare",
+    "help": "Ajutor",
+    "language": "Limbă",
+    "info": "Informații",
+    "theme": "Temă",
+    "font_size": "Dimensiune font",
+    "font_size_custom": "Dimensiune personalizată…"
+  },
+  "menu_config": {
+    "title": "Configurare nod"
+  },
+  "panels": {
+    "analysis": {
+      "title": "Analiză"
+    },
+    "stats": {
+      "title": "Statistici",
+      "max": "Max:",
+      "min": "Min:",
+      "mean": "Medie:",
+      "rms": "RMS:",
+      "mode_3d": "(proiecție 3D)"
+    },
+    "cursors": {
+      "title": "Cursori A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "Cursorii nu sunt disponibili în modul 3D"
+    },
+    "crosshair": {
+      "cursor": "Cursor",
+      "peak": "Vârf",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "Indicatorul nu este disponibil în modul 3D"
+    }
+  },
+  "tab": {
+    "plot": "Grafic",
+    "workspace": "Variabile canvas",
+    "python_vars": "Variabile Python"
+  },
+  "tooldrawer": {
+    "python_console": "Terminal",
+    "monitor_widget": "Monitor performanță",
+    "spreadsheet_widget": "Foaie de calcul",
+    "calc_widget": "Calculator"
+  },
+  "console": {
+    "help": {
+      "title": "Tutorial interactiv consolă FloWorks",
+      "button": "Ajutor",
+      "html": "<h1>Tutorial interactiv consolă FloWorks</h1><h2>1. Noduri și conexiuni</h2><p><code>&gt;&gt;&gt; graph.nodes</code></p><p><code>&gt;&gt;&gt; graph.connections</code></p><p><code>&gt;&gt;&gt; selected_node</code></p><p>Creează nod:</p><p><code>&gt;&gt;&gt; graph.add_catalog_node('SumNode', 300, 200)</code></p><p>Conectează:</p><p><code>&gt;&gt;&gt; graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>Șterge:</p><p><code>&gt;&gt;&gt; graph.remove_node(graph.nodes[2])</code></p><p>Porturi:</p><p><code>&gt;&gt;&gt; graph.nodes[1].PORTS</code></p><h2>2. Execută și vizualizează rezultate</h2><p>Execută graful:</p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Vizualizează ieșirea unui nod:</p><p><code>&gt;&gt;&gt; graph.node_values[graph.nodes[1]]</code></p><p>Această abordare poate eșua cu KeyError, poți folosi:</p><p><code>&gt;&gt;&gt; list(graph.node_values.values())[1]</code></p><p>Ieșire completă:</p><p><code>&gt;&gt;&gt; nodo = graph.nodes[0]</code></p><p><code>&gt;&gt;&gt; nodo.output</code></p><p>Axa Y:</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; y = result[1]</code></p><p><code>&gt;&gt;&gt; y.max()</code></p><p>Atribuirile nu se afișează; verifică cu <code>x</code>, <code>y.shape</code> sau <code>print(x, y)</code></p><h2>3. Grafic</h2><p>Curăță:</p><p><code>&gt;&gt;&gt; app.plot_widget.clear_plot()</code></p><p>Semnal din consolă:</p><p><code>&gt;&gt;&gt; import numpy as np</code></p><p><code>&gt;&gt;&gt; x = np.linspace(0, 1, 1000)</code></p><p><code>&gt;&gt;&gt; y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>Din nodul sursă:</p><p><code>&gt;&gt;&gt; x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>Nod FFT (returnează dict):</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>&gt;&gt;&gt; result.keys()</code></p><p><code>&gt;&gt;&gt; f, mag = result['magnitude']</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. Modifică aplicația</h2><p>Actualizează tabelul:</p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Adaugă nod:</p><p><code>&gt;&gt;&gt; app.add_node('SignalSourceNode')</code></p><p>Titlu:</p><p><code>&gt;&gt;&gt; app.setWindowTitle('My signal lab')</code></p><p>Verifică:</p><p><code>&gt;&gt;&gt; app.windowTitle()</code></p><p>Restaurează:</p><p><code>&gt;&gt;&gt; app.update_title()</code></p><h2>5. Scurtături</h2><table><tr><th>Tastă/Comandă</th><th>Acțiune</th></tr><tr><td><code>&uarr;</code> / <code>&darr;</code></td><td>Istoric</td></tr><tr><td><code>Tab</code></td><td>Autocompletare</td></tr><tr><td><code>Ctrl + L</code></td><td>Curăță consola</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>Blocuri multi-linie</td></tr></table><h2>6. Rețete</h2><p>Schimbă parametrul:</p><p><code>&gt;&gt;&gt; selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>&gt;&gt;&gt; getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Formulă personalizată:</p><p><code>&gt;&gt;&gt; selected_node.params['mode'] = 'formula'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['expr'] = '2 * sin(2*pi*1000*t)'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>&gt;&gt;&gt; selected_node._generate_signal()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Listează categoriile:</p><p><code>&gt;&gt;&gt; from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>&gt;&gt;&gt; NODE_CATEGORIES</code></p><p>Ajutor:</p><p><code>&gt;&gt;&gt; help(graph.connect_nodes)</code></p><h2>7. Depanare</h2><ul><li><strong>Eroare cu roșu</strong>: consola arată problema, aplicația nu se închide.</li><li><strong>Interfață blocată</strong>: buclă infinită. Închide consola sau repornește.</li><li><strong>Nu se întâmplă nimic</strong>: verifică <code>graph.connections</code> și nodurile sursă.</li></ul><p>&copy; 2026 FloWorks — Laborator de semnale</p>"
+    }
+  },
+  "vars_table": {
+    "header":{
+      "name": "Nume",
+      "type": "Tip",
+      "shape": "Formă",
+      "value": "Valoare"
+    },
+    "menu" : {
+      "info": "Variabilă: {name}"
+    },
+    "dialog": {
+      "title": "Valoare completă"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "Font:",
+    "font_size_tooltip": "Schimbă dimensiunea de bază a fontului",
+    "run_flow_tooltip": "Execută fluxul",
+    "add_kinematics": "Nod cinematică",
+    "escolar": "Școlar",
+    "add_function_graph_node": "Funcții",
+    "add_rhombus_node": "Poartă logică",
+    "add_graph_exporter": "Exportator grafic",
+    "add_note": "Notițe",
+    "add_note_tooltip": "Adaugă notiță...",
+    "add_signal_source": "Sursă de semnal nouă",
+    "add_spectrogram_viewer": "Vizualizator spectrogramă",
+    "add_correlation": "Corelație",
+    "add_math_expression": "Expresie matematică",
+    "add_spectrogram": "Spectrogramă",
+    "add_resample": "Reeșantionare",
+    "add_window": "Fereastră",
+    "add_delay": "Întârziere",
+    "add_convolution_node": "Convoluție",
+    "add_normalize": "Normalizare",
+    "add_filter": "Filtru",
+    "add_fft": "FFT",
+    "source_node": "Generator de semnal avansat",
+    "load_signal_tooltip": "Generează semnal după preferințele utilizatorului",
+    "history": "Istoric",
+    "history_tooltip": "Istoric operații",
+    "auto_layout": "Aranjare automată",
+    "auto_layout_tooltip": "Aranjare automată a nodurilor (Ctrl+Shift+L)",
+    "sources": "Periferice",
+    "processing": "Procesare",
+    "control": "Control",
+    "add_oscilloscope": "Osciloscop",
+    "add_generator": "Generator",
+    "add_expression": "Nod expresie",
+    "add_script": "Script Python",
+    "add_arithmetic": "Aritmetică +−×÷",
+    "add_program": "Program",
+    "add_split": "Poartă logică",
+    "add_trigger": "Nod declanșator",
+    "sink": "Exportator grafic",
+    "help_wiki": "Documentație / Wiki",
+    "help_wiki_tooltip": "Deschide wiki-ul proiectului"
+  },
+  "info": {
+    "information": "Despre",
+    "shortcuts": "Scurtături",
+    "tutorials": "Tutoriale",
+    "change_theme": "Schimbă tema"
+  },
+  "status": {
+    "default": "FloWorks  |  Derulare: zoom  |  Click central: panoramare  |  Click dreapta pe nod: opțiuni",
+    "no_nodes": "Pregătit. Selectează noduri din bara de instrumente.",
+    "how_to_connect": "Ctrl+click pe portul de ieșire al unui nod, apoi click pe portul de intrare al altui nod.",
+    "connecting": "Se conectează… Click pe alt nod sau port.",
+    "connection_created": "Conexiune creată.",
+    "flow_executed": "Flux executat cu succes.",
+    "flow_error": "Eroare la executarea fluxului.",
+    "saved": "Diagramă salvată: {path}",
+    "loaded": "Diagramă încărcată: {path}",
+    "new_file": "Diagramă nouă creată",
+    "example_loaded": "Exemplu încărcat."
+  },
+  "errors": {
+    "save_failed": "Eroare la salvare: {error}",
+    "load_failed": "Eroare la încărcare: {error}",
+    "load_example_failed": "Nu s-a putut încărca exemplul: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "Șterge nod",
+      "connect": "Conectează nod",
+      "disconnect": "Deconectează nod",
+      "setup": "Configurare",
+      "trigger": "Declanșează",
+      "generate": "Generează",
+      "edit_script": "Editează script",
+      "edit_input": "Editează intrare",
+      "help": "Informații"
+    },
+    "graph_union": {
+      "title": "Unire grafice",
+      "tooltip": "Grupează mai multe semnale ca serii independente pentru suprapunere pe grafic.",
+      "num_inputs_label": "Număr de intrări (1-8):",
+      "config_title": "Configurează unirea graficelor",
+      "status": {
+        "ready": "Pregătit"
+      },
+      "ports": {
+        "signal_1": "Semnal 1",
+        "signal_2": "Semnal 2",
+        "signal_3": "Semnal 3",
+        "signal_4": "Semnal 4",
+        "signal_5": "Semnal 5",
+        "signal_6": "Semnal 6",
+        "signal_7": "Semnal 7",
+        "signal_8": "Semnal 8",
+        "series_out": "Ieșire"
+      },
+      "menu": {
+        "configure": "Configurează..."
+      },
+      "help_title": "Ajutor - Unire grafice",
+      "help_html": "<h3>🔗 Nod de unire grafice</h3><p>Primește multiple semnale și le păstrează ca serii independente pentru suprapunere pe grafic fără a le concatena.</p><p>Click dreapta pe nod pentru a <b>adăuga sau elimina</b> dinamic intrări (până la 8).</p><p>Ieșirea <code>Series</code> livrează lista completă de serii pentru vizualizare.</p>"
+    },
+    "tabular_inspector": {
+      "title": "Inspector date tabelare",
+      "window_title": "Inspector tabelar",
+      "no_data": "Fără date",
+      "copy": "Copiază în clipboard",
+      "decimals": "Zecimale:",
+      "col_names": "Nume coloane (separate prin virgulă, gol = auto):",
+      "tooltip": "Inspectarea datelor nodului afișează datele primite pe portul său unic de intrare ca tabel.",
+      "status": {
+        "no_data": "Fără date"
+      },
+      "menu": {
+        "view_table": "Vezi tabel",
+        "configure": "Configurează…"
+      },
+      "ports": {
+        "data": "Intrare"
+      },
+      "config_title": "Configurează inspectorul tabelar",
+      "help_title": "Ajutor - Inspector tabelar",
+      "help_html": "<h3>📊 Nod inspector tabelar</h3><p>Ca un <b>foaie de calcul Excel</b>, acest nod afișează datele primite pe portul său unic de intrare ca tabel.</p><p><b>Reguli de interpretare:</b></p><ul><li><b>Tuplu/listă de array-uri</b> (ex. (x, y, Fs)) → fiecare array devine o coloană.</li><li><b>Array numpy 2D</b> → rânduri × coloane.</li><li><b>Array 1D sau listă</b> → o singură coloană.</li><li><b>Scalar</b> → o singură celulă.</li></ul><p>Click dreapta → <b>Vezi tabel</b> pentru a deschide inspectorul. Folosește panoul lateral pentru a seta zecimalele și numele personalizate ale coloanelor (separate prin virgulă).</p>"
+    },
+    "equation_solver": {
+      "title": "Rezolvator ecuații",
+      "tooltip":"Rezolvator de sisteme liniare de ecuații",
+      "type_label": "Tip ecuație:",
+      "type_linear_single": "Liniară simplă",
+      "type_linear_system": "Sistem liniar 2×2",
+      "eq_format": "Format: a*x + b = c",
+      "eq1_label": "Ecuația 1 (format: a*x + b*y = c):",
+      "eq2_label": "Ecuația 2:",
+      "examples": "Exemple",
+      "sys_examples": "Exemple de sisteme",
+      "menu": {
+        "view_plot": "Vezi graficul soluției",
+        "configure": "Configurează ecuațiile...",
+        "view_steps": "Vezi pașii soluției..."
+      },
+      "ports": {
+        "output": "ieșire",
+        "steps": "pași",
+        "solution": "y (m)"
+      },
+      "steps_title": "Pașii soluției",
+      "no_steps": "Nu există pași disponibili pentru soluție.",
+      "config_title": "Configurează rezolvatorul de ecuații",
+      "help_title": "Ajutor - Rezolvator ecuații",
+      "plot_window_title": "Graficul soluției",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "Exportă...",
+      "export_title": "Exportă graficul",
+      "no_data_to_plot": "Nu există date de reprezentat",
+      "btn_step_by_step": "▶ Pas cu pas",
+      "step_anim_title": "Pas cu pas",
+      "step_anim_info": "În versiunea completă, aceasta ar arăta construcția grafică pas cu pas.",
+      "error_no_equals": "Lipsește semnul '=' din ecuație.",
+      "error_rhs_not_number": "Partea dreaptă a ecuației nu este un număr valid.",
+      "error_invalid_x_coef": "Coeficient invalid pentru x: '{coef}'. Verifică sintaxa.",
+      "error_invalid_y_coef": "Coeficient invalid pentru y: '{coef}'. Verifică sintaxa.",
+      "error_invalid_const": "Termen constant invalid: '{term}'. Folosește doar numere și semne + sau -.",
+      "error_zero_x": "Coeficientul lui x este zero. Ecuația nu are soluție unică.",
+      "no_plot_data_title": "Fără date",
+      "no_plot_data_message": "Nu există date de soluție pentru reprezentare. Configurează și rezolvă mai întâi.",
+      "preview": "Previzualizare:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "Fără soluție (sau încă necalculată)",
+      "help_html":"<h3>🧮 Nod rezolvator de ecuații</h3>\n<p>Permite <b>rezolvarea ecuațiilor liniare simple sau a sistemelor 2×2</b>, arătând procedura pas cu pas și graficul intersecției.</p>\n\n<h4>⚙️ Utilizare</h4>\n<ol>\n <li><b>Click dreapta</b> pe nod → selectează <i>\"Editează parametrii\"</i>.</li>\n <li>Alege <code>equation_type</code>: <code>linear_single</code> sau <code>linear_system</code>.</li>\n <li>Introdu <code>equations</code> ca text (ex. \"2x + 3 = 7\") sau o listă de texte pentru sisteme.</li>\n <li>Nodul va calcula soluția și va genera automat pașii algebrici.</li>\n</ol>\n\n<h4>📤 Ieșire</h4>\n<ul>\n <li><code>solution</code> → valoare numerică (ecuație simplă) sau dicționar cu <code>x</code>, <code>y</code> (sistem 2×2).</li>\n <li><code>steps</code> → text cu descompunerea algebrică pas cu pas.</li>\n</ul>\n\n<h4>⚠️ Note</h4>\n<ul>\n <li><b>Valoare pedagogică:</b> Oferă feedback algebric instantaneu și conectează soluția la reprezentarea sa grafică (intersecția).</li>\n <li>Asigură-te că folosești variabilele corecte (<code>x</code> pentru simple, <code>x</code> și <code>y</code> pentru sisteme).</li>\n <li>Dacă sistemul este inconsistent sau dependent, va fi indicat în ieșirea <code>steps</code>.</li>\n</ul>\n\n<h4>💡 Exemplu</h4>\n<p>Configurează nodul ca <code>linear_system</code> cu <code>[\"y = 2x\", \"y = -x + 3\"]</code>. Conectează <code>steps</code> la un vizualizator de text și vizualizează intersecția într-un nod grafic.</p>\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare matematică</b>.</p>\n\n<pre>\nEcuație → Rezolvare → Vizualizare\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(Algebră ↔ Geometrie)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nParametri → Procesare (Rezolvator) → Vizualizare (Grafic/Text)\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nParametri (Ecuații) → EquationSolver → Grafic (Intersecție) + Text (Pași)\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "Cinematică",
+      "tooltip": "Simulator de cinematică: cădere liberă și mișcare de proiectil",
+      "ports": {
+        "x": "x(m) vs t(s)",
+        "y": "y(m) vs t(s)",
+        "vx": "vx(m/s) vs t(s)",
+        "vy": "vy(m/s) vs t(s)",
+        "speed": "viteză(m/s) vs t(s)",
+        "energy_kinetic": "energie cinetică(J) vs t(s)",
+        "energy_potential": "energie potențială(J) vs t(s)",
+        "ground_contact": "contact cu solul vs t(s)"
+      },
+      "status": {
+        "ready": "Pregătit"
+      },
+      "config_title": "Configurează cinematica",
+      "menu": {
+        "configure": "Configurează…",
+        "generate": "Generează",
+        "show_output": "Arată ieșirea",
+        "trajectory": "Traiectorie (y vs x)",
+        "y_t": "Poziție verticală y(t)",
+        "vy_t": "Viteză verticală vy(t)",
+        "speed_t": "Viteză |v|(t)",
+        "display": "Vizualizare"
+      },
+      "group_ic": "Condiții inițiale",
+      "group_env": "Mediu",
+      "group_sim": "Simulare",
+      "group_presets": "Presetări",
+      "help_title": "Ajutor - Cinematică",
+      "help_html": "<h3>🚀 Laborator de cinematică</h3><p>Simulează <b>mișcarea de proiectil</b> și <b>căderea liberă</b> sub gravitație constantă. Nu necesită intrări; generează semnale din condițiile inițiale.</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 Ieșiri principale (tupluri timp vs mărime)</h4><p>Fiecare port livrează un tuplu <code>(t, variabilă)</code> gata de conectat la un grafic sau la alt nod. Timpul este deja inclus ca axa X.</p><ul><li><code>x</code> → (t, poziție orizontală) [m]</li><li><code>y</code> → (t, poziție verticală) [m]</li><li><code>vx</code> → (t, viteză orizontală) [m/s]</li><li><code>vy</code> → (t, viteză verticală) [m/s]</li><li><code>speed</code> → (t, viteză |v|) [m/s]</li></ul><h4>⚡ Ieșiri opționale (activează Arată energiile)</h4><ul><li><code>energy_kinetic</code> → (t, Ec = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, 1.0 dacă y≤0, 0.0 în aer)</li></ul><h4>🎨 Canale interne de afișare</h4><p>Schimbă ce este afișat pe graficul principal din meniul contextual:</p><ul><li><b>Traiectorie</b> (y vs x) → parabolă spațială</li><li><b>y(t)</b>, <b>vy(t)</b>, <b>|v|(t)</b> → evoluție în timp</li></ul><h4>💡 Conexiuni tipice</h4><ul><li><b>Înălțime vs timp:</b> conectează <code>y</code> la un grafic (include deja t)</li><li><b>Viteză vs timp:</b> conectează <code>speed</code> la un grafic</li><li><b>Traiectorie spațială:</b> conectează <code>x</code> → axa X a graficului, <code>y</code> → axa Y a graficului</li><li><b>Impact:</b> conectează <code>ground_contact</code> la un nod logic sau LED</li><li><b>Energie:</b> sumă <code>energy_kinetic</code> + <code>energy_potential</code> pentru a vedea conservarea</li></ul><h4>⚡ Scurtături</h4><ul><li><b>Dublu click</b> → acest ajutor</li><li><b>Click dreapta</b> → configurează / generează</li><li><b>Butonul GENEREAZĂ</b> → simulează și deschide animația</li></ul><hr><p><b>Status:</b> -- | <b>Presetare:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "Funcții",
+      "tooltip": "Generează și vizualizează funcții matematice cu analiză numerică",
+      "ports": { "signal": "Semnal" },
+      "status": { "ready": "Pregătit" },
+      "menu": { "configure": "Configurează...", "show_table": "Vezi tabelul de valori", "generate": "Generează", "show_limit": "Arată limita", "show_derivative": "Arată derivata" },
+      "config_title": "Setează funcția",
+      "cfg": { "expr": "Expresie:", "presets": "Presetări:", "piecewise": "Activează funcția pe bucăți", "group_func": "Grupează funcțiile", "group_dom": "Grupează domeniul", "group_viz": "Grupează vizualizarea" },
+      "table_title": "Tabel de valori"
+    },
+    "signal_source": {
+        "title": "Sursă de semnal avansată",
+        "tooltip": "Sursă de semnal avansată",
+        "load_signal": "Încarcă semnal din fișier...",
+        "load_file_title": "Încarcă fișier de semnal",
+        "ports": {
+            "out": "Ieșire",
+            "trigger_in": "Intrare declanșator",
+            "trigger_out": "Ieșire declanșator"
+        },
+        "status": {
+            "no_data": "Fără date"
+        },
+        "configure": "Configurează...",
+        "generate": "Generează semnal",
+        "help_title": "Ajutor - Sursă de semnal",
+        "help_html": "<h3>🎛️ Nod sursă de semnal</h3>\n<p>Generează <b>semnale personalizate</b> folosind o varietate largă de <b>forme de undă presetate</b> sau o <b>formulă matematică</b> scrisă de utilizator. Ieșirea este întotdeauna un tuplu <code>(timp, amplitudine)</code>, gata pentru procesare ulterioară.</p>\n\n<h4>📤 Ieșire</h4>\n<p><code>out</code> → tuplu <code>(t, y)</code>.</p>\n\n<h4>⚙️ Moduri de operare</h4>\n<ul>\n    <li><b>Presetare:</b> alege dintre sinus, dreptunghi, rampă, impuls, zgomot, DC, triunghi, dinți de ferăstrău, sinc, Gaussian, exponențial, chirp. Toți parametrii (frecvență, amplitudine, offset, fază, duty, simetrie etc.) sunt reglabili în dialogul de configurare.</li>\n    <li><b>Formulă:</b> scrie o <b>expresie matematică liberă</b> folosind <code>t</code> (timp) și variabile personalizate (ex. <code>amp * sin(2*pi*freq*t) + offset</code>). Variabilele sunt definite într-un tabel și pot fi adăugate, eliminate sau modificate după dorință. Evaluarea este sigură și restricționată la operații matematice.</li>\n</ul>\n\n<h4>🖱️ Interacțiune</h4>\n<ul>\n    <li><b>Dublu click</b> pe nod → deschide dialogul de configurare cu trei file (Presetare, Formulă, Avansat).</li>\n    <li><b>Click</b> pe nod → reprezintă semnalul curent în graficul principal.</li>\n    <li><b>Click dreapta</b> → meniu contextual pentru regenerare, configurare sau ștergere nod.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → FFT → Filtru → Sumator → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+        "title": "Configurare semnal",
+        "waveform": "Formă de undă",
+        "frequency": "Frecvență",
+        "amplitude": "Amplitudine",
+        "offset": "Offset",
+        "phase": "Fază",
+        "symmetry": "Simetrie",
+        "direction": "Direcție",
+        "up": "Sus",
+        "down": "Jos",
+        "stdev": "Deviație standard",
+        "mean": "Medie",
+        "lobes": "Lobi",
+        "sigma": "Sigma",
+        "mu": "Mu",
+        "tau": "Tau",
+        "exp_type": "Tip",
+        "rise": "Creștere",
+        "fall": "Cădere",
+        "f0": "Frecvență de start",
+        "f1": "Frecvență de sfârșit",
+        "chirp_method": "Metodă",
+        "linear": "Linear",
+        "logarithmic": "Logarithmic",
+        "tab_preset": "Presetare",
+        "tab_formula": "Formulă",
+        "tab_advanced": "Avansat",
+        "preview": "Previzualizare",
+        "apply": "Aplică",
+        "duration": "Durată",
+        "sample_rate": "Rată de eșantionare",
+        "sampling_note": "0 = auto",
+        "auto_generate": "Generare automată",
+        "time_label": "Timp (s)",
+        "amplitude_label": "Amplitudine",
+        "formula_expr": "Formulă (folosește 't' ca variabilă de timp):",
+        "variables": "Variabile:",
+        "var_name": "Nume",
+        "var_value": "Valoare",
+        "add_var": "Adaugă variabilă",
+        "remove_var": "Elimină selectate",
+        "auto": "Auto",
+        "basic_params": "Parametri de bază",
+        "carrier_freq": "Frecvență purtătoare",
+        "mod_freq": "Frecvență de modulație",
+        "mod_depth": "Adâncime de modulație",
+        "deviation": "Deviație",
+        "heart_rate": "Ritm cardiac",
+        "rise_time": "Timp de creștere",
+        "fall_time": "Timp de cădere",
+        "quick_insert": "Funcții rapide",
+        "advanced": {
+          "modulation": "Modulație",
+          "mod_enable": "Activează modulația",
+          "mod_type": "Tip modulație",
+          "mod_freq": "Frecvență de modulație",
+          "mod_depth": "Adâncime de modulație",
+          "noise_group": "Zgomot",
+          "noise_enable": "Adaugă zgomot",
+          "noise_amp": "Amplitudine zgomot",
+          "auto_generate": "Aplică modificările automat",
+          "auto_generate_tooltip": "Când este activat, fiecare modificare de parametru este aplicată imediat nodului. Când este dezactivat, apasă OK pentru a aplica."
+        },
+        "gamma": "Gamma (lățime)",
+        "window_type": "Tip fereastră",
+        "quadratic": "Quadratic",
+        "hyperbolic": "Hyperbolic",
+        "hanning": "Hanning",
+        "hamming": "Hamming",
+        "blackman": "Blackman",
+        "bartlett": "Bartlett",
+        "kaiser": "Kaiser",
+        "noise_type": "Tip zgomot",
+        "gaussian": "Gaussian",
+        "uniform": "Uniform",
+        "pink": "Roz (1/f)",
+        "brown": "Brownian (1/f²)",
+        "blue": "Albastru (f)",
+        "impulse": "Impuls",
+        "pulse_shape": "Formă impuls",
+        "rect": "Dreptunghiular",
+        "raised_cosine": "Cosinus ridicat",
+        "polynomial": "Polinom PRBS",
+        "bit_rate": "Rată de biți",
+        "symbol_rate": "Rată de simboluri",
+        "symbol_sequence": "Secvență de simboluri",
+        "bit_sequence": "Secvență de biți",
+        "multitone_hint": "Frecvențe (Hz, separate prin virgulă):",
+        "frequencies": "Frecvențe",
+        "amplitudes": "Amplitudini",
+        "phases": "Faze",
+        "step_time": "Timp de pas",
+        "impulse_time": "Timp de impuls",
+        "f_start": "Frecvență de start",
+        "f_end": "Frecvență de sfârșit",
+        "f2": "Frecvența 2",
+        "noise_level": "Nivel zgomot",
+        "duty_cycle": "Duty cycle (%)",
+        "signal_sine": "Sinus",
+        "signal_square": "Dreptunghi",
+        "signal_ramp": "Rampă",
+        "signal_pulse": "Impuls",
+        "signal_noise": "Zgomot",
+        "signal_dc": "DC",
+        "signal_triangle": "Triunghi",
+        "signal_sawtooth": "Dinți de ferăstrău",
+        "signal_sinc": "Sinc",
+        "signal_gaussian": "Gaussian",
+        "signal_exponential": "Exponențial",
+        "signal_chirp": "Chirp",
+        "signal_am": "AM",
+        "signal_fm": "FM",
+        "signal_ecg": "ECG",
+        "signal_trapezoidal": "Trapezoidal",
+        "signal_lorentzian": "Lorentzian",
+        "signal_window": "Fereastră",
+        "signal_multitone": "Multiton",
+        "signal_ask": "ASK",
+        "signal_fsk": "FSK",
+        "signal_psk": "PSK",
+        "signal_pwm": "PWM",
+        "signal_pam": "PAM",
+        "signal_prbs": "PRBS",
+        "signal_step": "Pas",
+        "signal_impulse": "Impuls",
+        "signal_sweep_sine": "Sweep sinusoidal",
+        "signal_cardiac": "Cardiac",
+        "signal_eeg": "EEG",
+        "signal_beat": "Bătăi"
+    },
+    "input": {
+      "help_html": "<h3>📂 Nod de intrare (încărcare date)</h3>\n<p>Permite <b>încărcarea datelor dintr-un fișier .npz</b> (format NumPy) și trimiterea lor către fluxul de lucru.</p>\n\n<h4>⚙️ Utilizare</h4>\n<ol>\n    <li><b>Click dreapta</b> pe nod → selectează <i>\"Editează intrarea\"</i>.</li>\n    <li>Alege un fișier <code>.npz</code> care conține o cheie numită <code>datay</code>.</li>\n    <li>Array-ul este stocat intern și propagat automat prin flux.</li>\n</ol>\n\n<h4>📤 Ieșire</h4>\n<p><code>out</code> → conținutul lui <code>datay</code> din fișierul încărcat.</p>\n\n<h4>⚠️ Note</h4>\n<ul>\n    <li>Sunt acceptate doar fișiere <b>.npz</b> cu cheia <code>datay</code>.</li>\n    <li>Dacă fișierul este invalid, va apărea o eroare în consolă.</li>\n    <li>După încărcarea unui fișier, fluxul rulează automat.</li>\n</ul>\n\n<h4>💡 Exemplu</h4>\n<p>Încarcă un fișier cu date de la senzori și apoi conectează-l la un nod \"Filtru\" sau \"Vizualizator\".</p>\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → FFT → Filtru → Sumator → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "funcție lambda",
+      "help_html": "<h3>🔧 Nod generic de procesare</h3>\n<p>Aplică o <b>funcție personalizată</b> datelor de intrare. Este baza pentru crearea operațiilor matematice, transformărilor etc.</p>\n\n<h4>📥 Intrare</h4>\n<p><code>data_in</code> → poate fi un număr, un tuplu (x, y) sau orice obiect.</p>\n\n<h4>📤 Ieșire</h4>\n<p><code>out</code> → rezultatul aplicării funcției la intrare.</p>\n\n<h4>🧠 Comportament în funcție de tipul intrării</h4>\n<ul>\n    <li>Dacă intrarea este un <b>tuplu de două elemente</b> (x, y), funcția primește tuplul și trebuie să returneze un alt tuplu sau o valoare. Exemplu: <code>lambda xy: (xy[0], xy[1]*2)</code>.</li>\n    <li>Dacă intrarea este o <b>valoare simplă</b>, funcția primește acea valoare. Exemplu: <code>lambda x: x**2</code>.</li>\n    <li>Dacă intrarea este <code>None</code>, ieșirea va fi de asemenea <code>None</code>.</li>\n</ul>\n\n<h4>⚙️ Personalizare</h4>\n<p>Funcția este atribuită la crearea nodului (de exemplu, în cod). În versiunile viitoare o vei putea edita din interfață.</p>\n\n<h4>💡 Exemple</h4>\n<ul>\n    <li><b>Dublează un număr:</b> <code>lambda x: x * 2</code></li>\n    <li><b>Suma componentelor unui tuplu:</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>Returnează același tuplu (passthrough):</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>Funcția aplicată:</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → FFT → Filtru → Sumator → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "Poartă logică",
+      "tooltip": "Operații logice, comparații și mascare pe semnale (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "Intrare 1",
+        "in2": "Intrare 2",
+        "out": "Ieșire"
+      },
+      "config_title": "Configurează poarta logică",
+      "op_label": "Operație:",
+      "thr_label": "Prag / Nivel:",
+      "inv_label": "Inversează ieșirea",
+      "help_title": "Ajutor - Poartă logică",
+      "help_html": "<h3>🎛️ Poartă logică / Comparator</h3>\n<p>Evaluează, compară sau maschează două semnale de intrare eșantion cu eșantion pentru a genera declanșatoare, măști logice sau ieșiri condiționale.</p>\n\n<h4>📥 Intrări</h4>\n<ul>\n<li><code>in1</code> → Semnal principal (operand A).</li>\n<li><code>in2</code> → Referință, mască sau al doilea operand (operand B).</li>\n</ul>\n\n<h4>📤 Ieșire</h4>\n<ul>\n<li><code>out</code> → Rezultatul procesării. Operațiile booleene returnează <code>0.0</code> sau <code>1.0</code>. Comparatoarele/pragurile generează măști sau semnale limitate.</li>\n</ul>\n\n<h4>📐 Diagramă</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 Model mental</h4>\n<p>Acest nod acționează ca un <b>motor de decizie eșantion cu eșantion</b>. Evaluează fiecare punct independent, transformând forme de undă analogice în semnale de control digitale, măști de activare sau fluxuri logice.</p>\n\n<h4>📐 Reprezentarea datelor</h4>\n<pre>\nIntrări:\n(x, y1) & (x, y2) → Array-uri 1D (trunchiază la cel mai scurt dacă nu se potrivesc)\n\nIeșire:\n(x, y_out) → De obicei binar (0/1) sau mascat\n</pre>\n\n<h4>🔁 Model tipic de utilizare</h4>\n<pre>\n[Generator] → [Poartă logică] → [Declanșator / Grafic]\n\nExemplu:\nSinus (in1) + Dreptunghi (in2) → [AND] → Tren de impulsuri sincronizat\nSemnal (in1) → [THRESHOLD] → mască 0/1 pentru detectarea vârfurilor\nSemnal (in1) + Ref (in2) → [MASK] → Atenuează in1 când in2 ≤ 0\n</pre>\n\n<h4>⚠️ Erori frecvente</h4>\n<ul>\n<li>Te aștepți ca operațiile logice să păstreze amplitudinea → Nu o fac (convertesc la 0/1). Folosește <code>LEVEL</code> sau <code>MASK</code>.</li>\n<li>Conectarea unor semnale de lungimi foarte diferite → Trunchiază la minim.</li>\n<li>Utilizarea <code>EQ</code> pe numere cu virgulă mobilă → Se bazează pe toleranță implicită; rotunjește în prealabil dacă este necesar.</li>\n</ul>\n<hr><hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → FFT → Filtru → Sumator → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide acest ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li>\n<li><b>Trage</b> nodul → mută blocul; conexiunile se actualizează automat.</li>\n</ul>"
+     },
+    "sum": {
+      "title": "Aritmetică",
+      "tooltip": "Efectuează operații aritmetice între două semnale.",
+      "operation": {
+        "sum": "Sumă",
+        "sub": "Scădere",
+        "mul": "Înmulțire",
+        "div": "Împărțire"
+      },
+      "ports": {
+        "out": "Ieșire",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "*A",
+        "port_b_mul": "*B",
+        "port_a_div": "numărător",
+        "port_b_div": "numitor"
+      },
+      "menu": {
+        "operation": "Operație"
+      },
+      "help_title": "Ajutor - Nod aritmetic",
+      "help_html": "<h3>➕ Nod sumă/aritmetic</h3>\n<p>Efectuează operații aritmetice între două semnale (array-uri sau valori numerice).</p>\n\n<h4>📥 Intrări</h4>\n<ul>\n    <li><code>port_a</code> (sus): primul operand (A).</li>\n    <li><code>port_b</code> (jos): al doilea operand (B).</li>\n</ul>\n\n<h4>📤 Ieșire</h4>\n<p><code>out</code> → rezultatul operației (A op B).</p>\n\n<h4>⚙️ Operații disponibile (click dreapta → Operație)</h4>\n<ul>\n    <li><b>Sumă (+)</b>: A + B</li>\n    <li><b>Scădere (−)</b>: A − B</li>\n    <li><b>Înmulțire (×)</b>: A * B</li>\n    <li><b>Împărțire (÷)</b>: A / B (protejează împotriva împărțirii la zero).</li>\n</ul>\n\n<h4>📐 Diagramă</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 Model mental</h4>\n<p>Acest nod este un <b>operator vectorial</b>.\nFuncționează element cu element pe semnale.</p>\n\n<h4>📐 Reprezentare vectorială</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\nIeșire:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 Exemplu vizual</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\nSumă:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 Strategii de utilizare</h4>\n<ul>\n<li><b>Normalizare:</b> împarte la maxim</li>\n<li><b>Scalare:</b> înmulțește cu o constantă</li>\n<li><b>Mixare semnale:</b> suma undelor</li>\n<li><b>Anulare:</b> A - B pentru a elimina zgomotul</li>\n</ul>\n\n<h4>⚠️ Greșeli frecvente</h4>\n<ul>\n<li>Nealinierea axelor X → rezultate inconsistente</li>\n<li>Împărțirea la valori apropiate de zero → instabilitate</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → FFT → Filtru → Sumator → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "script": {
+      "title": "Script",
+      "tooltip": "Nod script Python",
+      "ports": {
+        "data_in": "Intrare date",
+        "loop_in": "Intrare buclă",
+        "out": "Ieșire"
+      },
+      "menu":{
+        "edit":"Editează",
+        "run":"Rulează scriptul"
+      },
+      "status_ready": "Pregătit",
+      "status_error": "Eroare",
+      "edit_script": "Editează scriptul",
+      "tooltip_x": "Array NumPy: axa X (timp, frecvență etc.)",
+      "tooltip_y": "Array NumPy: valorile curente ale semnalului",
+      "tooltip_param": "Parametru de iterație (de la TriggerNode) sau None",
+      "help_title": "Ajutor - Nod script",
+      "help_html": "<h3>📜 Nod script personalizat</h3> <p>Permite scrierea de cod Python pentru a procesa semnale arbitrar.</p> <h4>📥 Intrări</h4> <ul> <li><code>data_in</code> → semnal principal (x, y) sau array simplu.</li> <li><code>loop_in</code> → intrare opțională pentru a primi parametri de la un <b>TriggerNode</b> (valoarea <code>param</code>).</li> <li>Porturi dinamice <code>@input name</code> → intrări suplimentare definite în script.</li> </ul> <h4>📤 Ieșiri</h4> <ul> <li><code>out</code> → tuplu (x_new, y_new) generat de script (mod batch).</li> <li>Porturi dinamice <code>@output name</code> → ieșiri suplimentare definite în script.</li> </ul> <h4>✏️ Editarea scriptului</h4> <p>Click dreapta → <b>Editează scriptul</b> pentru a deschide editorul cu evidențierea sintaxei.</p> <p>Include autocompletare, șabloane, parametri configurabili (<code>@param</code>) și execuție externă (Python alternativ).</p> <hr> <h4>🧠 Variabile disponibile (mod batch tradițional)</h4> <ul> <li><code>x</code> : array numpy – axa timpului sau frecvenței</li> <li><code>y</code> : array numpy – valorile semnalului</li> <li><code>param</code> : float (opțional) – valoarea din <code>loop_in</code> (TriggerNode)</li> <li><code>persist</code> : dict – persistent între execuțiile aceluiași nod (util pentru acumulatori)</li> <li><code>np</code>, <code>scipy</code>, <code>sympy</code> – biblioteci pre-importate</li> </ul> <h4>🧩 Model mental</h4> <p> Acest nod este un <b>bloc de transformare arbitrară</b>. Aici îți definești propria fizică, matematică sau logică. </p> <h4>📐 Formă așteptată (batch)</h4> <pre> Intrare: x → vector (timp/frecvență) y → vector (valori) Ieșire: (x_mod, y_mod) </pre> <h4>🧠 Exemple mai puternice</h4> <h5>1. Câștig dependent de frecvență</h5> <pre> gain = np.exp(-x * 0.01) return (x, y * gain) </pre> <h5>2. Detectarea vârfurilor</h5> <pre> y_mod = np.where(y > 0.8, y, 0) return (x, y_mod) </pre> <h5>3. Modulare</h5> <pre> carrier = np.sin(2*np.pi*1000*x) return (x, y * carrier) </pre> <h5>4. Utilizarea param (sweep)</h5> <pre> factor = param if param is not None else 1.0 return (x, y * factor) </pre> <h5>5. Acumulator cu persist</h5> <pre> persist[\"counter\"] = persist.get(\"counter\", 0) + 1 return (x, y + persist[\"counter\"] * 0.1) </pre> <hr> <h4>🔁 Strategie avansată</h4> <pre> Trigger → Script(param) → Sumă → Vizualizare → Permite sweep-uri automate </pre> <h4>⚠️ Erori frecvente</h4> <ul> <li>Nu returnezi tuplul (x, y) în modul batch.</li> <li>Nu iei în considerare că <code>param</code> poate fi None.</li> <li>Încerci să folosești butonul \"Test\" pe scripturi de streaming sau GPU (folosește fluxul real).</li> </ul><hr> <hr> <h3>🧠 Cum să gândești acest sistem</h3> <p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p> <pre> Date → Transformare → Rezultat </pre> <h4>📐 Regulă cheie</h4> <pre> Totul este: (x, y) </pre> <h4>🔁 Model universal</h4> <pre> Intrare → Procesare → Vizualizare </pre> <h4>🧪 Exemplu complet</h4> <pre> Osciloscop → FFT → Filtru → Sumator → Grafic </pre> <hr> <h4>⚡ Scurtături și trucuri</h4> <ul> <li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li> <li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li> <li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li> <li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li> </ul>"
+    },
+    "trigger": {
+      "title": "Declanșator",
+      "tooltip": "Nod de iterație și acumulare",
+      "ports": {
+        "data_in": "Intrare date",
+        "trigger_in": "Intrare declanșator",
+        "loop_out": "Ieșire buclă",
+        "out": "Ieșire"
+      },
+      "state": {
+        "idle": "AȘTEAPTĂ",
+        "running": "ITERAȚIA {iteration}/{total}",
+        "done": "FINALIZAT",
+        "running_count": "RULEAZĂ {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "Configurează..."
+      },
+      "accumulate": {
+        "accumulate": "Mod acumulare",
+        "stack": "stivă",
+        "average": "medie",
+        "max": "max",
+        "min": "min",
+        "last": "Ultima captură"
+      },
+      "config_title": "Configurează nodul declanșator",
+      "n_iter": "Iterații",
+      "reset": "Resetează iterația",
+      "help_title": "Ajutor - Nod declanșator",
+      "help_html": "<h3>⏺ Nod declanșator (captură batch)</h3>\n<p>Capturează și acumulează semnale iterativ, activate de un semnal de declanșare extern (<code>trigger_in</code>). Ideal pentru experimente repetitive, medierea zgomotului sau compararea urmelor în timp.</p>\n\n<h4>📥 Intrări</h4>\n<ul>\n    <li><code>data_in</code> → semnal principal (x, y) de capturat.</li>\n    <li><code>trigger_in</code> → semnal de declanșare. Fiecare puls sau activare capturează o nouă urmă în bufferul intern.</li>\n</ul>\n\n<h4>📤 Ieșiri</h4>\n<ul>\n    <li><code>out</code> → la finalizarea numărului programat de iterații (<code>n_iter</code>), emite semnalul acumulat conform modului selectat.</li>\n</ul>\n\n<h4>⚙️ Configurare</h4>\n<p>Click dreapta → <b>Configurează</b> pentru a ajusta:</p>\n<ul>\n    <li><b>Iterații (N):</b> numărul exact de capturi necesare pentru a genera ieșirea.</li>\n    <li><b>Acumulare:</b> modul de combinare a capturilor: <i>stivă, medie, max, min sau ultima</i>.</li>\n</ul>\n\n<h4>🧠 Comportament</h4>\n<ol>\n    <li>Nodul rămâne în <b>IDLE</b> așteptând date pe <code>data_in</code> și impulsuri pe <code>trigger_in</code>.</li>\n    <li>Când este detectat un declanșator valid, salvează semnalul curent în bufferul intern și afișează <code>RUNNING X/N</code>.</li>\n    <li>La atingerea exactă a <b>N iterații</b>, construiește ieșirea acumulată, o trimite prin <code>out</code> și șterge automat bufferul pentru următorul experiment.</li>\n</ol>\n\n<h4>🧩 Model mental</h4>\n<p>Acest nod acționează ca un <b>înregistrator batch bazat pe evenimente</b>. Echivalent cu o rutină \"așteaptă declanșator → înregistrează → repetă până la N\" într-un laborator.</p>\n\n<h4>📐 Mod stivă</h4>\n<p>Dacă selectezi <b>stivă</b>, semnalele sunt concatenate într-un singur array separat prin <code>NaN</code>. Acest lucru permite reprezentarea tuturor capturilor într-o singură urmă fără a le conecta.</p>\n\n<h4>🔁 Exemplu de flux</h4>\n<pre>\nGenerator/Osciloscop → TriggerNode (N=5) → ScriptNode (opțional) → Grafic\n\nRezultat:\n5 curbe suprapuse (stivă) sau media lor (medie)\n</pre>\n\n<h4>🧠 Cazuri de utilizare reală</h4>\n<ul>\n<li>Medierea semnalelor zgomotoase</li>\n<li>Captură sincronizată a experimentelor repetitive</li>\n<li>Comparație vizuală a multiple achiziții</li>\n<li>Preprocesare batch pentru analiză statistică</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → TriggerNode → ScriptNode → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și sfaturi</h4>\n<ul>\n<li><b>Ctrl + Click</b> pe un port → îl selectează rapid pentru conectare.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (configurează, șterge, conectează/deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "generator": {
+      "title": "Generator",
+      "tooltip": "Nod generator de semnal",
+      "ports": {
+        "signal_out": "Ieșire semnal",
+        "trigger_out": "Ieșire declanșator",
+        "trigger_in": "Intrare declanșator",
+        "signal_in": "Intrare semnal"
+      },
+      "status": {
+        "default": "FloWorks  |  Derulare: zoom  |  Click central: panoramare  |  Click dreapta pe nod: opțiuni",
+        "sim": "SIM",
+        "busy": "OCUPAT",
+        "ready": "PREGĂTIT"
+      },
+      "device_label": "DISPOZITIV",
+      "channel_label": "CANAL",
+      "gen_button": "GEN",
+      "setup_button": "CONFIG",
+      "generate_action": "Generează semnal",
+      "help_title": "Ajutor - Nod generator",
+      "help_html": "<h3>📡 Nod generator de semnal</h3>\n<p>Generează semnale analogice și le trimite către un generator de funcții real (SDG) sau simulează ieșirea sa intern.</p>\n\n<h4>📥 Porturi de intrare</h4>\n<ul>\n    <li><code>trigger_in</code> (stânga) → primește un semnal pentru a declanșa generarea (mod EXT).</li>\n    <li><code>signal_in</code> (stânga) → primește un semnal extern (t, y) care va fi trimis generatorului ca formă de undă arbitrară (mod EXT).</li>\n</ul>\n\n<h4>📤 Porturi de ieșire</h4>\n<ul>\n    <li><code>signal_out</code> (dreapta) → emite semnalul generat (t, y) pentru vizualizare sau procesare.</li>\n    <li><code>trigger_out</code> (dreapta) → semnal de declanșare când generarea se finalizează (opțional).</li>\n</ul>\n\n<h4>⚙️ Moduri de operare</h4>\n<ul>\n    <li><b>INT</b> (intern): semnalul este generat conform parametrilor interni ai nodului (frecvență, amplitudine, formă de undă etc.) și trimis către hardware (sau simulare).</li>\n    <li><b>EXT</b> (extern): nodul așteaptă să primească un semnal personalizat prin <code>signal_in</code>. Când apeși <b>GEN</b>, acel semnal este încărcat în generator ca formă de undă arbitrară.</li>\n</ul>\n\n<h4>🔧 Configurare</h4>\n<p>Apasă butonul <b>CONFIG</b> (sau click dreapta → \"Deschide controlerul\") pentru a ajusta:</p>\n<ul>\n    <li>Formă de undă: sinus, dreptunghi, rampă, impuls, zgomot, DC, triunghi, dinți de ferăstrău, sinc, Gaussian, exponențial, chirp.</li>\n    <li>Frecvență, amplitudine, offset, fază, duty cycle etc.</li>\n    <li>Canal de ieșire (C1 sau C2).</li>\n    <li>Dispozitiv: \"sdg\" (hardware real) sau \"simulare\" (doar simulare internă).</li>\n</ul>\n\n<h4>▶️ Generare</h4>\n<p>Apasă butonul <b>GEN</b> (sau click dreapta → \"Generează semnal\") pentru a începe ieșirea. Nodul va trimite semnalul către hardware și va emite de asemenea <code>signal_out</code> cu datele generate pentru restul fluxului.</p>\n\n<h4>💡 Exemplu tipic</h4>\n<ol>\n    <li>Configurează generatorul cu o undă sinusoidală de 1 kHz, 1 Vpp.</li>\n    <li>Conectează <code>signal_out</code> la un nod osciloscop sau vizualizator.</li>\n    <li>Apasă <b>GEN</b> → semnalul apare pe canalul fizic și, de asemenea, pe grafic.</li>\n</ol>\n\n<h4>⚠️ Note</h4>\n<ul>\n    <li>În modul EXT, asigură-te că mai întâi conectezi <code>signal_in</code> cu un semnal (t, y) înainte de a apăsa GEN.</li>\n    <li>Dacă hardware-ul nu este conectat, nodul folosește automat simularea.</li>\n    <li>Formele de undă arbitrare sunt încărcate cu până la 524288 de puncte (în funcție de model).</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → FFT → Filtru → Sumator → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "Osciloscop",
+      "tooltip": "Nod de captură osciloscop\n Dublu click pentru informații",
+      "ports": {
+        "out_primary": "Ieșire primară",
+        "out_secondary": "Ieșire secundară",
+        "trigger_out": "Ieșire declanșator"
+      },
+      "status": {
+        "sim": "SIMULARE",
+        "capturing": "SE CAPTUREAZĂ...",
+        "armed": "ARMAT",
+        "connected": "CONECTAT",
+        "disconnected": "DECONECTAT"
+      },
+      "device_label": "DISPOZITIV",
+      "channel_label": "CANAL",
+      "lcr_label": "LCR",
+      "sim_label": "SIM",
+      "trig_button": "DECL",
+      "setup_button": "CONFIG",
+      "menu": {
+        "show_channel": "Arată canalul"
+      },
+      "channel": {
+        "primary": "Primar (Z)",
+        "secondary": "Secundar (θ)"
+      },
+      "trigger_action": "Declanșează captura",
+      "help_title": "Ajutor - Nod osciloscop",
+      "help_html": "<h3>📊 Nod osciloscop (achiziție semnal)</h3>\n<p>Capturează semnale din lumea reală folosind hardware (SDS, LCR) sau generează date simulate pentru testare.</p>\n\n<h4>📤 Porturi de ieșire</h4>\n<ul>\n    <li><code>out_primary</code> → semnal principal (tensiune vs timp sau impedanță Z pentru LCR).</li>\n    <li><code>out_secondary</code> → semnal secundar (fază θ pentru LCR; nefolosit pentru SDS).</li>\n    <li><code>trigger_out</code> → emite un semnal de declanșare când captura se finalizează (util pentru sincronizarea altor noduri).</li>\n</ul>\n\n<h4>🔘 Controale</h4>\n<ul>\n    <li><b>DECL</b> → începe o captură (achiziție de date).</li>\n    <li><b>CONFIG</b> → deschide panoul de configurare (parametri de simulare sau controler hardware).</li>\n    <li><b>Selector dispozitiv</b> (combo jos) → alege între SDS (osciloscop real), LCR (metru de impedanță) sau simulare.</li>\n</ul>\n\n<h4>⚙️ Moduri de operare</h4>\n<ul>\n    <li><b>SDS</b>: se conectează la un osciloscop real (Siglent SDS). Poți selecta canalul (C1..C4) prin meniul contextual → \"Arată canalul\".</li>\n    <li><b>LCR</b>: se conectează la un metru LCR, oferă două ieșiri: primară (impedanță Z) și secundară (unghi de fază θ).</li>\n    <li><b>Simulare</b>: generează un semnal sintetic cu zgomot, configurabil prin CONFIG (bază de timp, interval de tensiune, nivel de declanșare, rată de eșantionare).</li>\n</ul>\n\n<h4>📈 Vizualizare</h4>\n<p>Nodul nu desenează semnalul intern, dar poate fi conectat la un widget de vizualizare (cum ar fi <code>PlotWidget</code>) pentru a afișa datele capturate.</p>\n\n<h4>💡 Exemplu de utilizare</h4>\n<ol>\n    <li>Selectează dispozitivul (SDS) și conectează-l fizic.</li>\n    <li>Apasă DECL pentru a captura o urmă.</li>\n    <li>Semnalul va fi disponibil pe <code>out_primary</code> pentru alte noduri.</li>\n    <li>Dacă folosești LCR, ambele ieșiri (Z și θ) vor fi disponibile.</li>\n</ol>\n\n<h4>⚠️ Note</h4>\n<ul>\n    <li>În modul hardware, asigură-te că dispozitivul este conectat și pornit.</li>\n    <li>Captura rulează într-un thread separat pentru a nu bloca interfața.</li>\n    <li>Nodul acționează ca sursă de date (nod de intrare) pentru flux.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → FFT → Filtru → Sumator → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "spectral": {
+        "title": "Spectral",
+        "tooltip": "Transformări spectrale: FFT, Hilbert, Welch (PSD) și DCT",
+        "transform_type": "Transformare:",
+        "window_type": "Fereastră:",
+        "nfft": "NFFT / Segment:",
+        "scale": "Scală:",
+        "detrend": "Detrend:",
+        "normalize": "Normalizează (păstrează energia)",
+        "config_title": "Configurează spectral",
+        "menu": {
+            "configure": "Configurează...",
+            "show_output": "Arată ieșirea"
+        },
+        "channel": {
+            "magnitude": "Amplitudine",
+            "phase": "Fază"
+        },
+        "ports": {
+            "input": "Intrare",
+            "output": "Ieșire timp",
+            "magnitude": "Amplitudine",
+            "phase": "Fază"
+        },
+        "status": {
+            "no_data": "Fără date",
+            "ready": "Pregătit",
+            "phase": "Fază"
+        },
+        "help_title": "Ajutor - Spectral",
+        "help_html": "<h3>📊 Nod spectral (transformări spectrale)</h3>\n<p>Calculează diverse transformări pe semnalul de intrare: <b>FFT</b>, <b>Hilbert</b>, <b>Welch (PSD)</b> și <b>DCT</b>.</p>\n\n<h4>📥 Intrare</h4>\n<p><code>input</code> → așteaptă un tuplu <code>(x, y)</code> sau un array 1D.</p>\n\n<h4>📤 Ieșiri</h4>\n<ul>\n    <li><b>Ieșire timp</b> → semnal în domeniul timp (activ doar la Hilbert: partea reală a semnalului analitic).</li>\n    <li><b>Amplitudine</b> → în funcție de mod:\n        <ul>\n            <li><b>FFT</b> → spectru de amplitudine normalizat <code>(frecvențe, amplitudini)</code>.</li>\n            <li><b>Hilbert</b> → anvelopa semnalului <code>(timp, anvelopă)</code>.</li>\n            <li><b>Welch</b> → densitate spectrală de putere <code>(frecvențe, PSD)</code>.</li>\n            <li><b>DCT</b> → coeficienți ai transformatei cosinus discrete <code>(index, coeficienți)</code>.</li>\n        </ul>\n    </li>\n    <li><b>Fază</b> → unghiuri de fază în radiani (FFT) sau fază instantanee (Hilbert). <i>Nu este disponibilă</i> pentru Welch sau DCT.</li>\n</ul>\n\n<h4>⚙️ Parametri</h4>\n<ul>\n    <li><b>Transformare</b> — alege între FFT, Hilbert, Welch sau DCT.</li>\n    <li><b>Fereastră</b> — funcție fereastră din <code>scipy.signal.windows</code> (Hann, Hamming, Blackman etc.).</li>\n    <li><b>NFFT / Segment</b> — lungimea FFT sau lungimea segmentului Welch. <code>Auto</code> folosește următoarea putere a lui 2.</li>\n    <li><b>Scală</b> — <code>linear</code> sau <code>dB</code> (20·log₁₀ pentru FFT/Hilbert/DCT, 10·log₁₀ pentru Welch).</li>\n    <li><b>Detrend</b> — elimină media constantă sau tendința liniară înainte de procesare.</li>\n    <li><b>Normalizează</b> — ajustează fereastra pentru a păstra energia.</li>\n</ul>\n\n<h4>🖱️ Interacțiune</h4>\n<ul>\n    <li><b>Click dreapta</b> → meniu contextual (Configurează, alege canalul de afișare).</li>\n    <li><b>Dublu click</b> → deschide această fereastră de ajutor.</li>\n    <li><b>Panou lateral</b> — ajustează parametrii în timp real; graficul se actualizează automat.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → Fereastră → Spectral (FFT) → Filtru → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și sfaturi</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "ifft": {
+        "title": "IFFT",
+        "tooltip": "Transformata Fourier inversă (reconstrucție temporală)",
+        "fs": "Frecvență de eșantionare (fs):",
+        "nfft": "NFFT:",
+        "real_only": "Doar ieșire reală (irfft)",
+        "conjugate_symmetry": "Impune simetrie hermitiană",
+        "normalize": "Normalizează prin N",
+        "config_title": "Configurează IFFT",
+        "menu": {
+            "configure": "Configurează..."
+        },
+        "ports": {
+            "magnitude": "Amplitudine",
+            "phase": "Fază",
+            "output": "Ieșire timp"
+        },
+        "status": {
+            "no_data": "Fără date",
+            "waiting_phase": "Fază=0 (presupusă)",
+            "ready": "Pregătit"
+        },
+        "help_title": "Ajutor - IFFT",
+        "help_html": "<h3>🔁 Nod IFFT (transformata Fourier rapidă inversă)</h3>\n<p>Reconstruiește un semnal în domeniul timp din spectrul său de frecvență.</p>\n\n<h4>📥 Intrări</h4>\n<ul>\n    <li><b>Amplitudine</b> → <code>(frecvențe, amplitudini)</code> sau array 1D. <b>Obligatoriu.</b></li>\n    <li><b>Fază</b> → <code>(frecvențe, unghiuri)</code> sau array 1D. <b>Opțional.</b> Dacă nu este conectată, faza este presupusă zero.</li>\n</ul>\n\n<h4>📤 Ieșire</h4>\n<ul>\n    <li><b>Ieșire timp</b> → <code>(timp, semnal)</code> reconstruit.</li>\n</ul>\n\n<h4>⚙️ Parametri</h4>\n<ul>\n    <li><b>fs</b> — frecvența de eșantionare pentru a construi axa timpului.</li>\n    <li><b>NFFT</b> — dimensiunea IFFT. <code>Auto</code> folosește <code>2·(len(mag)-1)</code>.</li>\n    <li><b>Ieșire reală</b> — folosește <code>irfft</code> (garantează ieșire reală) sau <code>ifft</code> (complexă).</li>\n    <li><b>Simetrie hermitiană</b> — forțează <code>Y[-k] = conj(Y[k])</code> înainte de inversare (previne artefactele).</li>\n    <li><b>Normalizează</b> — împarte la <code>N</code> pentru a păstra amplitudinea originală.</li>\n</ul>\n\n<h4>🖱️ Interacțiune</h4>\n<ul>\n    <li><b>Click dreapta</b> → Configurează...</li>\n    <li><b>Dublu click</b> → ajutor.</li>\n    <li><b>Panou lateral</b> — ajustează fs și parametrii în timp real.</li>\n</ul>"
+    },
+    "thd": {
+      "title": "Analizor THD",
+      "tooltip": "Distorsiune armonică totală THD",
+      "ports": {
+        "input": "Intrare",
+        "output": "Ieșire"
+      },
+      "dialog": {
+        "title": "Analizează THD"
+      },
+      "tab": {
+        "summary": "Sumar",
+        "harmonics": "Armonice",
+        "spectrum": "Spectru"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "Frecvență fundamentală:",
+        "max_harmonics": "Armonice luate în considerare:",
+        "green_threshold": "Prag verde (<):",
+        "yellow_threshold": "Prag galben (<):"
+      },
+      "harmonics": {
+        "order": "Ordin armonică",
+        "freq": "Frecvență (Hz)",
+        "amp_rel": "Amplitudine relativă (%)"
+      },
+      "help_title": "Ajutor - THD",
+      "help_html": "<h3>Analizor distorsiune armonică totală (THD)</h3><p>Calculează THD și THD+N ale semnalului de intrare.</p><p>Semnalul este trecut neschimbat la ieșire.</p><p><b>Parametri:</b></p><ul><li>max_harmonics: numărul de armonice luate în considerare</li><li>praguri verde/galben: schimbă culoarea THD în nod</li></ul><p><i>Dublu click pentru a deschide analiza detaliată.</i></p>"
+    },
+    "filter": {
+      "title": "Filtru",
+      "tooltip": "Filtru digital (Butterworth)",
+      "ports": {
+        "input": "Intrare",
+        "output": "Ieșire"
+      },
+      "status": {
+        "no_data": "Fără date",
+        "ready": "Pregătit"
+      },
+      "menu": {
+        "configure": "Configurează...",
+        "show_output":"Arată ieșirea"
+      },
+      "config_title": "Configurează filtrul",
+      "filter_type": "Tip filtru:",
+      "cutoff": "Frecvență(e) de tăiere (Hz):",
+      "cutoff1": "Frecvență de tăiere 1 (Hz):",
+      "cutoff2": "Frecvență de tăiere 2 (Hz):",
+      "order": "Ordin filtru:",
+      "fs": "Frecvență de eșantionare (Hz, 0 = auto):",
+      "help_title": "Ajutor - Filtru",
+      "help_html": "<h3>🎛️ Nod filtru (Butterworth)</h3>\n<p>Aplică un <b>filtru digital Butterworth</b> semnalului de intrare.</p>\n\n<h4>📥 Intrare</h4>\n<p><code>input</code> → așteaptă un tuplu <code>(x, y)</code> sau un array 1D.</p>\n\n<h4>📤 Ieșire</h4>\n<p><code>output</code> → semnal filtrat ca <code>(x, y_filtered)</code>.</p>\n\n<h4>⚙️ Parametri (dublu click pentru a configura)</h4>\n<ul>\n    <li><b>Tip filtru</b> – trece-jos, trece-sus, trece-bandă sau oprește-bandă.</li>\n    <li><b>Frecvență(e) de tăiere</b> – în Hz. Pentru trece-bandă/oprește-bandă sunt necesare două frecvențe.</li>\n    <li><b>Ordin</b> – ordinul filtrului (1–20). Ordin mai mare = tranziție mai abruptă.</li>\n    <li><b>Frecvență de eșantionare</b> – dacă este setată la 0, este dedusă automat din axa <i>x</i>.</li>\n</ul>\n\n<h4>🛠️ Operare</h4>\n<ul>\n    <li>Filtrul este proiectat folosind <code>scipy.signal.butter</code>.</li>\n    <li>Se aplică filtrare cu fază zero cu <code>filtfilt</code> (fără distorsiuni de fază).</li>\n    <li>Dacă intrarea este un array 1D, se creează o axă <i>x</i> sintetică folosind frecvența de eșantionare.</li>\n</ul>\n\n<h4>🖱️ Interacțiune</h4>\n<ul>\n    <li><b>Dublu click</b> → deschide dialogul de configurare.</li>\n    <li><b>Click</b> pe nod → reprezintă semnalul filtrat.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → Filtru → FFT → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "Normalizare",
+      "tooltip": "Normalizează semnalul la un interval specificat",
+      "ports": {
+        "input": "Intrare",
+        "output": "Ieșire"
+      },
+      "menu": {
+        "configure": "Configurează..."
+      },
+      "config_title": "Configurează nodul de normalizare",
+      "param": {
+        "target_min": "Minim țintă:",
+        "target_max": "Maxim țintă:"
+      },
+      "help_title": "Ajutor - Normalizare",
+      "help_html": "<h3>📏 Nod de normalizare</h3>\n<p>Normalizează un semnal de intrare la intervalul specificat de <b>Minim țintă</b> și <b>Maxim țintă</b>.</p>\n\n<h4>📥 Intrare</h4>\n<p><code>input</code> → așteaptă un tuplu <code>(x, y)</code> sau un array 1D.</p>\n\n<h4>📤 Ieșire</h4>\n<ul>\n    <li><b>Semnal normalizat</b> → <code>(x_norm, y_norm)</code> – semnal scalat la intervalul țintă.</li>\n</ul>\n\n<h4>⚙️ Parametri (dublu click pentru a configura)</h4>\n<ul>\n    <li><b>Minim țintă</b> – valoarea minimă a intervalului dorit (implicit 0.0).</li>\n    <li><b>Maxim țintă</b> – valoarea maximă a intervalului dorit (implicit 1.0).</li>\n</ul>\n\n<h4>📐 Operare</h4>\n<p>Rescalare liniară:</p>\n<pre>y_norm = target_min + (y - original_min) * (target_max - target_min) / (original_max - original_min)</pre>\n<p>Axa x rămâne neschimbată.</p>\n\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → FFT → Filtru → Sumator → Grafic\n</pre>\n\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "Convoluție",
+      "tooltip": "Filtru FIR prin convoluție",
+      "ports": {
+        "input": "Intrare",
+        "output": "Ieșire"
+      },
+      "status": {
+        "no_data": "Fără date"
+      },
+      "menu": {
+        "show_output": "Arată ieșirea",
+        "configure": "Configurează..."
+      },
+      "config_title": "Configurează convoluția",
+      "example_kernel": "Kernel-uri exemplu:",
+      "kernel": "Coeficienți kernel (separați prin virgulă):",
+      "mode": "Mod convoluție:",
+      "help_title": "Ajutor - Convoluție",
+    "help_html": "<h3>🔀 Nod convoluție (filtru FIR)</h3>\n<p>Aplică o convoluție discretă între semnalul de intrare și un kernel definit de utilizator.</p>\n\n<h4>📥 Intrare</h4>\n<p><code>input</code> → așteaptă un tuplu <code>(x, y)</code> sau un array 1D.</p>\n\n<h4>📤 Ieșire</h4>\n<ul>\n    <li><b>Semnal filtrat</b> → <code>(x_conv, y_conv)</code> – rezultatul convoluției.</li>\n</ul>\n\n<h4>⚙️ Parametri (dublu click pentru a configura)</h4>\n<ul>\n    <li><b>Coeficienți kernel</b> – numere cu virgulă mobilă separate prin virgulă, de ex. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Mod convoluție</b> – <code>'same'</code> (implicit), <code>'full'</code> sau <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Operare</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>Axa x este ajustată corespunzător: pentru <code>'same'</code> păstrează x original; pentru <code>'valid'</code> taie capetele; pentru <code>'full'</code> se extinde liniar.</li>\n</ul>\n\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → FFT → Filtru → Sumator → Grafic\n</pre>\n\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+    },
+    "resample": {
+      "title": "Reeșantionare",
+      "tooltip": "Schimbă rata de eșantionare a semnalului",
+      "ports": {
+        "input": "Intrare",
+        "output": "Ieșire"
+      },
+      "status": {
+        "no_data": "Fără date",
+        "ready": "Pregătit"
+      },
+      "menu": {
+        "configure": "Configurează..."
+      },
+      "config_title": "Configurează reeșantionarea",
+      "mode": "Mod:",
+      "factor": "Factor:",
+      "target_fs": "fs țintă (Hz):",
+      "help_title": "Ajutor - Reeșantionare",
+      "help_html": "<h3>🔄 Nod de reeșantionare</h3><p>Schimbă <b>rata de eșantionare</b> a semnalului de intrare.</p><h4>📥 Intrare</h4><p><code>input</code> → așteaptă un tuplu <code>(x, y)</code> sau un array 1D.</p><h4>📤 Ieșire</h4><p><code>output</code> → semnal reeșantionat ca <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametri</h4><ul><li><b>Mod</b> – <i>factor</i> (înmulțește rata de eșantionare originală) sau <i>fixed_fs</i> (rată de eșantionare țintă în Hz).</li><li><b>Factor</b> – factor de scalare (>1 crește numărul de eșantioane, <1 scade).</li><li><b>fs țintă</b> – rata de eșantionare dorită în Hz (folosită când modul este fixed_fs).</li></ul><h4>🛠️ Operare</h4><p>Folosește <code>scipy.signal.resample</code> care aplică o metodă Fourier.</p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+    },
+    "window": {
+      "title": "Fereastră",
+      "tooltip": "Aplică o funcție fereastră semnalului",
+      "ports": {
+        "input": "Intrare",
+        "output": "Ieșire"
+      },
+      "status": {
+        "no_data": "Fără date",
+        "ready": "Pregătit"
+      },
+      "menu": {
+        "configure": "Configurează..."
+      },
+      "config_title": "Configurează fereastra",
+      "window_type": "Tip fereastră:",
+      "normalize": "Normalizează (păstrează energia)",
+      "help_title": "Ajutor - Fereastră",
+      "help_html": "<h3>🪟 Nod fereastră</h3><p>Aplică o <b>funcție fereastră</b> semnalului de intrare pentru a reduce scurgerea spectrală.</p><h4>📥 Intrare</h4><p><code>input</code> → tuplu <code>(x, y)</code> sau array 1D.</p><h4>📤 Ieșire</h4><p><code>output</code> → semnal cu fereastră <code>(x, y * window)</code>.</p><h4>⚙️ Parametri</h4><ul><li><b>Tip fereastră</b> – Hann, Hamming, Blackman, Bartlett etc.</li><li><b>Normalizează</b> – dacă este bifat, scalează fereastra pentru a păstra energia totală.</li></ul><h4>🛠️ Operare</h4><p>Folosește <code>scipy.signal.windows</code>.</p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+    },
+    "delay": {
+      "title": "Întârziere",
+      "tooltip": "Întârzie semnalul cu o cantitate specificată",
+      "ports": {
+        "input": "Intrare",
+        "output": "Ieșire"
+      },
+      "status": {
+        "no_data": "Fără date",
+        "ready": "Pregătit"
+      },
+      "menu": {
+        "configure": "Configurează..."
+      },
+      "config_title": "Configurează întârzierea",
+      "mode": "Mod întârziere:",
+      "samples": "Eșantioane:",
+      "seconds": "Secunde:",
+      "padding": "Umplere:",
+      "constant_value": "Valoare constantă:",
+      "help_title": "Ajutor - Întârziere",
+      "help_html": "<h3>⏱️ Nod de întârziere</h3><p>Întârzie semnalul de intrare cu o cantitate specificată de <b>eșantioane</b> sau <b>secunde</b>.</p><h4>📥 Intrare</h4><p><code>input</code> → tuplu <code>(x, y)</code> sau array 1D.</p><h4>📤 Ieșire</h4><p><code>output</code> → semnal întârziat <code>(x, y_delayed)</code>.</p><h4>⚙️ Parametri</h4><ul><li><b>Mod întârziere</b> – <i>eșantioane</i> (număr întreg de eșantioane) sau <i>secunde</i> (timp în secunde, necesită rata de eșantionare din axa x).</li><li><b>Umplere</b> – metoda de umplere a golului inițial: <i>zero</i>, <i>reflectare</i> sau <i>constantă</i> (valoare definită de utilizator).</li></ul><h4>🛠️ Operare</h4><p>Deplasează semnalul spre dreapta, inserând umplere la început.</p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+    },
+    "correlation": {
+      "title": "Corelație",
+      "tooltip": "Corelația încrucișată a două semnale",
+      "ports": {
+        "signal1": "Semnal 1",
+        "signal2": "Semnal 2",
+        "corr": "Corelație"
+      },
+      "status": {
+        "no_data": "Fără date",
+        "ready": "Pregătit"
+      },
+      "menu": {
+        "configure": "Configurează..."
+      },
+      "config_title": "Configurează corelația",
+      "mode": "Mod:",
+      "normalize": "Normalizează",
+      "help_title": "Ajutor - Corelație",
+      "help_html": "<h3>📈 Nod de corelație</h3><p>Calculează <b>corelația încrucișată</b> între două semnale de intrare.</p><h4>📥 Intrări</h4><p><code>signal1</code>, <code>signal2</code> → fiecare așteaptă un tuplu <code>(x, y)</code> sau un array 1D.</p><h4>📤 Ieșire</h4><p><code>corr</code> → secvența de corelație ca <code>(întârzieri, corelație)</code>.</p><h4>⚙️ Parametri</h4><ul><li><b>Mod</b> – <i>full</i> (toate întârzierile), <i>same</i> (aceeași lungime ca cea mai lungă intrare), <i>valid</i> (fără margini umplute cu zero).</li><li><b>Normalizează</b> – dacă este bifat, împarte la produsul normelor semnalelor (dă valori în [-1, 1]).</li></ul><h4>🛠️ Operare</h4><p>Folosește <code>np.correlate</code>.</p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+    },
+    "math_expression": {
+      "title": "Expresie matematică",
+      "tooltip": "Evaluează o expresie matematică pe x și y",
+      "ports": {
+        "input": "Intrare",
+        "output": "Ieșire"
+      },
+      "status": {
+        "no_data": "Fără date",
+        "ready": "Pregătit"
+      },
+      "menu": {
+        "configure": "Configurează..."
+      },
+      "config_title": "Configurează expresia matematică",
+      "expression": "Expresie (folosește x, y, np.*):",
+      "info": "Variabile: x (axa timp), y (valorile semnalului).\nFuncții: np.sin, np.cos, np.exp, np.sqrt etc.",
+      "examples": "Exemple...",
+      "help_title": "Ajutor - Expresie matematică",
+      "help_html": "<h3>🧮 Nod expresie matematică</h3><p>Evaluează o expresie matematică arbitrară pe variabilele de intrare <code>x</code> și <code>y</code>.</p><h4>📥 Intrare</h4><p><code>input</code> → tuplu <code>(x, y)</code> sau array 1D.</p><h4>📤 Ieșire</h4><p><code>output</code> → rezultatul expresiei ca <code>(x, y_new)</code>.</p><h4>✏️ Sintaxa expresiei</h4><ul><li>Folosește <code>x</code> (axa timp) și <code>y</code> (valorile semnalului) ca variabile array.</li><li>Poți folosi de asemenea orice funcție <code>np.*</code> (de ex. <code>np.sin(y)</code>, <code>np.exp(-x)</code>).</li><li>Exemple: <code>y * 2</code>, <code>np.sin(2*np.pi*x)</code>, <code>np.sqrt(x**2 + y**2)</code>.</li></ul><h4>⚠️ Notă</h4><p>Expresia este evaluată în siguranță folosind <code>numexpr</code> (dacă este disponibil) sau un <code>eval</code> restricționat.</p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+    },
+    "spectrogram": {
+      "title": "Spectrogramă",
+      "tooltip": "Calculează spectrograma STFT",
+      "ports": {
+        "input": "Intrare",
+        "spectrogram": "Spectrogramă",
+        "frequencies": "Frecvențe",
+        "times": "Timpuri"
+      },
+      "status": {
+        "no_data": "Fără date",
+        "ready": "Pregătit"
+      },
+      "menu": {
+        "configure": "Configurează...",
+        "show_in_plot": "Arată în grafic"
+      },
+      "config_title": "Configurează spectrograma",
+      "nperseg": "Eșantioane per segment:",
+      "noverlap": "Suprapunere:",
+      "window": "Fereastră:",
+      "scaling": "Scalare:",
+      "mode": "Mod:",
+      "help_title": "Ajutor - Spectrogramă",
+      "help_html": "<h3>🌊 Nod spectrogramă</h3><p>Calculează spectrograma <b>transformatei Fourier cu timp scurt (STFT)</b>.</p><h4>📥 Intrare</h4><p><code>input</code> → (x, y) sau array 1D.</p><h4>📤 Ieșiri</h4><ul><li><b>Spectrogramă</b> → array 2D (frecvențe, timpuri, amplitudini) – <i>nu poate fi reprezentată prin click</i>.</li><li><b>Frecvențe</b> → array 1D de benzi de frecvență (poate fi conectat la alte noduri).</li><li><b>Timpuri</b> → array 1D de timpi ai segmentelor.</li></ul><h4>🖱️ Interacțiune</h4><p><b>Click</b> pe nod <b>nu</b> afișează spectrograma. Conectează <code>frequencies</code> sau <code>times</code> la alte noduri de procesare sau exportă datele.</p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+    },
+    "spectrogram_viewer": {
+        "title": "Vizualizator spectrogramă",
+        "tooltip": "Primește și afișează date de spectrogramă (frecvențe, timpuri, matrice)",
+        "config_title": "Configurează vizualizatorul de spectrogramă",
+        "ports": {
+            "frequencies": "Frecvențe",
+            "times": "Timpuri",
+            "spectrogram": "Spectrogramă"
+        },
+        "status": {
+            "no_data": "Fără date"
+        },
+        "menu": {
+            "view_spectrogram": "Vezi spectrograma",
+            "configure": "Configurează..."
+        },
+        "window_title": "Vizualizator spectrogramă",
+        "time_axis": "Timp (s)",
+        "freq_axis": "Frecvență (Hz)",
+        "log_scale": "Scală logaritmică",
+        "colormap": "Hartă de culori:",
+        "auto_contrast": "Contrast automat",
+        "contrast_min": "Contrast minim:",
+        "contrast_max": "Contrast maxim:",
+        "export": "Exportă...",
+        "export_title": "Exportă spectrograma",
+        "no_data_title": "Fără date",
+        "no_data_message": "Date incomplete. Conectează toate porturile și rulează fluxul mai întâi.",
+        "help_title": "Ajutor - Vizualizator spectrogramă",
+        "help_html": "<h3>📊 Nod vizualizator spectrogramă</h3><p>Primește cele trei ieșiri ale unui nod <b>Spectrogramă</b> și le afișează ca o hartă termică 2D.</p><h4>📥 Intrări</h4><ul><li><b>frequencies</b> → vector 1D de frecvențe</li><li><b>times</b> → vector 1D de timpi ai segmentelor</li><li><b>spectrogram</b> → matrice 2D (frecvențe × timpuri) de amplitudini</li></ul><h4>⚙️ Configurare</h4><p>Folosește <b>panoul lateral</b> pentru a ajusta în timp real:</p><ul><li><b>Scală logaritmică</b> — evidențiază detaliile de amplitudine joasă.</li><li><b>Hartă de culori</b> — viridis, inferno, plasma, jet etc.</li><li><b>Contrast</b> — automat sau manual (min / max).</li></ul><h4>🖱️ Interacțiune</h4><p><b>Click dreapta</b> pe nod și selectează <b>\"Vezi spectrograma\"</b> pentru a deschide o fereastră dedicată.</p><p>În interiorul vizualizatorului poți <b>exporta</b> vizualizarea curentă ca imagine PNG.</p><p><i>Click pe nod nu afișează nimic în graficul principal.</i></p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru o conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (vezi, configurează, șterge).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+    },
+    "graph_exporter": {
+        "title": "Exportator grafic",
+        "tooltip": "Exportă grafice de calitate profesională",
+        "ports": {
+            "signal_in": "Intrare semnal",
+            "file_out": "Fișier ieșire"
+        },
+        "status": {
+            "ready": "Pregătit",
+            "exported": "Exportat"
+        },
+        "menu": {
+            "show_graph": "Arată graficul",
+            "configure": "Configurează graficul",
+            "configure_subplot": "Configurează subgraficele",
+            "export": "Exportă graficul",
+            "subplots": "Subgrafice",
+            "use_subplots": "Folosește subgrafice",
+            "n_subplots": "Număr de subgrafice",
+            "subplot_layout": "Aranjament"
+        },
+        "config": {
+            "display_mode": "Mod de afișare",
+            "use_subplots": "Folosește subgrafice (max. 8)",
+            "n_subplots": "Număr de subgrafice:",
+            "subplot_layout": "Aranjament:",
+            "export_format": "Format de export"
+        },
+        "no_data_title": "Fără date",
+        "no_data_msg": "Conectează un semnal de intrare și rulează fluxul pentru a genera un grafic.",
+        "export_dialog_title": "Salvează graficul",
+        "export_error_title": "Eroare de export",
+        "config_title": "Configurează exportatorul grafic",
+        "help_title": "Ajutor - Exportator grafic",
+        "help_html": "<h3>📊 Exportator grafic</h3><p>Primește un semnal și îl exportă ca imagine de înaltă calitate.</p><h4>📥 Intrare</h4><p><code>signal_in</code> → tuplu <code>(x, y)</code> sau array 1D.</p><h4>📤 Ieșire</h4><p><code>file_out</code> → calea fișierului generat.</p><h4>⚙️ Configurare</h4><p>Dublu click dreapta → <b>Configurează graficul</b> pentru a ajusta stilul, axele, adnotările etc.</p><hr><h4>🖱️ Interacțiune</h4><ul><li><b>Click dreapta</b> → meniu contextual.</li><li><b>Arată graficul</b> → previzualizare cu setările curente.</i></p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru o conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "Nodul de intrare nu poate fi șters."
+  },
+  "workspace": {
+    "headers": {
+      "node": "Nod",
+      "type": "Tip",
+      "shape": "Formă",
+      "x_range_fs": "X: interval / fs",
+      "dx_t": "dx / T",
+      "y_range": "Y: [min, max]",
+      "preview_y": "Previzualizare Y"
+    }
+  },
+  "plot": {
+    "time_label": "Timp (s)",
+    "voltage_label": "Tensiune (V)",
+    "title": "Semnal",
+    "scale_label": "Scală:",
+    "scale_linear": "Liniară",
+    "scale_log": "Logaritmică",
+    "markers": "Markeri",
+    "cursors": "Cursori A/B",
+    "peak": "Vârf",
+    "peak_tooltip": "Marchează vârful maxim",
+    "reset_zoom": "Resetează zoom",
+    "amplitude": "Amplitudine",
+    "time": "Timp (s)",
+    "frequency": "Frecvență (Hz)",
+    "view_mode": "Vizualizare",
+    "view_2d": "2D",
+    "view_surface": "Suprafață 3D",
+    "view_waterfall": "Cascadă 3D",
+    "view_volume": "Volum 3D",
+    "view_slice": "Felie 3D",
+    "slice_label": "Felie",
+    "reset_camera": "Resetează camera",
+    "axis_scale": "Scală",
+    "fps": "FPS",
+    "loop": "Buclă",
+    "colormap": "Hartă de culori"
+  },
+  "shortcuts": {
+    "delete": "Șterge nod",
+    "delete_desc": "Șterge nodurile selectate și conexiunile lor.",
+    "duplicate": "Duplică nod",
+    "duplicate_desc": "Duplică nodurile selectate cu un decalaj de +50px.",
+    "select_all": "Selectează tot",
+    "select_all_desc": "Selectează toate nodurile din scenă.",
+    "cancel": "Anulează acțiunea",
+    "cancel_desc": "Anulează conexiunea în curs sau deselectează tot.",
+    "copy": "Copiază",
+    "copy_desc": "Copiază nodurile selectate în clipboard intern.",
+    "cut": "Taie",
+    "cut_desc": "Taie nodurile selectate.",
+    "paste": "Lipește",
+    "paste_desc": "Lipește nodurile din clipboard.",
+    "undo": "Anulează",
+    "undo_desc": "Anulează ultima acțiune.",
+    "redo": "Refă",
+    "redo_desc": "Refă acțiunea anulată.",
+    "run": "Rulează fluxul",
+    "run_desc": "Execută fluxul complet.",
+    "auto_layout": "Aranjare automată",
+    "auto_layout_desc": "Aranjează automat nodurile în coloane.",
+    "center_view": "Centrează vizualizarea",
+    "center_view_desc": "Centrează vizualizarea pe selecție sau pe întreaga scenă.",
+    "zoom_reset": "Zoom 100%",
+    "zoom_reset_desc": "Resetează zoom-ul la 100%.",
+    "zoom_in": "Mărește",
+    "zoom_in_desc": "Mărește.",
+    "zoom_out": "Micșorează",
+    "zoom_out_desc": "Micșorează.",
+    "toggle_theme": "Comută tema",
+    "toggle_theme_desc": "Comută între temele întunecată, luminoasă și contrast ridicat.",
+    "toggle_grid": "Comută grila",
+    "toggle_grid_desc": "Arată sau ascunde grila.",
+    "lock_node": "Blochează nod",
+    "lock_node_desc": "Blochează/deblochează mișcarea nodului selectat.",
+    "help": "Ajutor contextual",
+    "help_desc": "Arată tooltip-ul nodului de sub cursor.",
+    "new_file": "Nou",
+    "new_file_desc": "Creează o diagramă nouă",
+    "open_file": "Deschide",
+    "open_file_desc": "Deschide un fișier diagramă",
+    "save_file": "Salvează",
+    "save_file_desc": "Salvează diagrama curentă",
+    "save_file_as": "Salvează ca…",
+    "save_file_as_desc": "Salvează diagrama cu un nume nou"
+  },
+  "dialogs": {
+    "common": {
+      "close": "Închide",
+      "cancel": "Anulează",
+      "ok": "OK",
+      "emer_wind": "Selectează programul",
+      "operation_history": "Operații",
+      "confirm": "Nu s-au făcut modificări.",
+      "overwrite": "Suprascrie?",
+      "error": "Eroare"
+    },
+    "font_size": {
+        "title": "Dimensiune font",
+        "label": "Dimensiune (pt):"
+    },
+    "firewall": {
+        "title": "Conexiune blocată",
+        "text": "Nu s-a putut conecta la osciloscop.\nFirewall-ul Windows poate bloca comunicarea.",
+        "informative": "Pentru a rezolva, permiteți 'FloWorks.exe' prin firewall-ul Windows.\n\nDoriți să folosiți modul de simulare între timp?"
+    },
+    "capture_error": {
+        "title": "Eroare de captură",
+        "text": "A apărut o eroare în timpul capturii:\n{error}\n\nVerificați că dispozitivul este pornit și că firewall-ul permite conexiunea."
+    },
+    "script_editor": {
+      "title": "Editor de scripturi",
+      "header": "Script Python  |  variabile: x, y, param (de la TriggerNode), np, scipy, sympy",
+      "test_button": "Testează (fără salvare)",
+      "save_button": "Salvează și închide",
+      "tool_tip": "Nod script\nDublu click pentru informații",
+      "templates": "Șabloane:",
+      "save_template": "Salvează șablon…",
+      "import": "Deschide script…",
+      "export": "Exportă script…",
+      "unsaved_warning": "Nu s-au făcut modificări. Doriți să încărcați șablonul și să le pierdeți?",
+      "save_template_title": "Salvează ca șablon",
+      "save_template_prompt": "Numele șablonului (fără extensie):",
+      "overwrite_template": "Șablonul există deja. Doriți să-l suprascrieți?",
+      "import_title": "Deschide script Python",
+      "export_title": "Exportă script Python",
+      "help_tooltip": "Ajutor rapid (F1)",
+      "help_title": "Ajutor rapid",
+      "browse": "Răsfoiește…",
+      "python_path_placeholder": "Lăsați gol pentru a folosi interpretorul intern. De ex.: python3",
+      "quick_help_html": "<h2>Editor de scripturi Python</h2><p>Acest editor rulează cod Python pe semnalele fluxului. Scriptul primește date și poate returna rezultate, modifica semnale sau genera multiple ieșiri.</p><h3>Variabile disponibile</h3><ul><li><b>x</b> – array NumPy: axa X (timp, frecvență...).</li><li><b>y</b> – array NumPy: valorile curente ale semnalului.</li><li><b>param</b> – index de iterație (de la TriggerNode) sau <code>None</code>.</li><li><b>inputs</b> – dicționar cu toate intrările (util cu <code>@input</code>).</li><li><b>persist</b> – dicționar care păstrează valori între rulări.</li></ul><h3>Biblioteci importate</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>Directive speciale</h3><ul><li><code># @param NAME : type = value</code> – Creează un parametru reglabil în panoul lateral (fără a atinge codul).</li><li><code># @input port_name</code> – Adaugă un port de intrare suplimentar (partea stângă).</li><li><code># @output port_name</code> – Adaugă un port de ieșire suplimentar (partea dreaptă).</li></ul><p>Cu <code>@input</code>/<code>@output</code> scriptul trebuie să folosească <code>inputs</code> și să returneze un dicționar cu ieșirile. Exemplu:</p><pre># @input channel_A<br># @output result<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"channel_A\"][1]<br>return {\"out\": (x, y), \"result\": (x, y_a)}</pre><h3>Persistență</h3><p>Dicționarul <code>persist</code> păstrează date între rulări cât timp programul este deschis. Exemplu:</p><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1<br>return (x, y + persist[\"counter\"] * 0.1)</pre><h3>Gestionarea șabloanelor</h3><ul><li>Selectați un șablon din lista derulantă pentru a încărca un script predefinit.</li><li><b>Salvează șablon…</b> – Stochează scriptul curent ca fișier <code>.py</code> în folderul de șabloane.</li><li><b>Deschide script…</b> / <b>Exportă script…</b> – Schimbă scripturi cu fișiere externe.</li></ul><h3>Sfaturi</h3><ul><li>Folosiți <b>Test</b> pentru a verifica scriptul cu date simulate înainte de a conecta fluxul.</li><li>Erorile sunt afișate în consola de jos, iar linia defectuoasă este marcată.</li><li>Puteți dezactiva temporar o directivă comentând-o (<code>## @param ...</code>).</li></ul>"
+    },
+    "trigger_config": {
+      "title": "Configurează nodul declanșator",
+      "group": "Parametri de iterație",
+      "n_iter": "Iterații (N):",
+      "param_start": "Parametru de start:",
+      "param_end": "Parametru de sfârșit:",
+      "accumulate": "Acumulare:",
+      "trig_tooltips": "TriggerNode\nDublu click pentru informații",
+      "info": "Parametrul curent va fi disponibil în\nloop_out ca al treilea element: (x, y, param)",
+      "accumulate_options":{
+        "stack": "Stivă",
+        "average": "Medie",
+        "max": "Max",
+        "min": "Min"
+      }
+    },
+    "simulation_config": {
+      "title": "Configurare simulare",
+      "timebase": "Bază de timp (ms/div)",
+      "voltage_range": "Interval de tensiune (V)",
+      "trigger_level": "Nivel de declanșare (V)",
+      "trigger_slope": "Pantă de declanșare",
+      "sample_rate": "Rată de eșantionare (kHz)"
+    },
+    "file": {
+      "save_as": "Salvează ca…",
+      "unsaved_title": "Modificări nesalvate",
+      "unsaved_message": "Există modificări nesalvate. Doriți să salvați înainte de a continua?"
+    }
+  },
+  "info_dialog": {
+    "title": "Informații - FloWorks",
+    "tab_about": "Despre",
+    "tab_shortcuts": "Scurtături tastatură",
+    "tab_tutorials": "Tutoriale",
+    "close": "Închide",
+    "about_title": "FloWorks",
+    "version": "Versiunea 0.4.5",
+    "description": "<p>FloWorks este un mediu vizual și interactiv de procesare a semnalelor bazat pe fluxul de date. Vă permite să construiți, să executați și să analizați lanțuri de procesare conectând noduri care reprezintă operații matematice, filtre, transformări, generatoare de semnale și multe altele. Totul se bazează pe perechi (x, y), unde x este axa (timp sau frecvență) și y este semnalul.</p><p>Se adresează studenților, cercetătorilor, inginerilor și oricui este interesat de procesarea semnalelor și dorește să experimenteze, să învețe sau să prototipeze sisteme fără a scrie cod de la zero.</p><p><b>Misiune:</b> Să centralizeze fluxul de lucru experimental într-un singur instrument vizual, deschis și accesibil, astfel încât oricine — student, cercetător sau inginer — să se poată concentra pe experimentare, nu pe învățarea software-ului.</p><p><b>Viziune:</b> O lume în care bariera dintre o idee experimentală și execuția ei este doar curiozitatea experimentatorului. Floworks aspiră să fie platforma de referință pentru experimentarea cu semnale, construită de și pentru comunitatea științifică și tehnică globală, fără ziduri de licențiere sau fragmentare a instrumentelor.</p><p><b>Principii:</b> Software liber (Licența MIT) – cunoașterea trebuie să fie liberă. Extensibilitate – oricine poate crea noduri noi cu Python. Vizualizare imediată – fiecare pas poate fi inspectat grafic.</p>",
+    "credits": "<h3>Mulțumiri și licențe</h3><p>FloWorks folosește următoarele proiecte open source:</p><ul><li><b>PySide6 / Qt</b> – Interfață grafică utilizator. Licențiat sub <b>GNU LGPLv3</b>. © The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – Licențe BSD / PSF.</li><li><b>PyQtGraph, Pillow</b> – Licența MIT / HPND.</li><li><b>OpenCV</b> – Licența Apache 2.0.</li><li><b>PyTorch</b> – Licența BSD (Meta Platforms, Inc.).</li><li><b>Pygments</b> – Licența BSD.</li></ul><p>Această aplicație folosește PySide6 (linkat dinamic) sub termenii <b>GNU LGPLv3</b>.</p><p>Utilizatorii au dreptul de a modifica sau înlocui bibliotecile dinamice PySide6.</p><p>Licența completă disponibilă la <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a>.</p><p><b>Licența FloWorks:</b> Licența MIT.</p>",
+    "shortcut_header_keys": "Scurtătură",
+    "shortcut_header_action": "Acțiune",
+    "shortcut_header_context": "Context",
+    "shortcuts_note": "Notă: Scurtăturile funcționează global, chiar și când focusul este pe alt widget.",
+    "tutorials_placeholder": "Iată câteva exemple și tutoriale în ordinea învățării:",
+    "tutorial": "Tutorial",
+    "example_fft": "Deschide exemplu: FFT al undei sinusoidale",
+    "example_filter": "Deschide exemplu: Filtru trece-bandă al undei chirp",
+    "example_delay": "Deschide exemplu: Întârzierea undei sinusoidale",
+    "example_window": "Deschide exemplu: Fereastra undei chirp",
+    "example_convolution": "Deschide exemplu: Convoluția undei dreptunghiulare",
+    "example_conrrelation": "Deschide exemplu: Corelația între unda sinusoidală și cea dreptunghiulară",
+    "example_math_expression": "Deschide exemplu: Expresie matematică pe unda sinusoidală",
+    "example_spectrogram": "Deschide exemplu: Spectrograma undei chirp",
+    "example_compound": "Deschide exemplu: Compunere array de diferite noduri",
+    "example_title": "Exemplu",
+    "example_message": "Exemplul '{name}' va fi disponibil într-o versiune viitoare.",
+    "shortcut_header_description": "Descriere",
+    "view_logs": "Vezi consola de loguri",
+    "log_viewer_title": "Vizualizator loguri (error.log)",
+    "refresh": "Reîmprospătează",
+    "clear": "Curăță",
+    "no_logs_available": "Nu s-au găsit loguri în acest moment.",
+    "error_reading_logs": "Eroare la citirea fișierului de log.",
+    "confirm_clear": "Confirmă curățarea",
+    "confirm_clear_msg": "Sigur doriți să goliți fișierul de log? Această acțiune nu poate fi anulată."
+  },
+    "lcr_controller": {
+    "title": "Controler LCR",
+    "connected": "Conectat",
+    "disconnected": "Deconectat",
+    "measure_var": "Variabilă de măsurat:",
+    "freq_sweep": "Baleiaj de frecvență",
+    "freq_start": "Start (Hz):",
+    "freq_end": "Sfârșit (Hz):",
+    "freq_step": "Pas (Hz):",
+    "level": "Nivel (V):",
+    "speed": "Viteză:",
+    "average": "Mediere:",
+    "rsou": "RSOU (Ω):",
+    "range": "Interval:",
+    "bias_volt": "Polarizare DC (V):",
+    "bias_on": "BIAS ON",
+    "bias_off": "BIAS OFF",
+    "apply": "Aplică setările",
+    "error_title": "Eroare",
+    "connection_error": "Nu s-a putut conecta la LCR. Verificați conexiunea și adresa.",
+    "success_title": "Succes",
+    "success_message": "Setările au fost aplicate cu succes.",
+    "apply_error": "Nu s-au putut aplica setările: {error}"
+  },
+    "osc_controller": {
+    "title": "Captură osciloscop",
+    "window_title": "Controler osciloscop",
+    "channel": "Selectați canalul:",
+    "acq_mode": "Mod achiziție:",
+    "mem_size": "Dimensiune memorie:",
+    "invert_off": "Inversează semnalul",
+    "invert_on": "Semnal inversat",
+    "tdiv": "Diviziune orizontală:",
+    "vdiv": "Diviziune verticală (V):",
+    "hpos": "Poziție orizontală (s):",
+    "offset": "Poziție verticală (V):",
+    "trig_level": "Nivel de declanșare (V):",
+    "v_range":"Interval de tensiune (V):",
+    "sd_trg": "Declanșare laterală",
+    "fs": "Rată de eșantionare (kHz):"
+  },
+    "gen_controller": {
+    "title": "Controler avansat - Generator de semnal",
+    "apply_current": "Aplică configurația curentă",
+    "channel": "Selectați canalul:",
+    "waveform_btn": "Generează formă de undă",
+    "chirp_btn": "Generează chirp",
+    "modulation_on": "Activează modulația",
+    "modulation_off": "Oprește modulația",
+    "sweep_on": "Activează baleiajul",
+    "sweep_off": "Oprește baleiajul",
+    "burst_on": "Activează burst",
+    "burst_off": "Oprește burst",
+    "ch1_on": "Activează canalul 1",
+    "ch1_off": "Dezactivează canalul 1",
+    "ch2_on": "Activează canalul 2",
+    "ch2_off": "Dezactivează canalul 2",
+    "load": "Selectați ieșirea:",
+    "polarity": "Polaritatea ieșirii:",
+    "modify_output": "Modifică ieșirea",
+    "tab_general": "General",
+    "tab_waveform": "Formă de undă",
+    "tab_chirp": "Chirp",
+    "tab_modulation": "Modulație",
+    "tab_sweep": "Baleiaj",
+    "tab_burst": "Burst",
+    "sim_title": "Simulare",
+    "no_hardware": "Niciun hardware conectat",
+    "sent_title": "Trimis",
+    "waveform_sent": "Formă de undă trimisă",
+    "chirp_sent": "Chirp trimis",
+    "success_title": "Succes",
+    "output_modified": "Ieșire {channel}: sarcină {load}, polaritate {pol}",
+    "signal_type": "Tip semnal:",
+    "frequency": "Frecvență (Hz):",
+    "amplitude": "Amplitudine (Vpp):",
+    "offset": "Offset (V):",
+    "phase": "Fază (grade):",
+    "duty_cycle": "Duty cycle (%):",
+    "symmetry": "Simetrie (%):",
+    "pulse_width": "Lățime impuls (s):",
+    "rise_edge": "Front crescător (s):",
+    "fall_edge": "Front descrescător (s):",
+    "delay_edge": "Întârziere front (s):",
+    "stdev": "Deviație standard (V):",
+    "mean": "Medie (V):",
+    "chirp_f0": "Frecvență inițială (Hz):",
+    "chirp_f1": "Frecvență finală (Hz):",
+    "chirp_fs": "Fs (Sa/s):",
+    "chirp_duration": "Durată (s):",
+    "chirp_amp": "Amplitudine (V):",
+    "chirp_offset": "Offset (V):",
+    "chirp_phase": "Fază (°):",
+    "chirp_name": "Nume semnal:",
+    "chirp_method": "Metodă:",
+    "chirp_mode": "Mod Arb:",
+    "mod_type": "Tip modulație:",
+    "mod_freq": "Frecvență modulație (Hz):",
+    "mod_dev": "Deviație (Hz,°,s):",
+    "mod_hop": "Frecvență hop (Hz):",
+    "mod_shape": "Formă de undă:",
+    "mod_depth": "Adâncime (%):",
+    "sweep_time": "Durată (s):",
+    "sweep_stop": "Frecvență finală (Hz):",
+    "sweep_start": "Frecvență inițială (Hz):",
+    "sweep_trig_src": "Sursă declanșare:",
+    "sweep_trig_out": "Ieșire declanșare:",
+    "sweep_mode": "Tip:",
+    "sweep_dir": "Direcție:",
+    "burst_period": "Perioadă (s):",
+    "burst_cycles": "Cicluri:",
+    "burst_phase": "Fază (grade):",
+    "burst_gate": "Țintă:",
+    "burst_trig_src": "Sursă declanșare:",
+    "burst_polarity": "Polaritate:",
+    "waveform_applied": "Formă de undă aplicată",
+    "chirp_applied": "Chirp trimis",
+    "modulation_applied": "Modulație configurată",
+    "sweep_applied": "Baleiaj configurat",
+    "burst_applied": "Burst configurat"
+  },
+    "simulation_config_dialog": {
+    "title": "Configurare simulare - Generator",
+    "waveform": "Formă de undă:",
+    "basic_params": "Parametri de bază",
+    "frequency": "Frecvență (Hz):",
+    "amplitude": "Amplitudine (Vpp):",
+    "offset": "Offset (V):",
+    "phase": "Fază (grade):",
+    "duty_cycle": "Duty cycle (%):",
+    "symmetry": "Simetrie (%):",
+    "direction": "Direcție:",
+    "up": "Sus",
+    "down": "Jos",
+    "stdev": "Deviație standard:",
+    "mean": "Medie:",
+    "lobes": "Număr de lobi:",
+    "sigma": "Sigma:",
+    "mu": "Mu:",
+    "tau": "Tau (s):",
+    "exp_type": "Tip:",
+    "rise": "Creștere",
+    "fall": "Cădere",
+    "f0": "Frecvență inițială (Hz):",
+    "f1": "Frecvență finală (Hz):",
+    "chirp_method": "Metodă:",
+    "linear": "Liniar",
+    "logarithmic": "Logaritmic",
+    "preview": "Previzualizare",
+    "apply": "Aplică",
+    "close": "Închide",
+    "time_label": "Timp (s)",
+    "amplitude_label": "Amplitudine (V)"
+  },
+  "self": {
+    "language_changed": "Limba a fost schimbată în: {name} ({code})",
+    "default": "FloWorks  |  Derulare: zoom  |  Click central: panoramare  |  Dublu click pe nod: informații |  Click dreapta pe nod: opțiuni",
+    "workspace": "Spațiu de lucru",
+    "canvas": "Canvas",
+    "no_nodes_selected": "Niciun nod selectat",
+    "node_config_placeholder": "Selectați un nod pe canvas\n pentru a-i vedea configurația"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "Laborator virtual vizual și interactiv de procesare a semnalelor",
+    "build": "Uitați de codul complex. Trageți blocuri, conectați-le ca piesele unui puzzle și construiți-vă fluxul de lucru unind noduri cu linii care reprezintă fluxul de date.",
+    "keyrule": "Totul este despre semnale: conectați blocuri, nu linii de cod.",
+    "nodework": "Arhitectura nodului:\n[Date de intrare] → [Procesare internă] → [Date de ieșire]",
+    "execute": "Apăsați Run și priviți cum ideile prind viață în grafice și date în timp real. Doriți să mergeți mai departe? Conectați instrumente reale de laborator sau adăugați propriile reguli folosind noduri script Python pentru procesare personalizată.",
+    "expand": "Exportați grafice de înaltă calitate gata de utilizat în documente tehnice. Salvați-vă munca în fișiere \".sflow\" și recuperați-le exact așa cum le-ați lăsat.",
+    "actions_title": "Ce puteți face?",
+    "actions": "* Testați idei construind fluxuri de lucru, trăgând și conectând noduri.\n* Controlați echipamente reale sau simulați semnale.\n* Vizualizați rezultatele instantaneu în grafice interactive.",
+    "checkbox": "Nu mai afișa",
+    "start": "Start"
+  },
+  "scene": {
+    "empty_hint": "Selectați noduri din bara de instrumente",
+    "load_example_hint": "Puteți încărca un exemplu din \"Informații\" → \"Tutoriale\""
+  },
+  "examples": {
+  "general": {
+    "title": "Exemple",
+    "welcome": "Bine ați venit la FloWorks! \nUrmați aceste mini-tutoriale pentru a stăpâni cele mai comune operații.",
+    "scroll": "Derulați sau țineți apăsat butonul mouse-ului pentru a deplasa canvas-ul.",
+    "help": "Click dreapta pe un nod pentru a-i configura acțiunile."
+  },
+  "tutorial": {
+    "message": "Aceasta este o aplicație de diagramă vizuală a fluxului de semnal. Să începem!",
+    "step1": "Pasul 1: Adăugați sursa de semnal",
+    "step2": "Adăugați un nod sursă de semnal din bara de instrumente (sus). \nNodul va fi poziționat unde ați făcut ultimul click pe canvas. \nFaceți click undeva în apropiere pe canvas, apoi click pe bara de sus pe:",
+    "step3": "Pasul 2: Conectați nodurile",
+    "step4": "Apăsați CTRL+click pe un port de ieșire al unui nod (cel din stânga) și pur și simplu click pe portul de intrare al celuilalt nod (cel din dreapta) pentru a crea o conexiune.",
+    "step5": "Conexiunile curg de la stânga la dreapta, transportând datele semnalului între noduri.",
+    "step6": "Pasul 3: Executați fluxul",
+    "step7": "Apăsați F5 pentru a executa fluxul de semnal și a vedea rezultatele în timp real.",
+    "step8": "De asemenea, puteți face click pe noduri individuale pentru a le vedea valorile de ieșire.",
+    "step9": "Pasul 4: Vizualizați rezultatele",
+    "step10": "Faceți click pe orice nod pentru a vizualiza semnalul în widget-ul grafic.",
+    "step11": "Graficul se actualizează automat când executați fluxul."
+  },
+  "shortcuts": {
+    "title": "Scurtături tastatură",
+    "execute": "F5 – Execută fluxul",
+    "save": "Ctrl+S – Salvează proiectul (.sflow)",
+    "load": "Ctrl+O – Deschide proiectul",
+    "delete": "Delete / Backspace – Șterge elementele selectate",
+    "copy_paste": "Ctrl+C / Ctrl+V – Copiază și lipește noduri sau notițe",
+    "undo_redo": "Ctrl+Z / Ctrl+Y – Anulează / Refă",
+    "auto_layout": "Ctrl+Shift+L – Aranjare automată diagramă",
+    "zoom": "Roata mouse-ului – Zoom, țineți apăsat pentru a trage vizualizarea"
+  },
+  "fft": {
+    "title": "Analiză FFT",
+    "description": "Calculează spectrul de frecvență al unui semnal.",
+    "steps": {
+      "step1": "Adăugați un nod Generator și selectați, de exemplu, o undă dreptunghiulară de 1 kHz.",
+      "step2": "În meniul 'Procesare' al barei de instrumente, selectați nodul FFT. Conectați-l la ieșirea Generatorului (CTRL+click ieșire → CTRL+click intrare FFT).",
+      "step3": "Apăsați F5. Nodul FFT va transforma semnalul în domeniul frecvență.",
+      "step4": "Faceți click pe nodul FFT pentru a vedea spectrul. Vârfurile vor apărea la multipli impari ai lui 1 kHz.",
+      "step5": "(Opțional) Conectați ieșirea FFT la un nod aritmetic (SumNode) pentru a compara două spectre; sistemul detectează automat rezoluția de frecvență și vă avertizează despre incompatibilitate.",
+      "step6": "Click dreapta pe nodul FFT pentru a selecta afișarea între Amplitudine și Fază."
+    }
+  },
+  "filter": {
+    "title": "Filtrarea semnalului",
+    "description": "Aplică un filtru trece-jos, trece-sus sau trece-bandă.",
+    "steps": "1. Introduceți un Generator cu un semnal chirp.\n2. Adăugați un nod Filtru din meniul 'Procesare'. Conectați ieșirea generatorului la intrarea filtrului.\n3. Click dreapta și alegeți 'Configurează…' pe nodul Filtru, apoi selectați tipul (trece-jos, trece-sus etc.) și frecvența de tăiere.\n4. Executați (F5) și vizualizați atât semnalul original, cât și cel filtrat făcând click pe conexiunile corespunzătoare.\n5. Dacă doriți să comparați alături, puteți adăuga noduri FFT și împărți semnalul."
+  },
+  "delay": {
+    "title": "Linie de întârziere",
+    "description": "Deplasează un semnal în timp (util pentru corelații sau efecte).",
+    "steps": "1. Începeți cu un generator care folosește un semnal scurt.\n2. Adăugați un nod Întârziere din 'Procesare'. Conectați ieșirea generatorului la intrarea întârzierii.\n3. În dialogul de configurare al nodului Întârziere, specificați numărul de eșantioane sau timpul de întârziere.\n4. Executați fluxul (F5) și faceți click pe ieșirea nodului Întârziere. Veți vedea același semnal deplasat spre dreapta.\n5. Pentru a măsura întârzierea exactă, activați cursorii (panoul de jos) și comparați-i între semnalul original și cel întârziat."
+  },
+  "window": {
+    "title": "Fereastra pre-FFT",
+    "description": "Aplică o fereastră (Hanning, Hamming etc.) înainte de FFT pentru a reduce scurgerea spectrală.",
+    "steps": "1. Configurați un flux de bază: Generator → Fereastră → FFT.\n2. Dublu click pe nodul Fereastră și selectați tipul (Hanning este un început bun).\n3. Conectați ieșirea Ferestrei la intrarea FFT.\n4. Executați (F5). Faceți click pe ieșirea FFT pentru a compara spectrul cu și fără fereastră.\n5. Încercați un semnal sinusoidal pur cu o frecvență neîntreagă; veți observa că vârful este mai bine definit cu fereastra. Schimbați tipul ferestrei pentru a vedea cum se reduce lobul lateral."
+  },
+  "convolution": {
+    "title": "Convoluție",
+    "description": "Calculează convoluția dintre două semnale.",
+    "steps": "1. Adăugați un Generator (Surse → Generator) cu semnalul pe care doriți să-l filtrați.\n2. Adăugați un nod Convoluție din meniul 'Procesare'.\n3. Conectați ieșirea generatorului la intrarea nodului Convoluție (CTRL+click pe ambele capete).\n4. Dublu click pe nodul Convoluție pentru a-l configura. Introduceți coeficienții kernel-ului separați prin virgule (de ex. '0.2,0.2,0.2,0.2,0.2') și alegeți modul de convoluție ('same', 'full' sau 'valid').\n5. Apăsați F5 pentru a executa fluxul. Nodul va filtra semnalul folosind convoluția discretă.\n6. Faceți click pe conexiunea de ieșire a nodului Convoluție pentru a vedea semnalul filtrat. Observați efectul kernel-ului; puteți schimba coeficienții și re-executa pentru a compara."
+  },
+  "correlation": {
+    "title": "Corelație încrucișată",
+    "description": "Măsoară similaritatea dintre două semnale în funcție de deplasarea în timp.",
+    "steps": "1. Plasați două noduri Generator (Surse → Generator). Creați, de exemplu, o undă sinusoidală și una dreptunghiulară de aceeași frecvență.\n2. Introduceți un nod Corelație din 'Procesare'.\n3. Conectați ieșirea primului generator la intrarea 'Semnal 1' a nodului Corelație (CTRL+click pe porturi). Apoi conectați al doilea generator la intrarea 'Semnal 2'.\n4. Executați fluxul cu F5. Nodul va produce un semnal de corelație încrucișată.\n5. Faceți click pe conexiunea de ieșire pentru a vedea vârful de corelație. Veți vedea un maxim la întârzierea la care semnalele sunt aliniate.\n6. Activați cursorii (panoul de jos) pentru a măsura precis deplasarea în timp."
+  },
+  "math_expression": {
+    "title": "Expresie matematică",
+    "description": "Aplică orice funcție matematică semnalului de intrare (de ex. y_new = f(x, y)).",
+    "steps": "1. Adăugați un Generator (Surse → Generator) și alegeți forma de undă pe care doriți să o transformați.\n2. Adăugați un nod Expresie matematică din meniul 'Procesare'.\n3. Conectați ieșirea generatorului la intrarea nodului (CTRL+click pe ambele capete).\n4. Dublu click pe nodul Expresie pentru a deschide editorul. Scrieți o funcție care primește două array-uri (x, y) și returnează (x, y_new). De exemplu: y_new = y**2 + 0.5*np.sin(x).\n5. Apăsați F5 pentru a executa. Nodul va aplica operația exclusiv valorilor 'y' păstrând axa 'x' intactă.\n6. Vizualizați rezultatul făcând click pe conexiunea de ieșire. Puteți modifica expresia și re-executa pentru a vedea schimbări instantanee."
+  },
+  "spectrogram": {
+    "title": "Spectrogramă",
+    "description": "Reprezintă evoluția în timp a frecvențelor dintr-un semnal.",
+    "steps": "1. Plasați un Generator (Surse → Generator) cu un semnal de frecvență variabilă, cum ar fi un sweep sinusoidal (chirp).\n2. Din 'Procesare', adăugați un nod Spectrogramă.\n3. Conectați ieșirea generatorului la intrarea nodului Spectrogramă (CTRL+click pe ambele porturi).\n4. Din 'Procesare', adăugați un nod Vizualizator spectrogramă și conectați porturile corespunzătoare la nodul Spectrogramă.\n5. Executați cu F5. Nodul va procesa semnalul și va genera o matrice timp-frecvență.\n6. Click dreapta pe Vizualizatorul spectrogramă pentru a vizualiza imaginea spectrală. Observați cum frecvența dominantă se schimbă în timp.\n7. (Opțional) Adăugați un nod FFT intermediar pentru a compara reprezentarea statică a frecvenței cu cea dinamică."
+  }
+  },
+  "prefs": {
+    "title": "Preferințe",
+    "tab_execution": "Execuție",
+    "tab_gpu": "GPU / Calcul",
+    "tab_streaming": "Streaming",
+    "tab_ui": "UI / Performanță",
+    "tab_advanced": "Avansat",
+    "max_workers":{
+      "label": "Număr maxim de fire (pregătire faza 3)",
+      "tooltip": "Controlează paralelismul viitor al ramurilor independente."
+    },
+    "timeout_per_node": "Timeout per nod (s)",
+    "gpu":{
+      "backend": "Backend implicit",
+      "fallback": "Politică de fallback",
+      "threshold": "Prag de overhead (MB)"
+    },
+    "streaming":{
+      "buffer": "Dimensiune buffer (eșantioane)",
+      "timeout": "Timeout dispatcher (ms)",
+      "error": "Politică erori stream"
+    }, 
+    "ui":{
+      "fps": "FPS maxim de reîmprospătare",
+      "anim": "Durată animație conector (s)"
+    },
+    "adv":{
+      "python_path": "Cale interpretor extern",
+      "log_level": "Nivel de log",
+      "backup": "Backup automat la încărcare"
+    },
+    "btn_apply": "Aplică",
+    "btn_reset": "Resetează la implicit",
+    "btn_close": "Închide"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "Expresie..."
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "Ist",
+      "label": "{mode}  |  {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Eng",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "Curăță"
+    },
+    "history": {
+      "title": "📜 Istoric",
+      "clear": "🗑 Curăță",
+      "use_last": "↩ Ultimul"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "&Fișier",
+      "edit": "&Editare",
+      "format": "F&ormat",
+      "align": "A&liniere"
+    },
+    "actions": {
+      "new": "&Nou",
+      "open": "&Deschide",
+      "save": "&Salvează",
+      "save_as": "Salvează &ca...",
+      "export_csv": "&Exportă CSV...",
+      "exit": "&Ieșire",
+      "undo": "&Anulează",
+      "redo": "&Refă",
+      "cut": "&Taie",
+      "copy": "&Copiază",
+      "paste": "&Lipește",
+      "bold": "&Aldin",
+      "italic": "&Cursiv",
+      "align_left": "&Stânga",
+      "align_center": "&Centru",
+      "align_right": "&Dreapta",
+      "bg_color": "&Culoare fundal...",
+      "fg_color": "Culoare &text..."
+    },
+    "toolbar": {
+      "title": "Principal",
+      "new": "Nou",
+      "open": "Deschide",
+      "save": "Salvează",
+      "cut": "Taie",
+      "copy": "Copiază",
+      "paste": "Lipește",
+      "bold": "Aldin",
+      "italic": "Cursiv",
+      "align_left": "Stânga",
+      "align_center": "Centru",
+      "align_right": "Dreapta",
+      "bg_color": "Fundal",
+      "fg_color": "Text",
+      "undo": "Anulează",
+      "redo": "Refă"
+    }
+  },
+  "system_monitor": {
+    "title": "MONITOR SISTEM",
+    "subtitle": "Telemetrie resurse în timp real",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "NUCLEE / NUCLEE LOGICE",
+      "core_prefix": "C"
+    },
+    "ram": {
+      "title": "Memorie RAM",
+      "tooltip": "Utilizare RAM"
+    },
+    "disk": {
+      "title": "Disc ( / )",
+      "tooltip": "Utilizare disc pe /"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}%  M:{mem}%"
+    },
+    "status": {
+      "updated": "Actualizat"
+    }
+  }
+}

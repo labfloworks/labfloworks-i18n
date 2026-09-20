@@ -1,0 +1,1556 @@
+{
+  "language_name": "Nederlands",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "Bestand",
+      "new": "Nieuw",
+      "open": "Openen…",
+      "save": "Opslaan",
+      "save_as": "Opslaan als…",
+      "exit": "Afsluiten"
+    },
+    "edit": "Bewerken",
+    "view": "Weergave",
+    "help": "Help",
+    "language": "Taal",
+    "info": "Info",
+    "theme": "Thema",
+    "font_size": "Lettergrootte",
+    "font_size_custom": "Aangepaste grootte…"
+  },
+  "menu_config": {
+    "title": "Knooppuntconfiguratie"
+  },
+  "panels": {
+    "analysis": {
+      "title": "Analyse"
+    },
+    "stats": {
+      "title": "Statistieken",
+      "max": "Max:",
+      "min": "Min:",
+      "mean": "Gemiddelde:",
+      "rms": "RMS:",
+      "mode_3d": "(3D-projectie)"
+    },
+    "cursors": {
+      "title": "Cursors A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "Cursors niet beschikbaar in 3D-modus"
+    },
+    "crosshair": {
+      "cursor": "Cursor",
+      "peak": "Piek",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "Crosshair niet beschikbaar in 3D-modus"
+    }
+  },
+  "tab": {
+    "plot": "Grafiek",
+    "workspace": "Canvasvariabelen",
+    "python_vars": "Python-variabelen"
+  },
+  "tooldrawer": {
+    "python_console": "Terminal",
+    "monitor_widget": "Prestatiemonitor",
+    "spreadsheet_widget": "Spreadsheet",
+    "calc_widget": "Rekenmachine"
+  },
+  "console": {
+    "help": {
+      "title": "FloWorks Console interactieve tutorial",
+      "button": "Help",
+      "html": "<h1>FloWorks Console interactieve tutorial</h1><h2>1. Knooppunten en verbindingen</h2><p><code>&gt;&gt;&gt; graph.nodes</code></p><p><code>&gt;&gt;&gt; graph.connections</code></p><p><code>&gt;&gt;&gt; selected_node</code></p><p>Knooppunt maken:</p><p><code>&gt;&gt;&gt; graph.add_catalog_node('SumNode', 300, 200)</code></p><p>Verbinden:</p><p><code>&gt;&gt;&gt; graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>Verwijderen:</p><p><code>&gt;&gt;&gt; graph.remove_node(graph.nodes[2])</code></p><p>Poorten:</p><p><code>&gt;&gt;&gt; graph.nodes[1].PORTS</code></p><h2>2. Uitvoeren en resultaten bekijken</h2><p>Flow uitvoeren:</p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Uitvoer van een knooppunt bekijken:</p><p><code>&gt;&gt;&gt; graph.node_values[graph.nodes[1]]</code></p><p>Deze aanpak kan mislukken met een KeyError, je kunt gebruiken:</p><p><code>&gt;&gt;&gt; list(graph.node_values.values())[1]</code></p><p>Volledige uitvoer:</p><p><code>&gt;&gt;&gt; nodo = graph.nodes[0]</code></p><p><code>&gt;&gt;&gt; nodo.output</code></p><p>Y-as:</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; y = result[1]</code></p><p><code>&gt;&gt;&gt; y.max()</code></p><p>Toewijzingen worden niet afgedrukt; controleer met <code>x</code>, <code>y.shape</code> of <code>print(x, y)</code></p><h2>3. Grafiek</h2><p>Wissen:</p><p><code>&gt;&gt;&gt; app.plot_widget.clear_plot()</code></p><p>Signaal vanuit de console:</p><p><code>&gt;&gt;&gt; import numpy as np</code></p><p><code>&gt;&gt;&gt; x = np.linspace(0, 1, 1000)</code></p><p><code>&gt;&gt;&gt; y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>Vanuit een bronknooppunt:</p><p><code>&gt;&gt;&gt; x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>FFT-knooppunt (geeft dict terug):</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>&gt;&gt;&gt; result.keys()</code></p><p><code>&gt;&gt;&gt; f, mag = result['magnitude']</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. De applicatie aanpassen</h2><p>Tabel bijwerken:</p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Knooppunt toevoegen:</p><p><code>&gt;&gt;&gt; app.add_node('SignalSourceNode')</code></p><p>Titel:</p><p><code>&gt;&gt;&gt; app.setWindowTitle('My signal lab')</code></p><p>Verifiëren:</p><p><code>&gt;&gt;&gt; app.windowTitle()</code></p><p>Herstellen:</p><p><code>&gt;&gt;&gt; app.update_title()</code></p><h2>5. Sneltoetsen</h2><table><tr><th>Toets/Commando</th><th>Actie</th></tr><tr><td><code>&uarr;</code> / <code>&darr;</code></td><td>Geschiedenis</td></tr><tr><td><code>Tab</code></td><td>Automatisch aanvullen</td></tr><tr><td><code>Ctrl + L</code></td><td>Console wissen</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>Meerregelige blokken</td></tr></table><h2>6. Recepten</h2><p>Parameter wijzigen:</p><p><code>&gt;&gt;&gt; selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>&gt;&gt;&gt; getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Aangepaste formule:</p><p><code>&gt;&gt;&gt; selected_node.params['mode'] = 'formula'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['expr'] = '2 * sin(2*pi*1000*t)'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>&gt;&gt;&gt; selected_node._generate_signal()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Categorieën weergeven:</p><p><code>&gt;&gt;&gt; from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>&gt;&gt;&gt; NODE_CATEGORIES</code></p><p>Help:</p><p><code>&gt;&gt;&gt; help(graph.connect_nodes)</code></p><h2>7. Probleemoplossing</h2><ul><li><strong>Fout in rood</strong>: de console toont het probleem, de app sluit niet af.</li><li><strong>Bevroren interface</strong>: oneindige lus. Sluit de console of herstart.</li><li><strong>Er gebeurt niets</strong>: controleer <code>graph.connections</code> en bronknooppunten.</li></ul><p>&copy; 2026 FloWorks — Signaallaboratorium</p>"
+    }
+  },
+  "vars_table": {
+    "header":{
+      "name": "Naam",
+      "type": "Type",
+      "shape": "Vorm",
+      "value": "Waarde"
+    },
+    "menu" : {
+      "info": "Variabele: {name}"
+    },
+    "dialog": {
+      "title": "Waarde aanvullen"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "Lettertype:",
+    "font_size_tooltip": "Basislettergrootte wijzigen",
+    "run_flow_tooltip": "Flow uitvoeren",
+    "add_kinematics": "Kinematicaknooppunt",
+    "escolar": "School",
+    "add_function_graph_node": "Functies",
+    "add_rhombus_node": "Logische poort",
+    "add_graph_exporter": "Grafiek-exporteur",
+    "add_note": "Notities",
+    "add_note_tooltip": "Plaknotitie toevoegen…",
+    "add_signal_source": "Nieuwe signaalbron",
+    "add_spectrogram_viewer": "Spectrogramviewer",
+    "add_correlation": "Correlatie",
+    "add_math_expression": "Wiskundige expressie",
+    "add_spectrogram": "Spectrogram",
+    "add_resample": "Hersampling",
+    "add_window": "Venster",
+    "add_delay": "Vertraging",
+    "add_convolution_node": "Convolutie",
+    "add_normalize": "Normaliseren",
+    "add_filter": "Filter",
+    "add_fft": "FFT",
+    "source_node": "Geavanceerde signaalgenerator",
+    "load_signal_tooltip": "Genereer een signaal naar wens van de gebruiker",
+    "history": "Geschiedenis",
+    "history_tooltip": "Bewerkingsgeschiedenis",
+    "auto_layout": "Automatische indeling",
+    "auto_layout_tooltip": "Knooppunten automatisch indelen (Ctrl+Shift+L)",
+    "sources": "Randapparatuur",
+    "processing": "Verwerking",
+    "control": "Besturing",
+    "add_oscilloscope": "Oscilloscoop",
+    "add_generator": "Generator",
+    "add_expression": "Expressieknooppunt",
+    "add_script": "Python-script",
+    "add_arithmetic": "Rekenkunde +−×÷",
+    "add_program": "Programma",
+    "add_split": "Logische poort",
+    "add_trigger": "Triggerknooppunt",
+    "sink": "Grafiek-exporteur",
+    "help_wiki": "Documentatie / Wiki",
+    "help_wiki_tooltip": "Open de projectwiki"
+  },
+  "info": {
+    "information": "Over",
+    "shortcuts": "Sneltoetsen",
+    "tutorials": "Tutorials",
+    "change_theme": "Thema wijzigen"
+  },
+  "status": {
+    "default": "FloWorks  |  Scrollen: zoomen  |  Middelklik: pannen  |  Rechterklik op knooppunt: opties",
+    "no_nodes": "Gereed. Selecteer knooppunten uit de werkbalk.",
+    "how_to_connect": "Ctrl+klik op de uitvoerpoort van een knooppunt, klik dan op de invoerpoort van een ander knooppunt.",
+    "connecting": "Verbinden… Klik op een ander knooppunt of een andere poort.",
+    "connection_created": "Verbinding gemaakt.",
+    "flow_executed": "Flow succesvol uitgevoerd.",
+    "flow_error": "Fout tijdens het uitvoeren van de flow.",
+    "saved": "Diagram opgeslagen: {path}",
+    "loaded": "Diagram geladen: {path}",
+    "new_file": "Nieuw diagram gemaakt",
+    "example_loaded": "Voorbeeld geladen."
+  },
+  "errors": {
+    "save_failed": "Fout bij opslaan: {error}",
+    "load_failed": "Fout bij laden: {error}",
+    "load_example_failed": "Kon voorbeeld niet laden: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "Knooppunt verwijderen",
+      "connect": "Knooppunt verbinden",
+      "disconnect": "Knooppunt loskoppelen",
+      "setup": "Instellingen",
+      "trigger": "Trigger",
+      "generate": "Genereren",
+      "edit_script": "Script bewerken",
+      "edit_input": "Invoer bewerken",
+      "help": "Informatie"
+    },
+    "graph_union": {
+      "title": "Grafiekvereniging",
+      "tooltip": "Groepeert meerdere signalen als onafhankelijke reeksen voor overlay-weergave.",
+      "num_inputs_label": "Aantal ingangen (1-8):",
+      "config_title": "Grafiekvereniging configureren",
+      "status": {
+        "ready": "Gereed"
+      },
+      "ports": {
+        "signal_1": "Signaal 1",
+        "signal_2": "Signaal 2",
+        "signal_3": "Signaal 3",
+        "signal_4": "Signaal 4",
+        "signal_5": "Signaal 5",
+        "signal_6": "Signaal 6",
+        "signal_7": "Signaal 7",
+        "signal_8": "Signaal 8",
+        "series_out": "Uitvoer"
+      },
+      "menu": {
+        "configure": "Configureren…"
+      },
+      "help_title": "Help – Grafiekvereniging",
+      "help_html": "<h3>🔗 Grafiekvereniging-knooppunt</h3><p>Ontvangt meerdere signalen en houdt ze als onafhankelijke reeksen voor overlay-weergave zonder ze samen te voegen.</p><p>Rechterklik op het knooppunt om dynamisch ingangen <b>toe te voegen of te verwijderen</b> (max. 8).</p><p>De uitvoer <code>Series</code> levert de volledige lijst met reeksen voor visualisatie.</p>"
+    },
+    "tabular_inspector": {
+      "title": "Tabelgegevens-inspecteur",
+      "window_title": "Tabelinspecteur",
+      "no_data": "Geen gegevens",
+      "copy": "Kopiëren naar klembord",
+      "decimals": "Decimalen:",
+      "col_names": "Kolomnamen (komma-gescheiden, leeg = auto):",
+      "tooltip": "Knooppuntgegevensinspectie toont de gegevens die op de enige invoerpoort zijn ontvangen als een tabel.",
+      "status": {
+        "no_data": "Geen gegevens"
+      },
+      "menu": {
+        "view_table": "Tabel bekijken",
+        "configure": "Configureren…"
+      },
+      "ports": {
+        "data": "Invoer"
+      },
+      "config_title": "Tabelinspecteur configureren",
+      "help_title": "Help – Tabelinspecteur",
+      "help_html": "<h3>📊 Tabelinspecteur-knooppunt</h3><p>Net als een <b>Excel-spreadsheet</b> toont dit knooppunt de gegevens die op zijn enige invoerpoort zijn ontvangen als een tabel.</p><p><b>Interpretatieregels:</b></p><ul><li><b>Tuple/lijst van arrays</b> (bijv. (x, y, Fs)) → elke array wordt een kolom.</li><li><b>2D numpy-array</b> → rijen × kolommen.</li><li><b>1D-array of lijst</b> → enkele kolom.</li><li><b>Scalair</b> → enkele cel.</li></ul><p>Rechterklik → <b>Tabel bekijken</b> om de inspecteur te openen. Gebruik het zijpaneel om decimalen en aangepaste kolomnamen (komma-gescheiden) in te stellen.</p>"
+    },
+    "equation_solver": {
+      "title": "Vergelijkingsoplosser",
+      "tooltip":"Oplosser voor lineaire vergelijkingsstelsels",
+      "type_label": "Vergelijkingstype:",
+      "type_linear_single": "Lineair enkelvoudig",
+      "type_linear_system": "Lineair stelsel 2×2",
+      "eq_format": "Formaat: a*x + b = c",
+      "eq1_label": "Vergelijking 1 (formaat: a*x + b*y = c):",
+      "eq2_label": "Vergelijking 2:",
+      "examples": "Voorbeelden",
+      "sys_examples": "Stelselvoorbeelden",
+      "menu": {
+        "view_plot": "Oplossingsgrafiek bekijken",
+        "configure": "Vergelijkingen configureren…",
+        "view_steps": "Oplossingsstappen bekijken…"
+      },
+      "ports": {
+        "output": "uitvoer",
+        "steps": "stappen",
+        "solution": "y (m)"
+      },
+      "steps_title": "Oplossingsstappen",
+      "no_steps": "Geen oplossingsstappen beschikbaar.",
+      "config_title": "Vergelijkingsoplosser configureren",
+      "help_title": "Help – Vergelijkingsoplosser",
+      "plot_window_title": "Oplossingsgrafiek",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "Exporteren…",
+      "export_title": "Grafiek exporteren",
+      "no_data_to_plot": "Geen gegevens om weer te geven",
+      "btn_step_by_step": "▶ Stap voor stap",
+      "step_anim_title": "Stap voor stap",
+      "step_anim_info": "In de volledige versie zou dit de grafische constructie stap voor stap tonen.",
+      "error_no_equals": "Ontbrekend '='-teken in de vergelijking.",
+      "error_rhs_not_number": "De rechterkant van de vergelijking is geen geldig getal.",
+      "error_invalid_x_coef": "Ongeldige coëfficiënt voor x: '{coef}'. Controleer de syntaxis.",
+      "error_invalid_y_coef": "Ongeldige coëfficiënt voor y: '{coef}'. Controleer de syntaxis.",
+      "error_invalid_const": "Ongeldige constante term: '{term}'. Gebruik alleen getallen en + of - tekens.",
+      "error_zero_x": "De coëfficiënt van x is nul. De vergelijking heeft geen unieke oplossing.",
+      "no_plot_data_title": "Geen gegevens",
+      "no_plot_data_message": "Er zijn geen oplossingsgegevens om weer te geven. Configureer en los eerst op.",
+      "preview": "Voorbeeld:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "Geen oplossing (of nog niet berekend)",
+      "help_html":"<h3>🧮 Vergelijkingsoplosser-knooppunt</h3>\n<p>Maakt het mogelijk om <b>eenvoudige lineaire vergelijkingen of 2×2-stelsels op te lossen</b>, met de stapsgewijze procedure en de intersectiegrafiek.</p>\n\n<h4>⚙️ Gebruik</h4>\n<ol>\n <li><b>Rechterklik</b> op het knooppunt → selecteer <i>\"Parameters bewerken\"</i>.</li>\n <li>Kies <code>equation_type</code>: <code>linear_single</code> of <code>linear_system</code>.</li>\n <li>Voer de <code>equations</code> in als tekst (bijv. \"2x + 3 = 7\") of een lijst met teksten voor stelsels.</li>\n <li>Het knooppunt berekent de oplossing en genereert automatisch de algebraïsche stappen.</li>\n</ol>\n\n<h4>📤 Uitvoer</h4>\n<ul>\n <li><code>solution</code> → numerieke waarde (eenvoudige vergelijking) of woordenboek met <code>x</code>, <code>y</code> (2×2-stelsel).</li>\n <li><code>steps</code> → tekst met de stapsgewijze algebraïsche uitsplitsing.</li>\n</ul>\n\n<h4>⚠️ Opmerkingen</h4>\n<ul>\n <li><b>Pedagogische waarde:</b> Biedt directe algebraïsche feedback en verbindt de oplossing met de grafische weergave (intersectie).</li>\n <li>Zorg dat je de juiste variabelen gebruikt (<code>x</code> voor eenvoudige, <code>x</code> en <code>y</code> voor stelsels).</li>\n <li>Als het stelsel inconsistent of afhankelijk is, wordt dit aangegeven in de <code>steps</code>-uitvoer.</li>\n</ul>\n\n<h4>💡 Voorbeeld</h4>\n<p>Configureer het knooppunt als <code>linear_system</code> met <code>[\"y = 2x\", \"y = -x + 3\"]</code>. Verbind <code>steps</code> met een tekstviewer en visualiseer de intersectie in een grafiekknooppunt.</p>\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>wiskundige verwerkingsflow</b>.</p>\n\n<pre>\nVergelijking → Oplossing → Visualisatie\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(Algebra ↔ Geometrie)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nParameters → Verwerking (Oplosser) → Visualisatie (Grafiek/Tekst)\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nParameters (Vergelijkingen) → EquationSolver → Grafiek (Intersectie) + Tekst (Stappen)\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "Kinematika",
+      "tooltip": "Kinematikasimulator: vrije val en projectielbeweging",
+      "ports": {
+        "x": "x(m) vs t(s)",
+        "y": "y(m) vs t(s)",
+        "vx": "vx(m/s) vs t(s)",
+        "vy": "vy(m/s) vs t(s)",
+        "speed": "snelheid(m/s) vs t(s)",
+        "energy_kinetic": "kinetische energie(J) vs t(s)",
+        "energy_potential": "potentiële energie(J) vs t(s)",
+        "ground_contact": "grondcontact vs t(s)"
+      },
+      "status": {
+        "ready": "Gereed"
+      },
+      "config_title": "Kinematika configureren",
+      "menu": {
+        "configure": "Configureren…",
+        "generate": "Genereren",
+        "show_output": "Uitvoer tonen",
+        "trajectory": "Trajectorie (y vs x)",
+        "y_t": "Verticale positie y(t)",
+        "vy_t": "Verticale snelheid vy(t)",
+        "speed_t": "Snelheid |v|(t)",
+        "display": "Visualisatie"
+      },
+      "group_ic": "Beginvoorwaarden",
+      "group_env": "Omgeving",
+      "group_sim": "Simulatie",
+      "group_presets": "Presets",
+      "help_title": "Help – Kinematika",
+      "help_html": "<h3>🚀 Kinematikalab</h3><p>Simuleert <b>projectielbeweging</b> en <b>vrije val</b> onder constante zwaartekracht. Geen invoer vereist; genereert signalen vanuit beginvoorwaarden.</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 Belangrijkste uitvoer (tijd vs grootheid-tupels)</h4><p>Elke poort levert een tupel <code>(t, variabele)</code> klaar om te verbinden met een grafiek of een ander knooppunt. Tijd is al inbegrepen als X-as.</p><ul><li><code>x</code> → (t, horizontale positie) [m]</li><li><code>y</code> → (t, verticale positie) [m]</li><li><code>vx</code> → (t, horizontale snelheid) [m/s]</li><li><code>vy</code> → (t, verticale snelheid) [m/s]</li><li><code>speed</code> → (t, snelheid |v|) [m/s]</li></ul><h4>⚡ Optionele uitvoer (schakel 'Energieën tonen' in)</h4><ul><li><code>energy_kinetic</code> → (t, Ek = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, 1.0 als y≤0, 0.0 in lucht)</li></ul><h4>🎨 Interne weergavekanalen</h4><p>Wijzig wat er in de hoofdgrafiek wordt getoond via het contextmenu:</p><ul><li><b>Trajectorie</b> (y vs x) → ruimtelijke parabool</li><li><b>y(t)</b>, <b>vy(t)</b>, <b>|v|(t)</b> → ontwikkeling in de tijd</li></ul><h4>💡 Typische verbindingen</h4><ul><li><b>Hoogte vs tijd:</b> verbind <code>y</code> met een grafiek (bevat al t)</li><li><b>Snelheid vs tijd:</b> verbind <code>speed</code> met een grafiek</li><li><b>Ruimtelijke trajectorie:</b> verbind <code>x</code> → X-as, <code>y</code> → Y-as</li><li><b>Impact:</b> verbind <code>ground_contact</code> met een logisch knooppunt of LED</li><li><b>Energie:</b> sommeer <code>energy_kinetic</code> + <code>energy_potential</code> om behoud te zien</li></ul><h4>⚡ Sneltoetsen</h4><ul><li><b>Dubbelklik</b> → deze help</li><li><b>Rechterklik</b> → configureren / genereren</li><li><b>GENERATE-knop</b> → simuleert en opent animatie</li></ul><hr><p><b>Status:</b> -- | <b>Preset:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "Functies",
+      "tooltip": "Wiskundige functies genereren en visualiseren met numerieke analyse",
+      "ports": { "signal": "Signaal" },
+      "status": { "ready": "Gereed" },
+      "menu": { "configure": "Configureren…", "show_table": "Waardentabel bekijken", "generate": "Genereren", "show_limit": "Limiet tonen", "show_derivative": "Afgeleide tonen" },
+      "config_title": "Functie instellen",
+      "cfg": { "expr": "Expressie:", "presets": "Presets:", "piecewise": "Piecewise-functie activeren", "group_func": "Functies groeperen", "group_dom": "Domein groeperen", "group_viz": "Visualisatie groeperen" },
+      "table_title": "Waardentabel"
+    },
+    "signal_source": {
+        "title": "Geavanceerde signaalbron",
+        "tooltip": "Geavanceerde signaalbron",
+        "load_signal": "Signaal laden uit bestand…",
+        "load_file_title": "Signaalbestand laden",
+        "ports": {
+            "out": "Uitvoer",
+            "trigger_in": "Trigger-invoer",
+            "trigger_out": "Trigger-uitvoer"
+        },
+        "status": {
+            "no_data": "Geen gegevens"
+        },
+        "configure": "Configureren…",
+        "generate": "Signaal genereren",
+        "help_title": "Help – Signaalbron",
+        "help_html": "<h3>🎛️ Signaalbron-knooppunt</h3>\n<p>Genereert <b>aangepaste signalen</b> met behulp van een grote verscheidenheid aan <b>vooraf ingestelde golfvormen</b> of een door de gebruiker geschreven <b>wiskundige formule</b>. De uitvoer is altijd een tupel <code>(tijd, amplitude)</code>, klaar voor verdere verwerking.</p>\n\n<h4>📤 Uitvoer</h4>\n<p><code>out</code> → tupel <code>(t, y)</code>.</p>\n\n<h4>⚙️ Bedieningsmodi</h4>\n<ul>\n    <li><b>Preset:</b> kies uit sinus, blokgolf, ramp, puls, ruis, DC, driehoek, zaagtand, sinc, Gaussisch, exponentieel, chirp. Alle parameters (frequentie, amplitude, offset, fase, duty, symmetrie, enz.) zijn instelbaar in het configuratiedialoogvenster.</li>\n    <li><b>Formule:</b> schrijf een <b>vrije wiskundige expressie</b> met <code>t</code> (tijd) en aangepaste variabelen (bijv. <code>amp * sin(2*pi*freq*t) + offset</code>). De variabelen worden in een tabel gedefinieerd en kunnen naar believen worden toegevoegd, verwijderd of gewijzigd. De evaluatie is veilig en beperkt tot wiskundige bewerkingen.</li>\n</ul>\n\n<h4>🖱️ Interactie</h4>\n<ul>\n    <li><b>Dubbelklik</b> op het knooppunt → opent het configuratiedialoogvenster met drie tabbladen (Preset, Formule, Geavanceerd).</li>\n    <li><b>Klik</b> op het knooppunt → tekent het huidige signaal in de hoofdgrafiek.</li>\n    <li><b>Rechterklik</b> → contextmenu om het knooppunt opnieuw te genereren, te configureren of te verwijderen.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+        "title": "Signaalconfiguratie",
+        "waveform": "Golfvorm",
+        "frequency": "Frequentie",
+        "amplitude": "Amplitude",
+        "offset": "Offset",
+        "phase": "Fase",
+        "symmetry": "Symmetrie",
+        "direction": "Richting",
+        "up": "Omhoog",
+        "down": "Omlaag",
+        "stdev": "Standaardafwijking",
+        "mean": "Gemiddelde",
+        "lobes": "Lobben",
+        "sigma": "Sigma",
+        "mu": "Mu",
+        "tau": "Tau",
+        "exp_type": "Type",
+        "rise": "Stijging",
+        "fall": "Daling",
+        "f0": "Startfrequentie",
+        "f1": "Eindfrequentie",
+        "chirp_method": "Methode",
+        "linear": "linear",
+        "logarithmic": "logarithmic",
+        "tab_preset": "Preset",
+        "tab_formula": "Formule",
+        "tab_advanced": "Geavanceerd",
+        "preview": "Voorbeeld",
+        "apply": "Toepassen",
+        "duration": "Duur",
+        "sample_rate": "Bemonsteringsfrequentie",
+        "sampling_note": "0 = auto",
+        "auto_generate": "Automatisch genereren",
+        "time_label": "Tijd (s)",
+        "amplitude_label": "Amplitude",
+        "formula_expr": "Formule (gebruik 't' als tijdvariabele):",
+        "variables": "Variabelen:",
+        "var_name": "Naam",
+        "var_value": "Waarde",
+        "add_var": "Variabele toevoegen",
+        "remove_var": "Geselecteerde verwijderen",
+        "auto": "Auto",
+        "basic_params": "Basisparameters",
+        "carrier_freq": "Draaggolffrequentie",
+        "mod_freq": "Modulatiefrequentie",
+        "mod_depth": "Modulatiediepte",
+        "deviation": "Afwijking",
+        "heart_rate": "Hartslag",
+        "rise_time": "Stijgtijd",
+        "fall_time": "Daaltijd",
+        "quick_insert": "Snelle functies",
+        "advanced": {
+          "modulation": "Modulatie",
+          "mod_enable": "Modulatie inschakelen",
+          "mod_type": "Modulatietype",
+          "mod_freq": "Modulatiefrequentie",
+          "mod_depth": "Modulatiediepte",
+          "noise_group": "Ruis",
+          "noise_enable": "Ruis toevoegen",
+          "noise_amp": "Ruisamplitude",
+          "auto_generate": "Wijzigingen automatisch toepassen",
+          "auto_generate_tooltip": "Indien ingeschakeld, wordt elke parameterwijziging onmiddellijk op het knooppunt toegepast. Indien uitgeschakeld, druk op OK om toe te passen."
+        },
+        "gamma": "Gamma (breedte)",
+        "window_type": "Venstertype",
+        "quadratic": "quadratic",
+        "hyperbolic": "hyperbolic",
+        "hanning": "Hanning",
+        "hamming": "Hamming",
+        "blackman": "Blackman",
+        "bartlett": "Bartlett",
+        "kaiser": "Kaiser",
+        "noise_type": "Ruistype",
+        "gaussian": "Gaussisch",
+        "uniform": "Uniform",
+        "pink": "Roze (1/f)",
+        "brown": "Bruin (1/f²)",
+        "blue": "Blauw (f)",
+        "impulse": "Impuls",
+        "pulse_shape": "Pulsvorm",
+        "rect": "Rechthoekig",
+        "raised_cosine": "Raised cosine",
+        "polynomial": "PRBS-polynoom",
+        "bit_rate": "Bitrate",
+        "symbol_rate": "Symbol rate",
+        "symbol_sequence": "Symbolenreeks",
+        "bit_sequence": "Bitreeks",
+        "multitone_hint": "Frequenties (Hz, komma-gescheiden):",
+        "frequencies": "Frequenties",
+        "amplitudes": "Amplitudes",
+        "phases": "Fases",
+        "step_time": "Staptijd",
+        "impulse_time": "Impulstijd",
+        "f_start": "Startfrequentie",
+        "f_end": "Eindfrequentie",
+        "f2": "Frequentie 2",
+        "noise_level": "Ruisniveau",
+        "duty_cycle": "Duty cycle (%)",
+        "signal_sine": "Sinus",
+        "signal_square": "Blokgolf",
+        "signal_ramp": "Ramp",
+        "signal_pulse": "Puls",
+        "signal_noise": "Ruis",
+        "signal_dc": "DC",
+        "signal_triangle": "Driehoek",
+        "signal_sawtooth": "Zaagtand",
+        "signal_sinc": "Sinc",
+        "signal_gaussian": "Gaussisch",
+        "signal_exponential": "Exponentieel",
+        "signal_chirp": "Chirp",
+        "signal_am": "AM",
+        "signal_fm": "FM",
+        "signal_ecg": "ECG",
+        "signal_trapezoidal": "Trapeziumvormig",
+        "signal_lorentzian": "Lorentz",
+        "signal_window": "Venster",
+        "signal_multitone": "Multitoon",
+        "signal_ask": "ASK",
+        "signal_fsk": "FSK",
+        "signal_psk": "PSK",
+        "signal_pwm": "PWM",
+        "signal_pam": "PAM",
+        "signal_prbs": "PRBS",
+        "signal_step": "Stap",
+        "signal_impulse": "Impuls",
+        "signal_sweep_sine": "Sinus-sweep",
+        "signal_cardiac": "Cardiaal",
+        "signal_eeg": "EEG",
+        "signal_beat": "Hartslag"
+    },
+    "input": {
+      "help_html": "<h3>📂 Invoerknooppunt (Gegevens laden)</h3>\n<p>Maakt het mogelijk om <b>gegevens uit een .npz-bestand</b> te laden (NumPy-formaat) en naar de workflow te sturen.</p>\n\n<h4>⚙️ Gebruik</h4>\n<ol>\n    <li><b>Rechterklik</b> op het knooppunt → selecteer <i>\"Invoer bewerken\"</i>.</li>\n    <li>Kies een <code>.npz</code>-bestand dat een sleutel met de naam <code>datay</code> bevat.</li>\n    <li>De array wordt intern opgeslagen en automatisch door de flow verspreid.</li>\n</ol>\n\n<h4>📤 Uitvoer</h4>\n<p><code>out</code> → de inhoud van <code>datay</code> uit het geladen bestand.</p>\n\n<h4>⚠️ Opmerkingen</h4>\n<ul>\n    <li>Alleen <b>.npz</b>-bestanden met de sleutel <code>datay</code> worden geaccepteerd.</li>\n    <li>Als het bestand ongeldig is, wordt een fout in de console weergegeven.</li>\n    <li>Na het laden van een bestand wordt de flow automatisch uitgevoerd.</li>\n</ul>\n\n<h4>💡 Voorbeeld</h4>\n<p>Laad een bestand met sensorgegevens en verbind het vervolgens met een \"Filter\"- of \"Visualisator\"-knooppunt.</p>\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "lambda-functie",
+      "help_html": "<h3>🔧 Algemeen verwerkingsknooppunt</h3>\n<p>Past een <b>aangepaste functie</b> toe op de invoergegevens. Het is de basis voor het creëren van wiskundige bewerkingen, transformaties, enz.</p>\n\n<h4>📥 Invoer</h4>\n<p><code>data_in</code> → kan een getal, een tupel (x, y) of een willekeurig object zijn.</p>\n\n<h4>📤 Uitvoer</h4>\n<p><code>out</code> → het resultaat van het toepassen van de functie op de invoer.</p>\n\n<h4>🧠 Gedrag per invoertype</h4>\n<ul>\n    <li>Als de invoer een <b>tupel van twee elementen</b> is (x, y), ontvangt de functie de tupel en moet een andere tupel of waarde retourneren. Voorbeeld: <code>lambda xy: (xy[0], xy[1]*2)</code>.</li>\n    <li>Als de invoer een <b>eenvoudige waarde</b> is, ontvangt de functie die waarde. Voorbeeld: <code>lambda x: x**2</code>.</li>\n    <li>Als de invoer <code>None</code> is, is de uitvoer ook <code>None</code>.</li>\n</ul>\n\n<h4>⚙️ Aanpassing</h4>\n<p>De functie wordt toegewezen bij het maken van het knooppunt (bijv. in de code). In toekomstige versies kun je deze mogelijk vanuit de interface bewerken.</p>\n\n<h4>💡 Voorbeelden</h4>\n<ul>\n    <li><b>Een getal verdubbelen:</b> <code>lambda x: x * 2</code></li>\n    <li><b>Componenten van een tupel optellen:</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>Dezelfde tupel retourneren (passthrough):</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>Toegepaste functie:</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "Logische poort",
+      "tooltip": "Logische, vergelijkings- en maskeerbewerkingen op signalen (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "Invoer 1",
+        "in2": "Invoer 2",
+        "out": "Uitvoer"
+      },
+      "config_title": "Logische poort configureren",
+      "op_label": "Bewerking:",
+      "thr_label": "Drempel / Niveau:",
+      "inv_label": "Uitvoer omkeren",
+      "help_title": "Help – Logische poort",
+      "help_html": "<h3>🎛️ Logische poort / Comparator</h3>\n<p>Evalueert, vergelijkt of maskeert twee ingangssignalen sample-voor-sample om triggers, logische maskers of conditionele uitvoer te genereren.</p>\n\n<h4>📥 Ingangen</h4>\n<ul>\n<li><code>in1</code> → Hoofdsignaal (operand A).</li>\n<li><code>in2</code> → Referentie, masker of tweede operand (operand B).</li>\n</ul>\n\n<h4>📤 Uitvoer</h4>\n<ul>\n<li><code>out</code> → Verwerkingsresultaat. Booleaanse bewerkingen retourneren <code>0.0</code> of <code>1.0</code>. Comparatoren/drempels genereren maskers of begrensde signalen.</li>\n</ul>\n\n<h4>📐 Diagram</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 Mentale model</h4>\n<p>Dit knooppunt werkt als een <b>beslissingsmotor per sample</b>. Het evalueert elk punt onafhankelijk en transformeert analoge golfvormen in digitale besturingssignalen, activeringsmaskers of logische stromen.</p>\n\n<h4>📐 Gegevensrepresentatie</h4>\n<pre>\nIngangen:\n(x, y1) & (x, y2) → 1D-arrays (wordt afgekapt tot de kortste bij mismatch)\n\nUitvoer:\n(x, y_out) → Meestal binair (0/1) of gemaskeerd\n</pre>\n\n<h4>🔁 Typisch gebruikspatroon</h4>\n<pre>\n[Generator] → [Logische poort] → [Trigger / Grafiek]\n\nVoorbeeld:\nSinus (in1) + Blokgolf (in2) → [AND] → Gesynchroniseerde pulstrein\nSignaal (in1) → [THRESHOLD] → 0/1-masker voor piekdetectie\nSignaal (in1) + Ref (in2) → [MASK] → Dempt in1 wanneer in2 ≤ 0\n</pre>\n\n<h4>⚠️ Veelvoorkomende fouten</h4>\n<ul>\n<li>Verwachten dat logische bewerkingen amplitude behouden → Doen ze niet (converteert naar 0/1). Gebruik in plaats daarvan <code>LEVEL</code> of <code>MASK</code>.</li>\n<li>Signalen met sterk verschillende lengtes verbinden → Wordt afgekapt tot het minimum.</li>\n<li><code>EQ</code> gebruiken op floats → Vertrouwt op impliciete tolerantie; rond indien nodig eerst af.</li>\n</ul>\n<hr><hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent deze help.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+     },
+    "sum": {
+      "title": "Rekenkunde",
+      "tooltip": "Voert rekenkundige bewerkingen uit tussen twee signalen.",
+      "operation": {
+        "sum": "Optellen",
+        "sub": "Aftrekken",
+        "mul": "Vermenigvuldigen",
+        "div": "Delen"
+      },
+      "ports": {
+        "out": "Uitvoer",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "*A",
+        "port_b_mul": "*B",
+        "port_a_div": "teller",
+        "port_b_div": "noemer"
+      },
+      "menu": {
+        "operation": "Bewerking"
+      },
+      "help_title": "Help – Rekenkundig knooppunt",
+      "help_html": "<h3>➕ Som/rekenkundig knooppunt</h3>\n<p>Voert rekenkundige bewerkingen uit tussen twee signalen (arrays of numerieke waarden).</p>\n\n<h4>📥 Ingangen</h4>\n<ul>\n    <li><code>port_a</code> (boven): eerste operand (A).</li>\n    <li><code>port_b</code> (onder): tweede operand (B).</li>\n</ul>\n\n<h4>📤 Uitvoer</h4>\n<p><code>out</code> → resultaat van de bewerking (A op B).</p>\n\n<h4>⚙️ Beschikbare bewerkingen (rechterklik → Bewerking)</h4>\n<ul>\n    <li><b>Optellen (+)</b>: A + B</li>\n    <li><b>Aftrekken (−)</b>: A − B</li>\n    <li><b>Vermenigvuldigen (×)</b>: A * B</li>\n    <li><b>Delen (÷)</b>: A / B (beschermt tegen delen door nul).</li>\n</ul>\n\n<h4>📐 Diagram</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 Mentale model</h4>\n<p>Dit knooppunt is een <b>vectoroperator</b>.\nHet werkt elementsgewijs op signalen.</p>\n\n<h4>📐 Vectorrepresentatie</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\nUitvoer:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 Visueel voorbeeld</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\nSom:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 Gebruiksstrategieën</h4>\n<ul>\n<li><b>Normalisatie:</b> delen door het maximum</li>\n<li><b>Schalen:</b> vermenigvuldigen met een constante</li>\n<li><b>Signaalmenging:</b> som van golven</li>\n<li><b>Annulering:</b> A - B om ruis te verwijderen</li>\n</ul>\n\n<h4>⚠️ Veelvoorkomende fouten</h4>\n<ul>\n<li>Niet-uitgelijnde X-assen → inconsistente resultaten</li>\n<li>Delen door waarden dichtbij nul → instabiliteit</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "script": {
+      "title": "Script",
+      "tooltip": "Python-scriptknooppunt",
+      "ports": {
+        "data_in": "Gegevens in",
+        "loop_in": "Lus in",
+        "out": "Uitvoer"
+      },
+      "menu":{
+        "edit":"Bewerken",
+        "run":"Script uitvoeren"
+      },
+      "status_ready": "Gereed",
+      "status_error": "Fout",
+      "edit_script": "Script bewerken",
+      "tooltip_x": "NumPy-array: X-as (tijd, frequentie, enz.)",
+      "tooltip_y": "NumPy-array: huidige signaalwaarden",
+      "tooltip_param": "Iteratieparameter (van TriggerNode) of None",
+      "help_title": "Help – Scriptknooppunt",
+      "help_html": "<h3>📜 Aangepast scriptknooppunt</h3> <p>Maakt het mogelijk om Python-code te schrijven om signalen willekeurig te verwerken.</p> <h4>📥 Ingangen</h4> <ul> <li><code>data_in</code> → hoofdsignaal (x, y) of eenvoudige array.</li> <li><code>loop_in</code> → optionele ingang om parameters van een <b>TriggerNode</b> te ontvangen (waarde <code>param</code>).</li> <li>Dynamische poorten <code>@input name</code> → extra ingangen gedefinieerd in het script.</li> </ul> <h4>📤 Uitgangen</h4> <ul> <li><code>out</code> → tupel (x_new, y_new) gegenereerd door het script (batchmodus).</li> <li>Dynamische poorten <code>@output name</code> → extra uitgangen gedefinieerd in het script.</li> </ul> <h4>✏️ Script bewerken</h4> <p>Rechterklik → <b>Script bewerken</b> om de editor met syntaxismarkering te openen.</p> <p>Inclusief automatisch aanvullen, sjablonen, configureerbare parameters (<code>@param</code>) en externe uitvoering (alternatieve Python).</p> <hr> <h4>🧠 Beschikbare variabelen (traditionele batchmodus)</h4> <ul> <li><code>x</code> : numpy-array – tijd- of frequentieas</li> <li><code>y</code> : numpy-array – signaalwaarden</li> <li><code>param</code> : float (optioneel) – waarde van <code>loop_in</code> (TriggerNode)</li> <li><code>persist</code> : dict – blijvend tussen uitvoeringen van hetzelfde knooppunt (handig voor accumulatoren)</li> <li><code>np</code>, <code>scipy</code>, <code>sympy</code> – vooraf geïmporteerde bibliotheken</li> </ul> <h4>🧩 Mentale model</h4> <p> Dit knooppunt is een <b>blok voor willekeurige transformatie</b>. Hier definieer je je eigen natuurkunde, wiskunde of logica. </p> <h4>📐 Verwachte vorm (batch)</h4> <pre> Invoer: x → vector (tijd/frequentie) y → vector (waarden) Uitvoer: (x_mod, y_mod) </pre> <h4>🧠 Krachtigere voorbeelden</h4> <h5>1. Frequentieafhankelijke versterking</h5> <pre> gain = np.exp(-x * 0.01) return (x, y * gain) </pre> <h5>2. Piekdetectie</h5> <pre> y_mod = np.where(y > 0.8, y, 0) return (x, y_mod) </pre> <h5>3. Modulatie</h5> <pre> carrier = np.sin(2*np.pi*1000*x) return (x, y * carrier) </pre> <h5>4. param gebruiken (sweep)</h5> <pre> factor = param if param is not None else 1.0 return (x, y * factor) </pre> <h5>5. Accumulator met persist</h5> <pre> persist[\"counter\"] = persist.get(\"counter\", 0) + 1 return (x, y + persist[\"counter\"] * 0.1) </pre> <hr> <h4>🔁 Geavanceerde strategie</h4> <pre> Trigger → Script(param) → Som → Visualisatie → Maakt automatische sweeps mogelijk </pre> <h4>⚠️ Veelvoorkomende fouten</h4> <ul> <li>Geen tupel (x, y) retourneren in batchmodus.</li> <li>Er geen rekening mee houden dat <code>param</code> None kan zijn.</li> <li>Proberen de \"Test\"-knop te gebruiken op streaming- of GPU-scripts (gebruik de echte flow).</li> </ul><hr> <hr> <h3>🧠 Hoe je over dit systeem moet denken</h3> <p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p> <pre> Gegevens → Transformatie → Resultaat </pre> <h4>📐 Hoofdregel</h4> <pre> Alles is: (x, y) </pre> <h4>🔁 Universeel patroon</h4> <pre> Invoer → Verwerking → Visualisatie </pre> <h4>🧪 Volledig voorbeeld</h4> <pre> Oscilloscoop → FFT → Filter → Opteller → Grafiek </pre> <hr> <h4>⚡ Sneltoetsen en trucs</h4> <ul> <li><b>Ctrl + klik</b> op een poort → selecteer de poort om snel te verbinden.</li> <li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li> <li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li> <li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li> </ul>"
+    },
+    "trigger": {
+      "title": "Trigger",
+      "tooltip": "Iteratie- en accumulatieknooppunt",
+      "ports": {
+        "data_in": "Gegevens in",
+        "trigger_in": "Trigger in",
+        "loop_out": "Lus uit",
+        "out": "Uitvoer"
+      },
+      "state": {
+        "idle": "WACHTEN",
+        "running": "ITER {iteration}/{total}",
+        "done": "VOLTOOID",
+        "running_count": "ACTIEF {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "Configureren…"
+      },
+      "accumulate": {
+        "accumulate": "Accumulatiemodus",
+        "stack": "stapel",
+        "average": "gem",
+        "max": "max",
+        "min": "min",
+        "last": "Laatste vastlegging"
+      },
+      "config_title": "Triggerknooppunt configureren",
+      "n_iter": "Iteraties",
+      "reset": "Iteratie resetten",
+      "help_title": "Help – Triggerknooppunt",
+      "help_html": "<h3>⏺ Triggerknooppunt (Batch-opname)</h3>\n<p>Legt signalen iteratief vast en accumuleert ze, geactiveerd door een extern triggersignaal (<code>trigger_in</code>). Ideaal voor repetitieve experimenten, ruisgemiddelde of vergelijking van sporen in de tijd.</p>\n\n<h4>📥 Ingangen</h4>\n<ul>\n    <li><code>data_in</code> → hoofdsignaal (x, y) dat moet worden vastgelegd.</li>\n    <li><code>trigger_in</code> → triggersignaal. Elke puls of activering legt een nieuw spoor vast in de interne buffer.</li>\n</ul>\n\n<h4>📤 Uitgangen</h4>\n<ul>\n    <li><code>out</code> → na voltooiing van het geprogrammeerde aantal iteraties (<code>n_iter</code>) wordt het geaccumuleerde signaal uitgezonden volgens de geselecteerde modus.</li>\n</ul>\n\n<h4>⚙️ Configuratie</h4>\n<p>Rechterklik → <b>Configureren</b> om aan te passen:</p>\n<ul>\n    <li><b>Iteraties (N):</b> exact aantal vastleggingen dat nodig is om de uitvoer te genereren.</li>\n    <li><b>Accumulatie:</b> modus om vastleggingen te combineren: <i>stapel, gemiddelde, max, min of laatste</i>.</li>\n</ul>\n\n<h4>🧠 Gedrag</h4>\n<ol>\n    <li>Het knooppunt blijft in <b>IDLE</b> en wacht op gegevens op <code>data_in</code> en pulsen op <code>trigger_in</code>.</li>\n    <li>Wanneer een geldige trigger wordt gedetecteerd, wordt het huidige signaal opgeslagen in de interne buffer en wordt <code>RUNNING X/N</code> weergegeven.</li>\n    <li>Na het exact bereiken van <b>N iteraties</b>, wordt de geaccumuleerde uitvoer opgebouwd, via <code>out</code> verzonden en wordt de buffer automatisch gewist voor het volgende experiment.</li>\n</ol>\n\n<h4>🧩 Mentale model</h4>\n<p>Dit knooppunt werkt als een <b>event-gestuurde batch-recorder</b>. Equivalent aan een routine \"wacht op trigger → registreer → herhaal tot N\" in een lab.</p>\n\n<h4>📐 Stapelmodus</h4>\n<p>Als je <b>stapel</b> selecteert, worden signalen samengevoegd in één array gescheiden door <code>NaN</code>. Dit maakt het mogelijk alle vastleggingen in één spoor te tekenen zonder ze te verbinden.</p>\n\n<h4>🔁 Voorbeeldflow</h4>\n<pre>\nGenerator/Oscilloscoop → TriggerNode (N=5) → ScriptNode (optioneel) → Grafiek\n\nResultaat:\n5 gestapelde curven (stapel) of hun gemiddelde (gemiddelde)\n</pre>\n\n<h4>🧠 Praktijkvoorbeelden</h4>\n<ul>\n<li>Gemiddelde van ruisig signaal</li>\n<li>Gesynchroniseerde vastlegging van repetitieve experimenten</li>\n<li>Visuele vergelijking van meerdere acquisities</li>\n<li>Batch-voorverwerking voor statistische analyse</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → TriggerNode → ScriptNode → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en tips</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert deze snel voor verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (configureren, verwijderen, verbinden/loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "generator": {
+      "title": "Generator",
+      "tooltip": "Signaalgeneratorknooppunt",
+      "ports": {
+        "signal_out": "Signaal uit",
+        "trigger_out": "Trigger uit",
+        "trigger_in": "Trigger in",
+        "signal_in": "Signaal in"
+      },
+      "status": {
+        "default": "FloWorks  |  Scrollen: zoomen  |  Middelklik: pannen  |  Rechterklik op knooppunt: opties",
+        "sim": "SIM",
+        "busy": "BEZET",
+        "ready": "GEREED"
+      },
+      "device_label": "APP",
+      "channel_label": "KAN",
+      "gen_button": "GEN",
+      "setup_button": "INST",
+      "generate_action": "Signaal genereren",
+      "help_title": "Help – Generatorknooppunt",
+      "help_html": "<h3>📡 Signaalgenerator-knooppunt</h3>\n<p>Genereert analoge signalen en stuurt ze naar een echte functiegenerator (SDG) of simuleert de uitvoer intern.</p>\n\n<h4>📥 Invoerpoorten</h4>\n<ul>\n    <li><code>trigger_in</code> (links) → ontvangt een signaal om generatie te starten (EXT-modus).</li>\n    <li><code>signal_in</code> (links) → ontvangt een extern signaal (t, y) dat naar de generator wordt gestuurd als willekeurige golfvorm (EXT-modus).</li>\n</ul>\n\n<h4>📤 Uitvoerpoorten</h4>\n<ul>\n    <li><code>signal_out</code> (rechts) → zendt het gegenereerde signaal (t, y) uit voor visualisatie of verwerking.</li>\n    <li><code>trigger_out</code> (rechts) → triggersignaal wanneer de generatie is voltooid (optioneel).</li>\n</ul>\n\n<h4>⚙️ Bedieningsmodi</h4>\n<ul>\n    <li><b>INT</b> (intern): het signaal wordt gegenereerd volgens de interne parameters van het knooppunt (frequentie, amplitude, golfvorm, enz.) en naar de hardware (of simulatie) gestuurd.</li>\n    <li><b>EXT</b> (extern): het knooppunt verwacht een aangepast signaal te ontvangen via <code>signal_in</code>. Wanneer je <b>GEN</b> indrukt, wordt dat signaal als willekeurige golfvorm naar de generator geüpload.</li>\n</ul>\n\n<h4>🔧 Configuratie</h4>\n<p>Klik op de knop <b>SETUP</b> (of rechterklik → \"Controller openen\") om aan te passen:</p>\n<ul>\n    <li>Golfvorm: sinus, blokgolf, ramp, puls, ruis, DC, driehoek, zaagtand, sinc, Gaussisch, exponentieel, chirp.</li>\n    <li>Frequentie, amplitude, offset, fase, duty cycle, enz.</li>\n    <li>Uitvoerkanaal (C1 of C2).</li>\n    <li>Apparaat: \"sdg\" (echte hardware) of \"simulation\" (alleen interne simulatie).</li>\n</ul>\n\n<h4>▶️ Generatie</h4>\n<p>Klik op de knop <b>GEN</b> (of rechterklik → \"Signaal genereren\") om de uitvoer te starten. Het knooppunt stuurt het signaal naar de hardware en zendt ook <code>signal_out</code> uit met de gegenereerde gegevens voor de rest van de flow.</p>\n\n<h4>💡 Typisch voorbeeld</h4>\n<ol>\n    <li>Configureer de generator met een 1 kHz sinusgolf, 1 Vpp.</li>\n    <li>Verbind <code>signal_out</code> met een oscilloscoopknooppunt of een visualisator.</li>\n    <li>Druk op <b>GEN</b> → het signaal verschijnt op het fysieke kanaal en ook in de grafiek.</li>\n</ol>\n\n<h4>⚠️ Opmerkingen</h4>\n<ul>\n    <li>Zorg er in EXT-modus voor dat je eerst <code>signal_in</code> met een signaal (t, y) verbindt voordat je op GEN drukt.</li>\n    <li>Als de hardware niet is aangesloten, gebruikt het knooppunt automatisch simulatie.</li>\n    <li>Willekeurige golfvormen worden geüpload met maximaal 524288 punten (afhankelijk van het model).</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "Oscilloscoop",
+      "tooltip": "Oscilloscoop-opnameknooppunt\n Dubbelklik voor info",
+      "ports": {
+        "out_primary": "Primaire uitvoer",
+        "out_secondary": "Secundaire uitvoer",
+        "trigger_out": "Trigger uit"
+      },
+      "status": {
+        "sim": "SIMULATIE",
+        "capturing": "OPNEMEN…",
+        "armed": "GEWAPEND",
+        "connected": "VERBONDEN",
+        "disconnected": "LOSGEKOPPELD"
+      },
+      "device_label": "APP",
+      "channel_label": "KAN",
+      "lcr_label": "LCR",
+      "sim_label": "SIM",
+      "trig_button": "TRIG",
+      "setup_button": "INST",
+      "menu": {
+        "show_channel": "Kanaal tonen"
+      },
+      "channel": {
+        "primary": "Primair (Z)",
+        "secondary": "Secundair (θ)"
+      },
+      "trigger_action": "Opname starten",
+      "help_title": "Help – Oscilloscoopknooppunt",
+      "help_html": "<h3>📊 Oscilloscoopknooppunt (Signaalacquisitie)</h3>\n<p>Legt signalen uit de echte wereld vast met behulp van hardware (SDS, LCR) of genereert gesimuleerde gegevens voor testen.</p>\n\n<h4>📤 Uitvoerpoorten</h4>\n<ul>\n    <li><code>out_primary</code> → hoofdsignaal (spanning vs tijd, of impedantie Z voor LCR).</li>\n    <li><code>out_secondary</code> → secundair signaal (fase θ voor LCR; niet gebruikt voor SDS).</li>\n    <li><code>trigger_out</code> → zendt een triggersignaal uit wanneer de opname is voltooid (handig om andere knooppunten te synchroniseren).</li>\n</ul>\n\n<h4>🔘 Bedieningselementen</h4>\n<ul>\n    <li><b>TRIG</b> → start een opname (gegevensacquisitie).</li>\n    <li><b>SETUP</b> → opent het configuratiepaneel (simulatieparameters of hardwarecontroller).</li>\n    <li><b>Apparaatkiezer</b> (onderste combo) → kies tussen SDS (echte oscilloscoop), LCR (impedantiemeter) of simulatie.</li>\n</ul>\n\n<h4>⚙️ Bedieningsmodi</h4>\n<ul>\n    <li><b>SDS</b>: maakt verbinding met een echte oscilloscoop (Siglent SDS). Je kunt het kanaal (C1..C4) selecteren via contextmenu → \"Kanaal tonen\".</li>\n    <li><b>LCR</b>: maakt verbinding met een LCR-meter, biedt twee uitgangen: primair (impedantie Z) en secundair (fasehoek θ).</li>\n    <li><b>Simulatie</b>: genereert een synthetisch signaal met ruis, configureerbaar via SETUP (tijdbasis, spanningsbereik, triggerniveau, bemonsteringsfrequentie).</li>\n</ul>\n\n<h4>📈 Visualisatie</h4>\n<p>Het knooppunt tekent het signaal niet intern, maar kan worden verbonden met een visualisatiewidget (zoals <code>PlotWidget</code>) om de vastgelegde gegevens te tonen.</p>\n\n<h4>💡 Gebruiksvoorbeeld</h4>\n<ol>\n    <li>Selecteer het apparaat (SDS) en sluit het fysiek aan.</li>\n    <li>Klik op TRIG om een spoor vast te leggen.</li>\n    <li>Het signaal is beschikbaar op <code>out_primary</code> voor andere knooppunten.</li>\n    <li>Bij gebruik van LCR zijn beide uitgangen (Z en θ) beschikbaar.</li>\n</ol>\n\n<h4>⚠️ Opmerkingen</h4>\n<ul>\n    <li>Zorg er in hardwaremodus voor dat het apparaat is aangesloten en ingeschakeld.</li>\n    <li>Opname wordt uitgevoerd in een aparte thread om de interface niet te blokkeren.</li>\n    <li>Het knooppunt fungeert als gegevensbron (invoerknooppunt) voor de flow.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "spectral": {
+        "title": "Spectraal",
+        "tooltip": "Spectrale transformaties: FFT, Hilbert, Welch (PSD) en DCT",
+        "transform_type": "Transformatie:",
+        "window_type": "Venster:",
+        "nfft": "NFFT / Segment:",
+        "scale": "Schaal:",
+        "detrend": "Trend verwijderen:",
+        "normalize": "Normaliseren (energie behouden)",
+        "config_title": "Spectraal configureren",
+        "menu": {
+            "configure": "Configureren…",
+            "show_output": "Uitvoer tonen"
+        },
+        "channel": {
+            "magnitude": "Magnitude",
+            "phase": "Fase"
+        },
+        "ports": {
+            "input": "Invoer",
+            "output": "Tijd-uitvoer",
+            "magnitude": "Magnitude",
+            "phase": "Fase"
+        },
+        "status": {
+            "no_data": "Geen gegevens",
+            "ready": "Gereed",
+            "phase": "Fase"
+        },
+        "help_title": "Help – Spectraal",
+        "help_html": "<h3>📊 Spectraal knooppunt (Spectrale transformaties)</h3>\n<p>Berekent verschillende transformaties op het ingangssignaal: <b>FFT</b>, <b>Hilbert</b>, <b>Welch (PSD)</b> en <b>DCT</b>.</p>\n\n<h4>📥 Invoer</h4>\n<p><code>input</code> → verwacht een tupel <code>(x, y)</code> of een 1D-array.</p>\n\n<h4>📤 Uitgangen</h4>\n<ul>\n    <li><b>Tijd-uitvoer</b> → signaal in het tijddomein (alleen actief bij Hilbert: reëel deel van het analytische signaal).</li>\n    <li><b>Magnitude</b> → afhankelijk van de modus:\n        <ul>\n            <li><b>FFT</b> → genormaliseerd amplitudenspectrum <code>(frequenties, amplitudes)</code>.</li>\n            <li><b>Hilbert</b> → signaalenvelop <code>(tijd, envelop)</code>.</li>\n            <li><b>Welch</b> → vermogensspectrale dichtheid <code>(frequenties, PSD)</code>.</li>\n            <li><b>DCT</b> → discrete cosinustransformatiecoëfficiënten <code>(index, coëfficiënten)</code>.</li>\n        </ul>\n    </li>\n    <li><b>Fase</b> → fasehoeken in radialen (FFT) of momentane fase (Hilbert). <i>Niet beschikbaar</i> voor Welch of DCT.</li>\n</ul>\n\n<h4>⚙️ Parameters</h4>\n<ul>\n    <li><b>Transformatie</b> — kies tussen FFT, Hilbert, Welch of DCT.</li>\n    <li><b>Venster</b> — vensterfunctie uit <code>scipy.signal.windows</code> (Hann, Hamming, Blackman, enz.).</li>\n    <li><b>NFFT / Segment</b> — FFT-lengte of Welch-segmentlengte. <code>Auto</code> gebruikt de volgende macht van 2.</li>\n    <li><b>Schaal</b> — <code>linear</code> of <code>dB</code> (20·log₁₀ voor FFT/Hilbert/DCT, 10·log₁₀ voor Welch).</li>\n    <li><b>Trend verwijderen</b> — verwijdert constant gemiddelde of lineaire trend vóór verwerking.</li>\n    <li><b>Normaliseren</b> — past het venster aan om energie te behouden.</li>\n</ul>\n\n<h4>🖱️ Interactie</h4>\n<ul>\n    <li><b>Rechterklik</b> → contextmenu (Configureren, weergavekanaal kiezen).</li>\n    <li><b>Dubbelklik</b> → opent dit helpvenster.</li>\n    <li><b>Zijpaneel</b> — pas parameters in realtime aan; de grafiek wordt automatisch bijgewerkt.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → Venster → Spectraal (FFT) → Filter → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en tips</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "ifft": {
+        "title": "IFFT",
+        "tooltip": "Inverse Fourier-transformatie (tijdreconstructie)",
+        "fs": "Bemonsteringsfrequentie (fs):",
+        "nfft": "NFFT:",
+        "real_only": "Alleen reële uitvoer (irfft)",
+        "conjugate_symmetry": "Hermitische symmetrie afdwingen",
+        "normalize": "Normaliseren met N",
+        "config_title": "IFFT configureren",
+        "menu": {
+            "configure": "Configureren…"
+        },
+        "ports": {
+            "magnitude": "Magnitude",
+            "phase": "Fase",
+            "output": "Tijd-uitvoer"
+        },
+        "status": {
+            "no_data": "Geen gegevens",
+            "waiting_phase": "Fase=0 (aangenomen)",
+            "ready": "Gereed"
+        },
+        "help_title": "Help – IFFT",
+        "help_html": "<h3>🔁 IFFT-knooppunt (Inverse Fast Fourier Transform)</h3>\n<p>Reconstrueert een tijddomeinsignaal uit het frequentiespectrum.</p>\n\n<h4>📥 Ingangen</h4>\n<ul>\n    <li><b>Magnitude</b> → <code>(frequenties, amplitudes)</code> of 1D-array. <b>Vereist.</b></li>\n    <li><b>Fase</b> → <code>(frequenties, hoeken)</code> of 1D-array. <b>Optioneel.</b> Indien niet verbonden, wordt fase nul aangenomen.</li>\n</ul>\n\n<h4>📤 Uitvoer</h4>\n<ul>\n    <li><b>Tijd-uitvoer</b> → gereconstrueerd <code>(tijd, signaal)</code>.</li>\n</ul>\n\n<h4>⚙️ Parameters</h4>\n<ul>\n    <li><b>fs</b> — bemonsteringsfrequentie om de tijdas op te bouwen.</li>\n    <li><b>NFFT</b> — IFFT-grootte. <code>Auto</code> gebruikt <code>2·(len(mag)-1)</code>.</li>\n    <li><b>Reële uitvoer</b> — gebruikt <code>irfft</code> (garandeert reële uitvoer) of <code>ifft</code> (complex).</li>\n    <li><b>Hermitische symmetrie</b> — forceert <code>Y[-k] = conj(Y[k])</code> vóór inversie (voorkomt artefacten).</li>\n    <li><b>Normaliseren</b> — deel door <code>N</code> om originele amplitude te behouden.</li>\n</ul>\n\n<h4>🖱️ Interactie</h4>\n<ul>\n    <li><b>Rechterklik</b> → Configureren…</li>\n    <li><b>Dubbelklik</b> → help.</li>\n    <li><b>Zijpaneel</b> — pas fs en parameters in realtime aan.</li>\n</ul>"
+    },
+    "thd": {
+      "title": "THD-analysator",
+      "tooltip": "Totale harmonische vervorming THD",
+      "ports": {
+        "input": "Invoer",
+        "output": "Uitvoer"
+      },
+      "dialog": {
+        "title": "THD analyseren"
+      },
+      "tab": {
+        "summary": "Samenvatting",
+        "harmonics": "Harmonischen",
+        "spectrum": "Spectrum"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "Fundamentele frequentie:",
+        "max_harmonics": "Beschouwde harmonischen:",
+        "green_threshold": "Groene drempel (<):",
+        "yellow_threshold": "Gele drempel (<):"
+      },
+      "harmonics": {
+        "order": "Harmonische orde",
+        "freq": "Frequentie (Hz)",
+        "amp_rel": "Relatieve amplitude (%)"
+      },
+      "help_title": "Help – THD",
+      "help_html": "<h3>Totale harmonische vervormingsanalysator (THD)</h3><p>Berekent de THD en THD+N van het ingangssignaal.</p><p>Het signaal wordt ongewijzigd naar de uitvoer doorgegeven.</p><p><b>Parameters:</b></p><ul><li>max_harmonics: aantal beschouwde harmonischen</li><li>groene/gele drempels: wijzigen de kleur van de THD in het knooppunt</li></ul><p><i>Dubbelklik om gedetailleerde analyse te openen.</i></p>"
+    },
+    "filter": {
+      "title": "Filter",
+      "tooltip": "Digitaal filter (Butterworth)",
+      "ports": {
+        "input": "Invoer",
+        "output": "Uitvoer"
+      },
+      "status": {
+        "no_data": "Geen gegevens",
+        "ready": "Gereed"
+      },
+      "menu": {
+        "configure": "Configureren…",
+        "show_output":"Uitvoer tonen"
+      },
+      "config_title": "Filter configureren",
+      "filter_type": "Filtertype:",
+      "cutoff": "Kantelfrequentie(s) (Hz):",
+      "cutoff1": "Kantelfrequentie 1 (Hz):",
+      "cutoff2": "Kantelfrequentie 2 (Hz):",
+      "order": "Filterorde:",
+      "fs": "Bemonsteringsfrequentie (Hz, 0 = auto):",
+      "help_title": "Help – Filter",
+      "help_html": "<h3>🎛️ Filterknooppunt (Butterworth)</h3>\n<p>Past een <b>digitaal Butterworth-filter</b> toe op het ingangssignaal.</p>\n\n<h4>📥 Invoer</h4>\n<p><code>input</code> → verwacht een tupel <code>(x, y)</code> of een 1D-array.</p>\n\n<h4>📤 Uitvoer</h4>\n<p><code>output</code> → gefilterd signaal als <code>(x, y_filtered)</code>.</p>\n\n<h4>⚙️ Parameters (dubbelklik om te configureren)</h4>\n<ul>\n    <li><b>Filtertype</b> – lowpass, highpass, bandpass of bandstop.</li>\n    <li><b>Kantelfrequentie(s)</b> – in Hz. Voor bandpass/bandstop zijn twee frequenties vereist.</li>\n    <li><b>Orde</b> – filterorde (1–20). Hogere orde = steilere afsnijding.</li>\n    <li><b>Bemonsteringsfrequentie</b> – indien ingesteld op 0, wordt deze automatisch afgeleid uit de <i>x</i>-as.</li>\n</ul>\n\n<h4>🛠️ Werking</h4>\n<ul>\n    <li>Het filter wordt ontworpen met <code>scipy.signal.butter</code>.</li>\n    <li>Zero-phase filtering wordt toegepast met <code>filtfilt</code> (geen fasevervorming).</li>\n    <li>Als de invoer een 1D-array is, wordt een synthetische <i>x</i>-as gemaakt met behulp van de bemonsteringsfrequentie.</li>\n</ul>\n\n<h4>🖱️ Interactie</h4>\n<ul>\n    <li><b>Dubbelklik</b> → opent het configuratiedialoogvenster.</li>\n    <li><b>Klik</b> op het knooppunt → tekent het gefilterde signaal.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → Filter → FFT → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "Normaliseren",
+      "tooltip": "Normaliseert signaal naar een opgegeven bereik",
+      "ports": {
+        "input": "Invoer",
+        "output": "Uitvoer"
+      },
+      "menu": {
+        "configure": "Configureren…"
+      },
+      "config_title": "Normalisatieknooppunt configureren",
+      "param": {
+        "target_min": "Doelminimum:",
+        "target_max": "Doelmaximum:"
+      },
+      "help_title": "Help – Normaliseren",
+      "help_html": "<h3>📏 Normalisatieknooppunt</h3>\n<p>Normaliseert een ingangssignaal naar het bereik dat wordt opgegeven door <b>Doelminimum</b> en <b>Doelmaximum</b>.</p>\n\n<h4>📥 Invoer</h4>\n<p><code>input</code> → verwacht een tupel <code>(x, y)</code> of een 1D-array.</p>\n\n<h4>📤 Uitvoer</h4>\n<ul>\n    <li><b>Genormaliseerd signaal</b> → <code>(x_norm, y_norm)</code> – signaal geschaald naar het doelbereik.</li>\n</ul>\n\n<h4>⚙️ Parameters (dubbelklik om te configureren)</h4>\n<ul>\n    <li><b>Doelminimum</b> – minimumwaarde van het gewenste bereik (standaard 0.0).</li>\n    <li><b>Doelmaximum</b> – maximumwaarde van het gewenste bereik (standaard 1.0).</li>\n</ul>\n\n<h4>📐 Werking</h4>\n<p>Lineaire herschaling:</p>\n<pre>y_norm = target_min + (y - original_min) * (target_max - target_min) / (original_max - original_min)</pre>\n<p>De x-as blijft ongewijzigd.</p>\n\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "Convolutie",
+      "tooltip": "FIR-filter via convolutie",
+      "ports": {
+        "input": "Invoer",
+        "output": "Uitvoer"
+      },
+      "status": {
+        "no_data": "Geen gegevens"
+      },
+      "menu": {
+        "show_output": "Uitvoer tonen",
+        "configure": "Configureren…"
+      },
+      "config_title": "Convolutie configureren",
+      "example_kernel": "Voorbeeldkernels:",
+      "kernel": "Kernelcoëfficiënten (komma-gescheiden):",
+      "mode": "Convolutiemodus:",
+      "help_title": "Help – Convolutie",
+    "help_html": "<h3>🔀 Convolutieknooppunt (FIR-filter)</h3>\n<p>Past een discrete convolutie toe tussen het ingangssignaal en een door de gebruiker gedefinieerde kernel.</p>\n\n<h4>📥 Invoer</h4>\n<p><code>input</code> → verwacht een tupel <code>(x, y)</code> of een 1D-array.</p>\n\n<h4>📤 Uitvoer</h4>\n<ul>\n    <li><b>Gefilterd signaal</b> → <code>(x_conv, y_conv)</code> – resultaat van de convolutie.</li>\n</ul>\n\n<h4>⚙️ Parameters (dubbelklik om te configureren)</h4>\n<ul>\n    <li><b>Kernelcoëfficiënten</b> – komma-gescheiden floats, bijv. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Convolutiemodus</b> – <code>'same'</code> (standaard), <code>'full'</code> of <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Werking</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>De x-as wordt dienovereenkomstig aangepast: voor <code>'same'</code> blijft de originele x behouden; voor <code>'valid'</code> worden de uiteinden bijgesneden; voor <code>'full'</code> wordt lineair uitgebreid.</li>\n</ul>\n\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+    },
+    "resample": {
+      "title": "Hersampling",
+      "tooltip": "Wijzig de bemonsteringsfrequentie van het signaal",
+      "ports": {
+        "input": "Invoer",
+        "output": "Uitvoer"
+      },
+      "status": {
+        "no_data": "Geen gegevens",
+        "ready": "Gereed"
+      },
+      "menu": {
+        "configure": "Configureren…"
+      },
+      "config_title": "Hersampling configureren",
+      "mode": "Modus:",
+      "factor": "Factor:",
+      "target_fs": "Doel-fs (Hz):",
+      "help_title": "Help – Hersampling",
+      "help_html": "<h3>🔄 Hersampling-knooppunt</h3><p>Wijzigt de <b>bemonsteringsfrequentie</b> van het ingangssignaal.</p><h4>📥 Invoer</h4><p><code>input</code> → verwacht een tupel <code>(x, y)</code> of een 1D-array.</p><h4>📤 Uitvoer</h4><p><code>output</code> → gehermonsterd signaal als <code>(x_new, y_new)</code>.</p><h4>⚙️ Parameters</h4><ul><li><b>Modus</b> – <i>factor</i> (vermenigvuldig originele bemonsteringsfrequentie) of <i>fixed_fs</i> (doelbemonsteringsfrequentie in Hz).</li><li><b>Factor</b> – schaalfactor (>1 verhoogt samples, <1 verlaagt).</li><li><b>Doel-fs</b> – gewenste bemonsteringsfrequentie in Hz (gebruikt wanneer modus fixed_fs is).</li></ul><h4>🛠️ Werking</h4><p>Gebruikt <code>scipy.signal.resample</code> die een Fourier-methode toepast.</p><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+    },
+    "window": {
+      "title": "Venster",
+      "tooltip": "Pas een vensterfunctie toe op het signaal",
+      "ports": {
+        "input": "Invoer",
+        "output": "Uitvoer"
+      },
+      "status": {
+        "no_data": "Geen gegevens",
+        "ready": "Gereed"
+      },
+      "menu": {
+        "configure": "Configureren…"
+      },
+      "config_title": "Venster configureren",
+      "window_type": "Venstertype:",
+      "normalize": "Normaliseren (energie behouden)",
+      "help_title": "Help – Venster",
+      "help_html": "<h3>🪟 Vensterknooppunt</h3><p>Past een <b>vensterfunctie</b> toe op het ingangssignaal om spectrale lekken te verminderen.</p><h4>📥 Invoer</h4><p><code>input</code> → tupel <code>(x, y)</code> of 1D-array.</p><h4>📤 Uitvoer</h4><p><code>output</code> → venster-signaal <code>(x, y * window)</code>.</p><h4>⚙️ Parameters</h4><ul><li><b>Venstertype</b> – Hann, Hamming, Blackman, Bartlett, enz.</li><li><b>Normaliseren</b> – indien aangevinkt, schaalt het venster om totale energie te behouden.</li></ul><h4>🛠️ Werking</h4><p>Gebruikt <code>scipy.signal.windows</code>.</p><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+    },
+    "delay": {
+      "title": "Vertraging",
+      "tooltip": "Vertraag het signaal met een opgegeven hoeveelheid",
+      "ports": {
+        "input": "Invoer",
+        "output": "Uitvoer"
+      },
+      "status": {
+        "no_data": "Geen gegevens",
+        "ready": "Gereed"
+      },
+      "menu": {
+        "configure": "Configureren…"
+      },
+      "config_title": "Vertraging configureren",
+      "mode": "Vertragingsmodus:",
+      "samples": "Samples:",
+      "seconds": "Seconden:",
+      "padding": "Opvulling:",
+      "constant_value": "Constante waarde:",
+      "help_title": "Help – Vertraging",
+      "help_html": "<h3>⏱️ Vertragingsknooppunt</h3><p>Vertraagt het ingangssignaal met een opgegeven aantal <b>samples</b> of <b>seconden</b>.</p><h4>📥 Invoer</h4><p><code>input</code> → tupel <code>(x, y)</code> of 1D-array.</p><h4>📤 Uitvoer</h4><p><code>output</code> → vertraagd signaal <code>(x, y_delayed)</code>.</p><h4>⚙️ Parameters</h4><ul><li><b>Vertragingsmodus</b> – <i>samples</i> (geheel aantal samples) of <i>seconds</i> (tijd in seconden, vereist bemonsteringsfrequentie uit x-as).</li><li><b>Opvulling</b> – methode om de initiële opening te vullen: <i>zero</i>, <i>reflect</i> of <i>constant</i> (door gebruiker gedefinieerde waarde).</li></ul><h4>🛠️ Werking</h4><p>Verschuift het signaal naar rechts en voegt opvulling toe aan het begin.</p><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+    },
+    "correlation": {
+      "title": "Correlatie",
+      "tooltip": "Kruiscorrelatie van twee signalen",
+      "ports": {
+        "signal1": "Signaal 1",
+        "signal2": "Signaal 2",
+        "corr": "Correlatie"
+      },
+      "status": {
+        "no_data": "Geen gegevens",
+        "ready": "Gereed"
+      },
+      "menu": {
+        "configure": "Configureren…"
+      },
+      "config_title": "Correlatie configureren",
+      "mode": "Modus:",
+      "normalize": "Normaliseren",
+      "help_title": "Help – Correlatie",
+      "help_html": "<h3>📈 Correlatieknooppunt</h3><p>Berekent de <b>kruiscorrelatie</b> tussen twee ingangssignalen.</p><h4>📥 Ingangen</h4><p><code>signal1</code>, <code>signal2</code> → elk verwacht een tupel <code>(x, y)</code> of een 1D-array.</p><h4>📤 Uitvoer</h4><p><code>corr</code> → correlatiereeks als <code>(vertragingen, correlatie)</code>.</p><h4>⚙️ Parameters</h4><ul><li><b>Modus</b> – <i>full</i> (alle vertragingen), <i>same</i> (zelfde lengte als langste invoer), <i>valid</i> (geen met nullen opgevulde randen).</li><li><b>Normaliseren</b> – indien aangevinkt, wordt gedeeld door het product van de signaalnormen (waarden in [-1, 1]).</li></ul><h4>🛠️ Werking</h4><p>Gebruikt <code>np.correlate</code>.</p><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+    },
+    "math_expression": {
+      "title": "Wiskundige expressie",
+      "tooltip": "Evalueer een wiskundige expressie op x en y",
+      "ports": {
+        "input": "Invoer",
+        "output": "Uitvoer"
+      },
+      "status": {
+        "no_data": "Geen gegevens",
+        "ready": "Gereed"
+      },
+      "menu": {
+        "configure": "Configureren…"
+      },
+      "config_title": "Wiskundige expressie configureren",
+      "expression": "Expressie (gebruik x, y, np.*):",
+      "info": "Variabelen: x (tijdas), y (signaalwaarden).\nFuncties: np.sin, np.cos, np.exp, np.sqrt, enz.",
+      "examples": "Voorbeelden…",
+      "help_title": "Help – Wiskundige expressie",
+      "help_html": "<h3>🧮 Wiskundige expressie-knooppunt</h3><p>Evalueert een willekeurige wiskundige expressie op de invoervariabelen <code>x</code> en <code>y</code>.</p><h4>📥 Invoer</h4><p><code>input</code> → tupel <code>(x, y)</code> of 1D-array.</p><h4>📤 Uitvoer</h4><p><code>output</code> → resultaat van de expressie als <code>(x, y_new)</code>.</p><h4>✏️ Syntaxis van expressie</h4><ul><li>Gebruik <code>x</code> (tijdas) en <code>y</code> (signaalwaarden) als arrayvariabelen.</li><li>Je kunt ook elke <code>np.*</code>-functie gebruiken (bijv. <code>np.sin(y)</code>, <code>np.exp(-x)</code>).</li><li>Voorbeelden: <code>y * 2</code>, <code>np.sin(2*np.pi*x)</code>, <code>np.sqrt(x**2 + y**2)</code>.</li></ul><h4>⚠️ Opmerking</h4><p>De expressie wordt veilig geëvalueerd met <code>numexpr</code> (indien beschikbaar) of een beperkte <code>eval</code>.</p><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+    },
+    "spectrogram": {
+      "title": "Spectrogram",
+      "tooltip": "Bereken STFT-spectrogram",
+      "ports": {
+        "input": "Invoer",
+        "spectrogram": "Spectrogram",
+        "frequencies": "Frequenties",
+        "times": "Tijden"
+      },
+      "status": {
+        "no_data": "Geen gegevens",
+        "ready": "Gereed"
+      },
+      "menu": {
+        "configure": "Configureren…",
+        "show_in_plot": "Tonen in grafiek"
+      },
+      "config_title": "Spectrogram configureren",
+      "nperseg": "Samples per segment:",
+      "noverlap": "Overlap:",
+      "window": "Venster:",
+      "scaling": "Schaling:",
+      "mode": "Modus:",
+      "help_title": "Help – Spectrogram",
+      "help_html": "<h3>🌊 Spectrogram-knooppunt</h3><p>Berekent het <b>Short-Time Fourier Transform (STFT)</b>-spectrogram.</p><h4>📥 Invoer</h4><p><code>input</code> → (x, y) of 1D-array.</p><h4>📤 Uitgangen</h4><ul><li><b>Spectrogram</b> → 2D-array (frequenties, tijden, magnitudes) – <i>niet tekenbaar met klik</i>.</li><li><b>Frequenties</b> → 1D-array van frequentiebins (kan met andere knooppunten worden verbonden).</li><li><b>Tijden</b> → 1D-array van segmenttijden.</li></ul><h4>🖱️ Interactie</h4><p><b>Klikken</b> op het knooppunt <b>toont niet</b> het spectrogram. Verbind <code>frequencies</code> of <code>times</code> met andere verwerkingsknooppunten, of exporteer de gegevens.</p><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+    },
+    "spectrogram_viewer": {
+        "title": "Spectrogramviewer",
+        "tooltip": "Ontvangt en toont spectrogramgegevens (frequenties, tijden, matrix)",
+        "config_title": "Spectrogramviewer configureren",
+        "ports": {
+            "frequencies": "Frequenties",
+            "times": "Tijden",
+            "spectrogram": "Spectrogram"
+        },
+        "status": {
+            "no_data": "Geen gegevens"
+        },
+        "menu": {
+            "view_spectrogram": "Spectrogram bekijken",
+            "configure": "Configureren…"
+        },
+        "window_title": "Spectrogramviewer",
+        "time_axis": "Tijd (s)",
+        "freq_axis": "Frequentie (Hz)",
+        "log_scale": "Logaritmische schaal",
+        "colormap": "Kleurenkaart:",
+        "auto_contrast": "Automatisch contrast",
+        "contrast_min": "Minimumcontrast:",
+        "contrast_max": "Maximumcontrast:",
+        "export": "Exporteren…",
+        "export_title": "Spectrogram exporteren",
+        "no_data_title": "Geen gegevens",
+        "no_data_message": "Onvolledige gegevens. Verbind eerst alle poorten en voer de flow uit.",
+        "help_title": "Help – Spectrogramviewer",
+        "help_html": "<h3>📊 Spectrogramviewer-knooppunt</h3><p>Ontvangt de drie uitgangen van een <b>Spectrogram</b>-knooppunt en toont ze als een 2D-heatmap.</p><h4>📥 Ingangen</h4><ul><li><b>frequencies</b> → 1D-vector van frequenties</li><li><b>times</b> → 1D-vector van segmenttijden</li><li><b>spectrogram</b> → 2D-matrix (frequenties × tijden) van magnitudes</li></ul><h4>⚙️ Configuratie</h4><p>Gebruik het <b>zijpaneel</b> om in realtime aan te passen:</p><ul><li><b>Logaritmische schaal</b> — versterkt details met lage amplitude.</li><li><b>Kleurenkaart</b> — viridis, inferno, plasma, jet, enz.</li><li><b>Contrast</b> — automatisch of handmatig (min / max).</li></ul><h4>🖱️ Interactie</h4><p><b>Rechterklik</b> op het knooppunt en selecteer <b>\"Spectrogram bekijken\"</b> om een speciaal venster te openen.</p><p>In de viewer kun je de huidige weergave <b>exporteren</b> als PNG-afbeelding.</p><p><i>Klikken op het knooppunt toont niets in de hoofdgrafiek.</i></p><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteer de poort voor een snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (bekijken, configureren, verwijderen).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+    },
+    "graph_exporter": {
+        "title": "Grafiek-exporteur",
+        "tooltip": "Exporteert grafieken met professionele kwaliteit",
+        "ports": {
+            "signal_in": "Signaalinvoer",
+            "file_out": "Uitvoerbestand"
+        },
+        "status": {
+            "ready": "Gereed",
+            "exported": "Geëxporteerd"
+        },
+        "menu": {
+            "show_graph": "Grafiek tonen",
+            "configure": "Grafiek configureren",
+            "configure_subplot": "Subplots configureren",
+            "export": "Grafiek exporteren",
+            "subplots": "Subplots",
+            "use_subplots": "Subplots gebruiken",
+            "n_subplots": "Aantal subplots",
+            "subplot_layout": "Indeling"
+        },
+        "config": {
+            "display_mode": "Weergavemodus",
+            "use_subplots": "Subplots gebruiken (max. 8)",
+            "n_subplots": "Aantal subplots:",
+            "subplot_layout": "Indeling:",
+            "export_format": "Exportformaat"
+        },
+        "no_data_title": "Geen gegevens",
+        "no_data_msg": "Verbind een ingangssignaal en voer de flow uit om een grafiek te genereren.",
+        "export_dialog_title": "Grafiek opslaan",
+        "export_error_title": "Exportfout",
+        "config_title": "Grafiek-exporteur configureren",
+        "help_title": "Help – Grafiek-exporteur",
+        "help_html": "<h3>📊 Grafiek-exporteur</h3><p>Ontvangt een signaal en exporteert het als een afbeelding van hoge kwaliteit.</p><h4>📥 Invoer</h4><p><code>signal_in</code> → tupel <code>(x, y)</code> of 1D-array.</p><h4>📤 Uitvoer</h4><p><code>file_out</code> → pad van het gegenereerde bestand.</p><h4>⚙️ Configuratie</h4><p>Rechterdubbelklik → <b>Grafiek configureren</b> om stijl, assen, annotaties, enz. aan te passen.</p><hr><h4>🖱️ Interactie</h4><ul><li><b>Rechterklik</b> → contextmenu.</li><li><b>Grafiek tonen</b> → voorbeeld met huidige instellingen.</li></ul><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "Invoerknooppunt kan niet worden verwijderd."
+  },
+  "workspace": {
+    "headers": {
+      "node": "Knooppunt",
+      "type": "Type",
+      "shape": "Vorm",
+      "x_range_fs": "X: bereik / fs",
+      "dx_t": "dx / T",
+      "y_range": "Y: [min, max]",
+      "preview_y": "Voorbeeld Y"
+    }
+  },
+  "plot": {
+    "time_label": "Tijd (s)",
+    "voltage_label": "Spanning (V)",
+    "title": "Signaal",
+    "scale_label": "Schaal:",
+    "scale_linear": "Lineair",
+    "scale_log": "Logaritmisch",
+    "markers": "Markeringen",
+    "cursors": "Cursors A/B",
+    "peak": "Piek",
+    "peak_tooltip": "Markeer maximale piek",
+    "reset_zoom": "Zoom resetten",
+    "amplitude": "Amplitude",
+    "time": "Tijd (s)",
+    "frequency": "Frequentie (Hz)",
+    "view_mode": "Weergave",
+    "view_2d": "2D",
+    "view_surface": "Oppervlak 3D",
+    "view_waterfall": "Waterval 3D",
+    "view_volume": "Volume 3D",
+    "view_slice": "Doorsnede 3D",
+    "slice_label": "Doorsnede",
+    "reset_camera": "Camera resetten",
+    "axis_scale": "Schaal",
+    "fps": "FPS",
+    "loop": "Lus",
+    "colormap": "Kleurenkaart"
+  },
+  "shortcuts": {
+    "delete": "Knooppunt verwijderen",
+    "delete_desc": "Verwijder geselecteerde knooppunten en hun verbindingen.",
+    "duplicate": "Knooppunt dupliceren",
+    "duplicate_desc": "Dupliceer geselecteerde knooppunten met +50px offset.",
+    "select_all": "Alles selecteren",
+    "select_all_desc": "Selecteer alle knooppunten in de scène.",
+    "cancel": "Actie annuleren",
+    "cancel_desc": "Annuleer lopende verbinding of deselecteer alles.",
+    "copy": "Kopiëren",
+    "copy_desc": "Kopieer geselecteerde knooppunten naar het interne klembord.",
+    "cut": "Knippen",
+    "cut_desc": "Knip geselecteerde knooppunten uit.",
+    "paste": "Plakken",
+    "paste_desc": "Plak knooppunten uit het klembord.",
+    "undo": "Ongedaan maken",
+    "undo_desc": "Maak de laatste actie ongedaan.",
+    "redo": "Opnieuw",
+    "redo_desc": "Herhaal de ongedaan gemaakte actie.",
+    "run": "Flow uitvoeren",
+    "run_desc": "Voer de volledige flow uit.",
+    "auto_layout": "Automatische indeling",
+    "auto_layout_desc": "Schik knooppunten automatisch in kolommen.",
+    "center_view": "Weergave centreren",
+    "center_view_desc": "Centreer weergave op selectie of hele scène.",
+    "zoom_reset": "Zoom 100%",
+    "zoom_reset_desc": "Reset zoom naar 100%.",
+    "zoom_in": "Inzoomen",
+    "zoom_in_desc": "Inzoomen.",
+    "zoom_out": "Uitzoomen",
+    "zoom_out_desc": "Uitzoomen.",
+    "toggle_theme": "Thema wisselen",
+    "toggle_theme_desc": "Schakel tussen donker, licht en hoog contrast thema.",
+    "toggle_grid": "Raster wisselen",
+    "toggle_grid_desc": "Raster tonen of verbergen.",
+    "lock_node": "Knooppunt vergrendelen",
+    "lock_node_desc": "Vergrendel/ontgrendel beweging van geselecteerd knooppunt.",
+    "help": "Contextuele help",
+    "help_desc": "Toon tooltip van knooppunt onder cursor.",
+    "new_file": "Nieuw",
+    "new_file_desc": "Nieuw diagram maken",
+    "open_file": "Openen",
+    "open_file_desc": "Open een diagrambestand",
+    "save_file": "Opslaan",
+    "save_file_desc": "Sla huidig diagram op",
+    "save_file_as": "Opslaan als…",
+    "save_file_as_desc": "Sla diagram op met een nieuwe naam"
+  },
+  "dialogs": {
+    "common": {
+      "close": "Sluiten",
+      "cancel": "Annuleren",
+      "ok": "OK",
+      "emer_wind": "Programma selecteren",
+      "operation_history": "Bewerkingen",
+      "confirm": "Er zijn geen wijzigingen aangebracht.",
+      "overwrite": "Overschrijven?",
+      "error": "Fout"
+    },
+    "font_size": {
+        "title": "Lettergrootte",
+        "label": "Grootte (pt):"
+    },
+    "firewall": {
+        "title": "Verbinding geblokkeerd",
+        "text": "Kan geen verbinding maken met de oscilloscoop.\nDe Windows-firewall blokkeert mogelijk de communicatie.",
+        "informative": "Om dit op te lossen, sta 'FloWorks.exe' toe via de Windows-firewall.\n\nWil je in de tussentijd de simulatiemodus gebruiken?"
+    },
+    "capture_error": {
+        "title": "Opnamefout",
+        "text": "Er is een fout opgetreden tijdens de opname:\n{error}\n\nControleer of het apparaat is ingeschakeld en of de firewall de verbinding toestaat."
+    },
+    "script_editor": {
+      "title": "Scripteditor",
+      "header": "Python-script  |  variabelen: x, y, param (van TriggerNode), np, scipy, sympy",
+      "test_button": "Test (zonder opslaan)",
+      "save_button": "Opslaan en sluiten",
+      "tool_tip": "Scriptknooppunt\nDubbelklik voor info",
+      "templates": "Sjablonen:",
+      "save_template": "Sjabloon opslaan…",
+      "import": "Script openen…",
+      "export": "Script exporteren…",
+      "unsaved_warning": "Er zijn geen wijzigingen aangebracht. Wil je het sjabloon laden en ze verliezen?",
+      "save_template_title": "Opslaan als sjabloon",
+      "save_template_prompt": "Naam van sjabloon (zonder extensie):",
+      "overwrite_template": "Het sjabloon bestaat al. Wil je het overschrijven?",
+      "import_title": "Python-script openen",
+      "export_title": "Python-script exporteren",
+      "help_tooltip": "Snelle help (F1)",
+      "help_title": "Snelle help",
+      "browse": "Bladeren…",
+      "python_path_placeholder": "Laat leeg om de interne interpreter te gebruiken. Bijv.: python3",
+      "quick_help_html": "<h2>Python-scripteditor</h2><p>Deze editor voert Python-code uit op flowsignalen. Het script ontvangt gegevens en kan resultaten retourneren, signalen wijzigen of meerdere uitgangen genereren.</p><h3>Beschikbare variabelen</h3><ul><li><b>x</b> – NumPy-array: X-as (tijd, frequentie…).</li><li><b>y</b> – NumPy-array: huidige signaalwaarden.</li><li><b>param</b> – Iteratie-index (van TriggerNode) of <code>None</code>.</li><li><b>inputs</b> – Woordenboek met alle ingangen (handig met <code>@input</code>).</li><li><b>persist</b> – Woordenboek dat waarden tussen uitvoeringen bewaart.</li></ul><h3>Geïmporteerde bibliotheken</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>Speciale richtlijnen</h3><ul><li><code># @param NAME : type = value</code> – Maakt een instelbare parameter in het zijpaneel (zonder de code aan te raken).</li><li><code># @input port_name</code> – Voegt een extra invoerpoort toe (linkerkant).</li><li><code># @output port_name</code> – Voegt een extra uitvoerpoort toe (rechterkant).</li></ul><p>Met <code>@input</code>/<code>@output</code> moet het script <code>inputs</code> gebruiken en een woordenboek met de uitgangen retourneren. Voorbeeld:</p><pre># @input channel_A<br># @output result<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"channel_A\"][1]<br>return {\"out\": (x, y), \"result\": (x, y_a)}</pre><h3>Persistentie</h3><p>Het woordenboek <code>persist</code> bewaart gegevens tussen uitvoeringen zolang het programma open is. Voorbeeld:</p><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1<br>return (x, y + persist[\"counter\"] * 0.1)</pre><h3>Sjabloonbeheer</h3><ul><li>Selecteer een sjabloon uit de vervolgkeuzelijst om een vooraf gedefinieerd script te laden.</li><li><b>Sjabloon opslaan…</b> – Slaat het huidige script op als <code>.py</code>-bestand in de sjablonenmap.</li><li><b>Script openen…</b> / <b>Script exporteren…</b> – Wissel scripts uit met externe bestanden.</li></ul><h3>Tips</h3><ul><li>Gebruik <b>Test</b> om het script te controleren met gesimuleerde gegevens voordat je de flow verbindt.</li><li>Fouten worden weergegeven in de onderste console en de defecte regel wordt gemarkeerd.</li><li>Je kunt een richtlijn tijdelijk uitschakelen door deze te becommentariëren (<code>## @param ...</code>).</li></ul>"
+    },
+    "trigger_config": {
+      "title": "Triggerknooppunt configureren",
+      "group": "Iteratieparameters",
+      "n_iter": "Iteraties (N):",
+      "param_start": "Startparameter:",
+      "param_end": "Eindparameter:",
+      "accumulate": "Accumulatie:",
+      "trig_tooltips": "TriggerNode\nDubbelklik voor info",
+      "info": "De huidige parameter is beschikbaar in\nloop_out als het derde element: (x, y, param)",
+      "accumulate_options":{
+        "stack": "Stapel",
+        "average": "Gemiddelde",
+        "max": "Max",
+        "min": "Min"
+      }
+    },
+    "simulation_config": {
+      "title": "Simulatieconfiguratie",
+      "timebase": "Tijdbasis (ms/div)",
+      "voltage_range": "Spanningsbereik (V)",
+      "trigger_level": "Triggerniveau (V)",
+      "trigger_slope": "Triggerhelling",
+      "sample_rate": "Bemonsteringsfrequentie (kHz)"
+    },
+    "file": {
+      "save_as": "Opslaan als…",
+      "unsaved_title": "Niet-opgeslagen wijzigingen",
+      "unsaved_message": "Er zijn niet-opgeslagen wijzigingen. Wil je opslaan voordat je doorgaat?"
+    }
+  },
+  "info_dialog": {
+    "title": "Informatie – FloWorks",
+    "tab_about": "Over",
+    "tab_shortcuts": "Sneltoetsen",
+    "tab_tutorials": "Tutorials",
+    "close": "Sluiten",
+    "about_title": "FloWorks",
+    "version": "Versie 0.4.5",
+    "description": "<p>FloWorks is een visuele en interactieve signaalverwerkingsomgeving op basis van gegevensstromen. Je kunt verwerkingsketens bouwen, uitvoeren en analyseren door knooppunten te verbinden die wiskundige bewerkingen, filters, transformaties, signaalgeneratoren en meer vertegenwoordigen. Alles is gebaseerd op (x, y)-paren, waarbij x de as is (tijd of frequentie) en y het signaal.</p><p>Het is gericht op studenten, onderzoekers, ingenieurs en iedereen die geïnteresseerd is in signaalverwerking en wil experimenteren, leren of systemen wil prototypen zonder code vanaf nul te schrijven.</p><p><b>Missie:</b> De experimentele workflow centraliseren in één visueel, open en toegankelijk hulpmiddel, zodat iedereen —student, onderzoeker of ingenieur— zich kan concentreren op experimenteren, niet op het leren van software.</p><p><b>Visie:</b> Een wereld waarin de barrière tussen een experimenteel idee en de uitvoering ervan alleen de nieuwsgierigheid van de experimentator is. FloWorks streeft ernaar het referentieplatform te zijn voor signaalsexperimenten, gebouwd door en voor de wereldwijde wetenschappelijke en technische gemeenschap, zonder licentiemuren of toolfragmentatie.</p><p><b>Principes:</b> Vrije software (MIT-licentie) – kennis moet vrij zijn. Uitbreidbaarheid – iedereen kan nieuwe knooppunten maken met Python. Onmiddellijke visualisatie – elke stap kan grafisch worden geïnspecteerd.</p>",
+    "credits": "<h3>Dankbetuigingen en licenties</h3><p>FloWorks gebruikt de volgende open-sourceprojecten:</p><ul><li><b>PySide6 / Qt</b> – Grafische gebruikersinterface. Gelicenseerd onder <b>GNU LGPLv3</b>. © The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – BSD / PSF-licenties.</li><li><b>PyQtGraph, Pillow</b> – MIT / HPND-licenties.</li><li><b>OpenCV</b> – Apache 2.0-licentie.</li><li><b>PyTorch</b> – BSD-licentie (Meta Platforms, Inc.).</li><li><b>Pygments</b> – BSD-licentie.</li></ul><p>Deze applicatie gebruikt PySide6 (dynamisch gelinkt) onder de voorwaarden van de <b>GNU LGPLv3</b>.</p><p>Gebruikers hebben het recht om dynamische PySide6-bibliotheken te wijzigen of te vervangen.</p><p>Volledige licentie beschikbaar op <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a>.</p><p><b>FloWorks-licentie:</b> MIT-licentie.</p>",
+    "shortcut_header_keys": "Sneltoets",
+    "shortcut_header_action": "Actie",
+    "shortcut_header_context": "Context",
+    "shortcuts_note": "Opmerking: sneltoetsen werken globaal, zelfs wanneer de focus op een andere widget staat.",
+    "tutorials_placeholder": "Hier zijn enkele voorbeelden en tutorials in volgorde van leren:",
+    "tutorial": "Tutorial",
+    "example_fft": "Voorbeeld openen: FFT van sinusgolf",
+    "example_filter": "Voorbeeld openen: Bandpassfilter van chirp-golf",
+    "example_delay": "Voorbeeld openen: Vertraging van sinusgolf",
+    "example_window": "Voorbeeld openen: Venster van chirp-golf",
+    "example_convolution": "Voorbeeld openen: Convolutie van blokgolf",
+    "example_conrrelation": "Voorbeeld openen: Correlatie tussen sinus- en blokgolf",
+    "example_math_expression": "Voorbeeld openen: Wiskundige expressie op sinusgolf",
+    "example_spectrogram": "Voorbeeld openen: Spectrogram van chirp-golf",
+    "example_compound": "Voorbeeld openen: Samenstelling van verschillende knooppunten",
+    "example_title": "Voorbeeld",
+    "example_message": "Het voorbeeld '{name}' zal beschikbaar zijn in een toekomstige versie.",
+    "shortcut_header_description": "Beschrijving",
+    "view_logs": "Logconsole bekijken",
+    "log_viewer_title": "Logviewer (error.log)",
+    "refresh": "Vernieuwen",
+    "clear": "Wissen",
+    "no_logs_available": "Momenteel geen logs gevonden.",
+    "error_reading_logs": "Fout bij het lezen van het logbestand.",
+    "confirm_clear": "Wissen bevestigen",
+    "confirm_clear_msg": "Weet je zeker dat je het logbestand wilt leegmaken? Deze actie kan niet ongedaan worden gemaakt."
+  },
+  "lcr_controller": {
+    "title": "LCR-controller",
+    "connected": "Verbonden",
+    "disconnected": "Losgekoppeld",
+    "measure_var": "Te meten variabele:",
+    "freq_sweep": "Frequentiesweep",
+    "freq_start": "Start (Hz):",
+    "freq_end": "Einde (Hz):",
+    "freq_step": "Stap (Hz):",
+    "level": "Niveau (V):",
+    "speed": "Snelheid:",
+    "average": "Gemiddelde:",
+    "rsou": "RSOU (Ω):",
+    "range": "Bereik:",
+    "bias_volt": "DC-bias (V):",
+    "bias_on": "BIAS ON",
+    "bias_off": "BIAS OFF",
+    "apply": "Instellingen toepassen",
+    "error_title": "Fout",
+    "connection_error": "Kan geen verbinding maken met LCR. Controleer de verbinding en het adres.",
+    "success_title": "Succes",
+    "success_message": "Instellingen succesvol toegepast.",
+    "apply_error": "Kon instellingen niet toepassen: {error}"
+  },
+  "osc_controller": {
+    "title": "Oscilloscoop-opname",
+    "window_title": "Oscilloscoopcontroller",
+    "channel": "Kanaal selecteren:",
+    "acq_mode": "Acquisitiemodus:",
+    "mem_size": "Geheugengrootte:",
+    "invert_off": "Signaal omkeren",
+    "invert_on": "Signaal omgekeerd",
+    "tdiv": "Horizontale divisie:",
+    "vdiv": "Verticale divisie (V):",
+    "hpos": "Horizontale positie (s):",
+    "offset": "Verticale positie (V):",
+    "trig_level": "Triggerniveau (V):",
+    "v_range":"Spanningsbereik (V):",
+    "sd_trg": "Zijtrigger",
+    "fs": "Bemonsteringsfrequentie (kHz):"
+  },
+  "gen_controller": {
+    "title": "Geavanceerde controller – Signaalgenerator",
+    "apply_current": "Huidige configuratie toepassen",
+    "channel": "Kanaal selecteren:",
+    "waveform_btn": "Golfvorm genereren",
+    "chirp_btn": "Chirp genereren",
+    "modulation_on": "Modulatie inschakelen",
+    "modulation_off": "Modulatie stoppen",
+    "sweep_on": "Sweep inschakelen",
+    "sweep_off": "Sweep stoppen",
+    "burst_on": "Burst inschakelen",
+    "burst_off": "Burst stoppen",
+    "ch1_on": "Kanaal 1 inschakelen",
+    "ch1_off": "Kanaal 1 uitschakelen",
+    "ch2_on": "Kanaal 2 inschakelen",
+    "ch2_off": "Kanaal 2 uitschakelen",
+    "load": "Uitvoer selecteren:",
+    "polarity": "Uitvoerpolariteit:",
+    "modify_output": "Uitvoer wijzigen",
+    "tab_general": "Algemeen",
+    "tab_waveform": "Golfvorm",
+    "tab_chirp": "Chirp",
+    "tab_modulation": "Modulatie",
+    "tab_sweep": "Sweep",
+    "tab_burst": "Burst",
+    "sim_title": "Simulatie",
+    "no_hardware": "Geen hardware aangesloten",
+    "sent_title": "Verzonden",
+    "waveform_sent": "Golfvorm verzonden",
+    "chirp_sent": "Chirp verzonden",
+    "success_title": "Succes",
+    "output_modified": "Uitvoer {channel}: belasting {load}, polariteit {pol}",
+    "signal_type": "Signaaltype:",
+    "frequency": "Frequentie (Hz):",
+    "amplitude": "Amplitude (Vpp):",
+    "offset": "Offset (V):",
+    "phase": "Fase (graden):",
+    "duty_cycle": "Duty cycle (%):",
+    "symmetry": "Symmetrie (%):",
+    "pulse_width": "Pulsbreedte (s):",
+    "rise_edge": "Stijgende flank (s):",
+    "fall_edge": "Dalende flank (s):",
+    "delay_edge": "Vertraging flank (s):",
+    "stdev": "Standaardafwijking (V):",
+    "mean": "Gemiddelde (V):",
+    "chirp_f0": "Initiële frequentie (Hz):",
+    "chirp_f1": "Eindfrequentie (Hz):",
+    "chirp_fs": "Fs (Sa/s):",
+    "chirp_duration": "Duur (s):",
+    "chirp_amp": "Amplitude (V):",
+    "chirp_offset": "Offset (V):",
+    "chirp_phase": "Fase (°):",
+    "chirp_name": "Signaalnaam:",
+    "chirp_method": "Methode:",
+    "chirp_mode": "Arb-modus:",
+    "mod_type": "Modulatietype:",
+    "mod_freq": "Modulatiefrequentie (Hz):",
+    "mod_dev": "Afwijking (Hz,°,s):",
+    "mod_hop": "Hop-frequentie (Hz):",
+    "mod_shape": "Golfvorm:",
+    "mod_depth": "Diepte (%):",
+    "sweep_time": "Duur (s):",
+    "sweep_stop": "Eindfrequentie (Hz):",
+    "sweep_start": "Initiële frequentie (Hz):",
+    "sweep_trig_src": "Trigrambron:",
+    "sweep_trig_out": "Trigger-uitvoer:",
+    "sweep_mode": "Type:",
+    "sweep_dir": "Richting:",
+    "burst_period": "Periode (s):",
+    "burst_cycles": "Cycli:",
+    "burst_phase": "Fase (graden):",
+    "burst_gate": "Doel:",
+    "burst_trig_src": "Trigrambron:",
+    "burst_polarity": "Polariteit:",
+    "waveform_applied": "Golfvorm toegepast",
+    "chirp_applied": "Chirp verzonden",
+    "modulation_applied": "Modulatie geconfigureerd",
+    "sweep_applied": "Sweep geconfigureerd",
+    "burst_applied": "Burst geconfigureerd"
+  },
+  "simulation_config_dialog": {
+    "title": "Simulatieconfiguratie – Generator",
+    "waveform": "Golfvorm:",
+    "basic_params": "Basisparameters",
+    "frequency": "Frequentie (Hz):",
+    "amplitude": "Amplitude (Vpp):",
+    "offset": "Offset (V):",
+    "phase": "Fase (graden):",
+    "duty_cycle": "Duty cycle (%):",
+    "symmetry": "Symmetrie (%):",
+    "direction": "Richting:",
+    "up": "Omhoog",
+    "down": "Omlaag",
+    "stdev": "Standaardafwijking:",
+    "mean": "Gemiddelde:",
+    "lobes": "Aantal lobben:",
+    "sigma": "Sigma:",
+    "mu": "Mu:",
+    "tau": "Tau (s):",
+    "exp_type": "Type:",
+    "rise": "Stijging",
+    "fall": "Daling",
+    "f0": "Initiële frequentie (Hz):",
+    "f1": "Eindfrequentie (Hz):",
+    "chirp_method": "Methode:",
+    "linear": "Lineair",
+    "logarithmic": "Logaritmisch",
+    "preview": "Voorbeeld",
+    "apply": "Toepassen",
+    "close": "Sluiten",
+    "time_label": "Tijd (s)",
+    "amplitude_label": "Amplitude (V)"
+  },
+  "self": {
+    "language_changed": "Taal gewijzigd naar: {name} ({code})",
+    "default": "FloWorks  |  Scrollen: zoomen  |  Middelklik: pannen  |  Dubbelklik op knooppunt: info |  Rechterklik op knooppunt: opties",
+    "workspace": "Werkruimte",
+    "canvas": "Canvas",
+    "no_nodes_selected": "Geen knooppunten geselecteerd",
+    "node_config_placeholder": "Selecteer een knooppunt op het canvas\n om de configuratie ervan te bekijken"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "Visueel en interactief virtueel signaalverwerkingslaboratorium",
+    "build": "Vergeet complexe code. Sleep blokken, verbind ze als puzzelstukjes en bouw je workflow door knooppunten te verbinden met lijnen die de gegevensstroom vertegenwoordigen.",
+    "keyrule": "Alles draait om signalen: verbind blokken, geen regels code.",
+    "nodework": "Knooppuntarchitectuur:\n[Invoergegevens] → [Interne verwerking] → [Uitvoergegevens]",
+    "execute": "Klik op Uitvoeren en zie je ideeën tot leven komen in realtime grafieken en gegevens. Wil je verder gaan? Sluit echte laboratoriuminstrumenten aan of voeg je eigen regels toe met Python-scriptknooppunten voor aangepaste verwerking.",
+    "expand": "Exporteer grafieken van hoge kwaliteit, klaar voor gebruik in technische documenten. Sla je werk op in \".sflow\"-bestanden en haal ze precies terug zoals je ze hebt achtergelaten.",
+    "actions_title": "Wat kun je doen?",
+    "actions": "* Ideeën testen door workflows te bouwen, knooppunten te slepen en te verbinden.\n* Echte apparatuur aansturen of signalen simuleren.\n* Resultaten direct bekijken in interactieve grafieken.",
+    "checkbox": "Niet meer tonen",
+    "start": "Start"
+  },
+  "scene": {
+    "empty_hint": "Selecteer knooppunten uit de werkbalk",
+    "load_example_hint": "Je kunt een voorbeeld laden via \"Info\" → \"Tutorials\""
+  },
+  "examples": {
+  "general": {
+    "title": "Voorbeelden",
+    "welcome": "Welkom bij FloWorks! \nVolg deze mini-tutorials om de meest voorkomende handelingen onder de knie te krijgen.",
+    "scroll": "Scroll of houd het muiswiel ingedrukt om het canvas te pannen.",
+    "help": "Rechterklik op een knooppunt om zijn acties te configureren."
+  },
+  "tutorial": {
+    "message": "Dit is een visuele signaalstroomdiagram-applicatie. Laten we beginnen!",
+    "step1": "Stap 1: Signaalbron toevoegen",
+    "step2": "Voeg een signaalbron-knooppunt toe vanuit de werkbalk (bovenaan). \nHet knooppunt wordt geplaatst waar je het laatst op het canvas hebt geklikt. \nKlik ergens in de buurt op het canvas en klik vervolgens op de bovenste balk op:",
+    "step3": "Stap 2: Knooppunten verbinden",
+    "step4": "Druk CTRL+klik op een uitvoerpoort van een knooppunt (die aan de linkerkant) en klik vervolgens op de invoerpoort van het andere knooppunt (die aan de rechterkant) om een verbinding te maken.",
+    "step5": "Verbindingen stromen van links naar rechts en transporteren signaalgegevens tussen knooppunten.",
+    "step6": "Stap 3: De flow uitvoeren",
+    "step7": "Druk op F5 om de signaalflow uit te voeren en de resultaten in realtime te zien.",
+    "step8": "Je kunt ook op afzonderlijke knooppunten klikken om hun uitvoerwaarden te zien.",
+    "step9": "Stap 4: Resultaten bekijken",
+    "step10": "Klik op een willekeurig knooppunt om het signaal in de grafiekwidget te visualiseren.",
+    "step11": "De grafiek wordt automatisch bijgewerkt wanneer je de flow uitvoert."
+  },
+  "shortcuts": {
+    "title": "Sneltoetsen",
+    "execute": "F5 – Flow uitvoeren",
+    "save": "Ctrl+S – Project opslaan (.sflow)",
+    "load": "Ctrl+O – Project openen",
+    "delete": "Delete / Backspace – Geselecteerde elementen verwijderen",
+    "copy_paste": "Ctrl+C / Ctrl+V – Knooppunten of notities kopiëren en plakken",
+    "undo_redo": "Ctrl+Z / Ctrl+Y – Ongedaan maken / Opnieuw",
+    "auto_layout": "Ctrl+Shift+L – Automatische diagramindeling",
+    "zoom": "Muiswiel – Zoomen, houd ingedrukt om de weergave te slepen"
+  },
+  "fft": {
+    "title": "FFT-analyse",
+    "description": "Berekent het frequentiespectrum van een signaal.",
+    "steps": {
+      "step1": "Voeg een Generatorknooppunt toe en selecteer bijvoorbeeld een 1 kHz blokgolf.",
+      "step2": "Selecteer in het menu 'Verwerking' van de werkbalk het FFT-knooppunt. Verbind het met de uitvoer van de Generator (CTRL+klik uitvoer → CTRL+klik FFT-invoer).",
+      "step3": "Druk op F5. Het FFT-knooppunt transformeert het signaal naar het frequentiedomein.",
+      "step4": "Klik op het FFT-knooppunt om het spectrum te zien. Pieken verschijnen op oneven veelvouden van 1 kHz.",
+      "step5": "(Optioneel) Verbind de FFT-uitvoer met een rekenkundig knooppunt (SumNode) om twee spectra te vergelijken; het systeem detecteert automatisch de frequentieresolutie en waarschuwt je voor incompatibiliteit.",
+      "step6": "Rechterklik op het FFT-knooppunt om de weergave tussen Magnitude en Fase te selecteren."
+    }
+  },
+  "filter": {
+    "title": "Signaalfiltering",
+    "description": "Past een lowpass-, highpass- of bandpassfilter toe.",
+    "steps": "1. Voeg een Generator in met een chirp-signaal.\n2. Voeg een Filterknooppunt toe vanuit het menu 'Verwerking'. Verbind de generatoruitvoer met de filterinvoer.\n3. Rechterklik en kies 'Configureren…' op het Filterknooppunt, selecteer vervolgens het type (lowpass, highpass, enz.) en de kantelfrequentie.\n4. Voer uit (F5) en visualiseer zowel het originele als het gefilterde signaal door op de overeenkomstige verbindingen te klikken.\n5. Als je naast elkaar wilt vergelijken, kun je FFT-knooppunten toevoegen en het signaal splitsen."
+  },
+  "delay": {
+    "title": "Vertragingslijn",
+    "description": "Verschuift een signaal in de tijd (handig voor correlaties of effecten).",
+    "steps": "1. Begin met een generator met een kort signaal.\n2. Voeg een Vertragingsknooppunt toe vanuit 'Verwerking'. Verbind de generatoruitvoer met de vertragingsinvoer.\n3. Geef in het configuratiedialoogvenster van het Vertragingsknooppunt het aantal samples of de vertragingstijd op.\n4. Voer de flow uit (F5) en klik op de uitvoer van het Vertragingsknooppunt. Je ziet hetzelfde signaal naar rechts verschoven.\n5. Om de exacte vertraging te meten, activeer je de cursors (onderste paneel) en vergelijk je ze tussen het originele en het vertraagde signaal."
+  },
+  "window": {
+    "title": "Pre-FFT-venster",
+    "description": "Past een venster toe (Hanning, Hamming, enz.) vóór FFT om spectrale lekken te verminderen.",
+    "steps": "1. Stel een basisflow in: Generator → Venster → FFT.\n2. Dubbelklik op het Vensterknooppunt en selecteer het type (Hanning is een goed begin).\n3. Verbind de uitvoer van het Venster met de FFT-invoer.\n4. Voer uit (F5). Klik op de FFT-uitvoer om het spectrum met en zonder venster te vergelijken.\n5. Probeer een zuiver sinusvormig signaal met een niet-gehele frequentie; je zult merken dat de piek beter gedefinieerd is met het venster. Wijzig het venstertype om te zien hoe de zijlob wordt verminderd."
+  },
+  "convolution": {
+    "title": "Convolutie",
+    "description": "Berekent de convolutie tussen twee signalen.",
+    "steps": "1. Voeg een Generator toe (Bronnen → Generator) met het signaal dat je wilt filteren.\n2. Voeg een Convolutieknooppunt toe vanuit het menu 'Verwerking'.\n3. Verbind de generatoruitvoer met de invoer van het Convolutieknooppunt (CTRL+klik aan beide uiteinden).\n4. Dubbelklik op het Convolutieknooppunt om het te configureren. Voer de kernelcoëfficiënten in, gescheiden door komma's (bijv. '0.2,0.2,0.2,0.2,0.2') en kies de convolutiemodus ('same', 'full' of 'valid').\n5. Druk op F5 om de flow uit te voeren. Het knooppunt filtert het signaal met behulp van discrete convolutie.\n6. Klik op de uitvoerverbinding van het Convolutieknooppunt om het gefilterde signaal te zien. Observeer het effect van de kernel; je kunt de coëfficiënten wijzigen en opnieuw uitvoeren om te vergelijken."
+  },
+  "correlation": {
+    "title": "Kruiscorrelatie",
+    "description": "Meet de gelijkenis tussen twee signalen als functie van tijdsverschuiving.",
+    "steps": "1. Plaats twee Generatorknooppunten (Bronnen → Generator). Maak bijvoorbeeld een sinus- en een blokgolf van dezelfde frequentie.\n2. Voeg een Correlatieknooppunt in vanuit 'Verwerking'.\n3. Verbind de uitvoer van de eerste generator met de 'Signaal 1'-invoer van het Correlatieknooppunt (CTRL+klik op poorten). Verbind vervolgens de tweede generator met de 'Signaal 2'-invoer.\n4. Voer de flow uit met F5. Het knooppunt produceert een kruiscorrelatiesignaal.\n5. Klik op de uitvoerverbinding om de correlatiepiek te zien. Je ziet een maximum bij de vertraging waar de signalen op één lijn liggen.\n6. Activeer de cursors (onderste paneel) om de tijdsverschuiving nauwkeurig te meten."
+  },
+  "math_expression": {
+    "title": "Wiskundige expressie",
+    "description": "Past een willekeurige wiskundige functie toe op het ingangssignaal (bijv. y_new = f(x, y)).",
+    "steps": "1. Voeg een Generator toe (Bronnen → Generator) en kies de golfvorm die je wilt transformeren.\n2. Voeg een Wiskundige expressie-knooppunt toe vanuit het menu 'Verwerking'.\n3. Verbind de generatoruitvoer met de invoer van het knooppunt (CTRL+klik aan beide uiteinden).\n4. Dubbelklik op het Expressieknooppunt om de editor te openen. Schrijf een functie die twee arrays (x, y) ontvangt en (x, y_new) retourneert. Bijvoorbeeld: y_new = y**2 + 0.5*np.sin(x).\n5. Druk op F5 om uit te voeren. Het knooppunt past de bewerking uitsluitend toe op de 'y'-waarden, terwijl de 'x'-as intact blijft.\n6. Visualiseer het resultaat door op de uitvoerverbinding te klikken. Je kunt de expressie wijzigen en opnieuw uitvoeren om directe veranderingen te zien."
+  },
+  "spectrogram": {
+    "title": "Spectrogram",
+    "description": "Geeft de tijdsontwikkeling van frequenties in een signaal weer.",
+    "steps": "1. Plaats een Generator (Bronnen → Generator) met een signaal met variabele frequentie, zoals een sinus-sweep (chirp).\n2. Voeg vanuit 'Verwerking' een Spectrogram-knooppunt toe.\n3. Verbind de generatoruitvoer met de invoer van het Spectrogram-knooppunt (CTRL+klik op beide poorten).\n4. Voeg vanuit 'Verwerking' een Spectrogramviewer-knooppunt toe en verbind de overeenkomstige poorten met het Spectrogram-knooppunt.\n5. Voer uit met F5. Het knooppunt verwerkt het signaal en genereert een tijd-frequentiematrix.\n6. Rechterklik op de Spectrogramviewer om het spectrale beeld te visualiseren. Observeer hoe de dominante frequentie in de tijd verandert.\n7. (Optioneel) Voeg een tussenliggend FFT-knooppunt toe om de statische frequentieweergave te vergelijken met de dynamische."
+  }
+  },
+  "prefs": {
+    "title": "Voorkeuren",
+    "tab_execution": "Uitvoering",
+    "tab_gpu": "GPU / Berekening",
+    "tab_streaming": "Streaming",
+    "tab_ui": "UI / Prestaties",
+    "tab_advanced": "Geavanceerd",
+    "max_workers":{
+      "label": "Max. threads (voorbereiding fase 3)",
+      "tooltip": "Beheert toekomstig parallellisme van onafhankelijke takken."
+    },
+    "timeout_per_node": "Timeout per knooppunt (s)",
+    "gpu":{
+      "backend": "Standaard backend",
+      "fallback": "Fallback-beleid",
+      "threshold": "Overhead-drempel (MB)"
+    },
+    "streaming":{
+      "buffer": "Buffergrootte (samples)",
+      "timeout": "Dispatcher-timeout (ms)",
+      "error": "Streampfoutbeleid"
+    }, 
+    "ui":{
+      "fps": "Max. vernieuwings-FPS",
+      "anim": "Duur connectoranimatie (s)"
+    },
+    "adv":{
+      "python_path": "Pad naar externe interpreter",
+      "log_level": "Logniveau",
+      "backup": "Automatische back-up bij laden"
+    },
+    "btn_apply": "Toepassen",
+    "btn_reset": "Terug naar standaard",
+    "btn_close": "Sluiten"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "Expressie…"
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "Hist",
+      "label": "{mode}  |  {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Eng",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "Wissen"
+    },
+    "history": {
+      "title": "📜 Geschiedenis",
+      "clear": "🗑 Wissen",
+      "use_last": "↩ Laatste"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "&Bestand",
+      "edit": "&Bewerken",
+      "format": "F&ormaat",
+      "align": "U&itlijnen"
+    },
+    "actions": {
+      "new": "&Nieuw",
+      "open": "&Openen",
+      "save": "&Opslaan",
+      "save_as": "Opslaan &als…",
+      "export_csv": "&CSV exporteren…",
+      "exit": "&Afsluiten",
+      "undo": "&Ongedaan maken",
+      "redo": "&Opnieuw",
+      "cut": "K&nippen",
+      "copy": "&Kopiëren",
+      "paste": "&Plakken",
+      "bold": "&Vet",
+      "italic": "&Cursief",
+      "align_left": "&Links",
+      "align_center": "&Centreren",
+      "align_right": "&Rechts",
+      "bg_color": "&Achtergrondkleur…",
+      "fg_color": "&Tekstkleur…"
+    },
+    "toolbar": {
+      "title": "Hoofd",
+      "new": "Nieuw",
+      "open": "Openen",
+      "save": "Opslaan",
+      "cut": "Knippen",
+      "copy": "Kopiëren",
+      "paste": "Plakken",
+      "bold": "Vet",
+      "italic": "Cursief",
+      "align_left": "Links",
+      "align_center": "Centreren",
+      "align_right": "Rechts",
+      "bg_color": "Achtergrond",
+      "fg_color": "Tekst",
+      "undo": "Ongedaan maken",
+      "redo": "Opnieuw"
+    }
+  },
+  "system_monitor": {
+    "title": "SYSTEEM MONITOR",
+    "subtitle": "Realtime resource-telemetrie",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "CORES / LOGISCHE CORES",
+      "core_prefix": "C"
+    },
+    "ram": {
+      "title": "RAM-geheugen",
+      "tooltip": "RAM-gebruik"
+    },
+    "disk": {
+      "title": "Schijf ( / )",
+      "tooltip": "Schijfgebruik op /"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}%  M:{mem}%"
+    },
+    "status": {
+      "updated": "Bijgewerkt"
+    }
+  }
+}

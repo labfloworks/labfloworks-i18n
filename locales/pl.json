@@ -1,0 +1,1556 @@
+{
+  "language_name": "Polski",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "Plik",
+      "new": "Nowy",
+      "open": "Otwórz…",
+      "save": "Zapisz",
+      "save_as": "Zapisz jako…",
+      "exit": "Wyjście"
+    },
+    "edit": "Edycja",
+    "view": "Widok",
+    "help": "Pomoc",
+    "language": "Język",
+    "info": "Informacje",
+    "theme": "Motyw",
+    "font_size": "Rozmiar czcionki",
+    "font_size_custom": "Niestandardowy rozmiar…"
+  },
+  "menu_config": {
+    "title": "Konfiguracja węzła"
+  },
+  "panels": {
+    "analysis": {
+      "title": "Analiza"
+    },
+    "stats": {
+      "title": "Statystyki",
+      "max": "Maks:",
+      "min": "Min:",
+      "mean": "Średnia:",
+      "rms": "RMS:",
+      "mode_3d": "(projekcja 3D)"
+    },
+    "cursors": {
+      "title": "Kursory A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "Kursory niedostępne w trybie 3D"
+    },
+    "crosshair": {
+      "cursor": "Kursor",
+      "peak": "Szczyt",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "Krzyżyk niedostępny w trybie 3D"
+    }
+  },
+  "tab": {
+    "plot": "Wykres",
+    "workspace": "Zmienne kanwy",
+    "python_vars": "Zmienne Pythona"
+  },
+  "tooldrawer": {
+    "python_console": "Terminal",
+    "monitor_widget": "Monitor wydajności",
+    "spreadsheet_widget": "Arkusz kalkulacyjny",
+    "calc_widget": "Kalkulator"
+  },
+  "console": {
+    "help": {
+      "title": "Interaktywny samouczek konsoli FloWorks",
+      "button": "Pomoc",
+      "html": "<h1>Interaktywny samouczek konsoli FloWorks</h1><h2>1. Węzły i połączenia</h2><p><code>&gt;&gt;&gt; graph.nodes</code></p><p><code>&gt;&gt;&gt; graph.connections</code></p><p><code>&gt;&gt;&gt; selected_node</code></p><p>Utwórz węzeł:</p><p><code>&gt;&gt;&gt; graph.add_catalog_node('SumNode', 300, 200)</code></p><p>Połącz:</p><p><code>&gt;&gt;&gt; graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>Usuń:</p><p><code>&gt;&gt;&gt; graph.remove_node(graph.nodes[2])</code></p><p>Porty:</p><p><code>&gt;&gt;&gt; graph.nodes[1].PORTS</code></p><h2>2. Wykonaj i wyświetl wyniki</h2><p>Wykonaj graf:</p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Wyświetl wyjście węzła:</p><p><code>&gt;&gt;&gt; graph.node_values[graph.nodes[1]]</code></p><p>To podejście może zawieść z KeyError, możesz użyć:</p><p><code>&gt;&gt;&gt; list(graph.node_values.values())[1]</code></p><p>Pełne wyjście:</p><p><code>&gt;&gt;&gt; nodo = graph.nodes[0]</code></p><p><code>&gt;&gt;&gt; nodo.output</code></p><p>Oś Y:</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; y = result[1]</code></p><p><code>&gt;&gt;&gt; y.max()</code></p><p>Przypisania nie są wyświetlane; sprawdź za pomocą <code>x</code>, <code>y.shape</code> lub <code>print(x, y)</code></p><h2>3. Wykres</h2><p>Wyczyść:</p><p><code>&gt;&gt;&gt; app.plot_widget.clear_plot()</code></p><p>Sygnał z konsoli:</p><p><code>&gt;&gt;&gt; import numpy as np</code></p><p><code>&gt;&gt;&gt; x = np.linspace(0, 1, 1000)</code></p><p><code>&gt;&gt;&gt; y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>Z węzła źródłowego:</p><p><code>&gt;&gt;&gt; x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>Węzeł FFT (zwraca dict):</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>&gt;&gt;&gt; result.keys()</code></p><p><code>&gt;&gt;&gt; f, mag = result['magnitude']</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. Modyfikuj aplikację</h2><p>Zaktualizuj tabelę:</p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Dodaj węzeł:</p><p><code>&gt;&gt;&gt; app.add_node('SignalSourceNode')</code></p><p>Tytuł:</p><p><code>&gt;&gt;&gt; app.setWindowTitle('My signal lab')</code></p><p>Sprawdź:</p><p><code>&gt;&gt;&gt; app.windowTitle()</code></p><p>Przywróć:</p><p><code>&gt;&gt;&gt; app.update_title()</code></p><h2>5. Skróty</h2><table><tr><th>Klawisz/Polecenie</th><th>Akcja</th></tr><tr><td><code>&uarr;</code> / <code>&darr;</code></td><td>Historia</td></tr><tr><td><code>Tab</code></td><td>Autouzupełnianie</td></tr><tr><td><code>Ctrl + L</code></td><td>Wyczyść konsolę</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>Bloki wieloliniowe</td></tr></table><h2>6. Przepisy</h2><p>Zmień parametr:</p><p><code>&gt;&gt;&gt; selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>&gt;&gt;&gt; getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Własna formuła:</p><p><code>&gt;&gt;&gt; selected_node.params['mode'] = 'formula'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['expr'] = '2 * sin(2*pi*1000*t)'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>&gt;&gt;&gt; selected_node._generate_signal()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Lista kategorii:</p><p><code>&gt;&gt;&gt; from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>&gt;&gt;&gt; NODE_CATEGORIES</code></p><p>Pomoc:</p><p><code>&gt;&gt;&gt; help(graph.connect_nodes)</code></p><h2>7. Rozwiązywanie problemów</h2><ul><li><strong>Błąd na czerwono</strong>: konsola pokazuje problem, aplikacja się nie zamyka.</li><li><strong>Zamrożony interfejs</strong>: nieskończona pętla. Zamknij konsolę lub uruchom ponownie.</li><li><strong>Nic się nie dzieje</strong>: sprawdź <code>graph.connections</code> i węzły źródłowe.</li></ul><p>&copy; 2026 FloWorks — Laboratorium sygnałów</p>"
+    }
+  },
+  "vars_table": {
+    "header":{
+      "name": "Nazwa",
+      "type": "Typ",
+      "shape": "Kształt",
+      "value": "Wartość"
+    },
+    "menu" : {
+      "info": "Zmienna: {name}"
+    },
+    "dialog": {
+      "title": "Pełna wartość"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "Czcionka:",
+    "font_size_tooltip": "Zmień podstawowy rozmiar czcionki",
+    "run_flow_tooltip": "Wykonaj przepływ",
+    "add_kinematics": "Węzeł kinematyki",
+    "escolar": "Szkolny",
+    "add_function_graph_node": "Funkcje",
+    "add_rhombus_node": "Bramka logiczna",
+    "add_graph_exporter": "Eksporter grafu",
+    "add_note": "Notatki",
+    "add_note_tooltip": "Dodaj notatkę...",
+    "add_signal_source": "Nowe źródło sygnału",
+    "add_spectrogram_viewer": "Przeglądarka spektrogramu",
+    "add_correlation": "Korelacja",
+    "add_math_expression": "Wyrażenie matematyczne",
+    "add_spectrogram": "Spektrogram",
+    "add_resample": "Resampling",
+    "add_window": "Okno",
+    "add_delay": "Opóźnienie",
+    "add_convolution_node": "Splot",
+    "add_normalize": "Normalizacja",
+    "add_filter": "Filtr",
+    "add_fft": "FFT",
+    "source_node": "Zaawansowany generator sygnałów",
+    "load_signal_tooltip": "Wygeneruj sygnał według uznania użytkownika",
+    "history": "Historia",
+    "history_tooltip": "Historia operacji",
+    "auto_layout": "Automatyczny układ",
+    "auto_layout_tooltip": "Automatyczny układ węzłów (Ctrl+Shift+L)",
+    "sources": "Peryferia",
+    "processing": "Przetwarzanie",
+    "control": "Sterowanie",
+    "add_oscilloscope": "Oscyloskop",
+    "add_generator": "Generator",
+    "add_expression": "Węzeł wyrażenia",
+    "add_script": "Skrypt Pythona",
+    "add_arithmetic": "Arytmetyka +−×÷",
+    "add_program": "Program",
+    "add_split": "Bramka logiczna",
+    "add_trigger": "Węzeł wyzwalacza",
+    "sink": "Eksporter grafu",
+    "help_wiki": "Dokumentacja / Wiki",
+    "help_wiki_tooltip": "Otwórz wiki projektu"
+  },
+  "info": {
+    "information": "O programie",
+    "shortcuts": "Skróty",
+    "tutorials": "Samouczki",
+    "change_theme": "Zmień motyw"
+  },
+  "status": {
+    "default": "FloWorks  |  Przewijanie: powiększenie  |  Kliknięcie środkowym: przesuwanie  |  Kliknięcie prawym na węźle: opcje",
+    "no_nodes": "Gotowe. Wybierz węzły z paska narzędzi.",
+    "how_to_connect": "Ctrl+kliknij na porcie wyjściowym węzła, następnie kliknij na porcie wejściowym innego węzła.",
+    "connecting": "Łączenie… Kliknij na innym węźle lub porcie.",
+    "connection_created": "Połączenie utworzone.",
+    "flow_executed": "Przepływ wykonany pomyślnie.",
+    "flow_error": "Błąd podczas wykonywania przepływu.",
+    "saved": "Diagram zapisany: {path}",
+    "loaded": "Diagram wczytany: {path}",
+    "new_file": "Utworzono nowy diagram",
+    "example_loaded": "Przykład wczytany."
+  },
+  "errors": {
+    "save_failed": "Błąd zapisu: {error}",
+    "load_failed": "Błąd wczytywania: {error}",
+    "load_example_failed": "Nie można wczytać przykładu: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "Usuń węzeł",
+      "connect": "Połącz węzeł",
+      "disconnect": "Rozłącz węzeł",
+      "setup": "Konfiguracja",
+      "trigger": "Wyzwól",
+      "generate": "Generuj",
+      "edit_script": "Edytuj skrypt",
+      "edit_input": "Edytuj wejście",
+      "help": "Informacje"
+    },
+    "graph_union": {
+      "title": "Unia grafów",
+      "tooltip": "Grupuje wiele sygnałów jako niezależne serie do nakładania na wykresie.",
+      "num_inputs_label": "Liczba wejść (1-8):",
+      "config_title": "Konfiguruj unię grafów",
+      "status": {
+        "ready": "Gotowe"
+      },
+      "ports": {
+        "signal_1": "Sygnał 1",
+        "signal_2": "Sygnał 2",
+        "signal_3": "Sygnał 3",
+        "signal_4": "Sygnał 4",
+        "signal_5": "Sygnał 5",
+        "signal_6": "Sygnał 6",
+        "signal_7": "Sygnał 7",
+        "signal_8": "Sygnał 8",
+        "series_out": "Wyjście"
+      },
+      "menu": {
+        "configure": "Konfiguruj..."
+      },
+      "help_title": "Pomoc - Unia grafów",
+      "help_html": "<h3>🔗 Węzeł unii grafów</h3><p>Odbiera wiele sygnałów i zachowuje je jako niezależne serie do nakładania na wykresie bez ich łączenia.</p><p>Kliknij prawym przyciskiem myszy na węźle, aby dynamicznie <b>dodawać lub usuwać</b> wejścia (do 8).</p><p>Wyjście <code>Series</code> dostarcza pełną listę serii do wizualizacji.</p>"
+    },
+    "tabular_inspector": {
+      "title": "Inspektor danych tabelarycznych",
+      "window_title": "Inspektor tabelaryczny",
+      "no_data": "Brak danych",
+      "copy": "Kopiuj do schowka",
+      "decimals": "Miejsca dziesiętne:",
+      "col_names": "Nazwy kolumn (oddzielone przecinkami, puste = auto):",
+      "tooltip": "Inspekcja danych węzła wyświetla dane odebrane na jego pojedynczym porcie wejściowym jako tabelę.",
+      "status": {
+        "no_data": "Brak danych"
+      },
+      "menu": {
+        "view_table": "Wyświetl tabelę",
+        "configure": "Konfiguruj…"
+      },
+      "ports": {
+        "data": "Wejście"
+      },
+      "config_title": "Konfiguruj inspektor tabelaryczny",
+      "help_title": "Pomoc - Inspektor tabelaryczny",
+      "help_html": "<h3>📊 Węzeł inspektora tabelarycznego</h3><p>Jak <b>arkusz kalkulacyjny Excel</b>, ten węzeł wyświetla dane odebrane na swoim pojedynczym porcie wejściowym jako tabelę.</p><p><b>Zasady interpretacji:</b></p><ul><li><b>Krotka/lista tablic</b> (np. (x, y, Fs)) → każda tablica staje się kolumną.</li><li><b>Tablica numpy 2D</b> → wiersze × kolumny.</li><li><b>Tablica 1D lub lista</b> → pojedyncza kolumna.</li><li><b>Skalar</b> → pojedyncza komórka.</li></ul><p>Kliknij prawym → <b>Wyświetl tabelę</b>, aby otworzyć inspektor. Użyj panelu bocznego, aby ustawić miejsca dziesiętne i niestandardowe nazwy kolumn (oddzielone przecinkami).</p>"
+    },
+    "equation_solver": {
+      "title": "Solver równań",
+      "tooltip":"Solver liniowego układu równań",
+      "type_label": "Typ równania:",
+      "type_linear_single": "Liniowe pojedyncze",
+      "type_linear_system": "Układ liniowy 2×2",
+      "eq_format": "Format: a*x + b = c",
+      "eq1_label": "Równanie 1 (format: a*x + b*y = c):",
+      "eq2_label": "Równanie 2:",
+      "examples": "Przykłady",
+      "sys_examples": "Przykłady układów",
+      "menu": {
+        "view_plot": "Wyświetl wykres rozwiązania",
+        "configure": "Konfiguruj równania...",
+        "view_steps": "Wyświetl kroki rozwiązania..."
+      },
+      "ports": {
+        "output": "wyjście",
+        "steps": "kroki",
+        "solution": "y (m)"
+      },
+      "steps_title": "Kroki rozwiązania",
+      "no_steps": "Brak dostępnych kroków rozwiązania.",
+      "config_title": "Konfiguruj solver równań",
+      "help_title": "Pomoc - Solver równań",
+      "plot_window_title": "Wykres rozwiązania",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "Eksportuj...",
+      "export_title": "Eksportuj wykres",
+      "no_data_to_plot": "Brak danych do wykreślenia",
+      "btn_step_by_step": "▶ Krok po kroku",
+      "step_anim_title": "Krok po kroku",
+      "step_anim_info": "W pełnej wersji pokazywałoby to konstrukcję graficzną krok po kroku.",
+      "error_no_equals": "Brak znaku '=' w równaniu.",
+      "error_rhs_not_number": "Prawa strona równania nie jest prawidłową liczbą.",
+      "error_invalid_x_coef": "Nieprawidłowy współczynnik dla x: '{coef}'. Sprawdź składnię.",
+      "error_invalid_y_coef": "Nieprawidłowy współczynnik dla y: '{coef}'. Sprawdź składnię.",
+      "error_invalid_const": "Nieprawidłowy wyraz stały: '{term}'. Użyj tylko liczb i znaków + lub -.",
+      "error_zero_x": "Współczynnik x wynosi zero. Równanie nie ma unikalnego rozwiązania.",
+      "no_plot_data_title": "Brak danych",
+      "no_plot_data_message": "Brak danych rozwiązania do wykreślenia. Najpierw skonfiguruj i rozwiąż.",
+      "preview": "Podgląd:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "Brak rozwiązania (lub jeszcze nie obliczono)",
+      "help_html":"<h3>🧮 Węzeł solvera równań</h3>\n<p>Umożliwia <b>rozwiązywanie prostych równań liniowych lub układów 2×2</b>, pokazując procedurę krok po kroku i wykres przecięcia.</p>\n\n<h4>⚙️ Użycie</h4>\n<ol>\n <li><b>Kliknij prawym</b> na węźle → wybierz <i>\"Edytuj parametry\"</i>.</li>\n <li>Wybierz <code>equation_type</code>: <code>linear_single</code> lub <code>linear_system</code>.</li>\n <li>Wprowadź <code>equations</code> jako tekst (np. \"2x + 3 = 7\") lub listę tekstów dla układów.</li>\n <li>Węzeł obliczy rozwiązanie i automatycznie wygeneruje kroki algebraiczne.</li>\n</ol>\n\n<h4>📤 Wyjście</h4>\n<ul>\n <li><code>solution</code> → wartość liczbowa (proste równanie) lub słownik z <code>x</code>, <code>y</code> (układ 2×2).</li>\n <li><code>steps</code> → tekst z rozbiciem algebraicznym krok po kroku.</li>\n</ul>\n\n<h4>⚠️ Uwagi</h4>\n<ul>\n <li><b>Wartość pedagogiczna:</b> Oferuje natychmiastową informację zwrotną z algebry i łączy rozwiązanie z jego reprezentacją graficzną (przecięcie).</li>\n <li>Upewnij się, że używasz prawidłowych zmiennych (<code>x</code> dla prostych, <code>x</code> i <code>y</code> dla układów).</li>\n <li>Jeśli układ jest niespójny lub zależny, zostanie to wskazane w wyjściu <code>steps</code>.</li>\n</ul>\n\n<h4>💡 Przykład</h4>\n<p>Skonfiguruj węzeł jako <code>linear_system</code> z <code>[\"y = 2x\", \"y = -x + 3\"]</code>. Podłącz <code>steps</code> do przeglądarki tekstu i zwizualizuj przecięcie w węźle wykresu.</p>\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania matematycznego</b>.</p>\n\n<pre>\nRównanie → Rozwiązanie → Wizualizacja\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(Algebra ↔ Geometria)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nParametry → Przetwarzanie (Solver) → Wizualizacja (Wykres/Tekst)\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nParametry (Równania) → EquationSolver → Wykres (Przecięcie) + Tekst (Kroki)\n</pre>\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "Kinematyka",
+      "tooltip": "Symulator kinematyki: swobodny spadek i ruch pocisku",
+      "ports": {
+        "x": "x(m) vs t(s)",
+        "y": "y(m) vs t(s)",
+        "vx": "vx(m/s) vs t(s)",
+        "vy": "vy(m/s) vs t(s)",
+        "speed": "prędkość(m/s) vs t(s)",
+        "energy_kinetic": "energia kinetyczna(J) vs t(s)",
+        "energy_potential": "energia potencjalna(J) vs t(s)",
+        "ground_contact": "kontakt z ziemią vs t(s)"
+      },
+      "status": {
+        "ready": "Gotowe"
+      },
+      "config_title": "Konfiguruj kinematykę",
+      "menu": {
+        "configure": "Konfiguruj…",
+        "generate": "Generuj",
+        "show_output": "Pokaż wyjście",
+        "trajectory": "Trajektoria (y vs x)",
+        "y_t": "Pozycja pionowa y(t)",
+        "vy_t": "Prędkość pionowa vy(t)",
+        "speed_t": "Prędkość |v|(t)",
+        "display": "Wizualizacja"
+      },
+      "group_ic": "Warunki początkowe",
+      "group_env": "Środowisko",
+      "group_sim": "Symulacja",
+      "group_presets": "Ustawienia wstępne",
+      "help_title": "Pomoc - Kinematyka",
+      "help_html": "<h3>🚀 Laboratorium kinematyki</h3><p>Symuluje <b>ruch pocisku</b> i <b>swobodny spadek</b> w stałej grawitacji. Nie wymaga wejść; generuje sygnały na podstawie warunków początkowych.</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 Główne wyjścia (krotki czas vs wielkość)</h4><p>Każdy port dostarcza krotkę <code>(t, zmienna)</code> gotową do podłączenia do wykresu lub innego węzła. Czas jest już zawarty jako oś X.</p><ul><li><code>x</code> → (t, pozycja pozioma) [m]</li><li><code>y</code> → (t, pozycja pionowa) [m]</li><li><code>vx</code> → (t, prędkość pozioma) [m/s]</li><li><code>vy</code> → (t, prędkość pionowa) [m/s]</li><li><code>speed</code> → (t, prędkość |v|) [m/s]</li></ul><h4>⚡ Opcjonalne wyjścia (włącz Pokaż energie)</h4><ul><li><code>energy_kinetic</code> → (t, Ec = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, 1.0 jeśli y≤0, 0.0 w powietrzu)</li></ul><h4>🎨 Wewnętrzne kanały wyświetlania</h4><p>Zmień to, co jest pokazywane na głównym wykresie, z menu kontekstowego:</p><ul><li><b>Trajektoria</b> (y vs x) → parabola przestrzenna</li><li><b>y(t)</b>, <b>vy(t)</b>, <b>|v|(t)</b> → zmiana w czasie</li></ul><h4>💡 Typowe połączenia</h4><ul><li><b>Wysokość vs czas:</b> podłącz <code>y</code> do wykresu (zawiera już t)</li><li><b>Prędkość vs czas:</b> podłącz <code>speed</code> do wykresu</li><li><b>Trajektoria przestrzenna:</b> podłącz <code>x</code> → oś X wykresu, <code>y</code> → oś Y wykresu</li><li><b>Uderzenie:</b> podłącz <code>ground_contact</code> do węzła logicznego lub LED</li><li><b>Energia:</b> zsumuj <code>energy_kinetic</code> + <code>energy_potential</code>, aby zobaczyć zachowanie energii</li></ul><h4>⚡ Skróty</h4><ul><li><b>Podwójne kliknięcie</b> → ta pomoc</li><li><b>Klik prawym</b> → konfiguruj / generuj</li><li><b>Przycisk GENERUJ</b> → symuluje i otwiera animację</li></ul><hr><p><b>Status:</b> -- | <b>Ustawienie wstępne:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "Funkcje",
+      "tooltip": "Generuj i wizualizuj funkcje matematyczne z analizą numeryczną",
+      "ports": { "signal": "Sygnał" },
+      "status": { "ready": "Gotowe" },
+      "menu": { "configure": "Konfiguruj...", "show_table": "Zobacz tabelę wartości", "generate": "Generuj", "show_limit": "Pokaż granicę", "show_derivative": "Pokaż pochodną" },
+      "config_title": "Ustaw funkcję",
+      "cfg": { "expr": "Wyrażenie:", "presets": "Ustawienia wstępne:", "piecewise": "Aktywuj funkcję kawałkami", "group_func": "Grupuj funkcje", "group_dom": "Grupuj dziedzinę", "group_viz": "Grupuj wizualizację" },
+      "table_title": "Tabela wartości"
+    },
+    "signal_source": {
+        "title": "Zaawansowane źródło sygnału",
+        "tooltip": "Zaawansowane źródło sygnału",
+        "load_signal": "Wczytaj sygnał z pliku...",
+        "load_file_title": "Wczytaj plik sygnału",
+        "ports": {
+            "out": "Wyjście",
+            "trigger_in": "Wejście wyzwalacza",
+            "trigger_out": "Wyjście wyzwalacza"
+        },
+        "status": {
+            "no_data": "Brak danych"
+        },
+        "configure": "Konfiguruj...",
+        "generate": "Generuj sygnał",
+        "help_title": "Pomoc - Źródło sygnału",
+        "help_html": "<h3>🎛️ Węzeł źródła sygnału</h3>\n<p>Generuje <b>niestandardowe sygnały</b> przy użyciu szerokiej gamy <b>wstępnie ustawionych przebiegów</b> lub <b>formuły matematycznej</b> napisanej przez użytkownika. Wyjście jest zawsze krotką <code>(czas, amplituda)</code>, gotową do dalszego przetwarzania.</p>\n\n<h4>📤 Wyjście</h4>\n<p><code>out</code> → krotka <code>(t, y)</code>.</p>\n\n<h4>⚙️ Tryby działania</h4>\n<ul>\n    <li><b>Ustawienie wstępne:</b> wybierz spośród sinus, prostokąt, rampa, impuls, szum, DC, trójkąt, piła, sinc, Gaussa, wykładniczy, chirp. Wszystkie parametry (częstotliwość, amplituda, przesunięcie, faza, wypełnienie, symetria itp.) są regulowane w oknie konfiguracji.</li>\n    <li><b>Formuła:</b> napisz <b>swobodne wyrażenie matematyczne</b> używając <code>t</code> (czas) i własnych zmiennych (np. <code>amp * sin(2*pi*freq*t) + offset</code>). Zmienne są definiowane w tabeli i można je dodawać, usuwać lub modyfikować do woli. Obliczanie jest bezpieczne i ograniczone do operacji matematycznych.</li>\n</ul>\n\n<h4>🖱️ Interakcja</h4>\n<ul>\n    <li><b>Podwójne kliknięcie</b> węzła → otwiera okno konfiguracji z trzema zakładkami (Ustawienie wstępne, Formuła, Zaawansowane).</li>\n    <li><b>Kliknięcie</b> na węźle → wykreśla bieżący sygnał na głównym wykresie.</li>\n    <li><b>Klik prawym</b> → menu kontekstowe do regeneracji, konfiguracji lub usunięcia węzła.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+        "title": "Konfiguracja sygnału",
+        "waveform": "Przebieg",
+        "frequency": "Częstotliwość",
+        "amplitude": "Amplituda",
+        "offset": "Przesunięcie",
+        "phase": "Faza",
+        "symmetry": "Symetria",
+        "direction": "Kierunek",
+        "up": "W górę",
+        "down": "W dół",
+        "stdev": "Odchylenie standardowe",
+        "mean": "Średnia",
+        "lobes": "Listki",
+        "sigma": "Sigma",
+        "mu": "Mu",
+        "tau": "Tau",
+        "exp_type": "Typ",
+        "rise": "Wzrost",
+        "fall": "Spadek",
+        "f0": "Częstotliwość początkowa",
+        "f1": "Częstotliwość końcowa",
+        "chirp_method": "Metoda",
+        "linear": "Linear",
+        "logarithmic": "Logarithmic",
+        "tab_preset": "Ustawienie wstępne",
+        "tab_formula": "Formuła",
+        "tab_advanced": "Zaawansowane",
+        "preview": "Podgląd",
+        "apply": "Zastosuj",
+        "duration": "Czas trwania",
+        "sample_rate": "Częstotliwość próbkowania",
+        "sampling_note": "0 = auto",
+        "auto_generate": "Automatyczne generowanie",
+        "time_label": "Czas (s)",
+        "amplitude_label": "Amplituda",
+        "formula_expr": "Formuła (użyj 't' jako zmiennej czasu):",
+        "variables": "Zmienne:",
+        "var_name": "Nazwa",
+        "var_value": "Wartość",
+        "add_var": "Dodaj zmienną",
+        "remove_var": "Usuń wybrane",
+        "auto": "Auto",
+        "basic_params": "Parametry podstawowe",
+        "carrier_freq": "Częstotliwość nośna",
+        "mod_freq": "Częstotliwość modulacji",
+        "mod_depth": "Głębokość modulacji",
+        "deviation": "Dewiacja",
+        "heart_rate": "Tętno",
+        "rise_time": "Czas narastania",
+        "fall_time": "Czas opadania",
+        "quick_insert": "Szybkie funkcje",
+        "advanced": {
+          "modulation": "Modulacja",
+          "mod_enable": "Włącz modulację",
+          "mod_type": "Typ modulacji",
+          "mod_freq": "Częstotliwość modulacji",
+          "mod_depth": "Głębokość modulacji",
+          "noise_group": "Szum",
+          "noise_enable": "Dodaj szum",
+          "noise_amp": "Amplituda szumu",
+          "auto_generate": "Zastosuj zmiany automatycznie",
+          "auto_generate_tooltip": "Gdy włączone, każda zmiana parametru jest natychmiast stosowana do węzła. Gdy wyłączone, naciśnij OK, aby zastosować."
+        },
+        "gamma": "Gamma (szerokość)",
+        "window_type": "Typ okna",
+        "quadratic": "Quadratic",
+        "hyperbolic": "Hyperbolic",
+        "hanning": "Hanning",
+        "hamming": "Hamming",
+        "blackman": "Blackman",
+        "bartlett": "Bartlett",
+        "kaiser": "Kaiser",
+        "noise_type": "Typ szumu",
+        "gaussian": "Gaussowski",
+        "uniform": "Jednorodny",
+        "pink": "Różowy (1/f)",
+        "brown": "Brunatny (1/f²)",
+        "blue": "Niebieski (f)",
+        "impulse": "Impuls",
+        "pulse_shape": "Kształt impulsu",
+        "rect": "Prostokątny",
+        "raised_cosine": "Podniesiony cosinus",
+        "polynomial": "Wielomian PRBS",
+        "bit_rate": "Przepływność bitowa",
+        "symbol_rate": "Przepływność symbolowa",
+        "symbol_sequence": "Sekwencja symboli",
+        "bit_sequence": "Sekwencja bitów",
+        "multitone_hint": "Częstotliwości (Hz, oddzielone przecinkami):",
+        "frequencies": "Częstotliwości",
+        "amplitudes": "Amplitudy",
+        "phases": "Fazy",
+        "step_time": "Czas kroku",
+        "impulse_time": "Czas impulsu",
+        "f_start": "Częstotliwość początkowa",
+        "f_end": "Częstotliwość końcowa",
+        "f2": "Częstotliwość 2",
+        "noise_level": "Poziom szumu",
+        "duty_cycle": "Wypełnienie (%)",
+        "signal_sine": "Sinus",
+        "signal_square": "Prostokąt",
+        "signal_ramp": "Rampa",
+        "signal_pulse": "Impuls",
+        "signal_noise": "Szum",
+        "signal_dc": "DC",
+        "signal_triangle": "Trójkąt",
+        "signal_sawtooth": "Piła",
+        "signal_sinc": "Sinc",
+        "signal_gaussian": "Gauss",
+        "signal_exponential": "Wykładniczy",
+        "signal_chirp": "Chirp",
+        "signal_am": "AM",
+        "signal_fm": "FM",
+        "signal_ecg": "EKG",
+        "signal_trapezoidal": "Trapezowy",
+        "signal_lorentzian": "Lorentz",
+        "signal_window": "Okno",
+        "signal_multitone": "Wielotonowy",
+        "signal_ask": "ASK",
+        "signal_fsk": "FSK",
+        "signal_psk": "PSK",
+        "signal_pwm": "PWM",
+        "signal_pam": "PAM",
+        "signal_prbs": "PRBS",
+        "signal_step": "Krok",
+        "signal_impulse": "Impuls",
+        "signal_sweep_sine": "Przemiatanie sinusoidalne",
+        "signal_cardiac": "Kardiologiczny",
+        "signal_eeg": "EEG",
+        "signal_beat": "Uderzenie"
+    },
+    "input": {
+      "help_html": "<h3>📂 Węzeł wejściowy (wczytywanie danych)</h3>\n<p>Umożliwia <b>wczytanie danych z pliku .npz</b> (format NumPy) i przesłanie ich do przepływu pracy.</p>\n\n<h4>⚙️ Użycie</h4>\n<ol>\n    <li><b>Kliknij prawym</b> na węźle → wybierz <i>\"Edytuj wejście\"</i>.</li>\n    <li>Wybierz plik <code>.npz</code>, który zawiera klucz o nazwie <code>datay</code>.</li>\n    <li>Tablica jest przechowywana wewnętrznie i automatycznie propagowana przez przepływ.</li>\n</ol>\n\n<h4>📤 Wyjście</h4>\n<p><code>out</code> → zawartość <code>datay</code> z wczytanego pliku.</p>\n\n<h4>⚠️ Uwagi</h4>\n<ul>\n    <li>Akceptowane są tylko pliki <b>.npz</b> z kluczem <code>datay</code>.</li>\n    <li>Jeśli plik jest nieprawidłowy, w konsoli pojawi się błąd.</li>\n    <li>Po wczytaniu pliku przepływ uruchamia się automatycznie.</li>\n</ul>\n\n<h4>💡 Przykład</h4>\n<p>Wczytaj plik z danymi z czujnika, a następnie podłącz go do węzła \"Filtr\" lub \"Wizualizator\".</p>\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "funkcja lambda",
+      "help_html": "<h3>🔧 Ogólny węzeł przetwarzania</h3>\n<p>Stosuje <b>niestandardową funkcję</b> do danych wejściowych. Jest podstawą do tworzenia operacji matematycznych, transformacji itp.</p>\n\n<h4>📥 Wejście</h4>\n<p><code>data_in</code> → może być liczbą, krotką (x, y) lub dowolnym obiektem.</p>\n\n<h4>📤 Wyjście</h4>\n<p><code>out</code> → wynik zastosowania funkcji do wejścia.</p>\n\n<h4>🧠 Zachowanie według typu wejścia</h4>\n<ul>\n    <li>Jeśli wejście jest <b>krotką dwóch elementów</b> (x, y), funkcja otrzymuje krotkę i musi zwrócić inną krotkę lub wartość. Przykład: <code>lambda xy: (xy[0], xy[1]*2)</code>.</li>\n    <li>Jeśli wejście jest <b>prostą wartością</b>, funkcja otrzymuje tę wartość. Przykład: <code>lambda x: x**2</code>.</li>\n    <li>Jeśli wejście to <code>None</code>, wyjście również będzie <code>None</code>.</li>\n</ul>\n\n<h4>⚙️ Dostosowanie</h4>\n<p>Funkcja jest przypisywana podczas tworzenia węzła (np. w kodzie). W przyszłych wersjach będzie można ją edytować z interfejsu.</p>\n\n<h4>💡 Przykłady</h4>\n<ul>\n    <li><b>Podwój liczbę:</b> <code>lambda x: x * 2</code></li>\n    <li><b>Suma składników krotki:</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>Zwróć tę samą krotkę (przepust):</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>Zastosowana funkcja:</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "Bramka logiczna",
+      "tooltip": "Operacje logiczne, porównania i maskowania na sygnałach (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "Wejście 1",
+        "in2": "Wejście 2",
+        "out": "Wyjście"
+      },
+      "config_title": "Konfiguruj bramkę logiczną",
+      "op_label": "Operacja:",
+      "thr_label": "Próg / poziom:",
+      "inv_label": "Odwróć wyjście",
+      "help_title": "Pomoc - Bramka logiczna",
+      "help_html": "<h3>🎛️ Bramka logiczna / komparator</h3>\n<p>Ocenia, porównuje lub maskuje dwa sygnały wejściowe próbka po próbce, aby generować wyzwalacze, maski logiczne lub wyjścia warunkowe.</p>\n\n<h4>📥 Wejścia</h4>\n<ul>\n<li><code>in1</code> → Sygnał główny (operand A).</li>\n<li><code>in2</code> → Odniesienie, maska lub drugi operand (operand B).</li>\n</ul>\n\n<h4>📤 Wyjście</h4>\n<ul>\n<li><code>out</code> → Wynik przetwarzania. Operacje logiczne zwracają <code>0.0</code> lub <code>1.0</code>. Komparatory/progi generują maski lub sygnały ograniczone.</li>\n</ul>\n\n<h4>📐 Diagram</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 Model mentalny</h4>\n<p>Ten węzeł działa jako <b>silnik decyzyjny na poziomie próbek</b>. Ocenia każdy punkt niezależnie, przekształcając przebiegi analogowe w cyfrowe sygnały sterujące, maski aktywacji lub strumienie logiczne.</p>\n\n<h4>📐 Reprezentacja danych</h4>\n<pre>\nWejścia:\n(x, y1) & (x, y2) → tablice 1D (przycina do krótszej w przypadku niezgodności)\n\nWyjście:\n(x, y_out) → zazwyczaj binarne (0/1) lub maskowane\n</pre>\n\n<h4>🔁 Typowy wzorzec użycia</h4>\n<pre>\n[Generator] → [Bramka logiczna] → [Wyzwalacz / Wykres]\n\nPrzykład:\nSinus (in1) + Prostokąt (in2) → [AND] → Zsynchronizowany ciąg impulsów\nSygnał (in1) → [THRESHOLD] → maska 0/1 do detekcji szczytów\nSygnał (in1) + Odniesienie (in2) → [MASK] → Wycisza in1, gdy in2 ≤ 0\n</pre>\n\n<h4>⚠️ Częste błędy</h4>\n<ul>\n<li>Oczekiwanie, że operacje logiczne zachowają amplitudę → Nie zachowują (konwertują do 0/1). Użyj <code>LEVEL</code> lub <code>MASK</code>.</li>\n<li>Podłączanie sygnałów o bardzo różnych długościach → Przycina do minimum.</li>\n<li>Używanie <code>EQ</code> na liczbach zmiennoprzecinkowych → Opiera się na niejawnej tolerancji; w razie potrzeby zaokrąglij wcześniej.</li>\n</ul>\n<hr><hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → szybkie połączenie.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera tę pomoc.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+     },
+    "sum": {
+      "title": "Arytmetyka",
+      "tooltip": "Wykonuje operacje arytmetyczne między dwoma sygnałami.",
+      "operation": {
+        "sum": "Suma",
+        "sub": "Odejmowanie",
+        "mul": "Mnożenie",
+        "div": "Dzielenie"
+      },
+      "ports": {
+        "out": "Wyjście",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "*A",
+        "port_b_mul": "*B",
+        "port_a_div": "licznik",
+        "port_b_div": "mianownik"
+      },
+      "menu": {
+        "operation": "Operacja"
+      },
+      "help_title": "Pomoc - Węzeł arytmetyczny",
+      "help_html": "<h3>➕ Węzeł sumy/arytmetyczny</h3>\n<p>Wykonuje operacje arytmetyczne między dwoma sygnałami (tablicami lub wartościami liczbowymi).</p>\n\n<h4>📥 Wejścia</h4>\n<ul>\n    <li><code>port_a</code> (górny): pierwszy operand (A).</li>\n    <li><code>port_b</code> (dolny): drugi operand (B).</li>\n</ul>\n\n<h4>📤 Wyjście</h4>\n<p><code>out</code> → wynik operacji (A op B).</p>\n\n<h4>⚙️ Dostępne operacje (klik prawym → Operacja)</h4>\n<ul>\n    <li><b>Suma (+)</b>: A + B</li>\n    <li><b>Odejmowanie (−)</b>: A − B</li>\n    <li><b>Mnożenie (×)</b>: A * B</li>\n    <li><b>Dzielenie (÷)</b>: A / B (zabezpieczenie przed dzieleniem przez zero).</li>\n</ul>\n\n<h4>📐 Diagram</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 Model mentalny</h4>\n<p>Ten węzeł jest <b>operatorem wektorowym</b>.\nDziała element po elemencie na sygnałach.</p>\n\n<h4>📐 Reprezentacja wektorowa</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\nWyjście:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 Przykład wizualny</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\nSuma:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 Strategie użycia</h4>\n<ul>\n<li><b>Normalizacja:</b> podziel przez maksimum</li>\n<li><b>Skalowanie:</b> pomnóż przez stałą</li>\n<li><b>Miksowanie sygnałów:</b> suma fal</li>\n<li><b>Anulowanie:</b> A - B, aby usunąć szum</li>\n</ul>\n\n<h4>⚠️ Częste błędy</h4>\n<ul>\n<li>Nie wyrównuj osi X → niespójne wyniki</li>\n<li>Dzielenie przez wartości bliskie zeru → niestabilność</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "script": {
+      "title": "Skrypt",
+      "tooltip": "Węzeł skryptu Pythona",
+      "ports": {
+        "data_in": "Wejście danych",
+        "loop_in": "Wejście pętli",
+        "out": "Wyjście"
+      },
+      "menu":{
+        "edit":"Edytuj",
+        "run":"Uruchom skrypt"
+      },
+      "status_ready": "Gotowe",
+      "status_error": "Błąd",
+      "edit_script": "Edytuj skrypt",
+      "tooltip_x": "Tablica NumPy: oś X (czas, częstotliwość itp.)",
+      "tooltip_y": "Tablica NumPy: bieżące wartości sygnału",
+      "tooltip_param": "Parametr iteracji (z TriggerNode) lub None",
+      "help_title": "Pomoc - Węzeł skryptu",
+      "help_html": "<h3>📜 Węzeł niestandardowego skryptu</h3> <p>Umożliwia pisanie kodu Pythona do dowolnego przetwarzania sygnałów.</p> <h4>📥 Wejścia</h4> <ul> <li><code>data_in</code> → sygnał główny (x, y) lub prosta tablica.</li> <li><code>loop_in</code> → opcjonalne wejście do odbierania parametrów z <b>TriggerNode</b> (wartość <code>param</code>).</li> <li>Dynamiczne porty <code>@input name</code> → dodatkowe wejścia zdefiniowane w skrypcie.</li> </ul> <h4>📤 Wyjścia</h4> <ul> <li><code>out</code> → krotka (x_new, y_new) wygenerowana przez skrypt (tryb wsadowy).</li> <li>Dynamiczne porty <code>@output name</code> → dodatkowe wyjścia zdefiniowane w skrypcie.</li> </ul> <h4>✏️ Edycja skryptu</h4> <p>Klik prawym → <b>Edytuj skrypt</b>, aby otworzyć edytor z podświetlaniem składni.</p> <p>Zawiera autouzupełnianie, szablony, konfigurowalne parametry (<code>@param</code>) i zewnętrzne wykonanie (alternatywny Python).</p> <hr> <h4>🧠 Dostępne zmienne (tradycyjny tryb wsadowy)</h4> <ul> <li><code>x</code> : tablica numpy – oś czasu lub częstotliwości</li> <li><code>y</code> : tablica numpy – wartości sygnału</li> <li><code>param</code> : float (opcjonalnie) – wartość z <code>loop_in</code> (TriggerNode)</li> <li><code>persist</code> : dict – trwały między wykonaniami tego samego węzła (przydatne do akumulatorów)</li> <li><code>np</code>, <code>scipy</code>, <code>sympy</code> – wstępnie zaimportowane biblioteki</li> </ul> <h4>🧩 Model mentalny</h4> <p> Ten węzeł jest <b>blokiem dowolnej transformacji</b>. Tutaj definiujesz własną fizykę, matematykę lub logikę. </p> <h4>📐 Oczekiwany kształt (wsadowy)</h4> <pre> Wejście: x → wektor (czas/częstotliwość) y → wektor (wartości) Wyjście: (x_mod, y_mod) </pre> <h4>🧠 Potężniejsze przykłady</h4> <h5>1. Wzmocnienie zależne od częstotliwości</h5> <pre> gain = np.exp(-x * 0.01) return (x, y * gain) </pre> <h5>2. Detekcja szczytów</h5> <pre> y_mod = np.where(y > 0.8, y, 0) return (x, y_mod) </pre> <h5>3. Modulacja</h5> <pre> carrier = np.sin(2*np.pi*1000*x) return (x, y * carrier) </pre> <h5>4. Użycie param (przemiatanie)</h5> <pre> factor = param if param is not None else 1.0 return (x, y * factor) </pre> <h5>5. Akumulator z persist</h5> <pre> persist[\"counter\"] = persist.get(\"counter\", 0) + 1 return (x, y + persist[\"counter\"] * 0.1) </pre> <hr> <h4>🔁 Zaawansowana strategia</h4> <pre> Trigger → Script(param) → Suma → Wizualizacja → Pozwala na automatyczne przemiatanie </pre> <h4>⚠️ Częste błędy</h4> <ul> <li>Brak zwrotu krotki (x, y) w trybie wsadowym.</li> <li>Nieuwzględnienie, że <code>param</code> może być None.</li> <li>Próba użycia przycisku \"Test\" w skryptach strumieniowych lub GPU (użyj prawdziwego przepływu).</li> </ul><hr> <hr> <h3>🧠 Jak myśleć o tym systemie</h3> <p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p> <pre> Dane → Transformacja → Wynik </pre> <h4>📐 Kluczowa zasada</h4> <pre> Wszystko jest: (x, y) </pre> <h4>🔁 Uniwersalny wzorzec</h4> <pre> Wejście → Przetwarzanie → Wizualizacja </pre> <h4>🧪 Kompletny przykład</h4> <pre> Oscyloskop → FFT → Filtr → Sumator → Wykres </pre> <hr> <h4>⚡ Skróty i triki</h4> <ul> <li><b>Ctrl + klik</b> na porcie → wybierz port do szybkiego połączenia.</li> <li><b>Podwójne kliknięcie</b> na węźle → otwórz to okno pomocy.</li> <li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li> <li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li> </ul>"
+    },
+    "trigger": {
+      "title": "Wyzwalacz",
+      "tooltip": "Węzeł iteracji i akumulacji",
+      "ports": {
+        "data_in": "Wejście danych",
+        "trigger_in": "Wejście wyzwalacza",
+        "loop_out": "Wyjście pętli",
+        "out": "Wyjście"
+      },
+      "state": {
+        "idle": "OCZEKIWANIE",
+        "running": "ITERACJA {iteration}/{total}",
+        "done": "ZAKOŃCZONO",
+        "running_count": "DZIAŁA {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "Konfiguruj..."
+      },
+      "accumulate": {
+        "accumulate": "Tryb akumulacji",
+        "stack": "stos",
+        "average": "średnia",
+        "max": "maks",
+        "min": "min",
+        "last": "Ostatni przechwyt"
+      },
+      "config_title": "Konfiguruj węzeł wyzwalacza",
+      "n_iter": "Iteracje",
+      "reset": "Zresetuj iterację",
+      "help_title": "Pomoc - Węzeł wyzwalacza",
+      "help_html": "<h3>⏺ Węzeł wyzwalacza (przechwytywanie wsadowe)</h3>\n<p>Przechwytuje i akumuluje sygnały iteracyjnie, aktywowany przez zewnętrzny sygnał wyzwalający (<code>trigger_in</code>). Idealny do powtarzalnych eksperymentów, uśredniania szumu lub porównywania przebiegów w czasie.</p>\n\n<h4>📥 Wejścia</h4>\n<ul>\n    <li><code>data_in</code> → sygnał główny (x, y) do przechwycenia.</li>\n    <li><code>trigger_in</code> → sygnał wyzwalający. Każdy impuls lub aktywacja przechwytuje nowy przebieg do bufora wewnętrznego.</li>\n</ul>\n\n<h4>📤 Wyjścia</h4>\n<ul>\n    <li><code>out</code> → po zakończeniu zaprogramowanej liczby iteracji (<code>n_iter</code>) emituje nagromadzony sygnał zgodnie z wybranym trybem.</li>\n</ul>\n\n<h4>⚙️ Konfiguracja</h4>\n<p>Klik prawym → <b>Konfiguruj</b>, aby dostosować:</p>\n<ul>\n    <li><b>Iteracje (N):</b> dokładna liczba przechwyceń wymagana do wygenerowania wyjścia.</li>\n    <li><b>Akumulacja:</b> tryb łączenia przechwyceń: <i>stos, średnia, maks, min lub ostatni</i>.</li>\n</ul>\n\n<h4>🧠 Zachowanie</h4>\n<ol>\n    <li>Węzeł pozostaje w stanie <b>IDLE</b>, czekając na dane na <code>data_in</code> i impulsy na <code>trigger_in</code>.</li>\n    <li>Gdy wykryty zostanie prawidłowy wyzwalacz, zapisuje bieżący sygnał do bufora wewnętrznego i wyświetla <code>RUNNING X/N</code>.</li>\n    <li>Po osiągnięciu dokładnie <b>N iteracji</b> buduje nagromadzone wyjście, wysyła je przez <code>out</code> i automatycznie czyści bufor do następnego eksperymentu.</li>\n</ol>\n\n<h4>🧩 Model mentalny</h4>\n<p>Ten węzeł działa jako <b>rejestrator wsadowy sterowany zdarzeniami</b>. Odpowiednik procedury \"czekaj na wyzwalacz → rejestruj → powtarzaj do N\" w laboratorium.</p>\n\n<h4>📐 Tryb stosu</h4>\n<p>Jeśli wybierzesz <b>stos</b>, sygnały są łączone w jedną tablicę oddzieloną <code>NaN</code>. Pozwala to na wykreślenie wszystkich przechwyceń w jednym przebiegu bez ich łączenia.</p>\n\n<h4>🔁 Przykładowy przepływ</h4>\n<pre>\nGenerator/Oscyloskop → TriggerNode (N=5) → ScriptNode (opcjonalnie) → Wykres\n\nWynik:\n5 nałożonych krzywych (stos) lub ich średnia (średnia)\n</pre>\n\n<h4>🧠 Przykłady użycia w świecie rzeczywistym</h4>\n<ul>\n<li>Uśrednianie zaszumionego sygnału</li>\n<li>Synchronizowane przechwytywanie powtarzalnych eksperymentów</li>\n<li>Wizualne porównanie wielu akwizycji</li>\n<li>Wstępne przetwarzanie wsadowe do analizy statystycznej</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Pełny przykład</h4>\n<pre>\nOscyloskop → TriggerNode → ScriptNode → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i wskazówki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → szybko wybiera go do połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (konfiguruj, usuń, połącz/rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "generator": {
+      "title": "Generator",
+      "tooltip": "Węzeł generatora sygnału",
+      "ports": {
+        "signal_out": "Wyjście sygnału",
+        "trigger_out": "Wyjście wyzwalacza",
+        "trigger_in": "Wejście wyzwalacza",
+        "signal_in": "Wejście sygnału"
+      },
+      "status": {
+        "default": "FloWorks  |  Przewijanie: powiększenie  |  Kliknięcie środkowym: przesuwanie  |  Kliknięcie prawym na węźle: opcje",
+        "sim": "SIM",
+        "busy": "ZAJĘTY",
+        "ready": "GOTOWY"
+      },
+      "device_label": "URZ",
+      "channel_label": "KAN",
+      "gen_button": "GEN",
+      "setup_button": "USTAW",
+      "generate_action": "Generuj sygnał",
+      "help_title": "Pomoc - Węzeł generatora",
+      "help_html": "<h3>📡 Węzeł generatora sygnału</h3>\n<p>Generuje sygnały analogowe i wysyła je do prawdziwego generatora funkcyjnego (SDG) lub symuluje jego wyjście wewnętrznie.</p>\n\n<h4>📥 Porty wejściowe</h4>\n<ul>\n    <li><code>trigger_in</code> (lewy) → odbiera sygnał do wyzwolenia generacji (tryb EXT).</li>\n    <li><code>signal_in</code> (lewy) → odbiera zewnętrzny sygnał (t, y), który zostanie wysłany do generatora jako przebieg arbitralny (tryb EXT).</li>\n</ul>\n\n<h4>📤 Porty wyjściowe</h4>\n<ul>\n    <li><code>signal_out</code> (prawy) → emituje wygenerowany sygnał (t, y) do wizualizacji lub przetwarzania.</li>\n    <li><code>trigger_out</code> (prawy) → sygnał wyzwalający po zakończeniu generacji (opcjonalnie).</li>\n</ul>\n\n<h4>⚙️ Tryby działania</h4>\n<ul>\n    <li><b>INT</b> (wewnętrzny): sygnał jest generowany zgodnie z wewnętrznymi parametrami węzła (częstotliwość, amplituda, przebieg itp.) i wysyłany do sprzętu (lub symulacji).</li>\n    <li><b>EXT</b> (zewnętrzny): węzeł oczekuje na odebranie niestandardowego sygnału przez <code>signal_in</code>. Po naciśnięciu <b>GEN</b> ten sygnał jest wysyłany do generatora jako przebieg arbitralny.</li>\n</ul>\n\n<h4>🔧 Konfiguracja</h4>\n<p>Kliknij przycisk <b>USTAW</b> (lub kliknij prawym → \"Otwórz kontroler\"), aby dostosować:</p>\n<ul>\n    <li>Przebieg: sinus, prostokąt, rampa, impuls, szum, DC, trójkąt, piła, sinc, Gauss, wykładniczy, chirp.</li>\n    <li>Częstotliwość, amplituda, przesunięcie, faza, wypełnienie itp.</li>\n    <li>Kanał wyjściowy (C1 lub C2).</li>\n    <li>Urządzenie: \"sdg\" (prawdziwy sprzęt) lub \"symulacja\" (tylko symulacja wewnętrzna).</li>\n</ul>\n\n<h4>▶️ Generacja</h4>\n<p>Kliknij przycisk <b>GEN</b> (lub kliknij prawym → \"Generuj sygnał\"), aby rozpocząć wyjście. Węzeł wyśle sygnał do sprzętu, a także wyemituje <code>signal_out</code> z wygenerowanymi danymi dla reszty przepływu.</p>\n\n<h4>💡 Typowy przykład</h4>\n<ol>\n    <li>Skonfiguruj generator z sinusoidą 1 kHz, 1 Vpp.</li>\n    <li>Podłącz <code>signal_out</code> do węzła oscyloskopu lub wizualizatora.</li>\n    <li>Naciśnij <b>GEN</b> → sygnał pojawi się na kanale fizycznym, a także na wykresie.</li>\n</ol>\n\n<h4>⚠️ Uwagi</h4>\n<ul>\n    <li>W trybie EXT upewnij się, że najpierw podłączysz <code>signal_in</code> z sygnałem (t, y) przed naciśnięciem GEN.</li>\n    <li>Jeśli sprzęt nie jest podłączony, węzeł automatycznie użyje symulacji.</li>\n    <li>Przebiegi arbitralne są przesyłane z maksymalnie 524288 punktami (w zależności od modelu).</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "Oscyloskop",
+      "tooltip": "Węzeł przechwytywania oscyloskopu\n Podwójne kliknięcie, aby uzyskać informacje",
+      "ports": {
+        "out_primary": "Wyjście główne",
+        "out_secondary": "Wyjście wtórne",
+        "trigger_out": "Wyjście wyzwalacza"
+      },
+      "status": {
+        "sim": "SYMULACJA",
+        "capturing": "PRZECHWYTYWANIE...",
+        "armed": "UZBROJONY",
+        "connected": "POŁĄCZONY",
+        "disconnected": "ROZŁĄCZONY"
+      },
+      "device_label": "URZ",
+      "channel_label": "KAN",
+      "lcr_label": "LCR",
+      "sim_label": "SIM",
+      "trig_button": "WYZW",
+      "setup_button": "USTAW",
+      "menu": {
+        "show_channel": "Pokaż kanał"
+      },
+      "channel": {
+        "primary": "Główny (Z)",
+        "secondary": "Wtórny (θ)"
+      },
+      "trigger_action": "Wyzwól przechwytywanie",
+      "help_title": "Pomoc - Węzeł oscyloskopu",
+      "help_html": "<h3>📊 Węzeł oscyloskopu (akwizycja sygnału)</h3>\n<p>Przechwytuje sygnały ze świata rzeczywistego za pomocą sprzętu (SDS, LCR) lub generuje symulowane dane do testów.</p>\n\n<h4>📤 Porty wyjściowe</h4>\n<ul>\n    <li><code>out_primary</code> → sygnał główny (napięcie vs czas lub impedancja Z dla LCR).</li>\n    <li><code>out_secondary</code> → sygnał wtórny (faza θ dla LCR; nieużywany dla SDS).</li>\n    <li><code>trigger_out</code> → emituje sygnał wyzwalający po zakończeniu przechwytywania (przydatny do synchronizacji innych węzłów).</li>\n</ul>\n\n<h4>🔘 Sterowanie</h4>\n<ul>\n    <li><b>WYZW</b> → rozpoczyna przechwytywanie (akwizycję danych).</li>\n    <li><b>USTAW</b> → otwiera panel konfiguracji (parametry symulacji lub kontroler sprzętu).</li>\n    <li><b>Selektor urządzenia</b> (dolne combo) → wybierz między SDS (prawdziwy oscyloskop), LCR (miernik impedancji) lub symulacja.</li>\n</ul>\n\n<h4>⚙️ Tryby działania</h4>\n<ul>\n    <li><b>SDS</b>: łączy się z prawdziwym oscyloskopem (Siglent SDS). Możesz wybrać kanał (C1..C4) przez menu kontekstowe → \"Pokaż kanał\".</li>\n    <li><b>LCR</b>: łączy się z miernikiem LCR, zapewnia dwa wyjścia: główne (impedancja Z) i wtórne (kąt fazowy θ).</li>\n    <li><b>Symulacja</b>: generuje syntetyczny sygnał z szumem, konfigurowalny przez USTAW (podstawa czasu, zakres napięcia, poziom wyzwalania, częstotliwość próbkowania).</li>\n</ul>\n\n<h4>📈 Wizualizacja</h4>\n<p>Węzeł nie rysuje sygnału wewnętrznie, ale można go podłączyć do widżetu wizualizatora (np. <code>PlotWidget</code>), aby pokazać przechwycone dane.</p>\n\n<h4>💡 Przykład użycia</h4>\n<ol>\n    <li>Wybierz urządzenie (SDS) i podłącz je fizycznie.</li>\n    <li>Kliknij WYZW, aby przechwycić przebieg.</li>\n    <li>Sygnał będzie dostępny na <code>out_primary</code> dla innych węzłów.</li>\n    <li>Jeśli używasz LCR, oba wyjścia (Z i θ) będą dostępne.</li>\n</ol>\n\n<h4>⚠️ Uwagi</h4>\n<ul>\n    <li>W trybie sprzętowym upewnij się, że urządzenie jest podłączone i włączone.</li>\n    <li>Przechwytywanie działa w osobnym wątku, aby nie blokować interfejsu.</li>\n    <li>Węzeł działa jako źródło danych (węzeł wejściowy) dla przepływu.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "spectral": {
+        "title": "Widmowy",
+        "tooltip": "Transformacje widmowe: FFT, Hilbert, Welch (PSD) i DCT",
+        "transform_type": "Transformacja:",
+        "window_type": "Okno:",
+        "nfft": "NFFT / Segment:",
+        "scale": "Skala:",
+        "detrend": "Detrend:",
+        "normalize": "Normalizuj (zachowaj energię)",
+        "config_title": "Konfiguruj widmowy",
+        "menu": {
+            "configure": "Konfiguruj...",
+            "show_output": "Pokaż wyjście"
+        },
+        "channel": {
+            "magnitude": "Amplituda",
+            "phase": "Faza"
+        },
+        "ports": {
+            "input": "Wejście",
+            "output": "Wyjście czasowe",
+            "magnitude": "Amplituda",
+            "phase": "Faza"
+        },
+        "status": {
+            "no_data": "Brak danych",
+            "ready": "Gotowe",
+            "phase": "Faza"
+        },
+        "help_title": "Pomoc - Widmowy",
+        "help_html": "<h3>📊 Węzeł widmowy (transformacje widmowe)</h3>\n<p>Oblicza różne transformacje na sygnale wejściowym: <b>FFT</b>, <b>Hilbert</b>, <b>Welch (PSD)</b> i <b>DCT</b>.</p>\n\n<h4>📥 Wejście</h4>\n<p><code>input</code> → oczekuje krotki <code>(x, y)</code> lub tablicy 1D.</p>\n\n<h4>📤 Wyjścia</h4>\n<ul>\n    <li><b>Wyjście czasowe</b> → sygnał w dziedzinie czasu (aktywne tylko w Hilbert: część rzeczywista sygnału analitycznego).</li>\n    <li><b>Amplituda</b> → w zależności od trybu:\n        <ul>\n            <li><b>FFT</b> → znormalizowane widmo amplitudowe <code>(częstotliwości, amplitudy)</code>.</li>\n            <li><b>Hilbert</b> → obwiednia sygnału <code>(czas, obwiednia)</code>.</li>\n            <li><b>Welch</b> → gęstość widmowa mocy <code>(częstotliwości, PSD)</code>.</li>\n            <li><b>DCT</b> → współczynniki dyskretnej transformaty cosinusowej <code>(indeks, współczynniki)</code>.</li>\n        </ul>\n    </li>\n    <li><b>Faza</b> → kąty fazowe w radianach (FFT) lub faza chwilowa (Hilbert). <i>Niedostępne</i> dla Welch lub DCT.</li>\n</ul>\n\n<h4>⚙️ Parametry</h4>\n<ul>\n    <li><b>Transformacja</b> — wybierz między FFT, Hilbert, Welch lub DCT.</li>\n    <li><b>Okno</b> — funkcja okna z <code>scipy.signal.windows</code> (Hann, Hamming, Blackman itp.).</li>\n    <li><b>NFFT / Segment</b> — długość FFT lub długość segmentu Welch. <code>Auto</code> używa następnej potęgi 2.</li>\n    <li><b>Skala</b> — <code>linear</code> lub <code>dB</code> (20·log₁₀ dla FFT/Hilbert/DCT, 10·log₁₀ dla Welch).</li>\n    <li><b>Detrend</b> — usuwa stałą średnią lub trend liniowy przed przetwarzaniem.</li>\n    <li><b>Normalizuj</b> — dostosowuje okno, aby zachować energię.</li>\n</ul>\n\n<h4>🖱️ Interakcja</h4>\n<ul>\n    <li><b>Klik prawym</b> → menu kontekstowe (Konfiguruj, wybierz kanał wyświetlania).</li>\n    <li><b>Podwójne kliknięcie</b> → otwiera to okno pomocy.</li>\n    <li><b>Panel boczny</b> — dostosuj parametry w czasie rzeczywistym; wykres aktualizuje się automatycznie.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → Okno → Widmowy (FFT) → Filtr → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i wskazówki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "ifft": {
+        "title": "IFFT",
+        "tooltip": "Odwrotna transformata Fouriera (rekonstrukcja czasu)",
+        "fs": "Częstotliwość próbkowania (fs):",
+        "nfft": "NFFT:",
+        "real_only": "Tylko rzeczywiste wyjście (irfft)",
+        "conjugate_symmetry": "Wymuś symetrię hermitowską",
+        "normalize": "Normalizuj przez N",
+        "config_title": "Konfiguruj IFFT",
+        "menu": {
+            "configure": "Konfiguruj..."
+        },
+        "ports": {
+            "magnitude": "Amplituda",
+            "phase": "Faza",
+            "output": "Wyjście czasowe"
+        },
+        "status": {
+            "no_data": "Brak danych",
+            "waiting_phase": "Faza=0 (założono)",
+            "ready": "Gotowe"
+        },
+        "help_title": "Pomoc - IFFT",
+        "help_html": "<h3>🔁 Węzeł IFFT (odwrotna szybka transformata Fouriera)</h3>\n<p>Rekonstruuje sygnał w dziedzinie czasu z jego widma częstotliwości.</p>\n\n<h4>📥 Wejścia</h4>\n<ul>\n    <li><b>Amplituda</b> → <code>(częstotliwości, amplitudy)</code> lub tablica 1D. <b>Wymagane.</b></li>\n    <li><b>Faza</b> → <code>(częstotliwości, kąty)</code> lub tablica 1D. <b>Opcjonalne.</b> Jeśli nie jest podłączone, przyjmuje się fazę zerową.</li>\n</ul>\n\n<h4>📤 Wyjście</h4>\n<ul>\n    <li><b>Wyjście czasowe</b> → zrekonstruowany <code>(czas, sygnał)</code>.</li>\n</ul>\n\n<h4>⚙️ Parametry</h4>\n<ul>\n    <li><b>fs</b> — częstotliwość próbkowania do budowy osi czasu.</li>\n    <li><b>NFFT</b> — rozmiar IFFT. <code>Auto</code> używa <code>2·(len(mag)-1)</code>.</li>\n    <li><b>Wyjście rzeczywiste</b> — używa <code>irfft</code> (gwarantuje rzeczywiste wyjście) lub <code>ifft</code> (zespolone).</li>\n    <li><b>Symetria hermitowska</b> — wymusza <code>Y[-k] = conj(Y[k])</code> przed odwróceniem (zapobiega artefaktom).</li>\n    <li><b>Normalizuj</b> — dzieli przez <code>N</code>, aby zachować oryginalną amplitudę.</li>\n</ul>\n\n<h4>🖱️ Interakcja</h4>\n<ul>\n    <li><b>Klik prawym</b> → Konfiguruj...</li>\n    <li><b>Podwójne kliknięcie</b> → pomoc.</li>\n    <li><b>Panel boczny</b> — dostosuj fs i parametry w czasie rzeczywistym.</li>\n</ul>"
+    },
+    "thd": {
+      "title": "Analizator THD",
+      "tooltip": "Całkowite zniekształcenia harmoniczne THD",
+      "ports": {
+        "input": "Wejście",
+        "output": "Wyjście"
+      },
+      "dialog": {
+        "title": "Analizuj THD"
+      },
+      "tab": {
+        "summary": "Podsumowanie",
+        "harmonics": "Harmoniczne",
+        "spectrum": "Widmo"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "Częstotliwość podstawowa:",
+        "max_harmonics": "Uwzględnione harmoniczne:",
+        "green_threshold": "Zielony próg (<):",
+        "yellow_threshold": "Żółty próg (<):"
+      },
+      "harmonics": {
+        "order": "Rząd harmonicznej",
+        "freq": "Częstotliwość (Hz)",
+        "amp_rel": "Amplituda względna (%)"
+      },
+      "help_title": "Pomoc - THD",
+      "help_html": "<h3>Analizator całkowitych zniekształceń harmonicznych (THD)</h3><p>Oblicza THD i THD+N sygnału wejściowego.</p><p>Sygnał przechodzi bez zmian na wyjście.</p><p><b>Parametry:</b></p><ul><li>max_harmonics: liczba uwzględnianych harmonicznych</li><li>progi zielony/żółty: zmieniają kolor THD w węźle</li></ul><p><i>Kliknij dwukrotnie, aby otworzyć szczegółową analizę.</i></p>"
+    },
+    "filter": {
+      "title": "Filtr",
+      "tooltip": "Filtr cyfrowy (Butterworth)",
+      "ports": {
+        "input": "Wejście",
+        "output": "Wyjście"
+      },
+      "status": {
+        "no_data": "Brak danych",
+        "ready": "Gotowe"
+      },
+      "menu": {
+        "configure": "Konfiguruj...",
+        "show_output":"Pokaż wyjście"
+      },
+      "config_title": "Konfiguruj filtr",
+      "filter_type": "Typ filtra:",
+      "cutoff": "Częstotliwość(e) odcięcia (Hz):",
+      "cutoff1": "Częstotliwość odcięcia 1 (Hz):",
+      "cutoff2": "Częstotliwość odcięcia 2 (Hz):",
+      "order": "Rząd filtra:",
+      "fs": "Częstotliwość próbkowania (Hz, 0 = auto):",
+      "help_title": "Pomoc - Filtr",
+      "help_html": "<h3>🎛️ Węzeł filtra (Butterworth)</h3>\n<p>Stosuje <b>cyfrowy filtr Butterwortha</b> do sygnału wejściowego.</p>\n\n<h4>📥 Wejście</h4>\n<p><code>input</code> → oczekuje krotki <code>(x, y)</code> lub tablicy 1D.</p>\n\n<h4>📤 Wyjście</h4>\n<p><code>output</code> → przefiltrowany sygnał jako <code>(x, y_filtered)</code>.</p>\n\n<h4>⚙️ Parametry (kliknij dwukrotnie, aby skonfigurować)</h4>\n<ul>\n    <li><b>Typ filtra</b> – dolnoprzepustowy, górnoprzepustowy, pasmowoprzepustowy lub pasmowo-zaporowy.</li>\n    <li><b>Częstotliwość(e) odcięcia</b> – w Hz. Dla pasmowoprzepustowego/zaporowego wymagane są dwie częstotliwości.</li>\n    <li><b>Rząd</b> – rząd filtra (1–20). Wyższy rząd = bardziej strome zbocze.</li>\n    <li><b>Częstotliwość próbkowania</b> – jeśli ustawiona na 0, jest wnioskowana automatycznie z osi <i>x</i>.</li>\n</ul>\n\n<h4>🛠️ Działanie</h4>\n<ul>\n    <li>Filtr jest projektowany za pomocą <code>scipy.signal.butter</code>.</li>\n    <li>Stosowane jest filtrowanie zerofazowe z <code>filtfilt</code> (bez zniekształceń fazowych).</li>\n    <li>Jeśli wejście jest tablicą 1D, tworzona jest syntetyczna oś <i>x</i> przy użyciu częstotliwości próbkowania.</li>\n</ul>\n\n<h4>🖱️ Interakcja</h4>\n<ul>\n    <li><b>Podwójne kliknięcie</b> → otwiera okno konfiguracji.</li>\n    <li><b>Kliknięcie</b> na węźle → wykreśla przefiltrowany sygnał.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → Filtr → FFT → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "Normalizacja",
+      "tooltip": "Normalizuj sygnał do określonego zakresu",
+      "ports": {
+        "input": "Wejście",
+        "output": "Wyjście"
+      },
+      "menu": {
+        "configure": "Konfiguruj..."
+      },
+      "config_title": "Konfiguruj węzeł normalizacji",
+      "param": {
+        "target_min": "Docelowe min:",
+        "target_max": "Docelowe maks:"
+      },
+      "help_title": "Pomoc - Normalizacja",
+      "help_html": "<h3>📏 Węzeł normalizacji</h3>\n<p>Normalizuje sygnał wejściowy do zakresu określonego przez <b>Docelowe min</b> i <b>Docelowe maks</b>.</p>\n\n<h4>📥 Wejście</h4>\n<p><code>input</code> → oczekuje krotki <code>(x, y)</code> lub tablicy 1D.</p>\n\n<h4>📤 Wyjście</h4>\n<ul>\n    <li><b>Sygnał znormalizowany</b> → <code>(x_norm, y_norm)</code> – sygnał przeskalowany do zakresu docelowego.</li>\n</ul>\n\n<h4>⚙️ Parametry (kliknij dwukrotnie, aby skonfigurować)</h4>\n<ul>\n    <li><b>Docelowe min</b> – minimalna wartość pożądanego zakresu (domyślnie 0.0).</li>\n    <li><b>Docelowe maks</b> – maksymalna wartość pożądanego zakresu (domyślnie 1.0).</li>\n</ul>\n\n<h4>📐 Działanie</h4>\n<p>Przeskalowanie liniowe:</p>\n<pre>y_norm = target_min + (y - original_min) * (target_max - target_min) / (original_max - original_min)</pre>\n<p>Oś x pozostaje niezmieniona.</p>\n\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "Splot",
+      "tooltip": "Filtr FIR poprzez splot",
+      "ports": {
+        "input": "Wejście",
+        "output": "Wyjście"
+      },
+      "status": {
+        "no_data": "Brak danych"
+      },
+      "menu": {
+        "show_output": "Pokaż wyjście",
+        "configure": "Konfiguruj..."
+      },
+      "config_title": "Konfiguruj splot",
+      "example_kernel": "Przykładowe jądra:",
+      "kernel": "Współczynniki jądra (oddzielone przecinkami):",
+      "mode": "Tryb splotu:",
+      "help_title": "Pomoc - Splot",
+    "help_html": "<h3>🔀 Węzeł splotu (filtr FIR)</h3>\n<p>Stosuje dyskretny splot między sygnałem wejściowym a jądrem zdefiniowanym przez użytkownika.</p>\n\n<h4>📥 Wejście</h4>\n<p><code>input</code> → oczekuje krotki <code>(x, y)</code> lub tablicy 1D.</p>\n\n<h4>📤 Wyjście</h4>\n<ul>\n    <li><b>Sygnał przefiltrowany</b> → <code>(x_conv, y_conv)</code> – wynik splotu.</li>\n</ul>\n\n<h4>⚙️ Parametry (kliknij dwukrotnie, aby skonfigurować)</h4>\n<ul>\n    <li><b>Współczynniki jądra</b> – liczby zmiennoprzecinkowe oddzielone przecinkami, np. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Tryb splotu</b> – <code>'same'</code> (domyślnie), <code>'full'</code> lub <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Działanie</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>Oś x jest odpowiednio dostosowywana: dla <code>'same'</code> zachowuje oryginalne x; dla <code>'valid'</code> przycina końce; dla <code>'full'</code> rozszerza liniowo.</li>\n</ul>\n\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+    },
+    "resample": {
+      "title": "Resampling",
+      "tooltip": "Zmień częstotliwość próbkowania sygnału",
+      "ports": {
+        "input": "Wejście",
+        "output": "Wyjście"
+      },
+      "status": {
+        "no_data": "Brak danych",
+        "ready": "Gotowe"
+      },
+      "menu": {
+        "configure": "Konfiguruj..."
+      },
+      "config_title": "Konfiguruj resampling",
+      "mode": "Tryb:",
+      "factor": "Współczynnik:",
+      "target_fs": "Docelowe fs (Hz):",
+      "help_title": "Pomoc - Resampling",
+      "help_html": "<h3>🔄 Węzeł resamplingu</h3><p>Zmienia <b>częstotliwość próbkowania</b> sygnału wejściowego.</p><h4>📥 Wejście</h4><p><code>input</code> → oczekuje krotki <code>(x, y)</code> lub tablicy 1D.</p><h4>📤 Wyjście</h4><p><code>output</code> → sygnał poddany resamplingowi jako <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Tryb</b> – <i>współczynnik</i> (pomnóż oryginalną częstotliwość próbkowania) lub <i>fixed_fs</i> (docelowa częstotliwość próbkowania w Hz).</li><li><b>Współczynnik</b> – współczynnik skalowania (>1 zwiększa liczbę próbek, <1 zmniejsza).</li><li><b>Docelowe fs</b> – pożądana częstotliwość próbkowania w Hz (używane, gdy tryb to fixed_fs).</li></ul><h4>🛠️ Działanie</h4><p>Używa <code>scipy.signal.resample</code>, który stosuje metodę Fouriera.</p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+    },
+    "window": {
+      "title": "Okno",
+      "tooltip": "Zastosuj funkcję okna do sygnału",
+      "ports": {
+        "input": "Wejście",
+        "output": "Wyjście"
+      },
+      "status": {
+        "no_data": "Brak danych",
+        "ready": "Gotowe"
+      },
+      "menu": {
+        "configure": "Konfiguruj..."
+      },
+      "config_title": "Konfiguruj okno",
+      "window_type": "Typ okna:",
+      "normalize": "Normalizuj (zachowaj energię)",
+      "help_title": "Pomoc - Okno",
+      "help_html": "<h3>🪟 Węzeł okna</h3><p>Stosuje <b>funkcję okna</b> do sygnału wejściowego, aby zmniejszyć przeciek widmowy.</p><h4>📥 Wejście</h4><p><code>input</code> → krotka <code>(x, y)</code> lub tablica 1D.</p><h4>📤 Wyjście</h4><p><code>output</code> → sygnał z oknem <code>(x, y * window)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Typ okna</b> – Hann, Hamming, Blackman, Bartlett itp.</li><li><b>Normalizuj</b> – jeśli zaznaczone, skaluje okno, aby zachować całkowitą energię.</li></ul><h4>🛠️ Działanie</h4><p>Używa <code>scipy.signal.windows</code>.</p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+    },
+    "delay": {
+      "title": "Opóźnienie",
+      "tooltip": "Opóźnij sygnał o określoną wartość",
+      "ports": {
+        "input": "Wejście",
+        "output": "Wyjście"
+      },
+      "status": {
+        "no_data": "Brak danych",
+        "ready": "Gotowe"
+      },
+      "menu": {
+        "configure": "Konfiguruj..."
+      },
+      "config_title": "Konfiguruj opóźnienie",
+      "mode": "Tryb opóźnienia:",
+      "samples": "Próbki:",
+      "seconds": "Sekundy:",
+      "padding": "Wypełnienie:",
+      "constant_value": "Wartość stała:",
+      "help_title": "Pomoc - Opóźnienie",
+      "help_html": "<h3>⏱️ Węzeł opóźnienia</h3><p>Opóźnia sygnał wejściowy o określoną liczbę <b>próbek</b> lub <b>sekund</b>.</p><h4>📥 Wejście</h4><p><code>input</code> → krotka <code>(x, y)</code> lub tablica 1D.</p><h4>📤 Wyjście</h4><p><code>output</code> → opóźniony sygnał <code>(x, y_delayed)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Tryb opóźnienia</b> – <i>próbki</i> (całkowita liczba próbek) lub <i>sekundy</i> (czas w sekundach, wymaga częstotliwości próbkowania z osi x).</li><li><b>Wypełnienie</b> – metoda wypełnienia początkowej luki: <i>zero</i>, <i>odbicie</i> lub <i>stała</i> (wartość zdefiniowana przez użytkownika).</li></ul><h4>🛠️ Działanie</h4><p>Przesuwa sygnał w prawo, wstawiając wypełnienie na początku.</p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+    },
+    "correlation": {
+      "title": "Korelacja",
+      "tooltip": "Korelacja krzyżowa dwóch sygnałów",
+      "ports": {
+        "signal1": "Sygnał 1",
+        "signal2": "Sygnał 2",
+        "corr": "Korelacja"
+      },
+      "status": {
+        "no_data": "Brak danych",
+        "ready": "Gotowe"
+      },
+      "menu": {
+        "configure": "Konfiguruj..."
+      },
+      "config_title": "Konfiguruj korelację",
+      "mode": "Tryb:",
+      "normalize": "Normalizuj",
+      "help_title": "Pomoc - Korelacja",
+      "help_html": "<h3>📈 Węzeł korelacji</h3><p>Oblicza <b>korelację krzyżową</b> między dwoma sygnałami wejściowymi.</p><h4>📥 Wejścia</h4><p><code>signal1</code>, <code>signal2</code> → każde oczekuje krotki <code>(x, y)</code> lub tablicy 1D.</p><h4>📤 Wyjście</h4><p><code>corr</code> → sekwencja korelacji jako <code>(opóźnienia, korelacja)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Tryb</b> – <i>full</i> (wszystkie opóźnienia), <i>same</i> (ta sama długość co najdłuższe wejście), <i>valid</i> (bez zerowych krawędzi).</li><li><b>Normalizuj</b> – jeśli zaznaczone, dzieli przez iloczyn norm sygnałów (daje wartości w [-1, 1]).</li></ul><h4>🛠️ Działanie</h4><p>Używa <code>np.correlate</code>.</p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+    },
+    "math_expression": {
+      "title": "Wyrażenie matematyczne",
+      "tooltip": "Oblicz wyrażenie matematyczne na x i y",
+      "ports": {
+        "input": "Wejście",
+        "output": "Wyjście"
+      },
+      "status": {
+        "no_data": "Brak danych",
+        "ready": "Gotowe"
+      },
+      "menu": {
+        "configure": "Konfiguruj..."
+      },
+      "config_title": "Konfiguruj wyrażenie matematyczne",
+      "expression": "Wyrażenie (użyj x, y, np.*):",
+      "info": "Zmienne: x (oś czasu), y (wartości sygnału).\nFunkcje: np.sin, np.cos, np.exp, np.sqrt itp.",
+      "examples": "Przykłady...",
+      "help_title": "Pomoc - Wyrażenie matematyczne",
+      "help_html": "<h3>🧮 Węzeł wyrażenia matematycznego</h3><p>Oblicza dowolne wyrażenie matematyczne na zmiennych wejściowych <code>x</code> i <code>y</code>.</p><h4>📥 Wejście</h4><p><code>input</code> → krotka <code>(x, y)</code> lub tablica 1D.</p><h4>📤 Wyjście</h4><p><code>output</code> → wynik wyrażenia jako <code>(x, y_new)</code>.</p><h4>✏️ Składnia wyrażenia</h4><ul><li>Użyj <code>x</code> (oś czasu) i <code>y</code> (wartości sygnału) jako zmiennych tablicowych.</li><li>Możesz także użyć dowolnej funkcji <code>np.*</code> (np. <code>np.sin(y)</code>, <code>np.exp(-x)</code>).</li><li>Przykłady: <code>y * 2</code>, <code>np.sin(2*np.pi*x)</code>, <code>np.sqrt(x**2 + y**2)</code>.</li></ul><h4>⚠️ Uwaga</h4><p>Wyrażenie jest obliczane bezpiecznie za pomocą <code>numexpr</code> (jeśli dostępne) lub ograniczonego <code>eval</code>.</p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+    },
+    "spectrogram": {
+      "title": "Spektrogram",
+      "tooltip": "Oblicz spektrogram STFT",
+      "ports": {
+        "input": "Wejście",
+        "spectrogram": "Spektrogram",
+        "frequencies": "Częstotliwości",
+        "times": "Czasy"
+      },
+      "status": {
+        "no_data": "Brak danych",
+        "ready": "Gotowe"
+      },
+      "menu": {
+        "configure": "Konfiguruj...",
+        "show_in_plot": "Pokaż na wykresie"
+      },
+      "config_title": "Konfiguruj spektrogram",
+      "nperseg": "Próbki na segment:",
+      "noverlap": "Nakładanie:",
+      "window": "Okno:",
+      "scaling": "Skalowanie:",
+      "mode": "Tryb:",
+      "help_title": "Pomoc - Spektrogram",
+      "help_html": "<h3>🌊 Węzeł spektrogramu</h3><p>Oblicza spektrogram <b>krótkoczasowej transformaty Fouriera (STFT)</b>.</p><h4>📥 Wejście</h4><p><code>input</code> → (x, y) lub tablica 1D.</p><h4>📤 Wyjścia</h4><ul><li><b>Spektrogram</b> → tablica 2D (częstotliwości, czasy, amplitudy) – <i>nie do wykreślenia przez kliknięcie</i>.</li><li><b>Częstotliwości</b> → tablica 1D przedziałów częstotliwości (można podłączyć do innych węzłów).</li><li><b>Czasy</b> → tablica 1D czasów segmentów.</li></ul><h4>🖱️ Interakcja</h4><p><b>Kliknięcie</b> węzła <b>nie</b> wyświetla spektrogramu. Podłącz <code>frequencies</code> lub <code>times</code> do innych węzłów przetwarzania albo wyeksportuj dane.</p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+    },
+    "spectrogram_viewer": {
+        "title": "Przeglądarka spektrogramu",
+        "tooltip": "Odbiera i wyświetla dane spektrogramu (częstotliwości, czasy, macierz)",
+        "config_title": "Konfiguruj przeglądarkę spektrogramu",
+        "ports": {
+            "frequencies": "Częstotliwości",
+            "times": "Czasy",
+            "spectrogram": "Spektrogram"
+        },
+        "status": {
+            "no_data": "Brak danych"
+        },
+        "menu": {
+            "view_spectrogram": "Wyświetl spektrogram",
+            "configure": "Konfiguruj..."
+        },
+        "window_title": "Przeglądarka spektrogramu",
+        "time_axis": "Czas (s)",
+        "freq_axis": "Częstotliwość (Hz)",
+        "log_scale": "Skala logarytmiczna",
+        "colormap": "Mapa kolorów:",
+        "auto_contrast": "Automatyczny kontrast",
+        "contrast_min": "Minimalny kontrast:",
+        "contrast_max": "Maksymalny kontrast:",
+        "export": "Eksportuj...",
+        "export_title": "Eksportuj spektrogram",
+        "no_data_title": "Brak danych",
+        "no_data_message": "Niekompletne dane. Najpierw podłącz wszystkie porty i uruchom przepływ.",
+        "help_title": "Pomoc - Przeglądarka spektrogramu",
+        "help_html": "<h3>📊 Węzeł przeglądarki spektrogramu</h3><p>Odbiera trzy wyjścia węzła <b>Spektrogram</b> i wyświetla je jako mapę ciepła 2D.</p><h4>📥 Wejścia</h4><ul><li><b>częstotliwości</b> → wektor 1D częstotliwości</li><li><b>czasy</b> → wektor 1D czasów segmentów</li><li><b>spektrogram</b> → macierz 2D (częstotliwości × czasy) amplitud</li></ul><h4>⚙️ Konfiguracja</h4><p>Użyj <b>panelu bocznego</b>, aby dostosować w czasie rzeczywistym:</p><ul><li><b>Skala logarytmiczna</b> — uwydatnia szczegóły o niskiej amplitudzie.</li><li><b>Mapa kolorów</b> — viridis, inferno, plasma, jet itp.</li><li><b>Kontrast</b> — automatyczny lub ręczny (min / maks).</li></ul><h4>🖱️ Interakcja</h4><p><b>Kliknij prawym</b> na węźle i wybierz <b>\"Wyświetl spektrogram\"</b>, aby otworzyć dedykowane okno.</p><p>W przeglądarce możesz <b>wyeksportować</b> bieżący widok jako obraz PNG.</p><p><i>Kliknięcie węzła nie wyświetla niczego na głównym wykresie.</i></p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybierz port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (wyświetl, konfiguruj, usuń).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+    },
+    "graph_exporter": {
+        "title": "Eksporter grafu",
+        "tooltip": "Eksportuje wykresy o profesjonalnej jakości",
+        "ports": {
+            "signal_in": "Wejście sygnału",
+            "file_out": "Plik wyjściowy"
+        },
+        "status": {
+            "ready": "Gotowe",
+            "exported": "Wyeksportowano"
+        },
+        "menu": {
+            "show_graph": "Pokaż wykres",
+            "configure": "Konfiguruj wykres",
+            "configure_subplot": "Konfiguruj podwykresy",
+            "export": "Eksportuj wykres",
+            "subplots": "Podwykresy",
+            "use_subplots": "Użyj podwykresów",
+            "n_subplots": "Liczba podwykresów",
+            "subplot_layout": "Układ"
+        },
+        "config": {
+            "display_mode": "Tryb wyświetlania",
+            "use_subplots": "Użyj podwykresów (maks. 8)",
+            "n_subplots": "Liczba podwykresów:",
+            "subplot_layout": "Układ:",
+            "export_format": "Format eksportu"
+        },
+        "no_data_title": "Brak danych",
+        "no_data_msg": "Podłącz sygnał wejściowy i uruchom przepływ, aby wygenerować wykres.",
+        "export_dialog_title": "Zapisz wykres",
+        "export_error_title": "Błąd eksportu",
+        "config_title": "Konfiguruj eksporter grafu",
+        "help_title": "Pomoc - Eksporter grafu",
+        "help_html": "<h3>📊 Eksporter grafu</h3><p>Odbiera sygnał i eksportuje go jako obraz wysokiej jakości.</p><h4>📥 Wejście</h4><p><code>signal_in</code> → krotka <code>(x, y)</code> lub tablica 1D.</p><h4>📤 Wyjście</h4><p><code>file_out</code> → ścieżka wygenerowanego pliku.</p><h4>⚙️ Konfiguracja</h4><p>Kliknij dwukrotnie prawym → <b>Konfiguruj wykres</b>, aby dostosować styl, osie, adnotacje itp.</p><hr><h4>🖱️ Interakcja</h4><ul><li><b>Klik prawym</b> → menu kontekstowe.</li><li><b>Pokaż wykres</b> → podgląd z bieżącymi ustawieniami.</i></p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "Nie można usunąć węzła wejściowego."
+  },
+  "workspace": {
+    "headers": {
+      "node": "Węzeł",
+      "type": "Typ",
+      "shape": "Kształt",
+      "x_range_fs": "X: zakres / fs",
+      "dx_t": "dx / T",
+      "y_range": "Y: [min, maks]",
+      "preview_y": "Podgląd Y"
+    }
+  },
+  "plot": {
+    "time_label": "Czas (s)",
+    "voltage_label": "Napięcie (V)",
+    "title": "Sygnał",
+    "scale_label": "Skala:",
+    "scale_linear": "Liniowa",
+    "scale_log": "Logarytmiczna",
+    "markers": "Znaczniki",
+    "cursors": "Kursory A/B",
+    "peak": "Szczyt",
+    "peak_tooltip": "Zaznacz maksymalny szczyt",
+    "reset_zoom": "Resetuj powiększenie",
+    "amplitude": "Amplituda",
+    "time": "Czas (s)",
+    "frequency": "Częstotliwość (Hz)",
+    "view_mode": "Widok",
+    "view_2d": "2D",
+    "view_surface": "Powierzchnia 3D",
+    "view_waterfall": "Wodospad 3D",
+    "view_volume": "Objętość 3D",
+    "view_slice": "Plaster 3D",
+    "slice_label": "Plaster",
+    "reset_camera": "Resetuj kamerę",
+    "axis_scale": "Skala",
+    "fps": "FPS",
+    "loop": "Pętla",
+    "colormap": "Mapa kolorów"
+  },
+  "shortcuts": {
+    "delete": "Usuń węzeł",
+    "delete_desc": "Usuń wybrane węzły i ich połączenia.",
+    "duplicate": "Duplikuj węzeł",
+    "duplicate_desc": "Duplikuj wybrane węzły z przesunięciem +50px.",
+    "select_all": "Zaznacz wszystko",
+    "select_all_desc": "Zaznacz wszystkie węzły w scenie.",
+    "cancel": "Anuluj akcję",
+    "cancel_desc": "Anuluj trwające połączenie lub odznacz wszystko.",
+    "copy": "Kopiuj",
+    "copy_desc": "Kopiuj wybrane węzły do wewnętrznego schowka.",
+    "cut": "Wytnij",
+    "cut_desc": "Wytnij wybrane węzły.",
+    "paste": "Wklej",
+    "paste_desc": "Wklej węzły ze schowka.",
+    "undo": "Cofnij",
+    "undo_desc": "Cofnij ostatnią akcję.",
+    "redo": "Ponów",
+    "redo_desc": "Ponów cofniętą akcję.",
+    "run": "Uruchom przepływ",
+    "run_desc": "Wykonaj kompletny przepływ.",
+    "auto_layout": "Automatyczny układ",
+    "auto_layout_desc": "Automatycznie rozmieszczaj węzły w kolumnach.",
+    "center_view": "Wyśrodkuj widok",
+    "center_view_desc": "Wyśrodkuj widok na zaznaczeniu lub całej scenie.",
+    "zoom_reset": "Powiększenie 100%",
+    "zoom_reset_desc": "Przywróć powiększenie do 100%.",
+    "zoom_in": "Powiększ",
+    "zoom_in_desc": "Powiększ.",
+    "zoom_out": "Pomniejsz",
+    "zoom_out_desc": "Pomniejsz.",
+    "toggle_theme": "Przełącz motyw",
+    "toggle_theme_desc": "Przełącz między motywami ciemnym, jasnym i wysokiego kontrastu.",
+    "toggle_grid": "Przełącz siatkę",
+    "toggle_grid_desc": "Pokaż lub ukryj siatkę.",
+    "lock_node": "Zablokuj węzeł",
+    "lock_node_desc": "Zablokuj/odblokuj ruch wybranego węzła.",
+    "help": "Pomoc kontekstowa",
+    "help_desc": "Pokaż podpowiedź węzła pod kursorem.",
+    "new_file": "Nowy",
+    "new_file_desc": "Utwórz nowy diagram",
+    "open_file": "Otwórz",
+    "open_file_desc": "Otwórz plik diagramu",
+    "save_file": "Zapisz",
+    "save_file_desc": "Zapisz bieżący diagram",
+    "save_file_as": "Zapisz jako…",
+    "save_file_as_desc": "Zapisz diagram pod nową nazwą"
+  },
+  "dialogs": {
+    "common": {
+      "close": "Zamknij",
+      "cancel": "Anuluj",
+      "ok": "OK",
+      "emer_wind": "Wybierz program",
+      "operation_history": "Operacje",
+      "confirm": "Nie wprowadzono żadnych zmian.",
+      "overwrite": "Nadpisać?",
+      "error": "Błąd"
+    },
+    "font_size": {
+        "title": "Rozmiar czcionki",
+        "label": "Rozmiar (pt):"
+    },
+    "firewall": {
+        "title": "Połączenie zablokowane",
+        "text": "Nie można połączyć się z oscyloskopem.\nZapora systemu Windows może blokować komunikację.",
+        "informative": "Aby rozwiązać ten problem, zezwól 'FloWorks.exe' w zaporze systemu Windows.\n\nCzy chcesz w międzyczasie użyć trybu symulacji?"
+    },
+    "capture_error": {
+        "title": "Błąd przechwytywania",
+        "text": "Wystąpił błąd podczas przechwytywania:\n{error}\n\nSprawdź, czy urządzenie jest włączone i czy zapora zezwala na połączenie."
+    },
+    "script_editor": {
+      "title": "Edytor skryptów",
+      "header": "Skrypt Pythona  |  zmienne: x, y, param (z TriggerNode), np, scipy, sympy",
+      "test_button": "Testuj (bez zapisywania)",
+      "save_button": "Zapisz i zamknij",
+      "tool_tip": "Węzeł skryptu\nPodwójne kliknięcie, aby uzyskać informacje",
+      "templates": "Szablony:",
+      "save_template": "Zapisz szablon…",
+      "import": "Otwórz skrypt…",
+      "export": "Eksportuj skrypt…",
+      "unsaved_warning": "Nie wprowadzono żadnych zmian. Czy chcesz wczytać szablon i je utracić?",
+      "save_template_title": "Zapisz jako szablon",
+      "save_template_prompt": "Nazwa szablonu (bez rozszerzenia):",
+      "overwrite_template": "Szablon już istnieje. Czy chcesz go nadpisać?",
+      "import_title": "Otwórz skrypt Pythona",
+      "export_title": "Eksportuj skrypt Pythona",
+      "help_tooltip": "Szybka pomoc (F1)",
+      "help_title": "Szybka pomoc",
+      "browse": "Przeglądaj…",
+      "python_path_placeholder": "Pozostaw puste, aby użyć wewnętrznego interpretera. Np.: python3",
+      "quick_help_html": "<h2>Edytor skryptów Pythona</h2><p>Ten edytor uruchamia kod Pythona na sygnałach przepływu. Skrypt otrzymuje dane i może zwracać wyniki, modyfikować sygnały lub generować wiele wyjść.</p><h3>Dostępne zmienne</h3><ul><li><b>x</b> – tablica NumPy: oś X (czas, częstotliwość...).</li><li><b>y</b> – tablica NumPy: bieżące wartości sygnału.</li><li><b>param</b> – indeks iteracji (z TriggerNode) lub <code>None</code>.</li><li><b>inputs</b> – słownik ze wszystkimi wejściami (przydatne z <code>@input</code>).</li><li><b>persist</b> – słownik przechowujący wartości między uruchomieniami.</li></ul><h3>Zaimportowane biblioteki</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>Dyrektywy specjalne</h3><ul><li><code># @param NAME : type = value</code> – tworzy regulowany parametr w panelu bocznym (bez dotykania kodu).</li><li><code># @input port_name</code> – dodaje dodatkowy port wejściowy (lewa strona).</li><li><code># @output port_name</code> – dodaje dodatkowy port wyjściowy (prawa strona).</li></ul><p>Z <code>@input</code>/<code>@output</code> skrypt musi używać <code>inputs</code> i zwracać słownik z wyjściami. Przykład:</p><pre># @input channel_A<br># @output result<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"channel_A\"][1]<br>return {\"out\": (x, y), \"result\": (x, y_a)}</pre><h3>Trwałość</h3><p>Słownik <code>persist</code> przechowuje dane między uruchomieniami, dopóki program jest otwarty. Przykład:</p><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1<br>return (x, y + persist[\"counter\"] * 0.1)</pre><h3>Zarządzanie szablonami</h3><ul><li>Wybierz szablon z listy rozwijanej, aby wczytać predefiniowany skrypt.</li><li><b>Zapisz szablon…</b> – Zapisuje bieżący skrypt jako plik <code>.py</code> w folderze szablonów.</li><li><b>Otwórz skrypt…</b> / <b>Eksportuj skrypt…</b> – Wymiana skryptów z plikami zewnętrznymi.</li></ul><h3>Wskazówki</h3><ul><li>Użyj <b>Test</b>, aby sprawdzić skrypt z symulowanymi danymi przed podłączeniem przepływu.</li><li>Błędy są wyświetlane w dolnej konsoli, a błędna linia jest oznaczona.</li><li>Możesz tymczasowo wyłączyć dyrektywę, komentując ją (<code>## @param ...</code>).</li></ul>"
+    },
+    "trigger_config": {
+      "title": "Konfiguruj węzeł wyzwalacza",
+      "group": "Parametry iteracji",
+      "n_iter": "Iteracje (N):",
+      "param_start": "Parametr początkowy:",
+      "param_end": "Parametr końcowy:",
+      "accumulate": "Akumulacja:",
+      "trig_tooltips": "TriggerNode\nPodwójne kliknięcie, aby uzyskać informacje",
+      "info": "Bieżący parametr będzie dostępny w\nloop_out jako trzeci element: (x, y, param)",
+      "accumulate_options":{
+        "stack": "Stos",
+        "average": "Średnia",
+        "max": "Maks",
+        "min": "Min"
+      }
+    },
+    "simulation_config": {
+      "title": "Konfiguracja symulacji",
+      "timebase": "Podstawa czasu (ms/dz)",
+      "voltage_range": "Zakres napięcia (V)",
+      "trigger_level": "Poziom wyzwalania (V)",
+      "trigger_slope": "Zbocze wyzwalania",
+      "sample_rate": "Częstotliwość próbkowania (kHz)"
+    },
+    "file": {
+      "save_as": "Zapisz jako…",
+      "unsaved_title": "Niezapisane zmiany",
+      "unsaved_message": "Istnieją niezapisane zmiany. Czy chcesz zapisać przed kontynuowaniem?"
+    }
+  },
+  "info_dialog": {
+    "title": "Informacje - FloWorks",
+    "tab_about": "O programie",
+    "tab_shortcuts": "Skróty klawiszowe",
+    "tab_tutorials": "Samouczki",
+    "close": "Zamknij",
+    "about_title": "FloWorks",
+    "version": "Wersja 0.4.5",
+    "description": "<p>FloWorks to wizualne i interaktywne środowisko przetwarzania sygnałów oparte na przepływie danych. Pozwala budować, wykonywać i analizować łańcuchy przetwarzania poprzez łączenie węzłów reprezentujących operacje matematyczne, filtry, transformacje, generatory sygnałów i inne. Wszystko opiera się na parach (x, y), gdzie x to oś (czas lub częstotliwość), a y to sygnał.</p><p>Jest skierowany do studentów, badaczy, inżynierów i wszystkich zainteresowanych przetwarzaniem sygnałów, którzy chcą eksperymentować, uczyć się lub prototypować systemy bez pisania kodu od zera.</p><p><b>Misja:</b> Skoncentrować eksperymentalny przepływ pracy w jednym wizualnym, otwartym i dostępnym narzędziu, aby każdy — student, badacz lub inżynier — mógł skupić się na eksperymentowaniu, a nie na uczeniu się oprogramowania.</p><p><b>Wizja:</b> Świat, w którym bariera między pomysłem eksperymentalnym a jego wykonaniem jest tylko ciekawość eksperymentatora. Floworks dąży do bycia platformą referencyjną do eksperymentów z sygnałami, tworzoną przez globalną społeczność naukową i techniczną i dla niej, bez murów licencyjnych i fragmentacji narzędzi.</p><p><b>Zasady:</b> Wolne oprogramowanie (licencja MIT) – wiedza musi być wolna. Rozszerzalność – każdy może tworzyć nowe węzły w Pythonie. Natychmiastowa wizualizacja – każdy krok można obejrzeć graficznie.</p>",
+    "credits": "<h3>Podziękowania i licencje</h3><p>FloWorks korzysta z następujących projektów open source:</p><ul><li><b>PySide6 / Qt</b> – Graficzny interfejs użytkownika. Licencja <b>GNU LGPLv3</b>. © The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – Licencje BSD / PSF.</li><li><b>PyQtGraph, Pillow</b> – Licencja MIT / HPND.</li><li><b>OpenCV</b> – Licencja Apache 2.0.</li><li><b>PyTorch</b> – Licencja BSD (Meta Platforms, Inc.).</li><li><b>Pygments</b> – Licencja BSD.</li></ul><p>Ta aplikacja używa PySide6 (dynamicznie linkowanego) na warunkach <b>GNU LGPLv3</b>.</p><p>Użytkownicy mają prawo modyfikować lub zastępować dynamiczne biblioteki PySide6.</p><p>Pełna licencja dostępna na <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a>.</p><p><b>Licencja FloWorks:</b> Licencja MIT.</p>",
+    "shortcut_header_keys": "Skrót",
+    "shortcut_header_action": "Akcja",
+    "shortcut_header_context": "Kontekst",
+    "shortcuts_note": "Uwaga: Skróty działają globalnie, nawet gdy fokus jest na innym widżecie.",
+    "tutorials_placeholder": "Oto kilka przykładów i samouczków w kolejności nauki:",
+    "tutorial": "Samouczek",
+    "example_fft": "Otwórz przykład: FFT fali sinusoidalnej",
+    "example_filter": "Otwórz przykład: Filtr pasmowoprzepustowy fali chirp",
+    "example_delay": "Otwórz przykład: Opóźnienie fali sinusoidalnej",
+    "example_window": "Otwórz przykład: Okno fali chirp",
+    "example_convolution": "Otwórz przykład: Splot fali prostokątnej",
+    "example_conrrelation": "Otwórz przykład: Korelacja między falą sinusoidalną a prostokątną",
+    "example_math_expression": "Otwórz przykład: Wyrażenie matematyczne na fali sinusoidalnej",
+    "example_spectrogram": "Otwórz przykład: Spektrogram fali chirp",
+    "example_compound": "Otwórz przykład: Złożenie tablicy różnych węzłów",
+    "example_title": "Przykład",
+    "example_message": "Przykład '{name}' będzie dostępny w przyszłej wersji.",
+    "shortcut_header_description": "Opis",
+    "view_logs": "Wyświetl konsolę logów",
+    "log_viewer_title": "Przeglądarka logów (error.log)",
+    "refresh": "Odśwież",
+    "clear": "Wyczyść",
+    "no_logs_available": "Obecnie nie znaleziono logów.",
+    "error_reading_logs": "Błąd odczytu pliku logu.",
+    "confirm_clear": "Potwierdź wyczyszczenie",
+    "confirm_clear_msg": "Czy na pewno chcesz opróżnić plik logu? Ta akcja jest nieodwracalna."
+  },
+    "lcr_controller": {
+    "title": "Kontroler LCR",
+    "connected": "Połączony",
+    "disconnected": "Rozłączony",
+    "measure_var": "Mierzona zmienna:",
+    "freq_sweep": "Przemiatanie częstotliwości",
+    "freq_start": "Początek (Hz):",
+    "freq_end": "Koniec (Hz):",
+    "freq_step": "Krok (Hz):",
+    "level": "Poziom (V):",
+    "speed": "Prędkość:",
+    "average": "Średnia:",
+    "rsou": "RSOU (Ω):",
+    "range": "Zakres:",
+    "bias_volt": "Napięcie polaryzacji DC (V):",
+    "bias_on": "BIAS ON",
+    "bias_off": "BIAS OFF",
+    "apply": "Zastosuj ustawienia",
+    "error_title": "Błąd",
+    "connection_error": "Nie można połączyć się z LCR. Sprawdź połączenie i adres.",
+    "success_title": "Sukces",
+    "success_message": "Ustawienia zastosowane pomyślnie.",
+    "apply_error": "Nie można zastosować ustawień: {error}"
+  },
+    "osc_controller": {
+    "title": "Przechwytywanie oscyloskopu",
+    "window_title": "Kontroler oscyloskopu",
+    "channel": "Wybierz kanał:",
+    "acq_mode": "Tryb akwizycji:",
+    "mem_size": "Rozmiar pamięci:",
+    "invert_off": "Odwróć sygnał",
+    "invert_on": "Sygnał odwrócony",
+    "tdiv": "Podziałka pozioma:",
+    "vdiv": "Podziałka pionowa (V):",
+    "hpos": "Pozycja pozioma (s):",
+    "offset": "Pozycja pionowa (V):",
+    "trig_level": "Poziom wyzwalania (V):",
+    "v_range":"Zakres napięcia (V):",
+    "sd_trg": "Wyzwalacz boczny",
+    "fs": "Częstotliwość próbkowania (kHz):"
+  },
+    "gen_controller": {
+    "title": "Zaawansowany kontroler - Generator sygnałów",
+    "apply_current": "Zastosuj bieżącą konfigurację",
+    "channel": "Wybierz kanał:",
+    "waveform_btn": "Generuj przebieg",
+    "chirp_btn": "Generuj chirp",
+    "modulation_on": "Włącz modulację",
+    "modulation_off": "Zatrzymaj modulację",
+    "sweep_on": "Włącz przemiatanie",
+    "sweep_off": "Zatrzymaj przemiatanie",
+    "burst_on": "Włącz burst",
+    "burst_off": "Zatrzymaj burst",
+    "ch1_on": "Włącz kanał 1",
+    "ch1_off": "Wyłącz kanał 1",
+    "ch2_on": "Włącz kanał 2",
+    "ch2_off": "Wyłącz kanał 2",
+    "load": "Wybierz wyjście:",
+    "polarity": "Polaryzacja wyjścia:",
+    "modify_output": "Modyfikuj wyjście",
+    "tab_general": "Ogólne",
+    "tab_waveform": "Przebieg",
+    "tab_chirp": "Chirp",
+    "tab_modulation": "Modulacja",
+    "tab_sweep": "Przemiatanie",
+    "tab_burst": "Burst",
+    "sim_title": "Symulacja",
+    "no_hardware": "Brak podłączonego sprzętu",
+    "sent_title": "Wysłano",
+    "waveform_sent": "Przebieg wysłany",
+    "chirp_sent": "Chirp wysłany",
+    "success_title": "Sukces",
+    "output_modified": "Wyjście {channel}: obciążenie {load}, polaryzacja {pol}",
+    "signal_type": "Typ sygnału:",
+    "frequency": "Częstotliwość (Hz):",
+    "amplitude": "Amplituda (Vpp):",
+    "offset": "Przesunięcie (V):",
+    "phase": "Faza (stopnie):",
+    "duty_cycle": "Wypełnienie (%):",
+    "symmetry": "Symetria (%):",
+    "pulse_width": "Szerokość impulsu (s):",
+    "rise_edge": "Zbocze narastające (s):",
+    "fall_edge": "Zbocze opadające (s):",
+    "delay_edge": "Opóźnienie zbocza (s):",
+    "stdev": "Odchylenie standardowe (V):",
+    "mean": "Średnia (V):",
+    "chirp_f0": "Częstotliwość początkowa (Hz):",
+    "chirp_f1": "Częstotliwość końcowa (Hz):",
+    "chirp_fs": "Fs (Sa/s):",
+    "chirp_duration": "Czas trwania (s):",
+    "chirp_amp": "Amplituda (V):",
+    "chirp_offset": "Przesunięcie (V):",
+    "chirp_phase": "Faza (°):",
+    "chirp_name": "Nazwa sygnału:",
+    "chirp_method": "Metoda:",
+    "chirp_mode": "Tryb Arb:",
+    "mod_type": "Typ modulacji:",
+    "mod_freq": "Częstotliwość modulacji (Hz):",
+    "mod_dev": "Dewiacja (Hz,°,s):",
+    "mod_hop": "Częstotliwość przeskoku (Hz):",
+    "mod_shape": "Przebieg:",
+    "mod_depth": "Głębokość (%):",
+    "sweep_time": "Czas trwania (s):",
+    "sweep_stop": "Częstotliwość końcowa (Hz):",
+    "sweep_start": "Częstotliwość początkowa (Hz):",
+    "sweep_trig_src": "Źródło wyzwalania:",
+    "sweep_trig_out": "Wyjście wyzwalania:",
+    "sweep_mode": "Typ:",
+    "sweep_dir": "Kierunek:",
+    "burst_period": "Okres (s):",
+    "burst_cycles": "Cykle:",
+    "burst_phase": "Faza (stopnie):",
+    "burst_gate": "Cel:",
+    "burst_trig_src": "Źródło wyzwalania:",
+    "burst_polarity": "Polaryzacja:",
+    "waveform_applied": "Przebieg zastosowany",
+    "chirp_applied": "Chirp wysłany",
+    "modulation_applied": "Modulacja skonfigurowana",
+    "sweep_applied": "Przemiatanie skonfigurowane",
+    "burst_applied": "Burst skonfigurowany"
+  },
+    "simulation_config_dialog": {
+    "title": "Konfiguracja symulacji - Generator",
+    "waveform": "Przebieg:",
+    "basic_params": "Parametry podstawowe",
+    "frequency": "Częstotliwość (Hz):",
+    "amplitude": "Amplituda (Vpp):",
+    "offset": "Przesunięcie (V):",
+    "phase": "Faza (stopnie):",
+    "duty_cycle": "Wypełnienie (%):",
+    "symmetry": "Symetria (%):",
+    "direction": "Kierunek:",
+    "up": "W górę",
+    "down": "W dół",
+    "stdev": "Odchylenie standardowe:",
+    "mean": "Średnia:",
+    "lobes": "Liczba listków:",
+    "sigma": "Sigma:",
+    "mu": "Mu:",
+    "tau": "Tau (s):",
+    "exp_type": "Typ:",
+    "rise": "Wzrost",
+    "fall": "Spadek",
+    "f0": "Częstotliwość początkowa (Hz):",
+    "f1": "Częstotliwość końcowa (Hz):",
+    "chirp_method": "Metoda:",
+    "linear": "Linear",
+    "logarithmic": "Logarithmic",
+    "preview": "Podgląd",
+    "apply": "Zastosuj",
+    "close": "Zamknij",
+    "time_label": "Czas (s)",
+    "amplitude_label": "Amplituda (V)"
+  },
+  "self": {
+    "language_changed": "Zmieniono język na: {name} ({code})",
+    "default": "FloWorks  |  Przewijanie: powiększenie  |  Kliknięcie środkowym: przesuwanie  |  Podwójne kliknięcie na węźle: informacje |  Kliknięcie prawym na węźle: opcje",
+    "workspace": "Przestrzeń robocza",
+    "canvas": "Kanwa",
+    "no_nodes_selected": "Nie wybrano węzłów",
+    "node_config_placeholder": "Wybierz węzeł na kanwie\n, aby wyświetlić jego konfigurację"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "Wizualne i interaktywne wirtualne laboratorium przetwarzania sygnałów",
+    "build": "Zapomnij o skomplikowanym kodzie. Przeciągaj bloki, łącz je jak elementy układanki i buduj swój przepływ pracy, łącząc węzły liniami reprezentującymi przepływ danych.",
+    "keyrule": "Wszystko sprowadza się do sygnałów: łącz bloki, a nie linie kodu.",
+    "nodework": "Architektura węzła:\n[Dane wejściowe] → [Przetwarzanie wewnętrzne] → [Dane wyjściowe]",
+    "execute": "Kliknij Uruchom i obserwuj, jak Twoje pomysły ożywają na wykresach i danych w czasie rzeczywistym. Chcesz iść dalej? Podłącz prawdziwe instrumenty laboratoryjne lub dodaj własne reguły za pomocą węzłów skryptów Pythona do niestandardowego przetwarzania.",
+    "expand": "Eksportuj wysokiej jakości wykresy gotowe do użycia w dokumentach technicznych. Zapisuj swoją pracę w plikach \".sflow\" i przywracaj ją dokładnie w takim stanie, w jakim ją zostawiłeś.",
+    "actions_title": "Co możesz zrobić?",
+    "actions": "* Testuj pomysły, budując przepływy pracy, przeciągając i łącząc węzły.\n* Steruj prawdziwym sprzętem lub symuluj sygnały.\n* Wyświetlaj wyniki natychmiast na interaktywnych wykresach.",
+    "checkbox": "Nie pokazuj ponownie",
+    "start": "Start"
+  },
+  "scene": {
+    "empty_hint": "Wybierz węzły z paska narzędzi",
+    "load_example_hint": "Możesz wczytać przykład z \"Informacje\" → \"Samouczki\""
+  },
+  "examples": {
+  "general": {
+    "title": "Przykłady",
+    "welcome": "Witaj w FloWorks! \nPostępuj zgodnie z tymi mini-samouczkami, aby opanować najczęstsze operacje.",
+    "scroll": "Przewiń lub przytrzymaj kółko myszy, aby przesuwać kanwę.",
+    "help": "Kliknij prawym przyciskiem myszy na węźle, aby skonfigurować jego akcje."
+  },
+  "tutorial": {
+    "message": "To jest aplikacja do wizualnego diagramu przepływu sygnałów. Zaczynajmy!",
+    "step1": "Krok 1: Dodaj źródło sygnału",
+    "step2": "Dodaj węzeł źródła sygnału z paska narzędzi (góra). \nWęzeł zostanie umieszczony w miejscu ostatniego kliknięcia na kanwie. \nKliknij gdzieś w pobliżu na kanwie, a następnie kliknij na górnym pasku na:",
+    "step3": "Krok 2: Połącz węzły",
+    "step4": "Naciśnij CTRL+kliknij na porcie wyjściowym węzła (ten po lewej) i po prostu kliknij na porcie wejściowym drugiego węzła (ten po prawej), aby utworzyć połączenie.",
+    "step5": "Połączenia przepływają od lewej do prawej, przenosząc dane sygnału między węzłami.",
+    "step6": "Krok 3: Wykonaj przepływ",
+    "step7": "Naciśnij F5, aby wykonać przepływ sygnału i zobaczyć wyniki w czasie rzeczywistym.",
+    "step8": "Możesz także kliknąć na poszczególne węzły, aby zobaczyć ich wartości wyjściowe.",
+    "step9": "Krok 4: Wyświetl wyniki",
+    "step10": "Kliknij na dowolny węzeł, aby zwizualizować sygnał w widżecie wykresu.",
+    "step11": "Wykres aktualizuje się automatycznie po wykonaniu przepływu."
+  },
+  "shortcuts": {
+    "title": "Skróty klawiszowe",
+    "execute": "F5 – Wykonaj przepływ",
+    "save": "Ctrl+S – Zapisz projekt (.sflow)",
+    "load": "Ctrl+O – Otwórz projekt",
+    "delete": "Delete / Backspace – Usuń zaznaczone elementy",
+    "copy_paste": "Ctrl+C / Ctrl+V – Kopiuj i wklej węzły lub notatki",
+    "undo_redo": "Ctrl+Z / Ctrl+Y – Cofnij / Ponów",
+    "auto_layout": "Ctrl+Shift+L – Automatyczny układ diagramu",
+    "zoom": "Kółko myszy – Powiększenie, przytrzymaj, aby przeciągnąć widok"
+  },
+  "fft": {
+    "title": "Analiza FFT",
+    "description": "Oblicza widmo częstotliwości sygnału.",
+    "steps": {
+      "step1": "Dodaj węzeł Generator i wybierz, na przykład, falę prostokątną 1 kHz.",
+      "step2": "W menu 'Przetwarzanie' na pasku narzędzi wybierz węzeł FFT. Podłącz go do wyjścia Generatora (CTRL+klik wyjście → CTRL+klik wejście FFT).",
+      "step3": "Naciśnij F5. Węzeł FFT przekształci sygnał w dziedzinę częstotliwości.",
+      "step4": "Kliknij na węzeł FFT, aby zobaczyć widmo. Szczyty pojawią się przy nieparzystych wielokrotnościach 1 kHz.",
+      "step5": "(Opcjonalnie) Podłącz wyjście FFT do węzła arytmetycznego (SumNode), aby porównać dwa widma; system automatycznie wykryje rozdzielczość częstotliwości i ostrzeże o niezgodności.",
+      "step6": "Kliknij prawym przyciskiem myszy na węźle FFT, aby wybrać wyświetlanie między amplitudą a fazą."
+    }
+  },
+  "filter": {
+    "title": "Filtrowanie sygnału",
+    "description": "Stosuje filtr dolnoprzepustowy, górnoprzepustowy lub pasmowoprzepustowy.",
+    "steps": "1. Wstaw Generator z sygnałem chirp.\n2. Dodaj węzeł Filtr z menu 'Przetwarzanie'. Podłącz wyjście generatora do wejścia filtra.\n3. Kliknij prawym i wybierz 'Konfiguruj…' na węźle Filtr, następnie wybierz typ (dolnoprzepustowy, górnoprzepustowy itp.) i częstotliwość odcięcia.\n4. Wykonaj (F5) i zwizualizuj zarówno oryginalny, jak i przefiltrowany sygnał, klikając na odpowiednie połączenia.\n5. Jeśli chcesz porównać obok siebie, możesz dodać węzły FFT i rozdzielić sygnał."
+  },
+  "delay": {
+    "title": "Linia opóźniająca",
+    "description": "Przesuwa sygnał w czasie (przydatne do korelacji lub efektów).",
+    "steps": "1. Zacznij od generatora używającego krótkiego sygnału.\n2. Dodaj węzeł Opóźnienie z 'Przetwarzanie'. Podłącz wyjście generatora do wejścia opóźnienia.\n3. W oknie konfiguracji węzła Opóźnienie określ liczbę próbek lub czas opóźnienia.\n4. Wykonaj przepływ (F5) i kliknij na wyjście węzła Opóźnienie. Zobaczysz ten sam sygnał przesunięty w prawo.\n5. Aby zmierzyć dokładne opóźnienie, aktywuj kursory (dolny panel) i porównaj je między sygnałem oryginalnym a opóźnionym."
+  },
+  "window": {
+    "title": "Okienkowanie przed FFT",
+    "description": "Stosuje okno (Hanning, Hamming itp.) przed FFT, aby zmniejszyć przeciek widmowy.",
+    "steps": "1. Skonfiguruj podstawowy przepływ: Generator → Okno → FFT.\n2. Kliknij dwukrotnie węzeł Okno i wybierz typ (Hanning to dobry start).\n3. Podłącz wyjście Okna do wejścia FFT.\n4. Wykonaj (F5). Kliknij na wyjście FFT, aby porównać widmo z okienkowaniem i bez.\n5. Wypróbuj czysty sygnał sinusoidalny o niecałkowitej częstotliwości; zauważysz, że szczyt jest lepiej zdefiniowany z okienkowaniem. Zmień typ okna, aby zobaczyć, jak zmniejsza się listek boczny."
+  },
+  "convolution": {
+    "title": "Splot",
+    "description": "Oblicza splot między dwoma sygnałami.",
+    "steps": "1. Dodaj Generator (Źródła → Generator) z sygnałem, który chcesz filtrować.\n2. Dodaj węzeł Splot z menu 'Przetwarzanie'.\n3. Podłącz wyjście generatora do wejścia węzła Splot (CTRL+klik na obu końcach).\n4. Kliknij dwukrotnie węzeł Splot, aby go skonfigurować. Wprowadź współczynniki jądra oddzielone przecinkami (np. '0.2,0.2,0.2,0.2,0.2') i wybierz tryb splotu ('same', 'full' lub 'valid').\n5. Naciśnij F5, aby wykonać przepływ. Węzeł przefiltruje sygnał za pomocą splotu dyskretnego.\n6. Kliknij na połączenie wyjściowe węzła Splot, aby zobaczyć przefiltrowany sygnał. Obserwuj efekt jądra; możesz zmienić współczynniki i ponownie wykonać, aby porównać."
+  },
+  "correlation": {
+    "title": "Korelacja krzyżowa",
+    "description": "Mierzy podobieństwo między dwoma sygnałami w funkcji przesunięcia czasowego.",
+    "steps": "1. Umieść dwa węzły Generator (Źródła → Generator). Utwórz, na przykład, falę sinusoidalną i prostokątną o tej samej częstotliwości.\n2. Wstaw węzeł Korelacja z 'Przetwarzanie'.\n3. Podłącz wyjście pierwszego generatora do wejścia 'Sygnał 1' węzła Korelacja (CTRL+klik na portach). Następnie podłącz drugi generator do wejścia 'Sygnał 2'.\n4. Wykonaj przepływ za pomocą F5. Węzeł wytworzy sygnał korelacji krzyżowej.\n5. Kliknij na połączenie wyjściowe, aby zobaczyć szczyt korelacji. Zobaczysz maksimum przy opóźnieniu, przy którym sygnały są wyrównane.\n6. Aktywuj kursory (dolny panel), aby precyzyjnie zmierzyć przesunięcie czasowe."
+  },
+  "math_expression": {
+    "title": "Wyrażenie matematyczne",
+    "description": "Stosuje dowolną funkcję matematyczną do sygnału wejściowego (np. y_new = f(x, y)).",
+    "steps": "1. Dodaj Generator (Źródła → Generator) i wybierz przebieg, który chcesz przekształcić.\n2. Dodaj węzeł Wyrażenie matematyczne z menu 'Przetwarzanie'.\n3. Podłącz wyjście generatora do wejścia węzła (CTRL+klik na obu końcach).\n4. Kliknij dwukrotnie węzeł Wyrażenie, aby otworzyć edytor. Napisz funkcję, która otrzymuje dwie tablice (x, y) i zwraca (x, y_new). Na przykład: y_new = y**2 + 0.5*np.sin(x).\n5. Naciśnij F5, aby wykonać. Węzeł zastosuje operację wyłącznie do wartości 'y', zachowując nienaruszoną oś 'x'.\n6. Zwizualizuj wynik, klikając na połączenie wyjściowe. Możesz zmodyfikować wyrażenie i ponownie wykonać, aby zobaczyć natychmiastowe zmiany."
+  },
+  "spectrogram": {
+    "title": "Spektrogram",
+    "description": "Przedstawia ewolucję czasową częstotliwości w sygnale.",
+    "steps": "1. Umieść Generator (Źródła → Generator) z sygnałem o zmiennej częstotliwości, takim jak przemiatanie sinusoidalne (chirp).\n2. Z 'Przetwarzanie' dodaj węzeł Spektrogram.\n3. Podłącz wyjście generatora do wejścia węzła Spektrogram (CTRL+klik na obu portach).\n4. Z 'Przetwarzanie' dodaj węzeł Przeglądarka spektrogramu i podłącz odpowiednie porty do węzła Spektrogram.\n5. Wykonaj za pomocą F5. Węzeł przetworzy sygnał i wygeneruje macierz czas-częstotliwość.\n6. Kliknij prawym przyciskiem myszy na Przeglądarkę spektrogramu, aby zwizualizować obraz widmowy. Obserwuj, jak dominująca częstotliwość zmienia się w czasie.\n7. (Opcjonalnie) Dodaj pośredni węzeł FFT, aby porównać statyczną reprezentację częstotliwości z dynamiczną."
+  }
+  },
+  "prefs": {
+    "title": "Preferencje",
+    "tab_execution": "Wykonanie",
+    "tab_gpu": "GPU / Obliczenia",
+    "tab_streaming": "Strumieniowanie",
+    "tab_ui": "UI / Wydajność",
+    "tab_advanced": "Zaawansowane",
+    "max_workers":{
+      "label": "Maks. wątków (przygotowanie fazy 3)",
+      "tooltip": "Kontroluje przyszłą równoległość niezależnych gałęzi."
+    },
+    "timeout_per_node": "Limit czasu na węzeł (s)",
+    "gpu":{
+      "backend": "Domyślny backend",
+      "fallback": "Polityka awaryjna",
+      "threshold": "Próg narzutu (MB)"
+    },
+    "streaming":{
+      "buffer": "Rozmiar bufora (próbki)",
+      "timeout": "Limit czasu dyspozytora (ms)",
+      "error": "Polityka błędów strumienia"
+    }, 
+    "ui":{
+      "fps": "Maks. FPS odświeżania",
+      "anim": "Czas animacji łącznika (s)"
+    },
+    "adv":{
+      "python_path": "Ścieżka zewnętrznego interpretera",
+      "log_level": "Poziom logowania",
+      "backup": "Automatyczna kopia zapasowa przy wczytywaniu"
+    },
+    "btn_apply": "Zastosuj",
+    "btn_reset": "Przywróć domyślne",
+    "btn_close": "Zamknij"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "Wyrażenie..."
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "Hist",
+      "label": "{mode}  |  {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Eng",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "Wyczyść"
+    },
+    "history": {
+      "title": "📜 Historia",
+      "clear": "🗑 Wyczyść",
+      "use_last": "↩ Ostatnie"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "&Plik",
+      "edit": "&Edycja",
+      "format": "F&ormat",
+      "align": "W&yrównanie"
+    },
+    "actions": {
+      "new": "&Nowy",
+      "open": "&Otwórz",
+      "save": "&Zapisz",
+      "save_as": "Zapisz &jako...",
+      "export_csv": "&Eksportuj CSV...",
+      "exit": "&Wyjście",
+      "undo": "&Cofnij",
+      "redo": "&Ponów",
+      "cut": "Wy&tnij",
+      "copy": "&Kopiuj",
+      "paste": "&Wklej",
+      "bold": "&Pogrubienie",
+      "italic": "&Kursywa",
+      "align_left": "&Lewo",
+      "align_center": "&Środek",
+      "align_right": "&Prawo",
+      "bg_color": "&Kolor tła...",
+      "fg_color": "Kolor &tekstu..."
+    },
+    "toolbar": {
+      "title": "Główny",
+      "new": "Nowy",
+      "open": "Otwórz",
+      "save": "Zapisz",
+      "cut": "Wytnij",
+      "copy": "Kopiuj",
+      "paste": "Wklej",
+      "bold": "Pogrubienie",
+      "italic": "Kursywa",
+      "align_left": "Lewo",
+      "align_center": "Środek",
+      "align_right": "Prawo",
+      "bg_color": "Tło",
+      "fg_color": "Tekst",
+      "undo": "Cofnij",
+      "redo": "Ponów"
+    }
+  },
+  "system_monitor": {
+    "title": "MONITOR SYSTEMU",
+    "subtitle": "Telemetria zasobów w czasie rzeczywistym",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "RDZENIE / RDZENIE LOGICZNE",
+      "core_prefix": "C"
+    },
+    "ram": {
+      "title": "Pamięć RAM",
+      "tooltip": "Użycie pamięci RAM"
+    },
+    "disk": {
+      "title": "Dysk ( / )",
+      "tooltip": "Użycie dysku na /"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}%  M:{mem}%"
+    },
+    "status": {
+      "updated": "Zaktualizowano"
+    }
+  }
+}

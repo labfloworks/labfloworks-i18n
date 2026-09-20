@@ -1,0 +1,1556 @@
+{
+  "language_name": "Tiếng Việt",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "Tệp",
+      "new": "Mới",
+      "open": "Mở…",
+      "save": "Lưu",
+      "save_as": "Lưu thành…",
+      "exit": "Thoát"
+    },
+    "edit": "Chỉnh sửa",
+    "view": "Xem",
+    "help": "Trợ giúp",
+    "language": "Ngôn ngữ",
+    "info": "Thông tin",
+    "theme": "Chủ đề",
+    "font_size": "Cỡ chữ",
+    "font_size_custom": "Cỡ tùy chỉnh…"
+  },
+  "menu_config": {
+    "title": "Cấu hình nút"
+  },
+  "panels": {
+    "analysis": {
+      "title": "Phân tích"
+    },
+    "stats": {
+      "title": "Thống kê",
+      "max": "Lớn nhất:",
+      "min": "Nhỏ nhất:",
+      "mean": "Trung bình:",
+      "rms": "RMS:",
+      "mode_3d": "(chiếu 3D)"
+    },
+    "cursors": {
+      "title": "Con trỏ A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "Con trỏ không khả dụng ở chế độ 3D"
+    },
+    "crosshair": {
+      "cursor": "Con trỏ",
+      "peak": "Đỉnh",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "Dấu ngắm không khả dụng ở chế độ 3D"
+    }
+  },
+  "tab": {
+    "plot": "Đồ thị",
+    "workspace": "Biến canvas",
+    "python_vars": "Biến Python"
+  },
+  "tooldrawer": {
+    "python_console": "Terminal",
+    "monitor_widget": "Giám sát hiệu năng",
+    "spreadsheet_widget": "Bảng tính",
+    "calc_widget": "Máy tính"
+  },
+  "console": {
+    "help": {
+      "title": "Hướng dẫn tương tác bảng điều khiển FloWorks",
+      "button": "Trợ giúp",
+      "html": "<h1>Hướng dẫn tương tác bảng điều khiển FloWorks</h1><h2>1. Nút và kết nối</h2><p><code>>>> graph.nodes</code></p><p><code>>>> graph.connections</code></p><p><code>>>> selected_node</code></p><p>Tạo nút:</p><p><code>>>> graph.add_catalog_node('SumNode', 300, 200)</code></p><p>Kết nối:</p><p><code>>>> graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>Xóa:</p><p><code>>>> graph.remove_node(graph.nodes[2])</code></p><p>Cổng:</p><p><code>>>> graph.nodes[1].PORTS</code></p><h2>2. Thực thi và xem kết quả</h2><p>Thực thi đồ thị:</p><p><code>>>> graph.execute_flow()</code></p><p>Xem đầu ra của một nút:</p><p><code>>>> graph.node_values[graph.nodes[1]]</code></p><p>Cách này có thể lỗi với KeyError, bạn có thể dùng:</p><p><code>>>> list(graph.node_values.values())[1]</code></p><p>Đầu ra đầy đủ:</p><p><code>>>> nodo = graph.nodes[0]</code></p><p><code>>>> nodo.output</code></p><p>Trục Y:</p><p><code>>>> result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>>>> y = result[1]</code></p><p><code>>>> y.max()</code></p><p>Phép gán không in ra; kiểm tra bằng <code>x</code>, <code>y.shape</code> hoặc <code>print(x, y)</code></p><h2>3. Đồ thị</h2><p>Xóa:</p><p><code>>>> app.plot_widget.clear_plot()</code></p><p>Tín hiệu từ bảng điều khiển:</p><p><code>>>> import numpy as np</code></p><p><code>>>> x = np.linspace(0, 1, 1000)</code></p><p><code>>>> y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>>>> app.plot_widget.plot_waveform(x, y)</code></p><p>Từ nút nguồn:</p><p><code>>>> x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>>>> app.plot_widget.plot_waveform(x, y)</code></p><p>Nút FFT (trả về dict):</p><p><code>>>> result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>>>> result.keys()</code></p><p><code>>>> f, mag = result['magnitude']</code></p><p><code>>>> app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. Sửa đổi ứng dụng</h2><p>Cập nhật bảng:</p><p><code>>>> app.workspace_table.populate()</code></p><p>Thêm nút:</p><p><code>>>> app.add_node('SignalSourceNode')</code></p><p>Tiêu đề:</p><p><code>>>> app.setWindowTitle('My signal lab')</code></p><p>Kiểm tra:</p><p><code>>>> app.windowTitle()</code></p><p>Khôi phục:</p><p><code>>>> app.update_title()</code></p><h2>5. Phím tắt</h2><table><tr><th>Phím/Lệnh</th><th>Hành động</th></tr><tr><td><code>↑</code> / <code>↓</code></td><td>Lịch sử</td></tr><tr><td><code>Tab</code></td><td>Tự động hoàn thành</td></tr><tr><td><code>Ctrl + L</code></td><td>Xóa bảng điều khiển</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>Khối nhiều dòng</td></tr></table><h2>6. Công thức</h2><p>Đổi tham số:</p><p><code>>>> selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>>>> getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>>>> graph.execute_flow()</code></p><p><code>>>> app.workspace_table.populate()</code></p><p>Công thức tùy chỉnh:</p><p><code>>>> selected_node.params['mode'] = 'formula'</code></p><p><code>>>> selected_node.params['formula']['expr'] = '2 * sin(2 pi 1000 t)'</code></p><p><code>>>> selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>>>> selected_node._generate_signal()</code></p><p><code>>>> graph.execute_flow()</code></p><p>Liệt kê danh mục:</p><p><code>>>> from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>>>> NODE_CATEGORIES</code></p><p>Trợ giúp:</p><p><code>>>> help(graph.connect_nodes)</code></p><h2>7. Khắc phục sự cố</h2><ul><li><strong>Lỗi màu đỏ</strong>: bảng điều khiển hiển thị vấn đề, ứng dụng không đóng.</li><li><strong>Giao diện bị đóng băng</strong>: vòng lặp vô hạn. Đóng bảng điều khiển hoặc khởi động lại.</li><li><strong>Không có gì xảy ra</strong>: kiểm tra <code>graph.connections</code> và các nút nguồn.</li></ul><p>© 2026 FloWorks — Phòng thí nghiệm tín hiệu</p>"
+    }
+  },
+  "vars_table": {
+    "header": {
+      "name": "Tên",
+      "type": "Loại",
+      "shape": "Kích thước",
+      "value": "Giá trị"
+    },
+    "menu": {
+      "info": "Biến: {name}"
+    },
+    "dialog": {
+      "title": "Giá trị đầy đủ"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "Chữ:",
+    "font_size_tooltip": "Đổi cỡ chữ cơ bản",
+    "run_flow_tooltip": "Thực thi luồng",
+    "add_kinematics": "Nút động học",
+    "escolar": "Trường học",
+    "add_function_graph_node": "Hàm số",
+    "add_rhombus_node": "Cổng logic",
+    "add_graph_exporter": "Bộ xuất đồ thị",
+    "add_note": "Ghi chú",
+    "add_note_tooltip": "Thêm ghi chú dán...",
+    "add_signal_source": "Nguồn tín hiệu mới",
+    "add_spectrogram_viewer": "Trình xem phổ đồ",
+    "add_correlation": "Tương quan",
+    "add_math_expression": "Biểu thức toán học",
+    "add_spectrogram": "Phổ đồ",
+    "add_resample": "Lấy mẫu lại",
+    "add_window": "Cửa sổ",
+    "add_delay": "Trễ",
+    "add_convolution_node": "Tích chập",
+    "add_normalize": "Chuẩn hóa",
+    "add_filter": "Bộ lọc",
+    "add_fft": "FFT",
+    "source_node": "Bộ tạo tín hiệu nâng cao",
+    "load_signal_tooltip": "Tạo tín hiệu theo ý người dùng",
+    "history": "Lịch sử",
+    "history_tooltip": "Lịch sử thao tác",
+    "auto_layout": "Tự động sắp xếp",
+    "auto_layout_tooltip": "Tự động sắp xếp các nút (Ctrl+Shift+L)",
+    "sources": "Thiết bị ngoại vi",
+    "processing": "Xử lý",
+    "control": "Điều khiển",
+    "add_oscilloscope": "Máy hiện sóng",
+    "add_generator": "Bộ tạo",
+    "add_expression": "Nút biểu thức",
+    "add_script": "Script Python",
+    "add_arithmetic": "Số học +−×÷",
+    "add_program": "Chương trình",
+    "add_split": "Cổng logic",
+    "add_trigger": "Nút kích hoạt",
+    "sink": "Bộ xuất đồ thị",
+    "help_wiki": "Tài liệu / Wiki",
+    "help_wiki_tooltip": "Mở wiki dự án"
+  },
+  "info": {
+    "information": "Giới thiệu",
+    "shortcuts": "Phím tắt",
+    "tutorials": "Hướng dẫn",
+    "change_theme": "Đổi chủ đề"
+  },
+  "status": {
+    "default": "FloWorks | Cuộn: thu phóng | Nhấp giữa: di chuyển | Nhấp phải vào nút: tùy chọn",
+    "no_nodes": "Sẵn sàng. Chọn nút từ thanh công cụ.",
+    "how_to_connect": "Ctrl+nhấp vào cổng ra của một nút, sau đó nhấp vào cổng vào của nút khác.",
+    "connecting": "Đang kết nối… Nhấp vào nút hoặc cổng khác.",
+    "connection_created": "Đã tạo kết nối.",
+    "flow_executed": "Luồng thực thi thành công.",
+    "flow_error": "Lỗi khi thực thi luồng.",
+    "saved": "Đã lưu sơ đồ: {path}",
+    "loaded": "Đã tải sơ đồ: {path}",
+    "new_file": "Đã tạo sơ đồ mới",
+    "example_loaded": "Đã tải ví dụ."
+  },
+  "errors": {
+    "save_failed": "Lỗi lưu: {error}",
+    "load_failed": "Lỗi tải: {error}",
+    "load_example_failed": "Không thể tải ví dụ: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "Xóa nút",
+      "connect": "Kết nối nút",
+      "disconnect": "Ngắt kết nối nút",
+      "setup": "Cài đặt",
+      "trigger": "Kích hoạt",
+      "generate": "Tạo",
+      "edit_script": "Sửa script",
+      "edit_input": "Sửa đầu vào",
+      "help": "Thông tin"
+    },
+    "graph_union": {
+      "title": "Hợp nhất đồ thị",
+      "tooltip": "Nhóm nhiều tín hiệu thành các chuỗi độc lập để vẽ chồng lên nhau.",
+      "num_inputs_label": "Số đầu vào (1-8):",
+      "config_title": "Cấu hình hợp nhất đồ thị",
+      "status": {
+        "ready": "Sẵn sàng"
+      },
+      "ports": {
+        "signal_1": "Tín hiệu 1",
+        "signal_2": "Tín hiệu 2",
+        "signal_3": "Tín hiệu 3",
+        "signal_4": "Tín hiệu 4",
+        "signal_5": "Tín hiệu 5",
+        "signal_6": "Tín hiệu 6",
+        "signal_7": "Tín hiệu 7",
+        "signal_8": "Tín hiệu 8",
+        "series_out": "Đầu ra"
+      },
+      "menu": {
+        "configure": "Cấu hình..."
+      },
+      "help_title": "Trợ giúp - Hợp nhất đồ thị",
+      "help_html": "<h3>🔗 Nút hợp nhất đồ thị</h3><p>Nhận nhiều tín hiệu và giữ chúng như các chuỗi độc lập để vẽ chồng lên nhau mà không nối chúng lại.</p><p>Nhấp phải vào nút để <b>thêm hoặc bớt</b> đầu vào một cách linh động (tối đa 8).</p><p>Đầu ra <code>Series</code> cung cấp danh sách đầy đủ các chuỗi để trực quan hóa.</p>"
+    },
+    "tabular_inspector": {
+      "title": "Trình kiểm tra dữ liệu dạng bảng",
+      "window_title": "Trình kiểm tra dạng bảng",
+      "no_data": "Không có dữ liệu",
+      "copy": "Sao chép vào clipboard",
+      "decimals": "Số thập phân:",
+      "col_names": "Tên cột (cách nhau bằng dấu phẩy, để trống = tự động):",
+      "tooltip": "Trình kiểm tra dữ liệu của nút hiển thị dữ liệu nhận được tại cổng vào duy nhất dưới dạng bảng.",
+      "status": {
+        "no_data": "Không có dữ liệu"
+      },
+      "menu": {
+        "view_table": "Xem bảng",
+        "configure": "Cấu hình…"
+      },
+      "ports": {
+        "data": "Đầu vào"
+      },
+      "config_title": "Cấu hình trình kiểm tra dạng bảng",
+      "help_title": "Trợ giúp - Trình kiểm tra dạng bảng",
+      "help_html": "<h3>📊 Nút trình kiểm tra dạng bảng</h3><p>Giống như một <b>bảng tính Excel</b>, nút này hiển thị dữ liệu nhận được tại cổng vào duy nhất dưới dạng bảng.</p><p><b>Quy tắc diễn giải:</b></p><ul><li><b>Tuple/danh sách các mảng</b> (ví dụ (x, y, Fs)) → mỗi mảng trở thành một cột.</li><li><b>Mảng numpy 2D</b> → hàng × cột.</li><li><b>Mảng 1D hoặc danh sách</b> → một cột duy nhất.</li><li><b>Số vô hướng</b> → một ô duy nhất.</li></ul><p>Nhấp phải → <b>Xem bảng</b> để mở trình kiểm tra. Dùng bảng bên để đặt số thập phân và tên cột tùy chỉnh (cách nhau bằng dấu phẩy).</p>"
+    },
+    "equation_solver": {
+      "title": "Bộ giải phương trình",
+      "tooltip": "Bộ giải hệ phương trình tuyến tính",
+      "type_label": "Loại phương trình:",
+      "type_linear_single": "Tuyến tính đơn",
+      "type_linear_system": "Hệ tuyến tính 2×2",
+      "eq_format": "Định dạng: a x + b = c",
+      "eq1_label": "Phương trình 1 (định dạng: a x + b y = c):",
+      "eq2_label": "Phương trình 2:",
+      "examples": "Ví dụ",
+      "sys_examples": "Ví dụ hệ phương trình",
+      "menu": {
+        "view_plot": "Xem đồ thị nghiệm",
+        "configure": "Cấu hình phương trình...",
+        "view_steps": "Xem các bước giải..."
+      },
+      "ports": {
+        "output": "đầu ra",
+        "steps": "các bước",
+        "solution": "y (m)"
+      },
+      "steps_title": "Các bước giải",
+      "no_steps": "Không có bước giải nào.",
+      "config_title": "Cấu hình bộ giải phương trình",
+      "help_title": "Trợ giúp - Bộ giải phương trình",
+      "plot_window_title": "Đồ thị nghiệm",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "Xuất...",
+      "export_title": "Xuất đồ thị",
+      "no_data_to_plot": "Không có dữ liệu để vẽ",
+      "btn_step_by_step": "▶ Từng bước",
+      "step_anim_title": "Từng bước",
+      "step_anim_info": "Trong phiên bản đầy đủ, điều này sẽ hiển thị cấu trúc đồ họa từng bước.",
+      "error_no_equals": "Thiếu dấu '=' trong phương trình.",
+      "error_rhs_not_number": "Vế phải của phương trình không phải là số hợp lệ.",
+      "error_invalid_x_coef": "Hệ số của x không hợp lệ: '{coef}'. Kiểm tra cú pháp.",
+      "error_invalid_y_coef": "Hệ số của y không hợp lệ: '{coef}'. Kiểm tra cú pháp.",
+      "error_invalid_const": "Hạng tử hằng số không hợp lệ: '{term}'. Chỉ dùng số và dấu + hoặc -.",
+      "error_zero_x": "Hệ số của x bằng không. Phương trình không có nghiệm duy nhất.",
+      "no_plot_data_title": "Không có dữ liệu",
+      "no_plot_data_message": "Không có dữ liệu nghiệm để vẽ. Hãy cấu hình và giải trước.",
+      "preview": "Xem trước:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "Không có nghiệm (hoặc chưa tính)",
+      "help_html": "<h3>🧮 Nút bộ giải phương trình</h3>\n<p>Cho phép <b>giải phương trình tuyến tính đơn giản hoặc hệ phương trình 2×2</b>, hiển thị quy trình từng bước và đồ thị giao điểm.</p>\n\n<h4>⚙️ Cách dùng</h4>\n<ol>\n  <li><b>Nhấp phải</b> vào nút → chọn <i>\"Sửa tham số\"</i>.</li>\n  <li>Chọn <code>equation_type</code>: <code>linear_single</code> hoặc <code>linear_system</code>.</li>\n  <li>Nhập <code>equations</code> dưới dạng văn bản (ví dụ \"2x + 3 = 7\") hoặc danh sách văn bản cho hệ.</li>\n  <li>Nút sẽ tính nghiệm và tự động tạo các bước đại số.</li>\n</ol>\n\n<h4>📤 Đầu ra</h4>\n<ul>\n  <li><code>solution</code> → giá trị số (phương trình đơn) hoặc từ điển với <code>x</code>, <code>y</code> (hệ 2×2).</li>\n  <li><code>steps</code> → văn bản với phân tích đại số từng bước.</li>\n</ul>\n\n<h4>⚠️ Lưu ý</h4>\n<ul>\n  <li><b>Giá trị sư phạm:</b> Cung cấp phản hồi đại số tức thì và kết nối nghiệm với biểu diễn đồ họa (giao điểm).</li>\n  <li>Hãy chắc chắn dùng đúng biến (<code>x</code> cho đơn, <code>x</code> và <code>y</code> cho hệ).</li>\n  <li>Nếu hệ vô nghiệm hoặc phụ thuộc, sẽ được chỉ ra trong đầu ra <code>steps</code>.</li>\n</ul>\n\n<h4>💡 Ví dụ</h4>\n<p>Cấu hình nút là <code>linear_system</code> với <code>[\"y = 2x\", \"y = -x + 3\"]</code>. Kết nối <code>steps</code> vào trình xem văn bản và trực quan hóa giao điểm trong nút đồ thị.</p>\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý toán học</b>.</p>\n\n<pre>\nPhương trình → Giải → Trực quan hóa\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(Đại số ↔ Hình học)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nTham số → Xử lý (Bộ giải) → Trực quan hóa (Đồ thị/Văn bản)\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nTham số (Phương trình) → EquationSolver → Đồ thị (Giao điểm) + Văn bản (Các bước)\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "Động học",
+      "tooltip": "Mô phỏng động học: rơi tự do và chuyển động ném",
+      "ports": {
+        "x": "x(m) theo t(s)",
+        "y": "y(m) theo t(s)",
+        "vx": "vx(m/s) theo t(s)",
+        "vy": "vy(m/s) theo t(s)",
+        "speed": "tốc độ(m/s) theo t(s)",
+        "energy_kinetic": "động năng(J) theo t(s)",
+        "energy_potential": "thế năng(J) theo t(s)",
+        "ground_contact": "tiếp đất theo t(s)"
+      },
+      "status": {
+        "ready": "Sẵn sàng"
+      },
+      "config_title": "Cấu hình động học",
+      "menu": {
+        "configure": "Cấu hình…",
+        "generate": "Tạo",
+        "show_output": "Hiển thị đầu ra",
+        "trajectory": "Quỹ đạo (y theo x)",
+        "y_t": "Vị trí dọc y(t)",
+        "vy_t": "Vận tốc dọc vy(t)",
+        "speed_t": "Tốc độ |v|(t)",
+        "display": "Trực quan hóa"
+      },
+      "group_ic": "Điều kiện ban đầu",
+      "group_env": "Môi trường",
+      "group_sim": "Mô phỏng",
+      "group_presets": "Cài đặt sẵn",
+      "help_title": "Trợ giúp - Động học",
+      "help_html": "<h3>🚀 Phòng thí nghiệm động học</h3><p>Mô phỏng <b>chuyển động ném</b> và <b>rơi tự do</b> dưới trọng lực không đổi. Không cần đầu vào; tạo tín hiệu từ điều kiện ban đầu.</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 Đầu ra chính (tuple thời gian so với đại lượng)</h4><p>Mỗi cổng cung cấp một tuple <code>(t, biến)</code> sẵn sàng kết nối với đồ thị hoặc nút khác. Thời gian đã được bao gồm làm trục X.</p><ul><li><code>x</code> → (t, vị trí ngang) [m]</li><li><code>y</code> → (t, vị trí dọc) [m]</li><li><code>vx</code> → (t, vận tốc ngang) [m/s]</li><li><code>vy</code> → (t, vận tốc dọc) [m/s]</li><li><code>speed</code> → (t, tốc độ |v|) [m/s]</li></ul><h4>⚡ Đầu ra tùy chọn (bật Hiển thị năng lượng)</h4><ul><li><code>energy_kinetic</code> → (t, Ec = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, 1.0 nếu y≤0, 0.0 trong không khí)</li></ul><h4>🎨 Kênh hiển thị nội bộ</h4><p>Thay đổi nội dung hiển thị trên đồ thị chính từ menu ngữ cảnh:</p><ul><li><b>Quỹ đạo</b> (y theo x) → parabol không gian</li><li><b>y(t)</b>, <b>vy(t)</b>, <b>|v|(t)</b> → diễn biến theo thời gian</li></ul><h4>💡 Kết nối điển hình</h4><ul><li><b>Độ cao theo thời gian:</b> kết nối <code>y</code> với đồ thị (đã bao gồm t)</li><li><b>Tốc độ theo thời gian:</b> kết nối <code>speed</code> với đồ thị</li><li><b>Quỹ đạo không gian:</b> kết nối <code>x</code> → trục X đồ thị, <code>y</code> → trục Y đồ thị</li><li><b>Va chạm:</b> kết nối <code>ground_contact</code> với nút logic hoặc LED</li><li><b>Năng lượng:</b> tổng <code>energy_kinetic</code> + <code>energy_potential</code> để thấy bảo toàn</li></ul><h4>⚡ Phím tắt</h4><ul><li><b>Nhấp đúp</b> → trợ giúp này</li><li><b>Nhấp phải</b> → cấu hình / tạo</li><li><b>Nút TẠO</b> → mô phỏng và mở hoạt ảnh</li></ul><hr><p><b>Trạng thái:</b> -- | <b>Cài đặt sẵn:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "Hàm số",
+      "tooltip": "Tạo và trực quan hóa các hàm toán học với phân tích số",
+      "ports": {"signal": "Tín hiệu"},
+      "status": {"ready": "Sẵn sàng"},
+      "menu": {"configure": "Cấu hình...", "show_table": "Xem bảng giá trị", "generate": "Tạo", "show_limit": "Hiển thị giới hạn", "show_derivative": "Hiển thị đạo hàm"},
+      "config_title": "Đặt hàm số",
+      "cfg": {"expr": "Biểu thức:", "presets": "Cài đặt sẵn:", "piecewise": "Kích hoạt hàm từng đoạn", "group_func": "Nhóm hàm", "group_dom": "Nhóm miền xác định", "group_viz": "Nhóm trực quan hóa"},
+      "table_title": "Bảng giá trị"
+    },
+    "signal_source": {
+      "title": "Nguồn tín hiệu nâng cao",
+      "tooltip": "Nguồn tín hiệu nâng cao",
+      "load_signal": "Tải tín hiệu từ tệp...",
+      "load_file_title": "Tải tệp tín hiệu",
+      "ports": {
+        "out": "Đầu ra",
+        "trigger_in": "Đầu vào kích hoạt",
+        "trigger_out": "Đầu ra kích hoạt"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu"
+      },
+      "configure": "Cấu hình...",
+      "generate": "Tạo tín hiệu",
+      "help_title": "Trợ giúp - Nguồn tín hiệu",
+      "help_html": "<h3>🎛️ Nút nguồn tín hiệu</h3>\n<p>Tạo <b>tín hiệu tùy chỉnh</b> bằng nhiều loại <b>dạng sóng cài sẵn</b> hoặc <b>công thức toán học</b> do người dùng viết. Đầu ra luôn là một tuple <code>(thời gian, biên độ)</code>, sẵn sàng cho xử lý tiếp theo.</p>\n\n<h4>📤 Đầu ra</h4>\n<p><code>out</code> → tuple <code>(t, y)</code>.</p>\n\n<h4>⚙️ Chế độ hoạt động</h4>\n<ul>\n    <li><b>Cài sẵn:</b> chọn từ sin, vuông, dốc, xung, nhiễu, DC, tam giác, răng cưa, sinc, Gauss, mũ, chirp. Tất cả tham số (tần số, biên độ, độ lệch, pha, chu kỳ nhiệm vụ, đối xứng, v.v.) đều có thể điều chỉnh trong hộp thoại cấu hình.</li>\n    <li><b>Công thức:</b> viết <b>biểu thức toán học tự do</b> dùng <code>t</code> (thời gian) và các biến tùy chỉnh (ví dụ <code>amp * sin(2 pi freq t) + offset</code>). Các biến được định nghĩa trong bảng và có thể thêm, xóa hoặc sửa tùy ý. Việc đánh giá an toàn và chỉ giới hạn ở các phép toán.</li>\n</ul>\n\n<h4>🖱️ Tương tác</h4>\n<ul>\n    <li><b>Nhấp đúp</b> vào nút → mở hộp thoại cấu hình với ba tab (Cài sẵn, Công thức, Nâng cao).</li>\n    <li><b>Nhấp</b> vào nút → vẽ tín hiệu hiện tại trên đồ thị chính.</li>\n    <li><b>Nhấp phải</b> → menu ngữ cảnh để tạo lại, cấu hình hoặc xóa nút.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+      "title": "Cấu hình tín hiệu",
+      "waveform": "Dạng sóng",
+      "frequency": "Tần số",
+      "amplitude": "Biên độ",
+      "offset": "Độ lệch",
+      "phase": "Pha",
+      "symmetry": "Đối xứng",
+      "direction": "Hướng",
+      "up": "Lên",
+      "down": "Xuống",
+      "stdev": "Độ lệch chuẩn",
+      "mean": "Trung bình",
+      "lobes": "Búp sóng",
+      "sigma": "Sigma",
+      "mu": "Mu",
+      "tau": "Tau",
+      "exp_type": "Loại",
+      "rise": "Tăng",
+      "fall": "Giảm",
+      "f0": "Tần số bắt đầu",
+      "f1": "Tần số kết thúc",
+      "chirp_method": "Phương pháp",
+      "linear": "Linear",
+      "logarithmic": "Logarithmic",
+      "tab_preset": "Cài sẵn",
+      "tab_formula": "Công thức",
+      "tab_advanced": "Nâng cao",
+      "preview": "Xem trước",
+      "apply": "Áp dụng",
+      "duration": "Thời lượng",
+      "sample_rate": "Tần số lấy mẫu",
+      "sampling_note": "0 = tự động",
+      "auto_generate": "Tự động tạo",
+      "time_label": "Thời gian (s)",
+      "amplitude_label": "Biên độ",
+      "formula_expr": "Công thức (dùng 't' làm biến thời gian):",
+      "variables": "Biến:",
+      "var_name": "Tên",
+      "var_value": "Giá trị",
+      "add_var": "Thêm biến",
+      "remove_var": "Xóa mục đã chọn",
+      "auto": "Tự động",
+      "basic_params": "Tham số cơ bản",
+      "carrier_freq": "Tần số sóng mang",
+      "mod_freq": "Tần số điều chế",
+      "mod_depth": "Độ sâu điều chế",
+      "deviation": "Độ lệch",
+      "heart_rate": "Nhịp tim",
+      "rise_time": "Thời gian tăng",
+      "fall_time": "Thời gian giảm",
+      "quick_insert": "Hàm nhanh",
+      "advanced": {
+        "modulation": "Điều chế",
+        "mod_enable": "Bật điều chế",
+        "mod_type": "Loại điều chế",
+        "mod_freq": "Tần số điều chế",
+        "mod_depth": "Độ sâu điều chế",
+        "noise_group": "Nhiễu",
+        "noise_enable": "Thêm nhiễu",
+        "noise_amp": "Biên độ nhiễu",
+        "auto_generate": "Tự động áp dụng thay đổi",
+        "auto_generate_tooltip": "Khi bật, mọi thay đổi tham số được áp dụng ngay vào nút. Khi tắt, nhấn OK để áp dụng."
+      },
+      "gamma": "Gamma (độ rộng)",
+      "window_type": "Loại cửa sổ",
+      "quadratic": "Quadratic",
+      "hyperbolic": "Hyperbolic",
+      "hanning": "Hanning",
+      "hamming": "Hamming",
+      "blackman": "Blackman",
+      "bartlett": "Bartlett",
+      "kaiser": "Kaiser",
+      "noise_type": "Loại nhiễu",
+      "gaussian": "Gauss",
+      "uniform": "Đều",
+      "pink": "Hồng (1/f)",
+      "brown": "Nâu (1/f²)",
+      "blue": "Xanh dương (f)",
+      "impulse": "Xung",
+      "pulse_shape": "Hình dạng xung",
+      "rect": "Chữ nhật",
+      "raised_cosine": "Cosine nâng",
+      "polynomial": "Đa thức PRBS",
+      "bit_rate": "Tốc độ bit",
+      "symbol_rate": "Tốc độ ký hiệu",
+      "symbol_sequence": "Chuỗi ký hiệu",
+      "bit_sequence": "Chuỗi bit",
+      "multitone_hint": "Tần số (Hz, cách nhau bằng dấu phẩy):",
+      "frequencies": "Tần số",
+      "amplitudes": "Biên độ",
+      "phases": "Pha",
+      "step_time": "Thời gian bước",
+      "impulse_time": "Thời gian xung",
+      "f_start": "Tần số bắt đầu",
+      "f_end": "Tần số kết thúc",
+      "f2": "Tần số 2",
+      "noise_level": "Mức nhiễu",
+      "duty_cycle": "Chu kỳ nhiệm vụ (%)",
+      "signal_sine": "Sin",
+      "signal_square": "Vuông",
+      "signal_ramp": "Dốc",
+      "signal_pulse": "Xung",
+      "signal_noise": "Nhiễu",
+      "signal_dc": "DC",
+      "signal_triangle": "Tam giác",
+      "signal_sawtooth": "Răng cưa",
+      "signal_sinc": "Sinc",
+      "signal_gaussian": "Gauss",
+      "signal_exponential": "Mũ",
+      "signal_chirp": "Chirp",
+      "signal_am": "AM",
+      "signal_fm": "FM",
+      "signal_ecg": "ECG",
+      "signal_trapezoidal": "Hình thang",
+      "signal_lorentzian": "Lorentz",
+      "signal_window": "Cửa sổ",
+      "signal_multitone": "Đa âm",
+      "signal_ask": "ASK",
+      "signal_fsk": "FSK",
+      "signal_psk": "PSK",
+      "signal_pwm": "PWM",
+      "signal_pam": "PAM",
+      "signal_prbs": "PRBS",
+      "signal_step": "Bước",
+      "signal_impulse": "Xung",
+      "signal_sweep_sine": "Quét sin",
+      "signal_cardiac": "Tim",
+      "signal_eeg": "EEG",
+      "signal_beat": "Nhịp"
+    },
+    "input": {
+      "help_html": "<h3>📂 Nút đầu vào (Tải dữ liệu)</h3>\n<p>Cho phép bạn <b>tải dữ liệu từ tệp .npz</b> (định dạng NumPy) và gửi đến quy trình làm việc.</p>\n\n<h4>⚙️ Cách dùng</h4>\n<ol>\n    <li><b>Nhấp phải</b> vào nút → chọn <i>\"Sửa đầu vào\"</i>.</li>\n    <li>Chọn tệp <code>.npz</code> chứa khóa có tên <code>datay</code>.</li>\n    <li>Mảng được lưu nội bộ và tự động truyền qua luồng.</li>\n</ol>\n\n<h4>📤 Đầu ra</h4>\n<p><code>out</code> → nội dung của <code>datay</code> từ tệp đã tải.</p>\n\n<h4>⚠️ Lưu ý</h4>\n<ul>\n    <li>Chỉ chấp nhận tệp <b>.npz</b> có khóa <code>datay</code>.</li>\n    <li>Nếu tệp không hợp lệ, lỗi sẽ hiển thị trong bảng điều khiển.</li>\n    <li>Sau khi tải tệp, luồng tự động chạy.</li>\n</ul>\n\n<h4>💡 Ví dụ</h4>\n<p>Tải tệp có dữ liệu cảm biến rồi kết nối với nút \"Bộ lọc\" hoặc \"Trình trực quan hóa\".</p>\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "hàm lambda",
+      "help_html": "<h3>🔧 Nút xử lý tổng quát</h3>\n<p>Áp dụng <b>hàm tùy chỉnh</b> cho dữ liệu đầu vào. Đây là cơ sở để tạo các phép toán, biến đổi, v.v.</p>\n\n<h4>📥 Đầu vào</h4>\n<p><code>data_in</code> → có thể là số, tuple (x, y) hoặc bất kỳ đối tượng nào.</p>\n\n<h4>📤 Đầu ra</h4>\n<p><code>out</code> → kết quả của việc áp dụng hàm cho đầu vào.</p>\n\n<h4>🧠 Hành vi theo loại đầu vào</h4>\n<ul>\n    <li>Nếu đầu vào là <b>tuple hai phần tử</b> (x, y), hàm nhận tuple và phải trả về tuple khác hoặc giá trị. Ví dụ: <code>lambda xy: (xy[0], xy[1] 2)</code>.</li>\n    <li>Nếu đầu vào là <b>giá trị đơn</b>, hàm nhận giá trị đó. Ví dụ: <code>lambda x: x**2</code>.</li>\n    <li>Nếu đầu vào là <code>None</code>, đầu ra cũng sẽ là <code>None</code>.</li>\n</ul>\n\n<h4>⚙️ Tùy chỉnh</h4>\n<p>Hàm được gán khi tạo nút (ví dụ trong mã). Trong các phiên bản tương lai, bạn có thể sửa từ giao diện.</p>\n\n<h4>💡 Ví dụ</h4>\n<ul>\n    <li><b>Nhân đôi một số:</b> <code>lambda x: x * 2</code></li>\n    <li><b>Tổng các thành phần của tuple:</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>Trả về cùng tuple (truyền qua):</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>Hàm đã áp dụng:</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "Cổng logic",
+      "tooltip": "Phép logic, so sánh và mặt nạ trên tín hiệu (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "Đầu vào 1",
+        "in2": "Đầu vào 2",
+        "out": "Đầu ra"
+      },
+      "config_title": "Cấu hình cổng logic",
+      "op_label": "Phép toán:",
+      "thr_label": "Ngưỡng / Mức:",
+      "inv_label": "Đảo đầu ra",
+      "help_title": "Trợ giúp - Cổng logic",
+      "help_html": "<h3>🎛️ Cổng logic / Bộ so sánh</h3>\n<p>Đánh giá, so sánh hoặc tạo mặt nạ cho hai tín hiệu đầu vào theo từng mẫu để tạo kích hoạt, mặt nạ logic hoặc đầu ra có điều kiện.</p>\n\n<h4>📥 Đầu vào</h4>\n<ul>\n<li><code>in1</code> → Tín hiệu chính (toán hạng A).</li>\n<li><code>in2</code> → Tham chiếu, mặt nạ hoặc toán hạng thứ hai (toán hạng B).</li>\n</ul>\n\n<h4>📤 Đầu ra</h4>\n<ul>\n<li><code>out</code> → Kết quả xử lý. Phép logic trả về <code>0.0</code> hoặc <code>1.0</code>. Bộ so sánh/ngưỡng tạo mặt nạ hoặc tín hiệu bị kẹp.</li>\n</ul>\n\n<h4>📐 Sơ đồ</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 Mô hình tư duy</h4>\n<p>Nút này hoạt động như một <b>cỗ máy quyết định theo từng mẫu</b>. Nó đánh giá từng điểm độc lập, biến dạng sóng analog thành tín hiệu điều khiển số, mặt nạ kích hoạt hoặc luồng logic.</p>\n\n<h4>📐 Biểu diễn dữ liệu</h4>\n<pre>\nĐầu vào:\n(x, y1) & (x, y2) → Mảng 1D (cắt về mảng ngắn hơn nếu không khớp)\n\nĐầu ra:\n(x, y_out) → Thường là nhị phân (0/1) hoặc đã tạo mặt nạ\n</pre>\n\n<h4>🔁 Mẫu sử dụng điển hình</h4>\n<pre>\n[Bộ tạo] → [Cổng logic] → [Kích hoạt / Đồ thị]\n\nVí dụ:\nSin (in1) + Vuông (in2) → [AND] → Chuỗi xung đồng bộ\nTín hiệu (in1) → [THRESHOLD] → mặt nạ 0/1 để phát hiện đỉnh\nTín hiệu (in1) + Tham chiếu (in2) → [MASK] → Tắt tiếng in1 khi in2 ≤ 0\n</pre>\n\n<h4>⚠️ Lỗi thường gặp</h4>\n<ul>\n<li>Mong đợi phép logic giữ nguyên biên độ → Không giữ (chuyển thành 0/1). Dùng <code>LEVEL</code> hoặc <code>MASK</code> thay thế.</li>\n<li>Kết nối các tín hiệu có độ dài rất khác nhau → Cắt về độ dài nhỏ nhất.</li>\n<li>Dùng <code>EQ</code> trên số thực → Dựa vào dung sai ngầm; làm tròn trước nếu cần.</li>\n</ul>\n<hr><hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li>\n<li><b>Kéo</b> nút → di chuyển khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "sum": {
+      "title": "Số học",
+      "tooltip": "Thực hiện các phép toán số học giữa hai tín hiệu.",
+      "operation": {
+        "sum": "Cộng",
+        "sub": "Trừ",
+        "mul": "Nhân",
+        "div": "Chia"
+      },
+      "ports": {
+        "out": "Đầu ra",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "A",
+        "port_b_mul": "B",
+        "port_a_div": "tử số",
+        "port_b_div": "mẫu số"
+      },
+      "menu": {
+        "operation": "Phép toán"
+      },
+      "help_title": "Trợ giúp - Nút số học",
+      "help_html": "<h3>➕ Nút cộng/số học</h3>\n<p>Thực hiện các phép toán số học giữa hai tín hiệu (mảng hoặc giá trị số).</p>\n\n<h4>📥 Đầu vào</h4>\n<ul>\n    <li><code>port_a</code> (trên): toán hạng thứ nhất (A).</li>\n    <li><code>port_b</code> (dưới): toán hạng thứ hai (B).</li>\n</ul>\n\n<h4>📤 Đầu ra</h4>\n<p><code>out</code> → kết quả phép toán (A op B).</p>\n\n<h4>⚙️ Phép toán khả dụng (nhấp phải → Phép toán)</h4>\n<ul>\n    <li><b>Cộng (+)</b>: A + B</li>\n    <li><b>Trừ (−)</b>: A − B</li>\n    <li><b>Nhân (×)</b>: A * B</li>\n    <li><b>Chia (÷)</b>: A / B (bảo vệ chống chia cho không).</li>\n</ul>\n\n<h4>📐 Sơ đồ</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 Mô hình tư duy</h4>\n<p>Nút này là một <b>toán tử vector</b>.\nNó hoạt động theo từng phần tử trên tín hiệu.</p>\n\n<h4>📐 Biểu diễn vector</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\nĐầu ra:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 Ví dụ trực quan</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\nTổng:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 Chiến lược sử dụng</h4>\n<ul>\n<li><b>Chuẩn hóa:</b> chia cho giá trị lớn nhất</li>\n<li><b>Chia tỉ lệ:</b> nhân với hằng số</li>\n<li><b>Trộn tín hiệu:</b> tổng các sóng</li>\n<li><b>Triệt tiêu:</b> A - B để loại bỏ nhiễu</li>\n</ul>\n\n<h4>⚠️ Lỗi thường gặp</h4>\n<ul>\n<li>Không căn chỉnh trục X → kết quả không nhất quán</li>\n<li>Chia cho giá trị gần không → mất ổn định</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "script": {
+      "title": "Script",
+      "tooltip": "Nút script Python",
+      "ports": {
+        "data_in": "Đầu vào dữ liệu",
+        "loop_in": "Đầu vào vòng lặp",
+        "out": "Đầu ra"
+      },
+      "menu": {
+        "edit": "Sửa",
+        "run": "Chạy script"
+      },
+      "status_ready": "Sẵn sàng",
+      "status_error": "Lỗi",
+      "edit_script": "Sửa script",
+      "tooltip_x": "Mảng NumPy: Trục X (thời gian, tần số, v.v.)",
+      "tooltip_y": "Mảng NumPy: giá trị tín hiệu hiện tại",
+      "tooltip_param": "Tham số lặp (từ TriggerNode) hoặc None",
+      "help_title": "Trợ giúp - Nút script",
+      "help_html": "<h3>📜 Nút script tùy chỉnh</h3><p>Cho phép viết mã Python để xử lý tín hiệu tùy ý.</p><h4>📥 Đầu vào</h4><ul><li><code>data_in</code> → tín hiệu chính (x, y) hoặc mảng đơn giản.</li><li><code>loop_in</code> → đầu vào tùy chọn để nhận tham số từ <b>TriggerNode</b> (giá trị <code>param</code>).</li><li>Cổng động <code>@input name</code> → các đầu vào bổ sung được định nghĩa trong script.</li></ul><h4>📤 Đầu ra</h4><ul><li><code>out</code> → tuple (x_new, y_new) do script tạo (chế độ batch).</li><li>Cổng động <code>@output name</code> → các đầu ra bổ sung được định nghĩa trong script.</li></ul><h4>✏️ Sửa script</h4><p>Nhấp phải → <b>Sửa script</b> để mở trình soạn thảo có tô sáng cú pháp.</p><p>Bao gồm tự động hoàn thành, mẫu, tham số cấu hình (<code>@param</code>) và thực thi bên ngoài (Python thay thế).</p><hr><h4>🧠 Biến khả dụng (chế độ batch truyền thống)</h4><ul><li><code>x</code>: mảng numpy – trục thời gian hoặc tần số</li><li><code>y</code>: mảng numpy – giá trị tín hiệu</li><li><code>param</code>: float (tùy chọn) – giá trị từ <code>loop_in</code> (TriggerNode)</li><li><code>persist</code>: dict – lưu giữ giữa các lần thực thi cùng nút (hữu ích cho bộ tích lũy)</li><li><code>np</code>, <code>scipy</code>, <code>sympy</code> – thư viện đã nhập sẵn</li></ul><h4>🧩 Mô hình tư duy</h4><p>Nút này là một <b>khối biến đổi tùy ý</b>. Ở đây bạn định nghĩa vật lý, toán học hoặc logic của riêng mình.</p><h4>📐 Hình dạng mong đợi (batch)</h4><pre>Đầu vào: x → vector (thời gian/tần số) y → vector (giá trị) Đầu ra: (x_mod, y_mod)</pre><h4>🧠 Ví dụ mạnh mẽ hơn</h4><h5>1. Khuếch đại phụ thuộc tần số</h5><pre>gain = np.exp(-x * 0.01)\nreturn (x, y * gain)</pre><h5>2. Phát hiện đỉnh</h5><pre>y_mod = np.where(y > 0.8, y, 0)\nreturn (x, y_mod)</pre><h5>3. Điều chế</h5><pre>carrier = np.sin(2*np.pi*1000*x)\nreturn (x, y * carrier)</pre><h5>4. Dùng param (quét)</h5><pre>factor = param if param is not None else 1.0\nreturn (x, y * factor)</pre><h5>5. Bộ tích lũy với persist</h5><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1\nreturn (x, y + persist[\"counter\"] * 0.1)</pre><hr><h4>🔁 Chiến lược nâng cao</h4><pre>Trigger → Script(param) → Cộng → Trực quan hóa → Cho phép quét tự động</pre><h4>⚠️ Lỗi thường gặp</h4><ul><li>Không trả về tuple (x, y) trong chế độ batch.</li><li>Không xem xét rằng <code>param</code> có thể là None.</li><li>Cố dùng nút \"Test\" trên script streaming hoặc GPU (dùng luồng thực).</li></ul><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><h4>🧪 Ví dụ đầy đủ</h4><pre>Máy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+    },
+    "trigger": {
+      "title": "Kích hoạt",
+      "tooltip": "Nút lặp và tích lũy",
+      "ports": {
+        "data_in": "Đầu vào dữ liệu",
+        "trigger_in": "Đầu vào kích hoạt",
+        "loop_out": "Đầu ra vòng lặp",
+        "out": "Đầu ra"
+      },
+      "state": {
+        "idle": "ĐANG CHỜ",
+        "running": "LẶP {iteration}/{total}",
+        "done": "HOÀN THÀNH",
+        "running_count": "ĐANG CHẠY {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "Cấu hình..."
+      },
+      "accumulate": {
+        "accumulate": "Chế độ tích lũy",
+        "stack": "chồng",
+        "average": "trung bình",
+        "max": "lớn nhất",
+        "min": "nhỏ nhất",
+        "last": "Lần bắt cuối"
+      },
+      "config_title": "Cấu hình nút kích hoạt",
+      "n_iter": "Số lần lặp",
+      "reset": "Đặt lại lần lặp",
+      "help_title": "Trợ giúp - Nút kích hoạt",
+      "help_html": "<h3>⏺ Nút kích hoạt (Bắt theo lô)</h3>\n<p>Bắt và tích lũy tín hiệu theo vòng lặp, được kích hoạt bởi tín hiệu kích hoạt bên ngoài (<code>trigger_in</code>). Lý tưởng cho các thí nghiệm lặp lại, lấy trung bình nhiễu hoặc so sánh dạng sóng theo thời gian.</p>\n\n<h4>📥 Đầu vào</h4>\n<ul>\n    <li><code>data_in</code> → tín hiệu chính (x, y) cần bắt.</li>\n    <li><code>trigger_in</code> → tín hiệu kích hoạt. Mỗi xung hoặc kích hoạt sẽ bắt một dạng sóng mới vào bộ đệm nội bộ.</li>\n</ul>\n\n<h4>📤 Đầu ra</h4>\n<ul>\n    <li><code>out</code> → khi hoàn thành số lần lặp đã lập trình (<code>n_iter</code>), phát tín hiệu tích lũy theo chế độ đã chọn.</li>\n</ul>\n\n<h4>⚙️ Cấu hình</h4>\n<p>Nhấp phải → <b>Cấu hình</b> để điều chỉnh:</p>\n<ul>\n    <li><b>Số lần lặp (N):</b> số lần bắt chính xác cần thiết để tạo đầu ra.</li>\n    <li><b>Tích lũy:</b> chế độ kết hợp các lần bắt: <i>chồng, trung bình, lớn nhất, nhỏ nhất hoặc cuối cùng</i>.</li>\n</ul>\n\n<h4>🧠 Hành vi</h4>\n<ol>\n    <li>Nút ở trạng thái <b>IDLE</b> chờ dữ liệu trên <code>data_in</code> và xung trên <code>trigger_in</code>.</li>\n    <li>Khi phát hiện kích hoạt hợp lệ, lưu tín hiệu hiện tại vào bộ đệm nội bộ và hiển thị <code>RUNNING X/N</code>.</li>\n    <li>Khi đạt đúng <b>N lần lặp</b>, tạo đầu ra tích lũy, gửi qua <code>out</code> và tự động xóa bộ đệm cho thí nghiệm tiếp theo.</li>\n</ol>\n\n<h4>🧩 Mô hình tư duy</h4>\n<p>Nút này hoạt động như một <b>bộ ghi theo lô dựa trên sự kiện</b>. Tương đương với quy trình \"chờ kích hoạt → ghi → lặp đến N\" trong phòng thí nghiệm.</p>\n\n<h4>📐 Chế độ chồng</h4>\n<p>Nếu chọn <b>chồng</b>, các tín hiệu được nối thành một mảng duy nhất phân tách bằng <code>NaN</code>. Điều này cho phép vẽ tất cả các lần bắt trong một dạng sóng mà không cần kết nối chúng.</p>\n\n<h4>🔁 Ví dụ luồng</h4>\n<pre>\nBộ tạo/Máy hiện sóng → TriggerNode (N=5) → ScriptNode (tùy chọn) → Đồ thị\n\nKết quả:\n5 đường cong chồng (chồng) hoặc trung bình của chúng (trung bình)\n</pre>\n\n<h4>🧠 Ứng dụng thực tế</h4>\n<ul>\n<li>Lấy trung bình tín hiệu nhiễu</li>\n<li>Bắt đồng bộ các thí nghiệm lặp lại</li>\n<li>So sánh trực quan nhiều lần thu</li>\n<li>Tiền xử lý theo lô cho phân tích thống kê</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → TriggerNode → ScriptNode → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + Nhấp</b> vào cổng → chọn nhanh để kết nối.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (cấu hình, xóa, kết nối/ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "generator": {
+      "title": "Bộ tạo",
+      "tooltip": "Nút tạo tín hiệu",
+      "ports": {
+        "signal_out": "Đầu ra tín hiệu",
+        "trigger_out": "Đầu ra kích hoạt",
+        "trigger_in": "Đầu vào kích hoạt",
+        "signal_in": "Đầu vào tín hiệu"
+      },
+      "status": {
+        "default": "FloWorks | Cuộn: thu phóng | Nhấp giữa: di chuyển | Nhấp phải vào nút: tùy chọn",
+        "sim": "MÔ PHỎNG",
+        "busy": "BẬN",
+        "ready": "SẴN SÀNG"
+      },
+      "device_label": "TBỊ",
+      "channel_label": "KÊNH",
+      "gen_button": "TẠO",
+      "setup_button": "CÀI",
+      "generate_action": "Tạo tín hiệu",
+      "help_title": "Trợ giúp - Nút bộ tạo",
+      "help_html": "<h3>📡 Nút bộ tạo tín hiệu</h3>\n<p>Tạo tín hiệu analog và gửi đến máy phát hàm thực (SDG) hoặc mô phỏng đầu ra nội bộ.</p>\n\n<h4>📥 Cổng vào</h4>\n<ul>\n    <li><code>trigger_in</code> (trái) → nhận tín hiệu để kích hoạt tạo (chế độ EXT).</li>\n    <li><code>signal_in</code> (trái) → nhận tín hiệu ngoài (t, y) sẽ được gửi đến máy phát dưới dạng dạng sóng tùy ý (chế độ EXT).</li>\n</ul>\n\n<h4>📤 Cổng ra</h4>\n<ul>\n    <li><code>signal_out</code> (phải) → phát tín hiệu đã tạo (t, y) để trực quan hóa hoặc xử lý.</li>\n    <li><code>trigger_out</code> (phải) → tín hiệu kích hoạt khi tạo xong (tùy chọn).</li>\n</ul>\n\n<h4>⚙️ Chế độ hoạt động</h4>\n<ul>\n    <li><b>INT</b> (nội bộ): tín hiệu được tạo theo tham số nội bộ của nút (tần số, biên độ, dạng sóng, v.v.) và gửi đến phần cứng (hoặc mô phỏng).</li>\n    <li><b>EXT</b> (ngoài): nút chờ nhận tín hiệu tùy chỉnh qua <code>signal_in</code>. Khi nhấn <b>TẠO</b>, tín hiệu đó được tải lên máy phát dưới dạng dạng sóng tùy ý.</li>\n</ul>\n\n<h4>🔧 Cấu hình</h4>\n<p>Nhấn nút <b>CÀI</b> (hoặc nhấp phải → \"Mở bộ điều khiển\") để điều chỉnh:</p>\n<ul>\n    <li>Dạng sóng: sin, vuông, dốc, xung, nhiễu, DC, tam giác, răng cưa, sinc, Gauss, mũ, chirp.</li>\n    <li>Tần số, biên độ, độ lệch, pha, chu kỳ nhiệm vụ, v.v.</li>\n    <li>Kênh đầu ra (C1 hoặc C2).</li>\n    <li>Thiết bị: \"sdg\" (phần cứng thực) hoặc \"mô phỏng\" (chỉ mô phỏng nội bộ).</li>\n</ul>\n\n<h4>▶️ Tạo</h4>\n<p>Nhấn nút <b>TẠO</b> (hoặc nhấp phải → \"Tạo tín hiệu\") để bắt đầu đầu ra. Nút sẽ gửi tín hiệu đến phần cứng và cũng phát <code>signal_out</code> với dữ liệu đã tạo cho phần còn lại của luồng.</p>\n\n<h4>💡 Ví dụ điển hình</h4>\n<ol>\n    <li>Cấu hình bộ tạo với sóng sin 1 kHz, 1 Vpp.</li>\n    <li>Kết nối <code>signal_out</code> với nút máy hiện sóng hoặc trình trực quan hóa.</li>\n    <li>Nhấn <b>TẠO</b> → tín hiệu xuất hiện trên kênh vật lý và cả trên đồ thị.</li>\n</ol>\n\n<h4>⚠️ Lưu ý</h4>\n<ul>\n    <li>Ở chế độ EXT, hãy đảm bảo kết nối <code>signal_in</code> với tín hiệu (t, y) trước khi nhấn TẠO.</li>\n    <li>Nếu phần cứng không kết nối, nút tự động dùng mô phỏng.</li>\n    <li>Dạng sóng tùy ý được tải lên tối đa 524288 điểm (tùy model).</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "Máy hiện sóng",
+      "tooltip": "Nút bắt máy hiện sóng\nNhấp đúp để xem thông tin",
+      "ports": {
+        "out_primary": "Đầu ra chính",
+        "out_secondary": "Đầu ra phụ",
+        "trigger_out": "Đầu ra kích hoạt"
+      },
+      "status": {
+        "sim": "MÔ PHỎNG",
+        "capturing": "ĐANG BẮT...",
+        "armed": "SẴN SÀNG",
+        "connected": "ĐÃ KẾT NỐI",
+        "disconnected": "ĐÃ NGẮT KẾT NỐI"
+      },
+      "device_label": "TBỊ",
+      "channel_label": "KÊNH",
+      "lcr_label": "LCR",
+      "sim_label": "MÔ PHỎNG",
+      "trig_button": "KÍCH",
+      "setup_button": "CÀI",
+      "menu": {
+        "show_channel": "Hiển thị kênh"
+      },
+      "channel": {
+        "primary": "Chính (Z)",
+        "secondary": "Phụ (θ)"
+      },
+      "trigger_action": "Kích hoạt bắt",
+      "help_title": "Trợ giúp - Nút máy hiện sóng",
+      "help_html": "<h3>📊 Nút máy hiện sóng (Thu tín hiệu)</h3>\n<p>Bắt tín hiệu thực bằng phần cứng (SDS, LCR) hoặc tạo dữ liệu mô phỏng để kiểm tra.</p>\n\n<h4>📤 Cổng ra</h4>\n<ul>\n    <li><code>out_primary</code> → tín hiệu chính (điện áp theo thời gian hoặc trở kháng Z cho LCR).</li>\n    <li><code>out_secondary</code> → tín hiệu phụ (góc pha θ cho LCR; không dùng cho SDS).</li>\n    <li><code>trigger_out</code> → phát tín hiệu kích hoạt khi bắt xong (hữu ích để đồng bộ các nút khác).</li>\n</ul>\n\n<h4>🔘 Điều khiển</h4>\n<ul>\n    <li><b>KÍCH</b> → bắt đầu một lần bắt (thu dữ liệu).</li>\n    <li><b>CÀI</b> → mở bảng cấu hình (tham số mô phỏng hoặc bộ điều khiển phần cứng).</li>\n    <li><b>Bộ chọn thiết bị</b> (combo dưới) → chọn giữa SDS (máy hiện sóng thực), LCR (máy đo trở kháng) hoặc mô phỏng.</li>\n</ul>\n\n<h4>⚙️ Chế độ hoạt động</h4>\n<ul>\n    <li><b>SDS</b>: kết nối với máy hiện sóng thực (Siglent SDS). Bạn có thể chọn kênh (C1..C4) qua menu ngữ cảnh → \"Hiển thị kênh\".</li>\n    <li><b>LCR</b>: kết nối với máy đo LCR, cung cấp hai đầu ra: chính (trở kháng Z) và phụ (góc pha θ).</li>\n    <li><b>Mô phỏng</b>: tạo tín hiệu tổng hợp có nhiễu, cấu hình qua CÀI (cơ sở thời gian, dải điện áp, mức kích hoạt, tần số lấy mẫu).</li>\n</ul>\n\n<h4>📈 Trực quan hóa</h4>\n<p>Nút không vẽ tín hiệu nội bộ, nhưng có thể kết nối với widget trực quan hóa (như <code>PlotWidget</code>) để hiển thị dữ liệu đã bắt.</p>\n\n<h4>💡 Ví dụ sử dụng</h4>\n<ol>\n    <li>Chọn thiết bị (SDS) và kết nối vật lý.</li>\n    <li>Nhấn KÍCH để bắt một dạng sóng.</li>\n    <li>Tín hiệu sẽ có sẵn trên <code>out_primary</code> cho các nút khác.</li>\n    <li>Nếu dùng LCR, cả hai đầu ra (Z và θ) sẽ có sẵn.</li>\n</ol>\n\n<h4>⚠️ Lưu ý</h4>\n<ul>\n    <li>Ở chế độ phần cứng, đảm bảo thiết bị đã kết nối và bật nguồn.</li>\n    <li>Việc bắt chạy trong luồng riêng để không chặn giao diện.</li>\n    <li>Nút hoạt động như nguồn dữ liệu (nút đầu vào) cho luồng.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "spectral": {
+      "title": "Phổ",
+      "tooltip": "Biến đổi phổ: FFT, Hilbert, Welch (PSD) và DCT",
+      "transform_type": "Biến đổi:",
+      "window_type": "Cửa sổ:",
+      "nfft": "NFFT / Phân đoạn:",
+      "scale": "Tỉ lệ:",
+      "detrend": "Loại xu hướng:",
+      "normalize": "Chuẩn hóa (bảo toàn năng lượng)",
+      "config_title": "Cấu hình phổ",
+      "menu": {
+        "configure": "Cấu hình...",
+        "show_output": "Hiển thị đầu ra"
+      },
+      "channel": {
+        "magnitude": "Biên độ",
+        "phase": "Pha"
+      },
+      "ports": {
+        "input": "Đầu vào",
+        "output": "Đầu ra thời gian",
+        "magnitude": "Biên độ",
+        "phase": "Pha"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu",
+        "ready": "Sẵn sàng",
+        "phase": "Pha"
+      },
+      "help_title": "Trợ giúp - Phổ",
+      "help_html": "<h3>📊 Nút phổ (Biến đổi phổ)</h3>\n<p>Tính nhiều loại biến đổi trên tín hiệu đầu vào: <b>FFT</b>, <b>Hilbert</b>, <b>Welch (PSD)</b> và <b>DCT</b>.</p>\n\n<h4>📥 Đầu vào</h4>\n<p><code>input</code> → mong đợi tuple <code>(x, y)</code> hoặc mảng 1D.</p>\n\n<h4>📤 Đầu ra</h4>\n<ul>\n    <li><b>Đầu ra thời gian</b> → tín hiệu miền thời gian (chỉ hoạt động với Hilbert: phần thực của tín hiệu giải tích).</li>\n    <li><b>Biên độ</b> → tùy chế độ:\n        <ul>\n            <li><b>FFT</b> → phổ biên độ chuẩn hóa <code>(tần số, biên độ)</code>.</li>\n            <li><b>Hilbert</b> → đường bao tín hiệu <code>(thời gian, đường bao)</code>.</li>\n            <li><b>Welch</b> → mật độ phổ công suất <code>(tần số, PSD)</code>.</li>\n            <li><b>DCT</b> → hệ số biến đổi cosin rời rạc <code>(chỉ số, hệ số)</code>.</li>\n        </ul>\n    </li>\n    <li><b>Pha</b> → góc pha tính bằng radian (FFT) hoặc pha tức thời (Hilbert). <i>Không khả dụng</i> cho Welch hoặc DCT.</li>\n</ul>\n\n<h4>⚙️ Tham số</h4>\n<ul>\n    <li><b>Biến đổi</b> — chọn giữa FFT, Hilbert, Welch hoặc DCT.</li>\n    <li><b>Cửa sổ</b> — hàm cửa sổ từ <code>scipy.signal.windows</code> (Hann, Hamming, Blackman, v.v.).</li>\n    <li><b>NFFT / Phân đoạn</b> — độ dài FFT hoặc độ dài phân đoạn Welch. <code>Auto</code> dùng lũy thừa 2 tiếp theo.</li>\n    <li><b>Tỉ lệ</b> — <code>linear</code> hoặc <code>dB</code> (20·log₁₀ cho FFT/Hilbert/DCT, 10·log₁₀ cho Welch).</li>\n    <li><b>Loại xu hướng</b> — loại bỏ giá trị trung bình không đổi hoặc xu hướng tuyến tính trước khi xử lý.</li>\n    <li><b>Chuẩn hóa</b> — điều chỉnh cửa sổ để bảo toàn năng lượng.</li>\n</ul>\n\n<h4>🖱️ Tương tác</h4>\n<ul>\n    <li><b>Nhấp phải</b> → menu ngữ cảnh (Cấu hình, chọn kênh hiển thị).</li>\n    <li><b>Nhấp đúp</b> → mở cửa sổ trợ giúp này.</li>\n    <li><b>Bảng bên</b> — điều chỉnh tham số theo thời gian thực; đồ thị tự động cập nhật.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → Cửa sổ → Phổ (FFT) → Bộ lọc → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "ifft": {
+      "title": "IFFT",
+      "tooltip": "Biến đổi Fourier ngược (tái tạo thời gian)",
+      "fs": "Tần số lấy mẫu (fs):",
+      "nfft": "NFFT:",
+      "real_only": "Chỉ đầu ra thực (irfft)",
+      "conjugate_symmetry": "Bắt buộc đối xứng Hermitian",
+      "normalize": "Chuẩn hóa theo N",
+      "config_title": "Cấu hình IFFT",
+      "menu": {
+        "configure": "Cấu hình..."
+      },
+      "ports": {
+        "magnitude": "Biên độ",
+        "phase": "Pha",
+        "output": "Đầu ra thời gian"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu",
+        "waiting_phase": "Pha=0 (giả định)",
+        "ready": "Sẵn sàng"
+      },
+      "help_title": "Trợ giúp - IFFT",
+      "help_html": "<h3>🔁 Nút IFFT (Biến đổi Fourier nhanh ngược)</h3>\n<p>Tái tạo tín hiệu miền thời gian từ phổ tần số của nó.</p>\n\n<h4>📥 Đầu vào</h4>\n<ul>\n    <li><b>Biên độ</b> → <code>(tần số, biên độ)</code> hoặc mảng 1D. <b>Bắt buộc.</b></li>\n    <li><b>Pha</b> → <code>(tần số, góc)</code> hoặc mảng 1D. <b>Tùy chọn.</b> Nếu không kết nối, pha được giả định bằng không.</li>\n</ul>\n\n<h4>📤 Đầu ra</h4>\n<ul>\n    <li><b>Đầu ra thời gian</b> → <code>(thời gian, tín hiệu)</code> đã tái tạo.</li>\n</ul>\n\n<h4>⚙️ Tham số</h4>\n<ul>\n    <li><b>fs</b> — tần số lấy mẫu để tạo trục thời gian.</li>\n    <li><b>NFFT</b> — kích thước IFFT. <code>Auto</code> dùng <code>2·(len(mag)-1)</code>.</li>\n    <li><b>Đầu ra thực</b> — dùng <code>irfft</code> (đảm bảo đầu ra thực) hoặc <code>ifft</code> (phức).</li>\n    <li><b>Đối xứng Hermitian</b> — ép <code>Y[-k] = conj(Y[k])</code> trước khi nghịch đảo (ngăn ngừa hiện tượng giả).</li>\n    <li><b>Chuẩn hóa</b> — chia cho <code>N</code> để bảo toàn biên độ gốc.</li>\n</ul>\n\n<h4>🖱️ Tương tác</h4>\n<ul>\n    <li><b>Nhấp phải</b> → Cấu hình...</li>\n    <li><b>Nhấp đúp</b> → trợ giúp.</li>\n    <li><b>Bảng bên</b> — điều chỉnh fs và tham số theo thời gian thực.</li>\n</ul>"
+    },
+    "thd": {
+      "title": "Máy phân tích THD",
+      "tooltip": "Tổng méo hài THD",
+      "ports": {
+        "input": "Đầu vào",
+        "output": "Đầu ra"
+      },
+      "dialog": {
+        "title": "Phân tích THD"
+      },
+      "tab": {
+        "summary": "Tóm tắt",
+        "harmonics": "Hài",
+        "spectrum": "Phổ"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "Tần số cơ bản:",
+        "max_harmonics": "Hài được xét:",
+        "green_threshold": "Ngưỡng xanh (<):",
+        "yellow_threshold": "Ngưỡng vàng (<):"
+      },
+      "harmonics": {
+        "order": "Bậc hài",
+        "freq": "Tần số (Hz)",
+        "amp_rel": "Biên độ tương đối (%)"
+      },
+      "help_title": "Trợ giúp - THD",
+      "help_html": "<h3>Máy phân tích tổng méo hài (THD)</h3><p>Tính THD và THD+N của tín hiệu đầu vào.</p><p>Tín hiệu được truyền nguyên vẹn đến đầu ra.</p><p><b>Tham số:</b></p><ul><li>max_harmonics: số hài được xét</li><li>ngưỡng xanh/vàng: thay đổi màu THD trong nút</li></ul><p><i>Nhấp đúp để mở phân tích chi tiết.</i></p>"
+    },
+    "filter": {
+      "title": "Bộ lọc",
+      "tooltip": "Bộ lọc số (Butterworth)",
+      "ports": {
+        "input": "Đầu vào",
+        "output": "Đầu ra"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu",
+        "ready": "Sẵn sàng"
+      },
+      "menu": {
+        "configure": "Cấu hình...",
+        "show_output": "Hiển thị đầu ra"
+      },
+      "config_title": "Cấu hình bộ lọc",
+      "filter_type": "Loại bộ lọc:",
+      "cutoff": "Tần số cắt (Hz):",
+      "cutoff1": "Tần số cắt 1 (Hz):",
+      "cutoff2": "Tần số cắt 2 (Hz):",
+      "order": "Bậc bộ lọc:",
+      "fs": "Tần số lấy mẫu (Hz, 0 = tự động):",
+      "help_title": "Trợ giúp - Bộ lọc",
+      "help_html": "<h3>🎛️ Nút bộ lọc (Butterworth)</h3>\n<p>Áp dụng <b>bộ lọc Butterworth số</b> cho tín hiệu đầu vào.</p>\n\n<h4>📥 Đầu vào</h4>\n<p><code>input</code> → mong đợi tuple <code>(x, y)</code> hoặc mảng 1D.</p>\n\n<h4>📤 Đầu ra</h4>\n<p><code>output</code> → tín hiệu đã lọc dưới dạng <code>(x, y_filtered)</code>.</p>\n\n<h4>⚙️ Tham số (nhấp đúp để cấu hình)</h4>\n<ul>\n    <li><b>Loại bộ lọc</b> – thông thấp, thông cao, thông dải hoặc chắn dải.</li>\n    <li><b>Tần số cắt</b> – tính bằng Hz. Với thông dải/chắn dải cần hai tần số.</li>\n    <li><b>Bậc</b> – bậc bộ lọc (1–20). Bậc cao hơn = dốc hơn.</li>\n    <li><b>Tần số lấy mẫu</b> – nếu đặt 0, sẽ được suy ra tự động từ trục <i>x</i>.</li>\n</ul>\n\n<h4>🛠️ Hoạt động</h4>\n<ul>\n    <li>Bộ lọc được thiết kế bằng <code>scipy.signal.butter</code>.</li>\n    <li>Lọc pha không được áp dụng với <code>filtfilt</code> (không méo pha).</li>\n    <li>Nếu đầu vào là mảng 1D, một trục <i>x</i> tổng hợp được tạo bằng tần số lấy mẫu.</li>\n</ul>\n\n<h4>🖱️ Tương tác</h4>\n<ul>\n    <li><b>Nhấp đúp</b> → mở hộp thoại cấu hình.</li>\n    <li><b>Nhấp</b> vào nút → vẽ tín hiệu đã lọc.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → Bộ lọc → FFT → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "Chuẩn hóa",
+      "tooltip": "Chuẩn hóa tín hiệu về khoảng chỉ định",
+      "ports": {
+        "input": "Đầu vào",
+        "output": "Đầu ra"
+      },
+      "menu": {
+        "configure": "Cấu hình..."
+      },
+      "config_title": "Cấu hình nút chuẩn hóa",
+      "param": {
+        "target_min": "Min đích:",
+        "target_max": "Max đích:"
+      },
+      "help_title": "Trợ giúp - Chuẩn hóa",
+      "help_html": "<h3>📏 Nút chuẩn hóa</h3>\n<p>Chuẩn hóa tín hiệu đầu vào về khoảng được chỉ định bởi <b>Min đích</b> và <b>Max đích</b>.</p>\n\n<h4>📥 Đầu vào</h4>\n<p><code>input</code> → mong đợi tuple <code>(x, y)</code> hoặc mảng 1D.</p>\n\n<h4>📤 Đầu ra</h4>\n<ul>\n    <li><b>Tín hiệu chuẩn hóa</b> → <code>(x_norm, y_norm)</code> – tín hiệu được chia tỉ lệ về khoảng đích.</li>\n</ul>\n\n<h4>⚙️ Tham số (nhấp đúp để cấu hình)</h4>\n<ul>\n    <li><b>Min đích</b> – giá trị nhỏ nhất của khoảng mong muốn (mặc định 0.0).</li>\n    <li><b>Max đích</b> – giá trị lớn nhất của khoảng mong muốn (mặc định 1.0).</li>\n</ul>\n\n<h4>📐 Hoạt động</h4>\n<p>Chia tỉ lệ tuyến tính:</p>\n<pre>y_norm = target_min + (y - original_min) * (target_max - target_min) / (original_max - original_min)</pre>\n<p>Trục x giữ nguyên.</p>\n\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "Tích chập",
+      "tooltip": "Bộ lọc FIR qua tích chập",
+      "ports": {
+        "input": "Đầu vào",
+        "output": "Đầu ra"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu"
+      },
+      "menu": {
+        "show_output": "Hiển thị đầu ra",
+        "configure": "Cấu hình..."
+      },
+      "config_title": "Cấu hình tích chập",
+      "example_kernel": "Nhân ví dụ:",
+      "kernel": "Hệ số nhân (cách nhau bằng dấu phẩy):",
+      "mode": "Chế độ tích chập:",
+      "help_title": "Trợ giúp - Tích chập",
+      "help_html": "<h3>🔀 Nút tích chập (Bộ lọc FIR)</h3>\n<p>Áp dụng tích chập rời rạc giữa tín hiệu đầu vào và nhân do người dùng định nghĩa.</p>\n\n<h4>📥 Đầu vào</h4>\n<p><code>input</code> → mong đợi tuple <code>(x, y)</code> hoặc mảng 1D.</p>\n\n<h4>📤 Đầu ra</h4>\n<ul>\n    <li><b>Tín hiệu đã lọc</b> → <code>(x_conv, y_conv)</code> – kết quả tích chập.</li>\n</ul>\n\n<h4>⚙️ Tham số (nhấp đúp để cấu hình)</h4>\n<ul>\n    <li><b>Hệ số nhân</b> – số thực cách nhau bằng dấu phẩy, ví dụ <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Chế độ tích chập</b> – <code>'same'</code> (mặc định), <code>'full'</code> hoặc <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Hoạt động</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>Trục x được điều chỉnh tương ứng: <code>'same'</code> giữ x gốc; <code>'valid'</code> cắt hai đầu; <code>'full'</code> mở rộng tuyến tính.</li>\n</ul>\n\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+    },
+    "resample": {
+      "title": "Lấy mẫu lại",
+      "tooltip": "Thay đổi tần số lấy mẫu của tín hiệu",
+      "ports": {
+        "input": "Đầu vào",
+        "output": "Đầu ra"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu",
+        "ready": "Sẵn sàng"
+      },
+      "menu": {
+        "configure": "Cấu hình..."
+      },
+      "config_title": "Cấu hình lấy mẫu lại",
+      "mode": "Chế độ:",
+      "factor": "Hệ số:",
+      "target_fs": "fs đích (Hz):",
+      "help_title": "Trợ giúp - Lấy mẫu lại",
+      "help_html": "<h3>🔄 Nút lấy mẫu lại</h3><p>Thay đổi <b>tần số lấy mẫu</b> của tín hiệu đầu vào.</p><h4>📥 Đầu vào</h4><p><code>input</code> → mong đợi tuple <code>(x, y)</code> hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><p><code>output</code> → tín hiệu đã lấy mẫu lại dưới dạng <code>(x_new, y_new)</code>.</p><h4>⚙️ Tham số</h4><ul><li><b>Chế độ</b> – <i>hệ số</i> (nhân tần số lấy mẫu gốc) hoặc <i>fixed_fs</i> (tần số lấy mẫu đích tính bằng Hz).</li><li><b>Hệ số</b> – hệ số chia tỉ lệ (>1 tăng số mẫu, <1 giảm).</li><li><b>fs đích</b> – tần số lấy mẫu mong muốn tính bằng Hz (dùng khi chế độ là fixed_fs).</li></ul><h4>🛠️ Hoạt động</h4><p>Dùng <code>scipy.signal.resample</code> áp dụng phương pháp Fourier.</p><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+    },
+    "window": {
+      "title": "Cửa sổ",
+      "tooltip": "Áp dụng hàm cửa sổ cho tín hiệu",
+      "ports": {
+        "input": "Đầu vào",
+        "output": "Đầu ra"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu",
+        "ready": "Sẵn sàng"
+      },
+      "menu": {
+        "configure": "Cấu hình..."
+      },
+      "config_title": "Cấu hình cửa sổ",
+      "window_type": "Loại cửa sổ:",
+      "normalize": "Chuẩn hóa (bảo toàn năng lượng)",
+      "help_title": "Trợ giúp - Cửa sổ",
+      "help_html": "<h3>🪟 Nút cửa sổ</h3><p>Áp dụng <b>hàm cửa sổ</b> cho tín hiệu đầu vào để giảm rò rỉ phổ.</p><h4>📥 Đầu vào</h4><p><code>input</code> → tuple <code>(x, y)</code> hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><p><code>output</code> → tín hiệu đã áp dụng cửa sổ <code>(x, y * window)</code>.</p><h4>⚙️ Tham số</h4><ul><li><b>Loại cửa sổ</b> – Hann, Hamming, Blackman, Bartlett, v.v.</li><li><b>Chuẩn hóa</b> – nếu chọn, chia tỉ lệ cửa sổ để bảo toàn tổng năng lượng.</li></ul><h4>🛠️ Hoạt động</h4><p>Dùng <code>scipy.signal.windows</code>.</p><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+    },
+    "delay": {
+      "title": "Trễ",
+      "tooltip": "Trễ tín hiệu một lượng xác định",
+      "ports": {
+        "input": "Đầu vào",
+        "output": "Đầu ra"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu",
+        "ready": "Sẵn sàng"
+      },
+      "menu": {
+        "configure": "Cấu hình..."
+      },
+      "config_title": "Cấu hình trễ",
+      "mode": "Chế độ trễ:",
+      "samples": "Mẫu:",
+      "seconds": "Giây:",
+      "padding": "Đệm:",
+      "constant_value": "Giá trị hằng:",
+      "help_title": "Trợ giúp - Trễ",
+      "help_html": "<h3>⏱️ Nút trễ</h3><p>Trễ tín hiệu đầu vào một lượng xác định <b>mẫu</b> hoặc <b>giây</b>.</p><h4>📥 Đầu vào</h4><p><code>input</code> → tuple <code>(x, y)</code> hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><p><code>output</code> → tín hiệu đã trễ <code>(x, y_delayed)</code>.</p><h4>⚙️ Tham số</h4><ul><li><b>Chế độ trễ</b> – <i>mẫu</i> (số mẫu nguyên) hoặc <i>giây</i> (thời gian tính bằng giây, cần tần số lấy mẫu từ trục x).</li><li><b>Đệm</b> – phương pháp lấp khoảng trống ban đầu: <i>không</i>, <i>phản chiếu</i> hoặc <i>hằng</i> (giá trị do người dùng định nghĩa).</li></ul><h4>🛠️ Hoạt động</h4><p>Dịch tín hiệu sang phải, chèn đệm ở đầu.</p><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+    },
+    "correlation": {
+      "title": "Tương quan",
+      "tooltip": "Tương quan chéo của hai tín hiệu",
+      "ports": {
+        "signal1": "Tín hiệu 1",
+        "signal2": "Tín hiệu 2",
+        "corr": "Tương quan"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu",
+        "ready": "Sẵn sàng"
+      },
+      "menu": {
+        "configure": "Cấu hình..."
+      },
+      "config_title": "Cấu hình tương quan",
+      "mode": "Chế độ:",
+      "normalize": "Chuẩn hóa",
+      "help_title": "Trợ giúp - Tương quan",
+      "help_html": "<h3>📈 Nút tương quan</h3><p>Tính <b>tương quan chéo</b> giữa hai tín hiệu đầu vào.</p><h4>📥 Đầu vào</h4><p><code>signal1</code>, <code>signal2</code> → mỗi cái mong đợi tuple <code>(x, y)</code> hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><p><code>corr</code> → chuỗi tương quan dưới dạng <code>(độ trễ, tương quan)</code>.</p><h4>⚙️ Tham số</h4><ul><li><b>Chế độ</b> – <i>full</i> (tất cả độ trễ), <i>same</i> (cùng độ dài với đầu vào dài nhất), <i>valid</i> (không có cạnh đệm không).</li><li><b>Chuẩn hóa</b> – nếu chọn, chia cho tích chuẩn của các tín hiệu (cho giá trị trong [-1, 1]).</li></ul><h4>🛠️ Hoạt động</h4><p>Dùng <code>np.correlate</code>.</p><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+    },
+    "math_expression": {
+      "title": "Biểu thức toán học",
+      "tooltip": "Đánh giá biểu thức toán học trên x và y",
+      "ports": {
+        "input": "Đầu vào",
+        "output": "Đầu ra"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu",
+        "ready": "Sẵn sàng"
+      },
+      "menu": {
+        "configure": "Cấu hình..."
+      },
+      "config_title": "Cấu hình biểu thức toán học",
+      "expression": "Biểu thức (dùng x, y, np.):",
+      "info": "Biến: x (trục thời gian), y (giá trị tín hiệu).\nHàm: np.sin, np.cos, np.exp, np.sqrt, v.v.",
+      "examples": "Ví dụ...",
+      "help_title": "Trợ giúp - Biểu thức toán học",
+      "help_html": "<h3>🧮 Nút biểu thức toán học</h3><p>Đánh giá biểu thức toán học tùy ý trên các biến đầu vào <code>x</code> và <code>y</code>.</p><h4>📥 Đầu vào</h4><p><code>input</code> → tuple <code>(x, y)</code> hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><p><code>output</code> → kết quả biểu thức dưới dạng <code>(x, y_new)</code>.</p><h4>✏️ Cú pháp biểu thức</h4><ul><li>Dùng <code>x</code> (trục thời gian) và <code>y</code> (giá trị tín hiệu) làm biến mảng.</li><li>Cũng có thể dùng bất kỳ hàm <code>np.</code> nào (ví dụ <code>np.sin(y)</code>, <code>np.exp(-x)</code>).</li><li>Ví dụ: <code>y * 2</code>, <code>np.sin(2*np.pi*x)</code>, <code>np.sqrt(x**2 + y**2)</code>.</li></ul><h4>⚠️ Lưu ý</h4><p>Biểu thức được đánh giá an toàn bằng <code>numexpr</code> (nếu có) hoặc <code>eval</code> hạn chế.</p><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+    },
+    "spectrogram": {
+      "title": "Phổ đồ",
+      "tooltip": "Tính phổ đồ STFT",
+      "ports": {
+        "input": "Đầu vào",
+        "spectrogram": "Phổ đồ",
+        "frequencies": "Tần số",
+        "times": "Thời gian"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu",
+        "ready": "Sẵn sàng"
+      },
+      "menu": {
+        "configure": "Cấu hình...",
+        "show_in_plot": "Hiển thị trên đồ thị"
+      },
+      "config_title": "Cấu hình phổ đồ",
+      "nperseg": "Mẫu mỗi phân đoạn:",
+      "noverlap": "Chồng lấp:",
+      "window": "Cửa sổ:",
+      "scaling": "Chia tỉ lệ:",
+      "mode": "Chế độ:",
+      "help_title": "Trợ giúp - Phổ đồ",
+      "help_html": "<h3>🌊 Nút phổ đồ</h3><p>Tính toán phổ đồ <b>Biến đổi Fourier Thời gian Ngắn (STFT)</b>.</p><h4>📥 Đầu vào</h4><p><code>input</code> → (x, y) hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><ul><li><b>Phổ đồ</b> → Mảng 2D (tần số, thời gian, biên độ) – <i>không thể vẽ trực tiếp bằng cách nhấp</i>.</li><li><b>Tần số</b> → Mảng 1D các bins tần số (có thể kết nối với các nút khác).</li><li><b>Thời gian</b> → Mảng 1D các thời gian phân đoạn.</li></ul><h4>🖱️ Tương tác</h4><p><b>Nhấp</b> vào nút sẽ <b>không</b> hiển thị phổ đồ. Hãy kết nối <code>frequencies</code> hoặc <code>times</code> với các nút xử lý khác, hoặc xuất dữ liệu.</p><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+    },
+    "spectrogram_viewer": {
+      "title": "Trình xem phổ đồ",
+      "tooltip": "Nhận và hiển thị dữ liệu phổ đồ (tần số, thời gian, ma trận)",
+      "config_title": "Cấu hình trình xem phổ đồ",
+      "ports": {
+        "frequencies": "Tần số",
+        "times": "Thời gian",
+        "spectrogram": "Phổ đồ"
+      },
+      "status": {
+        "no_data": "Không có dữ liệu"
+      },
+      "menu": {
+        "view_spectrogram": "Xem phổ đồ",
+        "configure": "Cấu hình..."
+      },
+      "window_title": "Trình xem phổ đồ",
+      "time_axis": "Thời gian (s)",
+      "freq_axis": "Tần số (Hz)",
+      "log_scale": "Thang logarit",
+      "colormap": "Bản đồ màu:",
+      "auto_contrast": "Tự động tương phản",
+      "contrast_min": "Tương phản min:",
+      "contrast_max": "Tương phản max:",
+      "export": "Xuất...",
+      "export_title": "Xuất phổ đồ",
+      "no_data_title": "Không có dữ liệu",
+      "no_data_message": "Dữ liệu không đầy đủ. Hãy kết nối tất cả các cổng và chạy luồng trước.",
+      "help_title": "Trợ giúp - Trình xem phổ đồ",
+      "help_html": "<h3>📊 Nút trình xem phổ đồ</h3><p>Nhận ba đầu ra của một nút <b>Phổ đồ</b> và hiển thị chúng dưới dạng bản đồ nhiệt 2D.</p><h4>📥 Đầu vào</h4><ul><li><b>frequencies</b> → Vector 1D các tần số</li><li><b>times</b> → Vector 1D các thời gian phân đoạn</li><li><b>spectrogram</b> → Ma trận 2D (tần số × thời gian) các biên độ</li></ul><h4>⚙️ Cấu hình</h4><p>Dùng <b>bảng bên</b> để điều chỉnh theo thời gian thực:</p><ul><li><b>Thang logarit</b> — tăng cường chi tiết biên độ thấp.</li><li><b>Bản đồ màu</b> — viridis, inferno, plasma, jet, v.v.</li><li><b>Tương phản</b> — tự động hoặc thủ công (min/max).</li></ul><h4>🖱️ Tương tác</h4><p><b>Nhấp phải</b> vào nút và chọn <b>\"Xem phổ đồ\"</b> để mở cửa sổ chuyên dụng.</p><p>Bên trong trình xem, bạn có thể <b>xuất</b> chế độ xem hiện tại dưới dạng ảnh PNG.</p><p><i>Nhấp vào nút sẽ không hiển thị gì trên đồ thị chính.</i></p><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xem, cấu hình, xóa).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+    },
+    "graph_exporter": {
+      "title": "Bộ xuất đồ thị",
+      "tooltip": "Xuất đồ thị với chất lượng chuyên nghiệp",
+      "ports": {
+        "signal_in": "Đầu vào tín hiệu",
+        "file_out": "Tệp đầu ra"
+      },
+      "status": {
+        "ready": "Sẵn sàng",
+        "exported": "Đã xuất"
+      },
+      "menu": {
+        "show_graph": "Hiển thị đồ thị",
+        "configure": "Cấu hình đồ thị",
+        "configure_subplot": "Cấu hình biểu đồ con",
+        "export": "Xuất đồ thị",
+        "subplots": "Biểu đồ con",
+        "use_subplots": "Dùng biểu đồ con",
+        "n_subplots": "Số lượng biểu đồ con",
+        "subplot_layout": "Bố cục"
+      },
+      "config": {
+        "display_mode": "Chế độ hiển thị",
+        "use_subplots": "Dùng biểu đồ con (tối đa 8)",
+        "n_subplots": "Số lượng biểu đồ con:",
+        "subplot_layout": "Bố cục:",
+        "export_format": "Định dạng xuất"
+      },
+      "no_data_title": "Không có dữ liệu",
+      "no_data_msg": "Kết nối tín hiệu đầu vào và chạy luồng để tạo đồ thị.",
+      "export_dialog_title": "Lưu đồ thị",
+      "export_error_title": "Lỗi xuất",
+      "config_title": "Cấu hình bộ xuất đồ thị",
+      "help_title": "Trợ giúp - Bộ xuất đồ thị",
+      "help_html": "<h3>📊 Bộ xuất đồ thị</h3><p>Nhận tín hiệu và xuất nó dưới dạng hình ảnh chất lượng cao.</p><h4>📥 Đầu vào</h4><p><code>signal_in</code> → tuple <code>(x, y)</code> hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><p><code>file_out</code> → đường dẫn tệp đã tạo.</p><h4>⚙️ Cấu hình</h4><p>Nhấp đúp phải → <b>Cấu hình đồ thị</b> để điều chỉnh kiểu dáng, trục, chú thích, v.v.</p><hr><h4>🖱️ Tương tác</h4><ul><li><b>Nhấp phải</b> → menu ngữ cảnh.</li><li><b>Hiển thị đồ thị</b> → xem trước với cài đặt hiện tại.</li></ul><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "Không thể xóa nút đầu vào."
+  },
+  "workspace": {
+    "headers": {
+      "node": "Nút",
+      "type": "Loại",
+      "shape": "Kích thước",
+      "x_range_fs": "X: khoảng / fs",
+      "dx_t": "dx / T",
+      "y_range": "Y: [min, max]",
+      "preview_y": "Xem trước Y"
+    }
+  },
+  "plot": {
+    "time_label": "Thời gian (s)",
+    "voltage_label": "Điện áp (V)",
+    "title": "Tín hiệu",
+    "scale_label": "Thang đo:",
+    "scale_linear": "Tuyến tính",
+    "scale_log": "Logarit",
+    "markers": "Điểm đánh dấu",
+    "cursors": "Con trỏ A/B",
+    "peak": "Đỉnh",
+    "peak_tooltip": "Đánh dấu đỉnh cực đại",
+    "reset_zoom": "Đặt lại thu phóng",
+    "amplitude": "Biên độ",
+    "time": "Thời gian (s)",
+    "frequency": "Tần số (Hz)",
+    "view_mode": "Xem",
+    "view_2d": "2D",
+    "view_surface": "Bề mặt 3D",
+    "view_waterfall": "Thác nước 3D",
+    "view_volume": "Thể tích 3D",
+    "view_slice": "Lát cắt 3D",
+    "slice_label": "Lát cắt",
+    "reset_camera": "Đặt lại Camera",
+    "axis_scale": "Thang đo",
+    "fps": "FPS",
+    "loop": "Lặp",
+    "colormap": "Bản đồ màu"
+  },
+  "shortcuts": {
+    "delete": "Xóa nút",
+    "delete_desc": "Xóa các nút đã chọn và kết nối của chúng.",
+    "duplicate": "Nhân bản nút",
+    "duplicate_desc": "Nhân bản các nút đã chọn với độ lệch +50px.",
+    "select_all": "Chọn tất cả",
+    "select_all_desc": "Chọn tất cả các nút trong cảnh.",
+    "cancel": "Hủy hành động",
+    "cancel_desc": "Hủy kết nối đang thực hiện hoặc bỏ chọn tất cả.",
+    "copy": "Sao chép",
+    "copy_desc": "Sao chép các nút đã chọn vào clipboard nội bộ.",
+    "cut": "Cắt",
+    "cut_desc": "Cắt các nút đã chọn.",
+    "paste": "Dán",
+    "paste_desc": "Dán các nút từ clipboard.",
+    "undo": "Hoàn tác",
+    "undo_desc": "Hoàn tác hành động cuối cùng.",
+    "redo": "Làm lại",
+    "redo_desc": "Làm lại hành động đã hoàn tác.",
+    "run": "Chạy luồng",
+    "run_desc": "Thực thi toàn bộ luồng.",
+    "auto_layout": "Tự động bố cục",
+    "auto_layout_desc": "Tự động sắp xếp các nút thành các cột.",
+    "center_view": "Căn giữa khung nhìn",
+    "center_view_desc": "Căn giữa khung nhìn vào vùng chọn hoặc toàn bộ cảnh.",
+    "zoom_reset": "Thu phóng 100%",
+    "zoom_reset_desc": "Đặt lại thu phóng về 100%.",
+    "zoom_in": "Phóng to",
+    "zoom_in_desc": "Phóng to.",
+    "zoom_out": "Thu nhỏ",
+    "zoom_out_desc": "Thu nhỏ.",
+    "toggle_theme": "Đổi chủ đề",
+    "toggle_theme_desc": "Chuyển đổi giữa chủ đề tối, sáng và tương phản cao.",
+    "toggle_grid": "Bật/tắt lưới",
+    "toggle_grid_desc": "Hiển thị hoặc ẩn lưới.",
+    "lock_node": "Khóa nút",
+    "lock_node_desc": "Khóa/mở khóa di chuyển của nút đã chọn.",
+    "help": "Trợ giúp ngữ cảnh",
+    "help_desc": "Hiển thị tooltip của nút dưới con trỏ.",
+    "new_file": "Mới",
+    "new_file_desc": "Tạo sơ đồ mới",
+    "open_file": "Mở",
+    "open_file_desc": "Mở tệp sơ đồ",
+    "save_file": "Lưu",
+    "save_file_desc": "Lưu sơ đồ hiện tại",
+    "save_file_as": "Lưu thành…",
+    "save_file_as_desc": "Lưu sơ đồ với tên mới"
+  },
+  "dialogs": {
+    "common": {
+      "close": "Đóng",
+      "cancel": "Hủy",
+      "ok": "OK",
+      "emer_wind": "Chọn chương trình",
+      "operation_history": "Thao tác",
+      "confirm": "Không có thay đổi nào được thực hiện.",
+      "overwrite": "Ghi đè?",
+      "error": "Lỗi"
+    },
+    "font_size": {
+      "title": "Cỡ chữ",
+      "label": "Kích thước (pt):"
+    },
+    "firewall": {
+      "title": "Kết nối bị chặn",
+      "text": "Không thể kết nối với máy hiện sóng.\nTường lửa Windows có thể đang chặn giao tiếp.",
+      "informative": "Để khắc phục, hãy cho phép 'FloWorks.exe' qua tường lửa Windows.\n\nBạn có muốn sử dụng chế độ mô phỏng trong lúc này không?"
+    },
+    "capture_error": {
+      "title": "Lỗi bắt tín hiệu",
+      "text": "Đã xảy ra lỗi trong quá trình bắt:\n{error}\n\nVui lòng kiểm tra thiết bị đã bật nguồn và tường lửa cho phép kết nối."
+    },
+    "script_editor": {
+      "title": "Trình soạn script",
+      "header": "Script Python | biến: x, y, param (từ TriggerNode), np, scipy, sympy",
+      "test_button": "Kiểm tra (không lưu)",
+      "save_button": "Lưu và đóng",
+      "tool_tip": "Nút Script\nNhấp đúp để xem thông tin",
+      "templates": "Mẫu:",
+      "save_template": "Lưu mẫu…",
+      "import": "Mở script…",
+      "export": "Xuất script…",
+      "unsaved_warning": "Không có thay đổi nào được thực hiện. Bạn có muốn tải mẫu và mất chúng không?",
+      "save_template_title": "Lưu làm mẫu",
+      "save_template_prompt": "Tên mẫu (không có phần mở rộng):",
+      "overwrite_template": "Mẫu đã tồn tại. Bạn có muốn ghi đè không?",
+      "import_title": "Mở script Python",
+      "export_title": "Xuất script Python",
+      "help_tooltip": "Trợ giúp nhanh (F1)",
+      "help_title": "Trợ giúp nhanh",
+      "browse": "Duyệt…",
+      "python_path_placeholder": "Để trống để dùng trình thông dịch nội bộ. Ví dụ: python3",
+      "quick_help_html": "<h2>Trình soạn script Python</h2><p>Trình soạn này chạy mã Python trên tín hiệu luồng. Script nhận dữ liệu và có thể trả về kết quả, sửa đổi tín hiệu hoặc tạo nhiều đầu ra.</p><h3>Biến khả dụng</h3><ul><li><b>x</b> – Mảng NumPy: Trục X (thời gian, tần số...).</li><li><b>y</b> – Mảng NumPy: giá trị tín hiệu hiện tại.</li><li><b>param</b> – Chỉ số lặp (từ TriggerNode) hoặc <code>None</code>.</li><li><b>inputs</b> – Từ điển với tất cả đầu vào (hữu ích với <code>@input</code>).</li><li><b>persist</b> – Từ điển giữ giá trị giữa các lần chạy.</li></ul><h3>Thư viện đã nhập</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>Chỉ thị đặc biệt</h3><ul><li><code># @param NAME : type = value</code> – Tạo tham số điều chỉnh được trong bảng bên (không cần sửa mã).</li><li><code># @input port_name</code> – Thêm cổng vào bổ sung (bên trái).</li><li><code># @output port_name</code> – Thêm cổng ra bổ sung (bên phải).</li></ul><p>Với <code>@input</code>/<code>@output</code>, script phải dùng <code>inputs</code> và trả về từ điển với các đầu ra. Ví dụ:</p><pre># @input channel_A<br># @output result<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"channel_A\"][1]<br>return {\"out\": (x, y), \"result\": (x, y_a)}</pre><h3>Lưu giữ</h3><p>Từ điển <code>persist</code> giữ dữ liệu giữa các lần chạy khi chương trình đang mở. Ví dụ:</p><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1<br>return (x, y + persist[\"counter\"] * 0.1)</pre><h3>Quản lý mẫu</h3><ul><li>Chọn mẫu từ danh sách thả xuống để tải script có sẵn.</li><li><b>Lưu mẫu…</b> – Lưu script hiện tại dưới dạng tệp <code>.py</code> trong thư mục mẫu.</li><li><b>Mở script…</b> / <b>Xuất script…</b> – Trao đổi script với tệp bên ngoài.</li></ul><h3>Mẹo</h3><ul><li>Dùng <b>Kiểm tra</b> để kiểm tra script với dữ liệu mô phỏng trước khi kết nối luồng.</li><li>Lỗi được hiển thị trong bảng điều khiển phía dưới và dòng lỗi được đánh dấu.</li><li>Bạn có thể tạm thời vô hiệu hóa chỉ thị bằng cách chú thích nó (<code>## @param ...</code>).</li></ul>"
+    },
+    "trigger_config": {
+      "title": "Cấu hình nút kích hoạt",
+      "group": "Tham số lặp",
+      "n_iter": "Số lần lặp (N):",
+      "param_start": "Tham số bắt đầu:",
+      "param_end": "Tham số kết thúc:",
+      "accumulate": "Tích lũy:",
+      "trig_tooltips": "TriggerNode\nNhấp đúp để xem thông tin",
+      "info": "Tham số hiện tại sẽ có sẵn trong\nloop_out làm phần tử thứ ba: (x, y, param)",
+      "accumulate_options": {
+        "stack": "Chồng",
+        "average": "Trung bình",
+        "max": "Lớn nhất",
+        "min": "Nhỏ nhất"
+      }
+    },
+    "simulation_config": {
+      "title": "Cấu hình mô phỏng",
+      "timebase": "Cơ sở thời gian (ms/div)",
+      "voltage_range": "Dải điện áp (V)",
+      "trigger_level": "Mức kích hoạt (V)",
+      "trigger_slope": "Sườn kích hoạt",
+      "sample_rate": "Tần số lấy mẫu (kHz)"
+    },
+    "file": {
+      "save_as": "Lưu thành…",
+      "unsaved_title": "Thay đổi chưa lưu",
+      "unsaved_message": "Có thay đổi chưa được lưu. Bạn có muốn lưu trước khi tiếp tục không?"
+    }
+  },
+  "info_dialog": {
+    "title": "Thông tin - FloWorks",
+    "tab_about": "Giới thiệu",
+    "tab_shortcuts": "Phím tắt",
+    "tab_tutorials": "Hướng dẫn",
+    "close": "Đóng",
+    "about_title": "FloWorks",
+    "version": "Phiên bản 0.4.5",
+    "description": "<p>FloWorks là môi trường xử lý tín hiệu trực quan và tương tác dựa trên luồng dữ liệu. Cho phép bạn xây dựng, thực thi và phân tích các chuỗi xử lý bằng cách kết nối các nút đại diện cho phép toán, bộ lọc, biến đổi, bộ tạo tín hiệu và nhiều hơn nữa. Mọi thứ dựa trên cặp (x, y), trong đó x là trục (thời gian hoặc tần số) và y là tín hiệu.</p><p>Hướng đến sinh viên, nhà nghiên cứu, kỹ sư và bất kỳ ai quan tâm đến xử lý tín hiệu muốn thử nghiệm, học hỏi hoặc tạo mẫu hệ thống mà không cần viết mã từ đầu.</p><p><b>Sứ mệnh:</b> Tập trung quy trình thí nghiệm vào một công cụ trực quan, mở và dễ tiếp cận duy nhất, để bất kỳ ai — sinh viên, nhà nghiên cứu hay kỹ sư — đều có thể tập trung vào thử nghiệm, không phải học phần mềm.</p><p><b>Tầm nhìn:</b> Một thế giới nơi rào cản giữa ý tưởng thí nghiệm và việc thực thi chỉ là sự tò mò của người thí nghiệm. FloWorks khao khát trở thành nền tảng tham chiếu cho thí nghiệm tín hiệu, được xây dựng bởi và cho cộng đồng khoa học kỹ thuật toàn cầu, không có rào cản giấy phép hay phân mảnh công cụ.</p><p><b>Nguyên tắc:</b> Phần mềm tự do (Giấy phép MIT) – tri thức phải được tự do. Khả năng mở rộng – bất kỳ ai cũng có thể tạo nút mới bằng Python. Trực quan hóa tức thì – mọi bước đều có thể kiểm tra bằng đồ họa.</p>",
+    "credits": "<h3>Ghi nhận và Giấy phép</h3><p>FloWorks sử dụng các dự án mã nguồn mở sau:</p><ul><li><b>PySide6 / Qt</b> – Giao diện người dùng đồ họa. Giấy phép <b>GNU LGPLv3</b>. © The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – Giấy phép BSD / PSF.</li><li><b>PyQtGraph, Pillow</b> – Giấy phép MIT / HPND.</li><li><b>OpenCV</b> – Giấy phép Apache 2.0.</li><li><b>PyTorch</b> – Giấy phép BSD (Meta Platforms, Inc.).</li><li><b>Pygments</b> – Giấy phép BSD.</li></ul><p>Ứng dụng này sử dụng PySide6 (liên kết động) theo điều khoản <b>GNU LGPLv3</b>.</p><p>Người dùng có quyền sửa đổi hoặc thay thế các thư viện động PySide6.</p><p>Giấy phép đầy đủ tại <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a>.</p><p><b>Giấy phép FloWorks:</b> Giấy phép MIT.</p>",
+    "shortcut_header_keys": "Phím tắt",
+    "shortcut_header_action": "Hành động",
+    "shortcut_header_context": "Ngữ cảnh",
+    "shortcuts_note": "Lưu ý: Phím tắt hoạt động toàn cục, ngay cả khi tiêu điểm ở widget khác.",
+    "tutorials_placeholder": "Dưới đây là một số ví dụ và hướng dẫn theo thứ tự học tập:",
+    "tutorial": "Hướng dẫn",
+    "example_fft": "Mở ví dụ: FFT của sóng sin",
+    "example_filter": "Mở ví dụ: Bộ lọc thông dải của sóng chirp",
+    "example_delay": "Mở ví dụ: Trễ sóng sin",
+    "example_window": "Mở ví dụ: Cửa sổ sóng chirp",
+    "example_convolution": "Mở ví dụ: Tích chập sóng vuông",
+    "example_conrrelation": "Mở ví dụ: Tương quan giữa sóng sin và sóng vuông",
+    "example_math_expression": "Mở ví dụ: Biểu thức toán học trên sóng sin",
+    "example_spectrogram": "Mở ví dụ: Phổ đồ sóng chirp",
+    "example_compound": "Mở ví dụ: Mảng kết hợp nhiều nút khác nhau",
+    "example_title": "Ví dụ",
+    "example_message": "Ví dụ '{name}' sẽ có trong phiên bản tương lai.",
+    "shortcut_header_description": "Mô tả",
+    "view_logs": "Xem nhật ký",
+    "log_viewer_title": "Trình xem nhật ký (error.log)",
+    "refresh": "Làm mới",
+    "clear": "Xóa",
+    "no_logs_available": "Không tìm thấy nhật ký vào lúc này.",
+    "error_reading_logs": "Lỗi đọc tệp nhật ký.",
+    "confirm_clear": "Xác nhận xóa",
+    "confirm_clear_msg": "Bạn có chắc chắn muốn xóa trống tệp nhật ký không? Hành động này không thể hoàn tác."
+  },
+  "lcr_controller": {
+    "title": "Bộ điều khiển LCR",
+    "connected": "Đã kết nối",
+    "disconnected": "Đã ngắt kết nối",
+    "measure_var": "Biến cần đo:",
+    "freq_sweep": "Quét tần số",
+    "freq_start": "Bắt đầu (Hz):",
+    "freq_end": "Kết thúc (Hz):",
+    "freq_step": "Bước (Hz):",
+    "level": "Mức (V):",
+    "speed": "Tốc độ:",
+    "average": "Trung bình:",
+    "rsou": "RSOU (Ω):",
+    "range": "Dải:",
+    "bias_volt": "DC Bias (V):",
+    "bias_on": "BIAS BẬT",
+    "bias_off": "BIAS TẮT",
+    "apply": "Áp dụng cài đặt",
+    "error_title": "Lỗi",
+    "connection_error": "Không thể kết nối với LCR. Kiểm tra kết nối và địa chỉ.",
+    "success_title": "Thành công",
+    "success_message": "Cài đặt đã được áp dụng thành công.",
+    "apply_error": "Không thể áp dụng cài đặt: {error}"
+  },
+  "osc_controller": {
+    "title": "Bắt máy hiện sóng",
+    "window_title": "Bộ điều khiển máy hiện sóng",
+    "channel": "Chọn kênh:",
+    "acq_mode": "Chế độ thu:",
+    "mem_size": "Kích thước bộ nhớ:",
+    "invert_off": "Đảo tín hiệu",
+    "invert_on": "Tín hiệu đã đảo",
+    "tdiv": "Chia ngang:",
+    "vdiv": "Chia dọc (V):",
+    "hpos": "Vị trí ngang (s):",
+    "offset": "Vị trí dọc (V):",
+    "trig_level": "Mức kích hoạt (V):",
+    "v_range": "Dải điện áp (V):",
+    "sd_trg": "Kích hoạt bên",
+    "fs": "Tần số lấy mẫu (kHz):"
+  },
+  "gen_controller": {
+    "title": "Bộ điều khiển nâng cao - Bộ tạo tín hiệu",
+    "apply_current": "Áp dụng cấu hình hiện tại",
+    "channel": "Chọn kênh:",
+    "waveform_btn": "Tạo dạng sóng",
+    "chirp_btn": "Tạo Chirp",
+    "modulation_on": "Bật điều chế",
+    "modulation_off": "Tắt điều chế",
+    "sweep_on": "Bật quét",
+    "sweep_off": "Tắt quét",
+    "burst_on": "Bật burst",
+    "burst_off": "Tắt burst",
+    "ch1_on": "Bật kênh 1",
+    "ch1_off": "Tắt kênh 1",
+    "ch2_on": "Bật kênh 2",
+    "ch2_off": "Tắt kênh 2",
+    "load": "Chọn đầu ra:",
+    "polarity": "Cực tính đầu ra:",
+    "modify_output": "Sửa đổi đầu ra",
+    "tab_general": "Chung",
+    "tab_waveform": "Dạng sóng",
+    "tab_chirp": "Chirp",
+    "tab_modulation": "Điều chế",
+    "tab_sweep": "Quét",
+    "tab_burst": "Burst",
+    "sim_title": "Mô phỏng",
+    "no_hardware": "Không có phần cứng kết nối",
+    "sent_title": "Đã gửi",
+    "waveform_sent": "Dạng sóng đã gửi",
+    "chirp_sent": "Chirp đã gửi",
+    "success_title": "Thành công",
+    "output_modified": "Đầu ra {channel}: tải {load}, cực tính {pol}",
+    "signal_type": "Loại tín hiệu:",
+    "frequency": "Tần số (Hz):",
+    "amplitude": "Biên độ (Vpp):",
+    "offset": "Độ lệch (V):",
+    "phase": "Pha (độ):",
+    "duty_cycle": "Chu kỳ nhiệm vụ (%):",
+    "symmetry": "Đối xứng (%):",
+    "pulse_width": "Độ rộng xung (s):",
+    "rise_edge": "Sườn lên (s):",
+    "fall_edge": "Sườn xuống (s):",
+    "delay_edge": "Sườn trễ (s):",
+    "stdev": "Độ lệch chuẩn (V):",
+    "mean": "Trung bình (V):",
+    "chirp_f0": "Tần số ban đầu (Hz):",
+    "chirp_f1": "Tần số cuối (Hz):",
+    "chirp_fs": "Fs (Sa/s):",
+    "chirp_duration": "Thời lượng (s):",
+    "chirp_amp": "Biên độ (V):",
+    "chirp_offset": "Độ lệch (V):",
+    "chirp_phase": "Pha (°):",
+    "chirp_name": "Tên tín hiệu:",
+    "chirp_method": "Phương pháp:",
+    "chirp_mode": "Chế độ Arb:",
+    "mod_type": "Loại điều chế:",
+    "mod_freq": "Tần số điều chế (Hz):",
+    "mod_dev": "Độ lệch (Hz,°,s):",
+    "mod_hop": "Tần số nhảy (Hz):",
+    "mod_shape": "Dạng sóng:",
+    "mod_depth": "Độ sâu (%):",
+    "sweep_time": "Thời lượng (s):",
+    "sweep_stop": "Tần số cuối (Hz):",
+    "sweep_start": "Tần số đầu (Hz):",
+    "sweep_trig_src": "Nguồn kích hoạt:",
+    "sweep_trig_out": "Đầu ra kích hoạt:",
+    "sweep_mode": "Loại:",
+    "sweep_dir": "Hướng:",
+    "burst_period": "Chu kỳ (s):",
+    "burst_cycles": "Số chu kỳ:",
+    "burst_phase": "Pha (độ):",
+    "burst_gate": "Đích:",
+    "burst_trig_src": "Nguồn kích hoạt:",
+    "burst_polarity": "Cực tính:",
+    "waveform_applied": "Dạng sóng đã áp dụng",
+    "chirp_applied": "Chirp đã gửi",
+    "modulation_applied": "Điều chế đã cấu hình",
+    "sweep_applied": "Quét đã cấu hình",
+    "burst_applied": "Burst đã cấu hình"
+  },
+  "simulation_config_dialog": {
+    "title": "Cấu hình mô phỏng - Bộ tạo",
+    "waveform": "Dạng sóng:",
+    "basic_params": "Tham số cơ bản",
+    "frequency": "Tần số (Hz):",
+    "amplitude": "Biên độ (Vpp):",
+    "offset": "Độ lệch (V):",
+    "phase": "Pha (độ):",
+    "duty_cycle": "Chu kỳ nhiệm vụ (%):",
+    "symmetry": "Đối xứng (%):",
+    "direction": "Hướng:",
+    "up": "Lên",
+    "down": "Xuống",
+    "stdev": "Độ lệch chuẩn:",
+    "mean": "Trung bình:",
+    "lobes": "Số búp sóng:",
+    "sigma": "Sigma:",
+    "mu": "Mu:",
+    "tau": "Tau (s):",
+    "exp_type": "Loại:",
+    "rise": "Tăng",
+    "fall": "Giảm",
+    "f0": "Tần số ban đầu (Hz):",
+    "f1": "Tần số cuối (Hz):",
+    "chirp_method": "Phương pháp:",
+    "linear": "Linear",
+    "logarithmic": "Logarithmic",
+    "preview": "Xem trước",
+    "apply": "Áp dụng",
+    "close": "Đóng",
+    "time_label": "Thời gian (s)",
+    "amplitude_label": "Biên độ (V)"
+  },
+  "self": {
+    "language_changed": "Ngôn ngữ đã đổi sang: {name} ({code})",
+    "default": "FloWorks | Cuộn: thu phóng | Nhấp giữa: di chuyển | Nhấp đúp vào nút: thông tin | Nhấp phải vào nút: tùy chọn",
+    "workspace": "Không gian làm việc",
+    "canvas": "Canvas",
+    "no_nodes_selected": "Không có nút nào được chọn",
+    "node_config_placeholder": "Chọn một nút trên canvas\nđể xem cấu hình của nó"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "Phòng thí nghiệm xử lý tín hiệu ảo trực quan và tương tác",
+    "build": "Quên mã phức tạp. Kéo thả khối, kết nối chúng như các mảnh ghép, và xây dựng quy trình làm việc bằng cách nối các nút với các đường đại diện cho luồng dữ liệu.",
+    "keyrule": "Tất cả là về tín hiệu: kết nối khối, không phải dòng mã.",
+    "nodework": "Kiến trúc nút:\n[Dữ liệu vào] → [Xử lý nội bộ] → [Dữ liệu ra]",
+    "execute": "Nhấn Chạy và xem ý tưởng của bạn hiện thực hóa trên đồ thị và dữ liệu thời gian thực. Muốn đi xa hơn? Kết nối thiết bị phòng thí nghiệm thực hoặc thêm quy tắc riêng bằng nút script Python để xử lý tùy chỉnh.",
+    "expand": "Xuất đồ thị chất lượng cao sẵn sàng dùng trong tài liệu kỹ thuật. Lưu công việc trong tệp \".sflow\" và khôi phục chúng chính xác như bạn đã để lại.",
+    "actions_title": "Bạn có thể làm gì?",
+    "actions": "  Thử nghiệm ý tưởng bằng cách xây dựng luồng, kéo thả và kết nối nút.\n* Điều khiển thiết bị thực hoặc mô phỏng tín hiệu.\n* Xem kết quả tức thì trên đồ thị tương tác.",
+    "checkbox": "Không hiển thị lại",
+    "start": "Bắt đầu"
+  },
+  "scene": {
+    "empty_hint": "Chọn nút từ thanh công cụ",
+    "load_example_hint": "Bạn có thể tải ví dụ từ \"Thông tin\" → \"Hướng dẫn\""
+  },
+  "examples": {
+    "general": {
+      "title": "Ví dụ",
+      "welcome": "Chào mừng đến FloWorks!\nHãy theo các hướng dẫn nhỏ này để thành thạo các thao tác phổ biến nhất.",
+      "scroll": "Cuộn hoặc giữ nút cuộn chuột để di chuyển canvas.",
+      "help": "Nhấp phải vào nút để cấu hình các hành động."
+    },
+    "tutorial": {
+      "message": "Đây là ứng dụng sơ đồ luồng tín hiệu trực quan. Hãy bắt đầu!",
+      "step1": "Bước 1: Thêm nguồn tín hiệu",
+      "step2": "Thêm nút nguồn tín hiệu từ thanh công cụ (trên cùng).\nNút sẽ được đặt tại vị trí bạn nhấp cuối cùng trên canvas.\nNhấp vào đâu đó gần canvas, sau đó nhấp vào thanh trên cùng:",
+      "step3": "Bước 2: Kết nối các nút",
+      "step4": "Nhấn CTRL+nhấp vào cổng ra của một nút (bên trái) và nhấp vào cổng vào của nút kia (bên phải) để tạo kết nối.",
+      "step5": "Kết nối chảy từ trái sang phải, mang dữ liệu tín hiệu giữa các nút.",
+      "step6": "Bước 3: Thực thi luồng",
+      "step7": "Nhấn F5 để thực thi luồng tín hiệu và xem kết quả theo thời gian thực.",
+      "step8": "Bạn cũng có thể nhấp vào từng nút để xem giá trị đầu ra.",
+      "step9": "Bước 4: Xem kết quả",
+      "step10": "Nhấp vào bất kỳ nút nào để trực quan hóa tín hiệu trong widget đồ thị.",
+      "step11": "Đồ thị tự động cập nhật khi bạn thực thi luồng."
+    },
+    "shortcuts": {
+      "title": "Phím tắt",
+      "execute": "F5 – Thực thi luồng",
+      "save": "Ctrl+S – Lưu dự án (.sflow)",
+      "load": "Ctrl+O – Mở dự án",
+      "delete": "Delete / Backspace – Xóa phần tử đã chọn",
+      "copy_paste": "Ctrl+C / Ctrl+V – Sao chép và dán nút hoặc ghi chú",
+      "undo_redo": "Ctrl+Z / Ctrl+Y – Hoàn tác / Làm lại",
+      "auto_layout": "Ctrl+Shift+L – Tự động bố cục sơ đồ",
+      "zoom": "Cuộn chuột – Thu phóng, giữ để kéo khung nhìn"
+    },
+    "fft": {
+      "title": "Phân tích FFT",
+      "description": "Tính phổ tần số của tín hiệu.",
+      "steps": {
+        "step1": "Thêm nút Bộ tạo và chọn, ví dụ, sóng vuông 1 kHz.",
+        "step2": "Trong menu 'Xử lý' của thanh công cụ, chọn nút FFT. Kết nối nó với đầu ra Bộ tạo (CTRL+nhấp đầu ra → CTRL+nhấp đầu vào FFT).",
+        "step3": "Nhấn F5. Nút FFT sẽ biến đổi tín hiệu sang miền tần số.",
+        "step4": "Nhấp vào nút FFT để xem phổ. Các đỉnh sẽ xuất hiện tại bội số lẻ của 1 kHz.",
+        "step5": "(Tùy chọn) Kết nối đầu ra FFT với nút Số học (SumNode) để so sánh hai phổ; hệ thống tự động phát hiện độ phân giải tần số và cảnh báo nếu không tương thích.",
+        "step6": "Nhấp phải vào nút FFT để chọn hiển thị giữa Biên độ và Pha."
+      }
+    },
+    "filter": {
+      "title": "Lọc tín hiệu",
+      "description": "Áp dụng bộ lọc thông thấp, thông cao hoặc thông dải.",
+      "steps": "1. Chèn Bộ tạo với tín hiệu chirp.\n2. Thêm nút Bộ lọc từ menu 'Xử lý'. Kết nối đầu ra bộ tạo với đầu vào bộ lọc.\n3. Nhấp phải và chọn 'Cấu hình…' trên nút Bộ lọc, sau đó chọn loại (thông thấp, thông cao, v.v.) và tần số cắt.\n4. Thực thi (F5) và trực quan hóa cả tín hiệu gốc và đã lọc bằng cách nhấp vào các kết nối tương ứng.\n5. Nếu muốn so sánh cạnh nhau, bạn có thể thêm nút FFT và chia tín hiệu."
+    },
+    "delay": {
+      "title": "Đường trễ",
+      "description": "Dịch tín hiệu theo thời gian (hữu ích cho tương quan hoặc hiệu ứng).",
+      "steps": "1. Bắt đầu với bộ tạo dùng tín hiệu ngắn.\n2. Thêm nút Trễ từ 'Xử lý'. Kết nối đầu ra bộ tạo với đầu vào trễ.\n3. Trong hộp thoại cấu hình nút Trễ, chỉ định số mẫu hoặc thời gian trễ.\n4. Thực thi luồng (F5) và nhấp vào đầu ra nút Trễ. Bạn sẽ thấy cùng tín hiệu dịch sang phải.\n5. Để đo chính xác độ trễ, kích hoạt con trỏ (bảng dưới) và so sánh giữa tín hiệu gốc và tín hiệu trễ."
+    },
+    "window": {
+      "title": "Cửa sổ trước FFT",
+      "description": "Áp dụng cửa sổ (Hanning, Hamming, v.v.) trước FFT để giảm rò rỉ phổ.",
+      "steps": "1. Thiết lập luồng cơ bản: Bộ tạo → Cửa sổ → FFT.\n2. Nhấp đúp nút Cửa sổ và chọn loại (Hanning là khởi đầu tốt).\n3. Kết nối đầu ra Cửa sổ với đầu vào FFT.\n4. Thực thi (F5). Nhấp vào đầu ra FFT để so sánh phổ có và không có cửa sổ.\n5. Thử tín hiệu sin thuần với tần số không nguyên; bạn sẽ thấy đỉnh rõ hơn với cửa sổ. Đổi loại cửa sổ để xem cách búp sóng phụ giảm."
+    },
+    "convolution": {
+      "title": "Tích chập",
+      "description": "Tính tích chập giữa hai tín hiệu.",
+      "steps": "1. Thêm Bộ tạo (Nguồn → Bộ tạo) với tín hiệu bạn muốn lọc.\n2. Thêm nút Tích chập từ menu 'Xử lý'.\n3. Kết nối đầu ra bộ tạo với đầu vào nút Tích chập (CTRL+nhấp cả hai đầu).\n4. Nhấp đúp nút Tích chập để cấu hình. Nhập hệ số nhân cách nhau bằng dấu phẩy (ví dụ '0.2,0.2,0.2,0.2,0.2') và chọn chế độ tích chập ('same', 'full', hoặc 'valid').\n5. Nhấn F5 để thực thi luồng. Nút sẽ lọc tín hiệu bằng tích chập rời rạc.\n6. Nhấp vào kết nối đầu ra nút Tích chập để xem tín hiệu đã lọc. Quan sát hiệu ứng của nhân; bạn có thể đổi hệ số và thực thi lại để so sánh."
+    },
+    "correlation": {
+      "title": "Tương quan chéo",
+      "description": "Đo độ tương tự giữa hai tín hiệu theo hàm dịch thời gian.",
+      "steps": "1. Đặt hai nút Bộ tạo (Nguồn → Bộ tạo). Tạo, ví dụ, sóng sin và sóng vuông cùng tần số.\n2. Chèn nút Tương quan từ 'Xử lý'.\n3. Kết nối đầu ra bộ tạo thứ nhất với đầu vào 'Tín hiệu 1' của nút Tương quan (CTRL+nhấp trên cổng). Sau đó kết nối bộ tạo thứ hai với đầu vào 'Tín hiệu 2'.\n4. Thực thi luồng với F5. Nút sẽ tạo tín hiệu tương quan chéo.\n5. Nhấp vào kết nối đầu ra để xem đỉnh tương quan. Bạn sẽ thấy cực đại tại độ trễ nơi hai tín hiệu thẳng hàng.\n6. Kích hoạt con trỏ (bảng dưới) để đo chính xác độ dịch thời gian."
+    },
+    "math_expression": {
+      "title": "Biểu thức toán học",
+      "description": "Áp dụng hàm toán học bất kỳ cho tín hiệu đầu vào (ví dụ y_new = f(x, y)).",
+      "steps": "1. Thêm Bộ tạo (Nguồn → Bộ tạo) và chọn dạng sóng bạn muốn biến đổi.\n2. Thêm nút Biểu thức toán học từ menu 'Xử lý'.\n3. Kết nối đầu ra bộ tạo với đầu vào nút (CTRL+nhấp cả hai đầu).\n4. Nhấp đúp nút Biểu thức để mở trình soạn. Viết hàm nhận hai mảng (x, y) và trả về (x, y_new). Ví dụ: y_new = y**2 + 0.5*np.sin(x).\n5. Nhấn F5 để thực thi. Nút sẽ áp dụng phép toán chỉ lên giá trị 'y' trong khi giữ nguyên trục 'x'.\n6. Trực quan hóa kết quả bằng cách nhấp vào kết nối đầu ra. Bạn có thể sửa biểu thức và thực thi lại để thấy thay đổi tức thì."
+    },
+    "spectrogram": {
+      "title": "Phổ đồ",
+      "description": "Biểu diễn diễn biến tần số theo thời gian của tín hiệu.",
+      "steps": "1. Đặt Bộ tạo (Nguồn → Bộ tạo) với tín hiệu tần số thay đổi, như quét sin (chirp).\n2. Từ 'Xử lý', thêm nút Phổ đồ.\n3. Kết nối đầu ra bộ tạo với đầu vào nút Phổ đồ (CTRL+nhấp cả hai cổng).\n4. Từ 'Xử lý', thêm nút Trình xem phổ đồ và kết nối các cổng tương ứng với nút Phổ đồ.\n5. Thực thi với F5. Nút sẽ xử lý tín hiệu và tạo ma trận thời gian-tần số.\n6. Nhấp phải vào Trình xem phổ đồ để trực quan hóa ảnh phổ. Quan sát cách tần số chủ đạo thay đổi theo thời gian.\n7. (Tùy chọn) Thêm nút FFT trung gian để so sánh biểu diễn tần số tĩnh với động."
+    }
+  },
+  "prefs": {
+    "title": "Tùy chọn",
+    "tab_execution": "Thực thi",
+    "tab_gpu": "GPU / Tính toán",
+    "tab_streaming": "Streaming",
+    "tab_ui": "Giao diện / Hiệu năng",
+    "tab_advanced": "Nâng cao",
+    "max_workers": {
+      "label": "Số luồng tối đa (chuẩn bị Pha 3)",
+      "tooltip": "Điều khiển song song hóa tương lai của các nhánh độc lập."
+    },
+    "timeout_per_node": "Thời gian chờ mỗi nút (s)",
+    "gpu": {
+      "backend": "Backend mặc định",
+      "fallback": "Chính sách dự phòng",
+      "threshold": "Ngưỡng chi phí (MB)"
+    },
+    "streaming": {
+      "buffer": "Kích thước bộ đệm (mẫu)",
+      "timeout": "Thời gian chờ dispatcher (ms)",
+      "error": "Chính sách lỗi luồng"
+    },
+    "ui": {
+      "fps": "FPS làm mới tối đa",
+      "anim": "Thời lượng hoạt ảnh kết nối (s)"
+    },
+    "adv": {
+      "python_path": "Đường dẫn trình thông dịch ngoài",
+      "log_level": "Mức nhật ký",
+      "backup": "Tự động sao lưu khi tải"
+    },
+    "btn_apply": "Áp dụng",
+    "btn_reset": "Đặt lại mặc định",
+    "btn_close": "Đóng"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "Biểu thức..."
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "Lịch sử",
+      "label": "{mode} | {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Eng",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "Xóa"
+    },
+    "history": {
+      "title": "📜 Lịch sử",
+      "clear": "🗑 Xóa",
+      "use_last": "↩ Cuối"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "&Tệp",
+      "edit": "&Sửa",
+      "format": "Đị&nh dạng",
+      "align": "Căn &lề"
+    },
+    "actions": {
+      "new": "&Mới",
+      "open": "&Mở",
+      "save": "&Lưu",
+      "save_as": "Lưu &thành...",
+      "export_csv": "&Xuất CSV...",
+      "exit": "T&hoát",
+      "undo": "&Hoàn tác",
+      "redo": "&Làm lại",
+      "cut": "Cắ&t",
+      "copy": "&Sao chép",
+      "paste": "&Dán",
+      "bold": "Đậ&m",
+      "italic": "N&ghiêng",
+      "align_left": "&Trái",
+      "align_center": "&Giữa",
+      "align_right": "&Phải",
+      "bg_color": "Màu &nền...",
+      "fg_color": "Màu &chữ..."
+    },
+    "toolbar": {
+      "title": "Chính",
+      "new": "Mới",
+      "open": "Mở",
+      "save": "Lưu",
+      "cut": "Cắt",
+      "copy": "Sao chép",
+      "paste": "Dán",
+      "bold": "Đậm",
+      "italic": "Nghiêng",
+      "align_left": "Trái",
+      "align_center": "Giữa",
+      "align_right": "Phải",
+      "bg_color": "Nền",
+      "fg_color": "Chữ",
+      "undo": "Hoàn tác",
+      "redo": "Làm lại"
+    }
+  },
+  "system_monitor": {
+    "title": "GIÁM SÁT HỆ THỐNG",
+    "subtitle": "Telemetry tài nguyên thời gian thực",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "NHÂN / NHÂN LOGIC",
+      "core_prefix": "C"
+    },
+    "ram": {
+      "title": "Bộ nhớ RAM",
+      "tooltip": "Sử dụng RAM"
+    },
+    "disk": {
+      "title": "Ổ đĩa ( / )",
+      "tooltip": "Sử dụng ổ đĩa trên /"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}% M:{mem}%"
+    },
+    "status": {
+      "updated": "Đã cập nhật"
+    }
+  }
+}

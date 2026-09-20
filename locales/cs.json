@@ -1,0 +1,1556 @@
+{
+  "language_name": "Čeština",
+  "app_title": "FloWorks",
+  "menu": {
+    "file": {
+      "file": "Soubor",
+      "new": "Nový",
+      "open": "Otevřít…",
+      "save": "Uložit",
+      "save_as": "Uložit jako…",
+      "exit": "Ukončit"
+    },
+    "edit": "Úpravy",
+    "view": "Zobrazení",
+    "help": "Nápověda",
+    "language": "Jazyk",
+    "info": "Info",
+    "theme": "Motiv",
+    "font_size": "Velikost písma",
+    "font_size_custom": "Vlastní velikost…"
+  },
+  "menu_config": {
+    "title": "Konfigurace uzlu"
+  },
+  "panels": {
+    "analysis": {
+      "title": "Analýza"
+    },
+    "stats": {
+      "title": "Statistiky",
+      "max": "Max:",
+      "min": "Min:",
+      "mean": "Průměr:",
+      "rms": "RMS:",
+      "mode_3d": "(3D projekce)"
+    },
+    "cursors": {
+      "title": "Kurzory A / B",
+      "x": "X",
+      "y": "Y",
+      "a": "A:",
+      "b": "B:",
+      "delta_x": "ΔX:",
+      "delta_y": "ΔY:",
+      "unavailable_3d": "Kurzory nejsou v 3D režimu dostupné"
+    },
+    "crosshair": {
+      "cursor": "Kurzor",
+      "peak": "Špička",
+      "x": "X:",
+      "y": "Y:",
+      "unavailable_3d": "Zaměřovač není v 3D režimu dostupný"
+    }
+  },
+  "tab": {
+    "plot": "Graf",
+    "workspace": "Proměnné plátna",
+    "python_vars": "Proměnné Pythonu"
+  },
+  "tooldrawer": {
+    "python_console": "Terminál",
+    "monitor_widget": "Monitor výkonu",
+    "spreadsheet_widget": "Tabulka",
+    "calc_widget": "Kalkulačka"
+  },
+  "console": {
+    "help": {
+      "title": "Interaktivní tutoriál konzole FloWorks",
+      "button": "Nápověda",
+      "html": "<h1>Interaktivní tutoriál konzole FloWorks</h1><h2>1. Uzly a propojení</h2><p><code>&gt;&gt;&gt; graph.nodes</code></p><p><code>&gt;&gt;&gt; graph.connections</code></p><p><code>&gt;&gt;&gt; selected_node</code></p><p>Vytvoření uzlu:</p><p><code>&gt;&gt;&gt; graph.add_catalog_node('SumNode', 300, 200)</code></p><p>Propojení:</p><p><code>&gt;&gt;&gt; graph.connect_nodes(graph.nodes[0], graph.nodes[2], 'output', 'port_a')</code></p><p>Smazání:</p><p><code>&gt;&gt;&gt; graph.remove_node(graph.nodes[2])</code></p><p>Porty:</p><p><code>&gt;&gt;&gt; graph.nodes[1].PORTS</code></p><h2>2. Spuštění a zobrazení výsledků</h2><p>Spustit tok:</p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Zobrazit výstup uzlu:</p><p><code>&gt;&gt;&gt; graph.node_values[graph.nodes[1]]</code></p><p>Tento přístup může selhat s KeyError, můžete použít:</p><p><code>&gt;&gt;&gt; list(graph.node_values.values())[1]</code></p><p>Úplný výstup:</p><p><code>&gt;&gt;&gt; nodo = graph.nodes[0]</code></p><p><code>&gt;&gt;&gt; nodo.output</code></p><p>Osa Y:</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; y = result[1]</code></p><p><code>&gt;&gt;&gt; y.max()</code></p><p>Přiřazení se nevypisují; zkontrolujte pomocí <code>x</code>, <code>y.shape</code> nebo <code>print(x, y)</code></p><h2>3. Graf</h2><p>Vymazat:</p><p><code>&gt;&gt;&gt; app.plot_widget.clear_plot()</code></p><p>Signál z konzole:</p><p><code>&gt;&gt;&gt; import numpy as np</code></p><p><code>&gt;&gt;&gt; x = np.linspace(0, 1, 1000)</code></p><p><code>&gt;&gt;&gt; y = np.sin(2 * np.pi * 10 * x)</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>Ze zdrojového uzlu:</p><p><code>&gt;&gt;&gt; x, y = graph.get_node_branch_value(graph.nodes[0])</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(x, y)</code></p><p>FFT uzel (vrací dict):</p><p><code>&gt;&gt;&gt; result = graph.get_node_branch_value(graph.nodes[1])</code></p><p><code>&gt;&gt;&gt; result.keys()</code></p><p><code>&gt;&gt;&gt; f, mag = result['magnitude']</code></p><p><code>&gt;&gt;&gt; app.plot_widget.plot_waveform(f, mag)</code></p><h2>4. Úprava aplikace</h2><p>Aktualizovat tabulku:</p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Přidat uzel:</p><p><code>&gt;&gt;&gt; app.add_node('SignalSourceNode')</code></p><p>Titulek:</p><p><code>&gt;&gt;&gt; app.setWindowTitle('My signal lab')</code></p><p>Ověření:</p><p><code>&gt;&gt;&gt; app.windowTitle()</code></p><p>Obnovení:</p><p><code>&gt;&gt;&gt; app.update_title()</code></p><h2>5. Klávesové zkratky</h2><table><tr><th>Klávesa/Příkaz</th><th>Akce</th></tr><tr><td><code>&uarr;</code> / <code>&darr;</code></td><td>Historie</td></tr><tr><td><code>Tab</code></td><td>Automatické doplňování</td></tr><tr><td><code>Ctrl + L</code></td><td>Vymazat konzoli</td></tr><tr><td><code>if</code>, <code>for</code>, <code>def</code></td><td>Víceřádkové bloky</td></tr></table><h2>6. Postupy</h2><p>Změna parametru:</p><p><code>&gt;&gt;&gt; selected_node.params['preset']['amplitude'] = 3.0</code></p><p><code>&gt;&gt;&gt; getattr(selected_node, '_generate_signal', lambda: None)()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p><code>&gt;&gt;&gt; app.workspace_table.populate()</code></p><p>Vlastní vzorec:</p><p><code>&gt;&gt;&gt; selected_node.params['mode'] = 'formula'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['expr'] = '2 * sin(2*pi*1000*t)'</code></p><p><code>&gt;&gt;&gt; selected_node.params['formula']['vars'] = dict(amp=2.0, freq=1000.0, offset=0.0)</code></p><p><code>&gt;&gt;&gt; selected_node._generate_signal()</code></p><p><code>&gt;&gt;&gt; graph.execute_flow()</code></p><p>Seznam kategorií:</p><p><code>&gt;&gt;&gt; from nodes.node_catalog import NODE_CATEGORIES</code></p><p><code>&gt;&gt;&gt; NODE_CATEGORIES</code></p><p>Nápověda:</p><p><code>&gt;&gt;&gt; help(graph.connect_nodes)</code></p><h2>7. Řešení problémů</h2><ul><li><strong>Chyba červeně</strong>: konzole zobrazí problém, aplikace se neuzavře.</li><li><strong>Zamrzlé rozhraní</strong>: nekonečná smyčka. Zavřete konzoli nebo restartujte.</li><li><strong>Nic se neděje</strong>: zkontrolujte <code>graph.connections</code> a zdrojové uzly.</li></ul><p>&copy; 2026 FloWorks — Laboratoř signálů</p>"
+    }
+  },
+  "vars_table": {
+    "header":{
+      "name": "Název",
+      "type": "Typ",
+      "shape": "Tvar",
+      "value": "Hodnota"
+    },
+    "menu" : {
+      "info": "Proměnná: {name}"
+    },
+    "dialog": {
+      "title": "Doplnit hodnotu"
+    }
+  },
+  "toolbar": {
+    "font_size_label": "Písmo:",
+    "font_size_tooltip": "Změnit základní velikost písma",
+    "run_flow_tooltip": "Spustit tok",
+    "add_kinematics": "Uzel kinematiky",
+    "escolar": "Školní",
+    "add_function_graph_node": "Funkce",
+    "add_rhombus_node": "Logická brána",
+    "add_graph_exporter": "Exportér grafu",
+    "add_note": "Poznámky",
+    "add_note_tooltip": "Přidat lepící poznámku…",
+    "add_signal_source": "Nový zdroj signálu",
+    "add_spectrogram_viewer": "Prohlížeč spektrogramu",
+    "add_correlation": "Korelace",
+    "add_math_expression": "Matematický výraz",
+    "add_spectrogram": "Spektrogram",
+    "add_resample": "Převzorkovat",
+    "add_window": "Okno",
+    "add_delay": "Zpoždění",
+    "add_convolution_node": "Konvoluce",
+    "add_normalize": "Normalizovat",
+    "add_filter": "Filtr",
+    "add_fft": "FFT",
+    "source_node": "Pokročilý generátor signálu",
+    "load_signal_tooltip": "Vygenerovat signál podle přání uživatele",
+    "history": "Historie",
+    "history_tooltip": "Historie operací",
+    "auto_layout": "Automatické rozložení",
+    "auto_layout_tooltip": "Automaticky rozložit uzly (Ctrl+Shift+L)",
+    "sources": "Periferie",
+    "processing": "Zpracování",
+    "control": "Řízení",
+    "add_oscilloscope": "Osciloskop",
+    "add_generator": "Generátor",
+    "add_expression": "Uzel výrazu",
+    "add_script": "Python skript",
+    "add_arithmetic": "Aritmetika +−×÷",
+    "add_program": "Program",
+    "add_split": "Logická brána",
+    "add_trigger": "Uzel spouštění",
+    "sink": "Exportér grafu",
+    "help_wiki": "Dokumentace / Wiki",
+    "help_wiki_tooltip": "Otevřít wiki projektu"
+  },
+  "info": {
+    "information": "O aplikaci",
+    "shortcuts": "Klávesové zkratky",
+    "tutorials": "Tutoriály",
+    "change_theme": "Změnit motiv"
+  },
+  "status": {
+    "default": "FloWorks  |  Kolečko: přiblížení  |  Prostřední tlačítko: posun  |  Pravé tlačítko na uzlu: možnosti",
+    "no_nodes": "Připraveno. Vyberte uzly z panelu nástrojů.",
+    "how_to_connect": "Ctrl+klik na výstupní port uzlu, poté klik na vstupní port jiného uzlu.",
+    "connecting": "Propojování… Klikněte na jiný uzel nebo port.",
+    "connection_created": "Propojení vytvořeno.",
+    "flow_executed": "Tok úspěšně spuštěn.",
+    "flow_error": "Chyba při spouštění toku.",
+    "saved": "Diagram uložen: {path}",
+    "loaded": "Diagram načten: {path}",
+    "new_file": "Nový diagram vytvořen",
+    "example_loaded": "Příklad načten."
+  },
+  "errors": {
+    "save_failed": "Chyba při ukládání: {error}",
+    "load_failed": "Chyba při načítání: {error}",
+    "load_example_failed": "Nepodařilo se načíst příklad: {error}"
+  },
+  "nodes": {
+    "common": {
+      "delete": "Smazat uzel",
+      "connect": "Propojit uzel",
+      "disconnect": "Odpojit uzel",
+      "setup": "Nastavení",
+      "trigger": "Spustit",
+      "generate": "Generovat",
+      "edit_script": "Upravit skript",
+      "edit_input": "Upravit vstup",
+      "help": "Informace"
+    },
+    "graph_union": {
+      "title": "Sjednocení grafů",
+      "tooltip": "Seskupuje více signálů jako nezávislé řady pro překryvné vykreslení.",
+      "num_inputs_label": "Počet vstupů (1-8):",
+      "config_title": "Konfigurace sjednocení grafů",
+      "status": {
+        "ready": "Připraveno"
+      },
+      "ports": {
+        "signal_1": "Signál 1",
+        "signal_2": "Signál 2",
+        "signal_3": "Signál 3",
+        "signal_4": "Signál 4",
+        "signal_5": "Signál 5",
+        "signal_6": "Signál 6",
+        "signal_7": "Signál 7",
+        "signal_8": "Signál 8",
+        "series_out": "Výstup"
+      },
+      "menu": {
+        "configure": "Konfigurovat…"
+      },
+      "help_title": "Nápověda – Sjednocení grafů",
+      "help_html": "<h3>🔗 Uzel sjednocení grafů</h3><p>Přijímá více signálů a uchovává je jako nezávislé řady pro překryvné vykreslení bez jejich spojování.</p><p>Klikněte pravým tlačítkem na uzel pro dynamické <b>přidání nebo odebrání</b> vstupů (max. 8).</p><p>Výstup <code>Series</code> poskytuje úplný seznam řad pro vizualizaci.</p>"
+    },
+    "tabular_inspector": {
+      "title": "Inspektor tabulkových dat",
+      "window_title": "Tabulkový inspektor",
+      "no_data": "Žádná data",
+      "copy": "Kopírovat do schránky",
+      "decimals": "Desetinná místa:",
+      "col_names": "Názvy sloupců (oddělené čárkou, prázdné = auto):",
+      "tooltip": "Inspekce dat uzlu zobrazuje data přijatá na jeho jediném vstupním portu jako tabulku.",
+      "status": {
+        "no_data": "Žádná data"
+      },
+      "menu": {
+        "view_table": "Zobrazit tabulku",
+        "configure": "Konfigurovat…"
+      },
+      "ports": {
+        "data": "Vstup"
+      },
+      "config_title": "Konfigurace tabulkového inspektoru",
+      "help_title": "Nápověda – Tabulkový inspektor",
+      "help_html": "<h3>📊 Uzel tabulkového inspektoru</h3><p>Podobně jako <b>tabulka v Excelu</b> zobrazuje tento uzel data přijatá na jeho jediném vstupním portu jako tabulku.</p><p><b>Pravidla interpretace:</b></p><ul><li><b>N-tice/seznam polí</b> (např. (x, y, Fs)) → každé pole se stane sloupcem.</li><li><b>2D numpy pole</b> → řádky × sloupce.</li><li><b>1D pole nebo seznam</b> → jediný sloupec.</li><li><b>Skalár</b> → jediná buňka.</li></ul><p>Pravé tlačítko → <b>Zobrazit tabulku</b> pro otevření inspektoru. V postranním panelu nastavte desetinná místa a vlastní názvy sloupců (oddělené čárkou).</p>"
+    },
+    "equation_solver": {
+      "title": "Řešitel rovnic",
+      "tooltip":"Řešitel soustav lineárních rovnic",
+      "type_label": "Typ rovnice:",
+      "type_linear_single": "Lineární jednoduchá",
+      "type_linear_system": "Lineární soustava 2×2",
+      "eq_format": "Formát: a*x + b = c",
+      "eq1_label": "Rovnice 1 (formát: a*x + b*y = c):",
+      "eq2_label": "Rovnice 2:",
+      "examples": "Příklady",
+      "sys_examples": "Příklady soustav",
+      "menu": {
+        "view_plot": "Zobrazit graf řešení",
+        "configure": "Konfigurovat rovnice…",
+        "view_steps": "Zobrazit postup řešení…"
+      },
+      "ports": {
+        "output": "výstup",
+        "steps": "kroky",
+        "solution": "y (m)"
+      },
+      "steps_title": "Postup řešení",
+      "no_steps": "Nejsou k dispozici žádné kroky řešení.",
+      "config_title": "Konfigurace řešitele rovnic",
+      "help_title": "Nápověda – Řešitel rovnic",
+      "plot_window_title": "Graf řešení",
+      "plot_x_axis": "x",
+      "plot_y_axis": "y",
+      "export_plot": "Exportovat…",
+      "export_title": "Exportovat graf",
+      "no_data_to_plot": "Žádná data k vykreslení",
+      "btn_step_by_step": "▶ Krok za krokem",
+      "step_anim_title": "Krok za krokem",
+      "step_anim_info": "V plné verzi by se zde zobrazila grafická konstrukce krok za krokem.",
+      "error_no_equals": "V rovnici chybí znaménko '='.",
+      "error_rhs_not_number": "Pravá strana rovnice není platné číslo.",
+      "error_invalid_x_coef": "Neplatný koeficient pro x: '{coef}'. Zkontrolujte syntaxi.",
+      "error_invalid_y_coef": "Neplatný koeficient pro y: '{coef}'. Zkontrolujte syntaxi.",
+      "error_invalid_const": "Neplatný konstantní člen: '{term}'. Použijte pouze čísla a znaménka + nebo -.",
+      "error_zero_x": "Koeficient x je nula. Rovnice nemá jedinečné řešení.",
+      "no_plot_data_title": "Žádná data",
+      "no_plot_data_message": "Nejsou k dispozici žádná data řešení k vykreslení. Nejprve nakonfigurujte a vyřešte.",
+      "preview": "Náhled:",
+      "preview_solution_xy": "x = {x:.4g}<br>y = {y:.4g}",
+      "preview_solution_x": "x = {x:.4g}",
+      "preview_no_solution": "Žádné řešení (nebo dosud nevypočteno)",
+      "help_html":"<h3>🧮 Uzel řešitele rovnic</h3>\n<p>Umožňuje <b>řešit jednoduché lineární rovnice nebo soustavy 2×2</b>, zobrazuje postup krok za krokem a graf průsečíků.</p>\n\n<h4>⚙️ Použití</h4>\n<ol>\n <li><b>Pravé tlačítko</b> na uzlu → vyberte <i>„Upravit parametry“</i>.</li>\n <li>Zvolte <code>equation_type</code>: <code>linear_single</code> nebo <code>linear_system</code>.</li>\n <li>Zadejte <code>equations</code> jako text (např. „2x + 3 = 7“) nebo seznam textů pro soustavy.</li>\n <li>Uzel vypočítá řešení a automaticky vygeneruje algebraické kroky.</li>\n</ol>\n\n<h4>📤 Výstup</h4>\n<ul>\n <li><code>solution</code> → číselná hodnota (jednoduchá rovnice) nebo slovník s <code>x</code>, <code>y</code> (soustava 2×2).</li>\n <li><code>steps</code> → text s postupem algebraického řešení krok za krokem.</li>\n</ul>\n\n<h4>⚠️ Poznámky</h4>\n<ul>\n <li><b>Pedagogická hodnota:</b> Nabízí okamžitou algebraickou zpětnou vazbu a propojuje řešení s jeho grafickým znázorněním (průsečík).</li>\n <li>Ujistěte se, že používáte správné proměnné (<code>x</code> pro jednoduché, <code>x</code> a <code>y</code> pro soustavy).</li>\n <li>Pokud je soustava nekonzistentní nebo závislá, bude to uvedeno ve výstupu <code>steps</code>.</li>\n</ul>\n\n<h4>💡 Příklad</h4>\n<p>Nakonfigurujte uzel jako <code>linear_system</code> s <code>[\"y = 2x\", \"y = -x + 3\"]</code>. Připojte <code>steps</code> k prohlížeči textu a vizualizujte průsečík v uzlu grafu.</p>\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok matematického zpracování</b>.</p>\n\n<pre>\nRovnice → Řešení → Vizualizace\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(Algebra ↔ Geometrie)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nParametry → Zpracování (Řešitel) → Vizualizace (Graf/Text)\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nParametry (Rovnice) → EquationSolver → Graf (Průsečík) + Text (Kroky)\n</pre>\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "kinematics": {
+      "title": "Kinematika",
+      "tooltip": "Simulátor kinematiky: volný pád a šikmý vrh",
+      "ports": {
+        "x": "x(m) vs t(s)",
+        "y": "y(m) vs t(s)",
+        "vx": "vx(m/s) vs t(s)",
+        "vy": "vy(m/s) vs t(s)",
+        "speed": "rychlost(m/s) vs t(s)",
+        "energy_kinetic": "kinetická energie(J) vs t(s)",
+        "energy_potential": "potenciální energie(J) vs t(s)",
+        "ground_contact": "kontakt se zemí vs t(s)"
+      },
+      "status": {
+        "ready": "Připraveno"
+      },
+      "config_title": "Konfigurace kinematiky",
+      "menu": {
+        "configure": "Konfigurovat…",
+        "generate": "Generovat",
+        "show_output": "Zobrazit výstup",
+        "trajectory": "Trajektorie (y vs x)",
+        "y_t": "Vertikální poloha y(t)",
+        "vy_t": "Vertikální rychlost vy(t)",
+        "speed_t": "Rychlost |v|(t)",
+        "display": "Vizualizace"
+      },
+      "group_ic": "Počáteční podmínky",
+      "group_env": "Prostředí",
+      "group_sim": "Simulace",
+      "group_presets": "Předvolby",
+      "help_title": "Nápověda – Kinematika",
+      "help_html": "<h3>🚀 Laboratoř kinematiky</h3><p>Simuluje <b>šikmý vrh</b> a <b>volný pád</b> pod konstantní gravitací. Nevyžaduje žádné vstupy; generuje signály z počátečních podmínek.</p><pre>x(t) = v₀·cosθ·t\ny(t) = y₀ + v₀·sinθ·t − ½·g·t²</pre><h4>📤 Hlavní výstupy (n-tice čas vs velikost)</h4><p>Každý port poskytuje n-tici <code>(t, proměnná)</code> připravenou k připojení ke grafu nebo jinému uzlu. Čas je již zahrnut jako osa X.</p><ul><li><code>x</code> → (t, horizontální poloha) [m]</li><li><code>y</code> → (t, vertikální poloha) [m]</li><li><code>vx</code> → (t, horizontální rychlost) [m/s]</li><li><code>vy</code> → (t, vertikální rychlost) [m/s]</li><li><code>speed</code> → (t, rychlost |v|) [m/s]</li></ul><h4>⚡ Volitelné výstupy (zapněte Zobrazit energie)</h4><ul><li><code>energy_kinetic</code> → (t, Ek = ½·m·v²) [J]</li><li><code>energy_potential</code> → (t, Ep = m·g·y) [J]</li><li><code>ground_contact</code> → (t, 1.0 pokud y≤0, 0.0 ve vzduchu)</li></ul><h4>🎨 Interní kanály zobrazení</h4><p>Změňte, co se zobrazuje v hlavním grafu, z kontextové nabídky:</p><ul><li><b>Trajektorie</b> (y vs x) → prostorová parabola</li><li><b>y(t)</b>, <b>vy(t)</b>, <b>|v|(t)</b> → časový vývoj</li></ul><h4>💡 Typická propojení</h4><ul><li><b>Výška vs čas:</b> připojte <code>y</code> ke grafu (již obsahuje t)</li><li><b>Rychlost vs čas:</b> připojte <code>speed</code> ke grafu</li><li><b>Prostorová trajektorie:</b> připojte <code>x</code> → osa X grafu, <code>y</code> → osa Y grafu</li><li><b>Dopad:</b> připojte <code>ground_contact</code> k logickému uzlu nebo LED</li><li><b>Energie:</b> sečtěte <code>energy_kinetic</code> + <code>energy_potential</code> pro ověření zákona zachování</li></ul><h4>⚡ Zkratky</h4><ul><li><b>Dvojklik</b> → tato nápověda</li><li><b>Pravé tlačítko</b> → konfigurovat / generovat</li><li><b>Tlačítko GENERATE</b> → simuluje a otevře animaci</li></ul><hr><p><b>Stav:</b> -- | <b>Předvolba:</b> --</p>"
+    },
+    "function_graph": {
+      "title": "Funkce",
+      "tooltip": "Generování a vizualizace matematických funkcí s numerickou analýzou",
+      "ports": { "signal": "Signál" },
+      "status": { "ready": "Připraveno" },
+      "menu": { "configure": "Konfigurovat…", "show_table": "Zobrazit tabulku hodnot", "generate": "Generovat", "show_limit": "Zobrazit limitu", "show_derivative": "Zobrazit derivaci" },
+      "config_title": "Nastavit funkci",
+      "cfg": { "expr": "Výraz:", "presets": "Předvolby:", "piecewise": "Aktivovat funkci po částech", "group_func": "Seskupit funkce", "group_dom": "Seskupit definiční obor", "group_viz": "Seskupit vizualizaci" },
+      "table_title": "Tabulka hodnot"
+    },
+    "signal_source": {
+        "title": "Pokročilý zdroj signálu",
+        "tooltip": "Pokročilý zdroj signálu",
+        "load_signal": "Načíst signál ze souboru…",
+        "load_file_title": "Načíst soubor signálu",
+        "ports": {
+            "out": "Výstup",
+            "trigger_in": "Vstup spouštění",
+            "trigger_out": "Výstup spouštění"
+        },
+        "status": {
+            "no_data": "Žádná data"
+        },
+        "configure": "Konfigurovat…",
+        "generate": "Generovat signál",
+        "help_title": "Nápověda – Zdroj signálu",
+        "help_html": "<h3>🎛️ Uzel zdroje signálu</h3>\n<p>Generuje <b>vlastní signály</b> pomocí široké škály <b>přednastavených průběhů</b> nebo <b>matematického vzorce</b> zadaného uživatelem. Výstup je vždy n-tice <code>(čas, amplituda)</code>, připravená k dalšímu zpracování.</p>\n\n<h4>📤 Výstup</h4>\n<p><code>out</code> → n-tice <code>(t, y)</code>.</p>\n\n<h4>⚙️ Režimy činnosti</h4>\n<ul>\n    <li><b>Předvolba:</b> vyberte ze sinus, obdélník, rampa, pulz, šum, DC, trojúhelník, pila, sinc, Gauss, exponenciála, chirp. Všechny parametry (frekvence, amplituda, offset, fáze, střída, symetrie atd.) jsou nastavitelné v dialogu konfigurace.</li>\n    <li><b>Vzorec:</b> napište <b>volný matematický výraz</b> používající <code>t</code> (čas) a vlastní proměnné (např. <code>amp * sin(2*pi*freq*t) + offset</code>). Proměnné jsou definovány v tabulce a lze je libovolně přidávat, odebírat nebo upravovat. Vyhodnocení je bezpečné a omezené na matematické operace.</li>\n</ul>\n\n<h4>🖱️ Interakce</h4>\n<ul>\n    <li><b>Dvojklik</b> na uzel → otevře dialog konfigurace se třemi záložkami (Předvolba, Vzorec, Pokročilé).</li>\n    <li><b>Kliknutí</b> na uzel → vykreslí aktuální signál v hlavním grafu.</li>\n    <li><b>Pravé tlačítko</b> → kontextová nabídka pro regeneraci, konfiguraci nebo smazání uzlu.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "signalsource_dialog": {
+        "title": "Konfigurace signálu",
+        "waveform": "Průběh",
+        "frequency": "Frekvence",
+        "amplitude": "Amplituda",
+        "offset": "Ofset",
+        "phase": "Fáze",
+        "symmetry": "Symetrie",
+        "direction": "Směr",
+        "up": "Nahoru",
+        "down": "Dolů",
+        "stdev": "Směrodatná odchylka",
+        "mean": "Střední hodnota",
+        "lobes": "Laloky",
+        "sigma": "Sigma",
+        "mu": "Mu",
+        "tau": "Tau",
+        "exp_type": "Typ",
+        "rise": "Náběh",
+        "fall": "Sestup",
+        "f0": "Počáteční frekvence",
+        "f1": "Koncová frekvence",
+        "chirp_method": "Metoda",
+        "linear": "Linear",
+        "logarithmic": "Logarithmic",
+        "tab_preset": "Předvolba",
+        "tab_formula": "Vzorec",
+        "tab_advanced": "Pokročilé",
+        "preview": "Náhled",
+        "apply": "Použít",
+        "duration": "Trvání",
+        "sample_rate": "Vzorkovací frekvence",
+        "sampling_note": "0 = auto",
+        "auto_generate": "Automaticky generovat",
+        "time_label": "Čas (s)",
+        "amplitude_label": "Amplituda",
+        "formula_expr": "Vzorec (použijte 't' jako časovou proměnnou):",
+        "variables": "Proměnné:",
+        "var_name": "Název",
+        "var_value": "Hodnota",
+        "add_var": "Přidat proměnnou",
+        "remove_var": "Odebrat vybrané",
+        "auto": "Auto",
+        "basic_params": "Základní parametry",
+        "carrier_freq": "Nosná frekvence",
+        "mod_freq": "Modulační frekvence",
+        "mod_depth": "Hloubka modulace",
+        "deviation": "Odchylka",
+        "heart_rate": "Tepová frekvence",
+        "rise_time": "Doba náběhu",
+        "fall_time": "Doba sestupu",
+        "quick_insert": "Rychlé funkce",
+        "advanced": {
+          "modulation": "Modulace",
+          "mod_enable": "Zapnout modulaci",
+          "mod_type": "Typ modulace",
+          "mod_freq": "Modulační frekvence",
+          "mod_depth": "Hloubka modulace",
+          "noise_group": "Šum",
+          "noise_enable": "Přidat šum",
+          "noise_amp": "Amplituda šumu",
+          "auto_generate": "Automaticky použít změny",
+          "auto_generate_tooltip": "Je-li zapnuto, každá změna parametru se okamžitě použije na uzel. Je-li vypnuto, stiskněte OK pro použití."
+        },
+        "gamma": "Gamma (šířka)",
+        "window_type": "Typ okna",
+        "quadratic": "Quadratic",
+        "hyperbolic": "Hyperbolic",
+        "hanning": "Hanning",
+        "hamming": "Hamming",
+        "blackman": "Blackman",
+        "bartlett": "Bartlett",
+        "kaiser": "Kaiser",
+        "noise_type": "Typ šumu",
+        "gaussian": "Gaussovský",
+        "uniform": "Rovnoměrný",
+        "pink": "Růžový (1/f)",
+        "brown": "Hnědý (1/f²)",
+        "blue": "Modrý (f)",
+        "impulse": "Impulz",
+        "pulse_shape": "Tvar pulzu",
+        "rect": "Obdélníkový",
+        "raised_cosine": "Zvýšený kosinus",
+        "polynomial": "PRBS polynom",
+        "bit_rate": "Přenosová rychlost",
+        "symbol_rate": "Symbolová rychlost",
+        "symbol_sequence": "Sekvence symbolů",
+        "bit_sequence": "Bitová sekvence",
+        "multitone_hint": "Frekvence (Hz, oddělené čárkou):",
+        "frequencies": "Frekvence",
+        "amplitudes": "Amplitudy",
+        "phases": "Fáze",
+        "step_time": "Čas kroku",
+        "impulse_time": "Čas impulzu",
+        "f_start": "Počáteční frekvence",
+        "f_end": "Koncová frekvence",
+        "f2": "Frekvence 2",
+        "noise_level": "Úroveň šumu",
+        "duty_cycle": "Střída (%)",
+        "signal_sine": "Sinus",
+        "signal_square": "Obdélník",
+        "signal_ramp": "Rampa",
+        "signal_pulse": "Pulz",
+        "signal_noise": "Šum",
+        "signal_dc": "DC",
+        "signal_triangle": "Trojúhelník",
+        "signal_sawtooth": "Pila",
+        "signal_sinc": "Sinc",
+        "signal_gaussian": "Gauss",
+        "signal_exponential": "Exponenciála",
+        "signal_chirp": "Chirp",
+        "signal_am": "AM",
+        "signal_fm": "FM",
+        "signal_ecg": "EKG",
+        "signal_trapezoidal": "Lichoběžník",
+        "signal_lorentzian": "Lorentz",
+        "signal_window": "Okno",
+        "signal_multitone": "Multitón",
+        "signal_ask": "ASK",
+        "signal_fsk": "FSK",
+        "signal_psk": "PSK",
+        "signal_pwm": "PWM",
+        "signal_pam": "PAM",
+        "signal_prbs": "PRBS",
+        "signal_step": "Krok",
+        "signal_impulse": "Impulz",
+        "signal_sweep_sine": "Frekvenční rozmítání",
+        "signal_cardiac": "Kardiální",
+        "signal_eeg": "EEG",
+        "signal_beat": "Tep"
+    },
+    "input": {
+      "help_html": "<h3>📂 Vstupní uzel (Načítání dat)</h3>\n<p>Umožňuje <b>načíst data ze souboru .npz</b> (formát NumPy) a odeslat je do pracovního toku.</p>\n\n<h4>⚙️ Použití</h4>\n<ol>\n    <li><b>Pravé tlačítko</b> na uzlu → vyberte <i>„Upravit vstup“</i>.</li>\n    <li>Vyberte soubor <code>.npz</code>, který obsahuje klíč <code>datay</code>.</li>\n    <li>Pole se uloží interně a automaticky se šíří tokem.</li>\n</ol>\n\n<h4>📤 Výstup</h4>\n<p><code>out</code> → obsah <code>datay</code> z načteného souboru.</p>\n\n<h4>⚠️ Poznámky</h4>\n<ul>\n    <li>Přijímají se pouze soubory <b>.npz</b> s klíčem <code>datay</code>.</li>\n    <li>Pokud je soubor neplatný, zobrazí se chyba v konzoli.</li>\n    <li>Po načtení souboru se tok spustí automaticky.</li>\n</ul>\n\n<h4>💡 Příklad</h4>\n<p>Načtěte soubor s daty ze senzoru a poté jej připojte k uzlu „Filtr“ nebo „Vizualizér“.</p>\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "generic": {
+      "lambda_func": "lambda funkce",
+      "help_html": "<h3>🔧 Obecný uzel zpracování</h3>\n<p>Aplikuje <b>vlastní funkci</b> na vstupní data. Je základem pro vytváření matematických operací, transformací atd.</p>\n\n<h4>📥 Vstup</h4>\n<p><code>data_in</code> → může být číslo, n-tice (x, y) nebo jakýkoli objekt.</p>\n\n<h4>📤 Výstup</h4>\n<p><code>out</code> → výsledek aplikace funkce na vstup.</p>\n\n<h4>🧠 Chování podle typu vstupu</h4>\n<ul>\n    <li>Pokud je vstup <b>n-tice dvou prvků</b> (x, y), funkce obdrží n-tici a musí vrátit jinou n-tici nebo hodnotu. Příklad: <code>lambda xy: (xy[0], xy[1]*2)</code>.</li>\n    <li>Pokud je vstup <b>jednoduchá hodnota</b>, funkce obdrží tuto hodnotu. Příklad: <code>lambda x: x**2</code>.</li>\n    <li>Pokud je vstup <code>None</code>, výstup bude také <code>None</code>.</li>\n</ul>\n\n<h4>⚙️ Přizpůsobení</h4>\n<p>Funkce se přiřazuje při vytváření uzlu (např. v kódu). V budoucích verzích ji možná budete moci upravit z rozhraní.</p>\n\n<h4>💡 Příklady</h4>\n<ul>\n    <li><b>Zdvojnásobení čísla:</b> <code>lambda x: x * 2</code></li>\n    <li><b>Součet složek n-tice:</b> <code>lambda xy: xy[0] + xy[1]</code></li>\n    <li><b>Vrátit stejnou n-tici (passthrough):</b> <code>lambda xy: xy</code></li>\n</ul>\n\n<p><b>Aplikovaná funkce:</b> {func_name}</p>\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "rhombus": {
+      "title": "Logická brána",
+      "tooltip": "Logické, porovnávací a maskovací operace se signály (in1 ⊗ in2 → out)",
+      "ports": {
+        "in1": "Vstup 1",
+        "in2": "Vstup 2",
+        "out": "Výstup"
+      },
+      "config_title": "Konfigurace logické brány",
+      "op_label": "Operace:",
+      "thr_label": "Prahová hodnota / Úroveň:",
+      "inv_label": "Invertovat výstup",
+      "help_title": "Nápověda – Logická brána",
+      "help_html": "<h3>🎛️ Logická brána / Komparátor</h3>\n<p>Vyhodnocuje, porovnává nebo maskuje dva vstupní signály vzorek po vzorku za účelem generování spouštěčů, logických masek nebo podmíněných výstupů.</p>\n\n<h4>📥 Vstupy</h4>\n<ul>\n<li><code>in1</code> → Hlavní signál (operand A).</li>\n<li><code>in2</code> → Reference, maska nebo druhý operand (operand B).</li>\n</ul>\n\n<h4>📤 Výstup</h4>\n<ul>\n<li><code>out</code> → Výsledek zpracování. Booleovské operace vracejí <code>0.0</code> nebo <code>1.0</code>. Komparátory/prahové hodnoty generují masky nebo omezené signály.</li>\n</ul>\n\n<h4>📐 Diagram</h4>\n<pre>\n in1 ──┐\n       ▼\n     [GATE] ──► out\n       ▲\n in2 ──┘\n</pre>\n\n<h4>🧩 Mentální model</h4>\n<p>Tento uzel funguje jako <b>rozhodovací engine po vzorcích</b>. Vyhodnocuje každý bod nezávisle a transformuje analogové průběhy na digitální řídicí signály, aktivační masky nebo logické toky.</p>\n\n<h4>📐 Reprezentace dat</h4>\n<pre>\nVstupy:\n(x, y1) & (x, y2) → 1D pole (zkrátí se na nejkratší při neshodě)\n\nVýstup:\n(x, y_out) → Typicky binární (0/1) nebo maskovaný\n</pre>\n\n<h4>🔁 Typický vzor použití</h4>\n<pre>\n[Generátor] → [Logická brána] → [Spouštěč / Graf]\n\nPříklad:\nSinus (in1) + Obdélník (in2) → [AND] → Synchronizovaný sled pulzů\nSignál (in1) → [THRESHOLD] → 0/1 maska pro detekci špiček\nSignál (in1) + Ref (in2) → [MASK] → Ztlumí in1, když in2 ≤ 0\n</pre>\n\n<h4>⚠️ Běžné chyby</h4>\n<ul>\n<li>Očekávání, že logické operace zachovají amplitudu → Nezachovají (převedou na 0/1). Místo toho použijte <code>LEVEL</code> nebo <code>MASK</code>.</li>\n<li>Připojení signálů velmi rozdílných délek → Zkrátí se na minimum.</li>\n<li>Použití <code>EQ</code> na desetinná čísla → Spoléhá na implicitní toleranci; v případě potřeby nejprve zaokrouhlete.</li>\n</ul>\n<hr><hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře tuto nápovědu.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li>\n<li><b>Přetažení</b> uzlu → přesune blok; propojení se aktualizují automaticky.</li>\n</ul>"
+     },
+    "sum": {
+      "title": "Aritmetika",
+      "tooltip": "Provádí aritmetické operace mezi dvěma signály.",
+      "operation": {
+        "sum": "Součet",
+        "sub": "Odečítání",
+        "mul": "Násobení",
+        "div": "Dělení"
+      },
+      "ports": {
+        "out": "Výstup",
+        "port_a_sum": "+A",
+        "port_b_sum": "+B",
+        "port_a_sub": "A",
+        "port_b_sub": "B",
+        "port_a_mul": "*A",
+        "port_b_mul": "*B",
+        "port_a_div": "čitatel",
+        "port_b_div": "jmenovatel"
+      },
+      "menu": {
+        "operation": "Operace"
+      },
+      "help_title": "Nápověda – Aritmetický uzel",
+      "help_html": "<h3>➕ Uzel součtu/aritmetiky</h3>\n<p>Provádí aritmetické operace mezi dvěma signály (pole nebo číselné hodnoty).</p>\n\n<h4>📥 Vstupy</h4>\n<ul>\n    <li><code>port_a</code> (horní): první operand (A).</li>\n    <li><code>port_b</code> (spodní): druhý operand (B).</li>\n</ul>\n\n<h4>📤 Výstup</h4>\n<p><code>out</code> → výsledek operace (A op B).</p>\n\n<h4>⚙️ Dostupné operace (pravé tlačítko → Operace)</h4>\n<ul>\n    <li><b>Součet (+)</b>: A + B</li>\n    <li><b>Odečítání (−)</b>: A − B</li>\n    <li><b>Násobení (×)</b>: A * B</li>\n    <li><b>Dělení (÷)</b>: A / B (chrání před dělením nulou).</li>\n</ul>\n\n<h4>📐 Diagram</h4>\n<pre>\n     port_a\n        │\n        ▼\n    ┌─────┐\n    │  +  │──► out\n    └─────┘\n        ▲\n     port_b\n</pre>\n\n<h4>🧩 Mentální model</h4>\n<p>Tento uzel je <b>vektorový operátor</b>.\nPracuje po prvcích na signálech.</p>\n\n<h4>📐 Vektorová reprezentace</h4>\n<pre>\nA = (x, y1)\nB = (x, y2)\n\nVýstup:\ny_out[i] = y1[i] op y2[i]\n</pre>\n\n<h4>📊 Vizuální příklad</h4>\n<pre>\ny1 = [1, 2, 3]\ny2 = [0.5, 1, 1.5]\n\nSoučet:\ny = [1.5, 3, 4.5]\n</pre>\n\n<h4>🔁 Strategie použití</h4>\n<ul>\n<li><b>Normalizace:</b> dělení maximem</li>\n<li><b>Škálování:</b> násobení konstantou</li>\n<li><b>Míchání signálů:</b> součet vln</li>\n<li><b>Potlačení:</b> A - B pro odstranění šumu</li>\n</ul>\n\n<h4>⚠️ Běžné chyby</h4>\n<ul>\n<li>Nezarovnané osy X → nekonzistentní výsledky</li>\n<li>Dělení hodnotami blízkými nule → nestabilita</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "script": {
+      "title": "Skript",
+      "tooltip": "Uzel Python skriptu",
+      "ports": {
+        "data_in": "Vstup dat",
+        "loop_in": "Vstup smyčky",
+        "out": "Výstup"
+      },
+      "menu":{
+        "edit":"Upravit",
+        "run":"Spustit skript"
+      },
+      "status_ready": "Připraveno",
+      "status_error": "Chyba",
+      "edit_script": "Upravit skript",
+      "tooltip_x": "NumPy pole: osa X (čas, frekvence atd.)",
+      "tooltip_y": "NumPy pole: aktuální hodnoty signálu",
+      "tooltip_param": "Parametr iterace (z TriggerNode) nebo None",
+      "help_title": "Nápověda – Uzel skriptu",
+      "help_html": "<h3>📜 Uzel vlastního skriptu</h3> <p>Umožňuje psát Python kód pro libovolné zpracování signálů.</p> <h4>📥 Vstupy</h4> <ul> <li><code>data_in</code> → hlavní signál (x, y) nebo jednoduché pole.</li> <li><code>loop_in</code> → volitelný vstup pro příjem parametrů z <b>TriggerNode</b> (hodnota <code>param</code>).</li> <li>Dynamické porty <code>@input name</code> → další vstupy definované ve skriptu.</li> </ul> <h4>📤 Výstupy</h4> <ul> <li><code>out</code> → n-tice (x_new, y_new) generovaná skriptem (dávkový režim).</li> <li>Dynamické porty <code>@output name</code> → další výstupy definované ve skriptu.</li> </ul> <h4>✏️ Úprava skriptu</h4> <p>Pravé tlačítko → <b>Upravit skript</b> pro otevření editoru se zvýrazňováním syntaxe.</p> <p>Obsahuje automatické doplňování, šablony, konfigurovatelné parametry (<code>@param</code>) a externí spuštění (alternativní Python).</p> <hr> <h4>🧠 Dostupné proměnné (tradiční dávkový režim)</h4> <ul> <li><code>x</code> : numpy pole – časová nebo frekvenční osa</li> <li><code>y</code> : numpy pole – hodnoty signálu</li> <li><code>param</code> : float (volitelné) – hodnota z <code>loop_in</code> (TriggerNode)</li> <li><code>persist</code> : dict – trvalý mezi spuštěními stejného uzlu (užitečné pro akumulátory)</li> <li><code>np</code>, <code>scipy</code>, <code>sympy</code> – předem importované knihovny</li> </ul> <h4>🧩 Mentální model</h4> <p> Tento uzel je <b>blok libovolné transformace</b>. Zde definujete svou vlastní fyziku, matematiku nebo logiku. </p> <h4>📐 Očekávaný tvar (dávkový)</h4> <pre> Vstup: x → vektor (čas/frekvence) y → vektor (hodnoty) Výstup: (x_mod, y_mod) </pre> <h4>🧠 Pokročilejší příklady</h4> <h5>1. Frekvenčně závislé zesílení</h5> <pre> gain = np.exp(-x * 0.01) return (x, y * gain) </pre> <h5>2. Detekce špiček</h5> <pre> y_mod = np.where(y > 0.8, y, 0) return (x, y_mod) </pre> <h5>3. Modulace</h5> <pre> carrier = np.sin(2*np.pi*1000*x) return (x, y * carrier) </pre> <h5>4. Použití param (rozmítání)</h5> <pre> factor = param if param is not None else 1.0 return (x, y * factor) </pre> <h5>5. Akumulátor s persist</h5> <pre> persist[\"counter\"] = persist.get(\"counter\", 0) + 1 return (x, y + persist[\"counter\"] * 0.1) </pre> <hr> <h4>🔁 Pokročilá strategie</h4> <pre> Trigger → Script(param) → Součet → Vizualizace → Umožňuje automatické rozmítání </pre> <h4>⚠️ Běžné chyby</h4> <ul> <li>Nevrácení n-tice (x, y) v dávkovém režimu.</li> <li>Neuvědomění si, že <code>param</code> může být None.</li> <li>Snaha použít tlačítko „Test“ u streamingových nebo GPU skriptů (použijte skutečný tok).</li> </ul><hr> <hr> <h3>🧠 Jak o tomto systému přemýšlet</h3> <p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p> <pre> Data → Transformace → Výsledek </pre> <h4>📐 Klíčové pravidlo</h4> <pre> Vše je: (x, y) </pre> <h4>🔁 Univerzální vzor</h4> <pre> Vstup → Zpracování → Vizualizace </pre> <h4>🧪 Kompletní příklad</h4> <pre> Osciloskop → FFT → Filtr → Sčítačka → Graf </pre> <hr> <h4>⚡ Zkratky a triky</h4> <ul> <li><b>Ctrl + klik</b> na port → vyberte port pro rychlé propojení.</li> <li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li> <li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li> <li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li> </ul>"
+    },
+    "trigger": {
+      "title": "Spouštěč",
+      "tooltip": "Uzel iterace a akumulace",
+      "ports": {
+        "data_in": "Vstup dat",
+        "trigger_in": "Vstup spouštění",
+        "loop_out": "Výstup smyčky",
+        "out": "Výstup"
+      },
+      "state": {
+        "idle": "ČEKÁ",
+        "running": "ITERACE {iteration}/{total}",
+        "done": "DOKONČENO",
+        "running_count": "BĚŽÍ {count}/{total}"
+      },
+      "info": {
+        "mode": "{mode}",
+        "done": "{mode} ({n})"
+      },
+      "menu": {
+        "configure": "Konfigurovat…"
+      },
+      "accumulate": {
+        "accumulate": "Režim akumulace",
+        "stack": "zásobník",
+        "average": "průměr",
+        "max": "max",
+        "min": "min",
+        "last": "Poslední zachycení"
+      },
+      "config_title": "Konfigurace uzlu spouštěče",
+      "n_iter": "Iterace",
+      "reset": "Obnovit iteraci",
+      "help_title": "Nápověda – Uzel spouštěče",
+      "help_html": "<h3>⏺ Uzel spouštěče (dávkové zachytávání)</h3>\n<p>Iterativně zachycuje a akumuluje signály, aktivované externím signálem spouštění (<code>trigger_in</code>). Ideální pro opakované experimenty, průměrování šumu nebo porovnávání průběhů v čase.</p>\n\n<h4>📥 Vstupy</h4>\n<ul>\n    <li><code>data_in</code> → hlavní signál (x, y), který má být zachycen.</li>\n    <li><code>trigger_in</code> → signál spouštění. Každý pulz nebo aktivace zachytí nový průběh do interní vyrovnávací paměti.</li>\n</ul>\n\n<h4>📤 Výstupy</h4>\n<ul>\n    <li><code>out</code> → po dokončení naprogramovaného počtu iterací (<code>n_iter</code>) vyšle akumulovaný signál podle zvoleného režimu.</li>\n</ul>\n\n<h4>⚙️ Konfigurace</h4>\n<p>Pravé tlačítko → <b>Konfigurovat</b> pro úpravu:</p>\n<ul>\n    <li><b>Iterace (N):</b> přesný počet zachycení potřebných pro generování výstupu.</li>\n    <li><b>Akumulace:</b> režim kombinace zachycení: <i>zásobník, průměr, max, min nebo poslední</i>.</li>\n</ul>\n\n<h4>🧠 Chování</h4>\n<ol>\n    <li>Uzel zůstává v režimu <b>IDLE</b> a čeká na data na <code>data_in</code> a pulzy na <code>trigger_in</code>.</li>\n    <li>Když je detekováno platné spuštění, uloží aktuální signál do interní vyrovnávací paměti a zobrazí <code>RUNNING X/N</code>.</li>\n    <li>Po dosažení přesně <b>N iterací</b> sestaví akumulovaný výstup, odešle jej přes <code>out</code> a automaticky vymaže vyrovnávací paměť pro další experiment.</li>\n</ol>\n\n<h4>🧩 Mentální model</h4>\n<p>Tento uzel funguje jako <b>dávkový záznamník řízený událostmi</b>. Ekvivalent rutiny „čekej na spuštění → zaznamenej → opakuj dokud N“ v laboratoři.</p>\n\n<h4>📐 Režim zásobníku</h4>\n<p>Pokud zvolíte <b>zásobník</b>, signály se spojí do jednoho pole odděleného <code>NaN</code>. To umožňuje vykreslit všechna zachycení v jednom průběhu bez jejich propojení.</p>\n\n<h4>🔁 Příklad toku</h4>\n<pre>\nGenerátor/Osciloskop → TriggerNode (N=5) → ScriptNode (volitelné) → Graf\n\nVýsledek:\n5 naskládaných křivek (zásobník) nebo jejich průměr (průměr)\n</pre>\n\n<h4>🧠 Případy použití v reálném světě</h4>\n<ul>\n<li>Průměrování zašuměného signálu</li>\n<li>Synchronizované zachytávání opakovaných experimentů</li>\n<li>Vizuální porovnání více akvizic</li>\n<li>Dávkové předzpracování pro statistickou analýzu</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Úplný příklad</h4>\n<pre>\nOsciloskop → TriggerNode → ScriptNode → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a tipy</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → rychle jej vybere pro propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (konfigurovat, smazat, propojit/odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "generator": {
+      "title": "Generátor",
+      "tooltip": "Uzel generátoru signálu",
+      "ports": {
+        "signal_out": "Výstup signálu",
+        "trigger_out": "Výstup spouštění",
+        "trigger_in": "Vstup spouštění",
+        "signal_in": "Vstup signálu"
+      },
+      "status": {
+        "default": "FloWorks  |  Kolečko: přiblížení  |  Prostřední tlačítko: posun  |  Pravé tlačítko na uzlu: možnosti",
+        "sim": "SIM",
+        "busy": "ZANEPRÁZDNĚN",
+        "ready": "PŘIPRAVEN"
+      },
+      "device_label": "ZAŘ",
+      "channel_label": "KAN",
+      "gen_button": "GEN",
+      "setup_button": "NAST",
+      "generate_action": "Generovat signál",
+      "help_title": "Nápověda – Uzel generátoru",
+      "help_html": "<h3>📡 Uzel generátoru signálu</h3>\n<p>Generuje analogové signály a odesílá je do skutečného funkčního generátoru (SDG) nebo interně simuluje jeho výstup.</p>\n\n<h4>📥 Vstupní porty</h4>\n<ul>\n    <li><code>trigger_in</code> (vlevo) → přijímá signál pro spuštění generování (režim EXT).</li>\n    <li><code>signal_in</code> (vlevo) → přijímá externí signál (t, y), který bude odeslán do generátoru jako libovolný průběh (režim EXT).</li>\n</ul>\n\n<h4>📤 Výstupní porty</h4>\n<ul>\n    <li><code>signal_out</code> (vpravo) → vysílá generovaný signál (t, y) pro vizualizaci nebo zpracování.</li>\n    <li><code>trigger_out</code> (vpravo) → spouštěcí signál po dokončení generování (volitelné).</li>\n</ul>\n\n<h4>⚙️ Režimy činnosti</h4>\n<ul>\n    <li><b>INT</b> (interní): signál se generuje podle interních parametrů uzlu (frekvence, amplituda, průběh atd.) a odesílá se do hardwaru (nebo simulace).</li>\n    <li><b>EXT</b> (externí): uzel očekává příjem vlastního signálu přes <code>signal_in</code>. Po stisknutí <b>GEN</b> se tento signál nahraje do generátoru jako libovolný průběh.</li>\n</ul>\n\n<h4>🔧 Konfigurace</h4>\n<p>Klikněte na tlačítko <b>SETUP</b> (nebo pravé tlačítko → „Otevřít ovladač“) pro úpravu:</p>\n<ul>\n    <li>Průběh: sinus, obdélník, rampa, pulz, šum, DC, trojúhelník, pila, sinc, Gauss, exponenciála, chirp.</li>\n    <li>Frekvence, amplituda, ofset, fáze, střída atd.</li>\n    <li>Výstupní kanál (C1 nebo C2).</li>\n    <li>Zařízení: „sdg“ (skutečný hardware) nebo „simulation“ (pouze interní simulace).</li>\n</ul>\n\n<h4>▶️ Generování</h4>\n<p>Klikněte na tlačítko <b>GEN</b> (nebo pravé tlačítko → „Generovat signál“) pro spuštění výstupu. Uzel odešle signál do hardwaru a také vyšle <code>signal_out</code> s generovanými daty pro zbytek toku.</p>\n\n<h4>💡 Typický příklad</h4>\n<ol>\n    <li>Nakonfigurujte generátor na sinus 1 kHz, 1 Vpp.</li>\n    <li>Připojte <code>signal_out</code> k uzlu osciloskopu nebo vizualizéru.</li>\n    <li>Stiskněte <b>GEN</b> → signál se objeví na fyzickém kanálu a také v grafu.</li>\n</ol>\n\n<h4>⚠️ Poznámky</h4>\n<ul>\n    <li>V režimu EXT se nejprve ujistěte, že jste připojili <code>signal_in</code> se signálem (t, y) před stisknutím GEN.</li>\n    <li>Pokud hardware není připojen, uzel automaticky použije simulaci.</li>\n    <li>Libovolné průběhy se nahrávají až s 524288 body (v závislosti na modelu).</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "oscilloscope": {
+      "title": "Osciloskop",
+      "tooltip": "Uzel zachytávání osciloskopu\n Dvojklik pro info",
+      "ports": {
+        "out_primary": "Primární výstup",
+        "out_secondary": "Sekundární výstup",
+        "trigger_out": "Výstup spouštění"
+      },
+      "status": {
+        "sim": "SIMULACE",
+        "capturing": "ZACHYCOVÁNÍ…",
+        "armed": "PŘIPRAVEN",
+        "connected": "PŘIPOJEN",
+        "disconnected": "ODPOJEN"
+      },
+      "device_label": "ZAŘ",
+      "channel_label": "KAN",
+      "lcr_label": "LCR",
+      "sim_label": "SIM",
+      "trig_button": "TRIG",
+      "setup_button": "NAST",
+      "menu": {
+        "show_channel": "Zobrazit kanál"
+      },
+      "channel": {
+        "primary": "Primární (Z)",
+        "secondary": "Sekundární (θ)"
+      },
+      "trigger_action": "Spustit zachytávání",
+      "help_title": "Nápověda – Uzel osciloskopu",
+      "help_html": "<h3>📊 Uzel osciloskopu (Akvizice signálu)</h3>\n<p>Zachycuje signály z reálného světa pomocí hardwaru (SDS, LCR) nebo generuje simulovaná data pro testování.</p>\n\n<h4>📤 Výstupní porty</h4>\n<ul>\n    <li><code>out_primary</code> → hlavní signál (napětí vs čas nebo impedance Z pro LCR).</li>\n    <li><code>out_secondary</code> → sekundární signál (fáze θ pro LCR; nepoužívá se pro SDS).</li>\n    <li><code>trigger_out</code> → vysílá spouštěcí signál po dokončení zachytávání (užitečné pro synchronizaci ostatních uzlů).</li>\n</ul>\n\n<h4>🔘 Ovládací prvky</h4>\n<ul>\n    <li><b>TRIG</b> → spustí zachytávání (akvizice dat).</li>\n    <li><b>SETUP</b> → otevře panel konfigurace (parametry simulace nebo ovladač hardwaru).</li>\n    <li><b>Výběr zařízení</b> (spodní rozbalovací seznam) → vyberte mezi SDS (skutečný osciloskop), LCR (měřič impedance) nebo simulace.</li>\n</ul>\n\n<h4>⚙️ Režimy činnosti</h4>\n<ul>\n    <li><b>SDS</b>: připojí se ke skutečnému osciloskopu (Siglent SDS). Kanál (C1..C4) můžete vybrat přes kontextovou nabídku → „Zobrazit kanál“.</li>\n    <li><b>LCR</b>: připojí se k LCR měřiči, poskytuje dva výstupy: primární (impedance Z) a sekundární (fázový úhel θ).</li>\n    <li><b>Simulace</b>: generuje syntetický signál se šumem, konfigurovatelný přes SETUP (časová základna, napěťový rozsah, úroveň spouštění, vzorkovací frekvence).</li>\n</ul>\n\n<h4>📈 Vizualizace</h4>\n<p>Uzel sám signál nevykresluje, ale lze jej připojit k widgetu vizualizéru (jako <code>PlotWidget</code>) pro zobrazení zachycených dat.</p>\n\n<h4>💡 Příklad použití</h4>\n<ol>\n    <li>Vyberte zařízení (SDS) a fyzicky jej připojte.</li>\n    <li>Klikněte na TRIG pro zachycení průběhu.</li>\n    <li>Signál bude k dispozici na <code>out_primary</code> pro ostatní uzly.</li>\n    <li>Při použití LCR budou k dispozici oba výstupy (Z a θ).</li>\n</ol>\n\n<h4>⚠️ Poznámky</h4>\n<ul>\n    <li>V hardwarovém režimu se ujistěte, že je zařízení připojeno a zapnuto.</li>\n    <li>Zachytávání běží v samostatném vlákně, aby neblokovalo rozhraní.</li>\n    <li>Uzel funguje jako zdroj dat (vstupní uzel) pro tok.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "spectral": {
+        "title": "Spektrální",
+        "tooltip": "Spektrální transformace: FFT, Hilbert, Welch (PSD) a DCT",
+        "transform_type": "Transformace:",
+        "window_type": "Okno:",
+        "nfft": "NFFT / Segment:",
+        "scale": "Měřítko:",
+        "detrend": "Odstranění trendu:",
+        "normalize": "Normalizovat (zachovat energii)",
+        "config_title": "Konfigurace spektrální analýzy",
+        "menu": {
+            "configure": "Konfigurovat…",
+            "show_output": "Zobrazit výstup"
+        },
+        "channel": {
+            "magnitude": "Amplituda",
+            "phase": "Fáze"
+        },
+        "ports": {
+            "input": "Vstup",
+            "output": "Časový výstup",
+            "magnitude": "Amplituda",
+            "phase": "Fáze"
+        },
+        "status": {
+            "no_data": "Žádná data",
+            "ready": "Připraveno",
+            "phase": "Fáze"
+        },
+        "help_title": "Nápověda – Spektrální analýza",
+        "help_html": "<h3>📊 Uzel spektrální analýzy (Spektrální transformace)</h3>\n<p>Počítá různé transformace vstupního signálu: <b>FFT</b>, <b>Hilbert</b>, <b>Welch (PSD)</b> a <b>DCT</b>.</p>\n\n<h4>📥 Vstup</h4>\n<p><code>input</code> → očekává n-tici <code>(x, y)</code> nebo 1D pole.</p>\n\n<h4>📤 Výstupy</h4>\n<ul>\n    <li><b>Časový výstup</b> → signál v časové oblasti (aktivní pouze u Hilbert: reálná část analytického signálu).</li>\n    <li><b>Amplituda</b> → v závislosti na režimu:\n        <ul>\n            <li><b>FFT</b> → normalizované amplitudové spektrum <code>(frekvence, amplitudy)</code>.</li>\n            <li><b>Hilbert</b> → obálka signálu <code>(čas, obálka)</code>.</li>\n            <li><b>Welch</b> → výkonová spektrální hustota <code>(frekvence, PSD)</code>.</li>\n            <li><b>DCT</b> → koeficienty diskrétní kosinové transformace <code>(index, koeficienty)</code>.</li>\n        </ul>\n    </li>\n    <li><b>Fáze</b> → fázové úhly v radiánech (FFT) nebo okamžitá fáze (Hilbert). <i>Není k dispozici</i> pro Welch nebo DCT.</li>\n</ul>\n\n<h4>⚙️ Parametry</h4>\n<ul>\n    <li><b>Transformace</b> — vyberte mezi FFT, Hilbert, Welch nebo DCT.</li>\n    <li><b>Okno</b> — okenní funkce z <code>scipy.signal.windows</code> (Hann, Hamming, Blackman atd.).</li>\n    <li><b>NFFT / Segment</b> — délka FFT nebo délka segmentu Welch. <code>Auto</code> použije nejbližší mocninu 2.</li>\n    <li><b>Měřítko</b> — <code>linear</code> nebo <code>dB</code> (20·log₁₀ pro FFT/Hilbert/DCT, 10·log₁₀ pro Welch).</li>\n    <li><b>Odstranění trendu</b> — odstraní konstantní průměr nebo lineární trend před zpracováním.</li>\n    <li><b>Normalizovat</b> — upraví okno pro zachování energie.</li>\n</ul>\n\n<h4>🖱️ Interakce</h4>\n<ul>\n    <li><b>Pravé tlačítko</b> → kontextová nabídka (Konfigurovat, výběr kanálu zobrazení).</li>\n    <li><b>Dvojklik</b> → otevře toto okno nápovědy.</li>\n    <li><b>Postranní panel</b> — upravte parametry v reálném čase; graf se aktualizuje automaticky.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → Okno → Spektrální (FFT) → Filtr → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a tipy</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "ifft": {
+        "title": "IFFT",
+        "tooltip": "Inverzní Fourierova transformace (rekonstrukce v čase)",
+        "fs": "Vzorkovací frekvence (fs):",
+        "nfft": "NFFT:",
+        "real_only": "Pouze reálný výstup (irfft)",
+        "conjugate_symmetry": "Vynutit hermitovskou symetrii",
+        "normalize": "Normalizovat faktorem N",
+        "config_title": "Konfigurace IFFT",
+        "menu": {
+            "configure": "Konfigurovat…"
+        },
+        "ports": {
+            "magnitude": "Amplituda",
+            "phase": "Fáze",
+            "output": "Časový výstup"
+        },
+        "status": {
+            "no_data": "Žádná data",
+            "waiting_phase": "Fáze=0 (předpokládáno)",
+            "ready": "Připraveno"
+        },
+        "help_title": "Nápověda – IFFT",
+        "help_html": "<h3>🔁 Uzel IFFT (Inverzní rychlá Fourierova transformace)</h3>\n<p>Rekonstruuje signál v časové oblasti z jeho frekvenčního spektra.</p>\n\n<h4>📥 Vstupy</h4>\n<ul>\n    <li><b>Amplituda</b> → <code>(frekvence, amplitudy)</code> nebo 1D pole. <b>Povinné.</b></li>\n    <li><b>Fáze</b> → <code>(frekvence, úhly)</code> nebo 1D pole. <b>Volitelné.</b> Pokud není připojeno, fáze se předpokládá nulová.</li>\n</ul>\n\n<h4>📤 Výstup</h4>\n<ul>\n    <li><b>Časový výstup</b> → rekonstruovaný <code>(čas, signál)</code>.</li>\n</ul>\n\n<h4>⚙️ Parametry</h4>\n<ul>\n    <li><b>fs</b> — vzorkovací frekvence pro sestavení časové osy.</li>\n    <li><b>NFFT</b> — velikost IFFT. <code>Auto</code> použije <code>2·(len(mag)-1)</code>.</li>\n    <li><b>Reálný výstup</b> — použije <code>irfft</code> (zaručuje reálný výstup) nebo <code>ifft</code> (komplexní).</li>\n    <li><b>Hermitovská symetrie</b> — vynutí <code>Y[-k] = conj(Y[k])</code> před inverzí (zabraňuje artefaktům).</li>\n    <li><b>Normalizovat</b> — dělení <code>N</code> pro zachování původní amplitudy.</li>\n</ul>\n\n<h4>🖱️ Interakce</h4>\n<ul>\n    <li><b>Pravé tlačítko</b> → Konfigurovat…</li>\n    <li><b>Dvojklik</b> → nápověda.</li>\n    <li><b>Postranní panel</b> — upravte fs a parametry v reálném čase.</li>\n</ul>"
+    },
+    "thd": {
+      "title": "Analyzátor THD",
+      "tooltip": "Celkové harmonické zkreslení THD",
+      "ports": {
+        "input": "Vstup",
+        "output": "Výstup"
+      },
+      "dialog": {
+        "title": "Analyzovat THD"
+      },
+      "tab": {
+        "summary": "Souhrn",
+        "harmonics": "Harmonické",
+        "spectrum": "Spektrum"
+      },
+      "summary": {
+        "thd": "THD:",
+        "thdn": "THD+N:",
+        "fundamental_freq": "Základní frekvence:",
+        "max_harmonics": "Uvažované harmonické:",
+        "green_threshold": "Zelený práh (<):",
+        "yellow_threshold": "Žlutý práh (<):"
+      },
+      "harmonics": {
+        "order": "Řád harmonické",
+        "freq": "Frekvence (Hz)",
+        "amp_rel": "Relativní amplituda (%)"
+      },
+      "help_title": "Nápověda – THD",
+      "help_html": "<h3>Analyzátor celkového harmonického zkreslení (THD)</h3><p>Vypočítá THD a THD+N vstupního signálu.</p><p>Signál prochází nezměněn na výstup.</p><p><b>Parametry:</b></p><ul><li>max_harmonics: počet uvažovaných harmonických</li><li>zelené/žluté prahy: mění barvu THD v uzlu</li></ul><p><i>Dvojklikem otevřete podrobnou analýzu.</i></p>"
+    },
+    "filter": {
+      "title": "Filtr",
+      "tooltip": "Digitální filtr (Butterworth)",
+      "ports": {
+        "input": "Vstup",
+        "output": "Výstup"
+      },
+      "status": {
+        "no_data": "Žádná data",
+        "ready": "Připraveno"
+      },
+      "menu": {
+        "configure": "Konfigurovat…",
+        "show_output":"Zobrazit výstup"
+      },
+      "config_title": "Konfigurace filtru",
+      "filter_type": "Typ filtru:",
+      "cutoff": "Mezní frekvence (Hz):",
+      "cutoff1": "Mezní frekvence 1 (Hz):",
+      "cutoff2": "Mezní frekvence 2 (Hz):",
+      "order": "Řád filtru:",
+      "fs": "Vzorkovací frekvence (Hz, 0 = auto):",
+      "help_title": "Nápověda – Filtr",
+      "help_html": "<h3>🎛️ Uzel filtru (Butterworth)</h3>\n<p>Aplikuje <b>digitální Butterworthův filtr</b> na vstupní signál.</p>\n\n<h4>📥 Vstup</h4>\n<p><code>input</code> → očekává n-tici <code>(x, y)</code> nebo 1D pole.</p>\n\n<h4>📤 Výstup</h4>\n<p><code>output</code> → filtrovaný signál jako <code>(x, y_filtered)</code>.</p>\n\n<h4>⚙️ Parametry (dvojklik pro konfiguraci)</h4>\n<ul>\n    <li><b>Typ filtru</b> – dolní propust, horní propust, pásmová propust nebo pásmová zádrž.</li>\n    <li><b>Mezní frekvence</b> – v Hz. Pro pásmovou propust/zádrž jsou vyžadovány dvě frekvence.</li>\n    <li><b>Řád</b> – řád filtru (1–20). Vyšší řád = strmější přechod.</li>\n    <li><b>Vzorkovací frekvence</b> – pokud je nastavena na 0, odvodí se automaticky z osy <i>x</i>.</li>\n</ul>\n\n<h4>🛠️ Činnost</h4>\n<ul>\n    <li>Filtr je navržen pomocí <code>scipy.signal.butter</code>.</li>\n    <li>Filtrování s nulovým fázovým posunem se aplikuje pomocí <code>filtfilt</code> (bez fázového zkreslení).</li>\n    <li>Pokud je vstup 1D pole, vytvoří se syntetická osa <i>x</i> pomocí vzorkovací frekvence.</li>\n</ul>\n\n<h4>🖱️ Interakce</h4>\n<ul>\n    <li><b>Dvojklik</b> → otevře dialog konfigurace.</li>\n    <li><b>Kliknutí</b> na uzel → vykreslí filtrovaný signál.</li>\n</ul>\n\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → Filtr → FFT → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "normalize": {
+      "title": "Normalizovat",
+      "tooltip": "Normalizuje signál na zadaný rozsah",
+      "ports": {
+        "input": "Vstup",
+        "output": "Výstup"
+      },
+      "menu": {
+        "configure": "Konfigurovat…"
+      },
+      "config_title": "Konfigurace uzlu normalizace",
+      "param": {
+        "target_min": "Cílové minimum:",
+        "target_max": "Cílové maximum:"
+      },
+      "help_title": "Nápověda – Normalizace",
+      "help_html": "<h3>📏 Uzel normalizace</h3>\n<p>Normalizuje vstupní signál na rozsah určený <b>Cílovým minimem</b> a <b>Cílovým maximem</b>.</p>\n\n<h4>📥 Vstup</h4>\n<p><code>input</code> → očekává n-tici <code>(x, y)</code> nebo 1D pole.</p>\n\n<h4>📤 Výstup</h4>\n<ul>\n    <li><b>Normalizovaný signál</b> → <code>(x_norm, y_norm)</code> – signál škálovaný na cílový rozsah.</li>\n</ul>\n\n<h4>⚙️ Parametry (dvojklik pro konfiguraci)</h4>\n<ul>\n    <li><b>Cílové minimum</b> – minimální hodnota požadovaného rozsahu (výchozí 0.0).</li>\n    <li><b>Cílové maximum</b> – maximální hodnota požadovaného rozsahu (výchozí 1.0).</li>\n</ul>\n\n<h4>📐 Činnost</h4>\n<p>Lineární přeškálování:</p>\n<pre>y_norm = target_min + (y - original_min) * (target_max - target_min) / (original_max - original_min)</pre>\n<p>Osa x zůstává nezměněna.</p>\n\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "convolution": {
+      "title": "Konvoluce",
+      "tooltip": "FIR filtr pomocí konvoluce",
+      "ports": {
+        "input": "Vstup",
+        "output": "Výstup"
+      },
+      "status": {
+        "no_data": "Žádná data"
+      },
+      "menu": {
+        "show_output": "Zobrazit výstup",
+        "configure": "Konfigurovat…"
+      },
+      "config_title": "Konfigurace konvoluce",
+      "example_kernel": "Příklady jader:",
+      "kernel": "Koeficienty jádra (oddělené čárkou):",
+      "mode": "Režim konvoluce:",
+      "help_title": "Nápověda – Konvoluce",
+    "help_html": "<h3>🔀 Uzel konvoluce (FIR filtr)</h3>\n<p>Aplikuje diskrétní konvoluci mezi vstupním signálem a uživatelem definovaným jádrem.</p>\n\n<h4>📥 Vstup</h4>\n<p><code>input</code> → očekává n-tici <code>(x, y)</code> nebo 1D pole.</p>\n\n<h4>📤 Výstup</h4>\n<ul>\n    <li><b>Filtrovaný signál</b> → <code>(x_conv, y_conv)</code> – výsledek konvoluce.</li>\n</ul>\n\n<h4>⚙️ Parametry (dvojklik pro konfiguraci)</h4>\n<ul>\n    <li><b>Koeficienty jádra</b> – desetinná čísla oddělená čárkou, např. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Režim konvoluce</b> – <code>'same'</code> (výchozí), <code>'full'</code> nebo <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Činnost</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>Osa x se odpovídajícím způsobem upraví: pro <code>'same'</code> zachová původní x; pro <code>'valid'</code> ořízne konce; pro <code>'full'</code> lineárně rozšíří.</li>\n</ul>\n\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+    },
+    "resample": {
+      "title": "Převzorkovat",
+      "tooltip": "Změnit vzorkovací frekvenci signálu",
+      "ports": {
+        "input": "Vstup",
+        "output": "Výstup"
+      },
+      "status": {
+        "no_data": "Žádná data",
+        "ready": "Připraveno"
+      },
+      "menu": {
+        "configure": "Konfigurovat…"
+      },
+      "config_title": "Konfigurace převzorkování",
+      "mode": "Režim:",
+      "factor": "Faktor:",
+      "target_fs": "Cílová fs (Hz):",
+      "help_title": "Nápověda – Převzorkování",
+      "help_html": "<h3>🔄 Uzel převzorkování</h3><p>Mění <b>vzorkovací frekvenci</b> vstupního signálu.</p><h4>📥 Vstup</h4><p><code>input</code> → očekává n-tici <code>(x, y)</code> nebo 1D pole.</p><h4>📤 Výstup</h4><p><code>output</code> → převzorkovaný signál jako <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Režim</b> – <i>factor</i> (násobek původní vzorkovací frekvence) nebo <i>fixed_fs</i> (cílová vzorkovací frekvence v Hz).</li><li><b>Faktor</b> – faktor škálování (>1 zvyšuje počet vzorků, <1 snižuje).</li><li><b>Cílová fs</b> – požadovaná vzorkovací frekvence v Hz (použije se, když je režim fixed_fs).</li></ul><h4>🛠️ Činnost</h4><p>Používá <code>scipy.signal.resample</code>, který aplikuje Fourierovu metodu.</p><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>"
+    },
+    "window": {
+      "title": "Okno",
+      "tooltip": "Aplikovat na signál okenní funkci",
+      "ports": {
+        "input": "Vstup",
+        "output": "Výstup"
+      },
+      "status": {
+        "no_data": "Žádná data",
+        "ready": "Připraveno"
+      },
+      "menu": {
+        "configure": "Konfigurovat…"
+      },
+      "config_title": "Konfigurace okna",
+      "window_type": "Typ okna:",
+      "normalize": "Normalizovat (zachovat energii)",
+      "help_title": "Nápověda – Okno",
+      "help_html": "<h3>🪟 Uzel okna</h3><p>Aplikuje na vstupní signál <b>okenní funkci</b> pro snížení spektrálního prosakování.</p><h4>📥 Vstup</h4><p><code>input</code> → n-tice <code>(x, y)</code> nebo 1D pole.</p><h4>📤 Výstup</h4><p><code>output</code> → oknem vážený signál <code>(x, y * window)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Typ okna</b> – Hann, Hamming, Blackman, Bartlett atd.</li><li><b>Normalizovat</b> – pokud je zaškrtnuto, škáluje okno pro zachování celkové energie.</li></ul><h4>🛠️ Činnost</h4><p>Používá <code>scipy.signal.windows</code>.</p><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>"
+    },
+    "delay": {
+      "title": "Zpoždění",
+      "tooltip": "Zpozdit signál o zadanou hodnotu",
+      "ports": {
+        "input": "Vstup",
+        "output": "Výstup"
+      },
+      "status": {
+        "no_data": "Žádná data",
+        "ready": "Připraveno"
+      },
+      "menu": {
+        "configure": "Konfigurovat…"
+      },
+      "config_title": "Konfigurace zpoždění",
+      "mode": "Režim zpoždění:",
+      "samples": "Vzorky:",
+      "seconds": "Sekundy:",
+      "padding": "Doplnění:",
+      "constant_value": "Konstantní hodnota:",
+      "help_title": "Nápověda – Zpoždění",
+      "help_html": "<h3>⏱️ Uzel zpoždění</h3><p>Zpozdí vstupní signál o zadaný počet <b>vzorků</b> nebo <b>sekund</b>.</p><h4>📥 Vstup</h4><p><code>input</code> → n-tice <code>(x, y)</code> nebo 1D pole.</p><h4>📤 Výstup</h4><p><code>output</code> → zpožděný signál <code>(x, y_delayed)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Režim zpoždění</b> – <i>samples</i> (celočíselný počet vzorků) nebo <i>seconds</i> (čas v sekundách, vyžaduje vzorkovací frekvenci z osy x).</li><li><b>Doplnění</b> – metoda vyplnění počáteční mezery: <i>zero</i>, <i>reflect</i> nebo <i>constant</i> (uživatelem definovaná hodnota).</li></ul><h4>🛠️ Činnost</h4><p>Posune signál doprava a na začátek vloží doplnění.</p><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>"
+    },
+    "correlation": {
+      "title": "Korelace",
+      "tooltip": "Vzájemná korelace dvou signálů",
+      "ports": {
+        "signal1": "Signál 1",
+        "signal2": "Signál 2",
+        "corr": "Korelace"
+      },
+      "status": {
+        "no_data": "Žádná data",
+        "ready": "Připraveno"
+      },
+      "menu": {
+        "configure": "Konfigurovat…"
+      },
+      "config_title": "Konfigurace korelace",
+      "mode": "Režim:",
+      "normalize": "Normalizovat",
+      "help_title": "Nápověda – Korelace",
+      "help_html": "<h3>📈 Uzel korelace</h3><p>Vypočítá <b>vzájemnou korelaci</b> mezi dvěma vstupními signály.</p><h4>📥 Vstupy</h4><p><code>signal1</code>, <code>signal2</code> → každý očekává n-tici <code>(x, y)</code> nebo 1D pole.</p><h4>📤 Výstup</h4><p><code>corr</code> → korelační posloupnost jako <code>(zpoždění, korelace)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Režim</b> – <i>full</i> (všechna zpoždění), <i>same</i> (stejná délka jako nejdelší vstup), <i>valid</i> (bez okrajů doplněných nulami).</li><li><b>Normalizovat</b> – pokud je zaškrtnuto, dělí součinem norem signálů (vrací hodnoty v [-1, 1]).</li></ul><h4>🛠️ Činnost</h4><p>Používá <code>np.correlate</code>.</p><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>"
+    },
+    "math_expression": {
+      "title": "Matematický výraz",
+      "tooltip": "Vyhodnotit matematický výraz na x a y",
+      "ports": {
+        "input": "Vstup",
+        "output": "Výstup"
+      },
+      "status": {
+        "no_data": "Žádná data",
+        "ready": "Připraveno"
+      },
+      "menu": {
+        "configure": "Konfigurovat…"
+      },
+      "config_title": "Konfigurace matematického výrazu",
+      "expression": "Výraz (použijte x, y, np.*):",
+      "info": "Proměnné: x (časová osa), y (hodnoty signálu).\nFunkce: np.sin, np.cos, np.exp, np.sqrt atd.",
+      "examples": "Příklady…",
+      "help_title": "Nápověda – Matematický výraz",
+      "help_html": "<h3>🧮 Uzel matematického výrazu</h3><p>Vyhodnocuje libovolný matematický výraz na vstupních proměnných signálu <code>x</code> a <code>y</code>.</p><h4>📥 Vstup</h4><p><code>input</code> → n-tice <code>(x, y)</code> nebo 1D pole.</p><h4>📤 Výstup</h4><p><code>output</code> → výsledek výrazu jako <code>(x, y_new)</code>.</p><h4>✏️ Syntaxe výrazu</h4><ul><li>Použijte <code>x</code> (časová osa) a <code>y</code> (hodnoty signálu) jako pole.</li><li>Můžete také použít jakoukoli funkci <code>np.*</code> (např. <code>np.sin(y)</code>, <code>np.exp(-x)</code>).</li><li>Příklady: <code>y * 2</code>, <code>np.sin(2*np.pi*x)</code>, <code>np.sqrt(x**2 + y**2)</code>.</li></ul><h4>⚠️ Poznámka</h4><p>Výraz se vyhodnocuje bezpečně pomocí <code>numexpr</code> (pokud je k dispozici) nebo omezeného <code>eval</code>.</p><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>"
+    },
+    "spectrogram": {
+      "title": "Spektrogram",
+      "tooltip": "Vypočítat STFT spektrogram",
+      "ports": {
+        "input": "Vstup",
+        "spectrogram": "Spektrogram",
+        "frequencies": "Frekvence",
+        "times": "Časy"
+      },
+      "status": {
+        "no_data": "Žádná data",
+        "ready": "Připraveno"
+      },
+      "menu": {
+        "configure": "Konfigurovat…",
+        "show_in_plot": "Zobrazit v grafu"
+      },
+      "config_title": "Konfigurace spektrogramu",
+      "nperseg": "Vzorků na segment:",
+      "noverlap": "Překrytí:",
+      "window": "Okno:",
+      "scaling": "Škálování:",
+      "mode": "Režim:",
+      "help_title": "Nápověda – Spektrogram",
+      "help_html": "<h3>🌊 Uzel spektrogramu</h3><p>Vypočítá spektrogram <b>krátkodobé Fourierovy transformace (STFT)</b>.</p><h4>📥 Vstup</h4><p><code>input</code> → (x, y) nebo 1D pole.</p><h4>📤 Výstupy</h4><ul><li><b>Spektrogram</b> → 2D pole (frekvence, časy, amplitudy) – <i>nelze vykreslit kliknutím</i>.</li><li><b>Frekvence</b> → 1D pole frekvenčních košů (lze připojit k dalším uzlům).</li><li><b>Časy</b> → 1D pole časů segmentů.</li></ul><h4>🖱️ Interakce</h4><p><b>Kliknutí</b> na uzel <b>nezobrazí</b> spektrogram. Připojte <code>frequencies</code> nebo <code>times</code> k dalším uzlům zpracování nebo exportujte data.</p><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>"
+    },
+    "spectrogram_viewer": {
+        "title": "Prohlížeč spektrogramu",
+        "tooltip": "Přijímá a zobrazuje data spektrogramu (frekvence, časy, matice)",
+        "config_title": "Konfigurace prohlížeče spektrogramu",
+        "ports": {
+            "frequencies": "Frekvence",
+            "times": "Časy",
+            "spectrogram": "Spektrogram"
+        },
+        "status": {
+            "no_data": "Žádná data"
+        },
+        "menu": {
+            "view_spectrogram": "Zobrazit spektrogram",
+            "configure": "Konfigurovat…"
+        },
+        "window_title": "Prohlížeč spektrogramu",
+        "time_axis": "Čas (s)",
+        "freq_axis": "Frekvence (Hz)",
+        "log_scale": "Logaritmické měřítko",
+        "colormap": "Barevná mapa:",
+        "auto_contrast": "Automatický kontrast",
+        "contrast_min": "Min. kontrast:",
+        "contrast_max": "Max. kontrast:",
+        "export": "Exportovat…",
+        "export_title": "Exportovat spektrogram",
+        "no_data_title": "Žádná data",
+        "no_data_message": "Neúplná data. Nejprve připojte všechny porty a spusťte tok.",
+        "help_title": "Nápověda – Prohlížeč spektrogramu",
+        "help_html": "<h3>📊 Uzel prohlížeče spektrogramu</h3><p>Přijímá tři výstupy uzlu <b>Spektrogram</b> a zobrazuje je jako 2D tepelnou mapu.</p><h4>📥 Vstupy</h4><ul><li><b>frequencies</b> → 1D vektor frekvencí</li><li><b>times</b> → 1D vektor časů segmentů</li><li><b>spectrogram</b> → 2D matice (frekvence × časy) amplitud</li></ul><h4>⚙️ Konfigurace</h4><p>Pomocí <b>postranního panelu</b> upravujte v reálném čase:</p><ul><li><b>Logaritmické měřítko</b> — zvýrazní detaily s nízkou amplitudou.</li><li><b>Barevná mapa</b> — viridis, inferno, plasma, jet atd.</li><li><b>Kontrast</b> — automatický nebo manuální (min / max).</li></ul><h4>🖱️ Interakce</h4><p><b>Pravé tlačítko</b> na uzlu a vyberte <b>„Zobrazit spektrogram“</b> pro otevření vyhrazeného okna.</p><p>Uvnitř prohlížeče můžete <b>exportovat</b> aktuální zobrazení jako obrázek PNG.</p><p><i>Kliknutí na uzel nezobrazí v hlavním grafu nic.</i></p><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vyberte port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (zobrazit, konfigurovat, smazat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>"
+    },
+    "graph_exporter": {
+        "title": "Exportér grafu",
+        "tooltip": "Exportuje grafy v profesionální kvalitě",
+        "ports": {
+            "signal_in": "Vstup signálu",
+            "file_out": "Výstupní soubor"
+        },
+        "status": {
+            "ready": "Připraveno",
+            "exported": "Exportováno"
+        },
+        "menu": {
+            "show_graph": "Zobrazit graf",
+            "configure": "Konfigurovat graf",
+            "configure_subplot": "Konfigurovat dílčí grafy",
+            "export": "Exportovat graf",
+            "subplots": "Dílčí grafy",
+            "use_subplots": "Použít dílčí grafy",
+            "n_subplots": "Počet dílčích grafů",
+            "subplot_layout": "Rozložení"
+        },
+        "config": {
+            "display_mode": "Režim zobrazení",
+            "use_subplots": "Použít dílčí grafy (max. 8)",
+            "n_subplots": "Počet dílčích grafů:",
+            "subplot_layout": "Rozložení:",
+            "export_format": "Formát exportu"
+        },
+        "no_data_title": "Žádná data",
+        "no_data_msg": "Připojte vstupní signál a spusťte tok pro generování grafu.",
+        "export_dialog_title": "Uložit graf",
+        "export_error_title": "Chyba exportu",
+        "config_title": "Konfigurace exportéru grafu",
+        "help_title": "Nápověda – Exportér grafu",
+        "help_html": "<h3>📊 Exportér grafu</h3><p>Přijímá signál a exportuje jej jako vysoce kvalitní obrázek.</p><h4>📥 Vstup</h4><p><code>signal_in</code> → n-tice <code>(x, y)</code> nebo 1D pole.</p><h4>📤 Výstup</h4><p><code>file_out</code> → cesta k vygenerovanému souboru.</p><h4>⚙️ Konfigurace</h4><p>Pravé dvojkliknutí → <b>Konfigurovat graf</b> pro úpravu stylu, os, anotací atd.</p><hr><h4>🖱️ Interakce</h4><ul><li><b>Pravé tlačítko</b> → kontextová nabídka.</li><li><b>Zobrazit graf</b> → náhled s aktuálním nastavením.</li></ul><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>"
+    }
+  },
+  "messages": {
+    "cannot_delete_input_node": "Vstupní uzel nelze smazat."
+  },
+  "workspace": {
+    "headers": {
+      "node": "Uzel",
+      "type": "Typ",
+      "shape": "Tvar",
+      "x_range_fs": "X: rozsah / fs",
+      "dx_t": "dx / T",
+      "y_range": "Y: [min, max]",
+      "preview_y": "Náhled Y"
+    }
+  },
+  "plot": {
+    "time_label": "Čas (s)",
+    "voltage_label": "Napětí (V)",
+    "title": "Signál",
+    "scale_label": "Měřítko:",
+    "scale_linear": "Lineární",
+    "scale_log": "Logaritmické",
+    "markers": "Značky",
+    "cursors": "Kurzory A/B",
+    "peak": "Špička",
+    "peak_tooltip": "Označit maximální špičku",
+    "reset_zoom": "Obnovit přiblížení",
+    "amplitude": "Amplituda",
+    "time": "Čas (s)",
+    "frequency": "Frekvence (Hz)",
+    "view_mode": "Zobrazení",
+    "view_2d": "2D",
+    "view_surface": "Povrch 3D",
+    "view_waterfall": "Vodopád 3D",
+    "view_volume": "Objem 3D",
+    "view_slice": "Řez 3D",
+    "slice_label": "Řez",
+    "reset_camera": "Obnovit kameru",
+    "axis_scale": "Měřítko",
+    "fps": "FPS",
+    "loop": "Smyčka",
+    "colormap": "Barevná mapa"
+  },
+  "shortcuts": {
+    "delete": "Smazat uzel",
+    "delete_desc": "Smazat vybrané uzly a jejich propojení.",
+    "duplicate": "Duplikovat uzel",
+    "duplicate_desc": "Duplikovat vybrané uzly s posunem +50px.",
+    "select_all": "Vybrat vše",
+    "select_all_desc": "Vybrat všechny uzly ve scéně.",
+    "cancel": "Zrušit akci",
+    "cancel_desc": "Zrušit probíhající propojení nebo zrušit výběr všech.",
+    "copy": "Kopírovat",
+    "copy_desc": "Kopírovat vybrané uzly do interní schránky.",
+    "cut": "Vyjmout",
+    "cut_desc": "Vyjmout vybrané uzly.",
+    "paste": "Vložit",
+    "paste_desc": "Vložit uzly ze schránky.",
+    "undo": "Zpět",
+    "undo_desc": "Vrátit poslední akci.",
+    "redo": "Znovu",
+    "redo_desc": "Znovu provést vrácenou akci.",
+    "run": "Spustit tok",
+    "run_desc": "Spustit kompletní tok.",
+    "auto_layout": "Automatické rozložení",
+    "auto_layout_desc": "Automaticky uspořádat uzly do sloupců.",
+    "center_view": "Vycentrovat zobrazení",
+    "center_view_desc": "Vycentrovat zobrazení na výběr nebo celou scénu.",
+    "zoom_reset": "Přiblížení 100%",
+    "zoom_reset_desc": "Obnovit přiblížení na 100%.",
+    "zoom_in": "Přiblížit",
+    "zoom_in_desc": "Přiblížit.",
+    "zoom_out": "Oddálit",
+    "zoom_out_desc": "Oddálit.",
+    "toggle_theme": "Přepnout motiv",
+    "toggle_theme_desc": "Přepínat mezi tmavým, světlým a kontrastním motivem.",
+    "toggle_grid": "Přepnout mřížku",
+    "toggle_grid_desc": "Zobrazit nebo skrýt mřížku.",
+    "lock_node": "Uzamknout uzel",
+    "lock_node_desc": "Uzamknout/odemnout pohyb vybraného uzlu.",
+    "help": "Kontextová nápověda",
+    "help_desc": "Zobrazit tooltip uzlu pod kurzorem.",
+    "new_file": "Nový",
+    "new_file_desc": "Vytvořit nový diagram",
+    "open_file": "Otevřít",
+    "open_file_desc": "Otevřít soubor diagramu",
+    "save_file": "Uložit",
+    "save_file_desc": "Uložit aktuální diagram",
+    "save_file_as": "Uložit jako…",
+    "save_file_as_desc": "Uložit diagram pod novým názvem"
+  },
+  "dialogs": {
+    "common": {
+      "close": "Zavřít",
+      "cancel": "Zrušit",
+      "ok": "OK",
+      "emer_wind": "Vybrat program",
+      "operation_history": "Operace",
+      "confirm": "Nebyly provedeny žádné změny.",
+      "overwrite": "Přepsat?",
+      "error": "Chyba"
+    },
+    "font_size": {
+        "title": "Velikost písma",
+        "label": "Velikost (pt):"
+    },
+    "firewall": {
+        "title": "Připojení zablokováno",
+        "text": "Nepodařilo se připojit k osciloskopu.\nWindows Firewall může blokovat komunikaci.",
+        "informative": "Chcete-li to vyřešit, povolte 'FloWorks.exe' přes Windows Firewall.\n\nChcete zatím použít režim simulace?"
+    },
+    "capture_error": {
+        "title": "Chyba zachytávání",
+        "text": "Během zachytávání došlo k chybě:\n{error}\n\nOvěřte, že je zařízení zapnuto a firewall povoluje připojení."
+    },
+    "script_editor": {
+      "title": "Editor skriptu",
+      "header": "Python skript  |  proměnné: x, y, param (z TriggerNode), np, scipy, sympy",
+      "test_button": "Test (bez uložení)",
+      "save_button": "Uložit a zavřít",
+      "tool_tip": "Uzel skriptu\nDvojklik pro info",
+      "templates": "Šablony:",
+      "save_template": "Uložit šablonu…",
+      "import": "Otevřít skript…",
+      "export": "Exportovat skript…",
+      "unsaved_warning": "Nebyly provedeny žádné změny. Chcete načíst šablonu a ztratit je?",
+      "save_template_title": "Uložit jako šablonu",
+      "save_template_prompt": "Název šablony (bez přípony):",
+      "overwrite_template": "Šablona již existuje. Chcete ji přepsat?",
+      "import_title": "Otevřít Python skript",
+      "export_title": "Exportovat Python skript",
+      "help_tooltip": "Rychlá nápověda (F1)",
+      "help_title": "Rychlá nápověda",
+      "browse": "Procházet…",
+      "python_path_placeholder": "Ponechte prázdné pro použití interního interpretu. Např.: python3",
+      "quick_help_html": "<h2>Editor Python skriptu</h2><p>Tento editor spouští Python kód na signálech toku. Skript přijímá data a může vracet výsledky, upravovat signály nebo generovat více výstupů.</p><h3>Dostupné proměnné</h3><ul><li><b>x</b> – NumPy pole: osa X (čas, frekvence…).</li><li><b>y</b> – NumPy pole: aktuální hodnoty signálu.</li><li><b>param</b> – Index iterace (z TriggerNode) nebo <code>None</code>.</li><li><b>inputs</b> – Slovník se všemi vstupy (užitečné s <code>@input</code>).</li><li><b>persist</b> – Slovník, který uchovává hodnoty mezi spuštěními.</li></ul><h3>Importované knihovny</h3><ul><li><b>numpy</b> (<code>np</code>)</li><li><b>scipy</b></li><li><b>sympy</b></li></ul><h3>Speciální direktivy</h3><ul><li><code># @param NAME : type = value</code> – Vytvoří nastavitelný parametr v postranním panelu (bez úpravy kódu).</li><li><code># @input port_name</code> – Přidá další vstupní port (levá strana).</li><li><code># @output port_name</code> – Přidá další výstupní port (pravá strana).</li></ul><p>S <code>@input</code>/<code>@output</code> musí skript používat <code>inputs</code> a vracet slovník s výstupy. Příklad:</p><pre># @input channel_A<br># @output result<br>import numpy as np<br>x, y = inputs[\"data_in\"]<br>y_a = inputs[\"channel_A\"][1]<br>return {\"out\": (x, y), \"result\": (x, y_a)}</pre><h3>Perzistence</h3><p>Slovník <code>persist</code> uchovává data mezi spuštěními, dokud je program otevřen. Příklad:</p><pre>persist[\"counter\"] = persist.get(\"counter\", 0) + 1<br>return (x, y + persist[\"counter\"] * 0.1)</pre><h3>Správa šablon</h3><ul><li>Vyberte šablonu z rozbalovacího seznamu pro načtení předdefinovaného skriptu.</li><li><b>Uložit šablonu…</b> – Uloží aktuální skript jako soubor <code>.py</code> do složky šablon.</li><li><b>Otevřít skript…</b> / <b>Exportovat skript…</b> – Výměna skriptů s externími soubory.</li></ul><h3>Tipy</h3><ul><li>Použijte <b>Test</b> pro kontrolu skriptu se simulovanými daty před připojením toku.</li><li>Chyby se zobrazují v dolní konzoli a chybný řádek je označen.</li><li>Direktivu můžete dočasně zakázat zakomentováním (<code>## @param ...</code>).</li></ul>"
+    },
+    "trigger_config": {
+      "title": "Konfigurace uzlu spouštěče",
+      "group": "Parametry iterace",
+      "n_iter": "Iterace (N):",
+      "param_start": "Počáteční parametr:",
+      "param_end": "Koncový parametr:",
+      "accumulate": "Akumulace:",
+      "trig_tooltips": "TriggerNode\nDvojklik pro info",
+      "info": "Aktuální parametr bude k dispozici v\nloop_out jako třetí prvek: (x, y, param)",
+      "accumulate_options":{
+        "stack": "Zásobník",
+        "average": "Průměr",
+        "max": "Max",
+        "min": "Min"
+      }
+    },
+    "simulation_config": {
+      "title": "Konfigurace simulace",
+      "timebase": "Časová základna (ms/dílek)",
+      "voltage_range": "Napěťový rozsah (V)",
+      "trigger_level": "Úroveň spouštění (V)",
+      "trigger_slope": "Sklon spouštění",
+      "sample_rate": "Vzorkovací frekvence (kHz)"
+    },
+    "file": {
+      "save_as": "Uložit jako…",
+      "unsaved_title": "Neuložené změny",
+      "unsaved_message": "Existují neuložené změny. Chcete před pokračováním uložit?"
+    }
+  },
+  "info_dialog": {
+    "title": "Informace – FloWorks",
+    "tab_about": "O aplikaci",
+    "tab_shortcuts": "Klávesové zkratky",
+    "tab_tutorials": "Tutoriály",
+    "close": "Zavřít",
+    "about_title": "FloWorks",
+    "version": "Verze 0.4.5",
+    "description": "<p>FloWorks je vizuální a interaktivní prostředí pro zpracování signálů založené na toku dat. Umožňuje vytvářet, spouštět a analyzovat řetězce zpracování propojováním uzlů, které představují matematické operace, filtry, transformace, generátory signálů a další. Vše je založeno na dvojicích (x, y), kde x je osa (čas nebo frekvence) a y je signál.</p><p>Je určen studentům, výzkumníkům, inženýrům a všem, kdo se zajímají o zpracování signálů a chtějí experimentovat, učit se nebo prototypovat systémy bez psaní kódu od nuly.</p><p><b>Poslání:</b> Centralizovat experimentální pracovní postup do jediného vizuálního, otevřeného a přístupného nástroje, aby se každý — student, výzkumník nebo inženýr — mohl soustředit na experimentování, nikoli na učení softwaru.</p><p><b>Vize:</b> Svět, kde bariérou mezi experimentálním nápadem a jeho provedením je pouze zvědavost experimentátora. FloWorks usiluje o to být referenční platformou pro experimentování se signály, vytvořenou globální vědeckou a technickou komunitou a pro ni, bez licenčních bariér a fragmentace nástrojů.</p><p><b>Principy:</b> Svobodný software (licence MIT) – znalosti musí být volné. Rozšiřitelnost – kdokoli může vytvářet nové uzly pomocí Pythonu. Okamžitá vizualizace – každý krok lze graficky zkontrolovat.</p>",
+    "credits": "<h3>Poděkování a licence</h3><p>FloWorks používá následující open-source projekty:</p><ul><li><b>PySide6 / Qt</b> – Grafické uživatelské rozhraní. Licencováno pod <b>GNU LGPLv3</b>. © The Qt Company Ltd.</li><li><b>NumPy, SciPy, SymPy, Matplotlib, Pandas, NetworkX, PyOpenGL</b> – Licence BSD / PSF.</li><li><b>PyQtGraph, Pillow</b> – Licence MIT / HPND.</li><li><b>OpenCV</b> – Licence Apache 2.0.</li><li><b>PyTorch</b> – Licence BSD (Meta Platforms, Inc.).</li><li><b>Pygments</b> – Licence BSD.</li></ul><p>Tato aplikace používá PySide6 (dynamicky linkovaný) za podmínek <b>GNU LGPLv3</b>.</p><p>Uživatelé mají právo upravovat nebo nahradit dynamické knihovny PySide6.</p><p>Úplná licence k dispozici na <a href=\"https://www.gnu.org/licenses/lgpl-3.0.html\">gnu.org/licenses/lgpl-3.0.html</a>.</p><p><b>Licence FloWorks:</b> Licence MIT.</p>",
+    "shortcut_header_keys": "Zkratka",
+    "shortcut_header_action": "Akce",
+    "shortcut_header_context": "Kontext",
+    "shortcuts_note": "Poznámka: Zkratky fungují globálně, i když je fokus na jiném widgetu.",
+    "tutorials_placeholder": "Zde je několik příkladů a tutoriálů v pořadí podle učení:",
+    "tutorial": "Tutoriál",
+    "example_fft": "Otevřít příklad: FFT sinusového signálu",
+    "example_filter": "Otevřít příklad: Pásmová propust chirp signálu",
+    "example_delay": "Otevřít příklad: Zpoždění sinusového signálu",
+    "example_window": "Otevřít příklad: Okno chirp signálu",
+    "example_convolution": "Otevřít příklad: Konvoluce obdélníkového signálu",
+    "example_conrrelation": "Otevřít příklad: Korelace mezi sinusovým a obdélníkovým signálem",
+    "example_math_expression": "Otevřít příklad: Matematický výraz na sinusovém signálu",
+    "example_spectrogram": "Otevřít příklad: Spektrogram chirp signálu",
+    "example_compound": "Otevřít příklad: Kombinace různých uzlů",
+    "example_title": "Příklad",
+    "example_message": "Příklad '{name}' bude dostupný v budoucí verzi.",
+    "shortcut_header_description": "Popis",
+    "view_logs": "Zobrazit konzoli protokolů",
+    "log_viewer_title": "Prohlížeč protokolů (error.log)",
+    "refresh": "Obnovit",
+    "clear": "Vymazat",
+    "no_logs_available": "V tuto chvíli nebyly nalezeny žádné záznamy.",
+    "error_reading_logs": "Chyba při čtení souboru protokolů.",
+    "confirm_clear": "Potvrdit vymazání",
+    "confirm_clear_msg": "Opravdu chcete vyprázdnit soubor protokolů? Tuto akci nelze vrátit zpět."
+  },
+  "lcr_controller": {
+    "title": "Ovladač LCR",
+    "connected": "Připojeno",
+    "disconnected": "Odpojeno",
+    "measure_var": "Měřená veličina:",
+    "freq_sweep": "Frekvenční rozmítání",
+    "freq_start": "Start (Hz):",
+    "freq_end": "Konec (Hz):",
+    "freq_step": "Krok (Hz):",
+    "level": "Úroveň (V):",
+    "speed": "Rychlost:",
+    "average": "Průměr:",
+    "rsou": "RSOU (Ω):",
+    "range": "Rozsah:",
+    "bias_volt": "DC předpětí (V):",
+    "bias_on": "BIAS ON",
+    "bias_off": "BIAS OFF",
+    "apply": "Použít nastavení",
+    "error_title": "Chyba",
+    "connection_error": "Nepodařilo se připojit k LCR. Zkontrolujte připojení a adresu.",
+    "success_title": "Úspěch",
+    "success_message": "Nastavení úspěšně použito.",
+    "apply_error": "Nepodařilo se použít nastavení: {error}"
+  },
+  "osc_controller": {
+    "title": "Zachytávání osciloskopu",
+    "window_title": "Ovladač osciloskopu",
+    "channel": "Vyberte kanál:",
+    "acq_mode": "Režim akvizice:",
+    "mem_size": "Velikost paměti:",
+    "invert_off": "Invertovat signál",
+    "invert_on": "Signál invertován",
+    "tdiv": "Horizontální dílek:",
+    "vdiv": "Vertikální dílek (V):",
+    "hpos": "Horizontální pozice (s):",
+    "offset": "Vertikální pozice (V):",
+    "trig_level": "Úroveň spouštění (V):",
+    "v_range":"Napěťový rozsah (V):",
+    "sd_trg": "Boční spouštění",
+    "fs": "Vzorkovací frekvence (kHz):"
+  },
+  "gen_controller": {
+    "title": "Pokročilý ovladač – Generátor signálu",
+    "apply_current": "Použít aktuální konfiguraci",
+    "channel": "Vyberte kanál:",
+    "waveform_btn": "Generovat průběh",
+    "chirp_btn": "Generovat chirp",
+    "modulation_on": "Zapnout modulaci",
+    "modulation_off": "Zastavit modulaci",
+    "sweep_on": "Zapnout rozmítání",
+    "sweep_off": "Zastavit rozmítání",
+    "burst_on": "Zapnout burst",
+    "burst_off": "Zastavit burst",
+    "ch1_on": "Zapnout kanál 1",
+    "ch1_off": "Vypnout kanál 1",
+    "ch2_on": "Zapnout kanál 2",
+    "ch2_off": "Vypnout kanál 2",
+    "load": "Vyberte výstup:",
+    "polarity": "Polarita výstupu:",
+    "modify_output": "Upravit výstup",
+    "tab_general": "Obecné",
+    "tab_waveform": "Průběh",
+    "tab_chirp": "Chirp",
+    "tab_modulation": "Modulace",
+    "tab_sweep": "Rozmítání",
+    "tab_burst": "Burst",
+    "sim_title": "Simulace",
+    "no_hardware": "Žádný hardware nepřipojen",
+    "sent_title": "Odesláno",
+    "waveform_sent": "Průběh odeslán",
+    "chirp_sent": "Chirp odeslán",
+    "success_title": "Úspěch",
+    "output_modified": "Výstup {channel}: zátěž {load}, polarita {pol}",
+    "signal_type": "Typ signálu:",
+    "frequency": "Frekvence (Hz):",
+    "amplitude": "Amplituda (Vpp):",
+    "offset": "Ofset (V):",
+    "phase": "Fáze (stupně):",
+    "duty_cycle": "Střída (%):",
+    "symmetry": "Symetrie (%):",
+    "pulse_width": "Šířka pulzu (s):",
+    "rise_edge": "Náběžná hrana (s):",
+    "fall_edge": "Sestupná hrana (s):",
+    "delay_edge": "Zpoždění hrany (s):",
+    "stdev": "Směrodatná odchylka (V):",
+    "mean": "Střední hodnota (V):",
+    "chirp_f0": "Počáteční frekvence (Hz):",
+    "chirp_f1": "Koncová frekvence (Hz):",
+    "chirp_fs": "Fs (Sa/s):",
+    "chirp_duration": "Trvání (s):",
+    "chirp_amp": "Amplituda (V):",
+    "chirp_offset": "Ofset (V):",
+    "chirp_phase": "Fáze (°):",
+    "chirp_name": "Název signálu:",
+    "chirp_method": "Metoda:",
+    "chirp_mode": "Režim Arb:",
+    "mod_type": "Typ modulace:",
+    "mod_freq": "Modulační frekvence (Hz):",
+    "mod_dev": "Odchylka (Hz,°,s):",
+    "mod_hop": "Hop frekvence (Hz):",
+    "mod_shape": "Průběh:",
+    "mod_depth": "Hloubka (%):",
+    "sweep_time": "Trvání (s):",
+    "sweep_stop": "Koncová frekvence (Hz):",
+    "sweep_start": "Počáteční frekvence (Hz):",
+    "sweep_trig_src": "Zdroj spouštění:",
+    "sweep_trig_out": "Výstup spouštění:",
+    "sweep_mode": "Typ:",
+    "sweep_dir": "Směr:",
+    "burst_period": "Perioda (s):",
+    "burst_cycles": "Cykly:",
+    "burst_phase": "Fáze (stupně):",
+    "burst_gate": "Cíl:",
+    "burst_trig_src": "Zdroj spouštění:",
+    "burst_polarity": "Polarita:",
+    "waveform_applied": "Průběh aplikován",
+    "chirp_applied": "Chirp odeslán",
+    "modulation_applied": "Modulace nakonfigurována",
+    "sweep_applied": "Rozmítání nakonfigurováno",
+    "burst_applied": "Burst nakonfigurován"
+  },
+  "simulation_config_dialog": {
+    "title": "Konfigurace simulace – Generátor",
+    "waveform": "Průběh:",
+    "basic_params": "Základní parametry",
+    "frequency": "Frekvence (Hz):",
+    "amplitude": "Amplituda (Vpp):",
+    "offset": "Ofset (V):",
+    "phase": "Fáze (stupně):",
+    "duty_cycle": "Střída (%):",
+    "symmetry": "Symetrie (%):",
+    "direction": "Směr:",
+    "up": "Nahoru",
+    "down": "Dolů",
+    "stdev": "Směrodatná odchylka:",
+    "mean": "Střední hodnota:",
+    "lobes": "Počet laloků:",
+    "sigma": "Sigma:",
+    "mu": "Mu:",
+    "tau": "Tau (s):",
+    "exp_type": "Typ:",
+    "rise": "Náběh",
+    "fall": "Sestup",
+    "f0": "Počáteční frekvence (Hz):",
+    "f1": "Koncová frekvence (Hz):",
+    "chirp_method": "Metoda:",
+    "linear": "Lineární",
+    "logarithmic": "Logaritmická",
+    "preview": "Náhled",
+    "apply": "Použít",
+    "close": "Zavřít",
+    "time_label": "Čas (s)",
+    "amplitude_label": "Amplituda (V)"
+  },
+  "self": {
+    "language_changed": "Jazyk změněn na: {name} ({code})",
+    "default": "FloWorks  |  Kolečko: přiblížení  |  Prostřední tlačítko: posun  |  Dvojklik na uzel: info |  Pravé tlačítko na uzlu: možnosti",
+    "workspace": "Pracovní prostor",
+    "canvas": "Plátno",
+    "no_nodes_selected": "Nejsou vybrány žádné uzly",
+    "node_config_placeholder": "Vyberte uzel na plátně\n pro zobrazení jeho konfigurace"
+  },
+  "welcome": {
+    "logo": "FLOWORKS",
+    "subtitle": "Vizuální a interaktivní virtuální laboratoř zpracování signálů",
+    "build": "Zapomeňte na složitý kód. Přetahujte bloky, propojujte je jako dílky puzzle a sestavte svůj pracovní postup spojováním uzlů čarami, které představují tok dat.",
+    "keyrule": "Vše je o signálech: propojujte bloky, ne řádky kódu.",
+    "nodework": "Architektura uzlu:\n[Vstupní data] → [Interní zpracování] → [Výstupní data]",
+    "execute": "Klikněte na Spustit a sledujte, jak vaše nápady ožívají v grafech a datech v reálném čase. Chcete jít dál? Připojte skutečné laboratorní přístroje nebo přidejte vlastní pravidla pomocí uzlů Python skriptů pro vlastní zpracování.",
+    "expand": "Exportujte vysoce kvalitní grafy připravené k použití v technických dokumentech. Uložte svou práci do souborů „.sflow“ a načtěte je přesně tak, jak jste je opustili.",
+    "actions_title": "Co můžete dělat?",
+    "actions": "* Testovat nápady vytvářením pracovních postupů, přetahováním a propojováním uzlů.\n* Ovládat skutečné vybavení nebo simulovat signály.\n* Zobrazit výsledky okamžitě v interaktivních grafech.",
+    "checkbox": "Již nezobrazovat",
+    "start": "Start"
+  },
+  "scene": {
+    "empty_hint": "Vyberte uzly z panelu nástrojů",
+    "load_example_hint": "Příklad můžete načíst z „Info“ → „Tutoriály“"
+  },
+  "examples": {
+  "general": {
+    "title": "Příklady",
+    "welcome": "Vítejte ve FloWorks! \nPostupujte podle těchto mini-tutoriálů a zvládněte nejběžnější operace.",
+    "scroll": "Posouvejte kolečkem nebo podržením kolečka myši pro posun plátna.",
+    "help": "Klikněte pravým tlačítkem na uzel pro konfiguraci jeho akcí."
+  },
+  "tutorial": {
+    "message": "Toto je aplikace pro vizuální diagram toku signálů. Pojďme začít!",
+    "step1": "Krok 1: Přidejte zdroj signálu",
+    "step2": "Přidejte uzel zdroje signálu z panelu nástrojů (nahoře). \nUzel bude umístěn tam, kam jste naposledy klikli na plátně. \nKlikněte někam poblíž na plátno a poté klikněte v horní liště na:",
+    "step3": "Krok 2: Propojte uzly",
+    "step4": "Stiskněte CTRL+klik na výstupní port uzlu (ten vlevo) a poté klikněte na vstupní port druhého uzlu (ten vpravo) pro vytvoření propojení.",
+    "step5": "Propojení vedou zleva doprava a přenášejí data signálu mezi uzly.",
+    "step6": "Krok 3: Spusťte tok",
+    "step7": "Stiskněte F5 pro spuštění toku signálu a zobrazení výsledků v reálném čase.",
+    "step8": "Můžete také kliknout na jednotlivé uzly a zobrazit jejich výstupní hodnoty.",
+    "step9": "Krok 4: Zobrazte výsledky",
+    "step10": "Klikněte na jakýkoli uzel pro vizualizaci signálu v grafickém widgetu.",
+    "step11": "Graf se automaticky aktualizuje při spuštění toku."
+  },
+  "shortcuts": {
+    "title": "Klávesové zkratky",
+    "execute": "F5 – Spustit tok",
+    "save": "Ctrl+S – Uložit projekt (.sflow)",
+    "load": "Ctrl+O – Otevřít projekt",
+    "delete": "Delete / Backspace – Smazat vybrané prvky",
+    "copy_paste": "Ctrl+C / Ctrl+V – Kopírovat a vložit uzly nebo poznámky",
+    "undo_redo": "Ctrl+Z / Ctrl+Y – Zpět / Znovu",
+    "auto_layout": "Ctrl+Shift+L – Automatické rozložení diagramu",
+    "zoom": "Kolečko myši – Přiblížení, podržení pro tažení zobrazení"
+  },
+  "fft": {
+    "title": "FFT analýza",
+    "description": "Vypočítá frekvenční spektrum signálu.",
+    "steps": {
+      "step1": "Přidejte uzel Generátor a vyberte například obdélníkový signál 1 kHz.",
+      "step2": "V nabídce „Zpracování“ na panelu nástrojů vyberte uzel FFT. Připojte jej k výstupu generátoru (CTRL+klik výstup → CTRL+klik vstup FFT).",
+      "step3": "Stiskněte F5. Uzel FFT transformuje signál do frekvenční oblasti.",
+      "step4": "Klikněte na uzel FFT pro zobrazení spektra. Špičky se objeví na lichých násobcích 1 kHz.",
+      "step5": "(Volitelné) Připojte výstup FFT k aritmetickému uzlu (SumNode) pro porovnání dvou spekter; systém automaticky detekuje frekvenční rozlišení a upozorní vás na nekompatibilitu.",
+      "step6": "Klikněte pravým tlačítkem na uzel FFT a vyberte zobrazení mezi Amplituda a Fáze."
+    }
+  },
+  "filter": {
+    "title": "Filtrování signálu",
+    "description": "Aplikuje dolní propust, horní propust nebo pásmovou propust.",
+    "steps": "1. Vložte Generátor s chirp signálem.\n2. Přidejte uzel Filtr z nabídky „Zpracování“. Připojte výstup generátoru ke vstupu filtru.\n3. Klikněte pravým tlačítkem a zvolte „Konfigurovat…“ na uzlu Filtr, poté vyberte typ (dolní propust, horní propust atd.) a mezní frekvenci.\n4. Spusťte (F5) a vizualizujte původní i filtrovaný signál kliknutím na odpovídající propojení.\n5. Pokud chcete porovnat vedle sebe, můžete přidat uzly FFT a rozdělit signál."
+  },
+  "delay": {
+    "title": "Zpožďovací linka",
+    "description": "Posouvá signál v čase (užitečné pro korelace nebo efekty).",
+    "steps": "1. Začněte s generátorem používajícím krátký signál.\n2. Přidejte uzel Zpoždění ze „Zpracování“. Připojte výstup generátoru ke vstupu zpoždění.\n3. V dialogu konfigurace uzlu Zpoždění zadejte počet vzorků nebo dobu zpoždění.\n4. Spusťte tok (F5) a klikněte na výstup uzlu Zpoždění. Uvidíte stejný signál posunutý doprava.\n5. Pro měření přesného zpoždění aktivujte kurzory (dolní panel) a porovnejte je mezi původním a zpožděným signálem."
+  },
+  "window": {
+    "title": "Okno před FFT",
+    "description": "Aplikuje okno (Hanning, Hamming atd.) před FFT pro snížení spektrálního prosakování.",
+    "steps": "1. Nastavte základní tok: Generátor → Okno → FFT.\n2. Dvojklikněte na uzel Okno a vyberte typ (Hanning je dobrý začátek).\n3. Připojte výstup Okna ke vstupu FFT.\n4. Spusťte (F5). Klikněte na výstup FFT pro porovnání spektra s oknem a bez něj.\n5. Zkuste čistý sinusový signál s neceločíselnou frekvencí; všimnete si, že špička je s oknem lépe definovaná. Změňte typ okna pro sledování redukce postranních laloků."
+  },
+  "convolution": {
+    "title": "Konvoluce",
+    "description": "Vypočítá konvoluci mezi dvěma signály.",
+    "steps": "1. Přidejte Generátor (Zdroje → Generátor) se signálem, který chcete filtrovat.\n2. Přidejte uzel Konvoluce z nabídky „Zpracování“.\n3. Připojte výstup generátoru ke vstupu uzlu Konvoluce (CTRL+klik na obou koncích).\n4. Dvojklikněte na uzel Konvoluce pro konfiguraci. Zadejte koeficienty jádra oddělené čárkou (např. '0.2,0.2,0.2,0.2,0.2') a zvolte režim konvoluce ('same', 'full' nebo 'valid').\n5. Stiskněte F5 pro spuštění toku. Uzel vyfiltruje signál pomocí diskrétní konvoluce.\n6. Klikněte na výstupní propojení uzlu Konvoluce pro zobrazení filtrovaného signálu. Sledujte efekt jádra; můžete změnit koeficienty a znovu spustit pro porovnání."
+  },
+  "correlation": {
+    "title": "Vzájemná korelace",
+    "description": "Měří podobnost mezi dvěma signály jako funkci časového posunu.",
+    "steps": "1. Umístěte dva uzly Generátor (Zdroje → Generátor). Vytvořte například sinusový a obdélníkový signál stejné frekvence.\n2. Vložte uzel Korelace ze „Zpracování“.\n3. Připojte výstup prvního generátoru ke vstupu 'Signál 1' uzlu Korelace (CTRL+klik na portech). Poté připojte druhý generátor ke vstupu 'Signál 2'.\n4. Spusťte tok pomocí F5. Uzel vytvoří signál vzájemné korelace.\n5. Klikněte na výstupní propojení pro zobrazení korelační špičky. Uvidíte maximum při zpoždění, kde jsou signály zarovnány.\n6. Aktivujte kurzory (dolní panel) pro přesné měření časového posunu."
+  },
+  "math_expression": {
+    "title": "Matematický výraz",
+    "description": "Aplikuje libovolnou matematickou funkci na vstupní signál (např. y_new = f(x, y)).",
+    "steps": "1. Přidejte Generátor (Zdroje → Generátor) a zvolte průběh, který chcete transformovat.\n2. Přidejte uzel Matematický výraz z nabídky „Zpracování“.\n3. Připojte výstup generátoru ke vstupu uzlu (CTRL+klik na obou koncích).\n4. Dvojklikněte na uzel Výraz pro otevření editoru. Napište funkci, která přijímá dvě pole (x, y) a vrací (x, y_new). Například: y_new = y**2 + 0.5*np.sin(x).\n5. Stiskněte F5 pro spuštění. Uzel aplikuje operaci výhradně na hodnoty 'y' a zachová osu 'x' nedotčenou.\n6. Vizualizujte výsledek kliknutím na výstupní propojení. Můžete upravit výraz a znovu spustit pro okamžité změny."
+  },
+  "spectrogram": {
+    "title": "Spektrogram",
+    "description": "Zobrazuje časový vývoj frekvencí v signálu.",
+    "steps": "1. Umístěte Generátor (Zdroje → Generátor) se signálem s proměnnou frekvencí, jako je sinusové rozmítání (chirp).\n2. Ze „Zpracování“ přidejte uzel Spektrogram.\n3. Připojte výstup generátoru ke vstupu uzlu Spektrogram (CTRL+klik na obou portech).\n4. Ze „Zpracování“ přidejte uzel Prohlížeč spektrogramu a připojte odpovídající porty k uzlu Spektrogram.\n5. Spusťte pomocí F5. Uzel zpracuje signál a vygeneruje časově-frekvenční matici.\n6. Klikněte pravým tlačítkem na Prohlížeč spektrogramu pro vizualizaci spektrálního obrazu. Sledujte, jak se dominantní frekvence mění v čase.\n7. (Volitelné) Přidejte mezilehlý uzel FFT pro porovnání statické frekvenční reprezentace s dynamickou."
+  }
+  },
+  "prefs": {
+    "title": "Předvolby",
+    "tab_execution": "Spouštění",
+    "tab_gpu": "GPU / Výpočty",
+    "tab_streaming": "Streaming",
+    "tab_ui": "UI / Výkon",
+    "tab_advanced": "Pokročilé",
+    "max_workers":{
+      "label": "Max. vláken (příprava fáze 3)",
+      "tooltip": "Řídí budoucí paralelismus nezávislých větví."
+    },
+    "timeout_per_node": "Časový limit na uzel (s)",
+    "gpu":{
+      "backend": "Výchozí backend",
+      "fallback": "Zásady záložního řešení",
+      "threshold": "Práh režie (MB)"
+    },
+    "streaming":{
+      "buffer": "Velikost vyrovnávací paměti (vzorky)",
+      "timeout": "Časový limit dispečeru (ms)",
+      "error": "Zásady chyb streamu"
+    }, 
+    "ui":{
+      "fps": "Max. FPS obnovení",
+      "anim": "Doba animace konektoru (s)"
+    },
+    "adv":{
+      "python_path": "Cesta k externímu interpretu",
+      "log_level": "Úroveň protokolování",
+      "backup": "Automatická záloha při načtení"
+    },
+    "btn_apply": "Použít",
+    "btn_reset": "Obnovit výchozí",
+    "btn_close": "Zavřít"
+  },
+  "calculator": {
+    "screen": {
+      "placeholder": "Výraz…"
+    },
+    "mode": {
+      "deg": "DEG",
+      "rad": "RAD",
+      "hist_label": "Hist",
+      "label": "{mode}  |  {hist_label}: {count}"
+    },
+    "buttons": {
+      "eng": "Eng",
+      "mod": "mod",
+      "abs": "abs",
+      "clear": "Vymazat"
+    },
+    "history": {
+      "title": "📜 Historie",
+      "clear": "🗑 Vymazat",
+      "use_last": "↩ Poslední"
+    }
+  },
+  "spreadsheet": {
+    "menu": {
+      "file": "&Soubor",
+      "edit": "Ú&pravy",
+      "format": "F&ormát",
+      "align": "Z&arovnání"
+    },
+    "actions": {
+      "new": "&Nový",
+      "open": "&Otevřít",
+      "save": "&Uložit",
+      "save_as": "Uložit &jako…",
+      "export_csv": "&Exportovat CSV…",
+      "exit": "&Ukončit",
+      "undo": "&Zpět",
+      "redo": "&Znovu",
+      "cut": "Vy&jmout",
+      "copy": "&Kopírovat",
+      "paste": "&Vložit",
+      "bold": "&Tučně",
+      "italic": "&Kurzíva",
+      "align_left": "&Vlevo",
+      "align_center": "&Na střed",
+      "align_right": "&Vpravo",
+      "bg_color": "&Barva pozadí…",
+      "fg_color": "&Barva textu…"
+    },
+    "toolbar": {
+      "title": "Hlavní",
+      "new": "Nový",
+      "open": "Otevřít",
+      "save": "Uložit",
+      "cut": "Vyjmout",
+      "copy": "Kopírovat",
+      "paste": "Vložit",
+      "bold": "Tučně",
+      "italic": "Kurzíva",
+      "align_left": "Vlevo",
+      "align_center": "Na střed",
+      "align_right": "Vpravo",
+      "bg_color": "Pozadí",
+      "fg_color": "Text",
+      "undo": "Zpět",
+      "redo": "Znovu"
+    }
+  },
+  "system_monitor": {
+    "title": "SYSTÉMOVÝ MONITOR",
+    "subtitle": "Telemetrie zdrojů v reálném čase",
+    "cpu": {
+      "title": "CPU",
+      "cores_label": "JÁDRA / LOGICKÁ JÁDRA",
+      "core_prefix": "J"
+    },
+    "ram": {
+      "title": "Paměť RAM",
+      "tooltip": "Využití RAM"
+    },
+    "disk": {
+      "title": "Disk ( / )",
+      "tooltip": "Využití disku na /"
+    },
+    "gpu": {
+      "title": "GPU (NVIDIA)",
+      "usage_format": "GPU:{gpu}%  M:{mem}%"
+    },
+    "status": {
+      "updated": "Aktualizováno"
+    }
+  }
+}
