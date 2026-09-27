@@ -582,35 +582,67 @@
     },
     "oscilloscope": {
       "title": "Oscilloscopio",
-      "tooltip": "Nodo di acquisizione dell'oscilloscopio\n Doppio clic per info",
-      "ports": {
-        "out_primary": "Uscita primaria",
-        "out_secondary": "Uscita secondaria",
-        "trigger_out": "Uscita trigger"
-      },
-      "status": {
-        "sim": "SIMULAZIONE",
-        "capturing": "ACQUISIZIONE…",
-        "armed": "ARMATO",
-        "connected": "CONNESSO",
-        "disconnected": "DISCONNESSO"
-      },
-      "device_label": "DIS",
-      "channel_label": "CAN",
-      "lcr_label": "LCR",
-      "sim_label": "SIM",
-      "trig_button": "TRIG",
-      "setup_button": "IMPOSTA",
+      "profile_editor_title": "Editor profilo oscilloscopio",
+      "config_title": "Configura Oscilloscopio",
+      "help_title": "Aiuto - Oscilloscopio",
+      "tooltip": "Acquisisce segnale con l'oscilloscopio reale",
+      "based_on": "Basato su:",
+      "empty": "(vuoto)",
+      "load": "Carica",
+      "idn_placeholder": "Un pattern per riga. Es:\nSiglent,SDS1",
+      "field_id": "ID (file):",
+      "field_name": "Nome:",
+      "field_manufacturer": "Produttore:",
+      "field_description": "Descrizione:",
+      "field_idn": "Pattern *IDN?:",
+      "field_idn_cmd": "Comando IDN:",
+      "field_ch_name": "Template canale:",
+      "field_vdiv": "Comando VDIV:",
+      "field_ofst": "Comando OFST:",
+      "field_tdiv": "Comando TDIV:",
+      "field_sara": "Comando Sample Rate:",
+      "field_wf": "Comando Waveform:",
+      "field_parser_type": "Tipo:",
+      "field_parser_opts": "Opzioni (JSON):",
+      "field_profile": "Profilo:",
+      "field_resource": "Risorsa VISA:",
+      "field_channel": "Canale:",
+      "field_timeout": "Timeout:",
+      "field_fallback": "Genera segnale di test se l'acquisizione fallisce",
+      "btn_new": "Nuovo...",
+      "btn_edit": "Modifica...",
+      "btn_test": "Test connessione",
+      "btn_detect": "Rileva profilo automaticamente",
+      "tip_rescan": "Riscansiona risorse VISA",
+      "tab_info": "Info",
+      "tab_scpi": "SCPI",
+      "tab_parser": "Parser",
+      "simulation": "(simulazione – nessuno strumento)",
+      "not_detected": "non rilevato",
+      "resources_found": "VISA: {n} risorsa(e) rilevata(e).",
+      "err_missing_id": "ID mancante.",
+      "err_invalid_json": "JSON non valido: {err}",
+      "err_save": "Errore durante il salvataggio: {err}",
+      "err_no_resource": "Seleziona una risorsa VISA.",
+      "err_not_in_list": "'{target}' non è nell'elenco VISA. Disponibili: {res}",
+      "detected": "Rilevato: {idn} → {name}",
+      "no_profile": "IDN: {idn} – nessun profilo. Usa 'Nuovo...' per crearne uno.",
+      "no_profile_short": "nessun profilo",
+      "status_capturing": "ACQUISIZIONE...",
+      "status_error": "ERRORE",
+      "status_armed": "ARMED (VISA)",
+      "status_simulation": "SIMULAZIONE",
       "menu": {
-        "show_channel": "Mostra canale"
+        "trigger": "Attiva acquisizione (Trigger)",
+        "configure": "Configura oscilloscopio...",
+        "help": "Aiuto",
+        "debug": "DEBUG: stato"
       },
-      "channel": {
-        "primary": "Primario (Z)",
-        "secondary": "Secondario (θ)"
+      "ports": {
+        "signal_out": "Uscita",
+        "trigger_out": "trigger out"
       },
-      "trigger_action": "Avvia acquisizione",
-      "help_title": "Aiuto – Nodo oscilloscopio",
-      "help_html": "<h3>📊 Nodo oscilloscopio (Acquisizione segnale)</h3>\n<p>Cattura segnali del mondo reale utilizzando hardware (SDS, LCR) o genera dati simulati per il test.</p>\n\n<h4>📤 Porte di uscita</h4>\n<ul>\n    <li><code>out_primary</code> → segnale principale (tensione vs tempo, o impedenza Z per LCR).</li>\n    <li><code>out_secondary</code> → segnale secondario (fase θ per LCR; non utilizzato per SDS).</li>\n    <li><code>trigger_out</code> → emette un segnale di trigger al termine dell'acquisizione (utile per sincronizzare altri nodi).</li>\n</ul>\n\n<h4>🔘 Controlli</h4>\n<ul>\n    <li><b>TRIG</b> → avvia un'acquisizione (acquisizione dati).</li>\n    <li><b>SETUP</b> → apre il pannello di configurazione (parametri di simulazione o controller hardware).</li>\n    <li><b>Selettore dispositivo</b> (combo in basso) → scegli tra SDS (oscilloscopio reale), LCR (misuratore di impedenza) o simulazione.</li>\n</ul>\n\n<h4>⚙️ Modalità operative</h4>\n<ul>\n    <li><b>SDS</b>: si connette a un oscilloscopio reale (Siglent SDS). Puoi selezionare il canale (C1..C4) tramite menu contestuale → «Mostra canale».</li>\n    <li><b>LCR</b>: si connette a un misuratore LCR, fornisce due uscite: primaria (impedenza Z) e secondaria (angolo di fase θ).</li>\n    <li><b>Simulazione</b>: genera un segnale sintetico con rumore, configurabile tramite SETUP (base dei tempi, range di tensione, livello di trigger, frequenza di campionamento).</li>\n</ul>\n\n<h4>📈 Visualizzazione</h4>\n<p>Il nodo non disegna il segnale internamente, ma può essere collegato a un widget visualizzatore (come <code>PlotWidget</code>) per mostrare i dati catturati.</p>\n\n<h4>💡 Esempio d'uso</h4>\n<ol>\n    <li>Seleziona il dispositivo (SDS) e collegalo fisicamente.</li>\n    <li>Fai clic su TRIG per catturare una traccia.</li>\n    <li>Il segnale sarà disponibile su <code>out_primary</code> per altri nodi.</li>\n    <li>Se usi LCR, entrambe le uscite (Z e θ) saranno disponibili.</li>\n</ol>\n\n<h4>⚠️ Note</h4>\n<ul>\n    <li>In modalità hardware, assicurati che il dispositivo sia connesso e alimentato.</li>\n    <li>L'acquisizione viene eseguita in un thread separato per evitare di bloccare l'interfaccia.</li>\n    <li>Il nodo agisce come sorgente di dati (nodo di ingresso) per il flusso.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Come pensare a questo sistema</h3>\n\n<p>Questo ambiente funziona come un <b>flusso di elaborazione del segnale</b>.</p>\n\n<pre>\nDati → Trasformazione → Risultato\n</pre>\n\n<h4>📐 Regola chiave</h4>\n<pre>\nTutto è:\n\n(x, y)\n</pre>\n\n<h4>🔁 Schema universale</h4>\n<pre>\nIngresso → Elaborazione → Visualizzazione\n</pre>\n\n<h4>🧪 Esempio completo</h4>\n<pre>\nOscilloscopio → FFT → Filtro → Sommatore → Grafico\n</pre>\n<hr>\n<h4>⚡ Scorciatoie e trucchi</h4>\n<ul>\n<li><b>Ctrl + clic</b> su una porta → seleziona la porta per una connessione rapida.</li>\n<li><b>Doppio clic</b> sul nodo → apre questa finestra di aiuto.</li>\n<li><b>Clic destro</b> → menu contestuale (elimina, connetti, disconnetti).</li>\n<li><b>Trascina</b> il nodo → sposta l'intero blocco; le connessioni si aggiornano automaticamente.</li>\n</ul>"
+      "help_html": "<h3>📡 Nodo Oscilloscopio (Cattura VISA)</h3>\n<p>Acquisisce segnali reali da oscilloscopi (Siglent, Rigol, Keysight, ecc.) tramite <b>PyVISA</b> (USB/LAN) utilizzando profili <code>.json</code> che descrivono i comandi SCPI dello strumento. Se nessuno strumento è connesso, genera un <b>segnale di test</b>.</p>\n\n<h4>📥 Ingresso</h4>\n<p>Nessuno. È un <b>nodo sorgente</b>: avvia il flusso quando si attiva un'acquisizione.</p>\n\n<h4>📤 Uscite</h4>\n<ul>\n    <li><b>signal_out</b> → segnale acquisito come <code>(t, V)</code> con <code>t</code> in secondi e <code>V</code> in volt.</li>\n    <li><b>trigger_out</b> → impulso di sincronizzazione <code>(t, V, 'trigger')</code>; emesso al termine di ogni acquisizione per concatenare altri nodi.</li>\n</ul>\n\n<h4>⚙️ Parametri</h4>\n<ul>\n    <li><b>Profilo</b> – file <code>scopes/&lt;id&gt;.json</code> con i comandi SCPI dello strumento. <i>Nuovo...</i> clona uno esistente; <i>Modifica...</i> modifica quello attuale.</li>\n    <li><b>Risorsa VISA</b> – menu a discesa con gli strumenti rilevati. Il pulsante <b>↻</b> riscansiona. Lasciare <i>(simulazione)</i> per non usare hardware.</li>\n    <li><b>Canale</b> – C1..C4 a seconda del profilo (Siglent usa C1, Rigol CHAN1).</li>\n    <li><b>Timeout</b> – tempo massimo di attesa per una risposta dello strumento.</li>\n    <li><b>Fallback</b> – se l'acquisizione fallisce, genera un segnale di test invece di interrompere.</li>\n    <li><b>Rileva profilo automaticamente</b> – interroga <code>*IDN?</code> e sceglie il profilo i cui <code>idn_patterns</code> corrispondono.</li>\n</ul>\n\n<h4>🖱️ Interazione</h4>\n<ul>\n    <li><b>Pulsante TRIG</b> (angolo in basso a destra) → attiva un'acquisizione.</li>\n    <li><b>Doppio clic</b> → apre la finestra di configurazione (profilo, VISA, canale).</li>\n    <li><b>Clic destro</b> → menu contestuale: <i>Attiva acquisizione</i>, <i>Configura oscilloscopio...</i>, <i>DEBUG: stato</i>.</li>\n</ul>\n\n<h4>🧩 Aggiungere un nuovo oscilloscopio</h4>\n<ol>\n    <li>Collegare lo strumento e annotare il suo <code>*IDN?</code> (pulsante <i>Test connessione</i>).</li>\n    <li>Nella finestra → <i>Nuovo...</i> → clonare il profilo più simile.</li>\n    <li>Modificare <b>ID</b>, <b>Nome</b>, <b>Pattern *IDN?</b> e i comandi SCPI (scheda <i>SCPI</i>).</li>\n    <li>Regolare il <b>parser</b> (scheda <i>Parser</i>): tipo + opzioni (<code>header_bytes</code>, <code>vdiv_divisor</code>, ecc.).</li>\n    <li>Salva → viene creato <code>scopes/&lt;id&gt;.json</code>.</li>\n</ol>\n\n<hr>\n<hr>\n<h3>🧠 Come pensare a questo sistema</h3>\n\n<p>Questo ambiente funziona come un <b>flusso di elaborazione del señale</b>.</p>\n\n<pre>\nDato → Trasformazione → Risultato\n</pre>\n\n<h4>📐 Regola chiave</h4>\n<pre>\nTutto è:\n\n(x, y)\n</pre>\n\n<h4>🔁 Pattern universale</h4>\n<pre>\nIngresso → Elaborazione → Visualizzazione\n</pre>\n\n<h4>🧪 Esempio completo</h4>\n<pre>\nOscilloscopio → Finestra → Spettrale (FFT) → Filtro → Grafico\n</pre>\n<hr>\n<h4>⚡ Scorciatoie e trucchi</h4>\n<ul>\n<li><b>Ctrl + clic</b> su una porta → seleziona la porta per una connessione rapida.</li>\n<li><b>Doppio clic</b> sul nodo → apre questa finestra di aiuto.</li>\n<li><b>Clic destro</b> → menu contestuale (elimina, connetti, disconnetti).</li>\n<li><b>Trascinare</b> il nodo → sposta l'intero blocco; le connessioni si aggiornano automaticamente.</li>\n</ul>"
     },
     "spectral": {
         "title": "Spettrale",
@@ -961,7 +993,151 @@
         "export_error_title": "Errore di esportazione",
         "config_title": "Configura esportatore grafico",
         "help_title": "Aiuto – Esportatore grafico",
-        "help_html": "<h3>📊 Esportatore grafico</h3><p>Riceve un segnale e lo esporta come immagine di alta qualità.</p><h4>📥 Ingresso</h4><p><code>signal_in</code> → tupla <code>(x, y)</code> o array 1D.</p><h4>📤 Uscita</h4><p><code>file_out</code> → percorso del file generato.</p><h4>⚙️ Configurazione</h4><p>Doppio clic destro → <b>Configura grafico</b> per regolare stile, assi, annotazioni, ecc.</p><hr><h4>🖱️ Interazione</h4><ul><li><b>Clic destro</b> → menu contestuale.</li><li><b>Mostra grafico</b> → anteprima con le impostazioni correnti.</li></ul><hr><hr><h3>🧠 Come pensare a questo sistema</h3><p>Questo ambiente funziona come un <b>flusso di elaborazione del segnale</b>.</p><pre>Dati → Trasformazione → Risultato</pre><h4>📐 Regola chiave</h4><pre>Tutto è: (x, y)</pre><h4>🔁 Schema universale</h4><pre>Ingresso → Elaborazione → Visualizzazione</pre><hr><h4>⚡ Scorciatoie e trucchi</h4><ul><li><b>Ctrl + clic</b> su una porta → seleziona la porta per una connessione rapida.</li><li><b>Doppio clic</b> sul nodo → apre questa finestra di aiuto.</li><li><b>Clic destro</b> → menu contestuale (elimina, configura).</li><li><b>Trascina</b> il nodo → sposta l'intero blocco; le connessioni si aggiornano automaticamente.</li></ul>"
+        "help_html": "<h3>📊 Esportatore grafico</h3><p>Riceve un segnale e lo esporta come immagine di alta qualità.</p><h4>📥 Ingresso</h4><p><code>signal_in</code> → tupla <code>(x, y)</code> o array 1D.</p><h4>📤 Uscita</h4><p><code>file_out</code> → percorso del file generato.</p><h4>⚙️ Configurazione</h4><p>Doppio clic destro → <b>Configura grafico</b> per regolare stile, assi, annotazioni, ecc.</p><hr><h4>🖱️ Interazione</h4><ul><li><b>Clic destro</b> → menu contestuale.</li><li><b>Mostra grafico</b> → anteprima con le impostazioni correnti.</li></ul><hr><hr><h3>🧠 Come pensare a questo sistema</h3><p>Questo ambiente funziona come un <b>flusso di elaborazione del segnale</b>.</p><pre>Dati → Trasformazione → Risultato</pre><h4>📐 Regola chiave</h4><pre>Tutto è: (x, y)</pre><h4>🔁 Schema universale</h4><pre>Ingresso → Elaborazione → Visualizzazione</pre><hr><h4>⚡ Scorciatoie e trucchi</h4><ul><li><b>Ctrl + clic</b> su una porta → seleziona la porta per una connessione rapida.</li><li><b>Doppio clic</b> sul nodo → apre questa finestra di aiuto.</li><li><b>Clic destro</b> → menu contestuale (elimina, configura).</li><li><b>Trascina</b> il nodo → sposta l'intero blocco; le connessioni si aggiornano automaticamente.</li></ul>",
+        "dialog": {
+          "title": "Configura grafico",
+          "preview_title": "Anteprima grafico",
+          "annotation_title": "Nuova annotazione"
+        },
+        "tabs": {
+          "general": "Generale",
+          "line": "Linea",
+          "series": "Serie",
+          "axes": "Assi",
+          "legend": "Legenda",
+          "grid": "Griglia",
+          "watermark": "Filigrana",
+          "annotations": "Annotazioni"
+        },
+        "buttons": {
+          "open_profile": "Apri profilo",
+          "save_profile": "Salva profilo",
+          "add": "Aggiungi",
+          "delete": "Elimina",
+          "move_up": "Sposta su",
+          "move_down": "Sposta giù",
+          "close": "Chiudi"
+        },
+        "file_dialog": {
+          "open_profile_title": "Apri profilo",
+          "save_profile_title": "Salva profilo",
+          "profile_filter": "Profili JSON (*.json)"
+        },
+        "general": {
+          "theme_label": "Tema visivo:",
+          "title_label": "Titolo",
+          "title_size_label": "Dimensione titolo",
+          "title_color_label": "Colore titolo",
+          "title_font_label": "Font titolo",
+          "title_weight_label": "Spessore titolo",
+          "scale_x_label": "Scala X",
+          "scale_y_label": "Scala Y",
+          "enable_limits": "Abilita limiti X",
+          "x_min_label": "X min",
+          "x_max_label": "X max",
+          "antialiasing": "Antialiasing"
+        },
+        "line": {
+          "axis_x_label": "Etichetta asse X",
+          "axis_y_label": "Etichetta asse Y",
+          "axis_text_size_label": "Dimensione testo assi",
+          "axis_text_color_label": "Colore testo assi",
+          "axis_font_label": "Font assi",
+          "line_color_label": "Colore linea",
+          "line_width_label": "Larghezza linea",
+          "line_style_label": "Stile linea"
+        },
+        "grid": {
+          "show_main_grid": "Mostra griglia principale",
+          "main_grid_style_label": "Stile griglia principale:",
+          "color_label": "Colore:",
+          "width_label": "Spessore:",
+          "line_style_label": "Stile linea:",
+          "alpha_label": "Trasparenza:",
+          "show_on_axes": "Mostra sugli assi:",
+          "axis_x": "Asse X",
+          "axis_y": "Asse Y",
+          "show_minor_grid": "Mostra griglia secondaria (minore)",
+          "minor_grid_style_label": "Stile griglia secondaria:"
+        },
+        "watermark": {
+          "enable": "Abilita filigrana",
+          "text_label": "Testo",
+          "size_label": "Dimensione",
+          "rotation_label": "Rotazione",
+          "color_label": "Colore",
+          "alpha_label": "Trasparenza",
+          "font_label": "Font filigrana"
+        },
+        "annotations": {
+          "show": "Mostra annotazioni",
+          "list_label": "Annotazioni:",
+          "properties_label": "Proprietà:",
+          "type_label": "Tipo:",
+          "text_label": "Testo:",
+          "x_start_label": "Posizione X (inizio):",
+          "y_start_label": "Posizione Y (inizio):",
+          "x_end_label": "X fine (freccia):",
+          "y_end_label": "Y fine (freccia):",
+          "type_text": "Testo",
+          "type_arrow": "Freccia"
+        },
+        "axes": {
+          "major_ticks_label": "Tick maggiori:",
+          "direction_label": "Direzione:",
+          "size_px_label": "Dimensione (px):",
+          "width_px_label": "Larghezza (px):",
+          "minor_ticks_label": "Tick minori:",
+          "subdiv_x_label": "Suddivisioni asse X:",
+          "subdiv_y_label": "Suddivisioni asse Y:",
+          "number_format_label": "Formato numerico:",
+          "decimals_label": "Decimali:",
+          "axis_numbers_label": "Numeri degli assi:",
+          "font_label": "Font:",
+          "size_label": "Dimensione:",
+          "axis_line_label": "Linea asse:",
+          "axis_x_color_label": "Colore asse X",
+          "axis_x_width_label": "Spessore asse X",
+          "axis_y_color_label": "Colore asse Y",
+          "axis_y_width_label": "Spessore asse Y"
+        },
+        "legend": {
+          "show": "Mostra legenda",
+          "position_label": "Posizione:",
+          "visible_border": "Bordo visibile",
+          "border_width_label": "Spessore bordo",
+          "bg_color_label": "Colore sfondo",
+          "bg_alpha_label": "Trasparenza sfondo",
+          "font_size_label": "Dimensione font",
+          "text_color_label": "Colore testo",
+          "title_label": "Titolo legenda",
+          "font_label": "Font legenda",
+          "position_upper_right": "in alto a destra",
+          "position_upper_left": "in alto a sinistra",
+          "position_lower_right": "in basso a destra",
+          "position_lower_left": "in basso a sinistra",
+          "position_outside": "fuori"
+        },
+        "series_tab": {
+          "properties_label": "Proprietà individuali di ciascun segnale:",
+          "label": "Etichetta:",
+          "color": "Colore:",
+          "style": "Stile:",
+          "width": "Larghezza:",
+          "default_label": "Serie"
+        },
+        "defaults": {
+          "title": "Grafico",
+          "axis_x": "X",
+          "axis_y": "Y",
+          "watermark_text": "Filigrana",
+          "annotation_text": "Etichetta",
+          "signal": "Segnale"
+        },
+        "errors": {
+          "error_title": "Errore",
+          "matplotlib_required": "matplotlib è richiesto per visualizzare i sottografici.\nInstallalo con: pip install matplotlib"
+        }
     }
   },
   "messages": {

@@ -582,35 +582,67 @@
     },
     "oscilloscope": {
       "title": "Osiloskop",
-      "tooltip": "Osiloskop yakalama düğümü\n Bilgi için çift tıkla",
-      "ports": {
-        "out_primary": "Birincil Çıkış",
-        "out_secondary": "İkincil Çıkış",
-        "trigger_out": "Tetik Çıkışı"
-      },
-      "status": {
-        "sim": "SİMÜLASYON",
-        "capturing": "YAKALANIYOR...",
-        "armed": "HAZIR",
-        "connected": "BAĞLI",
-        "disconnected": "BAĞLANTI KESİLDİ"
-      },
-      "device_label": "CİHAZ",
-      "channel_label": "KANAL",
-      "lcr_label": "LCR",
-      "sim_label": "SİM",
-      "trig_button": "TETİK",
-      "setup_button": "AYAR",
+      "profile_editor_title": "Osiloskop Profil Düzenleyici",
+      "config_title": "Osiloskopu Yapılandır",
+      "help_title": "Yardım – Osiloskop",
+      "tooltip": "Gerçek osiloskopla sinyal yakalama",
+      "based_on": "Dayanak:",
+      "empty": "(boş)",
+      "load": "Yükle",
+      "idn_placeholder": "Satır başına bir desen. Örn:\nSiglent,SDS1",
+      "field_id": "ID (dosya):",
+      "field_name": "Ad:",
+      "field_manufacturer": "Üretici:",
+      "field_description": "Açıklama:",
+      "field_idn": "*IDN? desenleri:",
+      "field_idn_cmd": "IDN komutu:",
+      "field_ch_name": "Kanal şablonu:",
+      "field_vdiv": "VDIV komutu:",
+      "field_ofst": "OFST komutu:",
+      "field_tdiv": "TDIV komutu:",
+      "field_sara": "Örnekleme hızı komutu:",
+      "field_wf": "Waveform komutu:",
+      "field_parser_type": "Tür:",
+      "field_parser_opts": "Seçenekler (JSON):",
+      "field_profile": "Profil:",
+      "field_resource": "VISA Kaynağı:",
+      "field_channel": "Kanal:",
+      "field_timeout": "Zaman aşımı:",
+      "field_fallback": "Yakalama başarısız olursa test sinyali oluştur",
+      "btn_new": "Yeni...",
+      "btn_edit": "Düzenle...",
+      "btn_test": "Bağlantıyı test et",
+      "btn_detect": "Profili otomatik algıla",
+      "tip_rescan": "VISA kaynaklarını yeniden tara",
+      "tab_info": "Bilgi",
+      "tab_scpi": "SCPI",
+      "tab_parser": "Parser",
+      "simulation": "(simülasyon – cihaz yok)",
+      "not_detected": "algılanmadı",
+      "resources_found": "VISA: {n} kaynak algılandı.",
+      "err_missing_id": "ID eksik.",
+      "err_invalid_json": "Geçersiz JSON: {err}",
+      "err_save": "Kaydetme hatası: {err}",
+      "err_no_resource": "Bir VISA kaynağı seçin.",
+      "err_not_in_list": "'{target}' VISA listesinde yok. Mevcut: {res}",
+      "detected": "Algılandı: {idn} → {name}",
+      "no_profile": "IDN: {idn} – profil yok. Oluşturmak için 'Yeni...' kullanın.",
+      "no_profile_short": "profil yok",
+      "status_capturing": "YAKALIYOR...",
+      "status_error": "HATA",
+      "status_armed": "HAZIR (VISA)",
+      "status_simulation": "SİMÜLASYON",
       "menu": {
-        "show_channel": "Kanalı göster"
+        "trigger": "Yakalamayı tetikle (Trigger)",
+        "configure": "Osiloskopu yapılandır...",
+        "help": "Yardım",
+        "debug": "DEBUG: durum"
       },
-      "channel": {
-        "primary": "Birincil (Z)",
-        "secondary": "İkincil (θ)"
+      "ports": {
+        "signal_out": "Çıkış",
+        "trigger_out": "trigger çıkışı"
       },
-      "trigger_action": "Yakalamayı tetikle",
-      "help_title": "Yardım - Osiloskop Düğümü",
-      "help_html": "<h3>📊 Osiloskop Düğümü (Sinyal alma)</h3>\n<p>Donanım (SDS, LCR) kullanarak gerçek dünya sinyallerini yakalar veya test için simüle edilmiş veri üretir.</p>\n\n<h4>📤 Çıkış portları</h4>\n<ul>\n    <li><code>out_primary</code> → ana sinyal (gerilim - zaman veya LCR için empedans Z).</li>\n    <li><code>out_secondary</code> → ikincil sinyal (LCR için faz açısı θ; SDS için kullanılmaz).</li>\n    <li><code>trigger_out</code> → yakalama tamamlandığında tetikleme sinyali yayar (diğer düğümleri senkronize etmek için kullanışlıdır).</li>\n</ul>\n\n<h4>🔘 Kontroller</h4>\n<ul>\n    <li><b>TETİK</b> → bir yakalama başlatır (veri toplama).</li>\n    <li><b>AYAR</b> → yapılandırma panelini açar (simülasyon parametreleri veya donanım denetleyicisi).</li>\n    <li><b>Cihaz seçici</b> (alt açılır liste) → SDS (gerçek osiloskop), LCR (empedans ölçer) veya simülasyon arasından seçim yapın.</li>\n</ul>\n\n<h4>⚙️ Çalışma modları</h4>\n<ul>\n    <li><b>SDS</b>: gerçek bir osiloskopa (Siglent SDS) bağlanır. Kanalı (C1..C4) bağlam menüsünden → \"Kanalı göster\" ile seçebilirsiniz.</li>\n    <li><b>LCR</b>: bir LCR ölçere bağlanır, iki çıkış sağlar: birincil (empedans Z) ve ikincil (faz açısı θ).</li>\n    <li><b>Simülasyon</b>: gürültülü sentetik bir sinyal üretir, AYAR ile yapılandırılabilir (zaman tabanı, gerilim aralığı, tetikleme seviyesi, örnekleme hızı).</li>\n</ul>\n\n<h4>📈 Görselleştirme</h4>\n<p>Düğüm sinyali dahili olarak çizmez, ancak yakalanan verileri göstermek için bir görselleştirme widget'ına (ör. <code>PlotWidget</code>) bağlanabilir.</p>\n\n<h4>💡 Kullanım örneği</h4>\n<ol>\n    <li>Cihazı (SDS) seçin ve fiziksel olarak bağlayın.</li>\n    <li>Bir iz yakalamak için TETİK'e tıklayın.</li>\n    <li>Sinyal diğer düğümler için <code>out_primary</code> üzerinde kullanılabilir olacaktır.</li>\n    <li>LCR kullanılıyorsa, her iki çıkış (Z ve θ) kullanılabilir olacaktır.</li>\n</ol>\n\n<h4>⚠️ Notlar</h4>\n<ul>\n    <li>Donanım modunda, cihazın bağlı ve açık olduğundan emin olun.</li>\n    <li>Yakalama, arayüzü bloke etmemek için ayrı bir iş parçacığında çalışır.</li>\n    <li>Düğüm, akış için bir veri kaynağı (giriş düğümü) olarak işlev görür.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Bu sistemi nasıl düşünmeli</h3>\n\n<p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Ana kural</h4>\n<pre>\nHer şey:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → FFT → Filtre → Toplayıcı → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li>\n<li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, bağlantıyı kes).</li>\n<li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
+      "help_html": "<h3>📡 Osiloskop Düğümü (VISA Yakalama)</h3>\n<p>Osiloskoplardan (Siglent, Rigol, Keysight vb.) <b>PyVISA</b> (USB/LAN) üzerinden gerçek sinyalleri yakalar. Bu, cihazın SCPI komutlarını açıklayan <code>.json</code> profillerini kullanır. Bağlı cihaz yoksa <b>test sinyali</b> üretir.</p>\n\n<h4>📥 Giriş</h4>\n<p>Yok. Bu bir <b>kaynak düğümüdür</b>: bir yakalama tetiklendiğinde akışı başlatır.</p>\n\n<h4>📤 Çıkışlar</h4>\n<ul>\n    <li><b>signal_out</b> → yakalanan sinyal <code>(t, V)</code> biçiminde; <code>t</code> saniye, <code>V</code> volt cinsindendir.</li>\n    <li><b>trigger_out</b> → senkronizasyon darbesi <code>(t, V, 'trigger')</code>; her yakalama sonunda diğer düğümleri zincirlemek için gönderilir.</li>\n</ul>\n\n<h4>⚙️ Parametreler</h4>\n<ul>\n    <li><b>Profil</b> – cihazın SCPI komutlarını içeren <code>scopes/&lt;id&gt;.json</code> dosyası. <i>Yeni...</i> mevcut birini klonlar; <i>Düzenle...</i> mevcut olanı değiştirir.</li>\n    <li><b>VISA Kaynağı</b> – algılanan cihazların açılır listesi. <b>↻</b> düğmesi yeniden tarar. Donanım kullanmadan çalıştırmak için <i>(simülasyon)</i> olarak bırakın.</li>\n    <li><b>Kanal</b> – profile göre C1..C4 (Siglent C1, Rigol CHAN1 kullanır).</li>\n    <li><b>Zaman aşımı</b> – cihaz yanıtı için maksimum bekleme süresi.</li>\n    <li><b>Geri dönüş</b> – yakalama başarısız olursa, durdurmak yerine test sinyali oluştur.</li>\n    <li><b>Profili otomatik algıla</b> – <code>*IDN?</code> sorgular ve <code>idn_patterns</code> eşleşen profili seçer.</li>\n</ul>\n\n<h4>🖱️ Etkileşim</h4>\n<ul>\n    <li><b>TRIG düğmesi</b> (sağ alt köşe) → yakalama tetikler.</li>\n    <li><b>Çift tıklama</b> → yapılandırma iletişim kutusunu açar (profil, VISA, kanal).</li>\n    <li><b>Sağ tık</b> → bağlam menüsü: <i>Yakalamayı tetikle</i>, <i>Osiloskopu yapılandır...</i>, <i>DEBUG: durum</i>.</li>\n</ul>\n\n<h4>🧩 Yeni osiloskop ekleme</h4>\n<ol>\n    <li>Cihazı bağlayın ve <code>*IDN?</code> değerini not alın (<i>Bağlantıyı test et</i> düğmesi).</li>\n    <li>İletişim kutusunda → <i>Yeni...</i> → en yakın profili klonlayın.</li>\n    <li><b>ID</b>, <b>Ad</b>, <b>*IDN? desenleri</b> ve SCPI komutlarını değiştirin (<i>SCPI</i> sekmesi).</li>\n    <li><b>Parser</b>'ı ayarlayın (<i>Parser</i> sekmesi): tür + seçenekler (<code>header_bytes</code>, <code>vdiv_divisor</code> vb.).</li>\n    <li>Kaydet → <code>scopes/&lt;id&gt;.json</code> oluşturulur.</li>\n</ol>\n\n<hr>\n<hr>\n<h3>🧠 Bu sistem hakkında nasıl düşünülür</h3>\n\n<p>Bu ortam bir <b>işaret işleme akışı</b> olarak çalışır.</p>\n\n<pre>\nVeri → Dönüşüm → Sonuç\n</pre>\n\n<h4>📐 Temel kural</h4>\n<pre>\nHer şey şudur:\n\n(x, y)\n</pre>\n\n<h4>🔁 Evrensel model</h4>\n<pre>\nGiriş → İşleme → Görselleştirme\n</pre>\n\n<h4>🧪 Tam örnek</h4>\n<pre>\nOsiloskop → Pencere → Spektral (FFT) → Filtre → Grafik\n</pre>\n<hr>\n<h4>⚡ Kısayollar ve ipuçları</h4>\n<ul>\n<li><b>Ctrl + tıklama</b> bir porta → hızlı bağlantı için portu seçer.</li>\n<li><b>Çift tıklama</b> düğümde → bu yardım penceresini açar.</li>\n<li><b>Sağ tık</b> → bağlam menüsü (sil, bağla, ayır).</li>\n<li><b>Sürükleme</b> düğümü → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li>\n</ul>"
     },
     "spectral": {
         "title": "Spektral",
@@ -961,7 +993,151 @@
         "export_error_title": "Dışa aktarma hatası",
         "config_title": "Grafik Dışa Aktarıcıyı Yapılandır",
         "help_title": "Yardım - Grafik Dışa Aktarıcı",
-        "help_html": "<h3>📊 Grafik Dışa Aktarıcı</h3><p>Bir sinyal alır ve yüksek kaliteli bir görüntü olarak dışa aktarır.</p><h4>📥 Giriş</h4><p><code>signal_in</code> → <code>(x, y)</code> demeti veya 1B dizi.</p><h4>📤 Çıkış</h4><p><code>file_out</code> → oluşturulan dosyanın yolu.</p><h4>⚙️ Yapılandırma</h4><p>Stil, eksenler, ek açıklamalar vb. ayarlamak için sağ çift tıkla → <b>Grafiği yapılandır</b>.</p><hr><h4>🖱️ Etkileşim</h4><ul><li><b>Sağ tık</b> → bağlam menüsü.</li><li><b>Grafiği göster</b> → geçerli ayarlarla önizleme.</i></p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+        "help_html": "<h3>📊 Grafik Dışa Aktarıcı</h3><p>Bir sinyal alır ve yüksek kaliteli bir görüntü olarak dışa aktarır.</p><h4>📥 Giriş</h4><p><code>signal_in</code> → <code>(x, y)</code> demeti veya 1B dizi.</p><h4>📤 Çıkış</h4><p><code>file_out</code> → oluşturulan dosyanın yolu.</p><h4>⚙️ Yapılandırma</h4><p>Stil, eksenler, ek açıklamalar vb. ayarlamak için sağ çift tıkla → <b>Grafiği yapılandır</b>.</p><hr><h4>🖱️ Etkileşim</h4><ul><li><b>Sağ tık</b> → bağlam menüsü.</li><li><b>Grafiği göster</b> → geçerli ayarlarla önizleme.</i></p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>",
+        "dialog": {
+          "title": "Grafiği yapılandır",
+          "preview_title": "Grafik önizlemesi",
+          "annotation_title": "Yeni açıklama"
+        },
+        "tabs": {
+          "general": "Genel",
+          "line": "Çizgi",
+          "series": "Seriler",
+          "axes": "Eksenler",
+          "legend": "Gösterge",
+          "grid": "Izgara",
+          "watermark": "Filigran",
+          "annotations": "Açıklamalar"
+        },
+        "buttons": {
+          "open_profile": "Profil aç",
+          "save_profile": "Profili kaydet",
+          "add": "Ekle",
+          "delete": "Sil",
+          "move_up": "Yukarı taşı",
+          "move_down": "Aşağı taşı",
+          "close": "Kapat"
+        },
+        "file_dialog": {
+          "open_profile_title": "Profil aç",
+          "save_profile_title": "Profili kaydet",
+          "profile_filter": "JSON profilleri (*.json)"
+        },
+        "general": {
+          "theme_label": "Görsel tema:",
+          "title_label": "Başlık",
+          "title_size_label": "Başlık boyutu",
+          "title_color_label": "Başlık rengi",
+          "title_font_label": "Başlık yazı tipi",
+          "title_weight_label": "Başlık kalınlığı",
+          "scale_x_label": "X ölçeği",
+          "scale_y_label": "Y ölçeği",
+          "enable_limits": "X sınırlarını etkinleştir",
+          "x_min_label": "X min",
+          "x_max_label": "X maks",
+          "antialiasing": "Kenar yumuşatma"
+        },
+        "line": {
+          "axis_x_label": "X ekseni etiketi",
+          "axis_y_label": "Y ekseni etiketi",
+          "axis_text_size_label": "Eksen metin boyutu",
+          "axis_text_color_label": "Eksen metin rengi",
+          "axis_font_label": "Eksen yazı tipi",
+          "line_color_label": "Çizgi rengi",
+          "line_width_label": "Çizgi kalınlığı",
+          "line_style_label": "Çizgi stili"
+        },
+        "grid": {
+          "show_main_grid": "Ana ızgarayı göster",
+          "main_grid_style_label": "Ana ızgara stili:",
+          "color_label": "Renk:",
+          "width_label": "Kalınlık:",
+          "line_style_label": "Çizgi stili:",
+          "alpha_label": "Saydamlık:",
+          "show_on_axes": "Eksenlerde göster:",
+          "axis_x": "X ekseni",
+          "axis_y": "Y ekseni",
+          "show_minor_grid": "İkincil ızgarayı göster (küçük)",
+          "minor_grid_style_label": "İkincil ızgara stili:"
+        },
+        "watermark": {
+          "enable": "Filigranı etkinleştir",
+          "text_label": "Metin",
+          "size_label": "Boyut",
+          "rotation_label": "Döndürme",
+          "color_label": "Renk",
+          "alpha_label": "Saydamlık",
+          "font_label": "Filigran yazı tipi"
+        },
+        "annotations": {
+          "show": "Açıklamaları göster",
+          "list_label": "Açıklamalar:",
+          "properties_label": "Özellikler:",
+          "type_label": "Tür:",
+          "text_label": "Metin:",
+          "x_start_label": "X konumu (başlangıç):",
+          "y_start_label": "Y konumu (başlangıç):",
+          "x_end_label": "X bitiş (ok):",
+          "y_end_label": "Y bitiş (ok):",
+          "type_text": "Metin",
+          "type_arrow": "Ok"
+        },
+        "axes": {
+          "major_ticks_label": "Ana işaretler:",
+          "direction_label": "Yön:",
+          "size_px_label": "Boyut (px):",
+          "width_px_label": "Genişlik (px):",
+          "minor_ticks_label": "İkincil işaretler:",
+          "subdiv_x_label": "X ekseni alt bölümleri:",
+          "subdiv_y_label": "Y ekseni alt bölümleri:",
+          "number_format_label": "Sayı biçimi:",
+          "decimals_label": "Ondalık:",
+          "axis_numbers_label": "Eksen sayıları:",
+          "font_label": "Yazı tipi:",
+          "size_label": "Boyut:",
+          "axis_line_label": "Eksen çizgisi:",
+          "axis_x_color_label": "X ekseni rengi",
+          "axis_x_width_label": "X ekseni kalınlığı",
+          "axis_y_color_label": "Y ekseni rengi",
+          "axis_y_width_label": "Y ekseni kalınlığı"
+        },
+        "legend": {
+          "show": "Göstergeyi göster",
+          "position_label": "Konum:",
+          "visible_border": "Kenarlık görünür",
+          "border_width_label": "Kenarlık kalınlığı",
+          "bg_color_label": "Arka plan rengi",
+          "bg_alpha_label": "Arka plan saydamlığı",
+          "font_size_label": "Yazı tipi boyutu",
+          "text_color_label": "Metin rengi",
+          "title_label": "Gösterge başlığı",
+          "font_label": "Gösterge yazı tipi",
+          "position_upper_right": "sağ üst",
+          "position_upper_left": "sol üst",
+          "position_lower_right": "sağ alt",
+          "position_lower_left": "sol alt",
+          "position_outside": "dışarıda"
+        },
+        "series_tab": {
+          "properties_label": "Her sinyalin bireysel özellikleri:",
+          "label": "Etiket:",
+          "color": "Renk:",
+          "style": "Stil:",
+          "width": "Genişlik:",
+          "default_label": "Seri"
+        },
+        "defaults": {
+          "title": "Grafik",
+          "axis_x": "X",
+          "axis_y": "Y",
+          "watermark_text": "Filigran",
+          "annotation_text": "Etiket",
+          "signal": "Sinyal"
+        },
+        "errors": {
+          "error_title": "Hata",
+          "matplotlib_required": "Alt grafikleri görüntülemek için matplotlib gerekir.\nŞununla yükleyin: pip install matplotlib"
+        }
     }
   },
   "messages": {

@@ -582,35 +582,67 @@
     },
     "oscilloscope": {
       "title": "Oscyloskop",
-      "tooltip": "Węzeł przechwytywania oscyloskopu\n Podwójne kliknięcie, aby uzyskać informacje",
-      "ports": {
-        "out_primary": "Wyjście główne",
-        "out_secondary": "Wyjście wtórne",
-        "trigger_out": "Wyjście wyzwalacza"
-      },
-      "status": {
-        "sim": "SYMULACJA",
-        "capturing": "PRZECHWYTYWANIE...",
-        "armed": "UZBROJONY",
-        "connected": "POŁĄCZONY",
-        "disconnected": "ROZŁĄCZONY"
-      },
-      "device_label": "URZ",
-      "channel_label": "KAN",
-      "lcr_label": "LCR",
-      "sim_label": "SIM",
-      "trig_button": "WYZW",
-      "setup_button": "USTAW",
+      "profile_editor_title": "Edytor profilu oscyloskopu",
+      "config_title": "Konfiguruj oscyloskop",
+      "help_title": "Pomoc – Oscyloskop",
+      "tooltip": "Przechwytuje sygnał z prawdziwego oscyloskopu",
+      "based_on": "Na podstawie:",
+      "empty": "(pusty)",
+      "load": "Wczytaj",
+      "idn_placeholder": "Jeden wzorzec na wiersz. Np.:\nSiglent,SDS1",
+      "field_id": "ID (plik):",
+      "field_name": "Nazwa:",
+      "field_manufacturer": "Producent:",
+      "field_description": "Opis:",
+      "field_idn": "Wzorce *IDN?:",
+      "field_idn_cmd": "Polecenie IDN:",
+      "field_ch_name": "Szablon kanału:",
+      "field_vdiv": "Polecenie VDIV:",
+      "field_ofst": "Polecenie OFST:",
+      "field_tdiv": "Polecenie TDIV:",
+      "field_sara": "Polecenie częstotliwości próbkowania:",
+      "field_wf": "Polecenie waveform:",
+      "field_parser_type": "Typ:",
+      "field_parser_opts": "Opcje (JSON):",
+      "field_profile": "Profil:",
+      "field_resource": "Zasób VISA:",
+      "field_channel": "Kanał:",
+      "field_timeout": "Timeout:",
+      "field_fallback": "Wygeneruj sygnał testowy, jeśli przechwytywanie się nie powiedzie",
+      "btn_new": "Nowy...",
+      "btn_edit": "Edytuj...",
+      "btn_test": "Testuj połączenie",
+      "btn_detect": "Automatycznie wykryj profil",
+      "tip_rescan": "Ponownie przeskanuj zasoby VISA",
+      "tab_info": "Info",
+      "tab_scpi": "SCPI",
+      "tab_parser": "Parser",
+      "simulation": "(symulacja – brak instrumentu)",
+      "not_detected": "nie wykryto",
+      "resources_found": "VISA: wykryto {n} zasób(ów).",
+      "err_missing_id": "Brak ID.",
+      "err_invalid_json": "Nieprawidłowy JSON: {err}",
+      "err_save": "Błąd zapisywania: {err}",
+      "err_no_resource": "Wybierz zasób VISA.",
+      "err_not_in_list": "'{target}' nie ma na liście VISA. Dostępne: {res}",
+      "detected": "Wykryto: {idn} → {name}",
+      "no_profile": "IDN: {idn} – brak profilu. Użyj 'Nowy...', aby go utworzyć.",
+      "no_profile_short": "brak profilu",
+      "status_capturing": "PRzechwytywanie...",
+      "status_error": "BŁĄD",
+      "status_armed": "GOTOWY (VISA)",
+      "status_simulation": "SYMULACJA",
       "menu": {
-        "show_channel": "Pokaż kanał"
+        "trigger": "Wyzwól przechwytywanie (Trigger)",
+        "configure": "Konfiguruj oscyloskop...",
+        "help": "Pomoc",
+        "debug": "DEBUG: stan"
       },
-      "channel": {
-        "primary": "Główny (Z)",
-        "secondary": "Wtórny (θ)"
+      "ports": {
+        "signal_out": "Wyjście",
+        "trigger_out": "wyjście trigger"
       },
-      "trigger_action": "Wyzwól przechwytywanie",
-      "help_title": "Pomoc - Węzeł oscyloskopu",
-      "help_html": "<h3>📊 Węzeł oscyloskopu (akwizycja sygnału)</h3>\n<p>Przechwytuje sygnały ze świata rzeczywistego za pomocą sprzętu (SDS, LCR) lub generuje symulowane dane do testów.</p>\n\n<h4>📤 Porty wyjściowe</h4>\n<ul>\n    <li><code>out_primary</code> → sygnał główny (napięcie vs czas lub impedancja Z dla LCR).</li>\n    <li><code>out_secondary</code> → sygnał wtórny (faza θ dla LCR; nieużywany dla SDS).</li>\n    <li><code>trigger_out</code> → emituje sygnał wyzwalający po zakończeniu przechwytywania (przydatny do synchronizacji innych węzłów).</li>\n</ul>\n\n<h4>🔘 Sterowanie</h4>\n<ul>\n    <li><b>WYZW</b> → rozpoczyna przechwytywanie (akwizycję danych).</li>\n    <li><b>USTAW</b> → otwiera panel konfiguracji (parametry symulacji lub kontroler sprzętu).</li>\n    <li><b>Selektor urządzenia</b> (dolne combo) → wybierz między SDS (prawdziwy oscyloskop), LCR (miernik impedancji) lub symulacja.</li>\n</ul>\n\n<h4>⚙️ Tryby działania</h4>\n<ul>\n    <li><b>SDS</b>: łączy się z prawdziwym oscyloskopem (Siglent SDS). Możesz wybrać kanał (C1..C4) przez menu kontekstowe → \"Pokaż kanał\".</li>\n    <li><b>LCR</b>: łączy się z miernikiem LCR, zapewnia dwa wyjścia: główne (impedancja Z) i wtórne (kąt fazowy θ).</li>\n    <li><b>Symulacja</b>: generuje syntetyczny sygnał z szumem, konfigurowalny przez USTAW (podstawa czasu, zakres napięcia, poziom wyzwalania, częstotliwość próbkowania).</li>\n</ul>\n\n<h4>📈 Wizualizacja</h4>\n<p>Węzeł nie rysuje sygnału wewnętrznie, ale można go podłączyć do widżetu wizualizatora (np. <code>PlotWidget</code>), aby pokazać przechwycone dane.</p>\n\n<h4>💡 Przykład użycia</h4>\n<ol>\n    <li>Wybierz urządzenie (SDS) i podłącz je fizycznie.</li>\n    <li>Kliknij WYZW, aby przechwycić przebieg.</li>\n    <li>Sygnał będzie dostępny na <code>out_primary</code> dla innych węzłów.</li>\n    <li>Jeśli używasz LCR, oba wyjścia (Z i θ) będą dostępne.</li>\n</ol>\n\n<h4>⚠️ Uwagi</h4>\n<ul>\n    <li>W trybie sprzętowym upewnij się, że urządzenie jest podłączone i włączone.</li>\n    <li>Przechwytywanie działa w osobnym wątku, aby nie blokować interfejsu.</li>\n    <li>Węzeł działa jako źródło danych (węzeł wejściowy) dla przepływu.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
+      "help_html": "<h3>📡 Węzeł Oscyloskop (Przechwytywanie VISA)</h3>\n<p>Przechwytuje rzeczywiste sygnały z oscyloskopów (Siglent, Rigol, Keysight itp.) za pośrednictwem <b>PyVISA</b> (USB/LAN) przy użyciu profili <code>.json</code>, które opisują polecenia SCPI instrumentu. Jeśli nie ma podłączonego instrumentu, generuje <b>sygnał testowy</b>.</p>\n\n<h4>📥 Wejście</h4>\n<p>Brak. To <b>węzeł źródłowy</b>: inicjuje przepływ po wyzwoleniu przechwytywania.</p>\n\n<h4>📤 Wyjścia</h4>\n<ul>\n    <li><b>signal_out</b> → przechwycony sygnał jako <code>(t, V)</code>, gdzie <code>t</code> w sekundach, a <code>V</code> w woltach.</li>\n    <li><b>trigger_out</b> → impuls synchronizacji <code>(t, V, 'trigger')</code>; emitowany po zakończeniu każdego przechwytywania w celu połączenia innych węzłów.</li>\n</ul>\n\n<h4>⚙️ Parametry</h4>\n<ul>\n    <li><b>Profil</b> – plik <code>scopes/&lt;id&gt;.json</code> z poleceniami SCPI instrumentu. <i>Nowy...</i> klonuje istniejący profil; <i>Edytuj...</i> modyfikuje bieżący profil.</li>\n    <li><b>Zasób VISA</b> – rozwijana lista wykrytych instrumentów. Przycisk <b>↻</b> ponownie skanuje. Pozostaw <i>(symulacja)</i>, aby nie używać sprzętu.</li>\n    <li><b>Kanał</b> – C1..C4 w zależności od profilu (Siglent używa C1, Rigol CHAN1).</li>\n    <li><b>Timeout</b> – maksymalny czas oczekiwania na odpowiedź instrumentu.</li>\n    <li><b>Fallback</b> – jeśli przechwytywanie się nie powiedzie, wygeneruj sygnał testowy zamiast przerywać.</li>\n    <li><b>Automatycznie wykryj profil</b> – odpytuje <code>*IDN?</code> i wybiera profil, którego <code>idn_patterns</code> pasują.</li>\n</ul>\n\n<h4>🖱️ Interakcja</h4>\n<ul>\n    <li><b>Przycisk TRIG</b> (prawy dolny róg) → wyzwala przechwytywanie.</li>\n    <li><b>Kliknięcie dwukrotne</b> → otwiera okno konfiguracji (profil, VISA, kanał).</li>\n    <li><b>Kliknięcie prawym przyciskiem</b> → menu kontekstowe: <i>Wyzwól przechwytywanie</i>, <i>Konfiguruj oscyloskop...</i>, <i>DEBUG: stan</i>.</li>\n</ul>\n\n<h4>🧩 Dodawanie nowego oscyloskopu</h4>\n<ol>\n    <li>Podłącz instrument i zanotuj jego <code>*IDN?</code> (przycisk <i>Testuj połączenie</i>).</li>\n    <li>W oknie dialogowym → <i>Nowy...</i> → sklonuj najbardziej podobny profil.</li>\n    <li>Zmień <b>ID</b>, <b>Nazwę</b>, <b>Wzorce *IDN?</b> i polecenia SCPI (zakładka <i>SCPI</i>).</li>\n    <li>Dostosuj <b>parser</b> (zakładka <i>Parser</i>): typ + opcje (<code>header_bytes</code>, <code>vdiv_divisor</code> itp.).</li>\n    <li>Zapisz → tworzy się <code>scopes/&lt;id&gt;.json</code>.</li>\n</ol>\n\n<hr>\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko to:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Pełny przykład</h4>\n<pre>\nOscyloskop → Okno → Widmo (FFT) → Filtr → Wykres\n</pre>\n<hr>\n<h4>⚡ Skróty i wskazówki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Kliknięcie dwukrotne</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Kliknięcie prawym przyciskiem</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciąganie</b> węzła → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
     },
     "spectral": {
         "title": "Widmowy",
@@ -961,7 +993,151 @@
         "export_error_title": "Błąd eksportu",
         "config_title": "Konfiguruj eksporter grafu",
         "help_title": "Pomoc - Eksporter grafu",
-        "help_html": "<h3>📊 Eksporter grafu</h3><p>Odbiera sygnał i eksportuje go jako obraz wysokiej jakości.</p><h4>📥 Wejście</h4><p><code>signal_in</code> → krotka <code>(x, y)</code> lub tablica 1D.</p><h4>📤 Wyjście</h4><p><code>file_out</code> → ścieżka wygenerowanego pliku.</p><h4>⚙️ Konfiguracja</h4><p>Kliknij dwukrotnie prawym → <b>Konfiguruj wykres</b>, aby dostosować styl, osie, adnotacje itp.</p><hr><h4>🖱️ Interakcja</h4><ul><li><b>Klik prawym</b> → menu kontekstowe.</li><li><b>Pokaż wykres</b> → podgląd z bieżącymi ustawieniami.</i></p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+        "help_html": "<h3>📊 Eksporter grafu</h3><p>Odbiera sygnał i eksportuje go jako obraz wysokiej jakości.</p><h4>📥 Wejście</h4><p><code>signal_in</code> → krotka <code>(x, y)</code> lub tablica 1D.</p><h4>📤 Wyjście</h4><p><code>file_out</code> → ścieżka wygenerowanego pliku.</p><h4>⚙️ Konfiguracja</h4><p>Kliknij dwukrotnie prawym → <b>Konfiguruj wykres</b>, aby dostosować styl, osie, adnotacje itp.</p><hr><h4>🖱️ Interakcja</h4><ul><li><b>Klik prawym</b> → menu kontekstowe.</li><li><b>Pokaż wykres</b> → podgląd z bieżącymi ustawieniami.</i></p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>",
+        "dialog": {
+          "title": "Konfiguruj wykres",
+          "preview_title": "Podgląd wykresu",
+          "annotation_title": "Nowa adnotacja"
+        },
+        "tabs": {
+          "general": "Ogólne",
+          "line": "Linia",
+          "series": "Serie",
+          "axes": "Osie",
+          "legend": "Legenda",
+          "grid": "Siatka",
+          "watermark": "Znak wodny",
+          "annotations": "Adnotacje"
+        },
+        "buttons": {
+          "open_profile": "Otwórz profil",
+          "save_profile": "Zapisz profil",
+          "add": "Dodaj",
+          "delete": "Usuń",
+          "move_up": "W górę",
+          "move_down": "W dół",
+          "close": "Zamknij"
+        },
+        "file_dialog": {
+          "open_profile_title": "Otwórz profil",
+          "save_profile_title": "Zapisz profil",
+          "profile_filter": "Profile JSON (*.json)"
+        },
+        "general": {
+          "theme_label": "Motyw wizualny:",
+          "title_label": "Tytuł",
+          "title_size_label": "Rozmiar tytułu",
+          "title_color_label": "Kolor tytułu",
+          "title_font_label": "Czcionka tytułu",
+          "title_weight_label": "Grubość tytułu",
+          "scale_x_label": "Skala X",
+          "scale_y_label": "Skala Y",
+          "enable_limits": "Włącz limity X",
+          "x_min_label": "X min",
+          "x_max_label": "X max",
+          "antialiasing": "Antyaliasing"
+        },
+        "line": {
+          "axis_x_label": "Etykieta osi X",
+          "axis_y_label": "Etykieta osi Y",
+          "axis_text_size_label": "Rozmiar tekstu osi",
+          "axis_text_color_label": "Kolor tekstu osi",
+          "axis_font_label": "Czcionka osi",
+          "line_color_label": "Kolor linii",
+          "line_width_label": "Szerokość linii",
+          "line_style_label": "Styl linii"
+        },
+        "grid": {
+          "show_main_grid": "Pokaż główną siatkę",
+          "main_grid_style_label": "Styl głównej siatki:",
+          "color_label": "Kolor:",
+          "width_label": "Grubość:",
+          "line_style_label": "Styl linii:",
+          "alpha_label": "Przezroczystość:",
+          "show_on_axes": "Pokaż na osiach:",
+          "axis_x": "Oś X",
+          "axis_y": "Oś Y",
+          "show_minor_grid": "Pokaż pomocniczą siatkę (mniejszą)",
+          "minor_grid_style_label": "Styl pomocniczej siatki:"
+        },
+        "watermark": {
+          "enable": "Włącz znak wodny",
+          "text_label": "Tekst",
+          "size_label": "Rozmiar",
+          "rotation_label": "Obrót",
+          "color_label": "Kolor",
+          "alpha_label": "Przezroczystość",
+          "font_label": "Czcionka znaku wodnego"
+        },
+        "annotations": {
+          "show": "Pokaż adnotacje",
+          "list_label": "Adnotacje:",
+          "properties_label": "Właściwości:",
+          "type_label": "Typ:",
+          "text_label": "Tekst:",
+          "x_start_label": "Pozycja X (początek):",
+          "y_start_label": "Pozycja Y (początek):",
+          "x_end_label": "Koniec X (strzałka):",
+          "y_end_label": "Koniec Y (strzałka):",
+          "type_text": "Tekst",
+          "type_arrow": "Strzałka"
+        },
+        "axes": {
+          "major_ticks_label": "Główne znaczniki:",
+          "direction_label": "Kierunek:",
+          "size_px_label": "Rozmiar (px):",
+          "width_px_label": "Szerokość (px):",
+          "minor_ticks_label": "Pomocnicze znaczniki:",
+          "subdiv_x_label": "Podziałki osi X:",
+          "subdiv_y_label": "Podziałki osi Y:",
+          "number_format_label": "Format liczbowy:",
+          "decimals_label": "Miejsca dziesiętne:",
+          "axis_numbers_label": "Numery osi:",
+          "font_label": "Czcionka:",
+          "size_label": "Rozmiar:",
+          "axis_line_label": "Linia osi:",
+          "axis_x_color_label": "Kolor osi X",
+          "axis_x_width_label": "Grubość osi X",
+          "axis_y_color_label": "Kolor osi Y",
+          "axis_y_width_label": "Grubość osi Y"
+        },
+        "legend": {
+          "show": "Pokaż legendę",
+          "position_label": "Pozycja:",
+          "visible_border": "Widoczne obramowanie",
+          "border_width_label": "Grubość obramowania",
+          "bg_color_label": "Kolor tła",
+          "bg_alpha_label": "Przezroczystość tła",
+          "font_size_label": "Rozmiar czcionki",
+          "text_color_label": "Kolor tekstu",
+          "title_label": "Tytuł legendy",
+          "font_label": "Czcionka legendy",
+          "position_upper_right": "prawy górny",
+          "position_upper_left": "lewy górny",
+          "position_lower_right": "prawy dolny",
+          "position_lower_left": "lewy dolny",
+          "position_outside": "na zewnątrz"
+        },
+        "series_tab": {
+          "properties_label": "Indywidualne właściwości każdego sygnału:",
+          "label": "Etykieta:",
+          "color": "Kolor:",
+          "style": "Styl:",
+          "width": "Szerokość:",
+          "default_label": "Seria"
+        },
+        "defaults": {
+          "title": "Wykres",
+          "axis_x": "X",
+          "axis_y": "Y",
+          "watermark_text": "Znak wodny",
+          "annotation_text": "Etykieta",
+          "signal": "Sygnał"
+        },
+        "errors": {
+          "error_title": "Błąd",
+          "matplotlib_required": "Do wyświetlenia subplotów wymagany jest matplotlib.\nZainstaluj go za pomocą: pip install matplotlib"
+        }
     }
   },
   "messages": {

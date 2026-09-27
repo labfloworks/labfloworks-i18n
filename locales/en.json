@@ -581,35 +581,67 @@
     },
     "oscilloscope": {
       "title": "Oscilloscope",
-      "tooltip": "Oscilloscope capture node\n Double click to info",
-      "ports": {
-        "out_primary": "Primary Output",
-        "out_secondary": "Secondary Output",
-        "trigger_out": "Trigger Out"
-      },
-      "status": {
-        "sim": "SIMULATION",
-        "capturing": "CAPTURING...",
-        "armed": "ARMED",
-        "connected": "CONNECTED",
-        "disconnected": "DISCONNECTED"
-      },
-      "device_label": "DEV",
-      "channel_label": "CH",
-      "lcr_label": "LCR",
-      "sim_label": "SIM",
-      "trig_button": "TRIG",
-      "setup_button": "SETUP",
+      "profile_editor_title": "Oscilloscope Profile Editor",
+      "config_title": "Configure Oscilloscope",
+      "help_title": "Help – Oscilloscope",
+      "tooltip": "Capture signal with the real oscilloscope",
+      "based_on": "Based on:",
+      "empty": "(empty)",
+      "load": "Load",
+      "idn_placeholder": "One pattern per line. E.g.:\nSiglent,SDS1",
+      "field_id": "ID (file):",
+      "field_name": "Name:",
+      "field_manufacturer": "Manufacturer:",
+      "field_description": "Description:",
+      "field_idn": "*IDN? patterns:",
+      "field_idn_cmd": "IDN command:",
+      "field_ch_name": "Channel template:",
+      "field_vdiv": "VDIV command:",
+      "field_ofst": "OFST command:",
+      "field_tdiv": "TDIV command:",
+      "field_sara": "Sample Rate command:",
+      "field_wf": "Waveform command:",
+      "field_parser_type": "Type:",
+      "field_parser_opts": "Options (JSON):",
+      "field_profile": "Profile:",
+      "field_resource": "VISA Resource:",
+      "field_channel": "Channel:",
+      "field_timeout": "Timeout:",
+      "field_fallback": "Generate test signal if capture fails",
+      "btn_new": "New...",
+      "btn_edit": "Edit...",
+      "btn_test": "Test connection",
+      "btn_detect": "Auto-detect profile",
+      "tip_rescan": "Rescan VISA resources",
+      "tab_info": "Info",
+      "tab_scpi": "SCPI",
+      "tab_parser": "Parser",
+      "simulation": "(simulation – no instrument)",
+      "not_detected": "not detected",
+      "resources_found": "VISA: {n} resource(s) detected.",
+      "err_missing_id": "ID is missing.",
+      "err_invalid_json": "Invalid JSON: {err}",
+      "err_save": "Error saving: {err}",
+      "err_no_resource": "Select a VISA resource.",
+      "err_not_in_list": "'{target}' is not in the VISA list. Available: {res}",
+      "detected": "Detected: {idn} → {name}",
+      "no_profile": "IDN: {idn} – no profile. Use 'New...' to create one.",
+      "no_profile_short": "no profile",
+      "status_capturing": "CAPTURING...",
+      "status_error": "ERROR",
+      "status_armed": "ARMED (VISA)",
+      "status_simulation": "SIMULATION",
       "menu": {
-        "show_channel": "Show channel"
+        "trigger": "Trigger capture",
+        "configure": "Configure oscilloscope...",
+        "help": "Help",
+        "debug": "DEBUG: state"
       },
-      "channel": {
-        "primary": "Primary (Z)",
-        "secondary": "Secondary (θ)"
+      "ports": {
+        "signal_out": "Output",
+        "trigger_out": "trigger out"
       },
-      "trigger_action": "Trigger capture",
-      "help_title": "Help - Oscilloscope Node",
-      "help_html": "<h3>📊 Oscilloscope Node (Signal acquisition)</h3>\n<p>Captures real‑world signals using hardware (SDS, LCR) or generates simulated data for testing.</p>\n\n<h4>📤 Output ports</h4>\n<ul>\n    <li><code>out_primary</code> → main signal (voltage vs time, or impedance Z for LCR).</li>\n    <li><code>out_secondary</code> → secondary signal (phase θ for LCR; not used for SDS).</li>\n    <li><code>trigger_out</code> → emits a trigger signal when capture finishes (useful to synchronise other nodes).</li>\n</ul>\n\n<h4>🔘 Controls</h4>\n<ul>\n    <li><b>TRIG</b> → starts a capture (data acquisition).</li>\n    <li><b>SETUP</b> → opens the configuration panel (simulation parameters or hardware controller).</li>\n    <li><b>Device selector</b> (bottom combo) → choose between SDS (real oscilloscope), LCR (impedance meter) or simulation.</li>\n</ul>\n\n<h4>⚙️ Operation modes</h4>\n<ul>\n    <li><b>SDS</b>: connects to a real oscilloscope (Siglent SDS). You can select the channel (C1..C4) via context menu → \"Show channel\".</li>\n    <li><b>LCR</b>: connects to an LCR meter, provides two outputs: primary (impedance Z) and secondary (phase angle θ).</li>\n    <li><b>Simulation</b>: generates a synthetic signal with noise, configurable via SETUP (timebase, voltage range, trigger level, sample rate).</li>\n</ul>\n\n<h4>📈 Visualisation</h4>\n<p>The node does not draw the signal internally, but it can be connected to a visualiser widget (like <code>PlotWidget</code>) to show the captured data.</p>\n\n<h4>💡 Example of use</h4>\n<ol>\n    <li>Select the device (SDS) and connect it physically.</li>\n    <li>Click TRIG to capture a trace.</li>\n    <li>The signal will be available on <code>out_primary</code> for other nodes.</li>\n    <li>If using LCR, both outputs (Z and θ) will be available.</li>\n</ol>\n\n<h4>⚠️ Notes</h4>\n<ul>\n    <li>In hardware mode, make sure the device is connected and powered on.</li>\n    <li>Capture runs in a separate thread to avoid blocking the interface.</li>\n    <li>The node acts as a data source (input node) for the flow.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 How to think about this system</h3>\n\n<p>This environment works as a <b>signal processing flow</b>.</p>\n\n<pre>\nData → Transformation → Result\n</pre>\n\n<h4>📐 Key rule</h4>\n<pre>\nEverything is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universal pattern</h4>\n<pre>\nInput → Processing → Visualization\n</pre>\n\n<h4>🧪 Complete example</h4>\n<pre>\nOscilloscope → FFT → Filter → Summer → Plot\n</pre>\n<hr>\n<h4>⚡ Shortcuts and tricks</h4>\n<ul>\n<li><b>Ctrl + click</b> on a port → selects the port for quick connection.</li>\n<li><b>Double click</b> on the node → opens this help window.</li>\n<li><b>Right click</b> → context menu (delete, connect, disconnect).</li>\n<li><b>Drag</b> the node → moves the whole block; connections update automatically.</li>\n</ul>"
+      "help_html": "<h3>📡 Oscilloscope Node (VISA Capture)</h3>\n<p>Captures real signals from oscilloscopes (Siglent, Rigol, Keysight, etc.) via <b>PyVISA</b> (USB/LAN) using <code>.json</code> profiles that describe the instrument's SCPI commands. If no instrument is connected, it generates a <b>test signal</b>.</p>\n\n<h4>📥 Input</h4>\n<p>None. It is a <b>source node</b>: it initiates the flow when a capture is triggered.</p>\n\n<h4>📤 Outputs</h4>\n<ul>\n    <li><b>signal_out</b> → captured signal as <code>(t, V)</code> with <code>t</code> in seconds and <code>V</code> in volts.</li>\n    <li><b>trigger_out</b> → sync pulse <code>(t, V, 'trigger')</code>; emitted when each capture finishes to chain other nodes.</li>\n</ul>\n\n<h4>⚙️ Parameters</h4>\n<ul>\n    <li><b>Profile</b> – <code>scopes/&lt;id&gt;.json</code> file with the instrument's SCPI commands. <i>New...</i> clones an existing one; <i>Edit...</i> modifies the current one.</li>\n    <li><b>VISA Resource</b> – dropdown with detected instruments. The <b>↻</b> button rescans. Leave as <i>(simulation)</i> to run without hardware.</li>\n    <li><b>Channel</b> – C1..C4 depending on profile (Siglent uses C1, Rigol CHAN1).</li>\n    <li><b>Timeout</b> – maximum waiting time for an instrument response.</li>\n    <li><b>Fallback</b> – if capture fails, generate a test signal instead of aborting.</li>\n    <li><b>Auto-detect profile</b> – queries <code>*IDN?</code> and picks the profile whose <code>idn_patterns</code> match.</li>\n</ul>\n\n<h4>🖱️ Interaction</h4>\n<ul>\n    <li><b>TRIG button</b> (bottom-right corner) → triggers a capture.</li>\n    <li><b>Double click</b> → opens the configuration dialog (profile, VISA, channel).</li>\n    <li><b>Right click</b> → context menu: <i>Trigger capture</i>, <i>Configure oscilloscope...</i>, <i>DEBUG: state</i>.</li>\n</ul>\n\n<h4>🧩 Adding a new oscilloscope</h4>\n<ol>\n    <li>Connect the instrument and note its <code>*IDN?</code> (<i>Test connection</i> button).</li>\n    <li>In the dialog → <i>New...</i> → clone the closest profile.</li>\n    <li>Change <b>ID</b>, <b>Name</b>, <b>*IDN? patterns</b> and SCPI commands (<i>SCPI</i> tab).</li>\n    <li>Adjust the <b>parser</b> (<i>Parser</i> tab): type + options (<code>header_bytes</code>, <code>vdiv_divisor</code>, etc.).</li>\n    <li>Save → <code>scopes/&lt;id&gt;.json</code> is created.</li>\n</ol>\n\n<hr>\n<hr>\n<h3>🧠 How to think about this system</h3>\n\n<p>This environment works as a <b>signal processing flow</b>.</p>\n\n<pre>\nData → Transformation → Result\n</pre>\n\n<h4>📐 Key rule</h4>\n<pre>\nEverything is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universal pattern</h4>\n<pre>\nInput → Processing → Visualization\n</pre>\n\n<h4>🧪 Complete example</h4>\n<pre>\nOscilloscope → Window → Spectral (FFT) → Filter → Plot\n</pre>\n<hr>\n<h4>⚡ Shortcuts and tips</h4>\n<ul>\n<li><b>Ctrl + click</b> on a port → selects the port for quick connection.</li>\n<li><b>Double click</b> on the node → opens this help window.</li>\n<li><b>Right click</b> → context menu (delete, connect, disconnect).</li>\n<li><b>Drag</b> the node → moves the whole block; connections update automatically.</li>\n</ul>"
     },
     "spectral": {
         "title": "Spectral",
@@ -960,7 +992,151 @@
         "export_error_title": "Export error",
         "config_title": "Configure Graph Exporter",
         "help_title": "Help - Graph Exporter",
-        "help_html": "<h3>📊 Graph Exporter</h3><p>Receives a signal and exports it as a high-quality image.</p><h4>📥 Input</h4><p><code>signal_in</code> → tuple <code>(x, y)</code> or 1D array.</p><h4>📤 Output</h4><p><code>file_out</code> → path of the generated file.</p><h4>⚙️ Configuration</h4><p>Right double-click → <b>Configure graph</b> to adjust style, axes, annotations, etc.</p><hr><h4>🖱️ Interaction</h4><ul><li><b>Right click</b> → context menu.</li><li><b>Show graph</b> → preview with current settings.</i></p><hr><hr><h3>🧠 How to think about this system</h3><p>This environment works as a <b>signal processing flow</b>.</p><pre>Data → Transformation → Result</pre><h4>📐 Key rule</h4><pre>Everything is: (x, y)</pre><h4>🔁 Universal pattern</h4><pre>Input → Processing → Visualization</pre><hr><h4>⚡ Shortcuts and tricks</h4><ul><li><b>Ctrl + click</b> on a port → selects the port for a quick connection.</li><li><b>Double click</b> on the node → opens this help window.</li><li><b>Right click</b> → context menu (delete, configure).</li><li><b>Drag</b> the node → moves the entire block; connections update automatically.</li></ul>"
+        "help_html": "<h3>📊 Graph Exporter</h3><p>Receives a signal and exports it as a high-quality image.</p><h4>📥 Input</h4><p><code>signal_in</code> → tuple <code>(x, y)</code> or 1D array.</p><h4>📤 Output</h4><p><code>file_out</code> → path of the generated file.</p><h4>⚙️ Configuration</h4><p>Right double-click → <b>Configure graph</b> to adjust style, axes, annotations, etc.</p><hr><h4>🖱️ Interaction</h4><ul><li><b>Right click</b> → context menu.</li><li><b>Show graph</b> → preview with current settings.</i></p><hr><hr><h3>🧠 How to think about this system</h3><p>This environment works as a <b>signal processing flow</b>.</p><pre>Data → Transformation → Result</pre><h4>📐 Key rule</h4><pre>Everything is: (x, y)</pre><h4>🔁 Universal pattern</h4><pre>Input → Processing → Visualization</pre><hr><h4>⚡ Shortcuts and tricks</h4><ul><li><b>Ctrl + click</b> on a port → selects the port for a quick connection.</li><li><b>Double click</b> on the node → opens this help window.</li><li><b>Right click</b> → context menu (delete, configure).</li><li><b>Drag</b> the node → moves the entire block; connections update automatically.</li></ul>",
+        "dialog": {
+          "title": "Configure chart",
+          "preview_title": "Chart preview",
+          "annotation_title": "New annotation"
+        },
+        "tabs": {
+          "general": "General",
+          "line": "Line",
+          "series": "Series",
+          "axes": "Axes",
+          "legend": "Legend",
+          "grid": "Grid",
+          "watermark": "Watermark",
+          "annotations": "Annotations"
+        },
+        "buttons": {
+          "open_profile": "Open profile",
+          "save_profile": "Save profile",
+          "add": "Add",
+          "delete": "Delete",
+          "move_up": "Move up",
+          "move_down": "Move down",
+          "close": "Close"
+        },
+        "file_dialog": {
+          "open_profile_title": "Open profile",
+          "save_profile_title": "Save profile",
+          "profile_filter": "JSON profiles (*.json)"
+        },
+        "general": {
+          "theme_label": "Visual theme:",
+          "title_label": "Title",
+          "title_size_label": "Title size",
+          "title_color_label": "Title color",
+          "title_font_label": "Title font",
+          "title_weight_label": "Title weight",
+          "scale_x_label": "X scale",
+          "scale_y_label": "Y scale",
+          "enable_limits": "Enable X limits",
+          "x_min_label": "X min",
+          "x_max_label": "X max",
+          "antialiasing": "Antialiasing"
+        },
+        "line": {
+          "axis_x_label": "X axis label",
+          "axis_y_label": "Y axis label",
+          "axis_text_size_label": "Axes text size",
+          "axis_text_color_label": "Axes text color",
+          "axis_font_label": "Axes font",
+          "line_color_label": "Line color",
+          "line_width_label": "Line width",
+          "line_style_label": "Line style"
+        },
+        "grid": {
+          "show_main_grid": "Show main grid",
+          "main_grid_style_label": "Main grid style:",
+          "color_label": "Color:",
+          "width_label": "Width:",
+          "line_style_label": "Line style:",
+          "alpha_label": "Transparency:",
+          "show_on_axes": "Show on axes:",
+          "axis_x": "X axis",
+          "axis_y": "Y axis",
+          "show_minor_grid": "Show minor grid",
+          "minor_grid_style_label": "Minor grid style:"
+        },
+        "watermark": {
+          "enable": "Enable watermark",
+          "text_label": "Text",
+          "size_label": "Size",
+          "rotation_label": "Rotation",
+          "color_label": "Color",
+          "alpha_label": "Transparency",
+          "font_label": "Watermark font"
+        },
+        "annotations": {
+          "show": "Show annotations",
+          "list_label": "Annotations:",
+          "properties_label": "Properties:",
+          "type_label": "Type:",
+          "text_label": "Text:",
+          "x_start_label": "X position (start):",
+          "y_start_label": "Y position (start):",
+          "x_end_label": "End X (arrow):",
+          "y_end_label": "End Y (arrow):",
+          "type_text": "Text",
+          "type_arrow": "Arrow"
+        },
+        "axes": {
+          "major_ticks_label": "Major ticks:",
+          "direction_label": "Direction:",
+          "size_px_label": "Size (px):",
+          "width_px_label": "Width (px):",
+          "minor_ticks_label": "Minor ticks:",
+          "subdiv_x_label": "X axis subdivisions:",
+          "subdiv_y_label": "Y axis subdivisions:",
+          "number_format_label": "Number format:",
+          "decimals_label": "Decimals:",
+          "axis_numbers_label": "Axis numbers:",
+          "font_label": "Font:",
+          "size_label": "Size:",
+          "axis_line_label": "Axis line:",
+          "axis_x_color_label": "X axis color",
+          "axis_x_width_label": "X axis width",
+          "axis_y_color_label": "Y axis color",
+          "axis_y_width_label": "Y axis width"
+        },
+        "legend": {
+          "show": "Show legend",
+          "position_label": "Position:",
+          "visible_border": "Visible border",
+          "border_width_label": "Border width",
+          "bg_color_label": "Background color",
+          "bg_alpha_label": "Background transparency",
+          "font_size_label": "Font size",
+          "text_color_label": "Text color",
+          "title_label": "Legend title",
+          "font_label": "Legend font",
+          "position_upper_right": "upper right",
+          "position_upper_left": "upper left",
+          "position_lower_right": "lower right",
+          "position_lower_left": "lower left",
+          "position_outside": "outside"
+        },
+        "series_tab": {
+          "properties_label": "Individual properties of each signal:",
+          "label": "Label:",
+          "color": "Color:",
+          "style": "Style:",
+          "width": "Width:",
+          "default_label": "Series"
+        },
+        "defaults": {
+          "title": "Chart",
+          "axis_x": "X",
+          "axis_y": "Y",
+          "watermark_text": "Watermark",
+          "annotation_text": "Label",
+          "signal": "Signal"
+        },
+        "errors": {
+          "error_title": "Error",
+          "matplotlib_required": "matplotlib is required to display subplots.\nInstall it with: pip install matplotlib"
+        }
     }
   },
   "messages": {

@@ -582,35 +582,67 @@
     },
     "oscilloscope": {
       "title": "Máy hiện sóng",
-      "tooltip": "Nút bắt máy hiện sóng\nNhấp đúp để xem thông tin",
-      "ports": {
-        "out_primary": "Đầu ra chính",
-        "out_secondary": "Đầu ra phụ",
-        "trigger_out": "Đầu ra kích hoạt"
-      },
-      "status": {
-        "sim": "MÔ PHỎNG",
-        "capturing": "ĐANG BẮT...",
-        "armed": "SẴN SÀNG",
-        "connected": "ĐÃ KẾT NỐI",
-        "disconnected": "ĐÃ NGẮT KẾT NỐI"
-      },
-      "device_label": "TBỊ",
-      "channel_label": "KÊNH",
-      "lcr_label": "LCR",
-      "sim_label": "MÔ PHỎNG",
-      "trig_button": "KÍCH",
-      "setup_button": "CÀI",
+      "profile_editor_title": "Trình chỉnh sửa hồ sơ máy hiện sóng",
+      "config_title": "Cấu hình máy hiện sóng",
+      "help_title": "Trợ giúp – Máy hiện sóng",
+      "tooltip": "Chụp tín hiệu bằng máy hiện sóng thực",
+      "based_on": "Dựa trên:",
+      "empty": "(trống)",
+      "load": "Tải",
+      "idn_placeholder": "Một mẫu mỗi dòng. Ví dụ:\nSiglent,SDS1",
+      "field_id": "ID (tệp):",
+      "field_name": "Tên:",
+      "field_manufacturer": "Nhà sản xuất:",
+      "field_description": "Mô tả:",
+      "field_idn": "Mẫu *IDN?:",
+      "field_idn_cmd": "Lệnh IDN:",
+      "field_ch_name": "Mẫu kênh:",
+      "field_vdiv": "Lệnh VDIV:",
+      "field_ofst": "Lệnh OFST:",
+      "field_tdiv": "Lệnh TDIV:",
+      "field_sara": "Lệnh tốc độ lấy mẫu:",
+      "field_wf": "Lệnh waveform:",
+      "field_parser_type": "Kiểu:",
+      "field_parser_opts": "Tùy chọn (JSON):",
+      "field_profile": "Hồ sơ:",
+      "field_resource": "Tài nguyên VISA:",
+      "field_channel": "Kênh:",
+      "field_timeout": "Timeout:",
+      "field_fallback": "Tạo tín hiệu thử nghiệm nếu chụp thất bại",
+      "btn_new": "Mới...",
+      "btn_edit": "Chỉnh sửa...",
+      "btn_test": "Kiểm tra kết nối",
+      "btn_detect": "Tự động phát hiện hồ sơ",
+      "tip_rescan": "Quét lại tài nguyên VISA",
+      "tab_info": "Thông tin",
+      "tab_scpi": "SCPI",
+      "tab_parser": "Parser",
+      "simulation": "(mô phỏng – không có thiết bị)",
+      "not_detected": "không phát hiện",
+      "resources_found": "VISA: đã phát hiện {n} tài nguyên.",
+      "err_missing_id": "Thiếu ID.",
+      "err_invalid_json": "JSON không hợp lệ: {err}",
+      "err_save": "Lỗi lưu: {err}",
+      "err_no_resource": "Chọn một tài nguyên VISA.",
+      "err_not_in_list": "'{target}' không có trong danh sách VISA. Có sẵn: {res}",
+      "detected": "Đã phát hiện: {idn} → {name}",
+      "no_profile": "IDN: {idn}  chưa có hồ sơ. Dùng 'Mới...' để tạo.",
+      "no_profile_short": "chưa có hồ sơ",
+      "status_capturing": "ĐANG CHỤP...",
+      "status_error": "LỖI",
+      "status_armed": "SẴN SÀNG (VISA)",
+      "status_simulation": "MÔ PHỎNG",
       "menu": {
-        "show_channel": "Hiển thị kênh"
+        "trigger": "Kích hoạt chụp (Trigger)",
+        "configure": "Cấu hình máy hiện sóng...",
+        "help": "Trợ giúp",
+        "debug": "DEBUG: trạng thái"
       },
-      "channel": {
-        "primary": "Chính (Z)",
-        "secondary": "Phụ (θ)"
+      "ports": {
+        "signal_out": "Đầu ra",
+        "trigger_out": "trigger out"
       },
-      "trigger_action": "Kích hoạt bắt",
-      "help_title": "Trợ giúp - Nút máy hiện sóng",
-      "help_html": "<h3>📊 Nút máy hiện sóng (Thu tín hiệu)</h3>\n<p>Bắt tín hiệu thực bằng phần cứng (SDS, LCR) hoặc tạo dữ liệu mô phỏng để kiểm tra.</p>\n\n<h4>📤 Cổng ra</h4>\n<ul>\n    <li><code>out_primary</code> → tín hiệu chính (điện áp theo thời gian hoặc trở kháng Z cho LCR).</li>\n    <li><code>out_secondary</code> → tín hiệu phụ (góc pha θ cho LCR; không dùng cho SDS).</li>\n    <li><code>trigger_out</code> → phát tín hiệu kích hoạt khi bắt xong (hữu ích để đồng bộ các nút khác).</li>\n</ul>\n\n<h4>🔘 Điều khiển</h4>\n<ul>\n    <li><b>KÍCH</b> → bắt đầu một lần bắt (thu dữ liệu).</li>\n    <li><b>CÀI</b> → mở bảng cấu hình (tham số mô phỏng hoặc bộ điều khiển phần cứng).</li>\n    <li><b>Bộ chọn thiết bị</b> (combo dưới) → chọn giữa SDS (máy hiện sóng thực), LCR (máy đo trở kháng) hoặc mô phỏng.</li>\n</ul>\n\n<h4>⚙️ Chế độ hoạt động</h4>\n<ul>\n    <li><b>SDS</b>: kết nối với máy hiện sóng thực (Siglent SDS). Bạn có thể chọn kênh (C1..C4) qua menu ngữ cảnh → \"Hiển thị kênh\".</li>\n    <li><b>LCR</b>: kết nối với máy đo LCR, cung cấp hai đầu ra: chính (trở kháng Z) và phụ (góc pha θ).</li>\n    <li><b>Mô phỏng</b>: tạo tín hiệu tổng hợp có nhiễu, cấu hình qua CÀI (cơ sở thời gian, dải điện áp, mức kích hoạt, tần số lấy mẫu).</li>\n</ul>\n\n<h4>📈 Trực quan hóa</h4>\n<p>Nút không vẽ tín hiệu nội bộ, nhưng có thể kết nối với widget trực quan hóa (như <code>PlotWidget</code>) để hiển thị dữ liệu đã bắt.</p>\n\n<h4>💡 Ví dụ sử dụng</h4>\n<ol>\n    <li>Chọn thiết bị (SDS) và kết nối vật lý.</li>\n    <li>Nhấn KÍCH để bắt một dạng sóng.</li>\n    <li>Tín hiệu sẽ có sẵn trên <code>out_primary</code> cho các nút khác.</li>\n    <li>Nếu dùng LCR, cả hai đầu ra (Z và θ) sẽ có sẵn.</li>\n</ol>\n\n<h4>⚠️ Lưu ý</h4>\n<ul>\n    <li>Ở chế độ phần cứng, đảm bảo thiết bị đã kết nối và bật nguồn.</li>\n    <li>Việc bắt chạy trong luồng riêng để không chặn giao diện.</li>\n    <li>Nút hoạt động như nguồn dữ liệu (nút đầu vào) cho luồng.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
+      "help_html": "<h3>📡 Nút máy hiện sóng (Chụp VISA)</h3>\n<p>Chụp tín hiệu thực từ máy hiện sóng (Siglent, Rigol, Keysight, v.v.) qua <b>PyVISA</b> (USB/LAN) bằng hồ sơ <code>.json</code> mô tả các lệnh SCPI của thiết bị. Nếu không có thiết bị kết nối, sẽ tạo <b>tín hiệu thử nghiệm</b>.</p>\n\n<h4>📥 Đầu vào</h4>\n<p>Không. Đây là <b>nút nguồn</b>: khởi động luồng khi kích hoạt chụp.</p>\n\n<h4>📤 Đầu ra</h4>\n<ul>\n    <li><b>signal_out</b> → tín hiệu đã chụp dạng <code>(t, V)</code> với <code>t</code> tính bằng giây và <code>V</code> tính bằng volt.</li>\n    <li><b>trigger_out</b> → xung đồng bộ <code>(t, V, 'trigger')</code>; phát ra khi kết thúc mỗi lần chụp để liên kết các nút khác.</li>\n</ul>\n\n<h4>⚙️ Tham số</h4>\n<ul>\n    <li><b>Hồ sơ</b> – tệp <code>scopes/&lt;id&gt;.json</code> chứa lệnh SCPI của thiết bị. <i>Mới...</i> sao chép một hồ sơ có sẵn; <i>Chỉnh sửa...</i> sửa hồ sơ hiện tại.</li>\n    <li><b>Tài nguyên VISA</b> – danh sách thả xuống các thiết bị đã phát hiện. Nút <b>↻</b> quét lại. Để <i>(mô phỏng)</i> nếu không dùng phần cứng.</li>\n    <li><b>Kênh</b> – C1..C4 tùy theo hồ sơ (Siglent dùng C1, Rigol CHAN1).</li>\n    <li><b>Timeout</b> – thời gian chờ tối đa cho phản hồi của thiết bị.</li>\n    <li><b>Dự phòng</b> – nếu chụp thất bại, tạo tín hiệu thử nghiệm thay vì dừng.</li>\n    <li><b>Tự động phát hiện hồ sơ</b> – truy vấn <code>*IDN?</code> và chọn hồ sơ có <code>idn_patterns</code> khớp.</li>\n</ul>\n\n<h4>🖱️ Tương tác</h4>\n<ul>\n    <li><b>Nút TRIG</b> (góc dưới phải) → kích hoạt chụp.</li>\n    <li><b>Nhấp đúp</b> → mở hộp thoại cấu hình (hồ sơ, VISA, kênh).</li>\n    <li><b>Nhấp chuột phải</b> → menu ngữ cảnh: <i>Kích hoạt chụp</i>, <i>Cấu hình máy hiện sóng...</i>, <i>DEBUG: trạng thái</i>.</li>\n</ul>\n\n<h4>🧩 Thêm máy hiện sóng mới</h4>\n<ol>\n    <li>Kết nối thiết bị và ghi lại <code>*IDN?</code> (nút <i>Kiểm tra kết nối</i>).</li>\n    <li>Trong hộp thoại → <i>Mới...</i> → sao chép hồ sơ gần nhất.</li>\n    <li>Thay đổi <b>ID</b>, <b>Tên</b>, <b>Mẫu *IDN?</b> và lệnh SCPI (thẻ <i>SCPI</i>).</li>\n    <li>Điều chỉnh <b>parser</b> (thẻ <i>Parser</i>): kiểu + tùy chọn (<code>header_bytes</code>, <code>vdiv_divisor</code> v.v.).</li>\n    <li>Lưu → tạo <code>scopes/&lt;id&gt;.json</code>.</li>\n</ol>\n\n<hr>\n<hr>\n<h3>🧠 Cách nghĩ về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ đều là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mẫu phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → Cửa sổ → Phổ (FFT) → Bộ lọc → Đồ thị\n</pre>\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp chuột phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển toàn bộ khối; các kết nối tự cập nhật.</li>\n</ul>"
     },
     "spectral": {
       "title": "Phổ",
@@ -961,7 +993,151 @@
       "export_error_title": "Lỗi xuất",
       "config_title": "Cấu hình bộ xuất đồ thị",
       "help_title": "Trợ giúp - Bộ xuất đồ thị",
-      "help_html": "<h3>📊 Bộ xuất đồ thị</h3><p>Nhận tín hiệu và xuất nó dưới dạng hình ảnh chất lượng cao.</p><h4>📥 Đầu vào</h4><p><code>signal_in</code> → tuple <code>(x, y)</code> hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><p><code>file_out</code> → đường dẫn tệp đã tạo.</p><h4>⚙️ Cấu hình</h4><p>Nhấp đúp phải → <b>Cấu hình đồ thị</b> để điều chỉnh kiểu dáng, trục, chú thích, v.v.</p><hr><h4>🖱️ Tương tác</h4><ul><li><b>Nhấp phải</b> → menu ngữ cảnh.</li><li><b>Hiển thị đồ thị</b> → xem trước với cài đặt hiện tại.</li></ul><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+      "help_html": "<h3>📊 Bộ xuất đồ thị</h3><p>Nhận tín hiệu và xuất nó dưới dạng hình ảnh chất lượng cao.</p><h4>📥 Đầu vào</h4><p><code>signal_in</code> → tuple <code>(x, y)</code> hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><p><code>file_out</code> → đường dẫn tệp đã tạo.</p><h4>⚙️ Cấu hình</h4><p>Nhấp đúp phải → <b>Cấu hình đồ thị</b> để điều chỉnh kiểu dáng, trục, chú thích, v.v.</p><hr><h4>🖱️ Tương tác</h4><ul><li><b>Nhấp phải</b> → menu ngữ cảnh.</li><li><b>Hiển thị đồ thị</b> → xem trước với cài đặt hiện tại.</li></ul><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>",
+      "dialog": {
+        "title": "Cấu hình đồ thị",
+        "preview_title": "Xem trước đồ thị",
+        "annotation_title": "Chú thích mới"
+      },
+      "tabs": {
+        "general": "Chung",
+        "line": "Đường",
+        "series": "Chuỗi",
+        "axes": "Trục",
+        "legend": "Chú giải",
+        "grid": "Lưới",
+        "watermark": "Hình mờ",
+        "annotations": "Chú thích"
+      },
+      "buttons": {
+        "open_profile": "Mở hồ sơ",
+        "save_profile": "Lưu hồ sơ",
+        "add": "Thêm",
+        "delete": "Xóa",
+        "move_up": "Di chuyển lên",
+        "move_down": "Di chuyển xuống",
+        "close": "Đóng"
+      },
+      "file_dialog": {
+        "open_profile_title": "Mở hồ sơ",
+        "save_profile_title": "Lưu hồ sơ",
+        "profile_filter": "Hồ sơ JSON (*.json)"
+      },
+      "general": {
+        "theme_label": "Giao diện:",
+        "title_label": "Tiêu đề",
+        "title_size_label": "Cỡ tiêu đề",
+        "title_color_label": "Màu tiêu đề",
+        "title_font_label": "Phông chữ tiêu đề",
+        "title_weight_label": "Độ đậm tiêu đề",
+        "scale_x_label": "Tỷ lệ X",
+        "scale_y_label": "Tỷ lệ Y",
+        "enable_limits": "Bật giới hạn X",
+        "x_min_label": "X tối thiểu",
+        "x_max_label": "X tối đa",
+        "antialiasing": "Khử răng cưa"
+      },
+      "line": {
+        "axis_x_label": "Nhãn trục X",
+        "axis_y_label": "Nhãn trục Y",
+        "axis_text_size_label": "Cỡ chữ trục",
+        "axis_text_color_label": "Màu chữ trục",
+        "axis_font_label": "Phông chữ trục",
+        "line_color_label": "Màu đường",
+        "line_width_label": "Độ dày đường",
+        "line_style_label": "Kiểu đường"
+      },
+      "grid": {
+        "show_main_grid": "Hiển thị lưới chính",
+        "main_grid_style_label": "Kiểu lưới chính:",
+        "color_label": "Màu:",
+        "width_label": "Độ dày:",
+        "line_style_label": "Kiểu đường:",
+        "alpha_label": "Độ trong suốt:",
+        "show_on_axes": "Hiển thị trên trục:",
+        "axis_x": "Trục X",
+        "axis_y": "Trục Y",
+        "show_minor_grid": "Hiển thị lưới phụ (nhỏ)",
+        "minor_grid_style_label": "Kiểu lưới phụ:"
+      },
+      "watermark": {
+        "enable": "Bật hình mờ",
+        "text_label": "Văn bản",
+        "size_label": "Kích thước",
+        "rotation_label": "Xoay",
+        "color_label": "Màu",
+        "alpha_label": "Độ trong suốt",
+        "font_label": "Phông chữ hình mờ"
+      },
+      "annotations": {
+        "show": "Hiển thị chú thích",
+        "list_label": "Chú thích:",
+        "properties_label": "Thuộc tính:",
+        "type_label": "Loại:",
+        "text_label": "Văn bản:",
+        "x_start_label": "Vị trí X (bắt đầu):",
+        "y_start_label": "Vị trí Y (bắt đầu):",
+        "x_end_label": "X kết thúc (mũi tên):",
+        "y_end_label": "Y kết thúc (mũi tên):",
+        "type_text": "Văn bản",
+        "type_arrow": "Mũi tên"
+      },
+      "axes": {
+        "major_ticks_label": "Vạch chia chính:",
+        "direction_label": "Hướng:",
+        "size_px_label": "Kích thước (px):",
+        "width_px_label": "Chiều rộng (px):",
+        "minor_ticks_label": "Vạch chia phụ:",
+        "subdiv_x_label": "Chia nhỏ trục X:",
+        "subdiv_y_label": "Chia nhỏ trục Y:",
+        "number_format_label": "Định dạng số:",
+        "decimals_label": "Số thập phân:",
+        "axis_numbers_label": "Số trên trục:",
+        "font_label": "Phông chữ:",
+        "size_label": "Kích thước:",
+        "axis_line_label": "Đường trục:",
+        "axis_x_color_label": "Màu trục X",
+        "axis_x_width_label": "Độ dày trục X",
+        "axis_y_color_label": "Màu trục Y",
+        "axis_y_width_label": "Độ dày trục Y"
+      },
+      "legend": {
+        "show": "Hiển thị chú giải",
+        "position_label": "Vị trí:",
+        "visible_border": "Viền hiển thị",
+        "border_width_label": "Độ dày viền",
+        "bg_color_label": "Màu nền",
+        "bg_alpha_label": "Độ trong suốt nền",
+        "font_size_label": "Cỡ chữ",
+        "text_color_label": "Màu chữ",
+        "title_label": "Tiêu đề chú giải",
+        "font_label": "Phông chữ chú giải",
+        "position_upper_right": "trên cùng bên phải",
+        "position_upper_left": "trên cùng bên trái",
+        "position_lower_right": "dưới cùng bên phải",
+        "position_lower_left": "dưới cùng bên trái",
+        "position_outside": "bên ngoài"
+      },
+      "series_tab": {
+        "properties_label": "Thuộc tính riêng của từng tín hiệu:",
+        "label": "Nhãn:",
+        "color": "Màu:",
+        "style": "Kiểu:",
+        "width": "Độ rộng:",
+        "default_label": "Chuỗi"
+      },
+      "defaults": {
+        "title": "Đồ thị",
+        "axis_x": "X",
+        "axis_y": "Y",
+        "watermark_text": "Hình mờ",
+        "annotation_text": "Nhãn",
+        "signal": "Tín hiệu"
+      },
+      "errors": {
+        "error_title": "Lỗi",
+        "matplotlib_required": "Cần có matplotlib để hiển thị đồ thị con.\nCài đặt bằng: pip install matplotlib"
+      }
     }
   },
   "messages": {

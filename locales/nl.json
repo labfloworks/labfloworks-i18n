@@ -582,35 +582,67 @@
     },
     "oscilloscope": {
       "title": "Oscilloscoop",
-      "tooltip": "Oscilloscoop-opnameknooppunt\n Dubbelklik voor info",
-      "ports": {
-        "out_primary": "Primaire uitvoer",
-        "out_secondary": "Secundaire uitvoer",
-        "trigger_out": "Trigger uit"
-      },
-      "status": {
-        "sim": "SIMULATIE",
-        "capturing": "OPNEMEN…",
-        "armed": "GEWAPEND",
-        "connected": "VERBONDEN",
-        "disconnected": "LOSGEKOPPELD"
-      },
-      "device_label": "APP",
-      "channel_label": "KAN",
-      "lcr_label": "LCR",
-      "sim_label": "SIM",
-      "trig_button": "TRIG",
-      "setup_button": "INST",
+      "profile_editor_title": "Oscilloscoopprofielbewerker",
+      "config_title": "Oscilloscoop configureren",
+      "help_title": "Help – Oscilloscoop",
+      "tooltip": "Signaal vastleggen met de echte oscilloscoop",
+      "based_on": "Gebaseerd op:",
+      "empty": "(leeg)",
+      "load": "Laden",
+      "idn_placeholder": "Eén patroon per regel. Bijv.:\nSiglent,SDS1",
+      "field_id": "ID (bestand):",
+      "field_name": "Naam:",
+      "field_manufacturer": "Fabrikant:",
+      "field_description": "Beschrijving:",
+      "field_idn": "*IDN?-patronen:",
+      "field_idn_cmd": "IDN-opdracht:",
+      "field_ch_name": "Kanaalsjabloon:",
+      "field_vdiv": "VDIV-opdracht:",
+      "field_ofst": "OFST-opdracht:",
+      "field_tdiv": "TDIV-opdracht:",
+      "field_sara": "Sample Rate-opdracht:",
+      "field_wf": "Waveform-opdracht:",
+      "field_parser_type": "Type:",
+      "field_parser_opts": "Opties (JSON):",
+      "field_profile": "Profiel:",
+      "field_resource": "VISA-resource:",
+      "field_channel": "Kanaal:",
+      "field_timeout": "Timeout:",
+      "field_fallback": "Genereer testsignaal als vastleggen mislukt",
+      "btn_new": "Nieuw...",
+      "btn_edit": "Bewerken...",
+      "btn_test": "Verbinding testen",
+      "btn_detect": "Profiel auto-detecteren",
+      "tip_rescan": "VISA-resources opnieuw scannen",
+      "tab_info": "Info",
+      "tab_scpi": "SCPI",
+      "tab_parser": "Parser",
+      "simulation": "(simulatie – geen instrument)",
+      "not_detected": "niet gedetecteerd",
+      "resources_found": "VISA: {n} resource(s) gedetecteerd.",
+      "err_missing_id": "ID ontbreekt.",
+      "err_invalid_json": "Ongeldige JSON: {err}",
+      "err_save": "Fout bij opslaan: {err}",
+      "err_no_resource": "Selecteer een VISA-resource.",
+      "err_not_in_list": "'{target}' staat niet in de VISA-lijst. Beschikbaar: {res}",
+      "detected": "Gedetecteerd: {idn} → {name}",
+      "no_profile": "IDN: {idn} – geen profiel. Gebruik 'Nieuw...' om er een te maken.",
+      "no_profile_short": "geen profiel",
+      "status_capturing": "BEZIG MET VASTLEGGEN...",
+      "status_error": "FOUT",
+      "status_armed": "GEREED (VISA)",
+      "status_simulation": "SIMULATIE",
       "menu": {
-        "show_channel": "Kanaal tonen"
+        "trigger": "Vastleggen triggeren (Trigger)",
+        "configure": "Oscilloscoop configureren...",
+        "help": "Help",
+        "debug": "DEBUG: status"
       },
-      "channel": {
-        "primary": "Primair (Z)",
-        "secondary": "Secundair (θ)"
+      "ports": {
+        "signal_out": "Uitgang",
+        "trigger_out": "trigger-uitgang"
       },
-      "trigger_action": "Opname starten",
-      "help_title": "Help – Oscilloscoopknooppunt",
-      "help_html": "<h3>📊 Oscilloscoopknooppunt (Signaalacquisitie)</h3>\n<p>Legt signalen uit de echte wereld vast met behulp van hardware (SDS, LCR) of genereert gesimuleerde gegevens voor testen.</p>\n\n<h4>📤 Uitvoerpoorten</h4>\n<ul>\n    <li><code>out_primary</code> → hoofdsignaal (spanning vs tijd, of impedantie Z voor LCR).</li>\n    <li><code>out_secondary</code> → secundair signaal (fase θ voor LCR; niet gebruikt voor SDS).</li>\n    <li><code>trigger_out</code> → zendt een triggersignaal uit wanneer de opname is voltooid (handig om andere knooppunten te synchroniseren).</li>\n</ul>\n\n<h4>🔘 Bedieningselementen</h4>\n<ul>\n    <li><b>TRIG</b> → start een opname (gegevensacquisitie).</li>\n    <li><b>SETUP</b> → opent het configuratiepaneel (simulatieparameters of hardwarecontroller).</li>\n    <li><b>Apparaatkiezer</b> (onderste combo) → kies tussen SDS (echte oscilloscoop), LCR (impedantiemeter) of simulatie.</li>\n</ul>\n\n<h4>⚙️ Bedieningsmodi</h4>\n<ul>\n    <li><b>SDS</b>: maakt verbinding met een echte oscilloscoop (Siglent SDS). Je kunt het kanaal (C1..C4) selecteren via contextmenu → \"Kanaal tonen\".</li>\n    <li><b>LCR</b>: maakt verbinding met een LCR-meter, biedt twee uitgangen: primair (impedantie Z) en secundair (fasehoek θ).</li>\n    <li><b>Simulatie</b>: genereert een synthetisch signaal met ruis, configureerbaar via SETUP (tijdbasis, spanningsbereik, triggerniveau, bemonsteringsfrequentie).</li>\n</ul>\n\n<h4>📈 Visualisatie</h4>\n<p>Het knooppunt tekent het signaal niet intern, maar kan worden verbonden met een visualisatiewidget (zoals <code>PlotWidget</code>) om de vastgelegde gegevens te tonen.</p>\n\n<h4>💡 Gebruiksvoorbeeld</h4>\n<ol>\n    <li>Selecteer het apparaat (SDS) en sluit het fysiek aan.</li>\n    <li>Klik op TRIG om een spoor vast te leggen.</li>\n    <li>Het signaal is beschikbaar op <code>out_primary</code> voor andere knooppunten.</li>\n    <li>Bij gebruik van LCR zijn beide uitgangen (Z en θ) beschikbaar.</li>\n</ol>\n\n<h4>⚠️ Opmerkingen</h4>\n<ul>\n    <li>Zorg er in hardwaremodus voor dat het apparaat is aangesloten en ingeschakeld.</li>\n    <li>Opname wordt uitgevoerd in een aparte thread om de interface niet te blokkeren.</li>\n    <li>Het knooppunt fungeert als gegevensbron (invoerknooppunt) voor de flow.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
+      "help_html": "<h3>📡 Oscilloscoopnode (VISA-vastlegging)</h3>\n<p>Legt echte signalen vast van oscilloscopen (Siglent, Rigol, Keysight, etc.) via <b>PyVISA</b> (USB/LAN) met behulp van <code>.json</code>-profielen die de SCPI-opdrachten van het instrument beschrijven. Als er geen instrument is aangesloten, genereert het een <b>testsignaal</b>.</p>\n\n<h4>📥 Invoer</h4>\n<p>Geen. Het is een <b>bronnenode</b>: start de stroom wanneer een vastlegging wordt getriggerd.</p>\n\n<h4>📤 Uitgangen</h4>\n<ul>\n    <li><b>signal_out</b> → vastgelegd signaal als <code>(t, V)</code> met <code>t</code> in seconden en <code>V</code> in volt.</li>\n    <li><b>trigger_out</b> → synchronisatiepuls <code>(t, V, 'trigger')</code>; wordt uitgezonden aan het einde van elke vastlegging om andere nodes te koppelen.</li>\n</ul>\n\n<h4>⚙️ Parameters</h4>\n<ul>\n    <li><b>Profiel</b> – <code>scopes/&lt;id&gt;.json</code>-bestand met de SCPI-opdrachten van het instrument. <i>Nieuw...</i> kloont een bestaand profiel; <i>Bewerken...</i> wijzigt het huidige profiel.</li>\n    <li><b>VISA-resource</b> – dropdown met gedetecteerde instrumenten. De knop <b>↻</b> scant opnieuw. Laat <i>(simulatie)</i> staan om geen hardware te gebruiken.</li>\n    <li><b>Kanaal</b> – C1..C4 afhankelijk van het profiel (Siglent gebruikt C1, Rigol CHAN1).</li>\n    <li><b>Timeout</b> – maximale wachttijd op een reactie van het instrument.</li>\n    <li><b>Fallback</b> – als vastleggen mislukt, genereer een testsignaal in plaats van af te breken.</li>\n    <li><b>Profiel auto-detecteren</b> – vraagt <code>*IDN?</code> op en kiest het profiel waarvan de <code>idn_patterns</code> overeenkomen.</li>\n</ul>\n\n<h4>🖱️ Interactie</h4>\n<ul>\n    <li><b>TRIG-knop</b> (rechtsonder) → triggert een vastlegging.</li>\n    <li><b>Dubbelklik</b> → opent het configuratievenster (profiel, VISA, kanaal).</li>\n    <li><b>Rechtsklik</b> → contextmenu: <i>Vastleggen triggeren</i>, <i>Oscilloscoop configureren...</i>, <i>DEBUG: status</i>.</li>\n</ul>\n\n<h4>🧩 Nieuwe oscilloscoop toevoegen</h4>\n<ol>\n    <li>Sluit het instrument aan en noteer de <code>*IDN?</code> (knop <i>Verbinding testen</i>).</li>\n    <li>In het venster → <i>Nieuw...</i> → kloon het meest vergelijkbare profiel.</li>\n    <li>Wijzig <b>ID</b>, <b>Naam</b>, <b>*IDN?-patronen</b> en de SCPI-opdrachten (tabblad <i>SCPI</i>).</li>\n    <li>Pas de <b>parser</b> aan (tabblad <i>Parser</i>): type + opties (<code>header_bytes</code>, <code>vdiv_divisor</code>, etc.).</li>\n    <li>Opslaan → <code>scopes/&lt;id&gt;.json</code> wordt aangemaakt.</li>\n</ol>\n\n<hr>\n<hr>\n<h3>🧠 Hoe over dit systeem denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsstroom</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Belangrijke regel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Compleet voorbeeld</h4>\n<pre>\nOscilloscoop → Venster → Spectraal (FFT) → Filter → Plot\n</pre>\n<hr>\n<h4>⚡ Sneltoetsen en tips</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op de node → opent dit helpvenster.</li>\n<li><b>Rechtsklik</b> → contextmenu (verwijderen, verbinden, ontkoppelen).</li>\n<li><b>Slepen</b> van de node → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
     },
     "spectral": {
         "title": "Spectraal",
@@ -961,7 +993,151 @@
         "export_error_title": "Exportfout",
         "config_title": "Grafiek-exporteur configureren",
         "help_title": "Help – Grafiek-exporteur",
-        "help_html": "<h3>📊 Grafiek-exporteur</h3><p>Ontvangt een signaal en exporteert het als een afbeelding van hoge kwaliteit.</p><h4>📥 Invoer</h4><p><code>signal_in</code> → tupel <code>(x, y)</code> of 1D-array.</p><h4>📤 Uitvoer</h4><p><code>file_out</code> → pad van het gegenereerde bestand.</p><h4>⚙️ Configuratie</h4><p>Rechterdubbelklik → <b>Grafiek configureren</b> om stijl, assen, annotaties, enz. aan te passen.</p><hr><h4>🖱️ Interactie</h4><ul><li><b>Rechterklik</b> → contextmenu.</li><li><b>Grafiek tonen</b> → voorbeeld met huidige instellingen.</li></ul><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+        "help_html": "<h3>📊 Grafiek-exporteur</h3><p>Ontvangt een signaal en exporteert het als een afbeelding van hoge kwaliteit.</p><h4>📥 Invoer</h4><p><code>signal_in</code> → tupel <code>(x, y)</code> of 1D-array.</p><h4>📤 Uitvoer</h4><p><code>file_out</code> → pad van het gegenereerde bestand.</p><h4>⚙️ Configuratie</h4><p>Rechterdubbelklik → <b>Grafiek configureren</b> om stijl, assen, annotaties, enz. aan te passen.</p><hr><h4>🖱️ Interactie</h4><ul><li><b>Rechterklik</b> → contextmenu.</li><li><b>Grafiek tonen</b> → voorbeeld met huidige instellingen.</li></ul><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>",
+        "dialog": {
+          "title": "Grafiek configureren",
+          "preview_title": "Grafiekvoorbeeld",
+          "annotation_title": "Nieuwe annotatie"
+        },
+        "tabs": {
+          "general": "Algemeen",
+          "line": "Lijn",
+          "series": "Series",
+          "axes": "Assen",
+          "legend": "Legenda",
+          "grid": "Raster",
+          "watermark": "Watermerk",
+          "annotations": "Annotaties"
+        },
+        "buttons": {
+          "open_profile": "Profiel openen",
+          "save_profile": "Profiel opslaan",
+          "add": "Toevoegen",
+          "delete": "Verwijderen",
+          "move_up": "Omhoog",
+          "move_down": "Omlaag",
+          "close": "Sluiten"
+        },
+        "file_dialog": {
+          "open_profile_title": "Profiel openen",
+          "save_profile_title": "Profiel opslaan",
+          "profile_filter": "JSON-profielen (*.json)"
+        },
+        "general": {
+          "theme_label": "Visueel thema:",
+          "title_label": "Titel",
+          "title_size_label": "Titelgrootte",
+          "title_color_label": "Titelkleur",
+          "title_font_label": "Titelfont",
+          "title_weight_label": "Titelgewicht",
+          "scale_x_label": "X-schaal",
+          "scale_y_label": "Y-schaal",
+          "enable_limits": "X-limieten inschakelen",
+          "x_min_label": "X min",
+          "x_max_label": "X max",
+          "antialiasing": "Antialiasing"
+        },
+        "line": {
+          "axis_x_label": "X-as label",
+          "axis_y_label": "Y-as label",
+          "axis_text_size_label": "As tekstgrootte",
+          "axis_text_color_label": "As tekstkleur",
+          "axis_font_label": "As font",
+          "line_color_label": "Lijnkleur",
+          "line_width_label": "Lijnbreedte",
+          "line_style_label": "Lijnstijl"
+        },
+        "grid": {
+          "show_main_grid": "Hoofdraster tonen",
+          "main_grid_style_label": "Stijl hoofdraster:",
+          "color_label": "Kleur:",
+          "width_label": "Dikte:",
+          "line_style_label": "Lijnstijl:",
+          "alpha_label": "Transparantie:",
+          "show_on_axes": "Tonen op assen:",
+          "axis_x": "X-as",
+          "axis_y": "Y-as",
+          "show_minor_grid": "Secundair raster tonen (kleiner)",
+          "minor_grid_style_label": "Stijl secundair raster:"
+        },
+        "watermark": {
+          "enable": "Watermerk inschakelen",
+          "text_label": "Tekst",
+          "size_label": "Grootte",
+          "rotation_label": "Rotatie",
+          "color_label": "Kleur",
+          "alpha_label": "Transparantie",
+          "font_label": "Watermerk font"
+        },
+        "annotations": {
+          "show": "Annotaties tonen",
+          "list_label": "Annotaties:",
+          "properties_label": "Eigenschappen:",
+          "type_label": "Type:",
+          "text_label": "Tekst:",
+          "x_start_label": "X-positie (start):",
+          "y_start_label": "Y-positie (start):",
+          "x_end_label": "X-einde (pijl):",
+          "y_end_label": "Y-einde (pijl):",
+          "type_text": "Tekst",
+          "type_arrow": "Pijl"
+        },
+        "axes": {
+          "major_ticks_label": "Hoofdstreepjes:",
+          "direction_label": "Richting:",
+          "size_px_label": "Grootte (px):",
+          "width_px_label": "Breedte (px):",
+          "minor_ticks_label": "Substreepjes:",
+          "subdiv_x_label": "Subdivisies X-as:",
+          "subdiv_y_label": "Subdivisies Y-as:",
+          "number_format_label": "Getalnotatie:",
+          "decimals_label": "Decimalen:",
+          "axis_numbers_label": "Asnummers:",
+          "font_label": "Font:",
+          "size_label": "Grootte:",
+          "axis_line_label": "Aslijn:",
+          "axis_x_color_label": "Kleur X-as",
+          "axis_x_width_label": "Dikte X-as",
+          "axis_y_color_label": "Kleur Y-as",
+          "axis_y_width_label": "Dikte Y-as"
+        },
+        "legend": {
+          "show": "Legenda tonen",
+          "position_label": "Positie:",
+          "visible_border": "Zichtbare rand",
+          "border_width_label": "Randdikte",
+          "bg_color_label": "Achtergrondkleur",
+          "bg_alpha_label": "Achtergrondtransparantie",
+          "font_size_label": "Lettergrootte",
+          "text_color_label": "Tekstkleur",
+          "title_label": "Legendatitel",
+          "font_label": "Legenda font",
+          "position_upper_right": "rechtsboven",
+          "position_upper_left": "linksboven",
+          "position_lower_right": "rechtsonder",
+          "position_lower_left": "linksonder",
+          "position_outside": "buiten"
+        },
+        "series_tab": {
+          "properties_label": "Individuele eigenschappen van elk signaal:",
+          "label": "Label:",
+          "color": "Kleur:",
+          "style": "Stijl:",
+          "width": "Breedte:",
+          "default_label": "Serie"
+        },
+        "defaults": {
+          "title": "Grafiek",
+          "axis_x": "X",
+          "axis_y": "Y",
+          "watermark_text": "Watermerk",
+          "annotation_text": "Label",
+          "signal": "Signaal"
+        },
+        "errors": {
+          "error_title": "Fout",
+          "matplotlib_required": "matplotlib is vereist om subplots weer te geven.\nInstalleer het met: pip install matplotlib"
+        }
     }
   },
   "messages": {

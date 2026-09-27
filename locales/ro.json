@@ -582,35 +582,67 @@
     },
     "oscilloscope": {
       "title": "Osciloscop",
-      "tooltip": "Nod de captură osciloscop\n Dublu click pentru informații",
-      "ports": {
-        "out_primary": "Ieșire primară",
-        "out_secondary": "Ieșire secundară",
-        "trigger_out": "Ieșire declanșator"
-      },
-      "status": {
-        "sim": "SIMULARE",
-        "capturing": "SE CAPTUREAZĂ...",
-        "armed": "ARMAT",
-        "connected": "CONECTAT",
-        "disconnected": "DECONECTAT"
-      },
-      "device_label": "DISPOZITIV",
-      "channel_label": "CANAL",
-      "lcr_label": "LCR",
-      "sim_label": "SIM",
-      "trig_button": "DECL",
-      "setup_button": "CONFIG",
+      "profile_editor_title": "Editor profil osciloscop",
+      "config_title": "Configurare osciloscop",
+      "help_title": "Ajutor – Osciloscop",
+      "tooltip": "Capturează semnalul cu osciloscopul real",
+      "based_on": "Bazat pe:",
+      "empty": "(gol)",
+      "load": "Încărcare",
+      "idn_placeholder": "Un model pe linie. Ex:\nSiglent,SDS1",
+      "field_id": "ID (fișier):",
+      "field_name": "Nume:",
+      "field_manufacturer": "Producător:",
+      "field_description": "Descriere:",
+      "field_idn": "Modele *IDN?:",
+      "field_idn_cmd": "Comandă IDN:",
+      "field_ch_name": "Șablon canal:",
+      "field_vdiv": "Comandă VDIV:",
+      "field_ofst": "Comandă OFST:",
+      "field_tdiv": "Comandă TDIV:",
+      "field_sara": "Comandă rată de eșantionare:",
+      "field_wf": "Comandă waveform:",
+      "field_parser_type": "Tip:",
+      "field_parser_opts": "Opțiuni (JSON):",
+      "field_profile": "Profil:",
+      "field_resource": "Resursă VISA:",
+      "field_channel": "Canal:",
+      "field_timeout": "Timeout:",
+      "field_fallback": "Generează semnal de test dacă captura eșuează",
+      "btn_new": "Nou...",
+      "btn_edit": "Editare...",
+      "btn_test": "Testare conexiune",
+      "btn_detect": "Detectare automată profil",
+      "tip_rescan": "Rescanare resurse VISA",
+      "tab_info": "Info",
+      "tab_scpi": "SCPI",
+      "tab_parser": "Parser",
+      "simulation": "(simulare – fără instrument)",
+      "not_detected": "nedetectat",
+      "resources_found": "VISA: {n} resurse detectate.",
+      "err_missing_id": "Lipsește ID-ul.",
+      "err_invalid_json": "JSON invalid: {err}",
+      "err_save": "Eroare la salvare: {err}",
+      "err_no_resource": "Selectați o resursă VISA.",
+      "err_not_in_list": "'{target}' nu este în lista VISA. Disponibile: {res}",
+      "detected": "Detectat: {idn} → {name}",
+      "no_profile": "IDN: {idn} – fără profil. Folosiți 'Nou...' pentru a crea unul.",
+      "no_profile_short": "fără profil",
+      "status_capturing": "CAPTARE...",
+      "status_error": "EROARE",
+      "status_armed": "PREGĂTIT (VISA)",
+      "status_simulation": "SIMULARE",
       "menu": {
-        "show_channel": "Arată canalul"
+        "trigger": "Declanșare captură (Trigger)",
+        "configure": "Configurare osciloscop...",
+        "help": "Ajutor",
+        "debug": "DEBUG: stare"
       },
-      "channel": {
-        "primary": "Primar (Z)",
-        "secondary": "Secundar (θ)"
+      "ports": {
+        "signal_out": "Ieșire",
+        "trigger_out": "trigger out"
       },
-      "trigger_action": "Declanșează captura",
-      "help_title": "Ajutor - Nod osciloscop",
-      "help_html": "<h3>📊 Nod osciloscop (achiziție semnal)</h3>\n<p>Capturează semnale din lumea reală folosind hardware (SDS, LCR) sau generează date simulate pentru testare.</p>\n\n<h4>📤 Porturi de ieșire</h4>\n<ul>\n    <li><code>out_primary</code> → semnal principal (tensiune vs timp sau impedanță Z pentru LCR).</li>\n    <li><code>out_secondary</code> → semnal secundar (fază θ pentru LCR; nefolosit pentru SDS).</li>\n    <li><code>trigger_out</code> → emite un semnal de declanșare când captura se finalizează (util pentru sincronizarea altor noduri).</li>\n</ul>\n\n<h4>🔘 Controale</h4>\n<ul>\n    <li><b>DECL</b> → începe o captură (achiziție de date).</li>\n    <li><b>CONFIG</b> → deschide panoul de configurare (parametri de simulare sau controler hardware).</li>\n    <li><b>Selector dispozitiv</b> (combo jos) → alege între SDS (osciloscop real), LCR (metru de impedanță) sau simulare.</li>\n</ul>\n\n<h4>⚙️ Moduri de operare</h4>\n<ul>\n    <li><b>SDS</b>: se conectează la un osciloscop real (Siglent SDS). Poți selecta canalul (C1..C4) prin meniul contextual → \"Arată canalul\".</li>\n    <li><b>LCR</b>: se conectează la un metru LCR, oferă două ieșiri: primară (impedanță Z) și secundară (unghi de fază θ).</li>\n    <li><b>Simulare</b>: generează un semnal sintetic cu zgomot, configurabil prin CONFIG (bază de timp, interval de tensiune, nivel de declanșare, rată de eșantionare).</li>\n</ul>\n\n<h4>📈 Vizualizare</h4>\n<p>Nodul nu desenează semnalul intern, dar poate fi conectat la un widget de vizualizare (cum ar fi <code>PlotWidget</code>) pentru a afișa datele capturate.</p>\n\n<h4>💡 Exemplu de utilizare</h4>\n<ol>\n    <li>Selectează dispozitivul (SDS) și conectează-l fizic.</li>\n    <li>Apasă DECL pentru a captura o urmă.</li>\n    <li>Semnalul va fi disponibil pe <code>out_primary</code> pentru alte noduri.</li>\n    <li>Dacă folosești LCR, ambele ieșiri (Z și θ) vor fi disponibile.</li>\n</ol>\n\n<h4>⚠️ Note</h4>\n<ul>\n    <li>În modul hardware, asigură-te că dispozitivul este conectat și pornit.</li>\n    <li>Captura rulează într-un thread separat pentru a nu bloca interfața.</li>\n    <li>Nodul acționează ca sursă de date (nod de intrare) pentru flux.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regulă cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → FFT → Filtru → Sumator → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li>\n<li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Click dreapta</b> → meniu contextual (șterge, conectează, deconectează).</li>\n<li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
+      "help_html": "<h3>📡 Nod Osciloscop (Captură VISA)</h3>\n<p>Capturează semnale reale de la osciloscoape (Siglent, Rigol, Keysight etc.) prin <b>PyVISA</b> (USB/LAN) folosind profiluri <code>.json</code> care descriu comenzile SCPI ale instrumentului. Dacă nu este conectat niciun instrument, generează un <b>semnal de test</b>.</p>\n\n<h4>📥 Intrare</h4>\n<p>Nicio. Este un <b>nod sursă</b>: inițiază fluxul la declanșarea unei capturi.</p>\n\n<h4>📤 Ieșiri</h4>\n<ul>\n    <li><b>signal_out</b> → semnal capturat ca <code>(t, V)</code> cu <code>t</code> în secunde și <code>V</code> în volți.</li>\n    <li><b>trigger_out</b> → puls de sincronizare <code>(t, V, 'trigger')</code>; emis la terminarea fiecărei capturi pentru a înlănțui alte noduri.</li>\n</ul>\n\n<h4>⚙️ Parametri</h4>\n<ul>\n    <li><b>Profil</b> – fișier <code>scopes/&lt;id&gt;.json</code> cu comenzile SCPI ale instrumentului. <i>Nou...</i> clonează unul existent; <i>Editare...</i> modifică cel actual.</li>\n    <li><b>Resursă VISA</b> – listă derulantă cu instrumentele detectate. Butonul <b>↻</b> rescannează. Lăsați <i>(simulare)</i> pentru a nu folosi hardware.</li>\n    <li><b>Canal</b> – C1..C4 în funcție de profil (Siglent folosește C1, Rigol CHAN1).</li>\n    <li><b>Timeout</b> – timp maxim de așteptare a răspunsului instrumentului.</li>\n    <li><b>Fallback</b> – dacă captura eșuează, generează semnal de test în loc să abandoneze.</li>\n    <li><b>Detectare automată profil</b> – interoghează <code>*IDN?</code> și alege profilul ale cărui <code>idn_patterns</code> se potrivesc.</li>\n</ul>\n\n<h4>🖱️ Interacțiune</h4>\n<ul>\n    <li><b>Buton TRIG</b> (colț dreapta-jos) → declanșează o captură.</li>\n    <li><b>Dublu clic</b> → deschide dialogul de configurare (profil, VISA, canal).</li>\n    <li><b>Clic dreapta</b> → meniu contextual: <i>Declanșare captură</i>, <i>Configurare osciloscop...</i>, <i>DEBUG: stare</i>.</li>\n</ul>\n\n<h4>🧩 Adăugarea unui osciloscop nou</h4>\n<ol>\n    <li>Conectați instrumentul și notați <code>*IDN?</code> (butonul <i>Testare conexiune</i>).</li>\n    <li>În dialog → <i>Nou...</i> → clonați cel mai apropiat profil.</li>\n    <li>Modificați <b>ID</b>, <b>Nume</b>, <b>Modele *IDN?</b> și comenzile SCPI (fila <i>SCPI</i>).</li>\n    <li>Ajustați <b>parser</b>-ul (fila <i>Parser</i>): tip + opțiuni (<code>header_bytes</code>, <code>vdiv_divisor</code> etc.).</li>\n    <li>Salvați → se creează <code>scopes/&lt;id&gt;.json</code>.</li>\n</ol>\n\n<hr>\n<hr>\n<h3>🧠 Cum să gândești acest sistem</h3>\n\n<p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p>\n\n<pre>\nDate → Transformare → Rezultat\n</pre>\n\n<h4>📐 Regula cheie</h4>\n<pre>\nTotul este:\n\n(x, y)\n</pre>\n\n<h4>🔁 Model universal</h4>\n<pre>\nIntrare → Procesare → Vizualizare\n</pre>\n\n<h4>🧪 Exemplu complet</h4>\n<pre>\nOsciloscop → Fereastră → Spectral (FFT) → Filtru → Grafic\n</pre>\n<hr>\n<h4>⚡ Scurtături și trucuri</h4>\n<ul>\n<li><b>Ctrl + clic</b> pe un port → selectează portul pentru conexiune rapidă.</li>\n<li><b>Dublu clic</b> pe nod → deschide această fereastră de ajutor.</li>\n<li><b>Clic dreapta</b> → meniu contextual (ștergere, conectare, deconectare).</li>\n<li><b>Tragere</b> nodului → mută întregul bloc; conexiunile se actualizează automat.</li>\n</ul>"
     },
     "spectral": {
         "title": "Spectral",
@@ -961,7 +993,151 @@
         "export_error_title": "Eroare de export",
         "config_title": "Configurează exportatorul grafic",
         "help_title": "Ajutor - Exportator grafic",
-        "help_html": "<h3>📊 Exportator grafic</h3><p>Primește un semnal și îl exportă ca imagine de înaltă calitate.</p><h4>📥 Intrare</h4><p><code>signal_in</code> → tuplu <code>(x, y)</code> sau array 1D.</p><h4>📤 Ieșire</h4><p><code>file_out</code> → calea fișierului generat.</p><h4>⚙️ Configurare</h4><p>Dublu click dreapta → <b>Configurează graficul</b> pentru a ajusta stilul, axele, adnotările etc.</p><hr><h4>🖱️ Interacțiune</h4><ul><li><b>Click dreapta</b> → meniu contextual.</li><li><b>Arată graficul</b> → previzualizare cu setările curente.</i></p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru o conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+        "help_html": "<h3>📊 Exportator grafic</h3><p>Primește un semnal și îl exportă ca imagine de înaltă calitate.</p><h4>📥 Intrare</h4><p><code>signal_in</code> → tuplu <code>(x, y)</code> sau array 1D.</p><h4>📤 Ieșire</h4><p><code>file_out</code> → calea fișierului generat.</p><h4>⚙️ Configurare</h4><p>Dublu click dreapta → <b>Configurează graficul</b> pentru a ajusta stilul, axele, adnotările etc.</p><hr><h4>🖱️ Interacțiune</h4><ul><li><b>Click dreapta</b> → meniu contextual.</li><li><b>Arată graficul</b> → previzualizare cu setările curente.</i></p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru o conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>",
+        "dialog": {
+          "title": "Configurare grafic",
+          "preview_title": "Previzualizare grafic",
+          "annotation_title": "Adnotare nouă"
+        },
+        "tabs": {
+          "general": "General",
+          "line": "Linie",
+          "series": "Serii",
+          "axes": "Axe",
+          "legend": "Legendă",
+          "grid": "Grilă",
+          "watermark": "Filigran",
+          "annotations": "Adnotări"
+        },
+        "buttons": {
+          "open_profile": "Deschide profil",
+          "save_profile": "Salvează profil",
+          "add": "Adaugă",
+          "delete": "Șterge",
+          "move_up": "Mută în sus",
+          "move_down": "Mută în jos",
+          "close": "Închide"
+        },
+        "file_dialog": {
+          "open_profile_title": "Deschide profil",
+          "save_profile_title": "Salvează profil",
+          "profile_filter": "Profiluri JSON (*.json)"
+        },
+        "general": {
+          "theme_label": "Temă vizuală:",
+          "title_label": "Titlu",
+          "title_size_label": "Dimensiune titlu",
+          "title_color_label": "Culoare titlu",
+          "title_font_label": "Font titlu",
+          "title_weight_label": "Greutate titlu",
+          "scale_x_label": "Scală X",
+          "scale_y_label": "Scală Y",
+          "enable_limits": "Activează limitele X",
+          "x_min_label": "X min",
+          "x_max_label": "X max",
+          "antialiasing": "Antialiasing"
+        },
+        "line": {
+          "axis_x_label": "Etichetă axă X",
+          "axis_y_label": "Etichetă axă Y",
+          "axis_text_size_label": "Dimensiune text axe",
+          "axis_text_color_label": "Culoare text axe",
+          "axis_font_label": "Font axe",
+          "line_color_label": "Culoare linie",
+          "line_width_label": "Lățime linie",
+          "line_style_label": "Stil linie"
+        },
+        "grid": {
+          "show_main_grid": "Afișează grila principală",
+          "main_grid_style_label": "Stilul grilei principale:",
+          "color_label": "Culoare:",
+          "width_label": "Grosime:",
+          "line_style_label": "Stil linie:",
+          "alpha_label": "Transparență:",
+          "show_on_axes": "Afișează pe axe:",
+          "axis_x": "Axa X",
+          "axis_y": "Axa Y",
+          "show_minor_grid": "Afișează grila secundară (minoră)",
+          "minor_grid_style_label": "Stilul grilei secundare:"
+        },
+        "watermark": {
+          "enable": "Activează filigranul",
+          "text_label": "Text",
+          "size_label": "Dimensiune",
+          "rotation_label": "Rotație",
+          "color_label": "Culoare",
+          "alpha_label": "Transparență",
+          "font_label": "Font filigran"
+        },
+        "annotations": {
+          "show": "Afișează adnotările",
+          "list_label": "Adnotări:",
+          "properties_label": "Proprietăți:",
+          "type_label": "Tip:",
+          "text_label": "Text:",
+          "x_start_label": "Poziția X (început):",
+          "y_start_label": "Poziția Y (început):",
+          "x_end_label": "X final (săgeată):",
+          "y_end_label": "Y final (săgeată):",
+          "type_text": "Text",
+          "type_arrow": "Săgeată"
+        },
+        "axes": {
+          "major_ticks_label": "Marcaje majore:",
+          "direction_label": "Direcție:",
+          "size_px_label": "Dimensiune (px):",
+          "width_px_label": "Lățime (px):",
+          "minor_ticks_label": "Marcaje minore:",
+          "subdiv_x_label": "Subdiviziuni axa X:",
+          "subdiv_y_label": "Subdiviziuni axa Y:",
+          "number_format_label": "Format numeric:",
+          "decimals_label": "Decimale:",
+          "axis_numbers_label": "Numerele axelor:",
+          "font_label": "Font:",
+          "size_label": "Dimensiune:",
+          "axis_line_label": "Linia axei:",
+          "axis_x_color_label": "Culoare axa X",
+          "axis_x_width_label": "Grosime axa X",
+          "axis_y_color_label": "Culoare axa Y",
+          "axis_y_width_label": "Grosime axa Y"
+        },
+        "legend": {
+          "show": "Afișează legenda",
+          "position_label": "Poziție:",
+          "visible_border": "Bordură vizibilă",
+          "border_width_label": "Grosime bordură",
+          "bg_color_label": "Culoare fundal",
+          "bg_alpha_label": "Transparență fundal",
+          "font_size_label": "Dimensiune font",
+          "text_color_label": "Culoare text",
+          "title_label": "Titlu legendă",
+          "font_label": "Font legendă",
+          "position_upper_right": "dreapta sus",
+          "position_upper_left": "stânga sus",
+          "position_lower_right": "dreapta jos",
+          "position_lower_left": "stânga jos",
+          "position_outside": "în exterior"
+        },
+        "series_tab": {
+          "properties_label": "Proprietăți individuale ale fiecărui semnal:",
+          "label": "Etichetă:",
+          "color": "Culoare:",
+          "style": "Stil:",
+          "width": "Lățime:",
+          "default_label": "Serie"
+        },
+        "defaults": {
+          "title": "Grafic",
+          "axis_x": "X",
+          "axis_y": "Y",
+          "watermark_text": "Filigran",
+          "annotation_text": "Etichetă",
+          "signal": "Semnal"
+        },
+        "errors": {
+          "error_title": "Eroare",
+          "matplotlib_required": "matplotlib este necesar pentru a vizualiza subploturi.\nInstalează-l cu: pip install matplotlib"
+        }
     }
   },
   "messages": {

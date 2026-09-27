@@ -582,35 +582,67 @@
     },
     "oscilloscope": {
       "title": "Osciloskop",
-      "tooltip": "Uzel zachytávání osciloskopu\n Dvojklik pro info",
-      "ports": {
-        "out_primary": "Primární výstup",
-        "out_secondary": "Sekundární výstup",
-        "trigger_out": "Výstup spouštění"
-      },
-      "status": {
-        "sim": "SIMULACE",
-        "capturing": "ZACHYCOVÁNÍ…",
-        "armed": "PŘIPRAVEN",
-        "connected": "PŘIPOJEN",
-        "disconnected": "ODPOJEN"
-      },
-      "device_label": "ZAŘ",
-      "channel_label": "KAN",
-      "lcr_label": "LCR",
-      "sim_label": "SIM",
-      "trig_button": "TRIG",
-      "setup_button": "NAST",
+      "profile_editor_title": "Editor profilu osciloskopu",
+      "config_title": "Konfigurace osciloskopu",
+      "help_title": "Nápověda – Osciloskop",
+      "tooltip": "Zachytí signál reálným osciloskopem",
+      "based_on": "Založeno na:",
+      "empty": "(prázdné)",
+      "load": "Načíst",
+      "idn_placeholder": "Jedna maska na řádek. Např.:\nSiglent,SDS1",
+      "field_id": "ID (soubor):",
+      "field_name": "Název:",
+      "field_manufacturer": "Výrobce:",
+      "field_description": "Popis:",
+      "field_idn": "Masky *IDN?:",
+      "field_idn_cmd": "Příkaz IDN:",
+      "field_ch_name": "Šablona kanálu:",
+      "field_vdiv": "Příkaz VDIV:",
+      "field_ofst": "Příkaz OFST:",
+      "field_tdiv": "Příkaz TDIV:",
+      "field_sara": "Příkaz vzorkovací frekvence:",
+      "field_wf": "Příkaz waveform:",
+      "field_parser_type": "Typ:",
+      "field_parser_opts": "Možnosti (JSON):",
+      "field_profile": "Profil:",
+      "field_resource": "VISA Resource:",
+      "field_channel": "Kanál:",
+      "field_timeout": "Timeout:",
+      "field_fallback": "Vygenerovat testovací signál, pokud zachycení selže",
+      "btn_new": "Nový...",
+      "btn_edit": "Upravit...",
+      "btn_test": "Otestovat připojení",
+      "btn_detect": "Automatická detekce profilu",
+      "tip_rescan": "Znovu prohledat VISA zdroje",
+      "tab_info": "Info",
+      "tab_scpi": "SCPI",
+      "tab_parser": "Parser",
+      "simulation": "(simulace – žádný přístroj)",
+      "not_detected": "nenalezeno",
+      "resources_found": "VISA: {n} zdrojů nalezeno.",
+      "err_missing_id": "Chybí ID.",
+      "err_invalid_json": "Neplatný JSON: {err}",
+      "err_save": "Chyba při ukládání: {err}",
+      "err_no_resource": "Vyberte VISA zdroj.",
+      "err_not_in_list": "'{target}' není v seznamu VISA. Dostupné: {res}",
+      "detected": "Detekováno: {idn} → {name}",
+      "no_profile": "IDN: {idn} – bez profilu. Použijte 'Nový...' pro vytvoření.",
+      "no_profile_short": "bez profilu",
+      "status_capturing": "ZACHYCUJE...",
+      "status_error": "CHYBA",
+      "status_armed": "PŘIPRAVEN (VISA)",
+      "status_simulation": "SIMULACE",
       "menu": {
-        "show_channel": "Zobrazit kanál"
+        "trigger": "Spustit zachycení (Trigger)",
+        "configure": "Konfigurovat osciloskop...",
+        "help": "Nápověda",
+        "debug": "DEBUG: stav"
       },
-      "channel": {
-        "primary": "Primární (Z)",
-        "secondary": "Sekundární (θ)"
+      "ports": {
+        "signal_out": "Výstup",
+        "trigger_out": "trigger out"
       },
-      "trigger_action": "Spustit zachytávání",
-      "help_title": "Nápověda – Uzel osciloskopu",
-      "help_html": "<h3>📊 Uzel osciloskopu (Akvizice signálu)</h3>\n<p>Zachycuje signály z reálného světa pomocí hardwaru (SDS, LCR) nebo generuje simulovaná data pro testování.</p>\n\n<h4>📤 Výstupní porty</h4>\n<ul>\n    <li><code>out_primary</code> → hlavní signál (napětí vs čas nebo impedance Z pro LCR).</li>\n    <li><code>out_secondary</code> → sekundární signál (fáze θ pro LCR; nepoužívá se pro SDS).</li>\n    <li><code>trigger_out</code> → vysílá spouštěcí signál po dokončení zachytávání (užitečné pro synchronizaci ostatních uzlů).</li>\n</ul>\n\n<h4>🔘 Ovládací prvky</h4>\n<ul>\n    <li><b>TRIG</b> → spustí zachytávání (akvizice dat).</li>\n    <li><b>SETUP</b> → otevře panel konfigurace (parametry simulace nebo ovladač hardwaru).</li>\n    <li><b>Výběr zařízení</b> (spodní rozbalovací seznam) → vyberte mezi SDS (skutečný osciloskop), LCR (měřič impedance) nebo simulace.</li>\n</ul>\n\n<h4>⚙️ Režimy činnosti</h4>\n<ul>\n    <li><b>SDS</b>: připojí se ke skutečnému osciloskopu (Siglent SDS). Kanál (C1..C4) můžete vybrat přes kontextovou nabídku → „Zobrazit kanál“.</li>\n    <li><b>LCR</b>: připojí se k LCR měřiči, poskytuje dva výstupy: primární (impedance Z) a sekundární (fázový úhel θ).</li>\n    <li><b>Simulace</b>: generuje syntetický signál se šumem, konfigurovatelný přes SETUP (časová základna, napěťový rozsah, úroveň spouštění, vzorkovací frekvence).</li>\n</ul>\n\n<h4>📈 Vizualizace</h4>\n<p>Uzel sám signál nevykresluje, ale lze jej připojit k widgetu vizualizéru (jako <code>PlotWidget</code>) pro zobrazení zachycených dat.</p>\n\n<h4>💡 Příklad použití</h4>\n<ol>\n    <li>Vyberte zařízení (SDS) a fyzicky jej připojte.</li>\n    <li>Klikněte na TRIG pro zachycení průběhu.</li>\n    <li>Signál bude k dispozici na <code>out_primary</code> pro ostatní uzly.</li>\n    <li>Při použití LCR budou k dispozici oba výstupy (Z a θ).</li>\n</ol>\n\n<h4>⚠️ Poznámky</h4>\n<ul>\n    <li>V hardwarovém režimu se ujistěte, že je zařízení připojeno a zapnuto.</li>\n    <li>Zachytávání běží v samostatném vlákně, aby neblokovalo rozhraní.</li>\n    <li>Uzel funguje jako zdroj dat (vstupní uzel) pro tok.</li>\n</ul>\n<hr>\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
+      "help_html": "<h3>📡 Uzel Osciloskop (VISA Capture)</h3>\n<p>Zachytává reálné signály z osciloskopů (Siglent, Rigol, Keysight atd.) přes <b>PyVISA</b> (USB/LAN) pomocí profilů <code>.json</code>, které popisují příkazy SCPI přístroje. Pokud není připojen žádný přístroj, vygeneruje <b>testovací signál</b>.</p>\n\n<h4>📥 Vstup</h4>\n<p>Žádný. Jedná se o <b>zdrojový uzel</b>: spustí tok při spuštění zachycení.</p>\n\n<h4>📤 Výstupy</h4>\n<ul>\n    <li><b>signal_out</b> → zachycený signál jako <code>(t, V)</code>, kde <code>t</code> je v sekundách a <code>V</code> ve voltech.</li>\n    <li><b>trigger_out</b> → synchronizační puls <code>(t, V, 'trigger')</code>; vydán po dokončení každého zachycení pro řetězení dalších uzlů.</li>\n</ul>\n\n<h4>⚙️ Parametry</h4>\n<ul>\n    <li><b>Profil</b> – soubor <code>scopes/&lt;id&gt;.json</code> s příkazy SCPI přístroje. <i>Nový...</i> klonuje existující; <i>Upravit...</i> upravuje aktuální.</li>\n    <li><b>VISA Resource</b> – rozbalovací seznam s detekovanými přístroji. Tlačítko <b>↻</b> znovu prohledá. Ponechte <i>(simulace)</i> pro použití bez hardwaru.</li>\n    <li><b>Kanál</b> – C1..C4 podle profilu (Siglent používá C1, Rigol CHAN1).</li>\n    <li><b>Timeout</b> – maximální čekací doba na odpověď přístroje.</li>\n    <li><b>Fallback</b> – při selhání zachycení vygenerovat testovací signál místo ukončení.</li>\n    <li><b>Automatická detekce profilu</b> – dotáže se <code>*IDN?</code> a vybere profil, jehož <code>idn_patterns</code> odpovídají.</li>\n</ul>\n\n<h4>🖱️ Interakce</h4>\n<ul>\n    <li><b>Tlačítko TRIG</b> (levý dolní roh) → spustí zachycení.</li>\n    <li><b>Dvojklik</b> → otevře dialog konfigurace (profil, VISA, kanál).</li>\n    <li><b>Pravý klik</b> → kontextová nabídka: <i>Spustit zachycení</i>, <i>Konfigurovat osciloskop...</i>, <i>DEBUG: stav</i>.</li>\n</ul>\n\n<h4>🧩 Přidat nový osciloskop</h4>\n<ol>\n    <li>Připojte přístroj a poznamenejte si jeho <code>*IDN?</code> (tlačítko <i>Otestovat připojení</i>).</li>\n    <li>V dialogu → <i>Nový...</i> → klonujte nejpodobnější profil.</li>\n    <li>Upravte <b>ID</b>, <b>Název</b>, <b>Masky *IDN?</b> a příkazy SCPI (záložka <i>SCPI</i>).</li>\n    <li>Nastavte <b>parser</b> (záložka <i>Parser</i>): typ + možnosti (<code>header_bytes</code>, <code>vdiv_divisor</code> atd.).</li>\n    <li>Uložte → vytvoří se <code>scopes/&lt;id&gt;.json</code>.</li>\n</ol>\n\n<hr>\n<hr>\n<h3>🧠 Jak uvažovat o tomto systému</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálů</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → Okno → Spektrální (FFT) → Filtr → Graf\n</pre>\n<hr>\n<h4>⚡ Zkratky a tipy</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé připojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravý klik</b> → kontextová nabídka (odstranit, připojit, odpojit).</li>\n<li><b>Tažení</b> uzlu → přesune celý blok; připojení se aktualizují automaticky.</li>\n</ul>"
     },
     "spectral": {
         "title": "Spektrální",
@@ -961,7 +993,151 @@
         "export_error_title": "Chyba exportu",
         "config_title": "Konfigurace exportéru grafu",
         "help_title": "Nápověda – Exportér grafu",
-        "help_html": "<h3>📊 Exportér grafu</h3><p>Přijímá signál a exportuje jej jako vysoce kvalitní obrázek.</p><h4>📥 Vstup</h4><p><code>signal_in</code> → n-tice <code>(x, y)</code> nebo 1D pole.</p><h4>📤 Výstup</h4><p><code>file_out</code> → cesta k vygenerovanému souboru.</p><h4>⚙️ Konfigurace</h4><p>Pravé dvojkliknutí → <b>Konfigurovat graf</b> pro úpravu stylu, os, anotací atd.</p><hr><h4>🖱️ Interakce</h4><ul><li><b>Pravé tlačítko</b> → kontextová nabídka.</li><li><b>Zobrazit graf</b> → náhled s aktuálním nastavením.</li></ul><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>"
+        "help_html": "<h3>📊 Exportér grafu</h3><p>Přijímá signál a exportuje jej jako vysoce kvalitní obrázek.</p><h4>📥 Vstup</h4><p><code>signal_in</code> → n-tice <code>(x, y)</code> nebo 1D pole.</p><h4>📤 Výstup</h4><p><code>file_out</code> → cesta k vygenerovanému souboru.</p><h4>⚙️ Konfigurace</h4><p>Pravé dvojkliknutí → <b>Konfigurovat graf</b> pro úpravu stylu, os, anotací atd.</p><hr><h4>🖱️ Interakce</h4><ul><li><b>Pravé tlačítko</b> → kontextová nabídka.</li><li><b>Zobrazit graf</b> → náhled s aktuálním nastavením.</li></ul><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>",
+        "dialog": {
+          "title": "Nastavení grafu",
+          "preview_title": "Náhled grafu",
+          "annotation_title": "Nová anotace"
+        },
+        "tabs": {
+          "general": "Obecné",
+          "line": "Čára",
+          "series": "Série",
+          "axes": "Osy",
+          "legend": "Legenda",
+          "grid": "Mřížka",
+          "watermark": "Vodoznak",
+          "annotations": "Anotace"
+        },
+        "buttons": {
+          "open_profile": "Otevřít profil",
+          "save_profile": "Uložit profil",
+          "add": "Přidat",
+          "delete": "Smazat",
+          "move_up": "Nahoru",
+          "move_down": "Dolů",
+          "close": "Zavřít"
+        },
+        "file_dialog": {
+          "open_profile_title": "Otevřít profil",
+          "save_profile_title": "Uložit profil",
+          "profile_filter": "Profily JSON (*.json)"
+        },
+        "general": {
+          "theme_label": "Vizuální téma:",
+          "title_label": "Název",
+          "title_size_label": "Velikost názvu",
+          "title_color_label": "Barva názvu",
+          "title_font_label": "Písmo názvu",
+          "title_weight_label": "Tloušťka názvu",
+          "scale_x_label": "Měřítko X",
+          "scale_y_label": "Měřítko Y",
+          "enable_limits": "Povolit limity X",
+          "x_min_label": "X min",
+          "x_max_label": "X max",
+          "antialiasing": "Antialiasing"
+        },
+        "line": {
+          "axis_x_label": "Popisek osy X",
+          "axis_y_label": "Popisek osy Y",
+          "axis_text_size_label": "Velikost textu os",
+          "axis_text_color_label": "Barva textu os",
+          "axis_font_label": "Písmo os",
+          "line_color_label": "Barva čáry",
+          "line_width_label": "Šířka čáry",
+          "line_style_label": "Styl čáry"
+        },
+        "grid": {
+          "show_main_grid": "Zobrazit hlavní mřížku",
+          "main_grid_style_label": "Styl hlavní mřížky:",
+          "color_label": "Barva:",
+          "width_label": "Tloušťka:",
+          "line_style_label": "Styl čáry:",
+          "alpha_label": "Průhlednost:",
+          "show_on_axes": "Zobrazit na osách:",
+          "axis_x": "Osa X",
+          "axis_y": "Osa Y",
+          "show_minor_grid": "Zobrazit vedlejší mřížku (menší)",
+          "minor_grid_style_label": "Styl vedlejší mřížky:"
+        },
+        "watermark": {
+          "enable": "Povolit vodoznak",
+          "text_label": "Text",
+          "size_label": "Velikost",
+          "rotation_label": "Otočení",
+          "color_label": "Barva",
+          "alpha_label": "Průhlednost",
+          "font_label": "Písmo vodoznaku"
+        },
+        "annotations": {
+          "show": "Zobrazit anotace",
+          "list_label": "Anotace:",
+          "properties_label": "Vlastnosti:",
+          "type_label": "Typ:",
+          "text_label": "Text:",
+          "x_start_label": "Poloha X (začátek):",
+          "y_start_label": "Poloha Y (začátek):",
+          "x_end_label": "Koncové X (šipka):",
+          "y_end_label": "Koncové Y (šipka):",
+          "type_text": "Text",
+          "type_arrow": "Šipka"
+        },
+        "axes": {
+          "major_ticks_label": "Hlavní značky:",
+          "direction_label": "Směr:",
+          "size_px_label": "Velikost (px):",
+          "width_px_label": "Šířka (px):",
+          "minor_ticks_label": "Vedlejší značky:",
+          "subdiv_x_label": "Dělení osy X:",
+          "subdiv_y_label": "Dělení osy Y:",
+          "number_format_label": "Formát čísel:",
+          "decimals_label": "Desetinná místa:",
+          "axis_numbers_label": "Čísla os:",
+          "font_label": "Písmo:",
+          "size_label": "Velikost:",
+          "axis_line_label": "Čára osy:",
+          "axis_x_color_label": "Barva osy X",
+          "axis_x_width_label": "Tloušťka osy X",
+          "axis_y_color_label": "Barva osy Y",
+          "axis_y_width_label": "Tloušťka osy Y"
+        },
+        "legend": {
+          "show": "Zobrazit legendu",
+          "position_label": "Umístění:",
+          "visible_border": "Viditelný okraj",
+          "border_width_label": "Tloušťka okraje",
+          "bg_color_label": "Barva pozadí",
+          "bg_alpha_label": "Průhlednost pozadí",
+          "font_size_label": "Velikost písma",
+          "text_color_label": "Barva textu",
+          "title_label": "Název legendy",
+          "font_label": "Písmo legendy",
+          "position_upper_right": "vpravo nahoře",
+          "position_upper_left": "vlevo nahoře",
+          "position_lower_right": "vpravo dole",
+          "position_lower_left": "vlevo dole",
+          "position_outside": "vně"
+        },
+        "series_tab": {
+          "properties_label": "Individuální vlastnosti jednotlivých signálů:",
+          "label": "Popisek:",
+          "color": "Barva:",
+          "style": "Styl:",
+          "width": "Šířka:",
+          "default_label": "Série"
+        },
+        "defaults": {
+          "title": "Graf",
+          "axis_x": "X",
+          "axis_y": "Y",
+          "watermark_text": "Vodoznak",
+          "annotation_text": "Popisek",
+          "signal": "Signál"
+        },
+        "errors": {
+          "error_title": "Chyba",
+          "matplotlib_required": "Pro zobrazení subplotů je vyžadován matplotlib.\nNainstalujte jej pomocí: pip install matplotlib"
+        }
     }
   },
   "messages": {
