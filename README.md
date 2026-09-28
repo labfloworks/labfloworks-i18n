@@ -115,4 +115,12 @@ Submit your updates by opening a Pull Request (PR) with a clear title format:
 
 Our maintainers will validate the JSON schema, Markdown formatting, and file structure prior to merging into the main release.
 
+## Contributor Terms
+
+By submitting a Pull Request, issue, or translation fix to this repository:
+
+1. **Ownership & Originality:** You declare that the translations, corrections, structural updates, or modifications you submit are your own original work, or that you have the necessary rights and permissions to contribute them.
+2. **Licensing:** You agree that all your contributions—whether they are complete translations, minor typo fixes, phrasing improvements, or schema adjustments—are licensed under the MIT License of this repository.
+3. **Inclusion in FloWorks:** You grant the FloWorks team a perpetual, irrevocable, worldwide, and royalty-free right to incorporate, compile, modify, and distribute your contributions as part of the FloWorks user interface, documentation, or compiled binary executables (including free, closed-source, or packaged releases).
+
 Thank you for helping us make FloWorks globally accessible!
