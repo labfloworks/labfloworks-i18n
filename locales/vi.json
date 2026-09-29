@@ -632,6 +632,8 @@
       "status_error": "LỖI",
       "status_armed": "SẴN SÀNG (VISA)",
       "status_simulation": "MÔ PHỎNG",
+      "field_setup": "Thiết lập (mỗi dòng một lệnh):",
+      "field_preamble": "Lệnh phần mở đầu (tùy chọn):",
       "menu": {
         "trigger": "Kích hoạt chụp (Trigger)",
         "configure": "Cấu hình máy hiện sóng...",

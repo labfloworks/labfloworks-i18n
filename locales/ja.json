@@ -649,6 +649,8 @@
       "status_error": "エラー",
       "status_armed": "待機中 (VISA)",
       "status_simulation": "シミュレーション",
+      "field_setup": "セットアップ（1行に1つ）：",
+      "field_preamble": "プリアンブルコマンド（オプション）：",
       "menu": {
         "trigger": "キャプチャをトリガ (Trigger)",
         "configure": "オシロスコープを設定...",

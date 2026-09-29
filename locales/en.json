@@ -631,6 +631,8 @@
       "status_error": "ERROR",
       "status_armed": "ARMED (VISA)",
       "status_simulation": "SIMULATION",
+      "field_setup": "Setup (one per line):",
+      "field_preamble": "Preamble command (optional):",
       "menu": {
         "trigger": "Trigger capture",
         "configure": "Configure oscilloscope...",

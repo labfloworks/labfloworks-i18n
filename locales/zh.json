@@ -649,6 +649,8 @@
       "status_error": "错误",
       "status_armed": "就绪 (VISA)",
       "status_simulation": "模拟",
+      "field_setup": "设置（每行一个）：",
+      "field_preamble": "前导命令（可选）：",
       "menu": {
         "trigger": "触发采集 (Trigger)",
         "configure": "配置示波器...",

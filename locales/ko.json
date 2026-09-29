@@ -632,6 +632,8 @@
       "status_error": "오류",
       "status_armed": "대기 중 (VISA)",
       "status_simulation": "시뮬레이션",
+      "field_setup": "설정 (한 줄에 하나):",
+      "field_preamble": "프리앰블 명령 (선택 사항):",
       "menu": {
         "trigger": "캡처 트리거 (Trigger)",
         "configure": "오실로스코프 구성...",

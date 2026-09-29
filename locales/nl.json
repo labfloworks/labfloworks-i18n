@@ -632,6 +632,8 @@
       "status_error": "FOUT",
       "status_armed": "GEREED (VISA)",
       "status_simulation": "SIMULATIE",
+      "field_setup": "Setup (één per regel):",
+      "field_preamble": "Preambule-opdracht (optioneel):",
       "menu": {
         "trigger": "Vastleggen triggeren (Trigger)",
         "configure": "Oscilloscoop configureren...",

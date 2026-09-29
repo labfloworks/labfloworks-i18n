@@ -632,6 +632,8 @@
       "status_error": "ОШИБКА",
       "status_armed": "ГОТОВ (VISA)",
       "status_simulation": "СИМУЛЯЦИЯ",
+      "field_setup": "Настройка (по одному в строке):",
+      "field_preamble": "Команда преамбулы (необязательно):",
       "menu": {
         "trigger": "Запустить захват (Trigger)",
         "configure": "Настроить осциллограф...",

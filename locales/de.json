@@ -632,6 +632,8 @@
       "status_error": "FEHLER",
       "status_armed": "BEREIT (VISA)",
       "status_simulation": "SIMULATION",
+      "field_setup": "Setup (eine pro Zeile):",
+      "field_preamble": "Präambel-Befehl (optional):",
       "menu": {
         "trigger": "Erfassung auslösen (Trigger)",
         "configure": "Oszilloskop konfigurieren...",

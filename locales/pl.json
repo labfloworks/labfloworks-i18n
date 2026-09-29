@@ -632,6 +632,8 @@
       "status_error": "BŁĄD",
       "status_armed": "GOTOWY (VISA)",
       "status_simulation": "SYMULACJA",
+      "field_setup": "Konfiguracja (jeden na linię):",
+      "field_preamble": "Polecenie preambuły (opcjonalne):",
       "menu": {
         "trigger": "Wyzwól przechwytywanie (Trigger)",
         "configure": "Konfiguruj oscyloskop...",

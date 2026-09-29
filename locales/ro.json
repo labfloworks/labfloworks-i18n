@@ -632,6 +632,8 @@
       "status_error": "EROARE",
       "status_armed": "PREGĂTIT (VISA)",
       "status_simulation": "SIMULARE",
+      "field_setup": "Configurare (unul pe linie):",
+      "field_preamble": "Comandă preambul (opțional):",
       "menu": {
         "trigger": "Declanșare captură (Trigger)",
         "configure": "Configurare osciloscop...",

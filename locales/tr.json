@@ -632,6 +632,8 @@
       "status_error": "HATA",
       "status_armed": "HAZIR (VISA)",
       "status_simulation": "SİMÜLASYON",
+      "field_setup": "Kurulum (her satıra bir tane):",
+      "field_preamble": "Önsöz komutu (isteğe bağlı):",
       "menu": {
         "trigger": "Yakalamayı tetikle (Trigger)",
         "configure": "Osiloskopu yapılandır...",

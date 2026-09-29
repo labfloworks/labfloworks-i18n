@@ -632,6 +632,8 @@
       "status_error": "त्रुटि",
       "status_armed": "तैयार (VISA)",
       "status_simulation": "सिमुलेशन",
+      "field_setup": "सेटअप (प्रति पंक्ति एक):",
+      "field_preamble": "प्रीएम्बल कमांड (वैकल्पिक):",
       "menu": {
         "trigger": "कैप्चर ट्रिगर करें (Trigger)",
         "configure": "ऑसिलोस्कोप कॉन्फ़िगर करें...",

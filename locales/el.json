@@ -632,6 +632,8 @@
       "status_error": "ΣΦΑΛΜΑ",
       "status_armed": "ΕΤΟΙΜΟ (VISA)",
       "status_simulation": "ΠΡΟΣΟΜΟΙΩΣΗ",
+      "field_setup": "Ρύθμιση (ένα ανά γραμμή):",
+      "field_preamble": "Εντολή προοιμίου (προαιρετικό):",
       "menu": {
         "trigger": "Ενεργοποίηση καταγραφής (Trigger)",
         "configure": "Διαμόρφωση παλμογράφου...",

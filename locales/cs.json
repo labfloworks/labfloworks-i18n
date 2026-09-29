@@ -632,6 +632,8 @@
       "status_error": "CHYBA",
       "status_armed": "PŘIPRAVEN (VISA)",
       "status_simulation": "SIMULACE",
+      "field_setup": "Setup (jeden na řádek):",
+      "field_preamble": "Příkaz preambule (volitelné):",
       "menu": {
         "trigger": "Spustit zachycení (Trigger)",
         "configure": "Konfigurovat osciloskop...",

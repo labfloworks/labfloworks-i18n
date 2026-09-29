@@ -649,6 +649,8 @@
       "status_error": "ERREUR",
       "status_armed": "ARMÉ (VISA)",
       "status_simulation": "SIMULATION",
+      "field_setup": "Configuration (1 par ligne) :",
+      "field_preamble": "Commande Preambule (optionnel) :",
       "menu": {
         "trigger": "Déclencher la capture (Trigger)",
         "configure": "Configurer l'oscilloscope...",
