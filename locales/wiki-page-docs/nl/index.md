@@ -40,7 +40,7 @@ Het experimental workflow centraliseren in één visueel, open en toegankelijk i
 Een wereld waarin de enige barrière tussen een experimenteel idee en de uitvoering ervan de nieuwsgierigheid van de experimentator is. FloWorks streeft ernaar het referentieplatform voor wetenschap en techniek te worden, gebouwd door en voor de wereldwijde gemeenschap, en de muren van gesloten tools af te breken.
 
 ### Principes
-* **Totale Vrijheid (MIT License):** Kennis en tools moeten vrij en toegankelijk zijn voor iedereen.
+* **Volledige Vrijheid:** Kennis en middelen moeten voor iedereen toegankelijk zijn. FloWorks is gratis te gebruiken en zet zich in voor een open en uitbreidbare kern.
 * **Oneindige Uitbreidbaarheid:** Als een blok ontbreekt, kan iedereen het maken en integreren in het ecosysteem met Python.
 * **Visuele Transparantie:** Elke stap van het proces kan grafisch worden geïnspecteerd, gedebugd en begrepen.
 * **Koppeling met de Echte Wereld:** Het is niet alleen simulatie; het maakt directe besturing van echte wetenschappelijke instrumentatie vanaf het Canvas mogelijk.
@@ -112,14 +112,6 @@ In tegenstelling tot gesloten of sterk gespecialiseerde tools, is FloWorks ontwo
 !!! tip "Nieuw bij FloWorks?"
 
     Begin met de sectie **Eerste stappen met FloWorks**, lees dan **Anatomie van de interface** om de architectuur van de grafische interface te begrijpen, en verken tot slot de **Algemene Architectuur** om de datastroom en de structuur van de topologische engine te doorgronden.
-
----
-
-!!! info "Open Core-model"
-
-    FloWorks gebruikt een **Free/Open Core**-model onder de **MIT License**.
-
-    De kern blijft vrij en open, terwijl toekomstige enterprise-, curriculum- of marketplace-uitbreidingen optioneel zullen zijn.
 
 ---
 
