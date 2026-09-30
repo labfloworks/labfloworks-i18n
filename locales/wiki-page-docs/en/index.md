@@ -40,7 +40,7 @@ To centralize the experimental workflow in a single visual, open and accessible 
 A world where the only barrier between an experimental idea and its execution is the curiosity of the experimenter. FloWorks aspires to be the reference platform for science and engineering, built by and for the global community, tearing down the walls of proprietary tools.
 
 ### Principles
-* **Total Freedom (MIT License):** Knowledge and tools must be free and accessible to everyone.
+* **Total Freedom:** Knowledge and tools must be accessible to everyone. FloWorks is free to use and committed to an open, extensible core.
 * **Infinite Extensibility:** If a block is missing, anyone can create it and integrate it into the ecosystem using Python.
 * **Visual Transparency:** Every step of the process can be inspected, debugged and understood graphically.
 * **Connection with the Real World:** It is not just simulation; it allows controlling real scientific instrumentation directly from the canvas.
@@ -112,14 +112,6 @@ Unlike closed or highly specialized tools, FloWorks is designed as an extensible
 !!! tip "New to FloWorks?"
 
     Start with the **Getting Started with FloWorks** section, then **Anatomy of the Interface** to understand the GUI architecture and finally explore **General Architecture** to understand the data flow and the topological engine structure.
-
----
-
-!!! info "Open Core Model"
-
-    FloWorks uses a **Free/Open Core** model under the **MIT License**.
-
-    The core remains free and open, while future enterprise, curricular or marketplace extensions will be optional.
 
 ---
 
