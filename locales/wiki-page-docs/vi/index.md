@@ -40,7 +40,7 @@ Tập trung hóa quy trình làm việc thử nghiệm trong một công cụ tr
 Một thế giới nơi rào cản duy nhất giữa một ý tưởng thử nghiệm và việc thực hiện nó là sự tò mò của người thử nghiệm. FloWorks mong muốn trở thành nền tảng tham chiếu cho khoa học và kỹ thuật, được xây dựng bởi và cho cộng đồng toàn cầu, phá bỏ những bức tường của các công cụ độc quyền.
 
 ### Nguyên tắc
-* **Tự do Tuyệt đối (MIT License):** Kiến thức và công cụ phải tự do và có thể tiếp cận được với tất cả mọi người.
+* **Tự Do Hoàn Toàn:** Kiến thức và công cụ phải tiếp cận được với tất cả mọi người. FloWorks được sử dụng miễn phí và cam kết hướng tới một cốt lõi mở, có thể mở rộng.
 * **Mở rộng Vô hạn:** Nếu thiếu một khối, bất kỳ ai cũng có thể tạo và tích hợp nó vào hệ sinh thái bằng Python.
 * **Minh bạch Trực quan:** Mỗi bước của quy trình đều có thể được kiểm tra, gỡ lỗi và hiểu một cách trực quan.
 * **Kết nối Thế giới Thực:** Không chỉ là mô phỏng; cho phép điều khiển trực tiếp thiết bị khoa học thực tế ngay trên Canvas.
@@ -112,14 +112,6 @@ Khác với các công cụ đóng hoặc chuyên biệt cao, FloWorks được 
 !!! tip "Mới sử dụng FloWorks?"
 
     Hãy bắt đầu với phần **Bắt đầu với FloWorks**, sau đó đọc **Giải phẫu giao diện** để hiểu kiến trúc giao diện đồ họa, và cuối cùng khám phá **Kiến trúc Tổng quát** để hiểu luồng dữ liệu và cấu trúc của công cụ tôpô.
-
----
-
-!!! info "Mô hình Open Core"
-
-    FloWorks sử dụng mô hình **Free/Open Core** theo giấy phép **MIT License**.
-
-    Nhân cốt lõi vẫn tự do và mở, trong khi các tiện ích mở rộng doanh nghiệp, giáo trình hoặc marketplace trong tương lai sẽ là tùy chọn.
 
 ---
 
