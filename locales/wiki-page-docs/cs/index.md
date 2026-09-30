@@ -40,7 +40,7 @@ Centralizovat experimentální pracovní postup v jednom vizuálním, otevřené
 Svět, kde jedinou bariérou mezi experimentální myšlenkou a její realizací je zvědavost experimentátora. FloWorks usiluje o to stát se referenční platformou pro vědu a techniku, vybudovanou komunitou a pro komunitu, a odstranit tak zdi uzavřených nástrojů.
 
 ### Principy
-* **Úplná svoboda (MIT License):** Znalosti a nástroje musí být svobodné a dostupné všem.
+* **Absolutní Svoboda:** Znalosti a nástroje musí být dostupné všem. FloWorks je zdarma k použití a zavazuje se k otevřenému a rozšiřitelnému jádru.
 * **Nekonečná rozšiřitelnost:** Pokud chybí blok, může ho kdokoli vytvořit a integrovat do ekosystému pomocí Pythonu.
 * **Vizuální transparentnost:** Každý krok procesu lze prohlédnout, ladit a pochopit graficky.
 * **Propojení s reálným světem:** Nejde jen o simulaci; umožňuje ovládat skutečnou vědeckou instrumentaci přímo z Plátna.
@@ -112,14 +112,6 @@ Na rozdíl od uzavřených nebo vysoce specializovaných nástrojů je FloWorks 
 !!! tip "Nový v FloWorks?"
 
     Začněte sekcí **První kroky s FloWorks**, pak **Anatomie rozhraní** pro pochopení architektury grafického rozhraní a nakonec prozkoumejte **Obecnou architekturu** pro pochopení toku dat a struktury topologického enginu.
-
----
-
-!!! info "Model Open Core"
-
-    FloWorks používá model **Free/Open Core** pod licencí **MIT License**.
-
-    Jádro zůstává svobodné a otevřené, zatímco budoucí podnikové, kurikulární nebo marketplace rozšíření budou volitelná.
 
 ---
 
