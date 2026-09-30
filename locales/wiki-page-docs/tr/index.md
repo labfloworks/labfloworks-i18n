@@ -40,7 +40,7 @@ Deneysel iş akışını tek bir görsel, açık ve erişilebilir araçta merkez
 Deneysel bir fikir ile onun yürütülmesi arasındaki tek bariyerin deneycinin merakı olduğu bir dünya. FloWorks, bilim ve teknik için küresel topluluk tarafından ve topluluk için inşa edilmiş referans bir platform olmayı hedefliyor ve özel araçların duvarlarını yıkıyor.
 
 ### İlkeler
-* **Tam Özgürlük (MIT License):** Bilgi ve araçlar herkes için özgür ve erişilebilir olmalıdır.
+* **Tam Özgürlük:** Bilgi ve araçlar herkes için erişilebilir olmalıdır. FloWorks'ün kullanımı ücretsizdir ve açık, genişletilebilir bir çekirdeğe bağlıdır.
 * **Sonsuz Genişletilebilirlik:** Bir blok eksikse, herkes Python kullanarak onu oluşturabilir ve ekosisteme entegre edebilir.
 * **Görsel Şeffaflık:** Sürecin her adımı grafiksel olarak incelenebilir, hata ayıklanabilir ve anlaşılabilir.
 * **Gerçek Dünya ile Bağlantı:** Sadece simülasyon değil; Tuval üzerinden doğrudan gerçek bilimsel enstrümantasyonu kontrol etmeye olanak tanır.
@@ -112,14 +112,6 @@ Kapalı veya son derece uzmanlaşmış araçların aksine, FloWorks, her bileşe
 !!! tip "FloWorks'te yeni misiniz?"
 
     **FloWorks'e Başlangıç** bölümüyle başlayın, ardından grafik arayüz mimarisini anlamak için **Arayüz Anatomisi**'ne ve son olarak veri akışını ve topolojik motor yapısını anlamak için **Genel Mimarisi**'ni keşfedin.
-
----
-
-!!! info "Open Core Modeli"
-
-    FloWorks, **MIT License** altında bir **Free/Open Core** modeli kullanır.
-
-    Çekirdek özgür ve açık kalırken, gelecekteki kurumsal, müfredat veya marketplace uzantıları isteğe bağlı olacaktır.
 
 ---
 
