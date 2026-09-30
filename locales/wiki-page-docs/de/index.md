@@ -40,7 +40,7 @@ Die Zentralisierung des experimentellen Arbeitsablaufs in einem einzigen visuell
 Eine Welt, in der die einzige Barriere zwischen einer experimentellen Idee und ihrer Ausführung die Neugier des Experimentators ist. FloWorks strebt danach, die Referenzplattform für Wissenschaft und Technik zu sein, gebaut von und für die globale Gemeinschaft, und beseitigt die Mauern proprietärer Werkzeuge.
 
 ### Prinzipien
-* **Totale Freiheit (MIT-Lizenz):** Wissen und Werkzeuge sollten frei und für alle zugänglich sein.
+* **Absolute Freiheit:** Wissen und Werkzeuge müssen für jeden zugänglich sein. FloWorks ist kostenlos nutzbar und verpflichtet sich zu einem offenen und erweiterbaren Kern.
 * **Unendliche Erweiterbarkeit:** Wenn ein Block fehlt, kann jeder ihn erstellen und mit Python in das Ökosystem integrieren.
 * **Visuelle Transparenz:** Jeder Schritt des Prozesses kann grafisch inspiziert, debuggt und verstanden werden.
 * **Verbindung mit der realen Welt:** Es ist nicht nur Simulation; es ermöglicht die Steuerung echter wissenschaftlicher Instrumente direkt von der Zeichenfläche aus.
@@ -112,14 +112,6 @@ Im Gegensatz zu geschlossenen oder hochspezialisierten Werkzeugen ist FloWorks a
 !!! tip "Neu bei FloWorks?"
 
     Beginnen Sie mit dem Abschnitt **Erste Schritte mit FloWorks**, dann **Anatomie der Oberfläche**, um die Architektur der grafischen Benutzeroberfläche zu verstehen, und erkunden Sie schließlich die **Allgemeine Architektur**, um den Datenfluss und die Struktur des topologischen Motors zu verstehen.
-
----
-
-!!! info "Open-Core-Modell"
-
-    FloWorks verwendet ein **Free/Open-Core-Modell** unter der **MIT-Lizenz**.
-
-    Der Kern bleibt frei und offen, während zukünftige Unternehmens-, Lehrplan- oder Marketplace-Erweiterungen optional sein werden.
 
 ---
 
