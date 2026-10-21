@@ -88,7 +88,6 @@ FloWorks, gerçek laboratuvar cihazlarıyla doğrudan iletişimi **SCPI** (Stand
 !!! info "5. Desteklenmeyen bir cihaz için düğüm oluşturma"
     - `BaseNode`'den kalıtım al ve `instrument/` içinde `DeviceBase` desenini kullan.
     - `(x, y)` demetleri veya `master_payload` döndüren `headless` bir sürücü uygula.
-    - Portları, serileştirmeyi ve i18n kaydetmek için [📘 Kılavuz: Yeni düğüm ekle](adding-a-new-node.md) izle.
 
 ---
 
@@ -96,5 +95,4 @@ FloWorks, gerçek laboratuvar cihazlarıyla doğrudan iletişimi **SCPI** (Stand
 
 - [🧩 Düğüm Teknik Referansı](node-reference.md) → `oscilloscope_node`, `generator_node` ve serileştirme sözleşmeleri ayrıntıları.
 - [📦 Taşınabilir Derleme Kılavuzu](guia-ejecutable-portable.md) → Güvenlik duvarı yönetimi, `resource_path()` ve PyInstaller paketleme.
-- [📘 Yeni düğüm ekle](adding-a-new-node.md) → `instrument/` dizinini genişletme ve özel sürücüleri kaydetme.
 - [📄 `.sflow` Formatı](sflow-format.md) → Donanım yapılandırmaları ve yakalanan dizilerin nasıl kalıcı hale getirildiği.

@@ -85,14 +85,6 @@ Khác với các công cụ đóng hoặc chuyên biệt cao, FloWorks được 
 
     [:material-arrow-right: Hướng dẫn i18n](translation-guide.md)
 
--   **:material-tools: SDK và Phát triển nhanh**
-
-    Mẫu cơ sở (`template_node.py`), mixin tuần tự ha và hướng dẫn từng bước.
-
-    Kiến trúc sẵn sàng cho plugin và mở rộng cộng đồng.
-
-    [:material-arrow-right: Tạo Nút](adding-a-new-node.md)
-
 </div>
 
 ---

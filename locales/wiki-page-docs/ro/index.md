@@ -85,14 +85,6 @@ Spre deosebire de instrumentele închise sau foarte specializate, FloWorks este 
 
     [:material-arrow-right: Ghid i18n](translation-guide.md)
 
--   **:material-tools: SDK și dezvoltare rapidă**
-
-    Șablon de bază (`template_node.py`), mixin de serializare și ghiduri pas cu pas.
-
-    Arhitectură pregătită pentru pluginuri și extindere comunitară.
-
-    [:material-arrow-right: Creare noduri](adding-a-new-node.md)
-
 </div>
 
 ---

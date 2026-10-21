@@ -85,14 +85,6 @@ Kapalı veya son derece uzmanlaşmış araçların aksine, FloWorks, her bileşe
 
     [:material-arrow-right: i18n Kılavuzu](translation-guide.md)
 
--   **:material-tools: SDK ve Hızlı Geliştirme**
-
-    Temel şablon (`template_node.py`), serileştirme mixin'i ve adım adım kılavuzlar.
-
-    Eklentilere ve topluluk genişlemesine hazır mimari.
-
-    [:material-arrow-right: Düğüm Oluşturma](adding-a-new-node.md)
-
 </div>
 
 ---

@@ -88,7 +88,6 @@ FloWorks tích hợp giao tiếp trực tiếp với các thiết bị thí nghi
 !!! info "5. Tạo nút cho thiết bị không được hỗ trợ"
     - Kế thừa từ `BaseNode` và sử dụng mẫu `DeviceBase` trong `instrument/`.
     - Triển khai trình điều khiển `headless` trả về bộ `(x, y)` hoặc `master_payload`.
-    - Làm theo [📘 Hướng dẫn: Thêm nút mới](adding-a-new-node.md) để đăng ký cổng, tuần tự hóa và i18n.
 
 ---
 
@@ -96,5 +95,4 @@ FloWorks tích hợp giao tiếp trực tiếp với các thiết bị thí nghi
 
 - [🧩 Tài liệu tham khảo kỹ thuật Nút](node-reference.md) → Chi tiết về `oscilloscope_node`, `generator_node` và hợp đồng tuần tự hóa.
 - [📦 Hướng dẫn Build Portable](guia-ejecutable-portable.md) → Quản lý tường lửa, `resource_path()` và đóng gói PyInstaller.
-- [📘 Thêm nút mới](adding-a-new-node.md) → Cách mở rộng `instrument/` và đăng ký trình điều khiển tùy chỉnh.
 - [📄 Định dạng `.sflow`](sflow-format.md) → Cách lưu cấu hình phần cứng và các mảng đã thu.

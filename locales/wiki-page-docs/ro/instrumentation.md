@@ -88,7 +88,6 @@ FloWorks integrează comunicarea directă cu instrumente de laborator reale prin
 !!! info "5. Crearea unui nod pentru un instrument neacceptat"
     - Moștenește din `BaseNode` și folosește pattern-ul `DeviceBase` în `instrument/`.
     - Implementează un driver `headless` care returnează tupluri `(x, y)` sau `master_payload`.
-    - Urmează [📘 Ghid: Adaugă un nod nou](adding-a-new-node.md) pentru înregistrarea porturilor, serializării și i18n.
 
 ---
 
@@ -96,5 +95,4 @@ FloWorks integrează comunicarea directă cu instrumente de laborator reale prin
 
 - [🧩 Referință tehnică noduri](node-reference.md) → Detalii despre `oscilloscope_node`, `generator_node` și contractele de serializare.
 - [📦 Ghid build portabil](guia-ejecutable-portable.md) → Gestionare firewall, `resource_path()` și ambalare PyInstaller.
-- [📘 Adaugă un nod nou](adding-a-new-node.md) → Cum extinzi `instrument/` și înregistrezi drivere personalizate.
 - [📄 Format `.sflow`](sflow-format.md) → Cum se persistă configurațiile hardware și array-urile capturate.

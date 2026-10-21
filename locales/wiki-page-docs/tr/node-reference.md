@@ -65,7 +65,6 @@ FloWorks statik bir kataloğa bağlı değildir. Açık sözleşmelere dayalı *
 
 - [📖 Kod Haritası ve Mimarisi](architecture-ii.md) → Modül başına sorumluluklar ve iş akışları.
 - [🌐 Uluslararasılaştırma Kılavuzu (i18n)](i18n.md) → Dil ekleme ve `tr()` anahtarlarını yönetme.
-- [🛠️ Yeni düğüm ekle (öğretici)](adding-a-new-node.md) → Pratik örneklerle adım adım.
 - [📦 Derleme ve Dağıtım Kılavuzu](build.md) → PyInstaller paketleme, hooks ve dijital imzalar.
 
 ---

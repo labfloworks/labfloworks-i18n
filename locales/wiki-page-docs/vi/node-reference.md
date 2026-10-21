@@ -65,7 +65,6 @@ FloWorks không phụ thuộc vào một danh mục tĩnh. Phần mềm sử d�
 
 - [📖 Bản đồ mã và kiến trúc](architecture-ii.md) → Trách nhiệm theo mô-đun và luồng công việc.
 - [🌐 Hướng dẫn quốc tế hóa (i18n)](i18n.md) → Cách thêm ngôn ngữ và quản lý khóa `tr()`.
-- [🛠️ Thêm nút mới (hướng dẫn)](adding-a-new-node.md) → Từng bước với ví dụ thực tế.
 - [📦 Hướng dẫn build và phân phối](build.md) → Đóng gói PyInstaller, hooks và chữ ký số.
 
 ---

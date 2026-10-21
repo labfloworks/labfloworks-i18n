@@ -90,7 +90,6 @@ O FloWorks integra comunicação direta com instrumentos de laboratório reais a
 !!! info "5. Criar um nó para um instrumento não suportado"
     - Herda de `BaseNode` e usa o padrão `DeviceBase` em `instrument/`.
     - Implementa um driver `headless` que retorne tuplos `(x, y)` ou `master_payload`.
-    - Segue o [📘 Guia: Adicionar um Novo Nó](adding-a-new-node.md) para registar portos, serialização e i18n.
 
 ---
 
@@ -98,5 +97,4 @@ O FloWorks integra comunicação direta com instrumentos de laboratório reais a
 
 - [🧩 Referência Técnica de Nós](node-reference.md) → Detalhes de `oscilloscope_node`, `generator_node` e contratos de serialização.
 - [📦 Guia de Executável Portable](guia-ejecutable-portable.md) → Gestão de firewall, `resource_path()` e empacotamento PyInstaller.
-- [📘 Adicionar um Novo Nó](adding-a-new-node.md) → Como estender `instrument/` e registar drivers personalizados.
 - [📄 Formato `.sflow`](sflow-format.md) → Como persistem as configurações de hardware e os arrays capturados.

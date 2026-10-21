@@ -90,7 +90,6 @@ FloWorks 通过 **VISA**（虚拟仪器软件架构）抽象层上的 **SCPI**�
 !!! info "5. 为不支持的仪器创建节点"
     - 继承自 `BaseNode` 并在 `instrument/` 中使用 `DeviceBase` 模式。
     - 实现一个返回 `(x, y)` 元组或 `master_payload` 的 `headless` 驱动程序。
-    - 按照 [📘 指南：添加新节点](adding-a-new-node.md) 注册端口、序列化和 i18n。
 
 ---
 
@@ -98,5 +97,4 @@ FloWorks 通过 **VISA**（虚拟仪器软件架构）抽象层上的 **SCPI**�
 
 - [🧩 技术节点参考](node-reference.md) → `oscilloscope_node`、`generator_node` 和序列化约定的详细信息。
 - [📦 可移植构建指南](guia-ejecutable-portable.md) → 防火墙处理、`resource_path()` 和 PyInstaller 打包。
-- [📘 添加新节点](adding-a-new-node.md) → 如何扩展 `instrument/` 并注册自定义驱动程序。
 - [📄 `.sflow` 格式](sflow-format.md) → 硬件配置和捕获数组的持久化方式。

@@ -85,14 +85,6 @@ FloWorks — это **визуальная лаборатория с откры�
 
     [:material-arrow-right: Руководство i18n](translation-guide.md)
 
--   **:material-tools: SDK и быстрая разработка**
-
-    Базовый шаблон (`template_node.py`), примесь сериализации и пошаговые руководства.
-
-    Архитектура, готовая к плагинам и расширению сообщества.
-
-    [:material-arrow-right: Создать узлы](adding-a-new-node.md)
-
 </div>
 
 ---

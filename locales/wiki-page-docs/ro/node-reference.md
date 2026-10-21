@@ -65,7 +65,6 @@ FloWorks nu depinde de un catalog static. Utilizează un **sistem de înregistra
 
 - [📖 Harta codului și arhitectura](architecture-ii.md) → Responsabilități pe module și fluxuri de lucru.
 - [🌐 Ghid de internaționalizare (i18n)](i18n.md) → Cum se adaugă limbi și se gestionează cheile `tr()`.
-- [🛠️ Adaugă un nod nou (tutorial)](adding-a-new-node.md) → Pas cu pas cu exemple practice.
 - [📦 Ghid build și distribuție](build.md) → Ambalare PyInstaller, hooks și semnături digitale.
 
 ---

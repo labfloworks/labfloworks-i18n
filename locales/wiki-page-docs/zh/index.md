@@ -85,14 +85,6 @@ FloWorks 是一个**开源可视化实验室**（Python + PySide6），在这里
 
     [:material-arrow-right: i18n 指南](translation-guide.md)
 
--   **:material-tools: SDK 和快速开发**
-
-    基础模板（`template_node.py`）、序列化混入和分步指南。
-
-    为插件和社区扩展准备的架构。
-
-    [:material-arrow-right: 创建节点](adding-a-new-node.md)
-
 </div>
 
 ---
