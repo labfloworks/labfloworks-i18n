@@ -85,14 +85,6 @@ In tegenstelling tot gesloten of sterk gespecialiseerde tools, is FloWorks ontwo
 
     [:material-arrow-right: i18n-gids](translation-guide.md)
 
--   **:material-tools: SDK en snelle ontwikkeling**
-
-    Basissjabloon (`template_node.py`), serialisatiemixin en stapsgewijze handleidingen.
-
-    Architectuur gereed voor plug-ins en community-uitbreiding.
-
-    [:material-arrow-right: Knopen maken](adding-a-new-node.md)
-
 </div>
 
 ---

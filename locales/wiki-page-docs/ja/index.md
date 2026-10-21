@@ -85,14 +85,6 @@ FloWorks は、**オープンソースのビジュアルラボラトリー**（P
 
     [:material-arrow-right: i18n ガイド](translation-guide.md)
 
--   **:material-tools: SDK と迅速な開発**
-
-    ベーステンプレート（`template_node.py`）、シリアライゼーションミックスイン、およびステップバイステップガイド。
-
-    プラグインとコミュニティ拡張に対応したアーキテクチャ。
-
-    [:material-arrow-right: ノードを作成](adding-a-new-node.md)
-
 </div>
 
 ---

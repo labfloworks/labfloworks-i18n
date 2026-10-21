@@ -88,7 +88,6 @@ FloWorks integruje bezpośrednią komunikację z prawdziwymi instrumentami labor
 !!! info "5. Tworzenie węzła dla nieobsługiwanego instrumentu"
     - Odziedzicz po `BaseNode` i użyj wzorca `DeviceBase` w `instrument/`.
     - Zaimplementuj driver `headless` zwracający krotki `(x, y)` lub `master_payload`.
-    - Postępuj zgodnie z [📘 Przewodnikiem: Dodaj nowy węzeł](adding-a-new-node.md), aby zarejestrować porty, serializację i i18n.
 
 ---
 
@@ -96,5 +95,4 @@ FloWorks integruje bezpośrednią komunikację z prawdziwymi instrumentami labor
 
 - [🧩 Techniczna dokumentacja węzłów](node-reference.md) → Szczegóły `oscilloscope_node`, `generator_node` i kontrakty serializacji.
 - [📦 Przewodnik po przenośnym buildzie](guia-ejecutable-portable.md) → Obsługa firewalla, `resource_path()` i pakowanie PyInstaller.
-- [📘 Dodaj nowy węzeł](adding-a-new-node.md) → Jak rozszerzyć `instrument/` i zarejestrować własne drivery.
 - [📄 Format `.sflow`](sflow-format.md) → Jak zapisywane są konfiguracje sprzętowe i przechwycone tablice.

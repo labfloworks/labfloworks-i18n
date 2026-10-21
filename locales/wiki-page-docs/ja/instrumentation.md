@@ -90,7 +90,6 @@ FloWorks は、**VISA**（Virtual Instrument Software Architecture）抽象化�
 !!! info "5. サポートされていない機器のノードを作成する"
     - `BaseNode` を継承し、`instrument/` で `DeviceBase` パターンを使用してください。
     - `(x, y)` タプルまたは `master_payload` を返す `headless` ドライバーを実装してください。
-    - [📘 ガイド：新しいノードを追加する](adding-a-new-node.md) に従って、ポート、シリアラゼーション、および i18n を登録してください。
 
 ---
 
@@ -98,5 +97,4 @@ FloWorks は、**VISA**（Virtual Instrument Software Architecture）抽象化�
 
 - [🧩 技術ノードリファレンス](node-reference.md) → `oscilloscope_node`、`generator_node`、およびシリアライゼーション契約の詳細。
 - [📦 ポータブルビルドガイド](guia-ejecutable-portable.md) → ファイアウォール処理、`resource_path()`、および PyInstaller パッケージング。
-- [📘 新しいノードを追加する](adding-a-new-node.md) → `instrument/` を拡張し、カスタムドライバーを登録する方法。
 - [📄 `.sflow` フォーマット](sflow-format.md) → ハードウェア構成およびキャプチャされた配列の永続化方法。

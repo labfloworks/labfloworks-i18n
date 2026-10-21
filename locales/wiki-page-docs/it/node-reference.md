@@ -65,7 +65,6 @@ FloWorks non dipende da un catalogo statico. Utilizza un **sistema di registrazi
 
 - [📖 Mappa del codice e architettura](architecture-ii.md) → Responsabilità per modulo e flussi di lavoro.
 - [🌐 Guida all'internazionalizzazione (i18n)](i18n.md) → Come aggiungere lingue e gestire chiavi `tr()`.
-- [🛠️ Aggiungere un nuovo nodo (tutorial)](adding-a-new-node.md) → Passo dopo passo con esempi pratici.
 - [📦 Guida build e distribuzione](build.md) → Impacchettamento PyInstaller, hooks e firme digitali.
 
 ---

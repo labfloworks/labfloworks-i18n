@@ -65,7 +65,6 @@ FloWorks nie polega na statycznym katalogu. Wykorzystuje **system dynamicznej re
 
 - [📖 Mapa kodu i architektura](architecture-ii.md) → Odpowiedzialności według modułów i przepływy pracy.
 - [🌐 Przewodnik internacjonalizacji (i18n)](i18n.md) → Jak dodawać języki i zarządzać kluczami `tr()`.
-- [🛠️ Dodaj nowy węzeł (samouczek)](adding-a-new-node.md) → Krok po kroku z praktycznymi przykładami.
 - [📦 Przewodnik kompilacji i dystrybucji](build.md) → Pakowanie PyInstaller, hooks i podpisy cyfrowe.
 
 ---

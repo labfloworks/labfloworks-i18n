@@ -85,14 +85,6 @@ W przeciwieństwie do zamkniętych lub wysoce wyspecjalizowanych narzędzi, FloW
 
     [:material-arrow-right: Przewodnik i18n](translation-guide.md)
 
--   **:material-tools: SDK i szybki rozwój**
-
-    Szablon bazowy (`template_node.py`), mixin serializacji i przewodniki krok po kroku.
-
-    Architektura przygotowana na wtyczki i rozszerzanie przez społeczność.
-
-    [:material-arrow-right: Tworzenie węzłów](adding-a-new-node.md)
-
 </div>
 
 ---

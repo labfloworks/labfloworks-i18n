@@ -90,7 +90,6 @@ FloWorks는 **SCPI**(Standard Commands for Programmable Instruments) 프로토�
 !!! info "5. 지원되지 않는 장비용 노드 만들기"
     - `BaseNode`를 상속하고 `instrument/`에서 `DeviceBase` 패턴을 사용합니다.
     - `(x, y)` 튜플 또는 `master_payload`를 반환하는 `headless` 드라이버를 구현합니다.
-    - 포트, 직렬화 및 i18n을 등록하려면 [📘 가이드: 새 노드 추가](adding-a-new-node.md)를 따르세요.
 
 ---
 
@@ -98,5 +97,4 @@ FloWorks는 **SCPI**(Standard Commands for Programmable Instruments) 프로토�
 
 - [🧩 노드 기술 참조](node-reference.md) → `oscilloscope_node`, `generator_node` 및 직렬화 계약 세부 정보.
 - [📦 휴대용 실행 파일 가이드](guia-ejecutable-portable.md) → 방화벽 관리, `resource_path()` 및 PyInstaller 패키징.
-- [📘 새 노드 추가](adding-a-new-node.md) → `instrument/` 확장 및 사용자 지정 드라이버 등록 방법.
 - [📄 `.sflow` 형식](sflow-format.md) → 하드웨어 구성 및 캡처된 배열이 지속되는 방식.

@@ -85,14 +85,6 @@ FloWorks는 코드 줄을 작성하는 대신 블록(노드)을 연결하여 시
 
     [:material-arrow-right: i18n 가이드](translation-guide.md)
 
--   **:material-tools: SDK 및 신속한 개발**
-
-    기본 템플릿(`template_node.py`), 직렬화 믹스인 및 단계별 가이드.
-
-    플러그인 및 커뮤니티 확장을 위한 준비된 아키텍처.
-
-    [:material-arrow-right: 노드 만들기](adding-a-new-node.md)
-
 </div>
 
 ---

@@ -90,7 +90,6 @@ FloWorks **SCPI** (Standard Commands for Programmable Instruments) प्रो�
 !!! info "5. समर्थित उपकरण के लिए नोड बनाएँ"
     - `BaseNode` से विरासत में लें और `instrument/` में `DeviceBase` पैटर्न का उपयोग करें।
     - `(x, y)` ट्यूपल या `master_payload` लौटाने वाला `headless` ड्राइवर लागू करें।
-    - पोर्ट, क्रमबद्धता और i18n को पंजीकृत करने के लिए [📘 गाइड: एक नया नोड जड़ें](adding-a-new-node.md) का पालन करें।
 
 ---
 
@@ -98,5 +97,4 @@ FloWorks **SCPI** (Standard Commands for Programmable Instruments) प्रो�
 
 - [🧩 नोड तकनीकी संदर्भ](node-reference.md) → `oscilloscope_node`, `generator_node` और क्रमबद्धता अनुबंधों का विवरण।
 - [📦 पोर्टेबल निष्पादन योग्य गाइड](guia-ejecutable-portable.md) → फ़ायरवॉल प्रबंधन, `resource_path()` और PyInstaller पैकेजिंग।
-- [📘 एक नया नोड जोड़ें](adding-a-new-node.md) → `instrument/` का विस्तार और कस्टम ड्राइवर पंजीकृत करना।
 - [📄 `.sflow` प्रारूप](sflow-format.md) → हार्डवेयर कॉन्फ़िगरेशन और कैप्चर किए गए सरणियों को कैसे दृढ़ किया जाता है।

@@ -65,7 +65,6 @@ FloWorks is niet afhankelijk van een statische catalogus. Het gebruikt een **dyn
 
 - [📖 Codekaart en architectuur](architecture-ii.md) → Verantwoordelijkheden per module en werkstromen.
 - [🌐 Internationalisatie-gids (i18n)](i18n.md) → Hoe talen toe te voegen en `tr()`-sleutels te beheren.
-- [🛠️ Een nieuwe knoop toevoegen (handleiding)](adding-a-new-node.md) → Stapsgewijs met praktische voorbeelden.
 - [📦 Build- en distributiegids](build.md) → PyInstaller-verpakking, hooks en digitale handtekeningen.
 
 ---

@@ -85,14 +85,6 @@ FloWorks एक **मुक्त स्रोत वाली दृश्य �
 
     [:material-arrow-right: i18n गाइड](translation-guide.md)
 
--   **:material-tools: SDK और त्वरित विकास**
-
-    आधार टेम्पलेट (`template_node.py`), क्रमबद्धता मिक्सिन और चरण-दर-चरण गाइड।
-
-    प्लगइन्स और सामुदायिक विस्तार के लिए तैयार वास्तुकला।
-
-    [:material-arrow-right: नोड बनाएँ](adding-a-new-node.md)
-
 </div>
 
 ---

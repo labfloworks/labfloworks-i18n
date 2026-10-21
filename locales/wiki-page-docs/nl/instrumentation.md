@@ -88,7 +88,6 @@ FloWorks integreert directe communicatie met echte laboratoriuminstrumenten via 
 !!! info "5. Een knoop maken voor een niet-ondersteund instrument"
     - Erf van `BaseNode` en gebruik het `DeviceBase`-patroon in `instrument/`.
     - Implementeer een `headless` driver die tuples `(x, y)` of `master_payload` retourneert.
-    - Volg de [📘 Handleiding: Een nieuwe knoop toevoegen](adding-a-new-node.md) voor registratie van poorten, serialisatie en i18n.
 
 ---
 
@@ -96,5 +95,4 @@ FloWorks integreert directe communicatie met echte laboratoriuminstrumenten via 
 
 - [🧩 Technische knooppuntreferentie](node-reference.md) → Details over `oscilloscope_node`, `generator_node` en serialisatiecontracten.
 - [📦 Handleiding draagbare build](guia-ejecutable-portable.md) → Firewallbeheer, `resource_path()` en PyInstaller-verpakking.
-- [📘 Een nieuwe knoop toevoegen](adding-a-new-node.md) → Hoe `instrument/` uit te breiden en aangepaste drivers te registreren.
 - [📄 `.sflow`-formaat](sflow-format.md) → Hoe hardwareconfiguraties en vastgelegde arrays worden bewaard.

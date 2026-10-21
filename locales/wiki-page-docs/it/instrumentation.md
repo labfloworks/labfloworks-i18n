@@ -88,7 +88,6 @@ FloWorks integra la comunicazione diretta con strumenti di laboratorio reali med
 !!! info "5. Creare un nodo per uno strumento non supportato"
     - Eredita da `BaseNode` e usa il pattern `DeviceBase` in `instrument/`.
     - Implementa un driver `headless` che restituisca tuple `(x, y)` o `master_payload`.
-    - Segui la [📘 Guida: Aggiungere un nuovo nodo](adding-a-new-node.md) per registrare porte, serializzazione e i18n.
 
 ---
 
@@ -96,5 +95,4 @@ FloWorks integra la comunicazione diretta con strumenti di laboratorio reali med
 
 - [🧩 Riferimento tecnico nodi](node-reference.md) → Dettagli su `oscilloscope_node`, `generator_node` e contratti di serializzazione.
 - [📦 Guida build portatile](guia-ejecutable-portable.md) → Gestione firewall, `resource_path()` e pacchettizzazione PyInstaller.
-- [📘 Aggiungere un nuovo nodo](adding-a-new-node.md) → Come estendere `instrument/` e registrare driver personalizzati.
 - [📄 Formato `.sflow`](sflow-format.md) → Come vengono rese persistenti le configurazioni hardware e gli array acquisiti.
