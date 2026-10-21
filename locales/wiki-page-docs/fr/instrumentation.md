@@ -90,7 +90,6 @@ FloWorks intègre une communication directe avec des instruments de laboratoire 
 !!! info "5. Créer un nœud pour un instrument non supporté"
     - Héritez de `BaseNode` et utilisez le patron `DeviceBase` dans `instrument/`.
     - Implémentez un driver `headless` qui retourne des tuples `(x, y)` ou `master_payload`.
-    - Suivez le [📘 Guide : Ajouter un Nouveau Nœud](adding-a-new-node.md) pour enregistrer les ports, la sérialisation et l'i18n.
 
 ---
 
@@ -98,5 +97,4 @@ FloWorks intègre une communication directe avec des instruments de laboratoire 
 
 - [🧩 Référence Technique des Nœuds](node-reference.md) → Détails de `oscilloscope_node`, `generator_node` et contrats de sérialisation.
 - [📦 Guide de Build Portable](guia-ejecutable-portable.md) → Gestion du pare-feu, `resource_path()` et empaquetage PyInstaller.
-- [📘 Ajouter un Nouveau Nœud](adding-a-new-node.md) → Comment étendre `instrument/` et enregistrer des drivers personnalisés.
 - [📄 Format `.sflow`](sflow-format.md) → Comment les configurations matériel et les tableaux capturés sont persistés.

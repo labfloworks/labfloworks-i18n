@@ -65,7 +65,6 @@ FloWorks ist nicht von einem statischen Katalog abhängig. Es verwendet ein **dy
 
 - [📖 Code-Karte und Architektur](architecture-ii.md) → Verantwortlichkeiten pro Modul und Arbeitsabläufe.
 - [🌐 Internationalisierungsleitfaden (i18n)](i18n.md) → Wie man Sprachen hinzufügt und `tr()`-Schlüssel verwaltet.
-- [🛠️ Neuen Knoten hinzufügen (Tutorial)](adding-a-new-node.md) → Schritt für Schritt mit praktischen Beispielen.
 - [📦 Build- und Vertriebsleitfaden](build.md) → PyInstaller-Packaging, Hooks und digitale Signaturen.
 
 ---

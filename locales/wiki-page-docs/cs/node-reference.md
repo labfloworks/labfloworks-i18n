@@ -65,7 +65,6 @@ FloWorks nezávisí na statickém katalogu. Používá **systém dynamické regi
 
 - [📖 Mapa kódu a architektura](architecture-ii.md) → Odpovědnosti podle modulů a pracovní postupy.
 - [🌐 Průvodce internacionalizací (i18n)](i18n.md) → Jak přidávat jazyky a spravovat klíče `tr()`.
-- [🛠️ Přidat nový uzel (návod)](adding-a-new-node.md) → Krok za krokem s praktickými příklady.
 - [📦 Průvodce sestavením a distribucí](build.md) → Balení PyInstaller, hooks a digitální podpisy.
 
 ---

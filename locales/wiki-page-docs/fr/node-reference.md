@@ -65,7 +65,6 @@ FloWorks ne dépend pas d'un catalogue statique. Il utilise un **système d'enre
 
 - [📖 Carte du Code et Architecture](architecture-ii.md) → Responsabilités par module et flux de travail.
 - [🌐 Guide d'Internationalisation (i18n)](i18n.md) → Comment ajouter des langues et gérer les clés `tr()`.
-- [🛠️ Ajouter un Nouveau Nœud (Tutoriel)](adding-a-new-node.md) → Pas à pas avec exemples pratiques.
 - [📦 Guide de Build et Distribution](build.md) → Empaquetage PyInstaller, hooks et signatures numériques.
 
 ---

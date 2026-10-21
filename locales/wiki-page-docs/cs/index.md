@@ -85,14 +85,6 @@ Na rozdíl od uzavřených nebo vysoce specializovaných nástrojů je FloWorks 
 
     [:material-arrow-right: Průvodce i18n](translation-guide.md)
 
--   **:material-tools: SDK a rychlý vývoj**
-
-    Základní šablona (`template_node.py`), mixin serializace a návody krok za krokem.
-
-    Architektura připravená na pluginy a komunitní rozšiřování.
-
-    [:material-arrow-right: Vytvořit uzly](adding-a-new-node.md)
-
 </div>
 
 ---

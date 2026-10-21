@@ -88,7 +88,6 @@ FloWorks integruje přímou komunikaci s reálnými laboratorními přístroji p
 !!! info "5. Vytvoření uzlu pro nepodporovaný přístroj"
     - Poděď se od `BaseNode` a použij vzor `DeviceBase` v `instrument/`.
     - Implementuj `headless` driver vracející dvojice `(x, y)` nebo `master_payload`.
-    - Postupuj podle [📘 Průvodce: Přidat nový uzel](adding-a-new-node.md) pro registraci portů, serializaci a i18n.
 
 ---
 
@@ -96,5 +95,4 @@ FloWorks integruje přímou komunikaci s reálnými laboratorními přístroji p
 
 - [🧩 Technická reference uzlů](node-reference.md) → Podrobnosti o `oscilloscope_node`, `generator_node` a serializačních kontraktech.
 - [📦 Průvodce přenosným buildem](guia-ejecutable-portable.md) → Správa firewallu, `resource_path()` a balení PyInstaller.
-- [📘 Přidat nový uzel](adding-a-new-node.md) → Jak rozšířit `instrument/` a registrovat vlastní drivery.
 - [📄 Formát `.sflow`](sflow-format.md) → Jak se ukládají hardwarové konfigurace a zachycená pole.

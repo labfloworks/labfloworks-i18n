@@ -85,14 +85,6 @@ description: Παγκόσμιο οπτικό εργαστήριο για επε�
 
     [:material-arrow-right: Οδηγός i18n](translation-guide.md)
 
--   **:material-tools: SDK και γρήγορη ανάπτυξη**
-
-    Βασικό πρότυπο (`template_node.py`), mixin σειριοποίησης και οδηγοί βήμα προς βήμα.
-
-    Αρχιτεκτονική έτοιμη για πρόσθετα και επέκταση από την κοινότητα.
-
-    [:material-arrow-right: Δημιουργία κόμβων](adding-a-new-node.md)
-
 </div>
 
 ---

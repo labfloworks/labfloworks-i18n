@@ -85,14 +85,6 @@ A diferencia de herramientas cerradas o altamente especializadas, FloWorks está
 
     [:material-arrow-right: Guía i18n](translation-guide.md)
 
--   **:material-tools: SDK y Desarrollo Rápido**
-
-    Plantilla base (`template_node.py`), mixin de serialización y guías paso a paso.
-
-    Arquitectura preparada para plugins y expansión comunitaria.
-
-    [:material-arrow-right: Crear Nodos](adding-a-new-node.md)
-
 </div>
 
 ---

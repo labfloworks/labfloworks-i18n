@@ -90,7 +90,6 @@ FloWorks integriert die direkte Kommunikation mit echten Laborgeräten über das
 !!! info "5. Knoten für nicht unterstütztes Gerät erstellen"
     - Von `BaseNode` erben und das `DeviceBase`-Muster in `instrument/` verwenden.
     - Einen `headless`-Treiber implementieren, der Tupel `(x, y)` oder `master_payload` zurückgibt.
-    - Der [📘 Leitfaden: Neuen Knoten hinzufügen](adding-a-new-node.md) folgen, um Ports, Serialisierung und i18n zu registrieren.
 
 ---
 
@@ -98,5 +97,4 @@ FloWorks integriert die direkte Kommunikation mit echten Laborgeräten über das
 
 - [🧩 Technische Knotenreferenz](node-reference.md) → Details zu `oscilloscope_node`, `generator_node` und Serialisierungsverträgen.
 - [ Portable-Executable-Leitfaden](guia-ejecutable-portable.md) → Firewall-Verwaltung, `resource_path()` und PyInstaller-Packaging.
-- [📘 Neuen Knoten hinzufügen](adding-a-new-node.md) → Wie man `instrument/` erweitert und benutzerdefinierte Treiber registriert.
 - [📄 `.sflow`-Format](sflow-format.md) → Wie Hardware-Konfigurationen und erfasste Arrays persistiert werden.
