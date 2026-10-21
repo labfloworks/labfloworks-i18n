@@ -85,13 +85,6 @@ Unlike closed or highly specialized tools, FloWorks is designed as an extensible
 
     [:material-arrow-right: i18n Guide](translation-guide.md)
 
--   **:material-tools: SDK and Rapid Development**
-
-    Base template (`template_node.py`), serialization mixin and step-by-step guides.
-
-    Architecture ready for plugins and community expansion.
-
-    [:material-arrow-right: Create Nodes](adding-a-new-node.md)
 
 </div>
 

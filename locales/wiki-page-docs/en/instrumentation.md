@@ -90,7 +90,7 @@ FloWorks integrates direct communication with real laboratory instruments via th
 !!! info "5. Creating a node for an unsupported instrument"
     - Inherit from `BaseNode` and use the `DeviceBase` pattern in `instrument/`.
     - Implement a `headless` driver that returns `(x, y)` tuples or `master_payload`.
-    - Follow the [📘 Guide: Add a New Node](adding-a-new-node.md) to register ports, serialization and i18n.
+
 
 ---
 
@@ -98,5 +98,4 @@ FloWorks integrates direct communication with real laboratory instruments via th
 
 - [🧩 Technical Node Reference](node-reference.md) → Details of `oscilloscope_node`, `generator_node` and serialization contracts.
 - [📦 Portable Build Guide](guia-ejecutable-portable.md) → Firewall handling, `resource_path()` and PyInstaller packaging.
-- [📘 Add a New Node](adding-a-new-node.md) → How to extend `instrument/` and register custom drivers.
 - [📄 `.sflow` Format](sflow-format.md) → How hardware configurations and captured arrays are persisted.

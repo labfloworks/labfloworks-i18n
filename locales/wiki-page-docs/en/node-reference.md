@@ -65,7 +65,6 @@ FloWorks does not depend on a static catalog. It uses a **dynamic registration s
 
 - [📖 Code Map and Architecture](architecture-ii.md) → Responsibilities per module and workflows.
 - [🌐 Internationalization (i18n) Guide](i18n.md) → How to add languages and manage `tr()` keys.
-- [🛠️ Add a New Node (Tutorial)](adding-a-new-node.md) → Step by step with practical examples.
 - [📦 Build and Distribution Guide](build.md) → PyInstaller packaging, hooks and digital signatures.
 
 ---
