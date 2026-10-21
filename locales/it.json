@@ -801,6 +801,7 @@
     "resample": {
       "title": "Ricampiona",
       "tooltip": "Cambia la frequenza di campionamento del segnale",
+      "method": "Metodo:",
       "ports": {
         "input": "Ingresso",
         "output": "Uscita"
@@ -810,14 +811,105 @@
         "ready": "Pronto"
       },
       "menu": {
-        "configure": "Configura…"
+        "configure": "Configura...",
+        "method": "Metodo",
+        "mode": "Modalità"
+      },
+      "methods": {
+        "fft": {
+          "label": "FFT (periodico)",
+          "tooltip": "Ideale per segnali sinusoidali, periodici o con pochi armonici."
+        },
+        "linear": {
+          "label": "Lineare",
+          "tooltip": "Veloce e stabile. Buono per profili morbidi o segnali non periodici."
+        },
+        "cubic": {
+          "label": "Cubica (spline)",
+          "tooltip": "Addolcisce le transizioni. Consigliata per segnali complessi con cambiamenti graduali."
+        },
+        "nearest": {
+          "label": "Vicino più vicino",
+          "tooltip": "Conserva i valori esatti. Utile per segnali digitali o gradini."
+        },
+        "polyphase": {
+          "label": "Polifase",
+          "tooltip": "Alta qualità con filtraggio integrato. Ideale per up/down-sampling con fattori razionali."
+        },
+        "zero_order_hold": {
+          "label": "Mantenimento ordine zero",
+          "tooltip": "Simile al vicino più vicino, ma mantiene l'ultimo valore noto."
+        }
       },
       "config_title": "Configura ricampionamento",
       "mode": "Modalità:",
       "factor": "Fattore:",
-      "target_fs": "fs target (Hz):",
-      "help_title": "Aiuto – Ricampionamento",
-      "help_html": "<h3>🔄 Nodo ricampionamento</h3><p>Cambia la <b>frequenza di campionamento</b> del segnale di ingresso.</p><h4>📥 Ingresso</h4><p><code>input</code> → si aspetta una tupla <code>(x, y)</code> o un array 1D.</p><h4>📤 Uscita</h4><p><code>output</code> → segnale ricampionato come <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametri</h4><ul><li><b>Modalità</b> – <i>factor</i> (moltiplica la frequenza di campionamento originale) o <i>fixed_fs</i> (frequenza di campionamento target in Hz).</li><li><b>Fattore</b> – fattore di scalatura (>1 aumenta i campioni, <1 li diminuisce).</li><li><b>fs target</b> – frequenza di campionamento desiderata in Hz (usata quando la modalità è fixed_fs).</li></ul><h4>🛠️ Funzionamento</h4><p>Usa <code>scipy.signal.resample</code> che applica un metodo di Fourier.</p><hr><hr><h3>🧠 Come pensare a questo sistema</h3><p>Questo ambiente funziona come un <b>flusso di elaborazione del segnale</b>.</p><pre>Dati → Trasformazione → Risultato</pre><h4>📐 Regola chiave</h4><pre>Tutto è: (x, y)</pre><h4>🔁 Schema universale</h4><pre>Ingresso → Elaborazione → Visualizzazione</pre><hr><h4>⚡ Scorciatoie e trucchi</h4><ul><li><b>Ctrl + clic</b> su una porta → seleziona la porta per una connessione rapida.</li><li><b>Doppio clic</b> sul nodo → apre questa finestra di aiuto.</li><li><b>Clic destro</b> → menu contestuale (elimina, configura).</li><li><b>Trascina</b> il nodo → sposta l'intero blocco; le connessioni si aggiornano automaticamente.</li></ul>"
+      "target_fs": "Fs obiettivo (Hz):",
+      "help_title": "Aiuto - Ricampiona",
+      "help_html": "<h3>🔄 Nodo Ricampiona</h3><p>Cambia la <b>frequenza di campionamento</b> del segnale in ingresso.</p><h4>📥 Ingresso</h4><p><code>input</code> → si aspetta una tupla <code>(x, y)</code> o un array 1D.</p><h4>📤 Uscita</h4><p><code>output</code> → segnale ricampionato come <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametri</h4><ul><li><b>Modalità</b> – <i>factor</i> (moltiplica la frequenza originale) o <i>fixed_fs</i> (frequenza obiettivo in Hz).</li><li><b>Fattore</b> – scala (>1 aumenta i campioni, <1 riduce).</li><li><b>Fs obiettivo</b> – frequenza desiderata in Hz (usata in modalità fixed_fs).</li></ul><h4>🛠️ Funzionamento</h4><p>Usa <code>scipy.signal.resample</code> (metodo di Fourier).</p><hr><h3>🧠 Come pensare il sistema</h3><p>Questo ambiente funziona come un <b>flusso di elaborazione del segnale</b>.</p><pre>Dato → Trasformazione → Risultato</pre><h4>📐 Regola chiave</h4><pre>Tutto è: (x, y)</pre><h4>🔁 Schema universale</h4><pre>Ingresso → Elaborazione → Visualizzazione</pre><hr><h4>⚡ Scorciatoie e trucchi</h4><ul><li><b>Ctrl + clic</b> su una porta → seleziona la porta per connessione rapida.</li><li><b>Doppio clic</b> sul nodo → apre questa finestra di aiuto.</li><li><b>Clic destro</b> → menu contestuale (elimina, configura).</li><li><b>Trascina</b> il nodo → sposta l'intero blocco; le connessioni si aggiornano automaticamente.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Dati manuali",
+      "ports": { "output": "Uscita" },
+      "no_data": "Nessun dato",
+      "preview": "Anteprima",
+      "points": "Punti (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Aggiungi",
+      "remove": "Elimina",
+      "clear": "Cancella",
+      "paste": "Incolla",
+      "import_csv": "Importa",
+      "export_csv": "Esporta",
+      "import_title": "Importa dati",
+      "export_title": "Esporta CSV",
+      "file_filter": "File supportati (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Testo (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Tutti i file (*)",
+      "csv_filter": "File CSV (*.csv);;Tutti i file (*)",
+      "error": "Errore",
+      "info": "Informazione",
+      "no_points_to_export": "Nessun punto da esportare.",
+      "no_valid_points": "Nessun punto valido trovato nel file.",
+      "no_scipy": "scipy è richiesto per caricare file .mat.",
+      "npz_diagnostic": "Nessun punto valido trovato nel file .npz.\\n{info}",
+      "npy_shape": "Array con forma {shape} non compatibile. Atteso 1D o (N,2)/(2,N).",
+      "mat_diagnostic": "Nessun punto valido trovato nel file .mat.\\n{info}",
+      "menu": { "configure": "Configura..." },
+      "config_title": "Configura collettore dati",
+      "help_title": "Aiuto - Collettore dati",
+      "help_html": "<h3>Nodo collettore dati</h3><p>Permette l'inserimento manuale di punti (x, y) che verranno emessi come segnale.</p><ul><li><b>Aggiungi / Elimina / Cancella:</b> Gestisci le righe della tabella.</li><li><b>Incolla:</b> Incolla dati dagli appunti (Excel, testo, CSV).</li><li><b>Importa:</b> Carica punti da CSV, NumPy (.npz/.npy), MATLAB (.mat) o JSON.</li><li><b>Esporta:</b> Salva i punti in un file CSV.</li><li><b>Anteprima:</b> Visualizzazione in tempo reale dei punti.</li></ul><p>Il segnale di uscita è ordinato automaticamente per X.</p>"
+    },
+    "model_fit": {
+      "title": "Adattamento del modello",
+      "custom_short": "Personalizzato",
+      "custom": "Personalizzato",
+      "waiting": "In attesa di dati...",
+      "waiting_more": "In attesa di altri dati... ({n_points}/{n_params})",
+      "fitted": "Adattato (N={n_points})",
+      "error_model": "Errore: modello non valido",
+      "error_nan": "Errore: dati non validi",
+      "error_fit": "Errore di adattamento",
+      "results": "Risultati dell'adattamento",
+      "model": "Modello:",
+      "status": "Stato:",
+      "expression": "Espressione:",
+      "n_points": "N punti:",
+      "dof": "Gradi di libertà:",
+      "configuration": "Configurazione",
+      "model_type": "Tipo di modello:",
+      "n_fine": "Punti di griglia fine:",
+      "custom_editor": "Editor modello personalizzato",
+      "custom_hint": "Scrivi un'espressione usando 'x' e i parametri (a, b, c...):",
+      "validate": "Valida espressione",
+      "not_validated": "Non validato",
+      "valid_ok": "Espressione valida",
+      "empty_expr": "Errore: espressione vuota",
+      "params_detected": "Parametri: ",
+      "menu": { "configure": "Configura..." },
+      "ports": { "input": "Ingresso", "output": "Uscita" },
+      "config_title": "Configura adattamento del modello",
+      "help_title": "Aiuto - Adattamento del modello",
+      "help_html": "\n            <h3>Nodo di adattamento del modello</h3>\n            <p>Adatta modelli matematici ai dati (x, y) usando scipy.optimize.curve_fit.</p>\n            <h4>Modelli predefiniti:</h4>\n            <ul>\n                <li><b>Lineare</b>: a*x + b</li>\n                <li><b>Quadratico</b>: a*x^2 + b*x + c</li>\n                <li><b>Cubico</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Esponenziale</b>: a*exp(b*x)</li>\n                <li><b>Gaussiano</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Seno</b>: a*sin(b*x + c) + d</li>\n                <li><b>Potenza</b>: a*x^b</li>\n                <li><b>Logaritmico</b>: a*log(x) + b</li>\n                <li><b>Lorentziano</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoide</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Modello personalizzato (avanzato):</h4>\n            <p>Seleziona <b>custom</b> nel tipo di modello e scrivi la tua espressione.\n            Usa <code>x</code> come variabile indipendente e le lettere (a, b, c...) come parametri.</p>\n            <p><b>Esempi validi:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Funzioni consentite:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>Il nodo restituisce (x_fino, y_ajustado) per tracciare la curva regolare.</p>\n            <p>Se ci sono meno punti rispetto ai parametri liberi, restituisce i dati originali non adattati.</p>\n            "
     },
     "window": {
       "title": "Finestra",

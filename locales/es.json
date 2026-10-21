@@ -800,6 +800,7 @@
     "resample": {
       "title": "Remuestrear",
       "tooltip": "Cambiar la frecuencia de muestreo de la señal",
+      "method": "Método:",
       "ports": {
         "input": "Entrada",
         "output": "Salida"
@@ -809,7 +810,35 @@
         "ready": "Listo"
       },
       "menu": {
-        "configure": "Configurar..."
+        "configure": "Configurar...",
+        "method": "Método",
+        "mode" : "Modo"
+      },
+      "methods": {
+        "fft": {
+          "label": "FFT (periódica)",
+          "tooltip": "Ideal para señales sinusoidales, periódicas o con pocos armónicos."
+        },
+        "linear": {
+          "label": "Lineal",
+          "tooltip": "Rápido y estable. Bueno para perfiles suaves o señales no periódicas."
+        },
+        "cubic": {
+          "label": "Cúbica (spline)",
+          "tooltip": "Suaviza transiciones. Recomendada para señales complejas con cambios graduales."
+        },
+        "nearest": {
+          "label": "Vecino más cercano",
+          "tooltip": "Conserva valores exactos. Útil para señales digitales o escalones."
+        },
+        "polyphase": {
+          "label": "Polifásica",
+          "tooltip": "Alta calidad con filtrado integrado. Ideal para up/down-sampling por factores racionales."
+        },
+        "zero_order_hold": {
+          "label": "Retención de orden cero",
+          "tooltip": "Similar a nearest pero mantiene el último valor conocido."
+        }
       },
       "config_title": "Configurar Remuestreo",
       "mode": "Modo:",
@@ -817,6 +846,78 @@
       "target_fs": "Fs objetivo (Hz):",
       "help_title": "Ayuda - Remuestrear",
       "help_html": "<h3>🔄 Nodo Remuestrear</h3><p>Cambia la <b>frecuencia de muestreo</b> de la señal de entrada.</p><h4>📥 Entrada</h4><p><code>input</code> → espera una tupla <code>(x, y)</code> o un array 1D.</p><h4>📤 Salida</h4><p><code>output</code> → señal remuestreada como <code>(x_new, y_new)</code>.</p><h4>⚙️ Parámetros</h4><ul><li><b>Modo</b> – <i>factor</i> (multiplica la frecuencia original) o <i>fixed_fs</i> (frecuencia objetivo en Hz).</li><li><b>Factor</b> – escala (>1 aumenta muestras, <1 reduce).</li><li><b>Fs objetivo</b> – frecuencia deseada en Hz (usado en modo fixed_fs).</li></ul><h4>🛠️ Funcionamiento</h4><p>Usa <code>scipy.signal.resample</code> (método de Fourier).</p><hr><hr><h3>🧠 Cómo pensar en este sistema</h3><p>Este entorno funciona como un <b>flujo de procesamiento de señales</b>.</p><pre>Dato → Transformación → Resultado</pre><h4>📐 Regla clave</h4><pre>Todo es: (x, y)</pre><h4>🔁 Patrón universal</h4><pre>Entrada → Procesamiento → Visualización</pre><hr><h4>⚡ Atajos y trucos</h4><ul><li><b>Ctrl + clic</b> en un puerto → selecciona el puerto para conexión rápida.</li><li><b>Doble clic</b> en el nodo → abre esta ventana de ayuda.</li><li><b>Clic derecho</b> → menú contextual (eliminar, configurar).</li><li><b>Arrastrar</b> el nodo → mueve todo el bloque; las conexiones se actualizan solas.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Datos Manuales",
+      "ports": {
+        "output": "Salida"
+      },
+      "no_data": "Sin datos",
+      "preview": "Vista previa",
+      "points": "Puntos (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Agregar",
+      "remove": "Eliminar",
+      "clear": "Limpiar",
+      "paste": "Pegar",
+      "import_csv": "Importar",
+      "export_csv": "Exportar",
+      "import_title": "Importar datos",
+      "export_title": "Exportar CSV",
+      "file_filter": "Archivos soportados (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Texto (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Todos los archivos (*)",
+      "csv_filter": "Archivos CSV (*.csv);;Todos los archivos (*)",
+      "error": "Error",
+      "info": "Información",
+      "no_points_to_export": "No hay puntos para exportar.",
+      "no_valid_points": "No se encontraron puntos válidos en el archivo.",
+      "no_scipy": "scipy es necesario para cargar archivos .mat.",
+      "npz_diagnostic": "No se encontraron puntos válidos en el archivo .npz.\\n{info}",
+      "npy_shape": "El array con forma {shape} no es compatible. Se esperaba 1D o (N,2)/(2,N).",
+      "mat_diagnostic": "No se encontraron puntos válidos en el archivo .mat.\\n{info}",
+      "menu": {
+        "configure": "Configurar..."
+      },
+      "config_title": "Configurar Recolector de Datos",
+      "help_title": "Ayuda - Recolector de Datos",
+      "help_html": "<h3>Nodo Recolector de Datos</h3><p>Permite la entrada manual de puntos (x, y) que se emitirán como una señal.</p><ul><li><b>Agregar / Eliminar / Limpiar:</b> Administrar filas de la tabla.</li><li><b>Pegar:</b> Pegar datos desde el portapapeles (Excel, texto, CSV).</li><li><b>Importar:</b> Cargar puntos desde CSV, NumPy (.npz/.npy), MATLAB (.mat) o JSON.</li><li><b>Exportar:</b> Guardar puntos en un archivo CSV.</li><li><b>Vista previa:</b> Visualización en tiempo real de los puntos.</li></ul><p>La señal de salida se ordena automáticamente por X.</p>"
+    },
+    "model_fit": {
+      "title": "Ajuste de modelo",
+      "custom_short": "Custom",
+      "custom": "Personalizado",
+      "waiting": "Esperando datos...",
+      "waiting_more": "Esperando más datos... ({n_points}/{n_params})",
+      "fitted": "Ajustado (N={n_points})",
+      "error_model": "Error: modelo inválido",
+      "error_nan": "Error: datos inválidos",
+      "error_fit": "Error en ajuste",
+      "results": "Resultados del ajuste",
+      "model": "Modelo:",
+      "status": "Estado:",
+      "expression": "Expresión:",
+      "n_points": "N puntos:",
+      "dof": "Grados libertad:",
+      "configuration": "Configuración",
+      "model_type": "Tipo de modelo:",
+      "n_fine": "Puntos de malla fina:",
+      "custom_editor": "Editor de modelo personalizado",
+      "custom_hint": "Escribe una expresión usando 'x' y parámetros (a, b, c...):",
+      "validate": "Validar expresión",
+      "not_validated": "No validado",
+      "valid_ok": "Expresión válida",
+      "empty_expr": "Error: expresión vacía",
+      "params_detected": "Parámetros: ",
+      "menu": {
+        "configure": "Configurar..."
+      },
+      "ports": {
+        "input": "Entrada",
+        "output": "Salida"
+      },
+      "config_title": "Configurar ajuste de modelo",
+      "help_title": "Ayuda - Ajuste de modelo",
+      "help_html": "\n            <h3>Nodo de ajuste de modelo</h3>\n            <p>Ajusta modelos matemáticos a datos (x, y) usando scipy.optimize.curve_fit.</p>\n            <h4>Modelos predefinidos:</h4>\n            <ul>\n                <li><b>Lineal</b>: a*x + b</li>\n                <li><b>Cuadrático</b>: a*x^2 + b*x + c</li>\n                <li><b>Cúbico</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Exponencial</b>: a*exp(b*x)</li>\n                <li><b>Gaussiano</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Seno</b>: a*sin(b*x + c) + d</li>\n                <li><b>Potencia</b>: a*x^b</li>\n                <li><b>Logarítmico</b>: a*log(x) + b</li>\n                <li><b>Lorentziano</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoide</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Modelo personalizado (avanzado):</h4>\n            <p>Selecciona <b>custom</b> en el tipo de modelo y escribe tu propia expresión.\n            Usa <code>x</code> como variable independiente y letras (a, b, c...) como parámetros.</p>\n            <p><b>Ejemplos válidos:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Funciones permitidas:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>El nodo devuelve (x_fino, y_ajustado) para graficar la curva suave.</p>\n            <p>Si hay menos puntos que parámetros libres, devuelve los datos originales sin ajustar.</p>\n            "
     },
     "window": {
       "title": "Ventana",

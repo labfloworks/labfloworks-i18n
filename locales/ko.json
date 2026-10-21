@@ -799,25 +799,117 @@
       "help_html": "<h3>🔀 컨볼루션 노드 (FIR 필터)</h3>\n<p>입력 신호와 사용자 정의 커널 간의 이산 컨볼루션을 적용합니다.</p>\n\n<h4>📥 입력</h4>\n<p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열을 기대합니다.</p>\n\n<h4>📤 출력</h4>\n<ul>\n    <li><b>필터링된 신호</b> → <code>(x_conv, y_conv)</code> – 컨볼루션 결과.</li>\n</ul>\n\n<h4>⚙️ 매개변수 (구성하려면 더블 클릭)</h4>\n<ul>\n    <li><b>커널 계수</b> – 쉼표로 구분된 부동 소수점, 예: <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>컨볼루션 모드</b> – <code>'same'</code> (기본), <code>'full'</code> 또는 <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 작동</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>x축은 그에 맞게 조정됩니다: <code>'same'</code>의 경우 원래 x를 유지하고, <code>'valid'</code>의 경우 끝을 자르고, <code>'full'</code>의 경우 선형으로 확장합니다.</li>\n</ul>\n\n<hr>\n<h3>🧠 이 시스템에 대해 생각하는 방법</h3>\n\n<p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p>\n\n<pre>\n데이터 → 변환 → 결과\n</pre>\n\n<h4>📐 핵심 규칙</h4>\n<pre>\n모든 것은:\n\n(x, y)\n</pre>\n\n<h4>🔁 보편적 패턴</h4>\n<pre>\n입력 → 처리 → 시각화\n</pre>\n\n<h4>🧪 완전한 예</h4>\n<pre>\n오실로스코프 → FFT → 필터 → 합산기 → 플롯\n</pre>\n\n<hr>\n<h4>⚡ 단축키와 팁</h4>\n<ul>\n<li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li>\n<li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li>\n<li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 연결, 연결 해제).</li>\n<li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li>\n</ul>"
     },
     "resample": {
-      "title": "리샘플",
-      "tooltip": "신호의 샘플 레이트 변경",
+      "title": "재샘플링",
+      "tooltip": "신호의 샘플링 주파수를 변경합니다",
+      "method": "방법:",
       "ports": {
         "input": "입력",
         "output": "출력"
       },
       "status": {
         "no_data": "데이터 없음",
-        "ready": "준비됨"
+        "ready": "준비 완료"
       },
       "menu": {
-        "configure": "구성…"
+        "configure": "구성...",
+        "method": "방법",
+        "mode": "모드"
       },
-      "config_title": "리샘플 구성",
+      "methods": {
+        "fft": {
+          "label": "FFT (주기적)",
+          "tooltip": "사인파, 주기적 신호 또는 고조파가 적은 신호에 이상적입니다."
+        },
+        "linear": {
+          "label": "선형",
+          "tooltip": "빠르고 안정적입니다. 부드러운 프로파일 또는 비주기 신호에 적합합니다."
+        },
+        "cubic": {
+          "label": "3차 스플라인",
+          "tooltip": "전환을 부드럽게 합니다. 점진적 변화가 있는 복잡한 신호에 권장됩니다."
+        },
+        "nearest": {
+          "label": "최근접 이웃",
+          "tooltip": "정확한 값을 보존합니다. 디지털 신호 또는 계단에 유용합니다."
+        },
+        "polyphase": {
+          "label": "다상",
+          "tooltip": "통합 필터링으로 고품질. 유리수 계수의 업/다운샘플링에 이상적입니다."
+        },
+        "zero_order_hold": {
+          "label": "영차 유지",
+          "tooltip": "최근접 이웃과 유사하지만 마지막 알려진 값을 유지합니다."
+        }
+      },
+      "config_title": "재샘플링 구성",
       "mode": "모드:",
       "factor": "계수:",
-      "target_fs": "대상 fs (Hz):",
-      "help_title": "도움말 – 리샘플",
-      "help_html": "<h3>🔄 리샘플 노드</h3><p>입력 신호의 <b>샘플 레이트</b>를 변경합니다.</p><h4>📥 입력</h4><p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열을 기대합니다.</p><h4>📤 출력</h4><p><code>output</code> → 리샘플된 신호를 <code>(x_new, y_new)</code>로 반환합니다.</p><h4>⚙️ 매개변수</h4><ul><li><b>모드</b> – <i>factor</i> (원래 샘플 레이트 곱하기) 또는 <i>fixed_fs</i> (Hz 단위의 대상 샘플 레이트).</li><li><b>계수</b> – 스케일링 계수 (>1은 샘플 증가, <1은 감소).</li><li><b>대상 fs</b> – Hz 단위의 원하는 샘플 레이트 (모드가 fixed_fs일 때 사용).</li></ul><h4>🛠️ 작동</h4><p>푸리에 방법을 적용하는 <code>scipy.signal.resample</code>을 사용합니다.</p><hr><hr><h3>🧠 이 시스템에 대해 생각하는 방법</h3><p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p><pre>데이터 → 변환 → 결과</pre><h4>📐 핵심 규칙</h4><pre>모든 것은: (x, y)</pre><h4>🔁 보편적 패턴</h4><pre>입력 → 처리 → 시각화</pre><hr><h4>⚡ 단축키와 팁</h4><ul><li>포트에서 <b>Ctrl + 클릭</b> → 빠른 연결을 위해 포트를 선택합니다.</li><li>노드를 <b>더블 클릭</b> → 이 도움말 창을 엽니다.</li><li><b>우클릭</b> → 상황에 맞는 메뉴 (삭제, 구성).</li><li>노드를 <b>드래그</b> → 전체 블록을 이동하며 연결이 자동으로 업데이트됩니다.</li></ul>"
+      "target_fs": "목표 fs (Hz):",
+      "help_title": "도움말 - 재샘플링",
+      "help_html": "<h3>🔄 재샘플링 노드</h3><p>입력 신호의 <b>샘플링 주파수</b>를 변경합니다.</p><h4>📥 입력</h4><p><code>input</code> → 튜플 <code>(x, y)</code> 또는 1D 배열을 기대합니다.</p><h4>📤 출력</h4><p><code>output</code> → 재샘플링된 신호 <code>(x_new, y_new)</code>를 출력합니다.</p><h4>⚙️ 매개변수</h4><ul><li><b>모드</b> – <i>factor</i>(원래 주파수를 곱함) 또는 <i>fixed_fs</i>(목표 주파수 Hz).</li><li><b>계수</b> – 배율(>1 샘플 증가, <1 감소).</li><li><b>목표 fs</b> – 원하는 주파수(Hz)(fixed_fs 모드에서 사용).</li></ul><h4>🛠️ 동작</h4><p><code>scipy.signal.resample</code>(푸리에 방법)을 사용합니다.</p><hr><h3>🧠 시스템 이해하기</h3><p>이 환경은 <b>신호 처리 흐름</b>으로 작동합니다.</p><pre>데이터 → 변환 → 결과</pre><h4>📐 핵심 규칙</h4><pre>모든 것은: (x, y)</pre><h4>🔁 공통 패턴</h4><pre>입력 → 처리 → 시각화</pre><hr><h4>⚡ 단축키와 팁</h4><ul><li><b>Ctrl + 클릭</b> 포트 → 포트를 선택하여 빠르게 연결합니다.</li><li><b>더블 클릭</b> 노드 → 이 도움말 창을 엽니다.</li><li><b>우클릭</b> → 상황에 맞는 메뉴(삭제, 구성).</li><li><b>드래그</b> 노드 → 전체 블록을 이동; 연결은 자동으로 업데이트됩니다.</li></ul>"
+    },
+    "data_collector": {
+      "title": "수동 데이터",
+      "ports": { "output": "출력" },
+      "no_data": "데이터 없음",
+      "preview": "미리보기",
+      "points": "점 (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "추가",
+      "remove": "삭제",
+      "clear": "지우기",
+      "paste": "붙여넣기",
+      "import_csv": "가져오기",
+      "export_csv": "내보내기",
+      "import_title": "데이터 가져오기",
+      "export_title": "CSV 내보내기",
+      "file_filter": "지원 파일 (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / 텍스트 (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;모든 파일 (*)",
+      "csv_filter": "CSV 파일 (*.csv);;모든 파일 (*)",
+      "error": "오류",
+      "info": "정보",
+      "no_points_to_export": "내보낼 점이 없습니다.",
+      "no_valid_points": "파일에서 유효한 점을 찾을 수 없습니다.",
+      "no_scipy": ".mat 파일을 로드하려면 scipy가 필요합니다.",
+      "npz_diagnostic": ".npz 파일에서 유효한 점을 찾을 수 없습니다.\\n{info}",
+      "npy_shape": "형태 {shape}의 배열은 호환되지 않습니다. 1D 또는 (N,2)/(2,N)이 필요합니다.",
+      "mat_diagnostic": ".mat 파일에서 유효한 점을 찾을 수 없습니다.\\n{info}",
+      "menu": { "configure": "구성..." },
+      "config_title": "데이터 수집기 구성",
+      "help_title": "도움말 - 데이터 수집기",
+      "help_html": "<h3>데이터 수집기 노드</h3><p>신호로 출력될 (x, y) 점의 수동 입력을 허용합니다.</p><ul><li><b>추가 / 삭제 / 지우기:</b> 테이블의 행을 관리합니다.</li><li><b>붙여넣기:</b> 클립보드에서 데이터를 붙여넣습니다(Excel, 텍스트, CSV).</li><li><b>가져오기:</b> CSV, NumPy (.npz/.npy), MATLAB (.mat) 또는 JSON에서 점을 로드합니다.</li><li><b>내보내기:</b> 점을 CSV 파일로 저장합니다.</li><li><b>미리보기:</b> 점의 실시간 시각화.</li></ul><p>출력 신호는 자동으로 X로 정렬됩니다.</p>"
+    },
+    "model_fit": {
+      "title": "모델 적합",
+      "custom_short": "사용자 지정",
+      "custom": "사용자 지정",
+      "waiting": "데이터 대기 중...",
+      "waiting_more": "추가 데이터 대기 중... ({n_points}/{n_params})",
+      "fitted": "적합됨 (N={n_points})",
+      "error_model": "오류: 잘못된 모델",
+      "error_nan": "오류: 잘못된 데이터",
+      "error_fit": "적합 오류",
+      "results": "적합 결과",
+      "model": "모델:",
+      "status": "상태:",
+      "expression": "수식:",
+      "n_points": "N 점 개수:",
+      "dof": "자유도:",
+      "configuration": "구성",
+      "model_type": "모델 유형:",
+      "n_fine": "세밀한 그리드 포인트:",
+      "custom_editor": "사용자 지정 모델 편집기",
+      "custom_hint": "'x'와 매개변수(a, b, c...)를 사용하여 수식을 작성하세요:",
+      "validate": "수식 검증",
+      "not_validated": "검증되지 않음",
+      "valid_ok": "유효한 수식",
+      "empty_expr": "오류: 빈 수식",
+      "params_detected": "매개변수: ",
+      "menu": { "configure": "구성..." },
+      "ports": { "input": "입력", "output": "출력" },
+      "config_title": "모델 적합 구성",
+      "help_title": "도움말 - 모델 적합",
+      "help_html": "\n            <h3>모델 적합 노드</h3>\n            <p>scipy.optimize.curve_fit을 사용하여 데이터(x, y)에 수학적 모델을 적합합니다.</p>\n            <h4>사전 정의된 모델:</h4>\n            <ul>\n                <li><b>선형 (Linear)</b>: a*x + b</li>\n                <li><b>이차 (Quadratic)</b>: a*x^2 + b*x + c</li>\n                <li><b>삼차 (Cubic)</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>지수 (Exponential)</b>: a*exp(b*x)</li>\n                <li><b>가우스 (Gaussian)</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>사인 (Sine)</b>: a*sin(b*x + c) + d</li>\n                <li><b>거듭제곱 (Power)</b>: a*x^b</li>\n                <li><b>로그 (Logarithmic)</b>: a*log(x) + b</li>\n                <li><b>로렌츠 (Lorentzian)</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>시그모이드 (Sigmoid)</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>사용자 지정 모델 (고급):</h4>\n            <p>모델 유형에서 <b>custom</b>을 선택하고 자신만의 수식을 작성하세요.\n            독립 변수로 <code>x</code>를 사용하고, 매개변수로 문자(a, b, c...)를 사용하세요.</p>\n            <p><b>유효한 예시:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>허용되는 함수:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>부드러운 곡선을 플롯하기 위해 노드는 (x_fine, y_fitted)를 반환합니다.</p>\n            <p>자유 매개변수보다 데이터 포인트가 적은 경우, 적합하지 않은 원본 데이터를 반환합니다.</p>\n            "
     },
     "window": {
       "title": "윈도우",

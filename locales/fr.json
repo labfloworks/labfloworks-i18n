@@ -816,8 +816,9 @@
       "help_html": "<h3>🔀 Nœud Convolution (Filtre RIF)</h3>\n<p>Applique une convolution discrète entre le signal d'entrée et un noyau défini par l'utilisateur.</p>\n\n<h4>📥 Entrée</h4>\n<p><code>input</code> → attend un tuple <code>(x, y)</code> ou un tableau 1D.</p>\n\n<h4>📤 Sortie</h4>\n<ul>\n    <li><b>Signal filtré</b> → <code>(x_conv, y_conv)</code> – résultat de la convolution.</li>\n</ul>\n\n<h4>⚙️ Paramètres (double-clic pour configurer)</h4>\n<ul>\n    <li><b>Coefficients du noyau</b> – flottants séparés par des virgules, ex. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Mode de convolution</b> – <code>'same'</code> (défaut), <code>'full'</code> ou <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Opération</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>L'axe x est ajusté en conséquence : pour <code>'same'</code> conserve x d'origine ; pour <code>'valid'</code> rogne les extrémités ; pour <code>'full'</code> étend linéairement.</li>\n</ul>\n\n<hr>\n<h3>🧠 Comment penser ce système</h3>\n\n<p>Cet environnement fonctionne comme un <b>flux de traitement du signal</b>.</p>\n\n<pre>\nDonnées → Transformation → Résultat\n</pre>\n\n<h4>📐 Règle clé</h4>\n<pre>\nTout est :\n\n(x, y)\n</pre>\n\n<h4>🔁 Schéma universel</h4>\n<pre>\nEntrée → Traitement → Visualisation\n</pre>\n\n<h4>🧪 Exemple complet</h4>\n<pre>\nOscilloscope → FFT → Filtre → Additionneur → Tracé\n</pre>\n\n<hr>\n<h4>⚡ Raccourcis et astuces</h4>\n<ul>\n<li><b>Ctrl + clic</b> sur un port → sélectionne le port pour une connexion rapide.</li>\n<li><b>Double clic</b> sur le nœud → ouvre cette fenêtre d'aide.</li>\n<li><b>Clic droit</b> → menu contextuel (supprimer, connecter, déconnecter).</li>\n<li><b>Glisser</b> le nœud → déplace tout le bloc ; les connexions se mettent à jour automatiquement.</li>\n</ul>"
     },
     "resample": {
-      "title": "Rééchantillonnage",
+      "title": "Rééchantillonner",
       "tooltip": "Changer la fréquence d'échantillonnage du signal",
+      "method": "Méthode :",
       "ports": {
         "input": "Entrée",
         "output": "Sortie"
@@ -827,14 +828,105 @@
         "ready": "Prêt"
       },
       "menu": {
-        "configure": "Configurer…"
+        "configure": "Configurer...",
+        "method": "Méthode",
+        "mode": "Mode"
       },
-      "config_title": "Configurer le Rééchantillonnage",
+      "methods": {
+        "fft": {
+          "label": "FFT (périodique)",
+          "tooltip": "Idéal pour les signaux sinusoïdaux, périodiques ou avec peu d'harmoniques."
+        },
+        "linear": {
+          "label": "Linéaire",
+          "tooltip": "Rapide et stable. Bon pour les profils lisses ou les signaux non périodiques."
+        },
+        "cubic": {
+          "label": "Cubique (spline)",
+          "tooltip": "Adoucit les transitions. Recommandé pour les signaux complexes avec changements graduels."
+        },
+        "nearest": {
+          "label": "Voisin le plus proche",
+          "tooltip": "Conserve les valeurs exactes. Utile pour les signaux numériques ou les marches."
+        },
+        "polyphase": {
+          "label": "Polyphase",
+          "tooltip": "Haute qualité avec filtrage intégré. Idéal pour l'up/down-sampling avec facteurs rationnels."
+        },
+        "zero_order_hold": {
+          "label": "Maintien d'ordre zéro",
+          "tooltip": "Similaire au voisin le plus proche, mais conserve la dernière valeur connue."
+        }
+      },
+      "config_title": "Configurer le rééchantillonnage",
       "mode": "Mode :",
       "factor": "Facteur :",
-      "target_fs": "Fréquence cible (Hz) :",
-      "help_title": "Aide - Rééchantillonnage",
-      "help_html": "<h3>🔄 Nœud Rééchantillonnage</h3><p>Change la <b>fréquence d'échantillonnage</b> du signal d'entrée.</p><h4>📥 Entrée</h4><p><code>input</code> → attend un tuple <code>(x, y)</code> ou un tableau 1D.</p><h4>📤 Sortie</h4><p><code>output</code> → signal rééchantillonné sous forme <code>(x_new, y_new)</code>.</p><h4>⚙️ Paramètres</h4><ul><li><b>Mode</b> – <i>factor</i> (multiplie la fréquence d'échantillonnage d'origine) ou <i>fixed_fs</i> (fréquence d'échantillonnage cible en Hz).</li><li><b>Facteur</b> – facteur d'échelle (>1 augmente les échantillons, <1 diminue).</li><li><b>Fréquence cible</b> – fréquence d'échantillonnage désirée en Hz (utilisée quand le mode est fixed_fs).</li></ul><h4>️ Fonctionnement</h4><p>Utilise <code>scipy.signal.resample</code> qui applique une méthode de Fourier.</p><hr><hr><h3>🧠 Comment penser ce système</h3><p>Cet environnement fonctionne comme un <b>flux de traitement du signal</b>.</p><pre>Données → Transformation → Résultat</pre><h4>📐 Règle clé</h4><pre>Tout est : (x, y)</pre><h4>🔁 Schéma universel</h4><pre>Entrée → Traitement → Visualisation</pre><hr><h4>⚡ Raccourcis et astuces</h4><ul><li><b>Ctrl + clic</b> sur un port → sélectionne le port pour une connexion rapide.</li><li><b>Double clic</b> sur le nœud → ouvre cette fenêtre d'aide.</li><li><b>Clic droit</b> → menu contextuel (supprimer, configurer).</li><li><b>Glisser</b> le nœud → déplace tout le bloc ; les connexions se mettent à jour automatiquement.</li></ul>"
+      "target_fs": "Fs cible (Hz) :",
+      "help_title": "Aide - Rééchantillonner",
+      "help_html": "<h3>🔄 Nœud Rééchantillonner</h3><p>Modifie la <b>fréquence d'échantillonnage</b> du signal d'entrée.</p><h4>📥 Entrée</h4><p><code>input</code> → attend un tuple <code>(x, y)</code> ou un tableau 1D.</p><h4>📤 Sortie</h4><p><code>output</code> → signal rééchantillonné sous forme <code>(x_new, y_new)</code>.</p><h4>⚙️ Paramètres</h4><ul><li><b>Mode</b> – <i>factor</i> (multiplie la fréquence d'origine) ou <i>fixed_fs</i> (fréquence cible en Hz).</li><li><b>Facteur</b> – échelle (>1 augmente les échantillons, <1 réduit).</li><li><b>Fs cible</b> – fréquence souhaitée en Hz (utilisé en mode fixed_fs).</li></ul><h4>🛠️ Fonctionnement</h4><p>Utilise <code>scipy.signal.resample</code> (méthode de Fourier).</p><hr><h3>🧠 Comment penser ce système</h3><p>Cet environnement fonctionne comme un <b>flux de traitement du signal</b>.</p><pre>Données → Transformation → Résultat</pre><h4>📐 Règle clé</h4><pre>Tout est : (x, y)</pre><h4>🔁 Schéma universel</h4><pre>Entrée → Traitement → Visualisation</pre><hr><h4>⚡ Raccourcis et astuces</h4><ul><li><b>Ctrl + clic</b> sur un port → sélectionne le port pour connexion rapide.</li><li><b>Double clic</b> sur le nœud → ouvre cette fenêtre d'aide.</li><li><b>Clic droit</b> → menu contextuel (supprimer, configurer).</li><li><b>Glisser</b> le nœud → déplace tout le bloc; les connexions se mettent à jour automatiquement.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Données manuelles",
+      "ports": { "output": "Sortie" },
+      "no_data": "Pas de données",
+      "preview": "Aperçu",
+      "points": "Points (x, y) :",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Ajouter",
+      "remove": "Supprimer",
+      "clear": "Effacer",
+      "paste": "Coller",
+      "import_csv": "Importer",
+      "export_csv": "Exporter",
+      "import_title": "Importer des données",
+      "export_title": "Exporter CSV",
+      "file_filter": "Fichiers supportés (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Texte (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Tous les fichiers (*)",
+      "csv_filter": "Fichiers CSV (*.csv);;Tous les fichiers (*)",
+      "error": "Erreur",
+      "info": "Information",
+      "no_points_to_export": "Aucun point à exporter.",
+      "no_valid_points": "Aucun point valide trouvé dans le fichier.",
+      "no_scipy": "scipy est nécessaire pour charger les fichiers .mat.",
+      "npz_diagnostic": "Aucun point valide trouvé dans le fichier .npz.\\n{info}",
+      "npy_shape": "Tableau de forme {shape} non compatible. Attendu : 1D ou (N,2)/(2,N).",
+      "mat_diagnostic": "Aucun point valide trouvé dans le fichier .mat.\\n{info}",
+      "menu": { "configure": "Configurer..." },
+      "config_title": "Configurer le collecteur de données",
+      "help_title": "Aide - Collecteur de données",
+      "help_html": "<h3>Nœud collecteur de données</h3><p>Permet la saisie manuelle de points (x, y) qui seront émis comme un signal.</p><ul><li><b>Ajouter / Supprimer / Effacer :</b> Gérer les lignes du tableau.</li><li><b>Coller :</b> Coller des données depuis le presse-papiers (Excel, texte, CSV).</li><li><b>Importer :</b> Charger des points depuis CSV, NumPy (.npz/.npy), MATLAB (.mat) ou JSON.</li><li><b>Exporter :</b> Enregistrer les points dans un fichier CSV.</li><li><b>Aperçu :</b> Visualisation en temps réel des points.</li></ul><p>Le signal de sortie est automatiquement trié par X.</p>"
+    },
+    "model_fit": {
+      "title": "Ajustement de modèle",
+      "custom_short": "Personnalisé",
+      "custom": "Personnalisé",
+      "waiting": "En attente de données...",
+      "waiting_more": "En attente de plus de données... ({n_points}/{n_params})",
+      "fitted": "Ajusté (N={n_points})",
+      "error_model": "Erreur : modèle invalide",
+      "error_nan": "Erreur : données invalides",
+      "error_fit": "Erreur d'ajustement",
+      "results": "Résultats de l'ajustement",
+      "model": "Modèle :",
+      "status": "Statut :",
+      "expression": "Expression :",
+      "n_points": "N points :",
+      "dof": "Degrés de liberté :",
+      "configuration": "Configuration",
+      "model_type": "Type de modèle :",
+      "n_fine": "Points de maillage fin :",
+      "custom_editor": "Éditeur de modèle personnalisé",
+      "custom_hint": "Écrivez une expression utilisant 'x' et des paramètres (a, b, c...) :",
+      "validate": "Valider l'expression",
+      "not_validated": "Non validé",
+      "valid_ok": "Expression valide",
+      "empty_expr": "Erreur : expression vide",
+      "params_detected": "Paramètres : ",
+      "menu": { "configure": "Configurer..." },
+      "ports": { "input": "Entrée", "output": "Sortie" },
+      "config_title": "Configurer l'ajustement de modèle",
+      "help_title": "Aide - Ajustement de modèle",
+      "help_html": "\n            <h3>Nœud d'ajustement de modèle</h3>\n            <p>Ajuste des modèles mathématiques à des données (x, y) en utilisant scipy.optimize.curve_fit.</p>\n            <h4>Modèles prédéfinis :</h4>\n            <ul>\n                <li><b>Linéaire</b> : a*x + b</li>\n                <li><b>Quadratique</b> : a*x^2 + b*x + c</li>\n                <li><b>Cubique</b> : a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Exponentiel</b> : a*exp(b*x)</li>\n                <li><b>Gaussien</b> : a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Sinusoïdal</b> : a*sin(b*x + c) + d</li>\n                <li><b>Puissance</b> : a*x^b</li>\n                <li><b>Logarithmique</b> : a*log(x) + b</li>\n                <li><b>Lorentzien</b> : a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoïde</b> : a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Modèle personnalisé (avancé) :</h4>\n            <p>Sélectionnez <b>custom</b> comme type de modèle et écrivez votre propre expression.\n            Utilisez <code>x</code> comme variable indépendante et des lettres (a, b, c...) comme paramètres.</p>\n            <p><b>Exemples valides :</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Fonctions autorisées :</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>Le nœud renvoie (x_fino, y_ajustado) pour tracer la courbe lisse.</p>\n            <p>S'il y a moins de points que de paramètres libres, il renvoie les données originales sans ajustement.</p>\n            "
     },
     "window": {
       "title": "Fenêtre",

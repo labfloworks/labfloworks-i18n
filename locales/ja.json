@@ -816,8 +816,9 @@
       "help_html": "<h3>🔀 畳み込みノード (FIRフィルタ)</h3>\n<p>入力信号とユーザー定義カーネルの間で離散畳み込みを実行します。</p>\n\n<h4>📥 入力</h4>\n<p><code>input</code> → <code>(x, y)</code> タプルまたは1次元配列を期待します。</p>\n\n<h4>📤 出力</h4>\n<ul>\n    <li><b>フィルタ後信号</b> → <code>(x_conv, y_conv)</code> – 畳み込みの結果。</li>\n</ul>\n\n<h4>⚙️ パラメータ（ダブルクリックで設定）</h4>\n<ul>\n    <li><b>カーネル係数</b> – カンマ区切りの浮動小数点数、例: <code>'0.2,0.2,0.2,0.2,0.2'</code>。</li>\n    <li><b>畳み込みモード</b> – <code>'same'</code>（デフォルト）、<code>'full'</code>、または <code>'valid'</code>。</li>\n</ul>\n\n<h4>📐 動作</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>x軸は適切に調整されます: <code>'same'</code> は元のxを保持。 <code>'valid'</code> は端を切り詰め。 <code>'full'</code> は線形に拡張。</li>\n</ul>\n\n<hr>\n<h3>🧠 このシステムの考え方</h3>\n\n<p>この環境は<b>信号処理フロー</b>として機能します。</p>\n\n<pre>\nデータ → 変換 → 結果\n</pre>\n\n<h4>📐 重要なルール</h4>\n<pre>\nすべては:\n\n(x, y)\n</pre>\n\n<h4>🔁 ユニバーサルパターン</h4>\n<pre>\n入力 → 処理 → 可視化\n</pre>\n\n<h4>🧪 完全な例</h4>\n<pre>\nオシロスコープ → FFT → フィルタ → 加算器 → プロット\n</pre>\n\n<hr>\n<h4>⚡ ショートカットとヒント</h4>\n<ul>\n<li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li>\n<li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li>\n<li><b>右クリック</b> → コンテキストメニュー（削除、接続、切断）。</li>\n<li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li>\n</ul>"
     },
     "resample": {
-      "title": "リサンプリング",
-      "tooltip": "信号のサンプリングレートを変更",
+      "title": "リサンプル",
+      "tooltip": "信号のサンプリング周波数を変更します",
+      "method": "方式:",
       "ports": {
         "input": "入力",
         "output": "出力"
@@ -827,14 +828,105 @@
         "ready": "準備完了"
       },
       "menu": {
-        "configure": "設定…"
+        "configure": "設定...",
+        "method": "方式",
+        "mode": "モード"
       },
-      "config_title": "リサンプリングを設定",
+      "methods": {
+        "fft": {
+          "label": "FFT (周期的)",
+          "tooltip": "正弦波、周期信号、高調波が少ない信号に最適です。"
+        },
+        "linear": {
+          "label": "線形",
+          "tooltip": "高速で安定しています。滑らかな波形や非周期信号に適しています。"
+        },
+        "cubic": {
+          "label": "3次スプライン",
+          "tooltip": "変化を滑らかにします。緩やかな変化を持つ複雑な信号に推奨されます。"
+        },
+        "nearest": {
+          "label": "最近傍補間",
+          "tooltip": "正確な値を保持します。デジタル信号やステップ波形に有用です。"
+        },
+        "polyphase": {
+          "label": "ポリフェーズ",
+          "tooltip": "統合フィルタリングにより高品質。有理数係数のアップ/ダウンサンプリングに最適です。"
+        },
+        "zero_order_hold": {
+          "label": "ゼロ次保持",
+          "tooltip": "最近傍補間に似ていますが、最後の既知の値を保持します。"
+        }
+      },
+      "config_title": "リサンプルの設定",
       "mode": "モード:",
       "factor": "係数:",
       "target_fs": "目標fs (Hz):",
-      "help_title": "ヘルプ - リサンプリング",
-      "help_html": "<h3>🔄 リサンプリングノード</h3><p>入力信号の<b>サンプリングレート</b>を変更します。</p><h4>📥 入力</h4><p><code>input</code> → <code>(x, y)</code> タプルまたは1次元配列を期待します。</p><h4>📤 出力</h4><p><code>output</code> → リサンプリングされた信号 <code>(x_new, y_new)</code>。</p><h4>⚙️ パラメータ</h4><ul><li><b>モード</b> – <i>factor</i>（元のサンプリングレートを乗算）または <i>fixed_fs</i>（目標サンプリングレートをHzで指定）。</li><li><b>係数</b> – スケーリング係数（>1でサンプル増加、<1で減少）。</li><li><b>目標fs</b> – 希望のサンプリングレート（Hz）（fixed_fsモード時に使用）。</li></ul><h4>🛠️ 動作</h4><p><code>scipy.signal.resample</code> を使用し、フーリエ法を適用します。</p><hr><hr><h3>🧠 このシステムの考え方</h3><p>この環境は<b>信号処理フロー</b>として機能します。</p><pre>データ → 変換 → 結果</pre><h4>📐 重要なルール</h4><pre>すべては: (x, y)</pre><h4>🔁 ユニバーサルパターン</h4><pre>入力 → 処理 → 可視化</pre><hr><h4>⚡ ショートカットとヒント</h4><ul><li><b>Ctrl + クリック</b>ポート → ポートを選択して素早く接続。</li><li><b>ダブルクリック</b>ノード → このヘルプウィンドウを開く。</li><li><b>右クリック</b> → コンテキストメニュー（削除、設定）。</li><li><b>ドラッグ</b>ノード → ブロック全体を移動。接続は自動更新されます。</li></ul>"
+      "help_title": "ヘルプ - リサンプル",
+      "help_html": "<h3>🔄 リサンプルノード</h3><p>入力信号の<b>サンプリング周波数</b>を変更します。</p><h4>📥 入力</h4><p><code>input</code> → タプル <code>(x, y)</code> または1次元配列を受け取ります。</p><h4>📤 出力</h4><p><code>output</code> → リサンプルされた信号 <code>(x_new, y_new)</code> を出力します。</p><h4>⚙️ パラメータ</h4><ul><li><b>モード</b> – <i>factor</i>（元の周波数を乗算）または <i>fixed_fs</i>（目標周波数Hz）。</li><li><b>係数</b> – 倍率（>1でサンプル増加、<1で減少）。</li><li><b>目標fs</b> – 希望の周波数（Hz）（fixed_fsモードで使用）。</li></ul><h4>🛠️ 動作</h4><p><code>scipy.signal.resample</code>（フーリエ法）を使用します。</p><hr><h3>🧠 システムの考え方</h3><p>この環境は<b>信号処理フロー</b>として動作します。</p><pre>データ → 変換 → 結果</pre><h4>📐 基本ルール</h4><pre>すべては: (x, y)</pre><h4>🔁 共通パターン</h4><pre>入力 → 処理 → 可視化</pre><hr><h4>⚡ ショートカットとヒント</h4><ul><li><b>Ctrl + クリック</b> ポート → ポートを選択して素早く接続します。</li><li><b>ダブルクリック</b> ノード → このヘルプウィンドウを開きます。</li><li><b>右クリック</b> → コンテキストメニュー（削除、設定）。</li><li><b>ドラッグ</b> ノード → ブロック全体を移動; 接続は自動更新されます。</li></ul>"
+    },
+    "data_collector": {
+      "title": "手動データ",
+      "ports": { "output": "出力" },
+      "no_data": "データなし",
+      "preview": "プレビュー",
+      "points": "ポイント (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "追加",
+      "remove": "削除",
+      "clear": "クリア",
+      "paste": "貼り付け",
+      "import_csv": "インポート",
+      "export_csv": "エクスポート",
+      "import_title": "データのインポート",
+      "export_title": "CSVのエクスポート",
+      "file_filter": "対応ファイル (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / テキスト (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;すべてのファイル (*)",
+      "csv_filter": "CSVファイル (*.csv);;すべてのファイル (*)",
+      "error": "エラー",
+      "info": "情報",
+      "no_points_to_export": "エクスポートするポイントがありません。",
+      "no_valid_points": "ファイルに有効なポイントが見つかりませんでした。",
+      "no_scipy": ".matファイルを読み込むにはscipyが必要です。",
+      "npz_diagnostic": ".npzファイルに有効なポイントが見つかりませんでした。\\n{info}",
+      "npy_shape": "形状 {shape} の配列は互換性がありません。1D または (N,2)/(2,N) が期待されます。",
+      "mat_diagnostic": ".matファイルに有効なポイントが見つかりませんでした。\\n{info}",
+      "menu": { "configure": "設定..." },
+      "config_title": "データコレクタの設定",
+      "help_title": "ヘルプ - データコレクタ",
+      "help_html": "<h3>データコレクタノード</h3><p>信号として出力される (x, y) ポイントの手動入力を可能にします。</p><ul><li><b>追加 / 削除 / クリア:</b> テーブルの行を管理します。</li><li><b>貼り付け:</b> クリップボードからデータを貼り付けます（Excel、テキスト、CSV）。</li><li><b>インポート:</b> CSV、NumPy (.npz/.npy)、MATLAB (.mat)、JSON からポイントを読み込みます。</li><li><b>エクスポート:</b> ポイントを CSV ファイルに保存します。</li><li><b>プレビュー:</b> ポイントのリアルタイム視覚化。</li></ul><p>出力信号は自動的に X でソートされます。</p>"
+    },
+    "model_fit": {
+      "title": "モデルフィッティング",
+      "custom_short": "カスタム",
+      "custom": "カスタム",
+      "waiting": "データを待機中...",
+      "waiting_more": "さらなるデータを待機中... ({n_points}/{n_params})",
+      "fitted": "フィッティング完了 (N={n_points})",
+      "error_model": "エラー: 無効なモデル",
+      "error_nan": "エラー: 無効なデータ",
+      "error_fit": "フィッティングエラー",
+      "results": "フィッティング結果",
+      "model": "モデル:",
+      "status": "ステータス:",
+      "expression": "式:",
+      "n_points": "N 点:",
+      "dof": "自由度:",
+      "configuration": "設定",
+      "model_type": "モデルタイプ:",
+      "n_fine": "細密メッシュポイント:",
+      "custom_editor": "カスタムモデルエディタ",
+      "custom_hint": "'x' とパラメータ (a, b, c...) を使用して式を記述してください:",
+      "validate": "式を検証",
+      "not_validated": "未検証",
+      "valid_ok": "有効な式",
+      "empty_expr": "エラー: 式が空です",
+      "params_detected": "パラメータ: ",
+      "menu": { "configure": "設定..." },
+      "ports": { "input": "入力", "output": "出力" },
+      "config_title": "モデルフィッティングの設定",
+      "help_title": "ヘルプ - モデルフィッティング",
+      "help_html": "\n            <h3>モデルフィッティングノード</h3>\n            <p>scipy.optimize.curve_fit を使用して、データ (x, y) に数理モデルをフィッティングします。</p>\n            <h4>事前定義モデル:</h4>\n            <ul>\n                <li><b>線形 (Linear)</b>: a*x + b</li>\n                <li><b>二次 (Quadratic)</b>: a*x^2 + b*x + c</li>\n                <li><b>三次 (Cubic)</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>指数 (Exponential)</b>: a*exp(b*x)</li>\n                <li><b>ガウス (Gaussian)</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>正弦波 (Sine)</b>: a*sin(b*x + c) + d</li>\n                <li><b>べき乗 (Power)</b>: a*x^b</li>\n                <li><b>対数 (Logarithmic)</b>: a*log(x) + b</li>\n                <li><b>ローレンツ (Lorentzian)</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>シグモイド (Sigmoid)</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>カスタムモデル (高度):</h4>\n            <p>モデルタイプで <b>custom</b> を選択し、独自の式を記述します。\n            独立変数として <code>x</code> を、パラメータとして文字 (a, b, c...) を使用します。</p>\n            <p><b>有効な例:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>使用可能な関数:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>スムーズな曲線を描画するために、ノードは (x_fine, y_fitted) を返します。</p>\n            <p>自由パラメータよりもデータ点数が少ない場合、フィッティングを行わずに元のデータを返します。</p>\n            "
     },
     "window": {
       "title": "窓関数",

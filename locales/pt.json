@@ -816,8 +816,9 @@
       "help_html": "<h3>🔀 Nó Convolução (Filtro FIR)</h3>\n<p>Aplica uma convolução discreta entre o sinal de entrada e um kernel definido pelo usuário.</p>\n\n<h4>📥 Entrada</h4>\n<p><code>input</code> → espera uma tupla <code>(x, y)</code> ou um array 1D.</p>\n\n<h4>📤 Saída</h4>\n<ul>\n    <li><b>Sinal filtrado</b> → <code>(x_conv, y_conv)</code> – resultado da convolução.</li>\n</ul>\n\n<h4>⚙️ Parâmetros (clique duplo para configurar)</h4>\n<ul>\n    <li><b>Coeficientes do kernel</b> – floats separados por vírgula, ex: <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Modo de convolução</b> – <code>'same'</code> (padrão), <code>'full'</code> ou <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Operação</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>O eixo x é ajustado de acordo: para <code>'same'</code> mantém o x original; para <code>'valid'</code> corta as extremidades; para <code>'full'</code> estende linearmente.</li>\n</ul>\n\n<hr>\n<h3>🧠 Como pensar sobre este sistema</h3>\n\n<p>Este ambiente funciona como um <b>fluxo de processamento de sinais</b>.</p>\n\n<pre>\nDados → Transformação → Resultado\n</pre>\n\n<h4>📐 Regra chave</h4>\n<pre>\nTudo é:\n\n(x, y)\n</pre>\n\n<h4>🔁 Padrão universal</h4>\n<pre>\nEntrada → Processamento → Visualização\n</pre>\n\n<h4>🧪 Exemplo completo</h4>\n<pre>\nOsciloscópio → FFT → Filtro → Somador → Gráfico\n</pre>\n\n<hr>\n<h4>⚡ Atalhos e truques</h4>\n<ul>\n    <li><b>Ctrl + clique</b> em uma porta → seleciona a porta para conexão rápida.</li>\n    <li><b>Clique duplo</b> no nó → abre esta janela de ajuda.</li>\n    <li><b>Clique direito</b> → menu de contexto (deletar, conectar, desconectar).</li>\n    <li><b>Arrastar</b> o nó → move o bloco inteiro; as conexões são atualizadas automaticamente.</li>\n</ul>"
     },
     "resample": {
-      "title": "Ressampling",
+      "title": "Reamostrar",
       "tooltip": "Alterar a taxa de amostragem do sinal",
+      "method": "Método:",
       "ports": {
         "input": "Entrada",
         "output": "Saída"
@@ -827,14 +828,105 @@
         "ready": "Pronto"
       },
       "menu": {
-        "configure": "Configurar..."
+        "configure": "Configurar...",
+        "method": "Método",
+        "mode": "Modo"
       },
-      "config_title": "Configurar Ressampling",
-      "mode": "Modo: ",
-      "factor": "Fator: ",
-      "target_fs": "Fs alvo (Hz): ",
-      "help_title": "Ajuda - Ressampling",
-      "help_html": "<h3>🔄 Nó Ressampling</h3><p>Altera a <b>taxa de amostragem</b> do sinal de entrada.</p><h4>📥 Entrada</h4><p><code>input</code> → espera uma tupla <code>(x, y)</code> ou um array 1D.</p><h4>📤 Saída</h4><p><code>output</code> → sinal reamostrado como <code>(x_new, y_new)</code>.</p><h4>⚙️ Parâmetros</h4><ul><li><b>Modo</b> – <i>fator</i> (multiplica a taxa de amostragem original) ou <i>fixed_fs</i> (taxa de amostragem alvo em Hz).</li><li><b>Fator</b> – fator de escala (>1 aumenta amostras, <1 diminui).</li><li><b>Fs alvo</b> – taxa de amostragem desejada em Hz (usado quando o modo é fixed_fs).</li></ul><h4>🛠️ Operação</h4><p>Usa <code>scipy.signal.resample</code> que aplica um método de Fourier.</p><hr><hr><h3>🧠 Como pensar sobre este sistema</h3><p>Este ambiente funciona como um <b>fluxo de processamento de sinais</b>.</p><pre>Dados → Transformação → Resultado</pre><h4>📐 Regra chave</h4><pre>Tudo é: (x, y)</pre><h4>🔁 Padrão universal</h4><pre>Entrada → Processamento → Visualização</pre><hr><h4>⚡ Atalhos e truques</h4><ul><li><b>Ctrl + clique</b> em uma porta → seleciona a porta para conexão rápida.</li><li><b>Clique duplo</b> no nó → abre esta janela de ajuda.</li><li><b>Clique direito</b> → menu de contexto (deletar, configurar).</li><li><b>Arrastar</b> o nó → move o bloco inteiro; as conexões são atualizadas automaticamente.</li></ul>"
+      "methods": {
+        "fft": {
+          "label": "FFT (periódica)",
+          "tooltip": "Ideal para sinais senoidais, periódicos ou com poucos harmônicos."
+        },
+        "linear": {
+          "label": "Linear",
+          "tooltip": "Rápido e estável. Bom para perfis suaves ou sinais não periódicos."
+        },
+        "cubic": {
+          "label": "Cúbica (spline)",
+          "tooltip": "Suaviza transições. Recomendada para sinais complexos com mudanças graduais."
+        },
+        "nearest": {
+          "label": "Vizinho mais próximo",
+          "tooltip": "Preserva valores exatos. Útil para sinais digitais ou degraus."
+        },
+        "polyphase": {
+          "label": "Polifásica",
+          "tooltip": "Alta qualidade com filtragem integrada. Ideal para up/down-sampling com fatores racionais."
+        },
+        "zero_order_hold": {
+          "label": "Retenção de ordem zero",
+          "tooltip": "Similar ao vizinho mais próximo, mas mantém o último valor conhecido."
+        }
+      },
+      "config_title": "Configurar reamostragem",
+      "mode": "Modo:",
+      "factor": "Fator:",
+      "target_fs": "Fs alvo (Hz):",
+      "help_title": "Ajuda - Reamostrar",
+      "help_html": "<h3>🔄 Nó Reamostrar</h3><p>Altera a <b>taxa de amostragem</b> do sinal de entrada.</p><h4>📥 Entrada</h4><p><code>input</code> → espera uma tupla <code>(x, y)</code> ou um array 1D.</p><h4>📤 Saída</h4><p><code>output</code> → sinal reamostrado como <code>(x_new, y_new)</code>.</p><h4>⚙️ Parâmetros</h4><ul><li><b>Modo</b> – <i>factor</i> (multiplica a frequência original) ou <i>fixed_fs</i> (frequência alvo em Hz).</li><li><b>Fator</b> – escala (>1 aumenta amostras, <1 reduz).</li><li><b>Fs alvo</b> – frequência desejada em Hz (usado no modo fixed_fs).</li></ul><h4>🛠️ Funcionamento</h4><p>Usa <code>scipy.signal.resample</code> (método de Fourier).</p><hr><h3>🧠 Como pensar neste sistema</h3><p>Este ambiente funciona como um <b>fluxo de processamento de sinais</b>.</p><pre>Dado → Transformação → Resultado</pre><h4>📐 Regra chave</h4><pre>Tudo é: (x, y)</pre><h4>🔁 Padrão universal</h4><pre>Entrada → Processamento → Visualização</pre><hr><h4>⚡ Atalhos e truques</h4><ul><li><b>Ctrl + clique</b> em uma porta → seleciona a porta para conexão rápida.</li><li><b>Duplo clique</b> no nó → abre esta janela de ajuda.</li><li><b>Clique direito</b> → menu de contexto (excluir, configurar).</li><li><b>Arrastar</b> o nó → move todo o bloco; as conexões se atualizam automaticamente.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Dados Manuais",
+      "ports": { "output": "Saída" },
+      "no_data": "Sem dados",
+      "preview": "Pré-visualização",
+      "points": "Pontos (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Adicionar",
+      "remove": "Remover",
+      "clear": "Limpar",
+      "paste": "Colar",
+      "import_csv": "Importar",
+      "export_csv": "Exportar",
+      "import_title": "Importar dados",
+      "export_title": "Exportar CSV",
+      "file_filter": "Arquivos suportados (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Texto (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Todos os arquivos (*)",
+      "csv_filter": "Arquivos CSV (*.csv);;Todos os arquivos (*)",
+      "error": "Erro",
+      "info": "Informação",
+      "no_points_to_export": "Nenhum ponto para exportar.",
+      "no_valid_points": "Nenhum ponto válido encontrado no arquivo.",
+      "no_scipy": "scipy é necessário para carregar arquivos .mat.",
+      "npz_diagnostic": "Nenhum ponto válido encontrado no arquivo .npz.\\n{info}",
+      "npy_shape": "Array com forma {shape} não é compatível. Esperado 1D ou (N,2)/(2,N).",
+      "mat_diagnostic": "Nenhum ponto válido encontrado no arquivo .mat.\\n{info}",
+      "menu": { "configure": "Configurar..." },
+      "config_title": "Configurar Coletor de Dados",
+      "help_title": "Ajuda - Coletor de Dados",
+      "help_html": "<h3>Nó Coletor de Dados</h3><p>Permite a entrada manual de pontos (x, y) que serão emitidos como um sinal.</p><ul><li><b>Adicionar / Remover / Limpar:</b> Gerenciar linhas na tabela.</li><li><b>Colar:</b> Colar dados da área de transferência (Excel, texto, CSV).</li><li><b>Importar:</b> Carregar pontos de CSV, NumPy (.npz/.npy), MATLAB (.mat) ou JSON.</li><li><b>Exportar:</b> Salvar pontos em um arquivo CSV.</li><li><b>Pré-visualização:</b> Visualização em tempo real dos pontos.</li></ul><p>O sinal de saída é automaticamente ordenado por X.</p>"
+    },
+    "model_fit": {
+      "title": "Ajuste de Modelo",
+      "custom_short": "Personalizado",
+      "custom": "Personalizado",
+      "waiting": "Aguardando dados...",
+      "waiting_more": "Aguardando mais dados... ({n_points}/{n_params})",
+      "fitted": "Ajustado (N={n_points})",
+      "error_model": "Erro: modelo inválido",
+      "error_nan": "Erro: dados inválidos",
+      "error_fit": "Erro no ajuste",
+      "results": "Resultados do ajuste",
+      "model": "Modelo:",
+      "status": "Status:",
+      "expression": "Expressão:",
+      "n_points": "N pontos:",
+      "dof": "Graus de liberdade:",
+      "configuration": "Configuração",
+      "model_type": "Tipo de modelo:",
+      "n_fine": "Pontos de malha fina:",
+      "custom_editor": "Editor de modelo personalizado",
+      "custom_hint": "Escreva uma expressão usando 'x' e parâmetros (a, b, c...):",
+      "validate": "Validar expressão",
+      "not_validated": "Não validado",
+      "valid_ok": "Expressão válida",
+      "empty_expr": "Erro: expressão vazia",
+      "params_detected": "Parâmetros: ",
+      "menu": { "configure": "Configurar..." },
+      "ports": { "input": "Entrada", "output": "Saída" },
+      "config_title": "Configurar ajuste de modelo",
+      "help_title": "Ajuda - Ajuste de Modelo",
+      "help_html": "\n            <h3>Nó de ajuste de modelo</h3>\n            <p>Ajusta modelos matemáticos a dados (x, y) usando scipy.optimize.curve_fit.</p>\n            <h4>Modelos predefinidos:</h4>\n            <ul>\n                <li><b>Linear</b>: a*x + b</li>\n                <li><b>Quadrático</b>: a*x^2 + b*x + c</li>\n                <li><b>Cúbico</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Exponencial</b>: a*exp(b*x)</li>\n                <li><b>Gaussiano</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Seno</b>: a*sin(b*x + c) + d</li>\n                <li><b>Potência</b>: a*x^b</li>\n                <li><b>Logarítmico</b>: a*log(x) + b</li>\n                <li><b>Lorentziano</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoide</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Modelo personalizado (avançado):</h4>\n            <p>Selecione <b>custom</b> no tipo de modelo e escreva sua própria expressão.\n            Use <code>x</code> como variável independente e letras (a, b, c...) como parâmetros.</p>\n            <p><b>Exemplos válidos:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Funções permitidas:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>O nó retorna (x_fino, y_ajustado) para plotar a curva suave.</p>\n            <p>Se houver menos pontos do que parâmetros livres, ele retorna os dados originais sem ajuste.</p>\n            "
     },
     "window": {
       "title": "Janela",

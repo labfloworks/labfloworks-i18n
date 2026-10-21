@@ -800,24 +800,116 @@
     },
     "resample": {
       "title": "Reeșantionare",
-      "tooltip": "Schimbă rata de eșantionare a semnalului",
+      "tooltip": "Schimbă frecvența de eșantionare a semnalului",
+      "method": "Metodă:",
       "ports": {
         "input": "Intrare",
         "output": "Ieșire"
       },
       "status": {
         "no_data": "Fără date",
-        "ready": "Pregătit"
+        "ready": "Gata"
       },
       "menu": {
-        "configure": "Configurează..."
+        "configure": "Configurare...",
+        "method": "Metodă",
+        "mode": "Mod"
       },
-      "config_title": "Configurează reeșantionarea",
+      "methods": {
+        "fft": {
+          "label": "FFT (periodic)",
+          "tooltip": "Ideal pentru semnale sinusoidale, periodice sau cu puține armonici."
+        },
+        "linear": {
+          "label": "Liniară",
+          "tooltip": "Rapidă și stabilă. Bună pentru profiluri netede sau semnale neperiodice."
+        },
+        "cubic": {
+          "label": "Cubica (spline)",
+          "tooltip": "Netezește tranzițiile. Recomandată pentru semnale complexe cu modificări graduale."
+        },
+        "nearest": {
+          "label": "Cel mai apropiat vecin",
+          "tooltip": "Păstrează valorile exacte. Util pentru semnale digitale sau trepte."
+        },
+        "polyphase": {
+          "label": "Polifazică",
+          "tooltip": "Calitate ridicată cu filtrare integrată. Ideală pentru up/down-sampling cu factori raționali."
+        },
+        "zero_order_hold": {
+          "label": "Menținere de ordin zero",
+          "tooltip": "Similar cu cel mai apropiat vecin, dar păstrează ultima valoare cunoscută."
+        }
+      },
+      "config_title": "Configurare reeșantionare",
       "mode": "Mod:",
       "factor": "Factor:",
-      "target_fs": "fs țintă (Hz):",
+      "target_fs": "Fs țintă (Hz):",
       "help_title": "Ajutor - Reeșantionare",
-      "help_html": "<h3>🔄 Nod de reeșantionare</h3><p>Schimbă <b>rata de eșantionare</b> a semnalului de intrare.</p><h4>📥 Intrare</h4><p><code>input</code> → așteaptă un tuplu <code>(x, y)</code> sau un array 1D.</p><h4>📤 Ieșire</h4><p><code>output</code> → semnal reeșantionat ca <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametri</h4><ul><li><b>Mod</b> – <i>factor</i> (înmulțește rata de eșantionare originală) sau <i>fixed_fs</i> (rată de eșantionare țintă în Hz).</li><li><b>Factor</b> – factor de scalare (>1 crește numărul de eșantioane, <1 scade).</li><li><b>fs țintă</b> – rata de eșantionare dorită în Hz (folosită când modul este fixed_fs).</li></ul><h4>🛠️ Operare</h4><p>Folosește <code>scipy.signal.resample</code> care aplică o metodă Fourier.</p><hr><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regulă cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + click</b> pe un port → selectează portul pentru conectare rapidă.</li><li><b>Dublu click</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Click dreapta</b> → meniu contextual (șterge, configurează).</li><li><b>Trage</b> nodul → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+      "help_html": "<h3>🔄 Nod Reeșantionare</h3><p>Schimbă <b>frecvența de eșantionare</b> a semnalului de intrare.</p><h4>📥 Intrare</h4><p><code>input</code> → așteaptă un tuplu <code>(x, y)</code> sau un array 1D.</p><h4>📤 Ieșire</h4><p><code>output</code> → semnal reeșantionat ca <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametri</h4><ul><li><b>Mod</b> – <i>factor</i> (înmulțește frecvența originală) sau <i>fixed_fs</i> (frecvență țintă în Hz).</li><li><b>Factor</b> – scară (>1 crește eșantioanele, <1 reduce).</li><li><b>Fs țintă</b> – frecvența dorită în Hz (folosită în modul fixed_fs).</li></ul><h4>🛠️ Funcționare</h4><p>Folosește <code>scipy.signal.resample</code> (metoda Fourier).</p><hr><h3>🧠 Cum să gândești acest sistem</h3><p>Acest mediu funcționează ca un <b>flux de procesare a semnalelor</b>.</p><pre>Date → Transformare → Rezultat</pre><h4>📐 Regula cheie</h4><pre>Totul este: (x, y)</pre><h4>🔁 Model universal</h4><pre>Intrare → Procesare → Vizualizare</pre><hr><h4>⚡ Scurtături și trucuri</h4><ul><li><b>Ctrl + clic</b> pe un port → selectează portul pentru conectare rapidă.</li><li><b>Dublu clic</b> pe nod → deschide această fereastră de ajutor.</li><li><b>Clic dreapta</b> → meniu contextual (ștergere, configurare).</li><li><b>Tragere</b> nod → mută întregul bloc; conexiunile se actualizează automat.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Date manuale",
+      "ports": { "output": "Ieșire" },
+      "no_data": "Fără date",
+      "preview": "Previzualizare",
+      "points": "Puncte (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Adaugă",
+      "remove": "Șterge",
+      "clear": "Golește",
+      "paste": "Lipește",
+      "import_csv": "Importă",
+      "export_csv": "Exportă",
+      "import_title": "Importă date",
+      "export_title": "Exportă CSV",
+      "file_filter": "Fișiere acceptate (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Text (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Toate fișierele (*)",
+      "csv_filter": "Fișiere CSV (*.csv);;Toate fișierele (*)",
+      "error": "Eroare",
+      "info": "Informație",
+      "no_points_to_export": "Niciun punct de exportat.",
+      "no_valid_points": "Nu s-au găsit puncte valide în fișier.",
+      "no_scipy": "scipy este necesar pentru încărcarea fișierelor .mat.",
+      "npz_diagnostic": "Nu s-au găsit puncte valide în fișierul .npz.\\n{info}",
+      "npy_shape": "Matricea cu forma {shape} nu este compatibilă. Se aștepta 1D sau (N,2)/(2,N).",
+      "mat_diagnostic": "Nu s-au găsit puncte valide în fișierul .mat.\\n{info}",
+      "menu": { "configure": "Configurare..." },
+      "config_title": "Configurare colector de date",
+      "help_title": "Ajutor - Colector de date",
+      "help_html": "<h3>Nod colector de date</h3><p>Permite introducerea manuală a punctelor (x, y) care vor fi emise ca semnal.</p><ul><li><b>Adaugă / Șterge / Golește:</b> Gestionează rândurile din tabel.</li><li><b>Lipește:</b> Lipește date din clipboard (Excel, text, CSV).</li><li><b>Importă:</b> Încarcă puncte din CSV, NumPy (.npz/.npy), MATLAB (.mat) sau JSON.</li><li><b>Exportă:</b> Salvează punctele într-un fișier CSV.</li><li><b>Previzualizare:</b> Vizualizare în timp real a punctelor.</li></ul><p>Semnalul de ieșire este sortat automat după X.</p>"
+    },
+    "model_fit": {
+      "title": "Ajustare model",
+      "custom_short": "Personalizat",
+      "custom": "Personalizat",
+      "waiting": "Se așteaptă date...",
+      "waiting_more": "Se așteaptă mai multe date... ({n_points}/{n_params})",
+      "fitted": "Ajustat (N={n_points})",
+      "error_model": "Eroare: model nevalid",
+      "error_nan": "Eroare: date nevalide",
+      "error_fit": "Eroare de ajustare",
+      "results": "Rezultate ajustare",
+      "model": "Model:",
+      "status": "Stare:",
+      "expression": "Expresie:",
+      "n_points": "N puncte:",
+      "dof": "Grade de libertate:",
+      "configuration": "Configurare",
+      "model_type": "Tip model:",
+      "n_fine": "Puncte grilă fină:",
+      "custom_editor": "Editor model personalizat",
+      "custom_hint": "Scrieți o expresie folosind 'x' și parametri (a, b, c...):",
+      "validate": "Validează expresia",
+      "not_validated": "Neverificat",
+      "valid_ok": "Expresie validă",
+      "empty_expr": "Eroare: expresie vidă",
+      "params_detected": "Parametri: ",
+      "menu": { "configure": "Configurează..." },
+      "ports": { "input": "Intrare", "output": "Ieșire" },
+      "config_title": "Configurează ajustarea modelului",
+      "help_title": "Ajutor - Ajustare model",
+      "help_html": "\n            <h3>Nod de ajustare a modelului</h3>\n            <p>Ajustează modele matematice la date (x, y) folosind scipy.optimize.curve_fit.</p>\n            <h4>Modele predefinite:</h4>\n            <ul>\n                <li><b>Liniar</b>: a*x + b</li>\n                <li><b>Pătratic</b>: a*x^2 + b*x + c</li>\n                <li><b> Cubic</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Exponențial</b>: a*exp(b*x)</li>\n                <li><b>Gaussian</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Sinusoidal</b>: a*sin(b*x + c) + d</li>\n                <li><b>Putere</b>: a*x^b</li>\n                <li><b>Logaritmic</b>: a*log(x) + b</li>\n                <li><b>Lorentzian</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoidian</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Model personalizat (avansat):</h4>\n            <p>Selectați <b>custom</b> la tipul modelului și scrieți propria expresie.\n            Folosiți <code>x</code> ca variabilă independentă și litere (a, b, c...) ca parametri.</p>\n            <p><b>Exemple valide:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Funcții permise:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>Nodul returnează (x_fino, y_ajustado) pentru a trasa curba netedă.</p>\n            <p>Dacă sunt mai puține puncte decât parametrii liberi, returnează datele originale neajustate.</p>\n            "
     },
     "window": {
       "title": "Fereastră",

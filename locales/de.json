@@ -799,8 +799,9 @@
       "help_html": "<h3>🔀 Faltungsknoten (FIR-Filter)</h3>\n<p>Wendet eine diskrete Faltung zwischen dem Eingangssignal und einem benutzerdefinierten Kernel an.</p>\n\n<h4>📥 Eingang</h4>\n<p><code>input</code> → erwartet ein Tupel <code>(x, y)</code> oder ein 1D-Array.</p>\n\n<h4>📤 Ausgang</h4>\n<ul>\n    <li><b>Gefiltertes Signal</b> → <code>(x_conv, y_conv)</code> – Ergebnis der Faltung.</li>\n</ul>\n\n<h4>⚙️ Parameter (Doppelklick zum Konfigurieren)</h4>\n<ul>\n    <li><b>Kernel-Koeffizienten</b> – kommagetrennte Fließkommazahlen, z. B. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Faltungsmodus</b> – <code>'same'</code> (Standard), <code>'full'</code> oder <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Funktionsweise</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>Die x-Achse wird entsprechend angepasst: bei <code>'same'</code> bleibt das ursprüngliche x erhalten; bei <code>'valid'</code> werden die Enden abgeschnitten; bei <code>'full'</code> wird linear erweitert.</li>\n</ul>\n\n<hr>\n<h3>🧠 Wie man über dieses System nachdenkt</h3>\n\n<p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p>\n\n<pre>\nDaten → Transformation → Ergebnis\n</pre>\n\n<h4>📐 Grundregel</h4>\n<pre>\nAlles ist:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universelles Muster</h4>\n<pre>\nEingang → Verarbeitung → Visualisierung\n</pre>\n\n<h4>🧪 Vollständiges Beispiel</h4>\n<pre>\nOszilloskop → FFT → Filter → Summierer → Diagramm\n</pre>\n\n<hr>\n<h4>⚡ Tastenkürzel und Tricks</h4>\n<ul>\n<li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li>\n<li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li>\n<li><b>Rechtsklick</b> → Kontextmenü (löschen, verbinden, trennen).</li>\n<li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li>\n</ul>"
     },
     "resample": {
-      "title": "Neuabtastung",
-      "tooltip": "Abtastrate des Signals ändern",
+      "title": "Resampling",
+      "tooltip": "Abtastfrequenz des Signals ändern",
+      "method": "Methode:",
       "ports": {
         "input": "Eingang",
         "output": "Ausgang"
@@ -810,14 +811,105 @@
         "ready": "Bereit"
       },
       "menu": {
-        "configure": "Konfigurieren…"
+        "configure": "Konfigurieren...",
+        "method": "Methode",
+        "mode": "Modus"
       },
-      "config_title": "Neuabtastung konfigurieren",
+      "methods": {
+        "fft": {
+          "label": "FFT (periodisch)",
+          "tooltip": "Ideal für sinusförmige, periodische Signale oder Signale mit wenigen Harmonischen."
+        },
+        "linear": {
+          "label": "Linear",
+          "tooltip": "Schnell und stabil. Gut für glatte Profile oder nicht-periodische Signale."
+        },
+        "cubic": {
+          "label": "Kubisch (Spline)",
+          "tooltip": "Glättet Übergänge. Empfohlen für komplexe Signale mit graduellen Änderungen."
+        },
+        "nearest": {
+          "label": "Nächster Nachbar",
+          "tooltip": "Erhält exakte Werte. Nützlich für digitale Signale oder Treppen."
+        },
+        "polyphase": {
+          "label": "Polyphas",
+          "tooltip": "Hohe Qualität mit integrierter Filterung. Ideal für Up/Down-Sampling mit rationalen Faktoren."
+        },
+        "zero_order_hold": {
+          "label": "Halteglied nullter Ordnung",
+          "tooltip": "Ähnlich wie nächster Nachbar, behält aber den letzten bekannten Wert bei."
+        }
+      },
+      "config_title": "Resampling konfigurieren",
       "mode": "Modus:",
       "factor": "Faktor:",
       "target_fs": "Ziel-fs (Hz):",
-      "help_title": "Hilfe – Neuabtastung",
-      "help_html": "<h3>🔄 Neuabtastungsknoten</h3><p>Ändert die <b>Abtastrate</b> des Eingangssignals.</p><h4>📥 Eingang</h4><p><code>input</code> → erwartet ein Tupel <code>(x, y)</code> oder ein 1D-Array.</p><h4>📤 Ausgang</h4><p><code>output</code> → neu abgetastetes Signal als <code>(x_new, y_new)</code>.</p><h4>⚙️ Parameter</h4><ul><li><b>Modus</b> – <i>factor</i> (ursprüngliche Abtastrate multiplizieren) oder <i>fixed_fs</i> (Ziel-Abtastrate in Hz).</li><li><b>Faktor</b> – Skalierungsfaktor (>1 erhöht die Anzahl der Samples, <1 verringert sie).</li><li><b>Ziel-fs</b> – gewünschte Abtastrate in Hz (wird verwendet, wenn der Modus fixed_fs ist).</li></ul><h4>🛠️ Funktionsweise</h4><p>Verwendet <code>scipy.signal.resample</code>, das eine Fourier-Methode anwendet.</p><hr><hr><h3>🧠 Wie man über dieses System nachdenkt</h3><p>Diese Umgebung funktioniert als <b>Signalverarbeitungsfluss</b>.</p><pre>Daten → Transformation → Ergebnis</pre><h4>📐 Grundregel</h4><pre>Alles ist: (x, y)</pre><h4>🔁 Universelles Muster</h4><pre>Eingang → Verarbeitung → Visualisierung</pre><hr><h4>⚡ Tastenkürzel und Tricks</h4><ul><li><b>Strg + Klick</b> auf einen Anschluss → wählt den Anschluss zum schnellen Verbinden.</li><li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li><li><b>Rechtsklick</b> → Kontextmenü (löschen, konfigurieren).</li><li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen werden automatisch aktualisiert.</li></ul>"
+      "help_title": "Hilfe - Resampling",
+      "help_html": "<h3>🔄 Resampling-Knoten</h3><p>Ändert die <b>Abtastfrequenz</b> des Eingangssignals.</p><h4>📥 Eingang</h4><p><code>input</code> → erwartet ein Tupel <code>(x, y)</code> oder ein 1D-Array.</p><h4>📤 Ausgang</h4><p><code>output</code> → resampeltes Signal als <code>(x_new, y_new)</code>.</p><h4>⚙️ Parameter</h4><ul><li><b>Modus</b> – <i>factor</i> (multipliziert die ursprüngliche Frequenz) oder <i>fixed_fs</i> (Ziel-Frequenz in Hz).</li><li><b>Faktor</b> – Skalierung (>1 erhöht Abtastwerte, <1 reduziert).</li><li><b>Ziel-fs</b> – gewünschte Frequenz in Hz (im Modus fixed_fs verwendet).</li></ul><h4>🛠️ Funktionsweise</h4><p>Verwendet <code>scipy.signal.resample</code> (Fourier-Methode).</p><hr><h3>🧠 Systemverständnis</h3><p>Diese Umgebung funktioniert wie ein <b>Signalverarbeitungsfluss</b>.</p><pre>Daten → Transformation → Ergebnis</pre><h4>📐 Wichtigste Regel</h4><pre>Alles ist: (x, y)</pre><h4>🔁 Universelles Muster</h4><pre>Eingang → Verarbeitung → Visualisierung</pre><hr><h4>⚡ Tastenkürzel und Tricks</h4><ul><li><b>Strg + Klick</b> auf einen Port → wählt den Port für schnelle Verbindung.</li><li><b>Doppelklick</b> auf den Knoten → öffnet dieses Hilfefenster.</li><li><b>Rechtsklick</b> → Kontextmenü (löschen, konfigurieren).</li><li><b>Ziehen</b> des Knotens → verschiebt den gesamten Block; Verbindungen aktualisieren sich automatisch.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Manuelle Daten",
+      "ports": { "output": "Ausgang" },
+      "no_data": "Keine Daten",
+      "preview": "Vorschau",
+      "points": "Punkte (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Hinzufügen",
+      "remove": "Löschen",
+      "clear": "Leeren",
+      "paste": "Einfügen",
+      "import_csv": "Importieren",
+      "export_csv": "Exportieren",
+      "import_title": "Daten importieren",
+      "export_title": "CSV exportieren",
+      "file_filter": "Unterstützte Dateien (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Text (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Alle Dateien (*)",
+      "csv_filter": "CSV-Dateien (*.csv);;Alle Dateien (*)",
+      "error": "Fehler",
+      "info": "Information",
+      "no_points_to_export": "Keine Punkte zum Exportieren.",
+      "no_valid_points": "In der Datei wurden keine gültigen Punkte gefunden.",
+      "no_scipy": "scipy ist erforderlich, um .mat-Dateien zu laden.",
+      "npz_diagnostic": "Im .npz-Datei wurden keine gültigen Punkte gefunden.\\n{info}",
+      "npy_shape": "Array mit Form {shape} ist nicht kompatibel. 1D oder (N,2)/(2,N) erwartet.",
+      "mat_diagnostic": "Im .mat-Datei wurden keine gültigen Punkte gefunden.\\n{info}",
+      "menu": { "configure": "Konfigurieren..." },
+      "config_title": "Datensammler konfigurieren",
+      "help_title": "Hilfe - Datensammler",
+      "help_html": "<h3>Datensammler-Knoten</h3><p>Ermöglicht die manuelle Eingabe von Punkten (x, y), die als Signal ausgegeben werden.</p><ul><li><b>Hinzufügen / Löschen / Leeren:</b> Zeilen in der Tabelle verwalten.</li><li><b>Einfügen:</b> Daten aus der Zwischenablage einfügen (Excel, Text, CSV).</li><li><b>Importieren:</b> Punkte aus CSV, NumPy (.npz/.npy), MATLAB (.mat) oder JSON laden.</li><li><b>Exportieren:</b> Punkte in eine CSV-Datei speichern.</li><li><b>Vorschau:</b> Echtzeit-Visualisierung der Punkte.</li></ul><p>Das Ausgangssignal wird automatisch nach X sortiert.</p>"
+    },
+    "model_fit": {
+      "title": "Modellfit",
+      "custom_short": "Benutzerdefiniert",
+      "custom": "Benutzerdefiniert",
+      "waiting": "Warte auf Daten...",
+      "waiting_more": "Warte auf mehr Daten... ({n_points}/{n_params})",
+      "fitted": "Angepasst (N={n_points})",
+      "error_model": "Fehler: Ungültiges Modell",
+      "error_nan": "Fehler: Ungültige Daten",
+      "error_fit": "Fehler beim Fit",
+      "results": "Fit-Ergebnisse",
+      "model": "Modell:",
+      "status": "Status:",
+      "expression": "Ausdruck:",
+      "n_points": "N Punkte:",
+      "dof": "Freiheitsgrade:",
+      "configuration": "Konfiguration",
+      "model_type": "Modelltyp:",
+      "n_fine": "Feingitterpunkte:",
+      "custom_editor": "Editor für benutzerdefinierte Modelle",
+      "custom_hint": "Geben Sie einen Ausdruck mit 'x' und Parametern (a, b, c...) ein:",
+      "validate": "Ausdruck validieren",
+      "not_validated": "Nicht validiert",
+      "valid_ok": "Gültiger Ausdruck",
+      "empty_expr": "Fehler: Leerer Ausdruck",
+      "params_detected": "Parameter: ",
+      "menu": { "configure": "Konfigurieren..." },
+      "ports": { "input": "Eingang", "output": "Ausgang" },
+      "config_title": "Modellfit konfigurieren",
+      "help_title": "Hilfe - Modellfit",
+      "help_html": "\n            <h3>Modellfit-Knoten</h3>\n            <p>Passt mathematische Modelle an Daten (x, y) mit scipy.optimize.curve_fit an.</p>\n            <h4>Vordefinierte Modelle:</h4>\n            <ul>\n                <li><b>Linear</b>: a*x + b</li>\n                <li><b>Quadratisch</b>: a*x^2 + b*x + c</li>\n                <li><b>Kubisch</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Exponentiell</b>: a*exp(b*x)</li>\n                <li><b>Gauss</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Sinus</b>: a*sin(b*x + c) + d</li>\n                <li><b>Potenz</b>: a*x^b</li>\n                <li><b>Logarithmisch</b>: a*log(x) + b</li>\n                <li><b>Lorentz</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoid</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Benutzerdefiniertes Modell (fortgeschritten):</h4>\n            <p>Wählen Sie <b>custom</b> als Modelltyp und schreiben Sie Ihren eigenen Ausdruck.\n            Verwenden Sie <code>x</code> als unabhängige Variable und Buchstaben (a, b, c...) als Parameter.</p>\n            <p><b>Gültige Beispiele:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Erlaubte Funktionen:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>Der Knoten gibt (x_fino, y_ajustado) zurück, um die glatte Kurve zu zeichnen.</p>\n            <p>Wenn es weniger Punkte als freie Parameter gibt, werden die Originaldaten unverändert zurückgegeben.</p>\n            "
     },
     "window": {
       "title": "Fenster",

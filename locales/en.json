@@ -799,7 +799,8 @@
     },
     "resample": {
       "title": "Resample",
-      "tooltip": "Change the sample rate of the signal",
+      "tooltip": "Change the signal sampling rate",
+      "method": "Method:",
       "ports": {
         "input": "Input",
         "output": "Output"
@@ -809,14 +810,110 @@
         "ready": "Ready"
       },
       "menu": {
-        "configure": "Configure..."
+        "configure": "Configure...",
+        "method": "Method",
+        "mode": "Mode"
       },
-      "config_title": "Configure Resample",
+      "methods": {
+        "fft": {
+          "label": "FFT (periodic)",
+          "tooltip": "Ideal for sinusoidal, periodic signals or signals with few harmonics."
+        },
+        "linear": {
+          "label": "Linear",
+          "tooltip": "Fast and stable. Good for smooth profiles or non-periodic signals."
+        },
+        "cubic": {
+          "label": "Cubic (spline)",
+          "tooltip": "Smoothes transitions. Recommended for complex signals with gradual changes."
+        },
+        "nearest": {
+          "label": "Nearest neighbor",
+          "tooltip": "Preserves exact values. Useful for digital signals or step edges."
+        },
+        "polyphase": {
+          "label": "Polyphase",
+          "tooltip": "High quality with integrated filtering. Ideal for up/down-sampling with rational factors."
+        },
+        "zero_order_hold": {
+          "label": "Zero-order hold",
+          "tooltip": "Similar to nearest neighbor but keeps the last known value."
+        }
+      },
+      "config_title": "Configure Resampling",
       "mode": "Mode:",
       "factor": "Factor:",
       "target_fs": "Target fs (Hz):",
       "help_title": "Help - Resample",
-      "help_html": "<h3>🔄 Resample Node</h3><p>Changes the <b>sample rate</b> of the input signal.</p><h4>📥 Input</h4><p><code>input</code> → expects a tuple <code>(x, y)</code> or a 1D array.</p><h4>📤 Output</h4><p><code>output</code> → resampled signal as <code>(x_new, y_new)</code>.</p><h4>⚙️ Parameters</h4><ul><li><b>Mode</b> – <i>factor</i> (multiply original sample rate) or <i>fixed_fs</i> (target sample rate in Hz).</li><li><b>Factor</b> – scaling factor (>1 increases samples, <1 decreases).</li><li><b>Target fs</b> – desired sample rate in Hz (used when mode is fixed_fs).</li></ul><h4>🛠️ Operation</h4><p>Uses <code>scipy.signal.resample</code> which applies a Fourier method.</p><hr><hr><h3>🧠 How to think about this system</h3><p>This environment works as a <b>signal processing flow</b>.</p><pre>Data → Transformation → Result</pre><h4>📐 Key rule</h4><pre>Everything is: (x, y)</pre><h4>🔁 Universal pattern</h4><pre>Input → Processing → Visualization</pre><hr><h4>⚡ Shortcuts and tricks</h4><ul><li><b>Ctrl + click</b> on a port → selects the port for quick connection.</li><li><b>Double click</b> on the node → opens this help window.</li><li><b>Right click</b> → context menu (delete, configure).</li><li><b>Drag</b> the node → moves the whole block; connections update automatically.</li></ul>"
+      "help_html": "<h3>🔄 Resample Node</h3><p>Changes the <b>sampling rate</b> of the input signal.</p><h4>📥 Input</h4><p><code>input</code> → expects a tuple <code>(x, y)</code> or a 1D array.</p><h4>📤 Output</h4><p><code>output</code> → resampled signal as <code>(x_new, y_new)</code>.</p><h4>⚙️ Parameters</h4><ul><li><b>Mode</b> – <i>factor</i> (multiplies the original frequency) or <i>fixed_fs</i> (target frequency in Hz).</li><li><b>Factor</b> – scale (>1 increases samples, <1 reduces).</li><li><b>Target fs</b> – desired frequency in Hz (used in fixed_fs mode).</li></ul><h4>🛠️ How it works</h4><p>Uses <code>scipy.signal.resample</code> (Fourier method).</p><hr><h3>🧠 How to think about this system</h3><p>This environment works as a <b>signal processing flow</b>.</p><pre>Data → Transformation → Result</pre><h4>📐 Key rule</h4><pre>Everything is: (x, y)</pre><h4>🔁 Universal pattern</h4><pre>Input → Processing → Visualization</pre><hr><h4>⚡ Shortcuts and tricks</h4><ul><li><b>Ctrl + click</b> on a port → selects the port for quick connection.</li><li><b>Double click</b> on the node → opens this help window.</li><li><b>Right click</b> → context menu (delete, configure).</li><li><b>Drag</b> the node → moves the whole block; connections update automatically.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Manual Data",
+      "ports": { "output": "Output" },
+      "no_data": "No data",
+      "preview": "Preview",
+      "points": "Points (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Add",
+      "remove": "Del",
+      "clear": "Clr",
+      "paste": "Paste",
+      "import_csv": "Import",
+      "export_csv": "Export",
+      "import_title": "Import Data",
+      "export_title": "Export CSV",
+      "file_filter": "Supported Files (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Text (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;All Files (*)",
+      "csv_filter": "CSV Files (*.csv);;All Files (*)",
+      "error": "Error",
+      "info": "Information",
+      "no_points_to_export": "No points to export.",
+      "no_valid_points": "No valid points found in the file.",
+      "no_scipy": "scipy is required to load .mat files.",
+      "npz_diagnostic": "No valid points found in the .npz file.\\n{info}",
+      "npy_shape": "Array with shape {shape} is not compatible. Expected 1D or (N,2)/(2,N).",
+      "mat_diagnostic": "No valid points found in the .mat file.\\n{info}",
+      "menu": { "configure": "Configure..." },
+      "config_title": "Configure Data Collector",
+      "help_title": "Help - Data Collector",
+      "help_html": "<h3>Data Collector Node</h3><p>Allows manual entry of (x, y) points that will be emitted as a signal.</p><ul><li><b>Add / Del / Clr:</b> Manage rows in the table.</li><li><b>Paste:</b> Paste data from clipboard (Excel, text, CSV).</li><li><b>Import:</b> Load points from CSV, NumPy (.npz/.npy), MATLAB (.mat) or JSON.</li><li><b>Export:</b> Save points to a CSV file.</li><li><b>Preview:</b> Real-time visual preview of the points.</li></ul><p>The output signal is automatically sorted by X.</p>"
+    },
+    "model_fit": {
+      "title": "Model Fit",
+      "custom_short": "Custom",
+      "custom": "Custom",
+      "waiting": "Waiting for data...",
+      "waiting_more": "Waiting for more data... ({n_points}/{n_params})",
+      "fitted": "Fitted (N={n_points})",
+      "error_model": "Error: invalid model",
+      "error_nan": "Error: invalid data",
+      "error_fit": "Fit error",
+      "results": "Fit Results",
+      "model": "Model:",
+      "status": "Status:",
+      "expression": "Expression:",
+      "n_points": "N points:",
+      "dof": "Degrees of freedom:",
+      "configuration": "Configuration",
+      "model_type": "Model type:",
+      "n_fine": "Fine mesh points:",
+      "custom_editor": "Custom Model Editor",
+      "custom_hint": "Write an expression using 'x' and parameters (a, b, c...):",
+      "validate": "Validate expression",
+      "not_validated": "Not validated",
+      "valid_ok": "Valid expression",
+      "empty_expr": "Error: empty expression",
+      "params_detected": "Parameters: ",
+      "menu": {
+        "configure": "Configure..."
+      },
+      "ports": {
+        "input": "Input",
+        "output": "Output"
+      },
+      "config_title": "Configure Model Fit",
+      "help_title": "Help - Model Fit",
+      "help_html": "\n            <h3>Model Fit Node</h3>\n            <p>Fits mathematical models to data (x, y) using scipy.optimize.curve_fit.</p>\n            <h4>Predefined models:</h4>\n            <ul>\n                <li><b>Linear</b>: a*x + b</li>\n                <li><b>Quadratic</b>: a*x^2 + b*x + c</li>\n                <li><b>Cubic</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Exponential</b>: a*exp(b*x)</li>\n                <li><b>Gaussian</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Sine</b>: a*sin(b*x + c) + d</li>\n                <li><b>Power</b>: a*x^b</li>\n                <li><b>Logarithmic</b>: a*log(x) + b</li>\n                <li><b>Lorentzian</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoid</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Custom model (advanced):</h4>\n            <p>Select <b>custom</b> in the model type and write your own expression.\n            Use <code>x</code> as the independent variable and letters (a, b, c...) as parameters.</p>\n            <p><b>Valid examples:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Allowed functions:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>The node returns (x_fine, y_fitted) to plot the smooth curve.</p>\n            <p>If there are fewer points than free parameters, it returns the original data unfitted.</p>\n            "
     },
     "window": {
       "title": "Window",

@@ -799,25 +799,117 @@
     "help_html": "<h3>🔀 Węzeł splotu (filtr FIR)</h3>\n<p>Stosuje dyskretny splot między sygnałem wejściowym a jądrem zdefiniowanym przez użytkownika.</p>\n\n<h4>📥 Wejście</h4>\n<p><code>input</code> → oczekuje krotki <code>(x, y)</code> lub tablicy 1D.</p>\n\n<h4>📤 Wyjście</h4>\n<ul>\n    <li><b>Sygnał przefiltrowany</b> → <code>(x_conv, y_conv)</code> – wynik splotu.</li>\n</ul>\n\n<h4>⚙️ Parametry (kliknij dwukrotnie, aby skonfigurować)</h4>\n<ul>\n    <li><b>Współczynniki jądra</b> – liczby zmiennoprzecinkowe oddzielone przecinkami, np. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Tryb splotu</b> – <code>'same'</code> (domyślnie), <code>'full'</code> lub <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Działanie</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>Oś x jest odpowiednio dostosowywana: dla <code>'same'</code> zachowuje oryginalne x; dla <code>'valid'</code> przycina końce; dla <code>'full'</code> rozszerza liniowo.</li>\n</ul>\n\n<hr>\n<h3>🧠 Jak myśleć o tym systemie</h3>\n\n<p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p>\n\n<pre>\nDane → Transformacja → Wynik\n</pre>\n\n<h4>📐 Kluczowa zasada</h4>\n<pre>\nWszystko jest:\n\n(x, y)\n</pre>\n\n<h4>🔁 Uniwersalny wzorzec</h4>\n<pre>\nWejście → Przetwarzanie → Wizualizacja\n</pre>\n\n<h4>🧪 Kompletny przykład</h4>\n<pre>\nOscyloskop → FFT → Filtr → Sumator → Wykres\n</pre>\n\n<hr>\n<h4>⚡ Skróty i triki</h4>\n<ul>\n<li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li>\n<li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li>\n<li><b>Klik prawym</b> → menu kontekstowe (usuń, połącz, rozłącz).</li>\n<li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li>\n</ul>"
     },
     "resample": {
-      "title": "Resampling",
+      "title": "Przesampluj",
       "tooltip": "Zmień częstotliwość próbkowania sygnału",
+      "method": "Metoda:",
       "ports": {
         "input": "Wejście",
         "output": "Wyjście"
       },
       "status": {
         "no_data": "Brak danych",
-        "ready": "Gotowe"
+        "ready": "Gotowy"
       },
       "menu": {
-        "configure": "Konfiguruj..."
+        "configure": "Konfiguruj...",
+        "method": "Metoda",
+        "mode": "Tryb"
       },
-      "config_title": "Konfiguruj resampling",
+      "methods": {
+        "fft": {
+          "label": "FFT (okresowe)",
+          "tooltip": "Idealne dla sygnałów sinusoidalnych, okresowych lub z niewielką liczbą harmonicznych."
+        },
+        "linear": {
+          "label": "Liniowa",
+          "tooltip": "Szybka i stabilna. Dobra dla gładkich profili lub sygnałów nieokresowych."
+        },
+        "cubic": {
+          "label": "Sześcienna (spline)",
+          "tooltip": "Wygładza przejścia. Zalecana dla złożonych sygnałów z stopniowymi zmianami."
+        },
+        "nearest": {
+          "label": "Najbliższy sąsiad",
+          "tooltip": "Zachowuje dokładne wartości. Przydatne dla sygnałów cyfrowych lub schodków."
+        },
+        "polyphase": {
+          "label": "Wielofazowa",
+          "tooltip": "Wysoka jakość ze zintegrowaną filtracją. Idealna dla up/down-samplingu ze współczynnikami wymiernymi."
+        },
+        "zero_order_hold": {
+          "label": "Ekstrapolacja zerowego rzędu",
+          "tooltip": "Podobne do najbliższego sąsiada, ale zachowuje ostatnią znaną wartość."
+        }
+      },
+      "config_title": "Konfiguruj przesamplowanie",
       "mode": "Tryb:",
       "factor": "Współczynnik:",
       "target_fs": "Docelowe fs (Hz):",
-      "help_title": "Pomoc - Resampling",
-      "help_html": "<h3>🔄 Węzeł resamplingu</h3><p>Zmienia <b>częstotliwość próbkowania</b> sygnału wejściowego.</p><h4>📥 Wejście</h4><p><code>input</code> → oczekuje krotki <code>(x, y)</code> lub tablicy 1D.</p><h4>📤 Wyjście</h4><p><code>output</code> → sygnał poddany resamplingowi jako <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Tryb</b> – <i>współczynnik</i> (pomnóż oryginalną częstotliwość próbkowania) lub <i>fixed_fs</i> (docelowa częstotliwość próbkowania w Hz).</li><li><b>Współczynnik</b> – współczynnik skalowania (>1 zwiększa liczbę próbek, <1 zmniejsza).</li><li><b>Docelowe fs</b> – pożądana częstotliwość próbkowania w Hz (używane, gdy tryb to fixed_fs).</li></ul><h4>🛠️ Działanie</h4><p>Używa <code>scipy.signal.resample</code>, który stosuje metodę Fouriera.</p><hr><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko jest: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Podwójne kliknięcie</b> na węźle → otwiera to okno pomocy.</li><li><b>Klik prawym</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciągnij</b> węzeł → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+      "help_title": "Pomoc - Przesampluj",
+      "help_html": "<h3>🔄 Węzeł Przesampluj</h3><p>Zmienia <b>częstotliwość próbkowania</b> sygnału wejściowego.</p><h4>📥 Wejście</h4><p><code>input</code> → oczekuje krotki <code>(x, y)</code> lub tablicy 1D.</p><h4>📤 Wyjście</h4><p><code>output</code> → przesamplowany sygnał jako <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Tryb</b> – <i>factor</i> (mnoży oryginalną częstotliwość) lub <i>fixed_fs</i> (docelowa częstotliwość w Hz).</li><li><b>Współczynnik</b> – skala (>1 zwiększa próbki, <1 zmniejsza).</li><li><b>Docelowe fs</b> – pożądana częstotliwość w Hz (używane w trybie fixed_fs).</li></ul><h4>🛠️ Działanie</h4><p>Używa <code>scipy.signal.resample</code> (metoda Fouriera).</p><hr><h3>🧠 Jak myśleć o tym systemie</h3><p>To środowisko działa jako <b>przepływ przetwarzania sygnałów</b>.</p><pre>Dane → Transformacja → Wynik</pre><h4>📐 Kluczowa zasada</h4><pre>Wszystko to: (x, y)</pre><h4>🔁 Uniwersalny wzorzec</h4><pre>Wejście → Przetwarzanie → Wizualizacja</pre><hr><h4>⚡ Skróty i triki</h4><ul><li><b>Ctrl + klik</b> na porcie → wybiera port do szybkiego połączenia.</li><li><b>Dwuklik</b> na węźle → otwiera to okno pomocy.</li><li><b>Prawy przycisk myszy</b> → menu kontekstowe (usuń, konfiguruj).</li><li><b>Przeciąganie</b> węzła → przesuwa cały blok; połączenia aktualizują się automatycznie.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Dane ręczne",
+      "ports": { "output": "Wyjście" },
+      "no_data": "Brak danych",
+      "preview": "Podgląd",
+      "points": "Punkty (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Dodaj",
+      "remove": "Usuń",
+      "clear": "Wyczyść",
+      "paste": "Wklej",
+      "import_csv": "Importuj",
+      "export_csv": "Eksportuj",
+      "import_title": "Importuj dane",
+      "export_title": "Eksportuj CSV",
+      "file_filter": "Obsługiwane pliki (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Tekst (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Wszystkie pliki (*)",
+      "csv_filter": "Pliki CSV (*.csv);;Wszystkie pliki (*)",
+      "error": "Błąd",
+      "info": "Informacja",
+      "no_points_to_export": "Brak punktów do wyeksportowania.",
+      "no_valid_points": "Nie znaleziono prawidłowych punktów w pliku.",
+      "no_scipy": "Do wczytania plików .mat wymagany jest scipy.",
+      "npz_diagnostic": "Nie znaleziono prawidłowych punktów w pliku .npz.\\n{info}",
+      "npy_shape": "Tablica o kształcie {shape} nie jest zgodna. Oczekiwano 1D lub (N,2)/(2,N).",
+      "mat_diagnostic": "Nie znaleziono prawidłowych punktów w pliku .mat.\\n{info}",
+      "menu": { "configure": "Konfiguruj..." },
+      "config_title": "Konfiguruj zbieracz danych",
+      "help_title": "Pomoc - Zbieracz danych",
+      "help_html": "<h3>Węzeł zbieracza danych</h3><p>Umożliwia ręczne wprowadzanie punktów (x, y), które zostaną wyemitowane jako sygnał.</p><ul><li><b>Dodaj / Usuń / Wyczyść:</b> Zarządzaj wierszami w tabeli.</li><li><b>Wklej:</b> Wklej dane ze schowka (Excel, tekst, CSV).</li><li><b>Importuj:</b> Wczytaj punkty z CSV, NumPy (.npz/.npy), MATLAB (.mat) lub JSON.</li><li><b>Eksportuj:</b> Zapisz punkty do pliku CSV.</li><li><b>Podgląd:</b> Wizualizacja punktów w czasie rzeczywistym.</li></ul><p>Sygnał wyjściowy jest automatycznie sortowany według X.</p>"
+    },
+    "model_fit": {
+      "title": "Dopasowanie modelu",
+      "custom_short": "Własny",
+      "custom": "Własny",
+      "waiting": "Oczekiwanie na dane...",
+      "waiting_more": "Oczekiwanie na więcej danych... ({n_points}/{n_params})",
+      "fitted": "Dopasowano (N={n_points})",
+      "error_model": "Błąd: nieprawidłowy model",
+      "error_nan": "Błąd: nieprawidłowe dane",
+      "error_fit": "Błąd dopasowania",
+      "results": "Wyniki dopasowania",
+      "model": "Model:",
+      "status": "Status:",
+      "expression": "Wyrażenie:",
+      "n_points": "Liczba punktów N:",
+      "dof": "Stopnie swobody:",
+      "configuration": "Konfiguracja",
+      "model_type": "Typ modelu:",
+      "n_fine": "Punkty gęstej siatki:",
+      "custom_editor": "Edytor własnego modelu",
+      "custom_hint": "Wpisz wyrażenie używając 'x' oraz parametrów (a, b, c...):",
+      "validate": "Zwaliduj wyrażenie",
+      "not_validated": "Niezweryfikowane",
+      "valid_ok": "Prawidłowe wyrażenie",
+      "empty_expr": "Błąd: puste wyrażenie",
+      "params_detected": "Parametry: ",
+      "menu": { "configure": "Konfiguruj..." },
+      "ports": { "input": "Wejście", "output": "Wyjście" },
+      "config_title": "Konfiguruj dopasowanie modelu",
+      "help_title": "Pomoc - Dopasowanie modelu",
+      "help_html": "\n            <h3>Węzeł dopasowania modelu</h3>\n            <p>Dopasowuje modele matematyczne do danych (x, y) za pomocą scipy.optimize.curve_fit.</p>\n            <h4>Predefiniowane modele:</h4>\n            <ul>\n                <li><b>Liniowy</b>: a*x + b</li>\n                <li><b>Kwadratowy</b>: a*x^2 + b*x + c</li>\n                <li><b>Sześcienny</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Wykładniczy</b>: a*exp(b*x)</li>\n                <li><b>Gaussa</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Sinusoidalny</b>: a*sin(b*x + c) + d</li>\n                <li><b>Potęgowy</b>: a*x^b</li>\n                <li><b>Logarytmiczny</b>: a*log(x) + b</li>\n                <li><b>Lorentza</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoidalny</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Model własny (zaawansowany):</h4>\n            <p>Wybierz <b>custom</b> jako typ modelu i wpisz własne wyrażenie.\n            Użyj <code>x</code> jako zmiennej niezależnej oraz liter (a, b, c...) jako parametrów.</p>\n            <p><b>Prawidłowe przykłady:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Dozwolone funkcje:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>Węzeł zwraca (x_fino, y_ajustado) do wykreślenia gładkiej krzywej.</p>\n            <p>Jeśli punktów jest mniej niż parametrów swobodnych, zwraca oryginalne dane bez dopasowania.</p>\n            "
     },
     "window": {
       "title": "Okno",

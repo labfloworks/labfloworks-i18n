@@ -799,25 +799,117 @@
     "help_html": "<h3>🔀 Convolutieknooppunt (FIR-filter)</h3>\n<p>Past een discrete convolutie toe tussen het ingangssignaal en een door de gebruiker gedefinieerde kernel.</p>\n\n<h4>📥 Invoer</h4>\n<p><code>input</code> → verwacht een tupel <code>(x, y)</code> of een 1D-array.</p>\n\n<h4>📤 Uitvoer</h4>\n<ul>\n    <li><b>Gefilterd signaal</b> → <code>(x_conv, y_conv)</code> – resultaat van de convolutie.</li>\n</ul>\n\n<h4>⚙️ Parameters (dubbelklik om te configureren)</h4>\n<ul>\n    <li><b>Kernelcoëfficiënten</b> – komma-gescheiden floats, bijv. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Convolutiemodus</b> – <code>'same'</code> (standaard), <code>'full'</code> of <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Werking</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>De x-as wordt dienovereenkomstig aangepast: voor <code>'same'</code> blijft de originele x behouden; voor <code>'valid'</code> worden de uiteinden bijgesneden; voor <code>'full'</code> wordt lineair uitgebreid.</li>\n</ul>\n\n<hr>\n<h3>🧠 Hoe je over dit systeem moet denken</h3>\n\n<p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p>\n\n<pre>\nGegevens → Transformatie → Resultaat\n</pre>\n\n<h4>📐 Hoofdregel</h4>\n<pre>\nAlles is:\n\n(x, y)\n</pre>\n\n<h4>🔁 Universeel patroon</h4>\n<pre>\nInvoer → Verwerking → Visualisatie\n</pre>\n\n<h4>🧪 Volledig voorbeeld</h4>\n<pre>\nOscilloscoop → FFT → Filter → Opteller → Grafiek\n</pre>\n\n<hr>\n<h4>⚡ Sneltoetsen en trucs</h4>\n<ul>\n<li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li>\n<li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li>\n<li><b>Rechterklik</b> → contextmenu (verwijderen, verbinden, loskoppelen).</li>\n<li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li>\n</ul>"
     },
     "resample": {
-      "title": "Hersampling",
+      "title": "Hersamplen",
       "tooltip": "Wijzig de bemonsteringsfrequentie van het signaal",
+      "method": "Methode:",
       "ports": {
         "input": "Invoer",
         "output": "Uitvoer"
       },
       "status": {
         "no_data": "Geen gegevens",
-        "ready": "Gereed"
+        "ready": "Klaar"
       },
       "menu": {
-        "configure": "Configureren…"
+        "configure": "Configureren...",
+        "method": "Methode",
+        "mode": "Modus"
+      },
+      "methods": {
+        "fft": {
+          "label": "FFT (periodiek)",
+          "tooltip": "Ideaal voor sinusvormige, periodieke signalen of signalen met weinig harmonischen."
+        },
+        "linear": {
+          "label": "Lineair",
+          "tooltip": "Snel en stabiel. Goed voor gladde profielen of niet-periodieke signalen."
+        },
+        "cubic": {
+          "label": "Kubisch (spline)",
+          "tooltip": "Vermindert overgangen. Aanbevolen voor complexe signalen met geleidelijke veranderingen."
+        },
+        "nearest": {
+          "label": "Dichtstbijzijnde buur",
+          "tooltip": "Behoudt exacte waarden. Handig voor digitale signalen of trappen."
+        },
+        "polyphase": {
+          "label": "Polyfase",
+          "tooltip": "Hoge kwaliteit met geïntegreerde filtering. Ideaal voor up/down-sampling met rationale factoren."
+        },
+        "zero_order_hold": {
+          "label": "Nulde-orde-hold",
+          "tooltip": "Vergelijkbaar met dichtstbijzijnde buur, maar behoudt de laatst bekende waarde."
+        }
       },
       "config_title": "Hersampling configureren",
       "mode": "Modus:",
       "factor": "Factor:",
       "target_fs": "Doel-fs (Hz):",
-      "help_title": "Help – Hersampling",
-      "help_html": "<h3>🔄 Hersampling-knooppunt</h3><p>Wijzigt de <b>bemonsteringsfrequentie</b> van het ingangssignaal.</p><h4>📥 Invoer</h4><p><code>input</code> → verwacht een tupel <code>(x, y)</code> of een 1D-array.</p><h4>📤 Uitvoer</h4><p><code>output</code> → gehermonsterd signaal als <code>(x_new, y_new)</code>.</p><h4>⚙️ Parameters</h4><ul><li><b>Modus</b> – <i>factor</i> (vermenigvuldig originele bemonsteringsfrequentie) of <i>fixed_fs</i> (doelbemonsteringsfrequentie in Hz).</li><li><b>Factor</b> – schaalfactor (>1 verhoogt samples, <1 verlaagt).</li><li><b>Doel-fs</b> – gewenste bemonsteringsfrequentie in Hz (gebruikt wanneer modus fixed_fs is).</li></ul><h4>🛠️ Werking</h4><p>Gebruikt <code>scipy.signal.resample</code> die een Fourier-methode toepast.</p><hr><hr><h3>🧠 Hoe je over dit systeem moet denken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsflow</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Hoofdregel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Sneltoetsen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechterklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Sleep</b> het knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+      "help_title": "Help - Hersamplen",
+      "help_html": "<h3>🔄 Hersamplen-knooppunt</h3><p>Wijzigt de <b>bemonsteringsfrequentie</b> van het invoersignaal.</p><h4>📥 Invoer</h4><p><code>input</code> → verwacht een tuple <code>(x, y)</code> of een 1D-array.</p><h4>📤 Uitvoer</h4><p><code>output</code> → hersampeld signaal als <code>(x_new, y_new)</code>.</p><h4>⚙️ Parameters</h4><ul><li><b>Modus</b> – <i>factor</i> (vermenigvuldigt de oorspronkelijke frequentie) of <i>fixed_fs</i> (doelfrequentie in Hz).</li><li><b>Factor</b> – schaal (>1 verhoogt samples, <1 vermindert).</li><li><b>Doel-fs</b> – gewenste frequentie in Hz (gebruikt in fixed_fs-modus).</li></ul><h4>🛠️ Werking</h4><p>Gebruikt <code>scipy.signal.resample</code> (Fourier-methode).</p><hr><h3>🧠 Hoe over dit systeem nadenken</h3><p>Deze omgeving werkt als een <b>signaalverwerkingsstroom</b>.</p><pre>Gegevens → Transformatie → Resultaat</pre><h4>📐 Belangrijkste regel</h4><pre>Alles is: (x, y)</pre><h4>🔁 Universeel patroon</h4><pre>Invoer → Verwerking → Visualisatie</pre><hr><h4>⚡ Snelkoppelingen en trucs</h4><ul><li><b>Ctrl + klik</b> op een poort → selecteert de poort voor snelle verbinding.</li><li><b>Dubbelklik</b> op het knooppunt → opent dit helpvenster.</li><li><b>Rechtsklik</b> → contextmenu (verwijderen, configureren).</li><li><b>Slepen</b> knooppunt → verplaatst het hele blok; verbindingen worden automatisch bijgewerkt.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Handmatige gegevens",
+      "ports": { "output": "Uitvoer" },
+      "no_data": "Geen gegevens",
+      "preview": "Voorbeeld",
+      "points": "Punten (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Toevoegen",
+      "remove": "Verwijderen",
+      "clear": "Wissen",
+      "paste": "Plakken",
+      "import_csv": "Importeren",
+      "export_csv": "Exporteren",
+      "import_title": "Gegevens importeren",
+      "export_title": "CSV exporteren",
+      "file_filter": "Ondersteunde bestanden (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Tekst (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Alle bestanden (*)",
+      "csv_filter": "CSV-bestanden (*.csv);;Alle bestanden (*)",
+      "error": "Fout",
+      "info": "Informatie",
+      "no_points_to_export": "Geen punten om te exporteren.",
+      "no_valid_points": "Geen geldige punten gevonden in het bestand.",
+      "no_scipy": "scipy is vereist om .mat-bestanden te laden.",
+      "npz_diagnostic": "Geen geldige punten gevonden in het .npz-bestand.\\n{info}",
+      "npy_shape": "Array met vorm {shape} is niet compatibel. Verwacht: 1D of (N,2)/(2,N).",
+      "mat_diagnostic": "Geen geldige punten gevonden in het .mat-bestand.\\n{info}",
+      "menu": { "configure": "Configureren..." },
+      "config_title": "Gegevensverzamelaar configureren",
+      "help_title": "Help - Gegevensverzamelaar",
+      "help_html": "<h3>Gegevensverzamelaar-knooppunt</h3><p>Staat handmatige invoer van (x, y)-punten toe die als signaal worden uitgezonden.</p><ul><li><b>Toevoegen / Verwijderen / Wissen:</b> Rijen in de tabel beheren.</li><li><b>Plakken:</b> Gegevens uit het klembord plakken (Excel, tekst, CSV).</li><li><b>Importeren:</b> Punten laden uit CSV, NumPy (.npz/.npy), MATLAB (.mat) of JSON.</li><li><b>Exporteren:</b> Punten opslaan in een CSV-bestand.</li><li><b>Voorbeeld:</b> Real-time visuele weergave van de punten.</li></ul><p>Het uitvoersignaal wordt automatisch gesorteerd op X.</p>"
+    },
+    "model_fit": {
+      "title": "Model Fit",
+      "custom_short": "Aangepast",
+      "custom": "Aangepast",
+      "waiting": "Wachten op gegevens...",
+      "waiting_more": "Wachten op meer gegevens... ({n_points}/{n_params})",
+      "fitted": "Gefit (N={n_points})",
+      "error_model": "Fout: ongeldig model",
+      "error_nan": "Fout: ongeldige gegevens",
+      "error_fit": "Fout bij fit",
+      "results": "Fit-resultaten",
+      "model": "Model:",
+      "status": "Status:",
+      "expression": "Expressie:",
+      "n_points": "N punten:",
+      "dof": "Vrijheidsgraden:",
+      "configuration": "Configuratie",
+      "model_type": "Modeltype:",
+      "n_fine": "Fijne mesh-punten:",
+      "custom_editor": "Aangepaste modeleditor",
+      "custom_hint": "Schrijf een expressie met 'x' en parameters (a, b, c...):",
+      "validate": "Expressie valideren",
+      "not_validated": "Niet gevalideerd",
+      "valid_ok": "Geldige expressie",
+      "empty_expr": "Fout: lege expressie",
+      "params_detected": "Parameters: ",
+      "menu": { "configure": "Configureren..." },
+      "ports": { "input": "Invoer", "output": "Uitvoer" },
+      "config_title": "Model Fit configureren",
+      "help_title": "Hulp - Model Fit",
+      "help_html": "\n            <h3>Model Fit Node</h3>\n            <p>Past wiskundige modellen toe op gegevens (x, y) met behulp van scipy.optimize.curve_fit.</p>\n            <h4>Voorgedefinieerde modellen:</h4>\n            <ul>\n                <li><b>Lineair</b>: a*x + b</li>\n                <li><b>Kwadratisch</b>: a*x^2 + b*x + c</li>\n                <li><b>Kubisch</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Exponentieel</b>: a*exp(b*x)</li>\n                <li><b>Gaussisch</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Sinus</b>: a*sin(b*x + c) + d</li>\n                <li><b>Machtsfunctie</b>: a*x^b</li>\n                <li><b>Logaritmisch</b>: a*log(x) + b</li>\n                <li><b>Lorentzian</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoïde</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Aangepast model (geavanceerd):</h4>\n            <p>Selecteer <b>custom</b> bij het modeltype en schrijf je eigen expressie.\n            Gebruik <code>x</code> als onafhankelijke variabele en letters (a, b, c...) als parameters.</p>\n            <p><b>Geldige voorbeelden:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Toegestane functies:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>De node retourneert (x_fine, y_fitted) om de vloeiende kurve te plotten.</p>\n            <p>Als er minder punten zijn dan vrije parameters, worden de originele ongefitte gegevens geretourneerd.</p>\n            "
     },
     "window": {
       "title": "Venster",

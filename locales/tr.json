@@ -800,7 +800,8 @@
     },
     "resample": {
       "title": "Yeniden Örnekle",
-      "tooltip": "Sinyalin örnekleme hızını değiştir",
+      "tooltip": "Sinyalin örnekleme frekansını değiştir",
+      "method": "Yöntem:",
       "ports": {
         "input": "Giriş",
         "output": "Çıkış"
@@ -810,14 +811,105 @@
         "ready": "Hazır"
       },
       "menu": {
-        "configure": "Yapılandır..."
+        "configure": "Yapılandır...",
+        "method": "Yöntem",
+        "mode": "Mod"
       },
-      "config_title": "Yeniden Örneklemeyi Yapılandır",
+      "methods": {
+        "fft": {
+          "label": "FFT (periyodik)",
+          "tooltip": "Sinüsoidal, periyodik sinyaller veya az sayıda harmonik içeren sinyaller için idealdir."
+        },
+        "linear": {
+          "label": "Doğrusal",
+          "tooltip": "Hızlı ve kararlı. Düzgün profiller veya periyodik olmayan sinyaller için iyidir."
+        },
+        "cubic": {
+          "label": "Kübik (spline)",
+          "tooltip": "Geçişleri yumuşatır. Kademeli değişimleri olan karmaşık sinyaller için önerilir."
+        },
+        "nearest": {
+          "label": "En yakın komşu",
+          "tooltip": "Kesin değerleri korur. Dijital sinyaller veya basamaklar için kullanışlıdır."
+        },
+        "polyphase": {
+          "label": "Çok fazlı",
+          "tooltip": "Entegre filtreleme ile yüksek kalite. Rasyonel faktörlü up/down-örnekleme için idealdir."
+        },
+        "zero_order_hold": {
+          "label": "Sıfır-derece tutma",
+          "tooltip": "En yakın komşuya benzer, ancak son bilinen değeri korur."
+        }
+      },
+      "config_title": "Yeniden örneklemeyi yapılandır",
       "mode": "Mod:",
       "factor": "Faktör:",
       "target_fs": "Hedef fs (Hz):",
       "help_title": "Yardım - Yeniden Örnekle",
-      "help_html": "<h3>🔄 Yeniden Örnekleme Düğümü</h3><p>Giriş sinyalinin <b>örnekleme hızını</b> değiştirir.</p><h4>📥 Giriş</h4><p><code>input</code> → bir <code>(x, y)</code> demeti veya 1B dizi bekler.</p><h4>📤 Çıkış</h4><p><code>output</code> → yeniden örneklenmiş sinyal <code>(x_new, y_new)</code> olarak.</p><h4>⚙️ Parametreler</h4><ul><li><b>Mod</b> – <i>faktör</i> (orijinal örnekleme hızını çarpar) veya <i>fixed_fs</i> (Hz cinsinden hedef örnekleme hızı).</li><li><b>Faktör</b> – ölçekleme faktörü (>1 örnekleri artırır, <1 azaltır).</li><li><b>Hedef fs</b> – Hz cinsinden istenen örnekleme hızı (mod fixed_fs olduğunda kullanılır).</li></ul><h4>🛠️ Çalışma</h4><p>Fourier yöntemi uygulayan <code>scipy.signal.resample</code> kullanır.</p><hr><hr><h3>🧠 Bu sistemi nasıl düşünmeli</h3><p>Bu ortam bir <b>sinyal işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Ana kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel model</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li>Bir porta <b>Ctrl + tık</b> → hızlı bağlantı için portu seçer.</li><li>Düğüme <b>çift tık</b> → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li>Düğümü <b>sürükle</b> → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+      "help_html": "<h3>🔄 Yeniden Örnekleme Düğümü</h3><p>Giriş sinyalinin <b>örnekleme frekansını</b> değiştirir.</p><h4>📥 Giriş</h4><p><code>input</code> → bir <code>(x, y)</code> demeti veya 1D dizi bekler.</p><h4>📤 Çıkış</h4><p><code>output</code> → <code>(x_new, y_new)</code> olarak yeniden örneklenmiş sinyal.</p><h4>⚙️ Parametreler</h4><ul><li><b>Mod</b> – <i>factor</i> (orijinal frekansı çarpar) veya <i>fixed_fs</i> (hedef frekans Hz olarak).</li><li><b>Faktör</b> – ölçek (>1 örnek artırır, <1 azaltır).</li><li><b>Hedef fs</b> – istenen frekans Hz (fixed_fs modunda kullanılır).</li></ul><h4>🛠️ Çalışma</h4><p><code>scipy.signal.resample</code> (Fourier yöntemi) kullanır.</p><hr><h3>🧠 Sistem hakkında düşünme</h3><p>Bu ortam bir <b>işaret işleme akışı</b> olarak çalışır.</p><pre>Veri → Dönüşüm → Sonuç</pre><h4>📐 Temel kural</h4><pre>Her şey: (x, y)</pre><h4>🔁 Evrensel desen</h4><pre>Giriş → İşleme → Görselleştirme</pre><hr><h4>⚡ Kısayollar ve ipuçları</h4><ul><li><b>Ctrl + tık</b> bir kapı üzerinde → hızlı bağlantı için kapıyı seçer.</li><li><b>Çift tık</b> düğüm üzerinde → bu yardım penceresini açar.</li><li><b>Sağ tık</b> → bağlam menüsü (sil, yapılandır).</li><li><b>Sürükle</b> düğüm → tüm bloğu taşır; bağlantılar otomatik güncellenir.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Manuel Veri",
+      "ports": { "output": "Çıkış" },
+      "no_data": "Veri yok",
+      "preview": "Önizleme",
+      "points": "Noktalar (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Ekle",
+      "remove": "Sil",
+      "clear": "Temizle",
+      "paste": "Yapıştır",
+      "import_csv": "İçe Aktar",
+      "export_csv": "Dışa Aktar",
+      "import_title": "Veri İçe Aktar",
+      "export_title": "CSV Dışa Aktar",
+      "file_filter": "Desteklenen Dosyalar (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Metin (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Tüm Dosyalar (*)",
+      "csv_filter": "CSV Dosyaları (*.csv);;Tüm Dosyalar (*)",
+      "error": "Hata",
+      "info": "Bilgi",
+      "no_points_to_export": "Dışa aktarılacak nokta yok.",
+      "no_valid_points": "Dosyada geçerli nokta bulunamadı.",
+      "no_scipy": ".mat dosyalarını yüklemek için scipy gereklidir.",
+      "npz_diagnostic": ".npz dosyasında geçerli nokta bulunamadı.\\n{info}",
+      "npy_shape": "{shape} şeklindeki dizi uyumlu değil. 1D veya (N,2)/(2,N) bekleniyor.",
+      "mat_diagnostic": ".mat dosyasında geçerli nokta bulunamadı.\\n{info}",
+      "menu": { "configure": "Yapılandır..." },
+      "config_title": "Veri Toplayıcıyı Yapılandır",
+      "help_title": "Yardım - Veri Toplayıcı",
+      "help_html": "<h3>Veri Toplayıcı Düğümü</h3><p>Sinyal olarak yayımlanacak (x, y) noktalarının manuel girişine izin verir.</p><ul><li><b>Ekle / Sil / Temizle:</b> Tablodaki satırları yönetin.</li><li><b>Yapıştır:</b> Panodan veri yapıştırın (Excel, metin, CSV).</li><li><b>İçe Aktar:</b> CSV, NumPy (.npz/.npy), MATLAB (.mat) veya JSON'dan nokta yükleyin.</li><li><b>Dışa Aktar:</b> Noktaları CSV dosyasına kaydedin.</li><li><b>Önizleme:</b> Noktaların gerçek zamanlı görsel önizlemesi.</li></ul><p>Çıkış sinyali otomatik olarak X'e göre sıralanır.</p>"
+    },
+    "model_fit": {
+      "title": "Model Uydurma",
+      "custom_short": "Özel",
+      "custom": "Özel",
+      "waiting": "Veri bekleniyor...",
+      "waiting_more": "Daha fazla veri bekleniyor... ({n_points}/{n_params})",
+      "fitted": "Uyduruldu (N={n_points})",
+      "error_model": "Hata: geçersiz model",
+      "error_nan": "Hata: geçersiz veri",
+      "error_fit": "Uydurma hatası",
+      "results": "Uydurma Sonuçları",
+      "model": "Model:",
+      "status": "Durum:",
+      "expression": "İfade:",
+      "n_points": "N nokta:",
+      "dof": "Serbestlik derecesi:",
+      "configuration": "Yapılandırma",
+      "model_type": "Model tipi:",
+      "n_fine": "İnce örgü noktaları:",
+      "custom_editor": "Özel Model Düzenleyicisi",
+      "custom_hint": "'x' ve parametreleri (a, b, c...) kullanarak bir ifade yazın:",
+      "validate": "İfadeyi doğrula",
+      "not_validated": "Doğrulanmadı",
+      "valid_ok": "Geçerli ifade",
+      "empty_expr": "Hata: boş ifade",
+      "params_detected": "Parametreler: ",
+      "menu": { "configure": "Yapılandır..." },
+      "ports": { "input": "Giriş", "output": "Çıkış" },
+      "config_title": "Model Uydurmayı Yapılandır",
+      "help_title": "Yardım - Model Uydurma",
+      "help_html": "\n            <h3>Model Uydurma Düğümü</h3>\n            <p>scipy.optimize.curve_fit kullanarak verilere (x, y) matematiksel modeller uydurur.</p>\n            <h4>Ön tanımlı modeller:</h4>\n            <ul>\n                <li><b>Doğrusal (Linear)</b>: a*x + b</li>\n                <li><b>İkinci Dereceden (Quadratic)</b>: a*x^2 + b*x + c</li>\n                <li><b>Üçüncü Dereceden (Cubic)</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Üstel (Exponential)</b>: a*exp(b*x)</li>\n                <li><b>Gauss (Gaussian)</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Sinüs (Sine)</b>: a*sin(b*x + c) + d</li>\n                <li><b>Üslü (Power)</b>: a*x^b</li>\n                <li><b>Logaritmik (Logarithmic)</b>: a*log(x) + b</li>\n                <li><b>Lorentz (Lorentzian)</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoid</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Özel model (gelişmiş):</h4>\n            <p>Model tipinde <b>custom</b> seçeneğini seçin ve kendi ifadenizi yazın.\n            Bağımsız değişken olarak <code>x</code> ve parametre olarak harfleri (a, b, c...) kullanın.</p>\n            <p><b>Geçerli örnekler:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>İzin verilen fonksiyonlar:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>Düğüm, düzgün eğriyi çizmek için (x_fine, y_fitted) döndürür.</p>\n            <p>Serbest parametrelerden daha az nokta varsa, orijinal verileri uydurmadan döndürür.</p>\n            "
     },
     "window": {
       "title": "Pencere",

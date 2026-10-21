@@ -799,25 +799,117 @@
     "help_html": "<h3>🔀 Uzel konvoluce (FIR filtr)</h3>\n<p>Aplikuje diskrétní konvoluci mezi vstupním signálem a uživatelem definovaným jádrem.</p>\n\n<h4>📥 Vstup</h4>\n<p><code>input</code> → očekává n-tici <code>(x, y)</code> nebo 1D pole.</p>\n\n<h4>📤 Výstup</h4>\n<ul>\n    <li><b>Filtrovaný signál</b> → <code>(x_conv, y_conv)</code> – výsledek konvoluce.</li>\n</ul>\n\n<h4>⚙️ Parametry (dvojklik pro konfiguraci)</h4>\n<ul>\n    <li><b>Koeficienty jádra</b> – desetinná čísla oddělená čárkou, např. <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Režim konvoluce</b> – <code>'same'</code> (výchozí), <code>'full'</code> nebo <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Činnost</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>Osa x se odpovídajícím způsobem upraví: pro <code>'same'</code> zachová původní x; pro <code>'valid'</code> ořízne konce; pro <code>'full'</code> lineárně rozšíří.</li>\n</ul>\n\n<hr>\n<h3>🧠 Jak o tomto systému přemýšlet</h3>\n\n<p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p>\n\n<pre>\nData → Transformace → Výsledek\n</pre>\n\n<h4>📐 Klíčové pravidlo</h4>\n<pre>\nVše je:\n\n(x, y)\n</pre>\n\n<h4>🔁 Univerzální vzor</h4>\n<pre>\nVstup → Zpracování → Vizualizace\n</pre>\n\n<h4>🧪 Kompletní příklad</h4>\n<pre>\nOsciloskop → FFT → Filtr → Sčítačka → Graf\n</pre>\n\n<hr>\n<h4>⚡ Zkratky a triky</h4>\n<ul>\n<li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li>\n<li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li>\n<li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, propojit, odpojit).</li>\n<li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li>\n</ul>"
     },
     "resample": {
-      "title": "Převzorkovat",
+      "title": "Převzorkování",
       "tooltip": "Změnit vzorkovací frekvenci signálu",
+      "method": "Metoda:",
       "ports": {
         "input": "Vstup",
         "output": "Výstup"
       },
       "status": {
         "no_data": "Žádná data",
-        "ready": "Připraveno"
+        "ready": "Připraven"
       },
       "menu": {
-        "configure": "Konfigurovat…"
+        "configure": "Konfigurovat...",
+        "method": "Metoda",
+        "mode": "Režim"
       },
-      "config_title": "Konfigurace převzorkování",
+      "methods": {
+        "fft": {
+          "label": "FFT (periodické)",
+          "tooltip": "Ideální pro sinusové, periodické signály nebo s malým počtem harmonických."
+        },
+        "linear": {
+          "label": "Lineární",
+          "tooltip": "Rychlé a stabilní. Dobré pro hladké profily nebo neperiodické signály."
+        },
+        "cubic": {
+          "label": "Kubická (spline)",
+          "tooltip": "Vyhlazuje přechody. Doporučeno pro složité signály s postupnými změnami."
+        },
+        "nearest": {
+          "label": "Nejbližší soused",
+          "tooltip": "Zachovává přesné hodnoty. Užitečné pro digitální signály nebo schody."
+        },
+        "polyphase": {
+          "label": "Polyfázní",
+          "tooltip": "Vysoká kvalita s integrovaným filtrováním. Ideální pro up/down-sampling s racionálními faktory."
+        },
+        "zero_order_hold": {
+          "label": "Udržení nultého řádu",
+          "tooltip": "Podobné nejbližšímu sousedovi, ale udržuje poslední známou hodnotu."
+        }
+      },
+      "config_title": "Konfigurovat převzorkování",
       "mode": "Režim:",
       "factor": "Faktor:",
       "target_fs": "Cílová fs (Hz):",
-      "help_title": "Nápověda – Převzorkování",
-      "help_html": "<h3>🔄 Uzel převzorkování</h3><p>Mění <b>vzorkovací frekvenci</b> vstupního signálu.</p><h4>📥 Vstup</h4><p><code>input</code> → očekává n-tici <code>(x, y)</code> nebo 1D pole.</p><h4>📤 Výstup</h4><p><code>output</code> → převzorkovaný signál jako <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Režim</b> – <i>factor</i> (násobek původní vzorkovací frekvence) nebo <i>fixed_fs</i> (cílová vzorkovací frekvence v Hz).</li><li><b>Faktor</b> – faktor škálování (>1 zvyšuje počet vzorků, <1 snižuje).</li><li><b>Cílová fs</b> – požadovaná vzorkovací frekvence v Hz (použije se, když je režim fixed_fs).</li></ul><h4>🛠️ Činnost</h4><p>Používá <code>scipy.signal.resample</code>, který aplikuje Fourierovu metodu.</p><hr><hr><h3>🧠 Jak o tomto systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálu</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a triky</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé propojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravé tlačítko</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Přetažení</b> uzlu → přesune celý blok; propojení se aktualizují automaticky.</li></ul>"
+      "help_title": "Nápověda - Převzorkování",
+      "help_html": "<h3>🔄 Uzel Převzorkování</h3><p>Mění <b>vzorkovací frekvenci</b> vstupního signálu.</p><h4>📥 Vstup</h4><p><code>input</code> → očekává dvojici <code>(x, y)</code> nebo 1D pole.</p><h4>📤 Výstup</h4><p><code>output</code> → převzorkovaný signál jako <code>(x_new, y_new)</code>.</p><h4>⚙️ Parametry</h4><ul><li><b>Režim</b> – <i>factor</i> (násobí původní frekvenci) nebo <i>fixed_fs</i> (cílová frekvence v Hz).</li><li><b>Faktor</b> – měřítko (>1 zvyšuje vzorky, <1 snižuje).</li><li><b>Cílová fs</b> – požadovaná frekvence v Hz (používá se v režimu fixed_fs).</li></ul><h4>🛠️ Funkce</h4><p>Používá <code>scipy.signal.resample</code> (Fourierova metoda).</p><hr><h3>🧠 Jak o systému přemýšlet</h3><p>Toto prostředí funguje jako <b>tok zpracování signálů</b>.</p><pre>Data → Transformace → Výsledek</pre><h4>📐 Klíčové pravidlo</h4><pre>Vše je: (x, y)</pre><h4>🔁 Univerzální vzor</h4><pre>Vstup → Zpracování → Vizualizace</pre><hr><h4>⚡ Zkratky a tipy</h4><ul><li><b>Ctrl + klik</b> na port → vybere port pro rychlé připojení.</li><li><b>Dvojklik</b> na uzel → otevře toto okno nápovědy.</li><li><b>Pravý klik</b> → kontextová nabídka (smazat, konfigurovat).</li><li><b>Tažení</b> uzlu → přesune celý blok; spojení se aktualizují automaticky.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Manuální data",
+      "ports": { "output": "Výstup" },
+      "no_data": "Žádná data",
+      "preview": "Náhled",
+      "points": "Body (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Přidat",
+      "remove": "Smazat",
+      "clear": "Vymazat",
+      "paste": "Vložit",
+      "import_csv": "Importovat",
+      "export_csv": "Exportovat",
+      "import_title": "Importovat data",
+      "export_title": "Exportovat CSV",
+      "file_filter": "Podporované soubory (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Text (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Všechny soubory (*)",
+      "csv_filter": "Soubory CSV (*.csv);;Všechny soubory (*)",
+      "error": "Chyba",
+      "info": "Informace",
+      "no_points_to_export": "Žádné body k exportu.",
+      "no_valid_points": "V souboru nebyly nalezeny žádné platné body.",
+      "no_scipy": "Pro načtení souborů .mat je vyžadováno scipy.",
+      "npz_diagnostic": "V souboru .npz nebyly nalezeny žádné platné body.\\n{info}",
+      "npy_shape": "Pole s tvarem {shape} není kompatibilní. Očekáváno 1D nebo (N,2)/(2,N).",
+      "mat_diagnostic": "V souboru .mat nebyly nalezeny žádné platné body.\\n{info}",
+      "menu": { "configure": "Konfigurovat..." },
+      "config_title": "Konfigurovat sběr dat",
+      "help_title": "Nápověda - Sběr dat",
+      "help_html": "<h3>Uzel sběru dat</h3><p>Umožňuje ruční zadání bodů (x, y), které budou vydány jako signál.</p><ul><li><b>Přidat / Smazat / Vymazat:</b> Správa řádků v tabulce.</li><li><b>Vložit:</b> Vložení dat ze schránky (Excel, text, CSV).</li><li><b>Importovat:</b> Načtení bodů z CSV, NumPy (.npz/.npy), MATLAB (.mat) nebo JSON.</li><li><b>Exportovat:</b> Uložení bodů do souboru CSV.</li><li><b>Náhled:</b> Vizualizace bodů v reálném čase.</li></ul><p>Výstupní signál je automaticky seřazen podle X.</p>"
+    },
+    "model_fit": {
+      "title": "Proložení modelu",
+      "custom_short": "Vlastní",
+      "custom": "Vlastní",
+      "waiting": "Čekání na data...",
+      "waiting_more": "Čekání na další data... ({n_points}/{n_params})",
+      "fitted": "Proloženo (N={n_points})",
+      "error_model": "Chyba: neplatný model",
+      "error_nan": "Chyba: neplatná data",
+      "error_fit": "Chyba při prokládání",
+      "results": "Výsledky proložení",
+      "model": "Model:",
+      "status": "Stav:",
+      "expression": "Výraz:",
+      "n_points": "Počet bodů N:",
+      "dof": "Stupně volnosti:",
+      "configuration": "Konfigurace",
+      "model_type": "Typ modelu:",
+      "n_fine": "Body jemné mřížky:",
+      "custom_editor": "Editor vlastního modelu",
+      "custom_hint": "Zapište výraz pomocí 'x' a parametrů (a, b, c...):",
+      "validate": "Ověřit výraz",
+      "not_validated": "Neověřeno",
+      "valid_ok": "Platný výraz",
+      "empty_expr": "Chyba: prázdný výraz",
+      "params_detected": "Parametry: ",
+      "menu": { "configure": "Konfigurovat..." },
+      "ports": { "input": "Vstup", "output": "Výstup" },
+      "config_title": "Konfigurovat proložení modelu",
+      "help_title": "Nápověda - Proložení modelu",
+      "help_html": "\n            <h3>Uzol proložení modelu</h3>\n            <p>Prokládá matematické modely daty (x, y) pomocí scipy.optimize.curve_fit.</p>\n            <h4>Předdefinované modely:</h4>\n            <ul>\n                <li><b>Lineární</b>: a*x + b</li>\n                <li><b>Kvadratický</b>: a*x^2 + b*x + c</li>\n                <li><b>Kubický</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Exponenciální</b>: a*exp(b*x)</li>\n                <li><b>Gaussovský</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Sinusová</b>: a*sin(b*x + c) + d</li>\n                <li><b>Mocninný</b>: a*x^b</li>\n                <li><b>Logaritmický</b>: a*log(x) + b</li>\n                <li><b>Lorentzův</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoida</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Vlastní model (pokročilé):</h4>\n            <p>Vyberte <b>custom</b> jako typ modelu a napište vlastní výraz.\n            Použijte <code>x</code> jako nezávislou proměnnou a písmena (a, b, c...) jako parametry.</p>\n            <p><b>Platné příklady:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Povolené funkce:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>Uzel vrací (x_fino, y_ajustado) pro vykreslení hladké křivky.</p>\n            <p>Pokud je méně bodů než volných parametrů, vrátí původní data bez proložení.</p>\n            "
     },
     "window": {
       "title": "Okno",

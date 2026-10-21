@@ -799,8 +799,9 @@
       "help_html": "<h3>🔀 Nút tích chập (Bộ lọc FIR)</h3>\n<p>Áp dụng tích chập rời rạc giữa tín hiệu đầu vào và nhân do người dùng định nghĩa.</p>\n\n<h4>📥 Đầu vào</h4>\n<p><code>input</code> → mong đợi tuple <code>(x, y)</code> hoặc mảng 1D.</p>\n\n<h4>📤 Đầu ra</h4>\n<ul>\n    <li><b>Tín hiệu đã lọc</b> → <code>(x_conv, y_conv)</code> – kết quả tích chập.</li>\n</ul>\n\n<h4>⚙️ Tham số (nhấp đúp để cấu hình)</h4>\n<ul>\n    <li><b>Hệ số nhân</b> – số thực cách nhau bằng dấu phẩy, ví dụ <code>'0.2,0.2,0.2,0.2,0.2'</code>.</li>\n    <li><b>Chế độ tích chập</b> – <code>'same'</code> (mặc định), <code>'full'</code> hoặc <code>'valid'</code>.</li>\n</ul>\n\n<h4>📐 Hoạt động</h4>\n<ul>\n    <li><code>y_conv = np.convolve(y, kernel, mode=mode)</code></li>\n    <li>Trục x được điều chỉnh tương ứng: <code>'same'</code> giữ x gốc; <code>'valid'</code> cắt hai đầu; <code>'full'</code> mở rộng tuyến tính.</li>\n</ul>\n\n<hr>\n<h3>🧠 Cách tư duy về hệ thống này</h3>\n\n<p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p>\n\n<pre>\nDữ liệu → Biến đổi → Kết quả\n</pre>\n\n<h4>📐 Quy tắc chính</h4>\n<pre>\nMọi thứ là:\n\n(x, y)\n</pre>\n\n<h4>🔁 Mô hình phổ quát</h4>\n<pre>\nĐầu vào → Xử lý → Trực quan hóa\n</pre>\n\n<h4>🧪 Ví dụ đầy đủ</h4>\n<pre>\nMáy hiện sóng → FFT → Bộ lọc → Bộ cộng → Đồ thị\n</pre>\n\n<hr>\n<h4>⚡ Phím tắt và mẹo</h4>\n<ul>\n<li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li>\n<li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li>\n<li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, kết nối, ngắt kết nối).</li>\n<li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li>\n</ul>"
     },
     "resample": {
-      "title": "Lấy mẫu lại",
+      "title": "Tái lấy mẫu",
       "tooltip": "Thay đổi tần số lấy mẫu của tín hiệu",
+      "method": "Phương pháp:",
       "ports": {
         "input": "Đầu vào",
         "output": "Đầu ra"
@@ -810,14 +811,105 @@
         "ready": "Sẵn sàng"
       },
       "menu": {
-        "configure": "Cấu hình..."
+        "configure": "Cấu hình...",
+        "method": "Phương pháp",
+        "mode": "Chế độ"
       },
-      "config_title": "Cấu hình lấy mẫu lại",
+      "methods": {
+        "fft": {
+          "label": "FFT (tuần hoàn)",
+          "tooltip": "Lý tưởng cho tín hiệu hình sin, tuần hoàn hoặc có ít sóng hài."
+        },
+        "linear": {
+          "label": "Tuyến tính",
+          "tooltip": "Nhanh và ổn định. Tốt cho hồ sơ mượt hoặc tín hiệu không tuần hoàn."
+        },
+        "cubic": {
+          "label": "Bậc ba (spline)",
+          "tooltip": "Làm mượt chuyển tiếp. Khuyến nghị cho tín hiệu phức tạp với thay đổi dần."
+        },
+        "nearest": {
+          "label": "Láng giềng gần nhất",
+          "tooltip": "Giữ nguyên giá trị chính xác. Hữu ích cho tín hiệu số hoặc bậc thang."
+        },
+        "polyphase": {
+          "label": "Đa pha",
+          "tooltip": "Chất lượng cao với lọc tích hợp. Lý tưởng cho up/down-sampling với hệ số hữu tỷ."
+        },
+        "zero_order_hold": {
+          "label": "Giữ bậc không",
+          "tooltip": "Tương tự láng giềng gần nhất nhưng giữ giá trị đã biết cuối cùng."
+        }
+      },
+      "config_title": "Cấu hình tái lấy mẫu",
       "mode": "Chế độ:",
       "factor": "Hệ số:",
-      "target_fs": "fs đích (Hz):",
-      "help_title": "Trợ giúp - Lấy mẫu lại",
-      "help_html": "<h3>🔄 Nút lấy mẫu lại</h3><p>Thay đổi <b>tần số lấy mẫu</b> của tín hiệu đầu vào.</p><h4>📥 Đầu vào</h4><p><code>input</code> → mong đợi tuple <code>(x, y)</code> hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><p><code>output</code> → tín hiệu đã lấy mẫu lại dưới dạng <code>(x_new, y_new)</code>.</p><h4>⚙️ Tham số</h4><ul><li><b>Chế độ</b> – <i>hệ số</i> (nhân tần số lấy mẫu gốc) hoặc <i>fixed_fs</i> (tần số lấy mẫu đích tính bằng Hz).</li><li><b>Hệ số</b> – hệ số chia tỉ lệ (>1 tăng số mẫu, <1 giảm).</li><li><b>fs đích</b> – tần số lấy mẫu mong muốn tính bằng Hz (dùng khi chế độ là fixed_fs).</li></ul><h4>🛠️ Hoạt động</h4><p>Dùng <code>scipy.signal.resample</code> áp dụng phương pháp Fourier.</p><hr><hr><h3>🧠 Cách tư duy về hệ thống này</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mô hình phổ quát</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Nhấp phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển cả khối; các kết nối tự động cập nhật.</li></ul>"
+      "target_fs": "Fs đích (Hz):",
+      "help_title": "Trợ giúp - Tái lấy mẫu",
+      "help_html": "<h3>🔄 Nút Tái lấy mẫu</h3><p>Thay đổi <b>tần số lấy mẫu</b> của tín hiệu đầu vào.</p><h4>📥 Đầu vào</h4><p><code>input</code> → mong đợi một bộ <code>(x, y)</code> hoặc mảng 1D.</p><h4>📤 Đầu ra</h4><p><code>output</code> → tín hiệu tái lấy mẫu dưới dạng <code>(x_new, y_new)</code>.</p><h4>⚙️ Tham số</h4><ul><li><b>Chế độ</b> – <i>factor</i> (nhân tần số gốc) hoặc <i>fixed_fs</i> (tần số đích tính bằng Hz).</li><li><b>Hệ số</b> – tỷ lệ (>1 tăng mẫu, <1 giảm).</li><li><b>Fs đích</b> – tần số mong muốn tính bằng Hz (dùng trong chế độ fixed_fs).</li></ul><h4>🛠️ Cách hoạt động</h4><p>Sử dụng <code>scipy.signal.resample</code> (phương pháp Fourier).</p><hr><h3>🧠 Cách hiểu hệ thống</h3><p>Môi trường này hoạt động như một <b>luồng xử lý tín hiệu</b>.</p><pre>Dữ liệu → Biến đổi → Kết quả</pre><h4>📐 Quy tắc chính</h4><pre>Mọi thứ là: (x, y)</pre><h4>🔁 Mẫu chung</h4><pre>Đầu vào → Xử lý → Trực quan hóa</pre><hr><h4>⚡ Phím tắt và mẹo</h4><ul><li><b>Ctrl + nhấp</b> vào cổng → chọn cổng để kết nối nhanh.</li><li><b>Nhấp đúp</b> vào nút → mở cửa sổ trợ giúp này.</li><li><b>Chuột phải</b> → menu ngữ cảnh (xóa, cấu hình).</li><li><b>Kéo</b> nút → di chuyển toàn bộ khối; kết nối tự động cập nhật.</li></ul>"
+    },
+    "data_collector": {
+      "title": "Dữ liệu thủ công",
+      "ports": { "output": "Đầu ra" },
+      "no_data": "Không có dữ liệu",
+      "preview": "Xem trước",
+      "points": "Điểm (x, y):",
+      "header_x": "X",
+      "header_y": "Y",
+      "add": "Thêm",
+      "remove": "Xóa",
+      "clear": "Xóa sạch",
+      "paste": "Dán",
+      "import_csv": "Nhập",
+      "export_csv": "Xuất",
+      "import_title": "Nhập dữ liệu",
+      "export_title": "Xuất CSV",
+      "file_filter": "Tệp được hỗ trợ (*.csv *.txt *.tsv *.dat *.npz *.npy *.mat *.json);;CSV / Văn bản (*.csv *.txt *.tsv *.dat);;NumPy (*.npz *.npy);;MATLAB (*.mat);;JSON (*.json);;Tất cả tệp (*)",
+      "csv_filter": "Tệp CSV (*.csv);;Tất cả tệp (*)",
+      "error": "Lỗi",
+      "info": "Thông tin",
+      "no_points_to_export": "Không có điểm nào để xuất.",
+      "no_valid_points": "Không tìm thấy điểm hợp lệ nào trong tệp.",
+      "no_scipy": "Cần scipy để tải các tệp .mat.",
+      "npz_diagnostic": "Không tìm thấy điểm hợp lệ nào trong tệp .npz.\\n{info}",
+      "npy_shape": "Mảng có hình dạng {shape} không tương thích. Cần 1D hoặc (N,2)/(2,N).",
+      "mat_diagnostic": "Không tìm thấy điểm hợp lệ nào trong tệp .mat.\\n{info}",
+      "menu": { "configure": "Cấu hình..." },
+      "config_title": "Cấu hình Bộ thu thập dữ liệu",
+      "help_title": "Trợ giúp - Bộ thu thập dữ liệu",
+      "help_html": "<h3>Nút thu thập dữ liệu</h3><p>Cho phép nhập thủ công các điểm (x, y) sẽ được phát ra như một tín hiệu.</p><ul><li><b>Thêm / Xóa / Xóa sạch:</b> Quản lý các hàng trong bảng.</li><li><b>Dán:</b> Dán dữ liệu từ khay nhớ tạm (Excel, văn bản, CSV).</li><li><b>Nhập:</b> Tải điểm từ CSV, NumPy (.npz/.npy), MATLAB (.mat) hoặc JSON.</li><li><b>Xuất:</b> Lưu điểm vào tệp CSV.</li><li><b>Xem trước:</b> Hình ảnh trực quan theo thời gian thực của các điểm.</li></ul><p>Tín hiệu đầu ra được tự động sắp xếp theo X.</p>"
+    },
+    "model_fit": {
+      "title": "Khớp mô hình",
+      "custom_short": "Tùy chỉnh",
+      "custom": "Tùy chỉnh",
+      "waiting": "Đang chờ dữ liệu...",
+      "waiting_more": "Đang chờ thêm dữ liệu... ({n_points}/{n_params})",
+      "fitted": "Đã khớp (N={n_points})",
+      "error_model": "Lỗi: mô hình không hợp lệ",
+      "error_nan": "Lỗi: dữ liệu không hợp lệ",
+      "error_fit": "Lỗi khớp",
+      "results": "Kết quả khớp",
+      "model": "Mô hình:",
+      "status": "Trạng thái:",
+      "expression": "Biểu thức:",
+      "n_points": "Số điểm N:",
+      "dof": "Bậc tự do:",
+      "configuration": "Cấu hình",
+      "model_type": "Loại mô hình:",
+      "n_fine": "Số điểm lưới mịn:",
+      "custom_editor": "Trình chỉnh sửa mô hình tùy chỉnh",
+      "custom_hint": "Viết biểu thức sử dụng 'x' và các tham số (a, b, c...):",
+      "validate": "Xác thực biểu thức",
+      "not_validated": "Chưa xác thực",
+      "valid_ok": "Biểu thức hợp lệ",
+      "empty_expr": "Lỗi: biểu thức trống",
+      "params_detected": "Tham số: ",
+      "menu": { "configure": "Cấu hình..." },
+      "ports": { "input": "Đầu vào", "output": "Đầu ra" },
+      "config_title": "Cấu hình khớp mô hình",
+      "help_title": "Trợ giúp - Khớp mô hình",
+      "help_html": "\n            <h3>Nút khớp mô hình</h3>\n            <p>Khớp các mô hình toán học với dữ liệu (x, y) bằng cách sử dụng scipy.optimize.curve_fit.</p>\n            <h4>Các mô hình định sẵn:</h4>\n            <ul>\n                <li><b>Tuyến tính (Linear)</b>: a*x + b</li>\n                <li><b>Bậc hai (Quadratic)</b>: a*x^2 + b*x + c</li>\n                <li><b>Bậc ba (Cubic)</b>: a*x^3 + b*x^2 + c*x + d</li>\n                <li><b>Hàm mũ (Exponential)</b>: a*exp(b*x)</li>\n                <li><b>Gauss (Gaussian)</b>: a*exp(-(x-b)^2/(2*c^2))</li>\n                <li><b>Sin (Sine)</b>: a*sin(b*x + c) + d</li>\n                <li><b>Hàm lũy thừa (Power)</b>: a*x^b</li>\n                <li><b>Logarit (Logarithmic)</b>: a*log(x) + b</li>\n                <li><b>Lorentz (Lorentzian)</b>: a/(1 + ((x-b)/c)^2)</li>\n                <li><b>Sigmoid</b>: a/(1 + exp(-b*(x-c))) + d</li>\n            </ul>\n            <h4>Mô hình tùy chỉnh (nâng cao):</h4>\n            <p>Chọn <b>custom</b> trong loại mô hình và viết biểu thức của riêng bạn.\n            Sử dụng <code>x</code> làm biến độc lập và các chữ cái (a, b, c...) làm tham số.</p>\n            <p><b>Ví dụ hợp lệ:</b></p>\n            <ul>\n                <li><code>a * exp(-b * x) + c</code></li>\n                <li><code>a * sin(b*x + c) + d</code></li>\n                <li><code>a / (1 + (x/b)^c)</code></li>\n                <li><code>a * sqrt(x) + b * log(x) + c</code></li>\n            </ul>\n            <p><b>Các hàm cho phép:</b> exp, sin, cos, tan, log, ln, log10, sqrt, abs,\n            sign, sinh, cosh, tanh, arcsin, arccos, arctan, pi, e</p>\n            <p>Nút trả về (x_fine, y_fitted) để vẽ đường cong mượt.</p>\n            <p>Nếu có ít điểm hơn số tham số tự do, nó sẽ trả về dữ liệu gốc chưa khớp.</p>\n            "
     },
     "window": {
       "title": "Cửa sổ",
